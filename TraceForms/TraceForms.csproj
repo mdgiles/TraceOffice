@@ -120,61 +120,61 @@
     </Reference>
     <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2767b7a86b2c6482, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedBin\Dynamic.dll</HintPath>
+      <HintPath>..\..\..\SharedBin\Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>..\..\SharedBin\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FlexBObj">
-      <HintPath>..\FlexBObj\bin\Debug\FlexBObj.dll</HintPath>
+      <HintPath>..\..\FlexBObj\bin\Debug\FlexBObj.dll</HintPath>
     </Reference>
     <Reference Include="FlexCommissions">
-      <HintPath>..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>
+      <HintPath>..\..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>
     </Reference>
     <Reference Include="FlexControls">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexControls\bin\$(Configuration)\FlexControls.dll</HintPath>
+      <HintPath>..\..\FlexControls\bin\$(Configuration)\FlexControls.dll</HintPath>
     </Reference>
     <Reference Include="FlexCore">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
+      <HintPath>..\..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
     </Reference>
     <Reference Include="FlexEntities">
-      <HintPath>..\FlexEntities\bin\$(Configuration)\FlexEntities.dll</HintPath>
+      <HintPath>..\..\FlexEntities\bin\$(Configuration)\FlexEntities.dll</HintPath>
     </Reference>
     <Reference Include="FlexInterfaces">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
+      <HintPath>..\..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="FlexModel">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
+      <HintPath>..\..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
     </Reference>
     <Reference Include="MediaInfo">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
+      <HintPath>..\..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.mshtml" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+      <HintPath>..\..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -199,7 +199,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="WinFormHtmlEditor">
-      <HintPath>..\..\SharedBin\WinFormHtmlEditor.dll</HintPath>
+      <HintPath>..\..\..\SharedBin\WinFormHtmlEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
