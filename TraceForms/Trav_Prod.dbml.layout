@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 23.375" name="Trav_Prod">
+  <DataContextMoniker Name="/Trav_ProdDataContext" />
+  <nestedChildShapes>
+    <classShape Id="91047d14-bc23-49e2-85d9-89deeb3486ab" absoluteBounds="2.5, 3.5, 2, 19.654930013020834">
+      <DataClassMoniker Name="/Trav_ProdDataContext/HRATE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d8d96056-55c5-451e-ad84-b7a9d56f548f" absoluteBounds="2.515, 3.96, 1.9700000000000002, 19.094930013020832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFBC646B-90FF-4B37-95AC-0D65B04BB508}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlexOffice</RootNamespace>
+    <AssemblyName>FlexOffice</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexCore">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexInterfaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\FlexModel.AGCYLOG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AGY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIROFF.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Airport.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIRSEG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AMENASSGN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AMENITY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BookCombo.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BookSel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BusStation.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BUSTABLE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CARINFO.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CAROFF.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CARRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CHGCODE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CHGHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CITYCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CommLevel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPANY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPROD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPROD2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CONSRT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CONTACT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COUNTRY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COUPON.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CPRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRU.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRUIT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRUITItem.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Currency.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CXLFEE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Dept.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DETAIL.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DIGHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DIGITM.datasource" />
+    <None Include="Properties\DataSources\FlexModel.FlextourEntities.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HOTEL.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLBRAND.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLCHAIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLRATNG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INSURAN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INVT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INVT2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.LANGUAGE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.LOOKUP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEALCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEDIAINFO.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEDIARPT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MediaRptItem.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MenuConfig.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MenuItemSecurity.datasource" />
+    <None Include="Properties\DataSources\FlexModel.OPERATOR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PACK.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PACKTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PCOMP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PITIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PMTCODE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATGLIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATGRP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.REGION.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESITM.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESOURCE2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ROLE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ROOMCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RPTTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SeaPort.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SERVTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SpecialValue.datasource" />
+    <None Include="Properties\DataSources\FlexModel.State.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SVCRESTR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SVCRESTR2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SvcRLevel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SYSFILE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.TrainStation.datasource" />
+    <None Include="Properties\DataSources\FlexModel.USERFIELDS.datasource" />
+    <None Include="Properties\DataSources\FlexModel.VOUCHER.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FlexForms\FlexForms.csproj">
+      <Project>{1E150BA5-61A1-4C22-94F7-1B144050D46D}</Project>
+      <Name>FlexForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

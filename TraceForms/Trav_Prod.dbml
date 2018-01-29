@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Flextour" Class="Trav_ProdDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=apps-sql;Initial Catalog=ChineseHosts_Flextour;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="TraceForms.Properties.Settings" SettingsPropertyName="FlextourConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.HRATES" Member="HRATEs">
+    <Type Name="HRATE">
+      <Column Name="CODE" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="CAT" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[H L]" Member="H_L" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="YEAR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[LAST UPD]" Member="LAST_UPD" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="[UPD INIT]" Member="UPD_INIT" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[START DATE]" Member="START_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="[END DATE]" Member="END_DATE" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="[RATE DESC]" Member="RATE_DESC" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="[SGL GRATE]" Member="SGL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SGL NRATE]" Member="SGL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[DBL GRATE]" Member="DBL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[DBL NRATE]" Member="DBL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[TPL GRATE]" Member="TPL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[TPL NRATE]" Member="TPL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[OTH GRATE]" Member="OTH_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[OTH NRATE]" Member="OTH_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[QUA GRATE]" Member="QUA_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[QUA NRATE]" Member="QUA_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[CHD GRATE]" Member="CHD_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[CHD NRATE]" Member="CHD_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[CHD LIMIT]" Member="CHD_LIMIT" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="[JR GRATE]" Member="JR_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[JR NRATE]" Member="JR_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[JR LIMIT]" Member="JR_LIMIT" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="[MEAL1 CODE]" Member="MEAL1_CODE" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[MEAL1 ADG]" Member="MEAL1_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL1 ADN]" Member="MEAL1_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL2 CODE]" Member="MEAL2_CODE" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[MEAL2 ADG]" Member="MEAL2_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL2 ADN]" Member="MEAL2_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL3 CODE]" Member="MEAL3_CODE" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[MEAL3 ADG]" Member="MEAL3_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL3 ADN]" Member="MEAL3_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL4 CODE]" Member="MEAL4_CODE" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[MEAL4 ADG]" Member="MEAL4_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL4 ADN]" Member="MEAL4_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL5 CODE]" Member="MEAL5_CODE" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="[MEAL5 ADG]" Member="MEAL5_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MEAL5 ADN]" Member="MEAL5_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COMMENT1" Type="System.String" DbType="Char(35)" CanBeNull="true" />
+      <Column Name="COMMENT2" Type="System.String" DbType="Char(35)" CanBeNull="true" />
+      <Column Name="AGENCY" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[COMM FLG]" Member="COMM_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[COMM PCT]" Member="COMM_PCT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SSGL GRATE]" Member="SSGL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SSGL NRATE]" Member="SSGL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SDBL GRATE]" Member="SDBL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SDBL NRATE]" Member="SDBL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[STPL GRATE]" Member="STPL_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[STPL NRATE]" Member="STPL_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SOTH GRATE]" Member="SOTH_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SOTH NRATE]" Member="SOTH_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SQUA GRATE]" Member="SQUA_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SQUA NRATE]" Member="SQUA_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SCHD GRATE]" Member="SCHD_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SCHD NRATE]" Member="SCHD_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SCHD LIMIT]" Member="SCHD_LIMIT" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="[SJR GRATE]" Member="SJR_GRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SJR NRATE]" Member="SJR_NRATE" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SJR LIMIT]" Member="SJR_LIMIT" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="[SMEAL1 ADG]" Member="SMEAL1_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL1 ADN]" Member="SMEAL1_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL2 ADG]" Member="SMEAL2_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL2 ADN]" Member="SMEAL2_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL3 ADG]" Member="SMEAL3_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL3 ADN]" Member="SMEAL3_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL4 ADG]" Member="SMEAL4_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL4 ADN]" Member="SMEAL4_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL5 ADG]" Member="SMEAL5_ADG" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SMEAL5 ADN]" Member="SMEAL5_ADN" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SCOMM FLG]" Member="SCOMM_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[SCOMM PCT]" Member="SCOMM_PCT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[SUN FLG]" Member="SUN_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[MON FLG]" Member="MON_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[TUE FLG]" Member="TUE_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[WED FLG]" Member="WED_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[THU FLG]" Member="THU_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[FRI FLG]" Member="FRI_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[SAT FLG]" Member="SAT_FLG" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="[OVRCOMM PCT]" Member="OVRCOMM_PCT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="[MAX SGL]" Member="MAX_SGL" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="[MAX DBL]" Member="MAX_DBL" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="[MAX TPL]" Member="MAX_TPL" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="[MAX QUA]" Member="MAX_QUA" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="[MAX OTH]" Member="MAX_OTH" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NightsStay" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NightsPay" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ResDate_Start" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="ResDate_End" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RepeatCount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Inhouse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SpecialValue_Code" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="Currency_CodeSheet" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="Currency_CodePayment" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="ExchangeRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

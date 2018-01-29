@@ -1,0 +1,1403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E150BA5-61A1-4C22-94F7-1B144050D46D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlexForms</RootNamespace>
+    <AssemblyName>FlexForms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>cbi.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2767b7a86b2c6482, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedBin\AuthorizeNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.2.Reporting.Extensions, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v13.2.Core, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v13.2, Version=13.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2767b7a86b2c6482, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedBin\Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="EFCachingProvider">
+      <HintPath>..\..\SharedBin\EFCachingProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="EFProviderWrapperToolkit">
+      <HintPath>..\..\SharedBin\EFProviderWrapperToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EFTracingProvider">
+      <HintPath>..\..\SharedBin\EFTracingProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\SharedBin\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexBObj">
+      <HintPath>..\FlexBObj\bin\Debug\FlexBObj.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexCommissions">
+      <HintPath>..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexControls, Version=1.0.4234.15530, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexControls\bin\FlexControls.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexCore">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexEntities">
+      <HintPath>..\FlexEntities\bin\$(Configuration)\FlexEntities.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexInterfaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaInfo">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationClient" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AirportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirportForm.Designer.cs">
+      <DependentUpon>AirportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AirSegForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirSegForm.Designer.cs">
+      <DependentUpon>AirSegForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AmenAssignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AmenAssignForm.Designer.cs">
+      <DependentUpon>AmenAssignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AmenityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AmenityForm.Designer.cs">
+      <DependentUpon>AmenityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BlowFish.cs" />
+    <Compile Include="BookSelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookSelForm.Designer.cs">
+      <DependentUpon>BookSelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusTableForm.Designer.cs">
+      <DependentUpon>BusTableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busTblCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="busTblCopyForm.Designer.cs">
+      <DependentUpon>busTblCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="caRateCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="caRateCopyForm.Designer.cs">
+      <DependentUpon>caRateCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="caRegCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="caRegCopyForm.Designer.cs">
+      <DependentUpon>caRegCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarInfoForm.Designer.cs">
+      <DependentUpon>CarInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarOffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarOffForm.Designer.cs">
+      <DependentUpon>CarOffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarRateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarRateForm.Designer.cs">
+      <DependentUpon>CarRateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChgCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChgCodeForm.Designer.cs">
+      <DependentUpon>ChgCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChineseHosts_FlextourDataSet.cs">
+      <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChineseHosts_FlextourDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="MealsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MealsForm.Designer.cs">
+      <DependentUpon>MealsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWrapper.cs" />
+    <Compile Include="CommLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommLevelForm.Designer.cs">
+      <DependentUpon>CommLevelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprod2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprod2Form.Designer.cs">
+      <DependentUpon>Comprod2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsrtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsrtForm.designer.cs">
+      <DependentUpon>ConsrtForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactForm.Designer.cs">
+      <DependentUpon>ContactForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CountryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CountryForm.Designer.cs">
+      <DependentUpon>CountryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cpratesCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cpratesCopyForm.Designer.cs">
+      <DependentUpon>cpratesCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CpRatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CpRatesForm.Designer.cs">
+      <DependentUpon>CpRatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="airCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="airCopyForm.Designer.cs">
+      <DependentUpon>airCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CratesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CratesForm.Designer.cs">
+      <DependentUpon>CratesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CruItForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CruItForm.Designer.cs">
+      <DependentUpon>CruItForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cruitItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cruitItemForm.Designer.cs">
+      <DependentUpon>cruitItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cruRateCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cruRateCopyForm.Designer.cs">
+      <DependentUpon>cruRateCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CurrencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CurrencyForm.Designer.cs">
+      <DependentUpon>CurrencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CxlFeeCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CxlFeeCopyForm.Designer.cs">
+      <DependentUpon>CxlFeeCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CxlFeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CxlFeeForm.Designer.cs">
+      <DependentUpon>CxlFeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeptForm.designer.cs">
+      <DependentUpon>DeptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigGenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigGenForm.Designer.cs">
+      <DependentUpon>DigGenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigItmForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigItmForm.Designer.cs">
+      <DependentUpon>DigItmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dummyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dummyForm.Designer.cs">
+      <DependentUpon>dummyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedIndex.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtendedIndex.Designer.cs">
+      <DependentUpon>ExtendedIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupCopyForm.Designer.cs">
+      <DependentUpon>GroupCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupForm.Designer.cs">
+      <DependentUpon>GroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gsLoad.cs" />
+    <Compile Include="hRateCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hRateCopyForm.Designer.cs">
+      <DependentUpon>hRateCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HRatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HRatesForm.Designer.cs">
+      <DependentUpon>HRatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexTab.Designer.cs">
+      <DependentUpon>IndexTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="insuranCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="insuranCopyForm.Designer.cs">
+      <DependentUpon>insuranCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsuranForm.Designer.cs">
+      <DependentUpon>InsuranForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvMaint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvMaint.designer.cs">
+      <DependentUpon>InvMaint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvtChgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvtChgForm.Designer.cs">
+      <DependentUpon>InvtChgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="invtCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="invtCopyForm.Designer.cs">
+      <DependentUpon>invtCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="invtInq2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="invtInq2Form.Designer.cs">
+      <DependentUpon>invtInq2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvtRecForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvtRecForm.Designer.cs">
+      <DependentUpon>InvtRecForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LanguageForm.Designer.cs">
+      <DependentUpon>LanguageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookupForm.designer.cs">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mediaInfoMaint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mediaInfoMaint.Designer.cs">
+      <DependentUpon>mediaInfoMaint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MediaInfoMatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MediaInfoMatchForm.designer.cs">
+      <DependentUpon>MediaInfoMatchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MediaRptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MediaRptForm.designer.cs">
+      <DependentUpon>MediaRptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MediaRptUtilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MediaRptUtilityForm.Designer.cs">
+      <DependentUpon>MediaRptUtilityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdjustForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuAdjustForm.Designer.cs">
+      <DependentUpon>MenuAdjustForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuConfigForm.Designer.cs">
+      <DependentUpon>MenuConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="navigator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="navigator.Designer.cs">
+      <DependentUpon>navigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperatorForm.Designer.cs">
+      <DependentUpon>OperatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="packForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="packForm.designer.cs">
+      <DependentUpon>packForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="packItinMaint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="packItinMaint.designer.cs">
+      <DependentUpon>packItinMaint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pcompCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pcompCopyForm.Designer.cs">
+      <DependentUpon>pcompCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PCompForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PCompForm.Designer.cs">
+      <DependentUpon>PCompForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pitinCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pitinCopyForm.Designer.cs">
+      <DependentUpon>pitinCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pratesCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pratesCopyForm.Designer.cs">
+      <DependentUpon>pratesCopyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PRatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PRatesForm.Designer.cs">
+      <DependentUpon>PRatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HtlTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HtlTypeForm.Designer.cs">
+      <DependentUpon>HtlTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HtlBrandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HtlBrandForm.Designer.cs">
+      <DependentUpon>HtlBrandForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HtlChainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HtlChainForm.Designer.cs">
+      <DependentUpon>HtlChainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HtlRatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HtlRatingForm.Designer.cs">
+      <DependentUpon>HtlRatingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CityCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CityCodeForm.Designer.cs">
+      <DependentUpon>CityCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RegionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegionForm.designer.cs">
+      <DependentUpon>RegionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusForm.Designer.cs">
+      <DependentUpon>BusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusAssignmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusAssignmentForm.Designer.cs">
+      <DependentUpon>BusAssignmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RelatedProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RelatedProductsForm.Designer.cs">
+      <DependentUpon>RelatedProductsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResListForm.Designer.cs">
+      <DependentUpon>ResListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoleForm.Designer.cs">
+      <DependentUpon>RoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RouteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RouteForm.Designer.cs">
+      <DependentUpon>RouteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeaportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeaportForm.designer.cs">
+      <DependentUpon>SeaportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="starRating.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="starRating.Designer.cs">
+      <DependentUpon>starRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusStationForm.Designer.cs">
+      <DependentUpon>BusStationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtranetSecurityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtranetSecurityForm.designer.cs">
+      <DependentUpon>ExtranetSecurityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StateForm.designer.cs">
+      <DependentUpon>StateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SvcRestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SvcRestForm.Designer.cs">
+      <DependentUpon>SvcRestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SvcRestr2Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SvcRestr2Form.Designer.cs">
+      <DependentUpon>SvcRestr2Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SvcrLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SvcrLevelForm.Designer.cs">
+      <DependentUpon>SvcrLevelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysfileForm.Designer.cs">
+      <DependentUpon>SysfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainStationForm.Designer.cs">
+      <DependentUpon>TrainStationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyForm.Designer.cs">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MealCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MealCodeForm.Designer.cs">
+      <DependentUpon>MealCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackageTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackageTypeForm.Designer.cs">
+      <DependentUpon>PackageTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpecialValueForm.Designer.cs">
+      <DependentUpon>SpecialValueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServTypeForm.Designer.cs">
+      <DependentUpon>ServTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentCodeForm.Designer.cs">
+      <DependentUpon>PaymentCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomCategoriesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomCategoriesForm.Designer.cs">
+      <DependentUpon>RoomCategoriesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTypeForm.Designer.cs">
+      <DependentUpon>ReportTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CruiseShipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CruiseShipForm.Designer.cs">
+      <DependentUpon>CruiseShipForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HotelGenInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelGenInfo.Designer.cs">
+      <DependentUpon>HotelGenInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgencyForm.Designer.cs">
+      <DependentUpon>AgencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AirForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirForm.Designer.cs">
+      <DependentUpon>AirForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AirOffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AirOffForm.Designer.cs">
+      <DependentUpon>AirOffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompForm.Designer.cs">
+      <DependentUpon>CompForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trav_Prod.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Trav_Prod.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="UserFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserFieldsForm.designer.cs">
+      <DependentUpon>UserFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="validCheck.cs" />
+    <Compile Include="VouchGenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VouchGenForm.Designer.cs">
+      <DependentUpon>VouchGenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VouchUtilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VouchUtilityForm.designer.cs">
+      <DependentUpon>VouchUtilityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaypointForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaypointForm.designer.cs">
+      <DependentUpon>WaypointForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebBrowser.designer.cs">
+      <DependentUpon>WebBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DigHdrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigHdrForm.Designer.cs">
+      <DependentUpon>DigHdrForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AgencyForm.resx">
+      <DependentUpon>AgencyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AirportForm.resx">
+      <DependentUpon>AirportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AirSegForm.resx">
+      <DependentUpon>AirSegForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AmenAssignForm.resx">
+      <DependentUpon>AmenAssignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AmenityForm.resx">
+      <DependentUpon>AmenityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookSelForm.resx">
+      <DependentUpon>BookSelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusStationForm.resx">
+      <DependentUpon>BusStationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusTableForm.resx">
+      <DependentUpon>BusTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="busTblCopyForm.resx">
+      <DependentUpon>busTblCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="caRateCopyForm.resx">
+      <DependentUpon>caRateCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="caRegCopyForm.resx">
+      <DependentUpon>caRegCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarInfoForm.resx">
+      <DependentUpon>CarInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarOffForm.resx">
+      <DependentUpon>CarOffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarRateForm.resx">
+      <DependentUpon>CarRateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChgCodeForm.resx">
+      <DependentUpon>ChgCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CityCodeForm.resx">
+      <DependentUpon>CityCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommLevelForm.resx">
+      <DependentUpon>CommLevelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanyForm.resx">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompForm.resx">
+      <DependentUpon>CompForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprod2Form.resx">
+      <DependentUpon>Comprod2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsrtForm.resx">
+      <DependentUpon>ConsrtForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactForm.resx">
+      <DependentUpon>ContactForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CountryForm.resx">
+      <DependentUpon>CountryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cpratesCopyForm.resx">
+      <DependentUpon>cpratesCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CpRatesForm.resx">
+      <DependentUpon>CpRatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="airCopyForm.resx">
+      <DependentUpon>airCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CratesForm.resx">
+      <DependentUpon>CratesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CruItForm.resx">
+      <DependentUpon>CruItForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cruitItemForm.resx">
+      <DependentUpon>cruitItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cruRateCopyForm.resx">
+      <DependentUpon>cruRateCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CurrencyForm.resx">
+      <DependentUpon>CurrencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CxlFeeCopyForm.resx">
+      <DependentUpon>CxlFeeCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CxlFeeForm.resx">
+      <DependentUpon>CxlFeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeptForm.resx">
+      <DependentUpon>DeptForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigGenForm.resx">
+      <DependentUpon>DigGenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigHdrForm.resx">
+      <DependentUpon>DigHdrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigItmForm.resx">
+      <DependentUpon>DigItmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dummyForm.resx">
+      <DependentUpon>dummyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtendedIndex.resx">
+      <DependentUpon>ExtendedIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupCopyForm.resx">
+      <DependentUpon>GroupCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupForm.resx">
+      <DependentUpon>GroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelGenInfo.resx">
+      <DependentUpon>HotelGenInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hRateCopyForm.resx">
+      <DependentUpon>hRateCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HRatesForm.resx">
+      <DependentUpon>HRatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HtlBrandForm.resx">
+      <DependentUpon>HtlBrandForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HtlRatingForm.resx">
+      <DependentUpon>HtlRatingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HtlTypeForm.resx">
+      <DependentUpon>HtlTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexTab.resx">
+      <DependentUpon>IndexTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="insuranCopyForm.resx">
+      <DependentUpon>insuranCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsuranForm.resx">
+      <DependentUpon>InsuranForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvMaint.resx">
+      <DependentUpon>InvMaint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvtChgForm.resx">
+      <DependentUpon>InvtChgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="invtCopyForm.resx">
+      <DependentUpon>invtCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="invtInq2Form.resx">
+      <DependentUpon>invtInq2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvtRecForm.resx">
+      <DependentUpon>InvtRecForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageForm.resx">
+      <DependentUpon>LanguageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookupForm.resx">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MealCodeForm.resx">
+      <DependentUpon>MealCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MealsForm.resx">
+      <DependentUpon>MealsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mediaInfoMaint.resx">
+      <DependentUpon>mediaInfoMaint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaInfoMatchForm.resx">
+      <DependentUpon>MediaInfoMatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaRptForm.resx">
+      <DependentUpon>MediaRptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MediaRptUtilityForm.resx">
+      <DependentUpon>MediaRptUtilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuAdjustForm.resx">
+      <DependentUpon>MenuAdjustForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuConfigForm.resx">
+      <DependentUpon>MenuConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperatorForm.resx">
+      <DependentUpon>OperatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="packForm.resx">
+      <DependentUpon>packForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="packItinMaint.resx">
+      <DependentUpon>packItinMaint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pcompCopyForm.resx">
+      <DependentUpon>pcompCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCompForm.resx">
+      <DependentUpon>PCompForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pitinCopyForm.resx">
+      <DependentUpon>pitinCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pratesCopyForm.resx">
+      <DependentUpon>pratesCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PRatesForm.resx">
+      <DependentUpon>PRatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HtlChainForm.resx">
+      <DependentUpon>HtlChainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegionForm.resx">
+      <DependentUpon>RegionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusForm.resx">
+      <DependentUpon>BusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusAssignmentForm.resx">
+      <DependentUpon>BusAssignmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RelatedProductsForm.resx">
+      <DependentUpon>RelatedProductsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResListForm.resx">
+      <DependentUpon>ResListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoleForm.resx">
+      <DependentUpon>RoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomCategoriesForm.resx">
+      <DependentUpon>RoomCategoriesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RouteForm.resx">
+      <DependentUpon>RouteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeaportForm.resx">
+      <DependentUpon>SeaportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServTypeForm.resx">
+      <DependentUpon>ServTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="starRating.resx">
+      <DependentUpon>starRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtranetSecurityForm.resx">
+      <DependentUpon>ExtranetSecurityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StateForm.resx">
+      <DependentUpon>StateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SvcRestForm.resx">
+      <DependentUpon>SvcRestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SvcRestr2Form.resx">
+      <DependentUpon>SvcRestr2Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SvcrLevelForm.resx">
+      <DependentUpon>SvcrLevelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysfileForm.resx">
+      <DependentUpon>SysfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainStationForm.resx">
+      <DependentUpon>TrainStationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackageTypeForm.resx">
+      <DependentUpon>PackageTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpecialValueForm.resx">
+      <DependentUpon>SpecialValueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentCodeForm.resx">
+      <DependentUpon>PaymentCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTypeForm.resx">
+      <DependentUpon>ReportTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CruiseShipForm.resx">
+      <DependentUpon>CruiseShipForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AirForm.resx">
+      <DependentUpon>AirForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AirOffForm.resx">
+      <DependentUpon>AirOffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ChineseHosts_FlextourDataSet.xsc">
+      <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ChineseHosts_FlextourDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChineseHosts_FlextourDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ChineseHosts_FlextourDataSet.xss">
+      <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\BusAssignment.datasource" />
+    <None Include="Properties\DataSources\FlexBObj.PaymentProfiles.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Address.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AddressType.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AgencyPaymentProfile.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AGY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Bus.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BusDeparture.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BusRoute.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BusRouteStop.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CommunicationType.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CommunicationValue.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CompBusRoute.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPROD2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CreditCardInfo.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CreditCardType.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ExtranetPermission.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ExtranetUser.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RelatedProduct.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESOURCE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RptContact.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Supplier.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierConnection.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierConnectionRule.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierHotelMapping.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierHotelRatePlan.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierHotelRoomType.datasource" />
+    <None Include="Properties\DataSources\NameAssignment.datasource" />
+    <None Include="Properties\DataSources\PassengerAssignment.datasource" />
+    <None Include="Properties\DataSources\PassengerCounts.datasource" />
+    <None Include="Properties\DataSources\Trav_ProdDataContext.datasource" />
+    <None Include="Trav_Prod.dbml.layout">
+      <DependentUpon>Trav_Prod.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="UserFieldsForm.resx">
+      <DependentUpon>UserFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VouchGenForm.resx">
+      <DependentUpon>VouchGenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VouchUtilityForm.resx">
+      <DependentUpon>VouchUtilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaypointForm.resx">
+      <DependentUpon>WaypointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebBrowser.resx">
+      <DependentUpon>WebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Trav_Prod.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Trav_Prod.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cbi.snk" />
+    <None Include="Properties\DataSources\FlexModel.AGCYLOG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIROFF.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Airport.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AIRSEG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AMENASSGN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.AMENITY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BookCombo.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BookSel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BusStation.datasource" />
+    <None Include="Properties\DataSources\FlexModel.BUSTABLE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CARINFO.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CAROFF.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CARRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CHGCODE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CHGHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CITYCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CommLevel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPANY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COMPROD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CONSRT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CONTACT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COUNTRY.datasource" />
+    <None Include="Properties\DataSources\FlexModel.COUPON.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CPRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRU.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRUIT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CRUITItem.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Currency.datasource" />
+    <None Include="Properties\DataSources\FlexModel.CXLFEE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.Dept.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DETAIL.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DIGHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.DIGITM.datasource" />
+    <None Include="Properties\DataSources\FlexModel.FlextourEntities.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HOTEL.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLBRAND.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLCHAIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLRATNG.datasource" />
+    <None Include="Properties\DataSources\FlexModel.HTLTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INSURAN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INVT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.INVT2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.LANGUAGE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.LOOKUP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEALCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEDIAINFO.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MEDIARPT.datasource" />
+    <None Include="Properties\DataSources\FlexModel.MediaRptItem.datasource" />
+    <None Include="Properties\DataSources\FlexModel.OPERATOR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PACK.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PACKTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PCOMP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PITIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PMTCODE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATES.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATGLIN.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PRATGRP.datasource" />
+    <None Include="Properties\DataSources\FlexModel.REGION.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESHDR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RESITM.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ROLE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ROOMCOD.datasource" />
+    <None Include="Properties\DataSources\FlexModel.RPTTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SeaPort.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SERVTYPE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SpecialValue.datasource" />
+    <None Include="Properties\DataSources\FlexModel.State.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SVCRESTR.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SVCRESTR2.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SvcRLevel.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SYSFILE.datasource" />
+    <None Include="Properties\DataSources\FlexModel.TrainStation.datasource" />
+    <None Include="Properties\DataSources\FlexModel.USERFIELDS.datasource" />
+    <None Include="Properties\DataSources\FlexModel.VOUCHER.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Lblank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Llit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rblank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rlit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-new2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-delete21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FlexRes.ico" />
+    <None Include="Resources\arrow_down.png" />
+    <Content Include="Resources\arrow_left.png" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\HAMMER.ICO" />
+    <None Include="Resources\arrow_right1.png" />
+    <None Include="Resources\arrow_left1.png" />
+    <Content Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
