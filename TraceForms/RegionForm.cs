@@ -60,15 +60,6 @@ namespace TraceForms
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             context = new FlextourEntities(sys.Settings.EFConnectionString);
-            enableNavigator(false);
-        }
-
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
         }
 
         private void setValues()
@@ -80,7 +71,7 @@ namespace TraceForms
 
         private void setReadOnly(bool value)
         {
-            codeTextEdit.Properties.ReadOnly = value;
+            textEditCode.Properties.ReadOnly = value;
             GridViewRegion.Columns.ColumnByName(colName).OptionsColumn.AllowEdit = !value;
         }
 
@@ -88,106 +79,21 @@ namespace TraceForms
         {
             if (!modified && !newRec)
                 return true;
-            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((REGION)RegionBindingSource.Current).checkAll, RegionBindingSource);
+            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider, ((REGION)RegionBindingSource.Current).checkAll, RegionBindingSource);
 
             if (validateMain)
-                return validCheck.saveRec(ref modified, true, ref newRec, context, RegionBindingSource, Name, errorProvider1, Cursor);
+                return validCheck.saveRec(ref modified, true, ref newRec, context, RegionBindingSource, Name, errorProvider, Cursor);
             else
             {
-                validCheck.saveRec(ref modified, false, ref newRec, context, RegionBindingSource, Name, errorProvider1, Cursor);
+                validCheck.saveRec(ref modified, false, ref newRec, context, RegionBindingSource, Name, errorProvider, Cursor);
                 return false;
             }
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            GridViewRegion.ClearColumnsFilter();
-            if (RegionBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                RegionBindingSource.DataSource = from opt in context.REGION where opt.CODE == "KJM9" select opt;
-                RegionBindingSource.AddNew();
-                if (GridViewRegion.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewRegion.FocusedRowHandle = GridViewRegion.RowCount - 1;
-                setValues();
-                codeTextEdit.Focus();
-                setReadOnly(false);
-                newRec = true;
-                return;
-            }
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewRegion.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( REGION)RegionBindingSource.Current);
-                RegionBindingSource.AddNew();
-                if (GridViewRegion.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewRegion.FocusedRowHandle = GridViewRegion.RowCount - 1;
-                setValues();
-                codeTextEdit.Focus();
-                setReadOnly(false);                
-                newRec = true;
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if (RegionBindingSource.Current == null)
-                return;
-
-            GridViewRegion.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                modified = false;
-                newRec = false;
-                RegionBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);               
-            }
-            currentVal = codeTextEdit.Text;
         }
 
         private void TimedEventDelete(object sender, EventArgs e)
         {
             panelControlStatus.Visible = false;
             rowStatusDelete.Stop();
-        }
-
-
-        private void BindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        { 
-            if (RegionBindingSource.Current == null)
-                return;
-
-            GridViewRegion.CloseEditor();
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                codeTextEdit.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (REGION)RegionBindingSource.Current);
-              
         }
 
         private void TimedEventSave(object sender, EventArgs e)
@@ -199,7 +105,7 @@ namespace TraceForms
         private bool move()
         {
             GridViewRegion.CloseEditor();
-            codeTextEdit.Focus();
+            textEditCode.Focus();
             //bindingNavigatorPositionItem.Focus();//trigger field leave event
             temp = newRec;
             if (checkForms())
@@ -212,34 +118,6 @@ namespace TraceForms
                 return true;
             }
             return false;
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RegionBindingSource.MoveFirst();
-
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RegionBindingSource.MovePrevious();
-
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RegionBindingSource.MoveNext();
-
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RegionBindingSource.MoveLast();
-
         }
 
         private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
@@ -320,7 +198,7 @@ namespace TraceForms
             {
                 if (currentVal != ((Control)sender).Text.ToString())
                     modified = true;
-                validCheck.check(sender, errorProvider1, ((REGION)RegionBindingSource.Current).checkCode, RegionBindingSource);
+                validCheck.check(sender, errorProvider, ((REGION)RegionBindingSource.Current).checkCode, RegionBindingSource);
             }
            
         }
@@ -331,7 +209,7 @@ namespace TraceForms
             {
                 if (currentVal != ((Control)sender).Text.ToString())
                     modified = true;
-                validCheck.check(sender, errorProvider1, ((REGION)RegionBindingSource.Current).checkDesc, RegionBindingSource);
+                validCheck.check(sender, errorProvider, ((REGION)RegionBindingSource.Current).checkDesc, RegionBindingSource);
             }
         }
 
@@ -379,11 +257,86 @@ namespace TraceForms
 
         private void RegionBindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
-            if (RegionBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+
         }
 
+        private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GridViewRegion.ClearColumnsFilter();
+            if (RegionBindingSource.Current == null) {
+                //fake query in order to create a link between the database table and the binding source
+                RegionBindingSource.DataSource = from opt in context.REGION where opt.CODE == "KJM9" select opt;
+                RegionBindingSource.AddNew();
+                if (GridViewRegion.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    GridViewRegion.FocusedRowHandle = GridViewRegion.RowCount - 1;
+                setValues();
+                textEditCode.Focus();
+                setReadOnly(false);
+                newRec = true;
+                return;
+            }
+            textEditCode.Focus();
+            //bindingNavigatorPositionItem.Focus();  //trigger field leave event
+            GridViewRegion.CloseEditor();
+            temp = newRec;
+            if (checkForms()) {
+                if (!temp)
+                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (REGION)RegionBindingSource.Current);
+                RegionBindingSource.AddNew();
+                if (GridViewRegion.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    GridViewRegion.FocusedRowHandle = GridViewRegion.RowCount - 1;
+                setValues();
+                textEditCode.Focus();
+                setReadOnly(false);
+                newRec = true;
+            }
+        }
+
+        private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (RegionBindingSource.Current == null)
+                return;
+
+            GridViewRegion.CloseEditor();
+            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                modified = false;
+                newRec = false;
+                RegionBindingSource.RemoveCurrent();
+                errorProvider.Clear();
+                context.SaveChanges();
+                setReadOnly(true);
+                panelControlStatus.Visible = true;
+                LabelStatus.Text = "Record Deleted";
+                rowStatusDelete = new Timer();
+                rowStatusDelete.Interval = 3000;
+                rowStatusDelete.Start();
+                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+            }
+            currentVal = textEditCode.Text;
+        }
+
+        private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (RegionBindingSource.Current == null)
+                return;
+
+            GridViewRegion.CloseEditor();
+            textEditCode.Focus();
+            //bindingNavigatorPositionItem.Focus();//trigger field leave event
+            bool temp = newRec;
+            if (checkForms()) {
+                textEditCode.Focus();
+                setReadOnly(true);
+                panelControlStatus.Visible = true;
+                LabelStatus.Text = "Record Saved";
+                rowStatusSave = new Timer();
+                rowStatusSave.Interval = 3000;
+                rowStatusSave.Start();
+                rowStatusSave.Tick += TimedEventSave;
+            }
+
+            if (!temp && !modified)
+                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (REGION)RegionBindingSource.Current);
+        }
     }
 }

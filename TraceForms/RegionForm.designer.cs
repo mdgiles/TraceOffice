@@ -30,86 +30,71 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegionForm));
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.codeTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.textEditCode = new DevExpress.XtraEditors.TextEdit();
             this.RegionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dESCTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.textEditName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.GridControlRegion = new DevExpress.XtraGrid.GridControl();
             this.GridViewRegion = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RegionBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.rEGIONBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.codeTextEdit.Properties)).BeginInit();
+            this.barManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barTools = new DevExpress.XtraBars.Bar();
+            this.barButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dESCTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingNavigator)).BeginInit();
-            this.RegionBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelControl3
+            // textEditCode
             // 
-            this.labelControl3.Location = new System.Drawing.Point(35, 76);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(66, 23);
-            this.labelControl3.TabIndex = 13;
-            this.labelControl3.Text = "Regions";
-            // 
-            // codeTextEdit
-            // 
-            this.codeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.RegionBindingSource, "CODE", true));
-            this.codeTextEdit.Location = new System.Drawing.Point(203, 175);
-            this.codeTextEdit.Margin = new System.Windows.Forms.Padding(5);
-            this.codeTextEdit.Name = "codeTextEdit";
-            this.codeTextEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.codeTextEdit.Properties.Appearance.Options.UseBackColor = true;
-            this.codeTextEdit.Properties.MaxLength = 10;
-            this.codeTextEdit.Size = new System.Drawing.Size(235, 32);
-            this.codeTextEdit.TabIndex = 9;
-            this.codeTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.codeTextEdit.Leave += new System.EventHandler(this.codeTextBox_Leave);
+            this.textEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.RegionBindingSource, "CODE", true));
+            this.textEditCode.Location = new System.Drawing.Point(142, 175);
+            this.textEditCode.Margin = new System.Windows.Forms.Padding(5);
+            this.textEditCode.Name = "textEditCode";
+            this.textEditCode.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.textEditCode.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditCode.Properties.MaxLength = 10;
+            this.textEditCode.Size = new System.Drawing.Size(235, 32);
+            this.textEditCode.TabIndex = 9;
+            this.textEditCode.Enter += new System.EventHandler(this.enterControl);
+            this.textEditCode.Leave += new System.EventHandler(this.codeTextBox_Leave);
             // 
             // RegionBindingSource
             // 
             this.RegionBindingSource.DataSource = typeof(FlexModel.REGION);
             this.RegionBindingSource.CurrentChanged += new System.EventHandler(this.RegionBindingSource_CurrentChanged);
             // 
-            // dESCTextEdit
+            // textEditName
             // 
-            this.dESCTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.RegionBindingSource, "DESC", true));
-            this.dESCTextEdit.Location = new System.Drawing.Point(203, 221);
-            this.dESCTextEdit.Margin = new System.Windows.Forms.Padding(5);
-            this.dESCTextEdit.Name = "dESCTextEdit";
-            this.dESCTextEdit.Properties.MaxLength = 30;
-            this.dESCTextEdit.Size = new System.Drawing.Size(465, 32);
-            this.dESCTextEdit.TabIndex = 10;
-            this.dESCTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.dESCTextEdit.Leave += new System.EventHandler(this.dESCTextBox_Leave);
+            this.textEditName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.RegionBindingSource, "DESC", true));
+            this.textEditName.Location = new System.Drawing.Point(142, 221);
+            this.textEditName.Margin = new System.Windows.Forms.Padding(5);
+            this.textEditName.Name = "textEditName";
+            this.textEditName.Properties.MaxLength = 30;
+            this.textEditName.Size = new System.Drawing.Size(465, 32);
+            this.textEditName.TabIndex = 10;
+            this.textEditName.Enter += new System.EventHandler(this.enterControl);
+            this.textEditName.Leave += new System.EventHandler(this.dESCTextBox_Leave);
             // 
             // labelControl1
             // 
@@ -125,9 +110,9 @@
             this.labelControl2.Location = new System.Drawing.Point(83, 225);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(93, 23);
+            this.labelControl2.Size = new System.Drawing.Size(49, 23);
             this.labelControl2.TabIndex = 12;
-            this.labelControl2.Text = "Description";
+            this.labelControl2.Text = "Name";
             // 
             // GridControlRegion
             // 
@@ -138,7 +123,7 @@
             this.GridControlRegion.MainView = this.GridViewRegion;
             this.GridControlRegion.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlRegion.Name = "GridControlRegion";
-            this.GridControlRegion.Size = new System.Drawing.Size(437, 1278);
+            this.GridControlRegion.Size = new System.Drawing.Size(437, 1259);
             this.GridControlRegion.TabIndex = 5;
             this.GridControlRegion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewRegion});
@@ -158,6 +143,7 @@
             // 
             // colCODE
             // 
+            this.colCODE.Caption = "Code";
             this.colCODE.FieldName = "CODE";
             this.colCODE.Name = "colCODE";
             this.colCODE.Visible = true;
@@ -165,165 +151,32 @@
             // 
             // colDESC
             // 
+            this.colDESC.Caption = "Name";
             this.colDESC.FieldName = "DESC";
             this.colDESC.Name = "colDESC";
             this.colDESC.Visible = true;
             this.colDESC.VisibleIndex = 1;
             // 
-            // RegionBindingNavigator
+            // errorProvider
             // 
-            this.RegionBindingNavigator.AddNewItem = null;
-            this.RegionBindingNavigator.BindingSource = this.RegionBindingSource;
-            this.RegionBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.RegionBindingNavigator.DeleteItem = null;
-            this.RegionBindingNavigator.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.RegionBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.rEGIONBindingNavigatorSaveItem});
-            this.RegionBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.RegionBindingNavigator.MoveFirstItem = null;
-            this.RegionBindingNavigator.MoveLastItem = null;
-            this.RegionBindingNavigator.MoveNextItem = null;
-            this.RegionBindingNavigator.MovePreviousItem = null;
-            this.RegionBindingNavigator.Name = "RegionBindingNavigator";
-            this.RegionBindingNavigator.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.RegionBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.RegionBindingNavigator.Size = new System.Drawing.Size(1700, 35);
-            this.RegionBindingNavigator.TabIndex = 4;
-            this.RegionBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(61, 32);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 35);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(81, 35);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 35);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 35);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(32, 32);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // rEGIONBindingNavigatorSaveItem
-            // 
-            this.rEGIONBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.rEGIONBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("rEGIONBindingNavigatorSaveItem.Image")));
-            this.rEGIONBindingNavigatorSaveItem.Name = "rEGIONBindingNavigatorSaveItem";
-            this.rEGIONBindingNavigatorSaveItem.Size = new System.Drawing.Size(32, 32);
-            this.rEGIONBindingNavigatorSaveItem.Text = "Save Data";
-            this.rEGIONBindingNavigatorSaveItem.Click += new System.EventHandler(this.BindingNavigatorSaveItem_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 35);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 54);
             this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.AutoScroll = true;
             this.splitContainerControl1.Panel1.Controls.Add(this.GridControlRegion);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.AutoScroll = true;
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl3);
-            this.splitContainerControl1.Panel2.Controls.Add(this.codeTextEdit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.textEditCode);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
-            this.splitContainerControl1.Panel2.Controls.Add(this.dESCTextEdit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.textEditName);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1700, 1278);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1700, 1259);
             this.splitContainerControl1.SplitterPosition = 437;
             this.splitContainerControl1.TabIndex = 15;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -349,6 +202,95 @@
             this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
             // 
+            // barManager
+            // 
+            this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.barTools});
+            this.barManager.DockControls.Add(this.barDockControlTop);
+            this.barManager.DockControls.Add(this.barDockControlBottom);
+            this.barManager.DockControls.Add(this.barDockControlLeft);
+            this.barManager.DockControls.Add(this.barDockControlRight);
+            this.barManager.Form = this;
+            this.barManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barButtonItemNew,
+            this.barButtonItemDelete,
+            this.barButtonItemSave});
+            this.barManager.MaxItemId = 3;
+            // 
+            // barTools
+            // 
+            this.barTools.BarName = "Tools";
+            this.barTools.DockCol = 0;
+            this.barTools.DockRow = 0;
+            this.barTools.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.barTools.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemSave)});
+            this.barTools.OptionsBar.AllowQuickCustomization = false;
+            this.barTools.OptionsBar.DrawDragBorder = false;
+            this.barTools.OptionsBar.UseWholeRow = true;
+            this.barTools.Text = "Tools";
+            // 
+            // barButtonItemNew
+            // 
+            this.barButtonItemNew.Caption = "New";
+            this.barButtonItemNew.Id = 0;
+            this.barButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemNew.ImageOptions.Image")));
+            this.barButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemNew.ImageOptions.LargeImage")));
+            this.barButtonItemNew.Name = "barButtonItemNew";
+            this.barButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemNew_ItemClick);
+            // 
+            // barButtonItemDelete
+            // 
+            this.barButtonItemDelete.Caption = "Delete";
+            this.barButtonItemDelete.Id = 1;
+            this.barButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemDelete.ImageOptions.Image")));
+            this.barButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemDelete.ImageOptions.LargeImage")));
+            this.barButtonItemDelete.Name = "barButtonItemDelete";
+            this.barButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemDelete_ItemClick);
+            // 
+            // barButtonItemSave
+            // 
+            this.barButtonItemSave.Caption = "Save";
+            this.barButtonItemSave.Id = 2;
+            this.barButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemSave.ImageOptions.Image")));
+            this.barButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemSave.ImageOptions.LargeImage")));
+            this.barButtonItemSave.Name = "barButtonItemSave";
+            this.barButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSave_ItemClick);
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(1700, 54);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1313);
+            this.barDockControlBottom.Manager = this.barManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(1700, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
+            this.barDockControlLeft.Manager = this.barManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1259);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1700, 54);
+            this.barDockControlRight.Manager = this.barManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1259);
+            // 
             // RegionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -356,7 +298,10 @@
             this.ClientSize = new System.Drawing.Size(1700, 1313);
             this.Controls.Add(this.panelControlStatus);
             this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.RegionBindingNavigator);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimizeBox = false;
@@ -365,20 +310,18 @@
             this.Text = "Regions";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.REGIONForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RegionForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.codeTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RegionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dESCTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RegionBindingNavigator)).EndInit();
-            this.RegionBindingNavigator.ResumeLayout(false);
-            this.RegionBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,27 +334,22 @@
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewRegion;
         private DevExpress.XtraGrid.Columns.GridColumn colCODE;
         private DevExpress.XtraGrid.Columns.GridColumn colDESC;
-        private System.Windows.Forms.BindingNavigator RegionBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton rEGIONBindingNavigatorSaveItem;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit codeTextEdit;
-        private DevExpress.XtraEditors.TextEdit dESCTextEdit;
+        private DevExpress.XtraEditors.TextEdit textEditCode;
+        private DevExpress.XtraEditors.TextEdit textEditName;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.PanelControl panelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarManager barManager;
+        private DevExpress.XtraBars.Bar barTools;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemNew;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemDelete;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemSave;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }
