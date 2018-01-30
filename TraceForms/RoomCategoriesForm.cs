@@ -51,22 +51,13 @@ namespace TraceForms
 
         private void setReadOnly(bool value)
         {
-            codeTextEdit.Properties.ReadOnly = value;
+            TextEditCode.Properties.ReadOnly = value;
             GridViewRoomCod.Columns.ColumnByName(colName).OptionsColumn.AllowEdit = !value;
         }
 
         private void LoadLookups()
         {
             setReadOnly(true); 
-            enableNavigator(false);
-        }
-
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
         }
 
         private void setValues()
@@ -86,75 +77,15 @@ namespace TraceForms
         {
             if (!modified && !newRec)
                 return true;
-            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((ROOMCOD)RoomCodBindingSource.Current).checkAll, RoomCodBindingSource);
+            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider, ((ROOMCOD)RoomCodBindingSource.Current).checkAll, RoomCodBindingSource);
 
             if (validateMain)
-                return validCheck.saveRec(ref modified, true, ref newRec, context, RoomCodBindingSource, Name, errorProvider1, Cursor);
+                return validCheck.saveRec(ref modified, true, ref newRec, context, RoomCodBindingSource, Name, errorProvider, Cursor);
             else
             {
-                validCheck.saveRec(ref modified, false, ref newRec, context, RoomCodBindingSource, Name, errorProvider1, Cursor);
+                validCheck.saveRec(ref modified, false, ref newRec, context, RoomCodBindingSource, Name, errorProvider, Cursor);
                 return false;
             }
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            GridViewRoomCod.ClearColumnsFilter();
-            if (RoomCodBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                RoomCodBindingSource.DataSource = from opt in context.ROOMCOD where opt.CODE == "KJM9" select opt;
-                RoomCodBindingSource.AddNew();
-                if (GridViewRoomCod.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewRoomCod.FocusedRowHandle = GridViewRoomCod.RowCount - 1;
-                codeTextEdit.Focus();
-                setReadOnly(false);
-                setValues();
-                newRec = true;
-                return;
-            }
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewRoomCod.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( ROOMCOD)RoomCodBindingSource.Current);
-                RoomCodBindingSource.AddNew();
-                if (GridViewRoomCod.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewRoomCod.FocusedRowHandle = GridViewRoomCod.RowCount - 1;
-                codeTextEdit.Focus();
-                setReadOnly(false);
-                setValues();
-                newRec = true;
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if (RoomCodBindingSource.Current == null)
-                return;
-            GridViewRoomCod.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-                modified = false;
-                newRec = false;
-                RoomCodBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-               
-
-            }
-            currentVal = codeTextEdit.Text;
         }
 
         private void TimedEventDelete(object sender, EventArgs e)
@@ -163,82 +94,12 @@ namespace TraceForms
             rowStatusDelete.Stop();
         }
 
-        private void rOOMCODBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            if (RoomCodBindingSource.Current == null)
-                return;
-
-            GridViewRoomCod.CloseEditor();
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                codeTextEdit.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (ROOMCOD)RoomCodBindingSource.Current);
-
-        }
-
         private void TimedEventSave(object sender, EventArgs e)
         {
             panelControlStatus.Visible = false;
             rowStatusSave.Stop();
         }
-
-
-        private bool move()
-        {
-            GridViewRoomCod.CloseEditor();
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( ROOMCOD)RoomCodBindingSource.Current);
-                setReadOnly(true);
-                newRec = false;
-                modified = false;
-                return true;
-            }
-            return false;
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-
-            if (move())
-                RoomCodBindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RoomCodBindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RoomCodBindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                RoomCodBindingSource.MoveLast();
-        }
-
+		        
         private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
 
@@ -277,15 +138,6 @@ namespace TraceForms
             e.ExceptionMode = ExceptionMode.NoAction; 
         }
 
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {
-            temp = newRec;
-            if (!temp && checkForms())
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( ROOMCOD)RoomCodBindingSource.Current);
-
-            setReadOnly(true);
-        }
-
         private void RoomCategoriesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (modified || newRec)
@@ -312,7 +164,7 @@ namespace TraceForms
             {
                 if (currentVal != ((Control)sender).Text)
                     modified = true;
-                validCheck.check(sender, errorProvider1, ((ROOMCOD)RoomCodBindingSource.Current).checkCode, RoomCodBindingSource);
+                validCheck.check(sender, errorProvider, ((ROOMCOD)RoomCodBindingSource.Current).checkCode, RoomCodBindingSource);
             }
         }
 
@@ -322,7 +174,7 @@ namespace TraceForms
             {
                 if (currentVal != ((Control)sender).Text)
                     modified = true;
-                validCheck.check(sender, errorProvider1, ((ROOMCOD)RoomCodBindingSource.Current).checkDesc, RoomCodBindingSource);
+                validCheck.check(sender, errorProvider, ((ROOMCOD)RoomCodBindingSource.Current).checkDesc, RoomCodBindingSource);
             }
         }
 
@@ -332,7 +184,7 @@ namespace TraceForms
             {
                 if (currentVal != ((Control)sender).Text)
                     modified = true;
-                validCheck.check(sender, errorProvider1, ((ROOMCOD)RoomCodBindingSource.Current).checkLongDesc, RoomCodBindingSource);
+                validCheck.check(sender, errorProvider, ((ROOMCOD)RoomCodBindingSource.Current).checkLongDesc, RoomCodBindingSource);
             }
         }
 
@@ -381,10 +233,6 @@ namespace TraceForms
 
         private void RoomCodBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            if (RoomCodBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
         }
 
         private void inhouseCheckEdit_Click(object sender, EventArgs e)
@@ -392,12 +240,89 @@ namespace TraceForms
             modified = true;
         }
 
-     
+		private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (RoomCodBindingSource.Current == null)
+				return;
+
+			GridViewRoomCod.CloseEditor();
+			TextEditCode.Focus();
+			//bindingNavigatorPositionItem.Focus();//trigger field leave event
+			bool temp = newRec;
+			if (checkForms())
+			{
+				TextEditCode.Focus();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Saved";
+				rowStatusSave = new Timer();
+				rowStatusSave.Interval = 3000;
+				rowStatusSave.Start();
+				rowStatusSave.Tick += TimedEventSave;
+			}
+
+			if (!temp && !modified)
+				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (ROOMCOD)RoomCodBindingSource.Current);
+		}
+
+		private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (RoomCodBindingSource.Current == null)
+				return;
+			GridViewRoomCod.CloseEditor();
+			if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+
+				modified = false;
+				newRec = false;
+				RoomCodBindingSource.RemoveCurrent();
+				errorProvider.Clear();
+				context.SaveChanges();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Deleted";
+				rowStatusDelete = new Timer();
+				rowStatusDelete.Interval = 3000;
+				rowStatusDelete.Start();
+				rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
 
 
+			}
+			currentVal = TextEditCode.Text;
+		}
 
-
-
-
-    }
+		private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			GridViewRoomCod.ClearColumnsFilter();
+			if (RoomCodBindingSource.Current == null)
+			{
+				//fake query in order to create a link between the database table and the binding source
+				RoomCodBindingSource.DataSource = from opt in context.ROOMCOD where opt.CODE == "KJM9" select opt;
+				RoomCodBindingSource.AddNew();
+				if (GridViewRoomCod.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewRoomCod.FocusedRowHandle = GridViewRoomCod.RowCount - 1;
+				TextEditCode.Focus();
+				setReadOnly(false);
+				setValues();
+				newRec = true;
+				return;
+			}
+			TextEditCode.Focus();
+			//bindingNavigatorPositionItem.Focus();  //trigger field leave event
+			GridViewRoomCod.CloseEditor();
+			temp = newRec;
+			if (checkForms())
+			{
+				if (!temp)
+					context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (ROOMCOD)RoomCodBindingSource.Current);
+				RoomCodBindingSource.AddNew();
+				if (GridViewRoomCod.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewRoomCod.FocusedRowHandle = GridViewRoomCod.RowCount - 1;
+				TextEditCode.Focus();
+				setReadOnly(false);
+				setValues();
+				newRec = true;
+			}
+		}
+	}
 }

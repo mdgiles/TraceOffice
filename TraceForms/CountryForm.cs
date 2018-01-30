@@ -54,7 +54,6 @@ namespace TraceForms
             modified = false;
             newRec = false;
             setReadOnly(true);
-            enableNavigator(false);
 
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = null };
             imageComboBoxEditContinent.Properties.Items.Add(loadBlank);
@@ -69,18 +68,9 @@ namespace TraceForms
 
         }
 
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
-
-
         private void setReadOnly(bool value)
         {
-            cODETextEdit.Properties.ReadOnly = value;
+            TextEditCode.Properties.ReadOnly = value;
             GridViewCountry.Columns.ColumnByName(colName).OptionsColumn.AllowEdit = !value;
         }
 
@@ -106,65 +96,13 @@ namespace TraceForms
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             
-            GridViewCountry.ClearColumnsFilter();
-          
-            if (CountryBindingSource.Count == 0)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                CountryBindingSource.DataSource = from opt in context.COUNTRY where opt.CODE == "KJM9" select opt;
-                CountryBindingSource.AddNew();
-                if (GridViewCountry.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewCountry.FocusedRowHandle = GridViewCountry.RowCount - 1;
-               
-                setValues();
-                cODETextEdit.Focus();                
-                setReadOnly(false);
-                newRec = true;
-           
-                return;
-            }
-            
-           
-            temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (COUNTRY)CountryBindingSource.Current);
-                CountryBindingSource.AddNew();
-                if (GridViewCountry.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewCountry.FocusedRowHandle = GridViewCountry.RowCount - 1;
-                cODETextEdit.Focus();
-                setReadOnly(false);
-                newRec = true;
-                setValues();
-            }           
 
             
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (CountryBindingSource.Current == null)
-                return;
-            GridViewCountry.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                modified = false;
-                newRec = false;
-                CountryBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-
-            }
-            currentVal = cODETextEdit.Text;
+            
         }
 
         private void TimedEventDelete(object sender, EventArgs e)
@@ -192,29 +130,6 @@ namespace TraceForms
 
         private void cOUNTRYBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            if (CountryBindingSource.Current == null)
-                return;
-
-            GridViewCountry.CloseEditor();
-            cODETextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                cODETextEdit.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (COUNTRY)CountryBindingSource.Current);
-           
         }
 
         private void TimedEventSave(object sender, EventArgs e)
@@ -226,7 +141,7 @@ namespace TraceForms
         private bool move()
         {
             GridViewCountry.CloseEditor();
-            cODETextEdit.Focus();
+            TextEditCode.Focus();
             //bindingNavigatorPositionItem.Focus();//trigger field leave event
             temp = newRec;
             if (checkForms())
@@ -396,10 +311,7 @@ namespace TraceForms
 
         private void CountryBindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
-            if (CountryBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+            
         }
 
         private void imageComboBoxEditCountry_Leave(object sender, EventArgs e)
@@ -410,5 +322,96 @@ namespace TraceForms
                 validCheck.check(sender, errorProvider1, ((COUNTRY)CountryBindingSource.Current).checkContinent, CountryBindingSource);
             }
         }
-    }
+
+		private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+
+			GridViewCountry.ClearColumnsFilter();
+
+			if (CountryBindingSource.Count == 0)
+			{
+				//fake query in order to create a link between the database table and the binding source
+				CountryBindingSource.DataSource = from opt in context.COUNTRY where opt.CODE == "KJM9" select opt;
+				CountryBindingSource.AddNew();
+				if (GridViewCountry.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewCountry.FocusedRowHandle = GridViewCountry.RowCount - 1;
+
+				setValues();
+				TextEditCode.Focus();
+				setReadOnly(false);
+				newRec = true;
+
+				return;
+			}
+
+
+			temp = newRec;
+			if (checkForms())
+			{
+				errorProvider1.Clear();
+				if (!temp)
+					context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (COUNTRY)CountryBindingSource.Current);
+				CountryBindingSource.AddNew();
+				if (GridViewCountry.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewCountry.FocusedRowHandle = GridViewCountry.RowCount - 1;
+				TextEditCode.Focus();
+				setReadOnly(false);
+				newRec = true;
+				setValues();
+			}
+		}
+
+		private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (CountryBindingSource.Current == null)
+				return;
+			GridViewCountry.CloseEditor();
+			if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				modified = false;
+				newRec = false;
+				CountryBindingSource.RemoveCurrent();
+				errorProvider1.Clear();
+				context.SaveChanges();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Deleted";
+				rowStatusDelete = new Timer();
+				rowStatusDelete.Interval = 3000;
+				rowStatusDelete.Start();
+				rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+
+			}
+			currentVal = TextEditCode.Text;
+		}
+
+		private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (CountryBindingSource.Current == null)
+				return;
+
+			GridViewCountry.CloseEditor();
+			TextEditCode.Focus();
+			//bindingNavigatorPositionItem.Focus();//trigger field leave event
+			bool temp = newRec;
+			if (checkForms())
+			{
+				TextEditCode.Focus();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Saved";
+				rowStatusSave = new Timer();
+				rowStatusSave.Interval = 3000;
+				rowStatusSave.Start();
+				rowStatusSave.Tick += TimedEventSave;
+
+			}
+
+			if (!temp && !modified)
+				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (COUNTRY)CountryBindingSource.Current);
+
+
+		}
+
+	}
 }
