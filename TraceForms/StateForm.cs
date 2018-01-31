@@ -88,16 +88,10 @@ namespace TraceForms
 
             }
             
-            enableNavigator(false);
+            
         }
 
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
+        
 
         private void setValues()
         {
@@ -126,57 +120,10 @@ namespace TraceForms
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            GridViewState.ClearColumnsFilter();
-            if (StateBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                StateBindingSource.DataSource = from opt in context.State where opt.Code == "KJM9" select opt;
-                StateBindingSource.AddNew();
-                if (GridViewState.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewState.FocusedRowHandle = GridViewState.RowCount - 1;
-                TextEditCode.Focus();
-                setReadOnly(false);
-                newRec = true;
-                return;
-            }
-            TextEditCode.Focus();
-            //bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewState.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (State)StateBindingSource.Current);
-                StateBindingSource.AddNew();
-                if (GridViewState.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewState.FocusedRowHandle = GridViewState.RowCount - 1;
-                TextEditCode.Focus();
-                setReadOnly(false);
-                newRec = true;
-            }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (StateBindingSource.Current == null)
-                return;
-            GridViewState.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                modified = false;
-                newRec = false;
-                StateBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-            }
-            currentVal = TextEditCode.Text;
           
         }
 
@@ -188,30 +135,6 @@ namespace TraceForms
 
         private void stateBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            if (StateBindingSource.Current == null)
-                return;
-
-            GridViewState.CloseEditor();
-            TextEditCode.Focus();
-            bool temp = newRec;
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            if (checkForms())
-            {
-                TextEditCode.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-
-
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (State)StateBindingSource.Current);
-               
         }
 
         private void TimedEventSave(object sender, EventArgs e)
@@ -436,12 +359,94 @@ namespace TraceForms
 
         private void StateBindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
-            if (StateBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+            
         }
 
-    }
+		private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			GridViewState.ClearColumnsFilter();
+			if (StateBindingSource.Current == null)
+			{
+				//fake query in order to create a link between the database table and the binding source
+				StateBindingSource.DataSource = from opt in context.State where opt.Code == "KJM9" select opt;
+				StateBindingSource.AddNew();
+				if (GridViewState.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewState.FocusedRowHandle = GridViewState.RowCount - 1;
+				TextEditCode.Focus();
+				setReadOnly(false);
+				newRec = true;
+				return;
+			}
+			TextEditCode.Focus();
+			//bindingNavigatorPositionItem.Focus();  //trigger field leave event
+			GridViewState.CloseEditor();
+			temp = newRec;
+			if (checkForms())
+			{
+				if (!temp)
+					context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (State)StateBindingSource.Current);
+				StateBindingSource.AddNew();
+				if (GridViewState.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewState.FocusedRowHandle = GridViewState.RowCount - 1;
+				TextEditCode.Focus();
+				setReadOnly(false);
+				newRec = true;
+			}
+
+		}
+
+		private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (StateBindingSource.Current == null)
+				return;
+			GridViewState.CloseEditor();
+			if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				modified = false;
+				newRec = false;
+				StateBindingSource.RemoveCurrent();
+				errorProvider1.Clear();
+				context.SaveChanges();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Deleted";
+				rowStatusDelete = new Timer();
+				rowStatusDelete.Interval = 3000;
+				rowStatusDelete.Start();
+				rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+			}
+			currentVal = TextEditCode.Text;
+		
+		}
+
+		private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (StateBindingSource.Current == null)
+				return;
+
+			GridViewState.CloseEditor();
+			TextEditCode.Focus();
+			bool temp = newRec;
+			//bindingNavigatorPositionItem.Focus();//trigger field leave event
+			if (checkForms())
+			{
+				TextEditCode.Focus();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Saved";
+				rowStatusSave = new Timer();
+				rowStatusSave.Interval = 3000;
+				rowStatusSave.Start();
+				rowStatusSave.Tick += TimedEventSave;
+
+
+			}
+
+			if (!temp && !modified)
+				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (State)StateBindingSource.Current);
+
+
+		}
+	}
 
 }
