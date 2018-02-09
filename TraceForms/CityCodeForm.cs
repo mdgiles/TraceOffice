@@ -1,33 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity;
-using System.Collections.Generic;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraEditors.Popup;
-using System.Drawing;
-using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Win;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using FlexModel;
+using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
-    
-    public partial class CityCodeForm : DevExpress.XtraEditors.XtraForm
+    public partial class CityCodeForm : XtraForm
     {
-        public string _currentVal;
-        public bool _modified = false;
-        public bool _newRec = false;
-        public FlextourEntities _context;
-        public CITYCOD _selectedRecord;
-        public Timer _actionConfirmation;
-        public bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+        FlextourEntities _context;
+        CITYCOD _selectedRecord;
+        Timer _actionConfirmation;
+        bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
-        RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
+        RepositoryItemCustomSearchLookUpEdit _operatorSearch = new RepositoryItemCustomSearchLookUpEdit();
 
         public CityCodeForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -38,7 +35,7 @@ namespace TraceForms
                 SetReadOnly(true);
             }
             catch (Exception ex) {
-                XtraMessageBox.Show(ex.Message);
+                DisplayHelper.DisplayError(this, ex);
             }
         }
 
@@ -46,69 +43,72 @@ namespace TraceForms
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
-           // username = sys.User.Name;
         }
-
 
         private void LoadLookups()
         {
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = null };
 
-            //EF will try to execute the entire projection on the sql side, which knows nothing about string.format so it will
-            //error. Putting AsEnumerable beforehand will tell EF to execute sql side up to there and return results, then the
-            //rest will be EF client side
             var lookup = new List<CodeName> {
                 new CodeName(null)
             };
             lookup.AddRange(_context.CITYCOD
                             .OrderBy(o => o.CODE)
                             .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
-            ImageComboBoxEditLinkCode.Properties.DataSource = lookup;
+            SearchLookupEditLinkCode.Properties.DataSource = lookup;
 
-            imageComboBoxEditState.Properties.Items.Add(loadBlank);
-            imageComboBoxEditState.Properties.Items.AddRange(_context.State
-                            .OrderBy(o => o.Code).AsEnumerable()
-                            .Select(s => new ImageComboBoxItem() { Description = $"{s.Code} ({s.State1})", Value = s.Code })
-                            .ToList());
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.State
+                .OrderBy(o => o.Code)
+                .Select(s => new CodeName() { Code = s.Code, Name = s.State1 }));
+            _operatorSearch.DataSource = lookup;
+            SearchLookupEditState.Properties.DataSource = lookup;
 
-            imageComboBoxEditCountry.Properties.Items.Add(loadBlank);
-            imageComboBoxEditCountry.Properties.Items.AddRange(_context.COUNTRY
-                            .OrderBy(o => o.CODE).AsEnumerable()
-                            .Select(s => new ImageComboBoxItem() { Description = $"{s.CODE} ({s.NAME})", Value = s.CODE })
-                            .ToList());
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.COUNTRY
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            SearchLookupEditCountry.Properties.DataSource = lookup;
 
             _supplierCombo.Items.Add(loadBlank);
             _supplierCombo.Items.AddRange(_context.Supplier
                             .OrderBy(o => o.Name).AsEnumerable()
                             .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
                             .ToList());
-            gridControlSupplierCity.RepositoryItems.Add(_supplierCombo);		//per DX recommendation to avoid memory leaks
+            GridControlSupplierCity.RepositoryItems.Add(_supplierCombo);        //per DX recommendation to avoid memory leaks
 
-            _operatorCombo.Items.Add(loadBlank);
-            _operatorCombo.Items.AddRange(_context.OPERATOR
-                            .OrderBy(o => o.NAME).AsEnumerable()
-                            .Select(s => new ImageComboBoxItem() { Description = $"{s.CODE} ({s.NAME})", Value = s.CODE })
-                            .ToList());
-            gridControlSupplierCity.RepositoryItems.Add(_operatorCombo);		//per DX recommendation to avoid memory leaks
-        }
-
-        private void enterControl(object sender, EventArgs e)
-        {
-            if (sender.GetType() == typeof(CheckEdit)) {
-                _currentVal = ((CheckEdit)sender).Checked.ToString();
-            }
-            else {
-                _currentVal = ((Control)sender).Text;
-            }
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.OPERATOR
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            RepositoryItemCustomSearchLookUpEditOperator.DataSource = lookup;
+            //var col = _operatorSearch.View.Columns.Add();
+            //col.FieldName = "Code";
+            //col = _operatorSearch.View.Columns.Add();
+            //col.FieldName = "Name";
+            //_operatorSearch.DisplayMember = "DisplayName";
+            //_operatorSearch.ValueMember = "Code";
+            //_operatorSearch.NullText = string.Empty;
+            //_operatorSearch.BestFitMode = BestFitMode.BestFitResizePopup;
+            //_operatorSearch.DataSource = lookup;
+            //_operatorSearch.View.BestFitColumns();
+            //_operatorSearch.Popup += new EventHandler(SearchLookupEdit_Popup);
+            //GridControlSupplierCity.RepositoryItems.Add(_operatorSearch);		//per DX recommendation to avoid memory leaks
         }
 
         private void CityCodeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_modified || _newRec) {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", 
-                    Name, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (IsModified(_selectedRecord)) {
+                DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
                 if (select == DialogResult.Yes) {
                     e.Cancel = false;
+                    _context.Dispose();
                     Dispose();
                 }
                 else 
@@ -116,6 +116,7 @@ namespace TraceForms
             }
             else {
                 e.Cancel = false;
+                _context.Dispose();
                 Dispose();
             }
         }
@@ -125,12 +126,11 @@ namespace TraceForms
             if (_selectedRecord == null) return;
 
             try {
-                if (XtraMessageBox.Show("Are you sure you want to delete this record?", 
-                    Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
                     _ignoreLeaveRow = true;
                     _ignorePositionChange = true;
                     RemoveRecord();
-                    if (!_newRec) {
+                    if (!_selectedRecord.IsNew()) {
                         //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
                         //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
                         //the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
@@ -141,22 +141,15 @@ namespace TraceForms
                     }
                     _ignoreLeaveRow = false;
                     _ignorePositionChange = false;
-                    _modified = false;
-                    _newRec = false;
-                    if (gridViewLookup.RowCount == 0) {
+                    if (GridViewLookup.RowCount == 0) {
                         ClearBindings();
                     }
                     SetBindings();
                     ShowActionConfirmation("Record Deleted");
                 }
-                _currentVal = textEditCode.Text;
             }
             catch (Exception ex) {
-                string message = ex.Message;
-                if (message.Contains("inner exception")) {
-                    message = ex.InnerException.Message;
-                }
-                XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DisplayHelper.DisplayError(this, ex);
                 RefreshRecord();        //pull it back from db because that is it's current state
                 //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
                 SetBindings();
@@ -165,11 +158,7 @@ namespace TraceForms
 
         void ClearBindings()
         {
-            bindingSource.DataSource = typeof(CITYCOD);
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
+            BindingSource.DataSource = typeof(CITYCOD);
         }
 
         private bool SaveRecord(bool prompt)
@@ -177,30 +166,26 @@ namespace TraceForms
             try {
                 if (_selectedRecord == null) return true;
 
-                //Call to make sure the modified flag is set, because the Save button doesn't take focus so the Leave event
-                //won't fire on the active control
-                SetErrorInfo(null, ActiveControl);
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
 
-                if (_modified || _newRec) {
+                if (modified) {
                     if (prompt) {
-                        DialogResult result = XtraMessageBox.Show("Do you want to confirm these changes?", Text, 
-                            MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
                         if (result == DialogResult.No) {
-                            if (_newRec) {
+                            if (newRec) {
                                 RemoveRecord();
                             }
                             else {
                                 RefreshRecord();
                             }
-                            _modified = false;
-                            _newRec = false;
                             return true;
                         }
-                        if (result == DialogResult.Cancel) {
+                        else if (result == DialogResult.Cancel) {
                             return false;
                         }
                     }
-                    FinalizeBindings();
                     if (!ValidateAll())
                         return false;
 
@@ -209,17 +194,11 @@ namespace TraceForms
                     }
                     _context.SaveChanges();
                     ShowActionConfirmation("Record Saved");
-                    _newRec = false;
-                    _modified = false;
                 }
                 return true;
             }
             catch (Exception ex) {
-                string message = ex.Message;
-                if (message.Contains("inner exception")) {
-                    message = ex.InnerException.Message;
-                }
-                XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DisplayHelper.DisplayError(this, ex);
                 RefreshRecord();        //pull it back from db because that is its current state
                                         //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
                 SetBindings();
@@ -227,21 +206,28 @@ namespace TraceForms
             }
         }
 
+        private bool IsModified(CITYCOD record)
+        {
+            //Type-specific routine that takes into account relationships that should also be considered
+            //when deciding if there are unsaved changes.  The entity properties also return true if the
+            //record is new or deleted.
+            return record.IsModified(_context) || record.SupplierCity.IsModified(_context);
+        }
+
         private bool ValidateAll()
         {
             bool suppCitiesInvalid = false;
-            if (bindingSourceSupplierCity.List.Count > 0) {
-                suppCitiesInvalid = bindingSourceSupplierCity.List.Cast<SupplierCity>().Any(b => !b.Validate());
+            if (BindingSourceSupplierCity.List.Count > 0) {
+                suppCitiesInvalid = BindingSourceSupplierCity.List.Cast<SupplierCity>().Any(b => !b.Validate());
             }
 
             if (!_selectedRecord.Validate() || suppCitiesInvalid) {
                 ShowMainControlErrors();
-                XtraMessageBox.Show("Errors were found. Please resolve them and try again.",
-                    Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
                 return false;
             }
             else {
-                errorProvider.Clear();
+                ErrorProvider.Clear();
                 return true;
             }
         }
@@ -250,52 +236,36 @@ namespace TraceForms
         {
             //The error indicators inside the grids are handled by binding, but errors on the main form must
             //be set manually
-            SetErrorInfo(_selectedRecord.ValidateCode, textEditCode);
-            SetErrorInfo(_selectedRecord.ValidateName, textEditName);
-            SetErrorInfo(_selectedRecord.ValidateLinkCode, ImageComboBoxEditLinkCode);
-            SetErrorInfo(_selectedRecord.ValidateState, imageComboBoxEditState);
-            SetErrorInfo(_selectedRecord.ValidateCountry, imageComboBoxEditCountry);
-            SetErrorInfo(_selectedRecord.ValidateLatitude, spinEditLat);
-            SetErrorInfo(_selectedRecord.ValidateLongitude, spinEditLong);
-            SetErrorInfo(_selectedRecord.ValidateSupplierCities, gridControlSupplierCity);
+            SetErrorInfo(_selectedRecord.ValidateCode, TextEditCode);
+            SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
+            SetErrorInfo(_selectedRecord.ValidateLinkCode, SearchLookupEditLinkCode);
+            SetErrorInfo(_selectedRecord.ValidateState, SearchLookupEditState);
+            SetErrorInfo(_selectedRecord.ValidateCountry, SearchLookupEditCountry);
+            SetErrorInfo(_selectedRecord.ValidateLatitude, SpinEditLat);
+            SetErrorInfo(_selectedRecord.ValidateLongitude, SpinEditLong);
+            SetErrorInfo(_selectedRecord.ValidateSupplierCities, GridControlSupplierCity);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
         {
-            bindingSource.EndEdit();        //force changes back into context for validation
-            if (sender != null) {
-                if (sender.GetType() == typeof(CheckEdit)) {
-                    if (_currentVal != ((CheckEdit)sender).Checked.ToString()) {
-                        _modified = true;
-                    }
-                }
-                else {
-                    if (_currentVal != ((Control)sender).Text) {
-                        _modified = true;
-                    }
-                }
-                //Put this here to save the current value of the control into currentVal in the cases
-                //where this event was fired without a new control gaining focus, ie when the Save
-                //button is clicked. 
-                enterControl(sender, new EventArgs());
-            }
+            BindingSource.EndEdit();        //force changes back into context for validation
             if (validationMethod != null) {
                 string error = validationMethod.Invoke();
-                errorProvider.SetError((Control)sender, error);
+                ErrorProvider.SetError((Control)sender, error);
             }
         }
 
         private void FinalizeBindings()
         {
-            bindingSource.EndEdit();
-            gridViewSupplierCity.CloseEditor();
-            gridViewSupplierCity.UpdateCurrentRow();
+            BindingSource.EndEdit();
+            GridViewSupplierCity.CloseEditor();
+            GridViewSupplierCity.UpdateCurrentRow();
             //Set the city code for each mapping just in case
-            for (int rowCtr = 0; rowCtr < gridViewSupplierCity.DataRowCount; rowCtr++) {
-                SupplierCity suppCity = (SupplierCity)gridViewSupplierCity.GetRow(rowCtr);
-                suppCity.Citycod_Code = textEditCode.Text;
+            for (int rowCtr = 0; rowCtr < GridViewSupplierCity.DataRowCount; rowCtr++) {
+                SupplierCity suppCity = (SupplierCity)GridViewSupplierCity.GetRow(rowCtr);
+                suppCity.Citycod_Code = TextEditCode.Text;
             }
-            bindingSourceSupplierCity.EndEdit();
+            BindingSourceSupplierCity.EndEdit();
         }
 
         void SetBindings()
@@ -303,18 +273,18 @@ namespace TraceForms
             //If the route list is filtered, there will be rows in the binding source
             //that are not visible, and they can become selected if the last visible row
             //is deleted, so handle that by checking rowcount.
-            if (bindingSource.Current == null) {
+            if (BindingSource.Current == null) {
                 _selectedRecord = null;
-                bindingSourceSupplierCity.Clear();
+                BindingSourceSupplierCity.Clear();
                 SetReadOnly(true);
             }
             else {
-                _selectedRecord = ((CITYCOD)bindingSource.Current);
+                _selectedRecord = ((CITYCOD)BindingSource.Current);
                 LoadAndBindSupplierCities();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
             }
-            errorProvider.Clear();
+            ErrorProvider.Clear();
         }
 
         void LoadAndBindSupplierCities()
@@ -329,7 +299,7 @@ namespace TraceForms
             //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
             //it appears to bind as unassociated with the context and you have to manually add/delete
             //rows from the bindingsource to the context (but changes work fine)
-            bindingSourceSupplierCity.DataSource = _selectedRecord.SupplierCity;
+            BindingSourceSupplierCity.DataSource = _selectedRecord.SupplierCity;
             BindSupplierCities();
         }
 
@@ -342,13 +312,13 @@ namespace TraceForms
 
         void SetReadOnlyKeyFields(bool value)
         {
-            textEditCode.ReadOnly = value;
+            TextEditCode.ReadOnly = value;
         }
 
         private void ShowActionConfirmation(string confirmation)
         {
-            panelControlStatus.Visible = true;
-            labelStatus.Text = confirmation;
+            PanelControlStatus.Visible = true;
+            LabelStatus.Text = confirmation;
             _actionConfirmation = new Timer();
             _actionConfirmation.Interval = 3000;
             _actionConfirmation.Start();
@@ -357,17 +327,17 @@ namespace TraceForms
 
         private void TimedEvent(object sender, EventArgs e)
         {
-            panelControlStatus.Visible = false;
+            PanelControlStatus.Visible = false;
             _actionConfirmation.Stop();
         }
 
         private void RemoveRecord()
         {
-            if (_newRec) {
+            if (_selectedRecord.IsNew()) {
                 //If you clear the bindingsource for child records where the parent entity is tracked by
                 //the context, it will lose tracking for the child entities and cascade operations like
                 //delete will fail
-                bindingSourceSupplierCity.Clear();
+                BindingSourceSupplierCity.Clear();
             }
             //Note that cascade delete must be set on the FK in the db in order for the related
             //entities to be deleted.  This is a db function, not an EF function. However in addition
@@ -377,7 +347,7 @@ namespace TraceForms
             //Otherwise, we could do a delete loop
             //If using DbContext instead of ObjectContext, we could do eg
             //_context.SupplierCity.RemoveRange(_selectedRecord.SupplierCity)
-            bindingSource.RemoveCurrent();
+            BindingSource.RemoveCurrent();
         }
 
         private void RefreshRecord()
@@ -390,34 +360,6 @@ namespace TraceForms
                 _context.Refresh(RefreshMode.StoreWins, _selectedRecord);
                 SetReadOnlyKeyFields(true);
             }
-        }
-
-        private void bindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveLast();
         }
 
         private void TextEditCode_Leave(object sender, EventArgs e)
@@ -440,7 +382,7 @@ namespace TraceForms
 
         private void CityCodeForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && gridViewLookup.IsFilterRow(gridViewLookup.FocusedRowHandle)) {
+            if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
                 ExecuteQuery();
                 e.Handled = true;
             }
@@ -449,28 +391,22 @@ namespace TraceForms
         private void ExecuteQuery()
         {
             Cursor = Cursors.WaitCursor;
-            string colName = gridViewLookup.FocusedColumn.FieldName;
-            string value = String.Empty;
-            value = gridViewLookup.GetFocusedDisplayText();
             string query = "1=1";
-            if (!string.IsNullOrEmpty(gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CODE"))) {
-                query += String.Format(" and it.CODE like '%{0}%'", gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CODE"));
-            }
-            if (!string.IsNullOrEmpty(gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "NAME"))) {
-                query += String.Format(" and it.NAME like '%{0}%'", gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "NAME"));
-            }
-            if (!string.IsNullOrEmpty(gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "LINKCODE"))) {
-                query += String.Format(" and it.LINKCODE like '%{0}%'", gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "LINKCODE"));
+            foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
+                string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
+                if (!string.IsNullOrEmpty(value)) {
+                    query += $" and it.{col.FieldName} like '%{value}%'";
+                }
             }
 
             var records = _context.CITYCOD.Where(query);
             if (records.Count() > 0) {
-                bindingSource.DataSource = records;
-                gridViewLookup.ClearColumnsFilter();
+                BindingSource.DataSource = records;
+                GridViewLookup.ClearColumnsFilter();
             }
             else {
                 ClearBindings();
-                XtraMessageBox.Show("No matching records found.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DisplayHelper.DisplayInfo(this, "No matching records found.");
             }
             Cursor = Cursors.Default;
         }
@@ -487,19 +423,12 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateLatitude, sender);
         }
 
-        private void zoomLevelSpinEdit_Leave(object sender, EventArgs e)
-        {
-            if (_selectedRecord != null)
-                if (_currentVal != ((Control)sender).Text)
-                    _modified = true;
-        }
-
         private void gridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
             //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
             //that may need to be saved. 
-            if (!_ignoreLeaveRow && _selectedRecord != null && (_modified || _newRec)) {
+            if (!_ignoreLeaveRow && IsModified(_selectedRecord)) {
                 e.Allow = SaveRecord(true);
             }
         }
@@ -520,7 +449,7 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateState, sender);
         }
 
-        private void imageComboBoxEditCountry_Leave(object sender, EventArgs e)
+        private void ImageComboBoxEditCountry_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCountry, sender);
@@ -528,48 +457,46 @@ namespace TraceForms
 
         void BindSupplierCities()
         {
-            gridControlSupplierCity.DataSource = bindingSourceSupplierCity;
-            gridControlSupplierCity.RefreshDataSource();
+            GridControlSupplierCity.DataSource = BindingSourceSupplierCity;
+            GridControlSupplierCity.RefreshDataSource();
         }
 
-        private void buttonAddMapping_Click(object sender, EventArgs e)
+        private void ButtonAddMapping_Click(object sender, EventArgs e)
         {
             SupplierCity suppCity = new SupplierCity();
-            suppCity.Citycod_Code = textEditCode.Text;
+            suppCity.Citycod_Code = TextEditCode.Text;
             _selectedRecord.SupplierCity.Add(suppCity);
             BindSupplierCities();
-            gridViewSupplierCity.FocusedRowHandle = bindingSourceSupplierCity.Count - 1;
-            _modified = true;
+            GridViewSupplierCity.FocusedRowHandle = BindingSourceSupplierCity.Count - 1;
         }
 
-        private void buttonDeleteMapping_Click(object sender, EventArgs e)
+        private void ButtonDeleteMapping_Click(object sender, EventArgs e)
         {
-            if (gridViewSupplierCity.FocusedRowHandle >= 0) {
-                SupplierCity suppCity = (SupplierCity)gridViewSupplierCity.GetFocusedRow();
-                bindingSourceSupplierCity.Remove(suppCity);
-                //Removing from the bindingsource just removes the object from its parent, but does not mark
+            if (GridViewSupplierCity.FocusedRowHandle >= 0) {
+                SupplierCity suppCity = (SupplierCity)GridViewSupplierCity.GetFocusedRow();
+                _selectedRecord.SupplierCity.Remove(suppCity);
+                //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
                 _context.SupplierCity.DeleteObject(suppCity);
                 BindSupplierCities();
-                _modified = true;
             }
         }
 
         private void CityCodeForm_Shown(object sender, EventArgs e)
         {
-            gridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
-            gridControlLookup.Focus();
+            GridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
+            GridControlLookup.Focus();
         }
 
-        private void gridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
         }
 
-        private void gridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
+        private void GridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
         {
-            if (gridViewLookup.DataRowCount == 0) {
+            if (GridViewLookup.DataRowCount == 0) {
                 ClearBindings();
             }
         }
@@ -580,19 +507,14 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateSupplierCities, sender);
         }
 
-        private void GridViewSupplierCity_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            _modified = true;
-        }
-
-        private void GridViewSupplierCity_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        private void GridViewSupplierCity_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
             if (e.Column == gridColumnSupplierGuid) { 
                 e.RepositoryItem = _supplierCombo;
             }
-            else if (e.Column == gridColumnOperator) {
-                e.RepositoryItem = _operatorCombo;
-            }
+            //else if (e.Column == gridColumnOperator) {
+            //    e.RepositoryItem = _operatorSearch;
+            //}
         }
 
         private void imageComboBoxEditState_SelectedValueChanged(object sender, EventArgs e)
@@ -603,7 +525,7 @@ namespace TraceForms
                 var state = _context.State.FirstOrDefault(s => s.Code == value);
                 //If the state is linked to a country, default the country for the city
                 if (!string.IsNullOrEmpty(state?.Country)) {
-                    imageComboBoxEditCountry.EditValue = state.Country;
+                    SearchLookupEditCountry.EditValue = state.Country;
                 }
             }
         }
@@ -620,8 +542,7 @@ namespace TraceForms
             popupForm.KeyUp -= PopupForm_KeyUp;
             popupForm.KeyUp += PopupForm_KeyUp;
 
-            SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
-            popupForm.Size = new Size(currentSearch.Width, 800);
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
         }
 
         private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e)
@@ -634,29 +555,28 @@ namespace TraceForms
             }
         }
 
-        private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
-                gridViewLookup.ClearColumnsFilter();
-                _newRec = true;
-                bindingSource.AddNew();
+                GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
+                BindingSource.AddNew();
                 //if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                gridViewLookup.FocusedRowHandle = gridViewLookup.RowCount - 1;
+                GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
                 SetReadOnlyKeyFields(false);
-                textEditCode.Focus();
+                TextEditCode.Focus();
                 SetReadOnly(false);
             }
-            errorProvider.Clear();
+            ErrorProvider.Clear();
             _ignoreLeaveRow = false;
         }
 
-        private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             DeleteRecord();
         }
 
-        private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (SaveRecord(false))
                 RefreshRecord();
@@ -664,22 +584,29 @@ namespace TraceForms
 
         void PopupForm_KeyUp(object sender, KeyEventArgs e)
         {
+            bool gotMatch = false;
             PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
             if (e.KeyData == Keys.Enter) {
-                if (!string.IsNullOrEmpty(popupForm.Properties.View.FindFilterText)) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
                     GridView view = popupForm.OwnerEdit.Properties.View;
                     //If there is a match is on the ValueMember (Code) column, that should take precedence
-                    int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, popupForm.Properties.View.FindFilterText);
-                    if (view.IsValidRowHandle(row)) {
-                        view.FocusedRowHandle = row;
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText, StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
                     }
-                    else {
+                    if (!gotMatch) {
                         view.FocusedRowHandle = 0;
                     }
                     popupForm.OwnerEdit.ClosePopup();
                 }
             }
         }
-
     }
 }

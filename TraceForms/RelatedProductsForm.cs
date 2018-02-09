@@ -565,8 +565,7 @@ namespace TraceForms
             popupForm.KeyUp -= PopupForm_KeyUp;
             popupForm.KeyUp += PopupForm_KeyUp;
 
-            SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
-            popupForm.Size = new Size(currentSearch.Width, 800);
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
         }
 
         private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e)

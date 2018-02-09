@@ -306,6 +306,7 @@
     <Compile Include="CodeName.cs" />
     <Compile Include="Configurator.cs" />
     <Compile Include="DisplayHelper.cs" />
+    <Compile Include="EntityObjectExtensions.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HotelProductionReportForm.cs">
       <SubType>Form</SubType>

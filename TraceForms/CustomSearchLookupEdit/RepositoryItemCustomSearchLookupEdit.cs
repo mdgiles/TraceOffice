@@ -56,9 +56,17 @@ namespace Custom_SearchLookupEdit
 
         public override void Assign(RepositoryItem item)
         {
-            base.Assign(item);
-            RepositoryItemCustomSearchLookUpEdit source = item as RepositoryItemCustomSearchLookUpEdit;
-            Events.AddHandler(_updateDisplayFilter, source.Events[_updateDisplayFilter]);
+            BeginUpdate();
+            try {
+                base.Assign(item);
+                RepositoryItemCustomSearchLookUpEdit source = item as RepositoryItemCustomSearchLookUpEdit;
+                if (source == null)
+                    return;
+                Events.AddHandler(_updateDisplayFilter, source.Events[_updateDisplayFilter]);
+            }
+            finally {
+                EndUpdate();
+            }
         }
     }
 }

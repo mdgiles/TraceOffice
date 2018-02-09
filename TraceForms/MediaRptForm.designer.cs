@@ -630,6 +630,7 @@
             this.ColumnRptPosition});
             this.GridViewAssignGrid.GridControl = this.GridControlAssignGrid;
             this.GridViewAssignGrid.Name = "GridViewAssignGrid";
+            this.GridViewAssignGrid.OptionsBehavior.Editable = false;
             this.GridViewAssignGrid.OptionsView.ShowGroupPanel = false;
             this.GridViewAssignGrid.OptionsView.ShowIndicator = false;
             // 

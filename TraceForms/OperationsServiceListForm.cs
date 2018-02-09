@@ -80,7 +80,7 @@ namespace TraceForms
                 return "Operation Service List sent succesfully";
             }
             catch (Exception ex) {
-                NLog.LogManager.GetCurrentClassLogger().ErrorException("Error sending email", ex);
+                NLog.LogManager.GetCurrentClassLogger().Error(ex, "Error sending email");
                 return ex.Message;
             }
 
