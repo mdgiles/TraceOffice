@@ -55,15 +55,6 @@ namespace TraceForms
         private void LoadLookups()
         {
             setReadOnly(true);           
-            enableNavigator(false);
-        }
-
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
         }
 
         private void setValues()
@@ -87,72 +78,20 @@ namespace TraceForms
             bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((SERVTYPE)ServTypeBindingSource.Current).checkAll, ServTypeBindingSource);
 
             if (validateMain)
-                return validCheck.saveRec(ref modified, true, ref newRec, context, ServTypeBindingSource, Name, errorProvider1, Cursor);
+                return validCheck.saveRec(ref modified, true, ref newRec, context, ServTypeBindingSource, base.Name, errorProvider1, base.Cursor);
             else
             {
-                validCheck.saveRec(ref modified, false, ref newRec, context, ServTypeBindingSource, Name, errorProvider1, Cursor);
+				validCheck.saveRec(ref modified, false, ref newRec, context, ServTypeBindingSource, base.Name, errorProvider1, base.Cursor);
                 return false;
             }
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            GridViewServType.ClearColumnsFilter();
-            if (ServTypeBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                ServTypeBindingSource.DataSource = from opt in context.SERVTYPE where opt.TYPE == "KJM9" select opt;
-                ServTypeBindingSource.AddNew();
-                if (GridViewServType.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewServType.FocusedRowHandle = GridViewServType.RowCount - 1;
-                setValues();
-                TextEditType.Focus();
-                setReadOnly(false);
-                newRec = true;
-                return;
-            }
-            TextEditType.Focus();
-            //bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewServType.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( SERVTYPE)ServTypeBindingSource.Current);
-                ServTypeBindingSource.AddNew();
-                if (GridViewServType.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewServType.FocusedRowHandle = GridViewServType.RowCount - 1;
-                setValues();
-                TextEditType.Focus();
-                setReadOnly(false);
-                newRec = true;
-            }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (ServTypeBindingSource.Current == null)
-                return;
-            GridViewServType.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-                modified = false;
-                newRec = false;
-                ServTypeBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-                //bindingNavigatorPositionItem.Focus();
-
-            }
-            currentVal = TextEditType.Text;
         }
 
         private void TimedEventDelete(object sender, EventArgs e)
@@ -163,28 +102,6 @@ namespace TraceForms
 
         private void sERVTYPEBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-
-            if (ServTypeBindingSource.Current == null)
-                return;
-
-            GridViewServType.CloseEditor();
-            TextEditType.Focus();
-            bool temp = newRec;
-           // bindingNavigatorPositionItem.Focus();//trigger field leave event
-            if (checkForms())
-            {
-                TextEditType.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (SERVTYPE)ServTypeBindingSource.Current);
               
         }
 
@@ -288,7 +205,7 @@ namespace TraceForms
         {
             if (modified || newRec)
             {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", Name, MessageBoxButtons.YesNo);
+				DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", base.Name, MessageBoxButtons.YesNo);
                 if (select == DialogResult.Yes)
                 {
                     e.Cancel = false;
@@ -370,14 +287,95 @@ namespace TraceForms
 
         private void ServTypeBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            if (ServTypeBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+            
         }
 
+		private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			GridViewServType.ClearColumnsFilter();
+			if (ServTypeBindingSource.Current == null)
+			{
+				//fake query in order to create a link between the database table and the binding source
+				ServTypeBindingSource.DataSource = from opt in context.SERVTYPE where opt.TYPE == "KJM9" select opt;
+				ServTypeBindingSource.AddNew();
+				if (GridViewServType.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewServType.FocusedRowHandle = GridViewServType.RowCount - 1;
+				setValues();
+				TextEditType.Focus();
+				setReadOnly(false);
+				newRec = true;
+				return;
+			}
+			TextEditType.Focus();
+			//bindingNavigatorPositionItem.Focus();  //trigger field leave event
+			GridViewServType.CloseEditor();
+			temp = newRec;
+			if (checkForms())
+			{
+				if (!temp)
+					context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (SERVTYPE)ServTypeBindingSource.Current);
+				ServTypeBindingSource.AddNew();
+				if (GridViewServType.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+					GridViewServType.FocusedRowHandle = GridViewServType.RowCount - 1;
+				setValues();
+				TextEditType.Focus();
+				setReadOnly(false);
+				newRec = true;
+			}
 
+		}
 
-           
-    }
+		private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (ServTypeBindingSource.Current == null)
+				return;
+			GridViewServType.CloseEditor();
+			if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+
+				modified = false;
+				newRec = false;
+				ServTypeBindingSource.RemoveCurrent();
+				errorProvider1.Clear();
+				context.SaveChanges();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Deleted";
+				rowStatusDelete = new Timer();
+				rowStatusDelete.Interval = 3000;
+				rowStatusDelete.Start();
+				rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+				//bindingNavigatorPositionItem.Focus();
+
+			}
+			currentVal = TextEditType.Text;
+
+		}
+
+		private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (ServTypeBindingSource.Current == null)
+				return;
+
+			GridViewServType.CloseEditor();
+			TextEditType.Focus();
+			bool temp = newRec;
+			// bindingNavigatorPositionItem.Focus();//trigger field leave event
+			if (checkForms())
+			{
+				TextEditType.Focus();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Saved";
+				rowStatusSave = new Timer();
+				rowStatusSave.Interval = 3000;
+				rowStatusSave.Start();
+				rowStatusSave.Tick += TimedEventSave;
+			}
+
+			if (!temp && !modified)
+				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (SERVTYPE)ServTypeBindingSource.Current);
+
+		}
+	}
 }

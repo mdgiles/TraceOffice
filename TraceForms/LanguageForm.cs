@@ -79,16 +79,9 @@ namespace TraceForms
                 ImageComboBoxEditCode.Properties.Items.Add(load);
             }
            
-            enableNavigator(false);
         }
 
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
+        
 
         private void setValues()
         {
@@ -120,57 +113,10 @@ namespace TraceForms
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            GridViewLanguage.ClearColumnsFilter();
-            if (LanguageBindingSource.Current == null)
-            {
-                LanguageBindingSource.AddNew();
-                codeTextEdit.Focus();
-                setValues();
-                setReadOnly(false);
-                newRec = true;
-                return;
-            }
-            codeTextEdit.Focus();
-           // bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewLanguage.CloseEditor();
-            temp = newRec;
-            ((LANGUAGE)LanguageBindingSource.Current).ImagesRoot = imagesRoot;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( LANGUAGE)LanguageBindingSource.Current);
-                LanguageBindingSource.AddNew();
-                codeTextEdit.Focus();
-                setValues();
-                setReadOnly(false);
-                newRec = true;
-            }
         }
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if (LanguageBindingSource.Current == null)
-                return;
-            GridViewLanguage.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-               
-                modified = false;
-                newRec = false;
-                LanguageBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-
-               
-            }
-            currentVal = codeTextEdit.Text;
         }
 
         private void TimedEventDelete(object sender, EventArgs e)
@@ -181,28 +127,6 @@ namespace TraceForms
 
         private void BindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            if (LanguageBindingSource.Current == null)
-                return;
-
-            GridViewLanguage.CloseEditor();
-            codeTextEdit.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            ((LANGUAGE)LanguageBindingSource.Current).ImagesRoot = imagesRoot;
-            if (checkForms())
-            {
-                codeTextEdit.Focus();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (LANGUAGE)LanguageBindingSource.Current);
-               
         }
 
         private void TimedEventSave(object sender, EventArgs e)
@@ -484,12 +408,91 @@ namespace TraceForms
 
         private void LanguageBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            if (LanguageBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+			
         }
 
+		private void barButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			GridViewLanguage.ClearColumnsFilter();
+			if (LanguageBindingSource.Current == null)
+			{
+				LanguageBindingSource.AddNew();
+				codeTextEdit.Focus();
+				setValues();
+				setReadOnly(false);
+				newRec = true;
+				return;
+			}
+			codeTextEdit.Focus();
+			// bindingNavigatorPositionItem.Focus();  //trigger field leave event
+			GridViewLanguage.CloseEditor();
+			temp = newRec;
+			((LANGUAGE)LanguageBindingSource.Current).ImagesRoot = imagesRoot;
+			if (checkForms())
+			{
+				if (!temp)
+					context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (LANGUAGE)LanguageBindingSource.Current);
+				LanguageBindingSource.AddNew();
+				codeTextEdit.Focus();
+				setValues();
+				setReadOnly(false);
+				newRec = true;
+			}
 
-    }
+		}
+
+		private void barButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (LanguageBindingSource.Current == null)
+				return;
+			GridViewLanguage.CloseEditor();
+			if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+
+				modified = false;
+				newRec = false;
+				LanguageBindingSource.RemoveCurrent();
+				errorProvider1.Clear();
+				context.SaveChanges();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Deleted";
+				rowStatusDelete = new Timer();
+				rowStatusDelete.Interval = 3000;
+				rowStatusDelete.Start();
+				rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+
+
+			}
+			currentVal = codeTextEdit.Text;
+
+		}
+
+		private void barButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (LanguageBindingSource.Current == null)
+				return;
+
+			GridViewLanguage.CloseEditor();
+			codeTextEdit.Focus();
+			//bindingNavigatorPositionItem.Focus();//trigger field leave event
+			bool temp = newRec;
+			((LANGUAGE)LanguageBindingSource.Current).ImagesRoot = imagesRoot;
+			if (checkForms())
+			{
+				codeTextEdit.Focus();
+				setReadOnly(true);
+				panelControlStatus.Visible = true;
+				LabelStatus.Text = "Record Saved";
+				rowStatusSave = new Timer();
+				rowStatusSave.Interval = 3000;
+				rowStatusSave.Start();
+				rowStatusSave.Tick += TimedEventSave;
+			}
+			if (!temp && !modified)
+				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (LANGUAGE)LanguageBindingSource.Current);
+
+
+		}
+	}
 }
