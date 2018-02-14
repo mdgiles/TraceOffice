@@ -132,7 +132,7 @@
             // BindingSource
             // 
             this.BindingSource.DataSource = typeof(FlexModel.ROOMCOD);
-            this.BindingSource.CurrentChanged += new System.EventHandler(this.RoomCodBindingSource_CurrentChanged);
+            this.BindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
             // 
             // TextEditName
             // 
