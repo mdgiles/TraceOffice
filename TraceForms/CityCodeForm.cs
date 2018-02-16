@@ -433,7 +433,7 @@ namespace TraceForms
             }
         }
 
-        private void bindingSource_CurrentChanged(object sender, EventArgs e)
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             //If the current record is changing as a result of removing a record to delete it, and it is the last
             //record in the table, then SetBindings will clear the bindings, which will cause the delete
@@ -443,13 +443,13 @@ namespace TraceForms
                 SetBindings();
         }
 
-        private void imageComboBoxEditState_Leave(object sender, EventArgs e)
+        private void SearchLookupEditState_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateState, sender);
         }
 
-        private void ImageComboBoxEditCountry_Leave(object sender, EventArgs e)
+        private void SearchLookupEditCountry_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCountry, sender);

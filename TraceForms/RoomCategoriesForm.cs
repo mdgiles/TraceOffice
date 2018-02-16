@@ -69,7 +69,12 @@ namespace TraceForms
             BindingSource.RemoveCurrent();
         }
 
-        private void RefreshRecord()
+		private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+		{
+			e.ExceptionMode = ExceptionMode.NoAction;
+		}
+
+		private void RefreshRecord()
         {
             //A Detached record has not yet been added to the context
             //An Added record has been added but not yet saved, most likely because there was
@@ -196,11 +201,6 @@ namespace TraceForms
                 string error = validationMethod.Invoke();
                 ErrorProvider.SetError((Control)sender, error);
             }
-        }
-
-        private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
-        {
-            e.ExceptionMode = ExceptionMode.NoAction; 
         }
 
         private void RoomCategoriesForm_FormClosing(object sender, FormClosingEventArgs e)
