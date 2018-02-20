@@ -298,7 +298,7 @@
 			this.Name = "RegionForm";
 			this.ShowInTaskbar = false;
 			this.Text = "Regions";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.REGIONForm_FormClosing);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegionForm_FormClosing);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RegionForm_KeyDown);
 			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();

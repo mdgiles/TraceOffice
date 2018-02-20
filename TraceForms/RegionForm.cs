@@ -107,7 +107,7 @@ namespace TraceForms
 
 		}
 
-		private void REGIONForm_FormClosing(object sender, FormClosingEventArgs e)
+		private void RegionForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 			if (IsModified(_selectedRecord))
 			{
@@ -271,12 +271,12 @@ namespace TraceForms
 							_context.REGION.DeleteObject(_selectedRecord);
 						_context.SaveChanges();
 					}
-					_ignoreLeaveRow = false;
-					_ignorePositionChange = false;
 					if (GridViewLookup.RowCount == 0)
 					{
 						ClearBindings();
 					}
+					_ignoreLeaveRow = false;
+					_ignorePositionChange = false;
 					SetBindings();
 					ShowActionConfirmation("Record Deleted");
 				}
