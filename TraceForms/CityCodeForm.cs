@@ -74,6 +74,14 @@ namespace TraceForms
             lookup = new List<CodeName> {
                 new CodeName(null)
             };
+            lookup.AddRange(_context.REGION
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }));
+            SearchLookupEditRegion.Properties.DataSource = lookup;
+
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
             lookup.AddRange(_context.COUNTRY
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
@@ -270,6 +278,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
             SetErrorInfo(_selectedRecord.ValidateLinkCode, SearchLookupEditLinkCode);
             SetErrorInfo(_selectedRecord.ValidateState, SearchLookupEditState);
+            SetErrorInfo(_selectedRecord.ValidateRegion, SearchLookupEditRegion);
             SetErrorInfo(_selectedRecord.ValidateCountry, SearchLookupEditCountry);
             SetErrorInfo(_selectedRecord.ValidateSupplierCities, GridControlSupplierCity);
         }
@@ -439,18 +448,6 @@ namespace TraceForms
             Cursor = Cursors.Default;
         }
 
-        private void TextEditLong_Leave(object sender, EventArgs e)
-        {
-            if (_selectedRecord != null)
-                SetErrorInfo(_selectedRecord.ValidateLongitude, sender);
-        }
-
-        private void TextEditLat_Leave(object sender, EventArgs e)
-        {
-            if (_selectedRecord != null)
-                SetErrorInfo(_selectedRecord.ValidateLatitude, sender);
-        }
-
         private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
@@ -481,6 +478,12 @@ namespace TraceForms
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCountry, sender);
+        }
+
+        private void SearchLookUpEditRegion_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateRegion, sender);
         }
 
         void BindSupplierCities()
@@ -607,6 +610,7 @@ namespace TraceForms
                     //If the state is linked to a country, default the country for the city
                     if (!string.IsNullOrEmpty(state?.Country)) {
                         SearchLookupEditCountry.EditValue = state.Country;
+                        SearchLookupEditRegion.EditValue = state.Region;
                     }
                 }
             }
