@@ -293,7 +293,7 @@ namespace TraceForms
                 if (rateplan[0].Trim().Length <= 16) {
                     hrate.SpecialValue_Code = rateplan[0].Trim();
                 }
-                if (rateplan[0].Trim().Length <= 64) {
+                else if (rateplan[0].Trim().Length <= 64) {
                     //Use the code as the description by default
                     hrate.COMMENT1 = rateplan[0].Trim();
                     hrate.COMMENT2 = rateplan[0].Trim();

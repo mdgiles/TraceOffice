@@ -3,37 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using FlexModel;
-using System.Data.Entity.Core.Objects;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using System.Linq;
 using System.Linq.Dynamic;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Grid;
-using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using System.Linq;
-using DevExpress.XtraGrid.Columns;
-using System.Runtime.InteropServices;
 using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views;
-using DevExpress.XtraEditors.Repository;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using DevExpress.UserSkins;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using Custom_SearchLookupEdit;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Win;
+
 namespace TraceForms
 {
-    
+
     public partial class PRatesForm : DevExpress.XtraEditors.XtraForm
     {
         public string currentVal;
@@ -78,10 +62,16 @@ namespace TraceForms
             var cat = from catRec in context.ROOMCOD orderby catRec.CODE ascending select new { catRec.CODE, catRec.DESC };
             var hotel = from hotelRec in context.HOTEL orderby hotelRec.CODE ascending select new { hotelRec.CODE, hotelRec.NAME };
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
-            ImageComboBoxEditCode.Properties.Items.Add(loadBlank);
+            ImageComboBoxEditSpecialValue.Properties.Items.Add(loadBlank);
             ImageComboBoxEditCategory.Properties.Items.Add(loadBlank);
             //ImageComboBoxEditHotelCode.Properties.Items.Add(loadBlank);            
             ImageComboBoxEditAgency.Properties.Items.Add(loadBlank);
+
+            var spec = from specRec in context.SpecialValue where specRec.Type == "PKG" orderby specRec.Code ascending select new { specRec.Code, specRec.Name };
+            foreach (var result in spec) {
+                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code.TrimEnd() + "  " + "(" + result.Name.TrimEnd() + ")", Value = result.Code.TrimEnd() };
+                ImageComboBoxEditSpecialValue.Properties.Items.Add(load);
+            }
 
             //foreach (var result in hotel)
             //{
@@ -93,12 +83,11 @@ namespace TraceForms
                 ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.NO.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.NO.TrimEnd() };
                 ImageComboBoxEditAgency.Properties.Items.Add(load);
             }
-            foreach (var result in pkg)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditCode.Properties.Items.Add(load);              
-            }
-           
+
+            //Bind directly to PACK so that the selected PACK record can be retrieved in EditValueChanged without another
+            //database lookup.  In this case since package is required we don't need a null entry.
+            SearchLookupEditCode.Properties.DataSource = context.PACK.OrderBy(o => o.CODE);
+
             foreach (var result in cat)
             {
                 ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.DESC.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
@@ -143,7 +132,7 @@ namespace TraceForms
 
         void setReadOnly(bool value)
         {
-            ImageComboBoxEditCode.Properties.ReadOnly = value;
+            SearchLookupEditCode.Properties.ReadOnly = value;
             ImageComboBoxEditAgency.Properties.ReadOnly = value;
             ImageComboBoxEditHotelCode.Properties.ReadOnly = value;
             ImageComboBoxEditCategory.Properties.ReadOnly = value;
@@ -270,13 +259,13 @@ namespace TraceForms
                 PRateBindingSource.AddNew();
                 if (GridViewPrates.FocusedRowHandle == GridControl.AutoFilterRowHandle)
                     GridViewPrates.FocusedRowHandle = GridViewPrates.RowCount - 1;
-                ImageComboBoxEditCode.Focus();             
+                SearchLookupEditCode.Focus();             
                 newRec = true;
                 setReadOnly(false);
                 setValues();
                 return;
             }
-            ImageComboBoxEditCode.Focus();
+            SearchLookupEditCode.Focus();
            // bindingNavigatorPositionItem.Focus();  //trigger field leave event
             GridViewPrates.CloseEditor();
             temp = newRec;
@@ -288,7 +277,7 @@ namespace TraceForms
                 PRateBindingSource.AddNew();
                 if (GridViewPrates.FocusedRowHandle == GridControl.AutoFilterRowHandle)
                     GridViewPrates.FocusedRowHandle = GridViewPrates.RowCount - 1;
-                ImageComboBoxEditCode.Focus();
+                SearchLookupEditCode.Focus();
                 
                 newRec = true;
                 setValues();
@@ -315,8 +304,8 @@ namespace TraceForms
                 rowStatusDelete.Interval = 3000;
                 rowStatusDelete.Start();
                 rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-                ImageComboBoxEditCode.Focus();
-                currentVal = ImageComboBoxEditCode.Text;
+                SearchLookupEditCode.Focus();
+                currentVal = SearchLookupEditCode.Text;
                 setReadOnly(true);
                 Modified = false;
                 newRec = false;
@@ -335,7 +324,7 @@ namespace TraceForms
         {
             if (PRateBindingSource.Current == null)
                 return;
-            ImageComboBoxEditCode.Focus();
+            SearchLookupEditCode.Focus();
             //Overlapping ratesheets are no longer an error, because the business logic takes care of which
             //one should be used.  User can see which ones are overlapping using the menu option but should
             //not be prevented from saving.
@@ -395,14 +384,14 @@ namespace TraceForms
             GridViewPrates.ClearColumnsFilter();
             if (PRateBindingSource.Current == null)
                 return;
-            ImageComboBoxEditCode.Focus();
+            SearchLookupEditCode.Focus();
             GridViewPrates.CloseEditor();
             bool temp = newRec;
          //   bindingNavigatorPositionItem.Focus();//trigger field leave event
             if (checkForms())
             {
 
-                ImageComboBoxEditCode.Focus();
+                SearchLookupEditCode.Focus();
                 panelControlStatus.Visible = true;
                 LabelStatus.Text = "Record Saved";
                 rowStatusSave = new Timer();
@@ -428,7 +417,7 @@ namespace TraceForms
         {
 
             GridViewPrates.CloseEditor();
-            ImageComboBoxEditCode.Focus();
+            SearchLookupEditCode.Focus();
            // bindingNavigatorPositionItem.Focus();//trigger field leave event
             temp = newRec;
             if (checkForms())
@@ -1211,7 +1200,7 @@ namespace TraceForms
 
             if (!string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text))
                 end = Convert.ToDateTime(eND_DATEDateEdit.Text);
-            string code = ImageComboBoxEditCode.EditValue.ToString();
+            string code = SearchLookupEditCode.EditValue.ToString();
             string agency = ImageComboBoxEditAgency.EditValue.ToString();
             string cat = ImageComboBoxEditCategory.EditValue.ToString();
             int id = (int)GridViewPrates.GetFocusedRowCellValue("ID");
@@ -1353,7 +1342,7 @@ namespace TraceForms
         }     
 
 
-        private void ImageComboBoxEditCopyCode_Leave(object sender, System.EventArgs e)
+        private void SearchLookupEditCode_Leave(object sender, System.EventArgs e)
         {
             if (PRateBindingSource.Current != null)
             {
@@ -1363,9 +1352,7 @@ namespace TraceForms
                 }
 
                 validCheck.check(sender, errorProvider1, ((PRATES)PRateBindingSource.Current).checkCode, PRateBindingSource);
-                int index = ImageComboBoxEditCode.Text.IndexOf(' ');
-                dESCTextEdit.Text = ImageComboBoxEditCode.Text.Remove(0, index).Replace("(", "").Replace(")", "").TrimStart().TrimEnd();
-           
+          
             }
         }
 
@@ -1406,6 +1393,10 @@ namespace TraceForms
                 }
 
                 validCheck.check(sender, errorProvider1, ((PRATES)PRateBindingSource.Current).checkCat, PRateBindingSource);
+                //Don't default the description to the category description, because a blank description will automatically
+                //use the category description in availability
+                //int index = ImageComboBoxEditCategory.Text.IndexOf(' ');
+                //dESCTextEdit.Text = ImageComboBoxEditCategory.Text.Remove(0, index).Replace("(", "").Replace(")", "").TrimStart().TrimEnd();
 
             }
         }
@@ -1765,6 +1756,76 @@ namespace TraceForms
                     Modified = true;
                 }
                 //validCheck.check(sender, errorProvider1, ((PRATES)PRateBindingSource.Current).checkExtraG6, PRateBindingSource);
+            }
+        }
+
+        private void SearchLookupEdit_Popup(object sender, EventArgs e)
+        {
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
+
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+        }
+
+        private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e)
+        {
+            //Users did not like have to type quotes in order to get an exact match of entered terms rather than any word being matched
+            //https://www.devexpress.com/Support/Center/Example/Details/E3135/how-to-implement-an-event-allowing-you-to-customize-a-filter-string-produced-by-the-find
+            //Also requires the custom inherited version of the SearchLookupEdit in the Custom_SearchLookupEdit namespace
+            if (!string.IsNullOrEmpty(e.FilterText)) {
+                e.FilterText = '"' + e.FilterText + '"';
+            }
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            bool gotMatch = false;
+            string keyValue;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int rowHandle = 0; rowHandle < view.DataRowCount; rowHandle++) {
+                        //Handle where the control may be bound to different data types
+                        object row = view.GetRow(rowHandle);
+                        if (row.GetType() == typeof(PACK)) {
+                            keyValue = ((PACK)row).CODE;
+                        }
+                        else {
+                            keyValue = ((CodeName)row).Code;
+                        }
+                        if (searchText.Equals(keyValue, StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = rowHandle;
+                            gotMatch = true;
+                            break;
+                        }
+                    }
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
+                }
+            }
+        }
+
+        private void SearchLookupEditCode_EditValueChanged(object sender, EventArgs e)
+        {
+            if (SearchLookupEditCode.GetSelectedDataRow() != null) {
+                PACK package = (PACK)SearchLookupEditCode.GetSelectedDataRow();
+                TimeEditTime.Enabled = package.MultipleTimes;
+                if (!package.MultipleTimes)
+                    TimeEditTime.EditValue = null;
             }
         }
     }

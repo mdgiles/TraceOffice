@@ -247,11 +247,11 @@ namespace TraceForms
                             _context.ROOMCOD.DeleteObject(_selectedRecord);
                         _context.SaveChanges();
                     }
-                    _ignoreLeaveRow = false;
-                    _ignorePositionChange = false;
-                    if (GridViewLookup.RowCount == 0) {
+                    if (GridViewLookup.DataRowCount == 0) {
                         ClearBindings();
                     }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
                     SetBindings();
                     ShowActionConfirmation("Record Deleted");
                 }

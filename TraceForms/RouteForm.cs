@@ -333,14 +333,14 @@ namespace TraceForms
 							_context.BusRoute.DeleteObject(_selectedRecord);
 						_context.SaveChanges();
 					}
-					_ignoreLeaveRow = false;
-					_ignorePositionChange = false;
 					_modified = false;
 					_newRec = false;
-					if (gridViewLookup.RowCount == 0) {
+					if (gridViewLookup.DataRowCount == 0) {
 						ClearBindings();
 					}
-					SetBindings();
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
+                    SetBindings();
 					ShowActionConfirmation("Record Deleted");
 				}
 				_currentVal = textEditName.Text;

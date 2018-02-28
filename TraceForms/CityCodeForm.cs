@@ -11,8 +11,12 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
 using FlexModel;
 using Custom_SearchLookupEdit;
+using DevExpress.Data.Async.Helpers;
+using DevExpress.Map;
+using DevExpress.XtraMap;
 
 namespace TraceForms
 {
@@ -33,6 +37,7 @@ namespace TraceForms
                 Connect(sys);
                 LoadLookups();
                 SetReadOnly(true);
+                SetMapProperties();         //Mapping
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);
@@ -88,6 +93,7 @@ namespace TraceForms
                             .OrderBy(o => o.CODE)
                             .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
             RepositoryItemCustomSearchLookUpEditOperator.DataSource = lookup;
+
             //var col = _operatorSearch.View.Columns.Add();
             //col.FieldName = "Code";
             //col = _operatorSearch.View.Columns.Add();
@@ -111,7 +117,7 @@ namespace TraceForms
                     _context.Dispose();
                     Dispose();
                 }
-                else 
+                else
                     e.Cancel = true;
             }
             else {
@@ -123,10 +129,15 @@ namespace TraceForms
 
         private void DeleteRecord()
         {
-            if (_selectedRecord == null) return;
+            if (_selectedRecord == null)
+                return;
 
             try {
                 if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
+                    //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
+                    //We do not want these events to perform their usual code of checking whether there are changes in the active
+                    //record that should be saved before proceeding, because we know we have just deleted the active record.
                     _ignoreLeaveRow = true;
                     _ignorePositionChange = true;
                     RemoveRecord();
@@ -139,17 +150,20 @@ namespace TraceForms
                             _context.CITYCOD.DeleteObject(_selectedRecord);
                         _context.SaveChanges();
                     }
-                    _ignoreLeaveRow = false;
-                    _ignorePositionChange = false;
-                    if (GridViewLookup.RowCount == 0) {
+                    if (GridViewLookup.DataRowCount == 0) {
                         ClearBindings();
                     }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
                     SetBindings();
+                    EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Deleted");
                 }
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);
+                _ignoreLeaveRow = false;
+                _ignorePositionChange = false;
                 RefreshRecord();        //pull it back from db because that is it's current state
                 //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
                 SetBindings();
@@ -158,13 +172,24 @@ namespace TraceForms
 
         void ClearBindings()
         {
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            BindingSourceSupplierCity.Clear();
+            SetReadOnly(true);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
             BindingSource.DataSource = typeof(CITYCOD);
+            ClearMapData();                 //Mapping
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
         }
 
         private bool SaveRecord(bool prompt)
         {
             try {
-                if (_selectedRecord == null) return true;
+                if (_selectedRecord == null)
+                    return true;
 
                 FinalizeBindings();
                 bool newRec = _selectedRecord.IsNew();
@@ -193,6 +218,7 @@ namespace TraceForms
                         _context.CITYCOD.AddObject(_selectedRecord);
                     }
                     _context.SaveChanges();
+                    EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Saved");
                 }
                 return true;
@@ -211,7 +237,11 @@ namespace TraceForms
             //Type-specific routine that takes into account relationships that should also be considered
             //when deciding if there are unsaved changes.  The entity properties also return true if the
             //record is new or deleted.
-            return record.IsModified(_context) || record.SupplierCity.IsModified(_context);
+            if (record == null)
+                return false;
+            return record.IsModified(_context) 
+                || record.SupplierCity.IsModified(_context) 
+                || record.GeoCode.IsModified(_context);     //Mapping
         }
 
         private bool ValidateAll()
@@ -241,8 +271,6 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateLinkCode, SearchLookupEditLinkCode);
             SetErrorInfo(_selectedRecord.ValidateState, SearchLookupEditState);
             SetErrorInfo(_selectedRecord.ValidateCountry, SearchLookupEditCountry);
-            SetErrorInfo(_selectedRecord.ValidateLatitude, SpinEditLat);
-            SetErrorInfo(_selectedRecord.ValidateLongitude, SpinEditLong);
             SetErrorInfo(_selectedRecord.ValidateSupplierCities, GridControlSupplierCity);
         }
 
@@ -266,23 +294,22 @@ namespace TraceForms
                 suppCity.Citycod_Code = TextEditCode.Text;
             }
             BindingSourceSupplierCity.EndEdit();
+            SaveMapData();          //Mapping
         }
 
         void SetBindings()
         {
-            //If the route list is filtered, there will be rows in the binding source
-            //that are not visible, and they can become selected if the last visible row
-            //is deleted, so handle that by checking rowcount.
             if (BindingSource.Current == null) {
-                _selectedRecord = null;
-                BindingSourceSupplierCity.Clear();
-                SetReadOnly(true);
+                ClearBindings();
             }
             else {
                 _selectedRecord = ((CITYCOD)BindingSource.Current);
                 LoadAndBindSupplierCities();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
+                ShowMapData(_selectedRecord);           //Mapping
             }
             ErrorProvider.Clear();
         }
@@ -305,7 +332,7 @@ namespace TraceForms
 
         void SetReadOnly(bool value)
         {
-            foreach (Control control in splitContainerControl.Panel2.Controls) {
+            foreach (Control control in SplitContainerControl.Panel2.Controls) {
                 control.Enabled = !value;
             }
         }
@@ -319,8 +346,9 @@ namespace TraceForms
         {
             PanelControlStatus.Visible = true;
             LabelStatus.Text = confirmation;
-            _actionConfirmation = new Timer();
-            _actionConfirmation.Interval = 3000;
+            _actionConfirmation = new Timer {
+                Interval = 3000
+            };
             _actionConfirmation.Start();
             _actionConfirmation.Tick += TimedEvent;
         }
@@ -382,17 +410,17 @@ namespace TraceForms
 
         private void CityCodeForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
-                ExecuteQuery();
-                e.Handled = true;
-            }
+            //if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
+            //    ExecuteQuery();
+            //    e.Handled = true;
+            //}
         }
 
         private void ExecuteQuery()
         {
             Cursor = Cursors.WaitCursor;
             string query = "1=1";
-            foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
+            foreach (GridColumn col in GridViewLookup.VisibleColumns) {
                 string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
                 if (!string.IsNullOrEmpty(value)) {
                     query += $" and it.{col.FieldName} like '%{value}%'";
@@ -411,19 +439,19 @@ namespace TraceForms
             Cursor = Cursors.Default;
         }
 
-        private void longTextEdit_Leave(object sender, EventArgs e)
+        private void TextEditLong_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateLongitude, sender);
         }
 
-        private void latTextEdit_Leave(object sender, EventArgs e)
+        private void TextEditLat_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateLatitude, sender);
         }
 
-        private void gridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
             //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
@@ -433,7 +461,7 @@ namespace TraceForms
             }
         }
 
-        private void bindingSource_CurrentChanged(object sender, EventArgs e)
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             //If the current record is changing as a result of removing a record to delete it, and it is the last
             //record in the table, then SetBindings will clear the bindings, which will cause the delete
@@ -443,13 +471,13 @@ namespace TraceForms
                 SetBindings();
         }
 
-        private void imageComboBoxEditState_Leave(object sender, EventArgs e)
+        private void SearchLookupEditState_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateState, sender);
         }
 
-        private void ImageComboBoxEditCountry_Leave(object sender, EventArgs e)
+        private void SearchLookupEditCountry_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCountry, sender);
@@ -509,25 +537,12 @@ namespace TraceForms
 
         private void GridViewSupplierCity_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == gridColumnSupplierGuid) { 
+            if (e.Column == gridColumnSupplierGuid) {
                 e.RepositoryItem = _supplierCombo;
             }
             //else if (e.Column == gridColumnOperator) {
             //    e.RepositoryItem = _operatorSearch;
             //}
-        }
-
-        private void imageComboBoxEditState_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ImageComboBoxEdit box = (ImageComboBoxEdit)sender;
-            if (box.EditValue != null) {
-                string value = box.EditValue.ToString();
-                var state = _context.State.FirstOrDefault(s => s.Code == value);
-                //If the state is linked to a country, default the country for the city
-                if (!string.IsNullOrEmpty(state?.Country)) {
-                    SearchLookupEditCountry.EditValue = state.Country;
-                }
-            }
         }
 
         private void SearchLookupEdit_Popup(object sender, EventArgs e)
@@ -559,10 +574,9 @@ namespace TraceForms
         {
             _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
-                GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
-                BindingSource.AddNew();
-                //if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
+                _selectedRecord = new CITYCOD();
+                BindingSource.Add(_selectedRecord);
+                GridViewLookup.FocusedRowHandle = GridViewLookup.FindRow(_selectedRecord);
                 SetReadOnlyKeyFields(false);
                 TextEditCode.Focus();
                 SetReadOnly(false);
@@ -582,7 +596,50 @@ namespace TraceForms
                 RefreshRecord();
         }
 
-        void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        private void SearchLookupEditState_Closed(object sender, ClosedEventArgs e)
+        {
+            //Normal is when a user selects a value
+            if (e.CloseMode == PopupCloseMode.Normal) {
+                //CustomSearchLookUpEdit box = (CustomSearchLookUpEdit)sender;
+                if (SearchLookupEditState.EditValue != null) {
+                    string value = SearchLookupEditState.EditValue.ToString();
+                    var state = _context.State.FirstOrDefault(s => s.Code == value);
+                    //If the state is linked to a country, default the country for the city
+                    if (!string.IsNullOrEmpty(state?.Country)) {
+                        SearchLookupEditCountry.EditValue = state.Country;
+                    }
+                }
+            }
+        }
+
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.CITYCOD;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView view = (GridView)sender;
+            object row = view.GetRow(e.FocusedRowHandle);
+            if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                CITYCOD record = (CITYCOD)proxy.OriginalRow;
+                BindingSource.DataSource = _context.CITYCOD.Where(c => c.CODE == record.CODE)
+                    .Include(c => c.GeoCode);
+            }
+            else {
+                ClearBindings();
+            }
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
         {
             bool gotMatch = false;
             PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
@@ -595,7 +652,7 @@ namespace TraceForms
                     //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
                     for (int row = 0; row < view.DataRowCount; row++) {
                         CodeName codeName = (CodeName)view.GetRow(row);
-                        if (codeName.Code.Equals(searchText, StringComparison.OrdinalIgnoreCase)) {
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
                             view.FocusedRowHandle = row;
                             gotMatch = true;
                             break;
@@ -608,5 +665,175 @@ namespace TraceForms
                 }
             }
         }
+
+        #region "Mapping"
+        MapPushpin _pin;
+        delegate void DoSearch();
+        IAsyncResult _asyncResult;
+
+        private void SetMapProperties()
+        {
+            BingSearchDataProvider.SearchCompleted += new BingSearchCompletedEventHandler(SearchDataProvider_SearchCompleted);
+            BingMapDataProvider.BingKey = Configurator.BingMapsAPIKey;
+            BingSearchDataProvider.BingKey = Configurator.BingMapsAPIKey;
+        }
+
+        private void MapControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            MapHitInfo info = this.MapControl.CalcHitInfo(e.Location);
+            if (info.InMapPushpin) {
+                MapControl.EnableScrolling = false;
+                foreach (object obj in info.HitObjects) {
+                    if (obj.GetType() == typeof(MapPushpin))
+                        _pin = (MapPushpin)obj;
+                }
+            }
+        }
+
+        private void MapControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_pin != null) {
+                CoordPoint point = MapControl.ScreenPointToCoordPoint(new MapPoint(e.X, e.Y));
+                _pin.Location = point;
+            }
+        }
+
+        private void MapControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (_pin != null) {
+                CoordPoint point = MapControl.ScreenPointToCoordPoint(new MapPoint(e.X, e.Y));
+                _pin.Location = point;
+                MapControl.EnableScrolling = true;
+                DisplayPointCoordinates((GeoPoint)point);
+                _pin = null;
+            }
+        }
+
+        private void AddOrMovePushpin(GeoCode geoCode)
+        {
+            GeoPoint geoPoint = new GeoPoint(geoCode.PushLat, geoCode.PushLong);
+
+            MapPushpin pin = AddOrMovePushpin(geoPoint);
+
+            //Since we only have one pin this isn't really necessary, but just showing how to add an attribute to a pushpin
+            //which can later be used to match when retrieving the pin
+            MapItemAttribute attrib = pin.Attributes.FirstOrDefault(a => a.Name == "id");
+            if (attrib == null) {
+                pin.Attributes.Add(new MapItemAttribute() {
+                    Name = "id",
+                    Type = typeof(int),
+                    Value = geoCode.GeoCodeId
+                });
+            }
+            else {
+                attrib.Value = geoCode.GeoCodeId;
+            }
+        }
+
+        private MapPushpin AddOrMovePushpin(GeoPoint geoPoint)
+        {
+            MapItem item = MapItemStorage.Items.FirstOrDefault();
+            MapPushpin pin;
+            if (item == null) {
+                pin = new MapPushpin();
+                MapItemStorage.Items.Add(pin);
+            }
+            else {
+                pin = (MapPushpin)item;
+            }
+            pin.Location = geoPoint;
+            MapControl.CenterPoint = geoPoint;
+            DisplayPointCoordinates(geoPoint);
+
+            return pin;
+        }
+
+        private void DisplayPointCoordinates(GeoPoint point)
+        {
+            LabelControlLat.Text = point.Latitude == 0 ? string.Empty : point.Latitude.ToString();
+            LabelControlLon.Text = point.Longitude == 0 ? string.Empty : point.Longitude.ToString();
+        }
+
+        private void SearchDataProvider_SearchCompleted(object sender, BingSearchCompletedEventArgs e)
+        {
+            SearchRequestResult result = e.RequestResult;
+            if (result.ResultCode == RequestResultCode.Success) {
+                //List<LocationInformation> regions = result.SearchResults;
+                //Really we should display all the returned regions for disambiguation, but we're just going with the best match
+                //which is the first one
+                LocationInformation region = result.SearchResults.FirstOrDefault();
+                AddOrMovePushpin(region.Location);
+                MapControl.ZoomLevel = 13;
+            }
+
+            if (result.ResultCode == RequestResultCode.BadRequest)
+                this.DisplayWarning("The Bing Search service does not work for this location.");
+
+        }
+
+        private void SimpleButtonPlot_Click(object sender, EventArgs e)
+        {
+            _asyncResult = BeginInvoke((DoSearch)SearchAsync);
+        }
+
+        private void SearchAsync()
+        {
+            EndInvoke(_asyncResult);
+            string search = $"{TextEditName.Text}, {SearchLookupEditState.EditValue}, {(SearchLookupEditCountry.EditValue as CodeName)?.Name}";
+            BingSearchDataProvider.Search(search);
+        }
+
+        private void ShowMapData(CITYCOD record)
+        {
+            GeoCode geoCode = record?.GeoCode ?? new GeoCode();
+            AddOrMovePushpin(geoCode);
+            //If a bounding box has been given, then use it
+            if (geoCode.NorthLat != 0) {
+                var topLeft = new GeoPoint(geoCode.NorthLat, geoCode.WestLong);
+                var bottomRight = new GeoPoint(geoCode.SouthLat, geoCode.EastLong);
+                MapControl.ZoomToRegion(topLeft, bottomRight, 0);
+            }
+            else {
+                //If there there is no bounding box, zoom all the way out if this is a new record, otherwise go to the 
+                //default zoom level
+                MapControl.ZoomLevel = (geoCode.GeoCodeId == 0) ? 1 : 13;
+            }
+        }
+
+        private void ClearMapData()
+        {
+            MapItemStorage.Items.Clear();
+            MapControl.ZoomLevel = 1;
+        }
+
+        private void SaveMapData()
+        {
+            MapItem item = MapItemStorage.Items.FirstOrDefault();
+            if (item != null) {
+                MapPushpin pin = (MapPushpin)item;
+                GeoPoint location = (GeoPoint)pin.Location;
+                //If lat and long are zero, then there was no geocode to begin with and the user didn't specify one
+                //during the edit, so don't update the values
+                if (location.Longitude != 0 || location.Latitude != 0) {
+                    if (_selectedRecord.GeoCode == null) {
+                        _selectedRecord.GeoCode = new GeoCode();
+                        _context.GeoCode.AddObject(_selectedRecord.GeoCode);
+                    }
+                    GeoCode geoCode = _selectedRecord.GeoCode;
+                    geoCode.PushLat = location.Latitude;
+                    geoCode.PushLong = location.Longitude;
+                    geoCode.ManualChecked = true;
+                    CoordPoint p1 = MapControl.ScreenPointToCoordPoint(new MapPoint());
+                    CoordPoint p2 = MapControl.ScreenPointToCoordPoint(new MapPoint(MapControl.Width, MapControl.Height));
+                    GeoPoint gp1 = (GeoPoint)p1;
+                    GeoPoint gp2 = (GeoPoint)p2;
+                    geoCode.NorthLat = gp1.Latitude;
+                    geoCode.WestLong = gp1.Longitude;
+                    geoCode.SouthLat = gp2.Latitude;
+                    geoCode.EastLong = gp2.Longitude;
+                }
+            }
+        }
+        #endregion
     }
 }

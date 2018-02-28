@@ -105,7 +105,7 @@ namespace TraceForms
                 return "Product List sent succesfully";
             }
             catch (Exception ex) {
-                NLog.LogManager.GetCurrentClassLogger().ErrorException("Error", ex);
+                NLog.LogManager.GetCurrentClassLogger().Error(ex, "Error");
                 return ex.Message;
             }
 

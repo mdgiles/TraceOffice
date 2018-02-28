@@ -287,13 +287,13 @@ namespace TraceForms
                             _context.COMPROD2.DeleteObject(_selectedRecord);
                         _context.SaveChanges();
                     }
-                    _ignoreLeaveRow = false;
-                    _ignorePositionChange = false;
                     Modified = false;
                     _newRec = false;
                     if (gridViewLookup.RowCount == 0) {
                         ClearBindings();
                     }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
                     SetBindings();
                     ShowActionConfirmation("Record Deleted");
                 }

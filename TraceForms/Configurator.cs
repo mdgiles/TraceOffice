@@ -30,6 +30,11 @@ namespace TraceForms
             get { return GetValue("OperationsServiceList_Recipients"); }
         }
 
+        internal static string BingMapsAPIKey
+        {
+            get { return GetValue("BingMapsAPIKey"); }
+        }
+
         internal static string ProductList_Recipients
         {
             get { return GetValue("ProductList_Recipients"); }

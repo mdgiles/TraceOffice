@@ -39,7 +39,9 @@
             System.Windows.Forms.Label sTART_DATELabel;
             System.Windows.Forms.Label cATLabel;
             System.Windows.Forms.Label aGENCYLabel;
+            System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PRatesForm));
+            System.Windows.Forms.Label label18;
             this.cODELabel = new System.Windows.Forms.Label();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -273,6 +275,7 @@
             this.colROOMCOD1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.TimeEditTime = new DevExpress.XtraEditors.TimeEdit();
             this.spinEditSeniorRetail = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.spinEditSeniorGross = new DevExpress.XtraEditors.SpinEdit();
@@ -286,7 +289,6 @@
             this.spinEditChdRetail = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditJrRetail = new DevExpress.XtraEditors.SpinEdit();
             this.ImageComboBoxEditHotelCode = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.ImageComboBoxEditCode = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.ImageComboBoxEditCategory = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.ImageComboBoxEditAgency = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.sGL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
@@ -324,8 +326,15 @@
             this.mAX_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.mAX_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditSeniorAgeLimit = new DevExpress.XtraEditors.SpinEdit();
+            this.SearchLookupEditCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.customSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+            this.ImageComboBoxEditSpecialValue = new DevExpress.XtraEditors.ImageComboBoxEdit();
             resDate_EndLabel = new System.Windows.Forms.Label();
             resDate_StartLabel = new System.Windows.Forms.Label();
             cOMM_PCTLabel = new System.Windows.Forms.Label();
@@ -336,6 +345,8 @@
             sTART_DATELabel = new System.Windows.Forms.Label();
             cATLabel = new System.Windows.Forms.Label();
             aGENCYLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
             this.popupContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -360,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorGross.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorCost.Properties)).BeginInit();
@@ -371,7 +383,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEditChdRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditJrRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditHotelCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditAgency.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_GRATETextEdit.Properties)).BeginInit();
@@ -409,138 +420,152 @@
             ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorAgeLimit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // resDate_EndLabel
             // 
             resDate_EndLabel.AutoSize = true;
-            resDate_EndLabel.Location = new System.Drawing.Point(382, 204);
+            resDate_EndLabel.Location = new System.Drawing.Point(424, 247);
             resDate_EndLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             resDate_EndLabel.Name = "resDate_EndLabel";
-            resDate_EndLabel.Size = new System.Drawing.Size(104, 19);
+            resDate_EndLabel.Size = new System.Drawing.Size(129, 24);
             resDate_EndLabel.TabIndex = 19;
             resDate_EndLabel.Text = "Bookings end";
             // 
             // resDate_StartLabel
             // 
             resDate_StartLabel.AutoSize = true;
-            resDate_StartLabel.Location = new System.Drawing.Point(382, 173);
+            resDate_StartLabel.Location = new System.Drawing.Point(424, 209);
             resDate_StartLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             resDate_StartLabel.Name = "resDate_StartLabel";
-            resDate_StartLabel.Size = new System.Drawing.Size(109, 19);
+            resDate_StartLabel.Size = new System.Drawing.Size(137, 24);
             resDate_StartLabel.TabIndex = 14;
             resDate_StartLabel.Text = "Bookings start";
             // 
             // cOMM_PCTLabel
             // 
             cOMM_PCTLabel.AutoSize = true;
-            cOMM_PCTLabel.Location = new System.Drawing.Point(233, 306);
+            cOMM_PCTLabel.Location = new System.Drawing.Point(259, 370);
             cOMM_PCTLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             cOMM_PCTLabel.Name = "cOMM_PCTLabel";
-            cOMM_PCTLabel.Size = new System.Drawing.Size(77, 19);
+            cOMM_PCTLabel.Size = new System.Drawing.Size(93, 24);
             cOMM_PCTLabel.TabIndex = 29;
             cOMM_PCTLabel.Text = "Comm %";
             // 
             // dESCLabel
             // 
             dESCLabel.AutoSize = true;
-            dESCLabel.Location = new System.Drawing.Point(19, 272);
+            dESCLabel.Location = new System.Drawing.Point(21, 329);
             dESCLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dESCLabel.Name = "dESCLabel";
-            dESCLabel.Size = new System.Drawing.Size(88, 19);
+            dESCLabel.Size = new System.Drawing.Size(110, 24);
             dESCLabel.TabIndex = 26;
             dESCLabel.Text = "Description";
             // 
             // yEARLabel
             // 
             yEARLabel.AutoSize = true;
-            yEARLabel.Location = new System.Drawing.Point(233, 238);
+            yEARLabel.Location = new System.Drawing.Point(301, 288);
             yEARLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             yEARLabel.Name = "yEARLabel";
-            yEARLabel.Size = new System.Drawing.Size(41, 19);
+            yEARLabel.Size = new System.Drawing.Size(51, 24);
             yEARLabel.TabIndex = 24;
             yEARLabel.Text = "Year";
             // 
             // h_LLabel
             // 
             h_LLabel.AutoSize = true;
-            h_LLabel.Location = new System.Drawing.Point(19, 238);
+            h_LLabel.Location = new System.Drawing.Point(21, 288);
             h_LLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             h_LLabel.Name = "h_LLabel";
-            h_LLabel.Size = new System.Drawing.Size(59, 19);
+            h_LLabel.Size = new System.Drawing.Size(74, 24);
             h_LLabel.TabIndex = 22;
             h_LLabel.Text = "Season";
             // 
             // eND_DATELabel
             // 
             eND_DATELabel.AutoSize = true;
-            eND_DATELabel.Location = new System.Drawing.Point(19, 206);
+            eND_DATELabel.Location = new System.Drawing.Point(21, 249);
             eND_DATELabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             eND_DATELabel.Name = "eND_DATELabel";
-            eND_DATELabel.Size = new System.Drawing.Size(97, 19);
+            eND_DATELabel.Size = new System.Drawing.Size(122, 24);
             eND_DATELabel.TabIndex = 17;
             eND_DATELabel.Text = "Services end";
             // 
             // sTART_DATELabel
             // 
             sTART_DATELabel.AutoSize = true;
-            sTART_DATELabel.Location = new System.Drawing.Point(19, 170);
+            sTART_DATELabel.Location = new System.Drawing.Point(21, 206);
             sTART_DATELabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             sTART_DATELabel.Name = "sTART_DATELabel";
-            sTART_DATELabel.Size = new System.Drawing.Size(102, 19);
+            sTART_DATELabel.Size = new System.Drawing.Size(130, 24);
             sTART_DATELabel.TabIndex = 12;
             sTART_DATELabel.Text = "Services start";
             // 
             // cATLabel
             // 
             cATLabel.AutoSize = true;
-            cATLabel.Location = new System.Drawing.Point(19, 102);
+            cATLabel.Location = new System.Drawing.Point(21, 123);
             cATLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             cATLabel.Name = "cATLabel";
-            cATLabel.Size = new System.Drawing.Size(72, 19);
+            cATLabel.Size = new System.Drawing.Size(90, 24);
             cATLabel.TabIndex = 8;
             cATLabel.Text = "Category";
             // 
             // aGENCYLabel
             // 
             aGENCYLabel.AutoSize = true;
-            aGENCYLabel.Location = new System.Drawing.Point(19, 68);
+            aGENCYLabel.Location = new System.Drawing.Point(21, 82);
             aGENCYLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             aGENCYLabel.Name = "aGENCYLabel";
-            aGENCYLabel.Size = new System.Drawing.Size(61, 19);
+            aGENCYLabel.Size = new System.Drawing.Size(74, 24);
             aGENCYLabel.TabIndex = 6;
             aGENCYLabel.Text = "Agency";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(496, 290);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(55, 24);
+            label1.TabIndex = 267;
+            label1.Text = "Time";
             // 
             // cODELabel
             // 
             this.cODELabel.AutoSize = true;
-            this.cODELabel.Location = new System.Drawing.Point(19, 34);
+            this.cODELabel.Location = new System.Drawing.Point(21, 41);
             this.cODELabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cODELabel.Name = "cODELabel";
-            this.cODELabel.Size = new System.Drawing.Size(66, 19);
+            this.cODELabel.Size = new System.Drawing.Size(84, 24);
             this.cODELabel.TabIndex = 0;
             this.cODELabel.Text = "Package";
             // 
             // popupContainerControl1
             // 
             this.popupContainerControl1.Controls.Add(this.gridControl2);
-            this.popupContainerControl1.Location = new System.Drawing.Point(1118, 105);
-            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.popupContainerControl1.Location = new System.Drawing.Point(1242, 127);
+            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(1202, 760);
+            this.popupContainerControl1.Size = new System.Drawing.Size(1336, 920);
             this.popupContainerControl1.TabIndex = 94;
             // 
             // gridControl2
             // 
             this.gridControl2.DataSource = this.PRateBindingSource;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl2.Location = new System.Drawing.Point(18, 28);
+            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl2.Location = new System.Drawing.Point(20, 34);
             this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1158, 710);
+            this.gridControl2.Size = new System.Drawing.Size(1287, 859);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -1118,10 +1143,10 @@
             // 
             this.jR_LIMITTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "JR_LIMIT", true));
             this.jR_LIMITTextEdit.EnterMoveNextControl = true;
-            this.jR_LIMITTextEdit.Location = new System.Drawing.Point(661, 630);
-            this.jR_LIMITTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.jR_LIMITTextEdit.Location = new System.Drawing.Point(734, 763);
+            this.jR_LIMITTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.jR_LIMITTextEdit.Name = "jR_LIMITTextEdit";
-            this.jR_LIMITTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.jR_LIMITTextEdit.Size = new System.Drawing.Size(103, 32);
             this.jR_LIMITTextEdit.TabIndex = 86;
             this.jR_LIMITTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.jR_LIMITTextEdit.Leave += new System.EventHandler(this.jR_LIMITTextEdit_Leave);
@@ -1130,137 +1155,137 @@
             // 
             this.cHD_LIMITTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CHD_LIMIT", true));
             this.cHD_LIMITTextEdit.EnterMoveNextControl = true;
-            this.cHD_LIMITTextEdit.Location = new System.Drawing.Point(661, 596);
-            this.cHD_LIMITTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cHD_LIMITTextEdit.Location = new System.Drawing.Point(734, 721);
+            this.cHD_LIMITTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cHD_LIMITTextEdit.Name = "cHD_LIMITTextEdit";
-            this.cHD_LIMITTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.cHD_LIMITTextEdit.Size = new System.Drawing.Size(103, 32);
             this.cHD_LIMITTextEdit.TabIndex = 79;
             this.cHD_LIMITTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cHD_LIMITTextEdit.Leave += new System.EventHandler(this.cHD_LIMITTextEdit_Leave);
             // 
             // labelControl17
             // 
-            this.labelControl17.Location = new System.Drawing.Point(23, 632);
-            this.labelControl17.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl17.Location = new System.Drawing.Point(26, 765);
+            this.labelControl17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(44, 19);
+            this.labelControl17.Size = new System.Drawing.Size(51, 23);
             this.labelControl17.TabIndex = 80;
             this.labelControl17.Text = "Junior";
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(23, 598);
-            this.labelControl16.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl16.Location = new System.Drawing.Point(26, 724);
+            this.labelControl16.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(36, 19);
+            this.labelControl16.Size = new System.Drawing.Size(41, 23);
             this.labelControl16.TabIndex = 73;
             this.labelControl16.Text = "Child";
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(23, 564);
-            this.labelControl15.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl15.Location = new System.Drawing.Point(26, 683);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(40, 19);
+            this.labelControl15.Size = new System.Drawing.Size(47, 23);
             this.labelControl15.TabIndex = 66;
             this.labelControl15.Text = "Other";
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(23, 530);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl14.Location = new System.Drawing.Point(26, 642);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(38, 19);
+            this.labelControl14.Size = new System.Drawing.Size(45, 23);
             this.labelControl14.TabIndex = 59;
             this.labelControl14.Text = "Quad";
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(23, 496);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl13.Location = new System.Drawing.Point(26, 600);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(41, 19);
+            this.labelControl13.Size = new System.Drawing.Size(47, 23);
             this.labelControl13.TabIndex = 52;
             this.labelControl13.Text = "Triple";
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(23, 462);
-            this.labelControl12.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl12.Location = new System.Drawing.Point(26, 559);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(50, 19);
+            this.labelControl12.Size = new System.Drawing.Size(59, 23);
             this.labelControl12.TabIndex = 45;
             this.labelControl12.Text = "Double";
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(23, 429);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl11.Location = new System.Drawing.Point(26, 519);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(43, 19);
+            this.labelControl11.Size = new System.Drawing.Size(51, 23);
             this.labelControl11.TabIndex = 38;
             this.labelControl11.Text = "Single";
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(661, 383);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl10.Location = new System.Drawing.Point(734, 464);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(93, 19);
+            this.labelControl10.Size = new System.Drawing.Size(110, 23);
             this.labelControl10.TabIndex = 37;
             this.labelControl10.Text = "Max Occ/Age";
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(450, 381);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl9.Location = new System.Drawing.Point(500, 461);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(79, 38);
+            this.labelControl9.Size = new System.Drawing.Size(94, 46);
             this.labelControl9.TabIndex = 35;
             this.labelControl9.Text = "Extra Night\r\n    Cost";
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(561, 382);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl8.Location = new System.Drawing.Point(623, 462);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(79, 38);
+            this.labelControl8.Size = new System.Drawing.Size(94, 46);
             this.labelControl8.TabIndex = 36;
             this.labelControl8.Text = "Extra Night\r\n    Gross";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(136, 382);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl7.Location = new System.Drawing.Point(151, 462);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(31, 19);
+            this.labelControl7.Size = new System.Drawing.Size(35, 23);
             this.labelControl7.TabIndex = 32;
             this.labelControl7.Text = "Cost";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(233, 383);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl6.Location = new System.Drawing.Point(259, 464);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(74, 19);
+            this.labelControl6.Size = new System.Drawing.Size(87, 23);
             this.labelControl6.TabIndex = 33;
             this.labelControl6.Text = "Sale Gross";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(23, 355);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl5.Location = new System.Drawing.Point(26, 430);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(119, 19);
+            this.labelControl5.Size = new System.Drawing.Size(141, 23);
             this.labelControl5.TabIndex = 31;
             this.labelControl5.Text = "Per Person Rates";
             // 
             // labelControl18
             // 
-            this.labelControl18.Location = new System.Drawing.Point(23, 136);
-            this.labelControl18.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl18.Location = new System.Drawing.Point(26, 165);
+            this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(78, 19);
+            this.labelControl18.Size = new System.Drawing.Size(91, 23);
             this.labelControl18.TabIndex = 10;
             this.labelControl18.Text = "Hotel Code";
             this.labelControl18.Visible = false;
@@ -1269,12 +1294,12 @@
             // 
             this.inactiveCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "Inactive", true));
             this.inactiveCheckEdit.EnterMoveNextControl = true;
-            this.inactiveCheckEdit.Location = new System.Drawing.Point(666, 168);
-            this.inactiveCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.inactiveCheckEdit.Location = new System.Drawing.Point(740, 203);
+            this.inactiveCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.inactiveCheckEdit.Name = "inactiveCheckEdit";
             this.inactiveCheckEdit.Properties.Caption = "Inactive rate";
             this.inactiveCheckEdit.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.inactiveCheckEdit.Size = new System.Drawing.Size(125, 23);
+            this.inactiveCheckEdit.Size = new System.Drawing.Size(153, 34);
             this.inactiveCheckEdit.TabIndex = 16;
             this.inactiveCheckEdit.Click += new System.EventHandler(this.inactiveCheckEdit_Click);
             // 
@@ -1308,14 +1333,14 @@
             this.PRateBindingNavigator.Name = "PRateBindingNavigator";
             this.PRateBindingNavigator.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.PRateBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.PRateBindingNavigator.Size = new System.Drawing.Size(1439, 32);
+            this.PRateBindingNavigator.Size = new System.Drawing.Size(1599, 37);
             this.PRateBindingNavigator.TabIndex = 100;
             this.PRateBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 29);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(61, 34);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -1325,7 +1350,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
             // 
@@ -1335,21 +1360,21 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 32);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 37);
             // 
             // bindingNavigatorPositionItem
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(73, 31);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(81, 35);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
@@ -1357,7 +1382,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 32);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -1365,7 +1390,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
             // 
@@ -1375,14 +1400,14 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 32);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 37);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -1390,7 +1415,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
@@ -1400,7 +1425,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(28, 29);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(28, 34);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
@@ -1409,7 +1434,7 @@
             this.pRATEBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.pRATEBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("pRATEBindingNavigatorSaveItem.Image")));
             this.pRATEBindingNavigatorSaveItem.Name = "pRATEBindingNavigatorSaveItem";
-            this.pRATEBindingNavigatorSaveItem.Size = new System.Drawing.Size(28, 29);
+            this.pRATEBindingNavigatorSaveItem.Size = new System.Drawing.Size(28, 34);
             this.pRATEBindingNavigatorSaveItem.Text = "Save Data";
             this.pRATEBindingNavigatorSaveItem.Click += new System.EventHandler(this.pRATEBindingNavigatorSaveItem_Click);
             // 
@@ -1421,13 +1446,13 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(67, 29);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(78, 34);
             this.toolStripDropDownButton1.Text = "View";
             // 
             // overlappingRatesToolStripMenuItem
             // 
             this.overlappingRatesToolStripMenuItem.Name = "overlappingRatesToolStripMenuItem";
-            this.overlappingRatesToolStripMenuItem.Size = new System.Drawing.Size(242, 30);
+            this.overlappingRatesToolStripMenuItem.Size = new System.Drawing.Size(274, 34);
             this.overlappingRatesToolStripMenuItem.Text = "Overlapping Rates";
             this.overlappingRatesToolStripMenuItem.Click += new System.EventHandler(this.overlappingRatesToolStripMenuItem_Click);
             // 
@@ -1437,7 +1462,7 @@
             this.expandContractGridButton.Image = global::TraceForms.Properties.Resources.arrow_right;
             this.expandContractGridButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.expandContractGridButton.Name = "expandContractGridButton";
-            this.expandContractGridButton.Size = new System.Drawing.Size(28, 29);
+            this.expandContractGridButton.Size = new System.Drawing.Size(28, 34);
             this.expandContractGridButton.Text = "Grid Expand";
             this.expandContractGridButton.Click += new System.EventHandler(this.expandContractGridButton_Click);
             // 
@@ -1445,12 +1470,12 @@
             // 
             this.inhouseCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "Inhouse", true));
             this.inhouseCheckEdit.EnterMoveNextControl = true;
-            this.inhouseCheckEdit.Location = new System.Drawing.Point(668, 202);
-            this.inhouseCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.inhouseCheckEdit.Location = new System.Drawing.Point(740, 245);
+            this.inhouseCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.inhouseCheckEdit.Name = "inhouseCheckEdit";
             this.inhouseCheckEdit.Properties.Caption = "Inhouse rate";
             this.inhouseCheckEdit.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.inhouseCheckEdit.Size = new System.Drawing.Size(123, 23);
+            this.inhouseCheckEdit.Size = new System.Drawing.Size(153, 34);
             this.inhouseCheckEdit.TabIndex = 21;
             this.inhouseCheckEdit.Click += new System.EventHandler(this.inactiveCheckEdit_Click);
             // 
@@ -1459,12 +1484,12 @@
             this.resDate_EndDateEdit.CausesValidation = false;
             this.resDate_EndDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "ResDate_End", true));
             this.resDate_EndDateEdit.EnterMoveNextControl = true;
-            this.resDate_EndDateEdit.Location = new System.Drawing.Point(502, 201);
-            this.resDate_EndDateEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.resDate_EndDateEdit.Location = new System.Drawing.Point(558, 243);
+            this.resDate_EndDateEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.resDate_EndDateEdit.Name = "resDate_EndDateEdit";
             this.resDate_EndDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.resDate_EndDateEdit.Size = new System.Drawing.Size(150, 26);
+            this.resDate_EndDateEdit.Size = new System.Drawing.Size(167, 32);
             this.resDate_EndDateEdit.TabIndex = 20;
             this.resDate_EndDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.resDate_EndDateEdit_ButtonClick);
             this.resDate_EndDateEdit.TextChanged += new System.EventHandler(this.resDate_EndDateEdit_TextChanged);
@@ -1476,12 +1501,12 @@
             this.resDate_StartDateEdit.CausesValidation = false;
             this.resDate_StartDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "ResDate_Start", true));
             this.resDate_StartDateEdit.EnterMoveNextControl = true;
-            this.resDate_StartDateEdit.Location = new System.Drawing.Point(502, 167);
-            this.resDate_StartDateEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.resDate_StartDateEdit.Location = new System.Drawing.Point(558, 202);
+            this.resDate_StartDateEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.resDate_StartDateEdit.Name = "resDate_StartDateEdit";
             this.resDate_StartDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.resDate_StartDateEdit.Size = new System.Drawing.Size(150, 26);
+            this.resDate_StartDateEdit.Size = new System.Drawing.Size(167, 32);
             this.resDate_StartDateEdit.TabIndex = 15;
             this.resDate_StartDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.resDate_StartDateEdit_ButtonClick);
             this.resDate_StartDateEdit.TextChanged += new System.EventHandler(this.resDate_StartDateEdit_TextChanged);
@@ -1492,14 +1517,14 @@
             // 
             this.cOMM_FLGCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "COMM_FLG", true));
             this.cOMM_FLGCheckEdit.EnterMoveNextControl = true;
-            this.cOMM_FLGCheckEdit.Location = new System.Drawing.Point(21, 303);
-            this.cOMM_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cOMM_FLGCheckEdit.Location = new System.Drawing.Point(23, 367);
+            this.cOMM_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cOMM_FLGCheckEdit.Name = "cOMM_FLGCheckEdit";
             this.cOMM_FLGCheckEdit.Properties.Caption = "Commissionable";
             this.cOMM_FLGCheckEdit.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.cOMM_FLGCheckEdit.Properties.ValueChecked = "Y";
             this.cOMM_FLGCheckEdit.Properties.ValueUnchecked = "N";
-            this.cOMM_FLGCheckEdit.Size = new System.Drawing.Size(153, 23);
+            this.cOMM_FLGCheckEdit.Size = new System.Drawing.Size(170, 34);
             this.cOMM_FLGCheckEdit.TabIndex = 28;
             this.cOMM_FLGCheckEdit.Click += new System.EventHandler(this.inactiveCheckEdit_Click);
             // 
@@ -1507,10 +1532,10 @@
             // 
             this.dESCTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DESC", true));
             this.dESCTextEdit.EnterMoveNextControl = true;
-            this.dESCTextEdit.Location = new System.Drawing.Point(150, 269);
-            this.dESCTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.dESCTextEdit.Location = new System.Drawing.Point(167, 326);
+            this.dESCTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dESCTextEdit.Name = "dESCTextEdit";
-            this.dESCTextEdit.Size = new System.Drawing.Size(502, 26);
+            this.dESCTextEdit.Size = new System.Drawing.Size(971, 32);
             this.dESCTextEdit.TabIndex = 27;
             this.dESCTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.dESCTextEdit.Leave += new System.EventHandler(this.dESCTextEdit_Leave);
@@ -1519,8 +1544,8 @@
             // 
             this.yEARComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "YEAR", true));
             this.yEARComboBoxEdit.EnterMoveNextControl = true;
-            this.yEARComboBoxEdit.Location = new System.Drawing.Point(317, 235);
-            this.yEARComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.yEARComboBoxEdit.Location = new System.Drawing.Point(360, 284);
+            this.yEARComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.yEARComboBoxEdit.Name = "yEARComboBoxEdit";
             this.yEARComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1531,7 +1556,7 @@
             "2013",
             "2014",
             "2015"});
-            this.yEARComboBoxEdit.Size = new System.Drawing.Size(80, 26);
+            this.yEARComboBoxEdit.Size = new System.Drawing.Size(89, 32);
             this.yEARComboBoxEdit.TabIndex = 25;
             this.yEARComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.yEARComboBoxEdit.Leave += new System.EventHandler(this.yEARComboBoxEdit_Leave);
@@ -1540,10 +1565,10 @@
             // 
             this.h_LTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "H_L", true));
             this.h_LTextEdit.EnterMoveNextControl = true;
-            this.h_LTextEdit.Location = new System.Drawing.Point(150, 235);
-            this.h_LTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.h_LTextEdit.Location = new System.Drawing.Point(167, 284);
+            this.h_LTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.h_LTextEdit.Name = "h_LTextEdit";
-            this.h_LTextEdit.Size = new System.Drawing.Size(66, 26);
+            this.h_LTextEdit.Size = new System.Drawing.Size(73, 32);
             this.h_LTextEdit.TabIndex = 23;
             this.h_LTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.h_LTextEdit.Leave += new System.EventHandler(this.h_LTextEdit_Leave);
@@ -1553,12 +1578,12 @@
             this.eND_DATEDateEdit.CausesValidation = false;
             this.eND_DATEDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "END_DATE", true));
             this.eND_DATEDateEdit.EnterMoveNextControl = true;
-            this.eND_DATEDateEdit.Location = new System.Drawing.Point(150, 201);
-            this.eND_DATEDateEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eND_DATEDateEdit.Location = new System.Drawing.Point(167, 243);
+            this.eND_DATEDateEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eND_DATEDateEdit.Name = "eND_DATEDateEdit";
             this.eND_DATEDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eND_DATEDateEdit.Size = new System.Drawing.Size(150, 26);
+            this.eND_DATEDateEdit.Size = new System.Drawing.Size(167, 32);
             this.eND_DATEDateEdit.TabIndex = 18;
             this.eND_DATEDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.eND_DATEDateEdit_ButtonClick);
             this.eND_DATEDateEdit.TextChanged += new System.EventHandler(this.eND_DATEDateEdit_TextChanged);
@@ -1568,36 +1593,36 @@
             // labelControl4
             // 
             this.labelControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.PRateBindingSource, "UPD_INIT", true));
-            this.labelControl4.Location = new System.Drawing.Point(979, 34);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl4.Location = new System.Drawing.Point(372, 864);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(0, 19);
+            this.labelControl4.Size = new System.Drawing.Size(0, 23);
             this.labelControl4.TabIndex = 5;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(948, 34);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl3.Location = new System.Drawing.Point(337, 864);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(23, 19);
+            this.labelControl3.Size = new System.Drawing.Size(27, 23);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "By:";
             // 
             // labelControl2
             // 
             this.labelControl2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.PRateBindingSource, "LAST_UPD", true));
-            this.labelControl2.Location = new System.Drawing.Point(778, 34);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl2.Location = new System.Drawing.Point(148, 864);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(0, 19);
+            this.labelControl2.Size = new System.Drawing.Size(0, 23);
             this.labelControl2.TabIndex = 3;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(668, 34);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl1.Location = new System.Drawing.Point(26, 864);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(96, 19);
+            this.labelControl1.Size = new System.Drawing.Size(116, 23);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Last updated:";
             // 
@@ -1606,12 +1631,12 @@
             this.sTART_DATEDateEdit.CausesValidation = false;
             this.sTART_DATEDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "START_DATE", true));
             this.sTART_DATEDateEdit.EnterMoveNextControl = true;
-            this.sTART_DATEDateEdit.Location = new System.Drawing.Point(150, 167);
-            this.sTART_DATEDateEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.sTART_DATEDateEdit.Location = new System.Drawing.Point(167, 202);
+            this.sTART_DATEDateEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sTART_DATEDateEdit.Name = "sTART_DATEDateEdit";
             this.sTART_DATEDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sTART_DATEDateEdit.Size = new System.Drawing.Size(150, 26);
+            this.sTART_DATEDateEdit.Size = new System.Drawing.Size(167, 32);
             this.sTART_DATEDateEdit.TabIndex = 13;
             this.sTART_DATEDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.sTART_DATEDateEdit_ButtonClick);
             this.sTART_DATEDateEdit.TextChanged += new System.EventHandler(this.sTART_DATEDateEdit_TextChanged);
@@ -1622,12 +1647,12 @@
             // 
             this.GridControlPrates.DataSource = this.PRateBindingSource;
             this.GridControlPrates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlPrates.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlPrates.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridControlPrates.Location = new System.Drawing.Point(0, 0);
             this.GridControlPrates.MainView = this.GridViewPrates;
-            this.GridControlPrates.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlPrates.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridControlPrates.Name = "GridControlPrates";
-            this.GridControlPrates.Size = new System.Drawing.Size(298, 1052);
+            this.GridControlPrates.Size = new System.Drawing.Size(331, 1275);
             this.GridControlPrates.TabIndex = 0;
             this.GridControlPrates.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewPrates});
@@ -2192,12 +2217,16 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 32);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 37);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.GridControlPrates);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.AutoScroll = true;
+            this.splitContainerControl1.Panel2.Controls.Add(label18);
+            this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditSpecialValue);
+            this.splitContainerControl1.Panel2.Controls.Add(this.TimeEditTime);
+            this.splitContainerControl1.Panel2.Controls.Add(label1);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSeniorRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl20);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSeniorGross);
@@ -2211,7 +2240,6 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditChdRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditJrRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditHotelCode);
-            this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditCode);
             this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditCategory);
             this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditAgency);
             this.splitContainerControl1.Panel2.Controls.Add(this.popupContainerControl1);
@@ -2291,11 +2319,26 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.mAX_QUATextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.mAX_OTHTextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSeniorAgeLimit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.SearchLookupEditCode);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1439, 1052);
-            this.splitContainerControl1.SplitterPosition = 298;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1599, 1275);
+            this.splitContainerControl1.SplitterPosition = 331;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // TimeEditTime
+            // 
+            this.TimeEditTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DepartureTime", true));
+            this.TimeEditTime.EditValue = null;
+            this.TimeEditTime.Enabled = false;
+            this.TimeEditTime.Location = new System.Drawing.Point(558, 286);
+            this.TimeEditTime.Name = "TimeEditTime";
+            this.TimeEditTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.TimeEditTime.Properties.Mask.EditMask = "h:mm tt";
+            this.TimeEditTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.TimeEditTime.Size = new System.Drawing.Size(167, 32);
+            this.TimeEditTime.TabIndex = 268;
             // 
             // spinEditSeniorRetail
             // 
@@ -2305,15 +2348,15 @@
             0,
             0,
             0});
-            this.spinEditSeniorRetail.Location = new System.Drawing.Point(330, 664);
-            this.spinEditSeniorRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditSeniorRetail.Location = new System.Drawing.Point(367, 804);
+            this.spinEditSeniorRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditSeniorRetail.Name = "spinEditSeniorRetail";
             this.spinEditSeniorRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditSeniorRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditSeniorRetail.Properties.Mask.EditMask = "f";
             this.spinEditSeniorRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditSeniorRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditSeniorRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditSeniorRetail.TabIndex = 90;
             this.spinEditSeniorRetail.Visible = false;
             this.spinEditSeniorRetail.Enter += new System.EventHandler(this.enterControl);
@@ -2321,10 +2364,10 @@
             // 
             // labelControl20
             // 
-            this.labelControl20.Location = new System.Drawing.Point(23, 667);
-            this.labelControl20.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl20.Location = new System.Drawing.Point(26, 807);
+            this.labelControl20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(45, 19);
+            this.labelControl20.Size = new System.Drawing.Size(53, 23);
             this.labelControl20.TabIndex = 87;
             this.labelControl20.Text = "Senior";
             this.labelControl20.Visible = false;
@@ -2337,15 +2380,15 @@
             0,
             0,
             0});
-            this.spinEditSeniorGross.Location = new System.Drawing.Point(220, 665);
-            this.spinEditSeniorGross.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditSeniorGross.Location = new System.Drawing.Point(244, 805);
+            this.spinEditSeniorGross.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditSeniorGross.Name = "spinEditSeniorGross";
             this.spinEditSeniorGross.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditSeniorGross.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditSeniorGross.Properties.Mask.EditMask = "f";
             this.spinEditSeniorGross.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditSeniorGross.Size = new System.Drawing.Size(102, 26);
+            this.spinEditSeniorGross.Size = new System.Drawing.Size(113, 32);
             this.spinEditSeniorGross.TabIndex = 89;
             this.spinEditSeniorGross.Visible = false;
             this.spinEditSeniorGross.Enter += new System.EventHandler(this.enterControl);
@@ -2359,15 +2402,15 @@
             0,
             0,
             0});
-            this.spinEditSeniorCost.Location = new System.Drawing.Point(111, 664);
-            this.spinEditSeniorCost.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditSeniorCost.Location = new System.Drawing.Point(123, 804);
+            this.spinEditSeniorCost.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditSeniorCost.Name = "spinEditSeniorCost";
             this.spinEditSeniorCost.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditSeniorCost.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditSeniorCost.Properties.Mask.EditMask = "f";
             this.spinEditSeniorCost.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditSeniorCost.Size = new System.Drawing.Size(102, 26);
+            this.spinEditSeniorCost.Size = new System.Drawing.Size(113, 32);
             this.spinEditSeniorCost.TabIndex = 88;
             this.spinEditSeniorCost.Visible = false;
             this.spinEditSeniorCost.Enter += new System.EventHandler(this.enterControl);
@@ -2375,10 +2418,10 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(363, 382);
-            this.labelControl19.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl19.Location = new System.Drawing.Point(403, 462);
+            this.labelControl19.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(39, 19);
+            this.labelControl19.Size = new System.Drawing.Size(46, 23);
             this.labelControl19.TabIndex = 34;
             this.labelControl19.Text = "Retail";
             // 
@@ -2390,15 +2433,15 @@
             0,
             0,
             0});
-            this.spinEditSglRetail.Location = new System.Drawing.Point(331, 426);
-            this.spinEditSglRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditSglRetail.Location = new System.Drawing.Point(368, 516);
+            this.spinEditSglRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditSglRetail.Name = "spinEditSglRetail";
             this.spinEditSglRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditSglRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditSglRetail.Properties.Mask.EditMask = "f";
             this.spinEditSglRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditSglRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditSglRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditSglRetail.TabIndex = 41;
             this.spinEditSglRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditSglRetail.Leave += new System.EventHandler(this.spinEditSglRetail_Leave);
@@ -2411,15 +2454,15 @@
             0,
             0,
             0});
-            this.spinEditDblRetail.Location = new System.Drawing.Point(331, 460);
-            this.spinEditDblRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditDblRetail.Location = new System.Drawing.Point(368, 557);
+            this.spinEditDblRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditDblRetail.Name = "spinEditDblRetail";
             this.spinEditDblRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditDblRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditDblRetail.Properties.Mask.EditMask = "f";
             this.spinEditDblRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditDblRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditDblRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditDblRetail.TabIndex = 48;
             this.spinEditDblRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditDblRetail.Leave += new System.EventHandler(this.spinEditDblRetail_Leave);
@@ -2432,15 +2475,15 @@
             0,
             0,
             0});
-            this.spinEditTplRetail.Location = new System.Drawing.Point(331, 494);
-            this.spinEditTplRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditTplRetail.Location = new System.Drawing.Point(368, 598);
+            this.spinEditTplRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditTplRetail.Name = "spinEditTplRetail";
             this.spinEditTplRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditTplRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditTplRetail.Properties.Mask.EditMask = "f";
             this.spinEditTplRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditTplRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditTplRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditTplRetail.TabIndex = 55;
             this.spinEditTplRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditTplRetail.Leave += new System.EventHandler(this.spinEditTplRetail_Leave);
@@ -2453,15 +2496,15 @@
             0,
             0,
             0});
-            this.spinEditQuaRetail.Location = new System.Drawing.Point(331, 528);
-            this.spinEditQuaRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditQuaRetail.Location = new System.Drawing.Point(368, 639);
+            this.spinEditQuaRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditQuaRetail.Name = "spinEditQuaRetail";
             this.spinEditQuaRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditQuaRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditQuaRetail.Properties.Mask.EditMask = "f";
             this.spinEditQuaRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditQuaRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditQuaRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditQuaRetail.TabIndex = 62;
             this.spinEditQuaRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditQuaRetail.Leave += new System.EventHandler(this.spinEditQuaRetail_Leave);
@@ -2474,15 +2517,15 @@
             0,
             0,
             0});
-            this.spinEditOthRetail.Location = new System.Drawing.Point(331, 562);
-            this.spinEditOthRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditOthRetail.Location = new System.Drawing.Point(368, 680);
+            this.spinEditOthRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditOthRetail.Name = "spinEditOthRetail";
             this.spinEditOthRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditOthRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditOthRetail.Properties.Mask.EditMask = "f";
             this.spinEditOthRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditOthRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditOthRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditOthRetail.TabIndex = 69;
             this.spinEditOthRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditOthRetail.Leave += new System.EventHandler(this.spinEditOthRetail_Leave);
@@ -2495,15 +2538,15 @@
             0,
             0,
             0});
-            this.spinEditChdRetail.Location = new System.Drawing.Point(331, 596);
-            this.spinEditChdRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditChdRetail.Location = new System.Drawing.Point(368, 721);
+            this.spinEditChdRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditChdRetail.Name = "spinEditChdRetail";
             this.spinEditChdRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditChdRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditChdRetail.Properties.Mask.EditMask = "f";
             this.spinEditChdRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditChdRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditChdRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditChdRetail.TabIndex = 76;
             this.spinEditChdRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditChdRetail.Leave += new System.EventHandler(this.spinEditChdRetail_Leave);
@@ -2516,15 +2559,15 @@
             0,
             0,
             0});
-            this.spinEditJrRetail.Location = new System.Drawing.Point(331, 630);
-            this.spinEditJrRetail.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditJrRetail.Location = new System.Drawing.Point(368, 763);
+            this.spinEditJrRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditJrRetail.Name = "spinEditJrRetail";
             this.spinEditJrRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditJrRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditJrRetail.Properties.Mask.EditMask = "f";
             this.spinEditJrRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditJrRetail.Size = new System.Drawing.Size(102, 26);
+            this.spinEditJrRetail.Size = new System.Drawing.Size(113, 32);
             this.spinEditJrRetail.TabIndex = 83;
             this.spinEditJrRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditJrRetail.Leave += new System.EventHandler(this.spinEditJrRetail_Leave);
@@ -2533,41 +2576,27 @@
             // 
             this.ImageComboBoxEditHotelCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "HCODE", true));
             this.ImageComboBoxEditHotelCode.EnterMoveNextControl = true;
-            this.ImageComboBoxEditHotelCode.Location = new System.Drawing.Point(150, 133);
-            this.ImageComboBoxEditHotelCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditHotelCode.Location = new System.Drawing.Point(167, 161);
+            this.ImageComboBoxEditHotelCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ImageComboBoxEditHotelCode.Name = "ImageComboBoxEditHotelCode";
             this.ImageComboBoxEditHotelCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditHotelCode.Size = new System.Drawing.Size(502, 26);
+            this.ImageComboBoxEditHotelCode.Size = new System.Drawing.Size(971, 32);
             this.ImageComboBoxEditHotelCode.TabIndex = 11;
             this.ImageComboBoxEditHotelCode.Visible = false;
             this.ImageComboBoxEditHotelCode.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditHotelCode.Leave += new System.EventHandler(this.ImageComboBoxEditHotelCode_Leave);
             // 
-            // ImageComboBoxEditCode
-            // 
-            this.ImageComboBoxEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CODE", true));
-            this.ImageComboBoxEditCode.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCode.Location = new System.Drawing.Point(150, 31);
-            this.ImageComboBoxEditCode.Margin = new System.Windows.Forms.Padding(4);
-            this.ImageComboBoxEditCode.Name = "ImageComboBoxEditCode";
-            this.ImageComboBoxEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCode.Size = new System.Drawing.Size(502, 26);
-            this.ImageComboBoxEditCode.TabIndex = 1;
-            this.ImageComboBoxEditCode.Enter += new System.EventHandler(this.enterControl);
-            this.ImageComboBoxEditCode.Leave += new System.EventHandler(this.ImageComboBoxEditCopyCode_Leave);
-            // 
             // ImageComboBoxEditCategory
             // 
             this.ImageComboBoxEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CAT", true));
             this.ImageComboBoxEditCategory.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCategory.Location = new System.Drawing.Point(150, 99);
-            this.ImageComboBoxEditCategory.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditCategory.Location = new System.Drawing.Point(167, 120);
+            this.ImageComboBoxEditCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ImageComboBoxEditCategory.Name = "ImageComboBoxEditCategory";
             this.ImageComboBoxEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCategory.Size = new System.Drawing.Size(390, 26);
+            this.ImageComboBoxEditCategory.Size = new System.Drawing.Size(971, 32);
             this.ImageComboBoxEditCategory.TabIndex = 9;
             this.ImageComboBoxEditCategory.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditCategory.Leave += new System.EventHandler(this.ImageComboBoxEditCategory_Leave);
@@ -2576,12 +2605,12 @@
             // 
             this.ImageComboBoxEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "AGENCY", true));
             this.ImageComboBoxEditAgency.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(150, 65);
-            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(167, 79);
+            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ImageComboBoxEditAgency.Name = "ImageComboBoxEditAgency";
             this.ImageComboBoxEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(502, 26);
+            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(971, 32);
             this.ImageComboBoxEditAgency.TabIndex = 7;
             this.ImageComboBoxEditAgency.TextChanged += new System.EventHandler(this.ImageComboBoxEditAgency_TextChanged);
             this.ImageComboBoxEditAgency.Enter += new System.EventHandler(this.enterControl);
@@ -2595,15 +2624,15 @@
             0,
             0,
             0});
-            this.sGL_GRATETextEdit.Location = new System.Drawing.Point(221, 427);
-            this.sGL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.sGL_GRATETextEdit.Location = new System.Drawing.Point(246, 517);
+            this.sGL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sGL_GRATETextEdit.Name = "sGL_GRATETextEdit";
             this.sGL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sGL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.sGL_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.sGL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.sGL_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.sGL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.sGL_GRATETextEdit.TabIndex = 40;
             this.sGL_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.sGL_GRATETextEdit.Leave += new System.EventHandler(this.sGL_GRATETextEdit_Leave);
@@ -2616,14 +2645,14 @@
             0,
             0,
             0});
-            this.cOMM_PCTTextEdit.Location = new System.Drawing.Point(317, 302);
-            this.cOMM_PCTTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cOMM_PCTTextEdit.Location = new System.Drawing.Point(352, 366);
+            this.cOMM_PCTTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cOMM_PCTTextEdit.Name = "cOMM_PCTTextEdit";
             this.cOMM_PCTTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cOMM_PCTTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.cOMM_PCTTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.cOMM_PCTTextEdit.Size = new System.Drawing.Size(98, 26);
+            this.cOMM_PCTTextEdit.Size = new System.Drawing.Size(109, 32);
             this.cOMM_PCTTextEdit.TabIndex = 30;
             this.cOMM_PCTTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cOMM_PCTTextEdit.Leave += new System.EventHandler(this.cOMM_PCTTextEdit_Leave);
@@ -2636,15 +2665,15 @@
             0,
             0,
             0});
-            this.dBL_GRATETextEdit.Location = new System.Drawing.Point(221, 461);
-            this.dBL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.dBL_GRATETextEdit.Location = new System.Drawing.Point(246, 558);
+            this.dBL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dBL_GRATETextEdit.Name = "dBL_GRATETextEdit";
             this.dBL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dBL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.dBL_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.dBL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.dBL_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.dBL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.dBL_GRATETextEdit.TabIndex = 47;
             this.dBL_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.dBL_GRATETextEdit.Leave += new System.EventHandler(this.dBL_GRATETextEdit_Leave);
@@ -2657,15 +2686,15 @@
             0,
             0,
             0});
-            this.tPL_GRATETextEdit.Location = new System.Drawing.Point(221, 495);
-            this.tPL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.tPL_GRATETextEdit.Location = new System.Drawing.Point(246, 599);
+            this.tPL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tPL_GRATETextEdit.Name = "tPL_GRATETextEdit";
             this.tPL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tPL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.tPL_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.tPL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tPL_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.tPL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.tPL_GRATETextEdit.TabIndex = 54;
             this.tPL_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.tPL_GRATETextEdit.Leave += new System.EventHandler(this.tPL_GRATETextEdit_Leave);
@@ -2678,15 +2707,15 @@
             0,
             0,
             0});
-            this.qUA_GRATETextEdit.Location = new System.Drawing.Point(221, 529);
-            this.qUA_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.qUA_GRATETextEdit.Location = new System.Drawing.Point(246, 640);
+            this.qUA_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.qUA_GRATETextEdit.Name = "qUA_GRATETextEdit";
             this.qUA_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.qUA_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.qUA_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.qUA_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.qUA_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.qUA_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.qUA_GRATETextEdit.TabIndex = 61;
             this.qUA_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.qUA_GRATETextEdit.Leave += new System.EventHandler(this.qUA_GRATETextEdit_Leave);
@@ -2699,15 +2728,15 @@
             0,
             0,
             0});
-            this.oTH_GRATETextEdit.Location = new System.Drawing.Point(221, 563);
-            this.oTH_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.oTH_GRATETextEdit.Location = new System.Drawing.Point(246, 682);
+            this.oTH_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.oTH_GRATETextEdit.Name = "oTH_GRATETextEdit";
             this.oTH_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.oTH_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.oTH_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.oTH_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.oTH_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.oTH_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.oTH_GRATETextEdit.TabIndex = 68;
             this.oTH_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.oTH_GRATETextEdit.Leave += new System.EventHandler(this.oTH_GRATETextEdit_Leave);
@@ -2720,15 +2749,15 @@
             0,
             0,
             0});
-            this.cHD_GRATETextEdit.Location = new System.Drawing.Point(221, 597);
-            this.cHD_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cHD_GRATETextEdit.Location = new System.Drawing.Point(246, 723);
+            this.cHD_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cHD_GRATETextEdit.Name = "cHD_GRATETextEdit";
             this.cHD_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cHD_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.cHD_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.cHD_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.cHD_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.cHD_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.cHD_GRATETextEdit.TabIndex = 75;
             this.cHD_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cHD_GRATETextEdit.Leave += new System.EventHandler(this.cHD_GRATETextEdit_Leave);
@@ -2741,15 +2770,15 @@
             0,
             0,
             0});
-            this.jR_GRATETextEdit.Location = new System.Drawing.Point(221, 631);
-            this.jR_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.jR_GRATETextEdit.Location = new System.Drawing.Point(246, 764);
+            this.jR_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.jR_GRATETextEdit.Name = "jR_GRATETextEdit";
             this.jR_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.jR_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.jR_GRATETextEdit.Properties.Mask.EditMask = "f";
             this.jR_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.jR_GRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.jR_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.jR_GRATETextEdit.TabIndex = 82;
             this.jR_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.jR_GRATETextEdit.Leave += new System.EventHandler(this.jR_GRATETextEdit_Leave);
@@ -2762,15 +2791,15 @@
             0,
             0,
             0});
-            this.sGL_NRATETextEdit.Location = new System.Drawing.Point(111, 426);
-            this.sGL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.sGL_NRATETextEdit.Location = new System.Drawing.Point(123, 516);
+            this.sGL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sGL_NRATETextEdit.Name = "sGL_NRATETextEdit";
             this.sGL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sGL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.sGL_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.sGL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.sGL_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.sGL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.sGL_NRATETextEdit.TabIndex = 39;
             this.sGL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.sGL_NRATETextEdit.Leave += new System.EventHandler(this.sGL_NRATETextEdit_Leave);
@@ -2783,15 +2812,15 @@
             0,
             0,
             0});
-            this.dBL_NRATETextEdit.Location = new System.Drawing.Point(111, 460);
-            this.dBL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.dBL_NRATETextEdit.Location = new System.Drawing.Point(123, 557);
+            this.dBL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dBL_NRATETextEdit.Name = "dBL_NRATETextEdit";
             this.dBL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dBL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.dBL_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.dBL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.dBL_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.dBL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.dBL_NRATETextEdit.TabIndex = 46;
             this.dBL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.dBL_NRATETextEdit.Leave += new System.EventHandler(this.dBL_NRATETextEdit_Leave);
@@ -2804,15 +2833,15 @@
             0,
             0,
             0});
-            this.tPL_NRATETextEdit.Location = new System.Drawing.Point(111, 494);
-            this.tPL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.tPL_NRATETextEdit.Location = new System.Drawing.Point(123, 598);
+            this.tPL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tPL_NRATETextEdit.Name = "tPL_NRATETextEdit";
             this.tPL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tPL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.tPL_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.tPL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tPL_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.tPL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.tPL_NRATETextEdit.TabIndex = 53;
             this.tPL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.tPL_NRATETextEdit.Leave += new System.EventHandler(this.tPL_NRATETextEdit_Leave);
@@ -2825,15 +2854,15 @@
             0,
             0,
             0});
-            this.qUA_NRATETextEdit.Location = new System.Drawing.Point(111, 528);
-            this.qUA_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.qUA_NRATETextEdit.Location = new System.Drawing.Point(123, 639);
+            this.qUA_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.qUA_NRATETextEdit.Name = "qUA_NRATETextEdit";
             this.qUA_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.qUA_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.qUA_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.qUA_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.qUA_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.qUA_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.qUA_NRATETextEdit.TabIndex = 60;
             this.qUA_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.qUA_NRATETextEdit.Leave += new System.EventHandler(this.qUA_NRATETextEdit_Leave);
@@ -2846,15 +2875,15 @@
             0,
             0,
             0});
-            this.oTH_NRATETextEdit.Location = new System.Drawing.Point(111, 562);
-            this.oTH_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.oTH_NRATETextEdit.Location = new System.Drawing.Point(123, 680);
+            this.oTH_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.oTH_NRATETextEdit.Name = "oTH_NRATETextEdit";
             this.oTH_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.oTH_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.oTH_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.oTH_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.oTH_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.oTH_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.oTH_NRATETextEdit.TabIndex = 67;
             this.oTH_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.oTH_NRATETextEdit.Leave += new System.EventHandler(this.oTH_NRATETextEdit_Leave);
@@ -2867,15 +2896,15 @@
             0,
             0,
             0});
-            this.cHD_NRATETextEdit.Location = new System.Drawing.Point(111, 596);
-            this.cHD_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cHD_NRATETextEdit.Location = new System.Drawing.Point(123, 721);
+            this.cHD_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cHD_NRATETextEdit.Name = "cHD_NRATETextEdit";
             this.cHD_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cHD_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.cHD_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.cHD_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.cHD_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.cHD_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.cHD_NRATETextEdit.TabIndex = 74;
             this.cHD_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cHD_NRATETextEdit.Leave += new System.EventHandler(this.cHD_NRATETextEdit_Leave);
@@ -2888,15 +2917,15 @@
             0,
             0,
             0});
-            this.jR_NRATETextEdit.Location = new System.Drawing.Point(111, 630);
-            this.jR_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.jR_NRATETextEdit.Location = new System.Drawing.Point(123, 763);
+            this.jR_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.jR_NRATETextEdit.Name = "jR_NRATETextEdit";
             this.jR_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.jR_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.jR_NRATETextEdit.Properties.Mask.EditMask = "f";
             this.jR_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.jR_NRATETextEdit.Size = new System.Drawing.Size(102, 26);
+            this.jR_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
             this.jR_NRATETextEdit.TabIndex = 81;
             this.jR_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.jR_NRATETextEdit.Leave += new System.EventHandler(this.jR_NRATETextEdit_Leave);
@@ -2909,15 +2938,15 @@
             0,
             0,
             0});
-            this.eXG_SGLTextEdit.Location = new System.Drawing.Point(551, 426);
-            this.eXG_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_SGLTextEdit.Location = new System.Drawing.Point(612, 516);
+            this.eXG_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_SGLTextEdit.Name = "eXG_SGLTextEdit";
             this.eXG_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_SGLTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_SGLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_SGLTextEdit.TabIndex = 43;
             this.eXG_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_SGLTextEdit.Leave += new System.EventHandler(this.eXG_SGLTextEdit_Leave);
@@ -2930,15 +2959,15 @@
             0,
             0,
             0});
-            this.eXG_DBLTextEdit.Location = new System.Drawing.Point(551, 460);
-            this.eXG_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_DBLTextEdit.Location = new System.Drawing.Point(612, 557);
+            this.eXG_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_DBLTextEdit.Name = "eXG_DBLTextEdit";
             this.eXG_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_DBLTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_DBLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_DBLTextEdit.TabIndex = 50;
             this.eXG_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_DBLTextEdit.Leave += new System.EventHandler(this.eXG_DBLTextEdit_Leave);
@@ -2951,15 +2980,15 @@
             0,
             0,
             0});
-            this.eXG_TPLTextEdit.Location = new System.Drawing.Point(551, 494);
-            this.eXG_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_TPLTextEdit.Location = new System.Drawing.Point(612, 598);
+            this.eXG_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_TPLTextEdit.Name = "eXG_TPLTextEdit";
             this.eXG_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_TPLTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_TPLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_TPLTextEdit.TabIndex = 57;
             this.eXG_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_TPLTextEdit.Leave += new System.EventHandler(this.eXG_TPLTextEdit_Leave);
@@ -2972,15 +3001,15 @@
             0,
             0,
             0});
-            this.eXG_QUATextEdit.Location = new System.Drawing.Point(551, 528);
-            this.eXG_QUATextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_QUATextEdit.Location = new System.Drawing.Point(612, 639);
+            this.eXG_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_QUATextEdit.Name = "eXG_QUATextEdit";
             this.eXG_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_QUATextEdit.Properties.Mask.EditMask = "f";
             this.eXG_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_QUATextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_QUATextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_QUATextEdit.TabIndex = 64;
             this.eXG_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_QUATextEdit.Leave += new System.EventHandler(this.eXG_QUATextEdit_Leave);
@@ -2993,15 +3022,15 @@
             0,
             0,
             0});
-            this.eXG_OTHTextEdit.Location = new System.Drawing.Point(551, 562);
-            this.eXG_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_OTHTextEdit.Location = new System.Drawing.Point(612, 680);
+            this.eXG_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_OTHTextEdit.Name = "eXG_OTHTextEdit";
             this.eXG_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_OTHTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_OTHTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_OTHTextEdit.TabIndex = 71;
             this.eXG_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_OTHTextEdit.Leave += new System.EventHandler(this.eXG_OTHTextEdit_Leave);
@@ -3014,15 +3043,15 @@
             0,
             0,
             0});
-            this.eXG_CHDTextEdit.Location = new System.Drawing.Point(551, 596);
-            this.eXG_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_CHDTextEdit.Location = new System.Drawing.Point(612, 721);
+            this.eXG_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_CHDTextEdit.Name = "eXG_CHDTextEdit";
             this.eXG_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_CHDTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_CHDTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_CHDTextEdit.TabIndex = 78;
             this.eXG_CHDTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_CHDTextEdit.Leave += new System.EventHandler(this.eXG_CHDTextEdit_Leave);
@@ -3035,15 +3064,15 @@
             0,
             0,
             0});
-            this.eXG_JRTextEdit.Location = new System.Drawing.Point(551, 630);
-            this.eXG_JRTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXG_JRTextEdit.Location = new System.Drawing.Point(612, 763);
+            this.eXG_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXG_JRTextEdit.Name = "eXG_JRTextEdit";
             this.eXG_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXG_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXG_JRTextEdit.Properties.Mask.EditMask = "f";
             this.eXG_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_JRTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXG_JRTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXG_JRTextEdit.TabIndex = 85;
             this.eXG_JRTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXG_JRTextEdit.Leave += new System.EventHandler(this.eXG_JRTextEdit_Leave);
@@ -3056,15 +3085,15 @@
             0,
             0,
             0});
-            this.eXN_SGLTextEdit.Location = new System.Drawing.Point(441, 426);
-            this.eXN_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_SGLTextEdit.Location = new System.Drawing.Point(490, 516);
+            this.eXN_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_SGLTextEdit.Name = "eXN_SGLTextEdit";
             this.eXN_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_SGLTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_SGLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_SGLTextEdit.TabIndex = 42;
             this.eXN_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_SGLTextEdit.Leave += new System.EventHandler(this.eXN_SGLTextEdit_Leave);
@@ -3077,15 +3106,15 @@
             0,
             0,
             0});
-            this.eXN_DBLTextEdit.Location = new System.Drawing.Point(441, 460);
-            this.eXN_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_DBLTextEdit.Location = new System.Drawing.Point(490, 557);
+            this.eXN_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_DBLTextEdit.Name = "eXN_DBLTextEdit";
             this.eXN_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_DBLTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_DBLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_DBLTextEdit.TabIndex = 49;
             this.eXN_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_DBLTextEdit.Leave += new System.EventHandler(this.eXN_DBLTextEdit_Leave);
@@ -3098,15 +3127,15 @@
             0,
             0,
             0});
-            this.eXN_TPLTextEdit.Location = new System.Drawing.Point(441, 493);
-            this.eXN_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_TPLTextEdit.Location = new System.Drawing.Point(490, 597);
+            this.eXN_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_TPLTextEdit.Name = "eXN_TPLTextEdit";
             this.eXN_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_TPLTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_TPLTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_TPLTextEdit.TabIndex = 56;
             this.eXN_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_TPLTextEdit.Leave += new System.EventHandler(this.eXN_TPLTextEdit_Leave);
@@ -3119,15 +3148,15 @@
             0,
             0,
             0});
-            this.eXN_QUATextEdit.Location = new System.Drawing.Point(441, 527);
-            this.eXN_QUATextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_QUATextEdit.Location = new System.Drawing.Point(490, 638);
+            this.eXN_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_QUATextEdit.Name = "eXN_QUATextEdit";
             this.eXN_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_QUATextEdit.Properties.Mask.EditMask = "f";
             this.eXN_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_QUATextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_QUATextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_QUATextEdit.TabIndex = 63;
             this.eXN_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_QUATextEdit.Leave += new System.EventHandler(this.eXN_QUATextEdit_Leave);
@@ -3140,15 +3169,15 @@
             0,
             0,
             0});
-            this.eXN_OTHTextEdit.Location = new System.Drawing.Point(441, 561);
-            this.eXN_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_OTHTextEdit.Location = new System.Drawing.Point(490, 679);
+            this.eXN_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_OTHTextEdit.Name = "eXN_OTHTextEdit";
             this.eXN_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_OTHTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_OTHTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_OTHTextEdit.TabIndex = 70;
             this.eXN_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_OTHTextEdit.Leave += new System.EventHandler(this.eXN_OTHTextEdit_Leave);
@@ -3161,15 +3190,15 @@
             0,
             0,
             0});
-            this.eXN_CHDTextEdit.Location = new System.Drawing.Point(441, 595);
-            this.eXN_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_CHDTextEdit.Location = new System.Drawing.Point(490, 720);
+            this.eXN_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_CHDTextEdit.Name = "eXN_CHDTextEdit";
             this.eXN_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_CHDTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_CHDTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_CHDTextEdit.TabIndex = 77;
             this.eXN_CHDTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_CHDTextEdit.Leave += new System.EventHandler(this.eXN_CHDTextEdit_Leave);
@@ -3182,15 +3211,15 @@
             0,
             0,
             0});
-            this.eXN_JRTextEdit.Location = new System.Drawing.Point(441, 629);
-            this.eXN_JRTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.eXN_JRTextEdit.Location = new System.Drawing.Point(490, 761);
+            this.eXN_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.eXN_JRTextEdit.Name = "eXN_JRTextEdit";
             this.eXN_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.eXN_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.eXN_JRTextEdit.Properties.Mask.EditMask = "f";
             this.eXN_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_JRTextEdit.Size = new System.Drawing.Size(102, 26);
+            this.eXN_JRTextEdit.Size = new System.Drawing.Size(113, 32);
             this.eXN_JRTextEdit.TabIndex = 84;
             this.eXN_JRTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.eXN_JRTextEdit.Leave += new System.EventHandler(this.eXN_JRTextEdit_Leave);
@@ -3203,8 +3232,8 @@
             0,
             0,
             0});
-            this.mAX_SGLTextEdit.Location = new System.Drawing.Point(661, 426);
-            this.mAX_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_SGLTextEdit.Location = new System.Drawing.Point(734, 516);
+            this.mAX_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mAX_SGLTextEdit.Name = "mAX_SGLTextEdit";
             this.mAX_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3215,7 +3244,7 @@
             0,
             0,
             0});
-            this.mAX_SGLTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.mAX_SGLTextEdit.Size = new System.Drawing.Size(103, 32);
             this.mAX_SGLTextEdit.TabIndex = 44;
             this.mAX_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_SGLTextEdit.Leave += new System.EventHandler(this.mAX_SGLTextEdit_Leave);
@@ -3228,8 +3257,8 @@
             0,
             0,
             0});
-            this.mAX_DBLTextEdit.Location = new System.Drawing.Point(661, 460);
-            this.mAX_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_DBLTextEdit.Location = new System.Drawing.Point(734, 557);
+            this.mAX_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mAX_DBLTextEdit.Name = "mAX_DBLTextEdit";
             this.mAX_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3240,7 +3269,7 @@
             0,
             0,
             0});
-            this.mAX_DBLTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.mAX_DBLTextEdit.Size = new System.Drawing.Size(103, 32);
             this.mAX_DBLTextEdit.TabIndex = 51;
             this.mAX_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_DBLTextEdit.Leave += new System.EventHandler(this.mAX_DBLTextEdit_Leave);
@@ -3253,8 +3282,8 @@
             0,
             0,
             0});
-            this.mAX_TPLTextEdit.Location = new System.Drawing.Point(661, 494);
-            this.mAX_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_TPLTextEdit.Location = new System.Drawing.Point(734, 598);
+            this.mAX_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mAX_TPLTextEdit.Name = "mAX_TPLTextEdit";
             this.mAX_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3265,7 +3294,7 @@
             0,
             0,
             0});
-            this.mAX_TPLTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.mAX_TPLTextEdit.Size = new System.Drawing.Size(103, 32);
             this.mAX_TPLTextEdit.TabIndex = 58;
             this.mAX_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_TPLTextEdit.Leave += new System.EventHandler(this.mAX_TPLTextEdit_Leave);
@@ -3278,8 +3307,8 @@
             0,
             0,
             0});
-            this.mAX_QUATextEdit.Location = new System.Drawing.Point(661, 528);
-            this.mAX_QUATextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_QUATextEdit.Location = new System.Drawing.Point(734, 639);
+            this.mAX_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mAX_QUATextEdit.Name = "mAX_QUATextEdit";
             this.mAX_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3290,7 +3319,7 @@
             0,
             0,
             0});
-            this.mAX_QUATextEdit.Size = new System.Drawing.Size(93, 26);
+            this.mAX_QUATextEdit.Size = new System.Drawing.Size(103, 32);
             this.mAX_QUATextEdit.TabIndex = 65;
             this.mAX_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_QUATextEdit.Leave += new System.EventHandler(this.mAX_QUATextEdit_Leave);
@@ -3303,8 +3332,8 @@
             0,
             0,
             0});
-            this.mAX_OTHTextEdit.Location = new System.Drawing.Point(661, 562);
-            this.mAX_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_OTHTextEdit.Location = new System.Drawing.Point(734, 680);
+            this.mAX_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.mAX_OTHTextEdit.Name = "mAX_OTHTextEdit";
             this.mAX_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3315,7 +3344,7 @@
             0,
             0,
             0});
-            this.mAX_OTHTextEdit.Size = new System.Drawing.Size(93, 26);
+            this.mAX_OTHTextEdit.Size = new System.Drawing.Size(103, 32);
             this.mAX_OTHTextEdit.TabIndex = 72;
             this.mAX_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_OTHTextEdit.Leave += new System.EventHandler(this.mAX_OTHTextEdit_Leave);
@@ -3328,18 +3357,75 @@
             0,
             0,
             0});
-            this.spinEditSeniorAgeLimit.Location = new System.Drawing.Point(660, 664);
-            this.spinEditSeniorAgeLimit.Margin = new System.Windows.Forms.Padding(4);
+            this.spinEditSeniorAgeLimit.Location = new System.Drawing.Point(733, 804);
+            this.spinEditSeniorAgeLimit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.spinEditSeniorAgeLimit.Name = "spinEditSeniorAgeLimit";
             this.spinEditSeniorAgeLimit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinEditSeniorAgeLimit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.spinEditSeniorAgeLimit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.spinEditSeniorAgeLimit.Size = new System.Drawing.Size(93, 26);
+            this.spinEditSeniorAgeLimit.Size = new System.Drawing.Size(103, 32);
             this.spinEditSeniorAgeLimit.TabIndex = 93;
             this.spinEditSeniorAgeLimit.Visible = false;
             this.spinEditSeniorAgeLimit.Enter += new System.EventHandler(this.enterControl);
             this.spinEditSeniorAgeLimit.Leave += new System.EventHandler(this.spinEditSeniorAgeLimit_Leave);
+            // 
+            // SearchLookupEditCode
+            // 
+            this.SearchLookupEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CODE", true));
+            this.SearchLookupEditCode.Location = new System.Drawing.Point(167, 38);
+            this.SearchLookupEditCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchLookupEditCode.Name = "SearchLookupEditCode";
+            this.SearchLookupEditCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditCode.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditCode.Properties.NullText = "";
+            this.SearchLookupEditCode.Properties.ValueMember = "CODE";
+            this.SearchLookupEditCode.Properties.View = this.customSearchLookUpEdit1View;
+            this.SearchLookupEditCode.Properties.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.SearchLookupEditCode.Properties.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCode.Size = new System.Drawing.Size(971, 32);
+            this.SearchLookupEditCode.TabIndex = 1;
+            this.SearchLookupEditCode.EditValueChanged += new System.EventHandler(this.SearchLookupEditCode_EditValueChanged);
+            this.SearchLookupEditCode.Enter += new System.EventHandler(this.enterControl);
+            this.SearchLookupEditCode.Leave += new System.EventHandler(this.SearchLookupEditCode_Leave);
+            // 
+            // customSearchLookUpEdit1View
+            // 
+            this.customSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode2,
+            this.colName,
+            this.colDisplayName});
+            this.customSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.customSearchLookUpEdit1View.Name = "customSearchLookUpEdit1View";
+            this.customSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.customSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.customSearchLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // colCode2
+            // 
+            this.colCode2.FieldName = "CODE";
+            this.colCode2.Name = "colCode2";
+            this.colCode2.Visible = true;
+            this.colCode2.VisibleIndex = 0;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "NAME";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
+            // 
+            // colDisplayName
+            // 
+            this.colDisplayName.FieldName = "DisplayName";
+            this.colDisplayName.Name = "colDisplayName";
+            this.colDisplayName.OptionsColumn.ReadOnly = true;
+            // 
+            // BindingSourceCodeName
+            // 
+            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
             // panelControlStatus
             // 
@@ -3347,31 +3433,53 @@
             this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
             this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(578, 3);
-            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControlStatus.Location = new System.Drawing.Point(642, 4);
+            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(180, 34);
+            this.panelControlStatus.Size = new System.Drawing.Size(200, 41);
             this.panelControlStatus.TabIndex = 265;
             this.panelControlStatus.Visible = false;
             // 
             // LabelStatus
             // 
-            this.LabelStatus.Location = new System.Drawing.Point(45, 7);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.LabelStatus.Location = new System.Drawing.Point(50, 8);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 19);
+            this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new System.Drawing.Point(736, 288);
+            label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new System.Drawing.Size(95, 24);
+            label18.TabIndex = 269;
+            label18.Text = "Rate plan";
+            // 
+            // ImageComboBoxEditSpecialValue
+            // 
+            this.ImageComboBoxEditSpecialValue.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "SpecialValue_Code", true));
+            this.ImageComboBoxEditSpecialValue.EnterMoveNextControl = true;
+            this.ImageComboBoxEditSpecialValue.Location = new System.Drawing.Point(861, 286);
+            this.ImageComboBoxEditSpecialValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditSpecialValue.Name = "ImageComboBoxEditSpecialValue";
+            this.ImageComboBoxEditSpecialValue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ImageComboBoxEditSpecialValue.Size = new System.Drawing.Size(277, 32);
+            this.ImageComboBoxEditSpecialValue.TabIndex = 270;
             // 
             // PRatesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1439, 1084);
+            this.ClientSize = new System.Drawing.Size(1599, 1312);
             this.Controls.Add(this.panelControlStatus);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.PRateBindingNavigator);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimizeBox = false;
             this.Name = "PRatesForm";
             this.ShowInTaskbar = false;
@@ -3403,6 +3511,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorGross.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorCost.Properties)).EndInit();
@@ -3414,7 +3523,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEditChdRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditJrRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditHotelCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditAgency.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_GRATETextEdit.Properties)).EndInit();
@@ -3452,9 +3560,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorAgeLimit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3606,7 +3718,6 @@
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.PanelControl panelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
-        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditCode;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditCategory;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditAgency;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditHotelCode;
@@ -3748,5 +3859,13 @@
         private DevExpress.XtraEditors.SpinEdit spinEditSeniorCost;
         private DevExpress.XtraEditors.SpinEdit spinEditSeniorAgeLimit;
         private System.Windows.Forms.Label cODELabel;
+        private DevExpress.XtraEditors.TimeEdit TimeEditTime;
+        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditCode;
+        private DevExpress.XtraGrid.Views.Grid.GridView customSearchLookUpEdit1View;
+        private System.Windows.Forms.BindingSource BindingSourceCodeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode2;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
+        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditSpecialValue;
     }
 }

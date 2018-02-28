@@ -919,5 +919,15 @@ namespace TraceForms
         {
             Modified = true;
         }
+
+        private void CheckEditServicesOnly_Modified(object sender, EventArgs e)
+        {
+            Modified = true;
+        }
+
+        private void CheckEditMultipleTimes_Modified(object sender, EventArgs e)
+        {
+            Modified = true;
+        }
     }
 }
