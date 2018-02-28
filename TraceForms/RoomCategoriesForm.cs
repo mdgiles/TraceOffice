@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraEditors.Popup;
-using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Grid;
 using FlexModel;
-using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
-    public partial class RoomCategoriesForm : XtraForm
+	public partial class RoomCategoriesForm : XtraForm
     {
         FlextourEntities _context;
         ROOMCOD _selectedRecord;
@@ -75,7 +69,12 @@ namespace TraceForms
             BindingSource.RemoveCurrent();
         }
 
-        private void RefreshRecord()
+		private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+		{
+			e.ExceptionMode = ExceptionMode.NoAction;
+		}
+
+		private void RefreshRecord()
         {
             //A Detached record has not yet been added to the context
             //An Added record has been added but not yet saved, most likely because there was
@@ -204,11 +203,6 @@ namespace TraceForms
             }
         }
 
-        private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
-        {
-            e.ExceptionMode = ExceptionMode.NoAction; 
-        }
-
         private void RoomCategoriesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (IsModified(_selectedRecord)) {
@@ -318,7 +312,7 @@ namespace TraceForms
             Cursor = Cursors.Default;
         }
 
-        private void RoomCodBindingSource_CurrentChanged(object sender, EventArgs e)
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
             //If the current record is changing as a result of removing a record to delete it, and it is the last
             //record in the table, then SetBindings will clear the bindings, which will cause the delete

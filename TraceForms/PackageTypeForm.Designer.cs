@@ -32,41 +32,41 @@
 			System.Windows.Forms.Label dESCLabel;
 			System.Windows.Forms.Label cODELabel;
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageTypeForm));
-			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-			this.PackTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.GridViewPackType = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
+			this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnCode = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPACK = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
 			this.TextEditDesc = new DevExpress.XtraEditors.TextEdit();
-			this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-			this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-			this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
+			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
 			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
 			this.bar1 = new DevExpress.XtraBars.Bar();
 			this.barButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			dESCLabel = new System.Windows.Forms.Label();
 			cODELabel = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.PackTypeBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridViewPackType)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.TextEditDesc.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-			this.splitContainerControl1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-			this.panelControlStatus.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
+			this.SplitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+			this.PanelControlStatus.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dESCLabel
@@ -87,38 +87,36 @@
 			cODELabel.TabIndex = 12;
 			cODELabel.Text = "Code";
 			// 
-			// gridControl1
+			// GridControlLookup
 			// 
-			this.gridControl1.DataSource = this.PackTypeBindingSource;
-			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridControl1.Location = new System.Drawing.Point(0, 0);
-			this.gridControl1.MainView = this.GridViewPackType;
-			this.gridControl1.Name = "gridControl1";
-			this.gridControl1.Size = new System.Drawing.Size(319, 711);
-			this.gridControl1.TabIndex = 13;
-			this.gridControl1.TabStop = false;
-			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewPackType});
+			this.GridControlLookup.DataSource = this.BindingSource;
+			this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
+			this.GridControlLookup.MainView = this.GridViewLookup;
+			this.GridControlLookup.Name = "GridControlLookup";
+			this.GridControlLookup.Size = new System.Drawing.Size(319, 711);
+			this.GridControlLookup.TabIndex = 13;
+			this.GridControlLookup.TabStop = false;
+			this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewLookup});
 			// 
-			// PackTypeBindingSource
+			// BindingSource
 			// 
-			this.PackTypeBindingSource.DataSource = typeof(FlexModel.PACKTYPE);
-			this.PackTypeBindingSource.CurrentChanged += new System.EventHandler(this.PackTypeBindingSource_CurrentChanged);
+			this.BindingSource.DataSource = typeof(FlexModel.PACKTYPE);
+			this.BindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
 			// 
-			// GridViewPackType
+			// GridViewLookup
 			// 
-			this.GridViewPackType.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDisplayName,
             this.gridColumnCode,
             this.gridColumnName,
             this.colPACK});
-			this.GridViewPackType.GridControl = this.gridControl1;
-			this.GridViewPackType.Name = "GridViewPackType";
-			this.GridViewPackType.OptionsView.ShowAutoFilterRow = true;
-			this.GridViewPackType.OptionsView.ShowGroupPanel = false;
-			this.GridViewPackType.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
-			this.GridViewPackType.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
-			this.GridViewPackType.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.gridView1_BeforeLeaveRow);
+			this.GridViewLookup.GridControl = this.GridControlLookup;
+			this.GridViewLookup.Name = "GridViewLookup";
+			this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
+			this.GridViewLookup.OptionsView.ShowGroupPanel = false;
+			this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
 			// 
 			// colDisplayName
 			// 
@@ -149,60 +147,58 @@
 			// 
 			// TextEditCode
 			// 
-			this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PackTypeBindingSource, "CODE", true));
+			this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
 			this.TextEditCode.Location = new System.Drawing.Point(126, 73);
 			this.TextEditCode.Name = "TextEditCode";
 			this.TextEditCode.Properties.MaxLength = 3;
 			this.TextEditCode.Size = new System.Drawing.Size(126, 20);
 			this.TextEditCode.TabIndex = 1;
-			this.TextEditCode.Enter += new System.EventHandler(this.enterControl);
-			this.TextEditCode.Leave += new System.EventHandler(this.code_Leave);
+			this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
 			// 
 			// TextEditDesc
 			// 
-			this.TextEditDesc.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.PackTypeBindingSource, "DESC", true));
+			this.TextEditDesc.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "DESC", true));
 			this.TextEditDesc.Location = new System.Drawing.Point(126, 109);
 			this.TextEditDesc.Name = "TextEditDesc";
-			this.TextEditDesc.Properties.MaxLength = 10;
+			this.TextEditDesc.Properties.MaxLength = 60;
 			this.TextEditDesc.Size = new System.Drawing.Size(250, 20);
 			this.TextEditDesc.TabIndex = 2;
-			this.TextEditDesc.Enter += new System.EventHandler(this.enterControl);
-			this.TextEditDesc.Leave += new System.EventHandler(this.DescTextBox_Leave);
+			this.TextEditDesc.Leave += new System.EventHandler(this.TextEditDesc_Leave);
 			// 
-			// errorProvider1
+			// ErrorProvider
 			// 
-			this.errorProvider1.ContainerControl = this;
+			this.ErrorProvider.ContainerControl = this;
 			// 
-			// splitContainerControl1
+			// SplitContainerControl
 			// 
-			this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainerControl1.Location = new System.Drawing.Point(0, 31);
-			this.splitContainerControl1.Name = "splitContainerControl1";
-			this.splitContainerControl1.Panel1.AutoScroll = true;
-			this.splitContainerControl1.Panel1.Controls.Add(this.gridControl1);
-			this.splitContainerControl1.Panel1.Text = "Panel1";
-			this.splitContainerControl1.Panel2.AutoScroll = true;
-			this.splitContainerControl1.Panel2.Controls.Add(dESCLabel);
-			this.splitContainerControl1.Panel2.Controls.Add(this.TextEditCode);
-			this.splitContainerControl1.Panel2.Controls.Add(cODELabel);
-			this.splitContainerControl1.Panel2.Controls.Add(this.TextEditDesc);
-			this.splitContainerControl1.Panel2.Text = "Panel2";
-			this.splitContainerControl1.Size = new System.Drawing.Size(1020, 711);
-			this.splitContainerControl1.SplitterPosition = 319;
-			this.splitContainerControl1.TabIndex = 15;
-			this.splitContainerControl1.Text = "splitContainerControl1";
+			this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+			this.SplitContainerControl.Name = "SplitContainerControl";
+			this.SplitContainerControl.Panel1.AutoScroll = true;
+			this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
+			this.SplitContainerControl.Panel1.Text = "Panel1";
+			this.SplitContainerControl.Panel2.AutoScroll = true;
+			this.SplitContainerControl.Panel2.Controls.Add(dESCLabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditCode);
+			this.SplitContainerControl.Panel2.Controls.Add(cODELabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditDesc);
+			this.SplitContainerControl.Panel2.Text = "Panel2";
+			this.SplitContainerControl.Size = new System.Drawing.Size(1020, 711);
+			this.SplitContainerControl.SplitterPosition = 319;
+			this.SplitContainerControl.TabIndex = 15;
+			this.SplitContainerControl.Text = "splitContainerControl1";
 			// 
-			// panelControlStatus
+			// PanelControlStatus
 			// 
-			this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-			this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-			this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-			this.panelControlStatus.Controls.Add(this.LabelStatus);
-			this.panelControlStatus.Location = new System.Drawing.Point(338, 2);
-			this.panelControlStatus.Name = "panelControlStatus";
-			this.panelControlStatus.Size = new System.Drawing.Size(120, 23);
-			this.panelControlStatus.TabIndex = 265;
-			this.panelControlStatus.Visible = false;
+			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+			this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+			this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.PanelControlStatus.Controls.Add(this.LabelStatus);
+			this.PanelControlStatus.Location = new System.Drawing.Point(338, 2);
+			this.PanelControlStatus.Name = "PanelControlStatus";
+			this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
+			this.PanelControlStatus.TabIndex = 265;
+			this.PanelControlStatus.Visible = false;
 			// 
 			// LabelStatus
 			// 
@@ -211,52 +207,20 @@
 			this.LabelStatus.Size = new System.Drawing.Size(0, 13);
 			this.LabelStatus.TabIndex = 5;
 			// 
-			// barManager1
+			// BarManager
 			// 
-			this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+			this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.bar1});
-			this.barManager1.DockControls.Add(this.barDockControlTop);
-			this.barManager1.DockControls.Add(this.barDockControlBottom);
-			this.barManager1.DockControls.Add(this.barDockControlLeft);
-			this.barManager1.DockControls.Add(this.barDockControlRight);
-			this.barManager1.Form = this;
-			this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+			this.BarManager.DockControls.Add(this.barDockControlTop);
+			this.BarManager.DockControls.Add(this.barDockControlBottom);
+			this.BarManager.DockControls.Add(this.barDockControlLeft);
+			this.BarManager.DockControls.Add(this.barDockControlRight);
+			this.BarManager.Form = this;
+			this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItemNew,
             this.barButtonItemDelete,
             this.barButtonItemSave});
-			this.barManager1.MaxItemId = 3;
-			// 
-			// barDockControlTop
-			// 
-			this.barDockControlTop.CausesValidation = false;
-			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-			this.barDockControlTop.Manager = this.barManager1;
-			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
-			// 
-			// barDockControlBottom
-			// 
-			this.barDockControlBottom.CausesValidation = false;
-			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
-			this.barDockControlBottom.Manager = this.barManager1;
-			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
-			// 
-			// barDockControlLeft
-			// 
-			this.barDockControlLeft.CausesValidation = false;
-			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-			this.barDockControlLeft.Manager = this.barManager1;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
-			// 
-			// barDockControlRight
-			// 
-			this.barDockControlRight.CausesValidation = false;
-			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
-			this.barDockControlRight.Manager = this.barManager1;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
+			this.BarManager.MaxItemId = 3;
 			// 
 			// bar1
 			// 
@@ -281,7 +245,7 @@
 			this.barButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemNew.ImageOptions.Image")));
 			this.barButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemNew.ImageOptions.LargeImage")));
 			this.barButtonItemNew.Name = "barButtonItemNew";
-			this.barButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemNew_ItemClick);
+			this.barButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
 			// 
 			// barButtonItemDelete
 			// 
@@ -290,7 +254,7 @@
 			this.barButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemDelete.ImageOptions.Image")));
 			this.barButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemDelete.ImageOptions.LargeImage")));
 			this.barButtonItemDelete.Name = "barButtonItemDelete";
-			this.barButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemDelete_ItemClick);
+			this.barButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
 			// 
 			// barButtonItemSave
 			// 
@@ -299,15 +263,47 @@
 			this.barButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemSave.ImageOptions.Image")));
 			this.barButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemSave.ImageOptions.LargeImage")));
 			this.barButtonItemSave.Name = "barButtonItemSave";
-			this.barButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSave_ItemClick);
+			this.barButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+			// 
+			// barDockControlTop
+			// 
+			this.barDockControlTop.CausesValidation = false;
+			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+			this.barDockControlTop.Manager = this.BarManager;
+			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
+			// 
+			// barDockControlBottom
+			// 
+			this.barDockControlBottom.CausesValidation = false;
+			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
+			this.barDockControlBottom.Manager = this.BarManager;
+			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
+			// 
+			// barDockControlLeft
+			// 
+			this.barDockControlLeft.CausesValidation = false;
+			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+			this.barDockControlLeft.Manager = this.BarManager;
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
+			// 
+			// barDockControlRight
+			// 
+			this.barDockControlRight.CausesValidation = false;
+			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
+			this.barDockControlRight.Manager = this.BarManager;
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
 			// 
 			// PackageTypeForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1020, 742);
-			this.Controls.Add(this.panelControlStatus);
-			this.Controls.Add(this.splitContainerControl1);
+			this.Controls.Add(this.PanelControlStatus);
+			this.Controls.Add(this.SplitContainerControl);
 			this.Controls.Add(this.barDockControlLeft);
 			this.Controls.Add(this.barDockControlRight);
 			this.Controls.Add(this.barDockControlBottom);
@@ -318,20 +314,19 @@
 			this.ShowInTaskbar = false;
 			this.Text = "Package Types";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackageTypeForm_FormClosing);
-			this.Enter += new System.EventHandler(this.enterControl);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PackageTypeForm_KeyDown);
-			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.PackTypeBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.GridViewPackType)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.TextEditDesc.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-			this.splitContainerControl1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-			this.panelControlStatus.ResumeLayout(false);
-			this.panelControlStatus.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
+			this.SplitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+			this.PanelControlStatus.ResumeLayout(false);
+			this.PanelControlStatus.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -339,21 +334,21 @@
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private System.Windows.Forms.BindingSource PackTypeBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewPackType;
+        private DevExpress.XtraGrid.GridControl GridControlLookup;
+        private System.Windows.Forms.BindingSource BindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
         private DevExpress.XtraEditors.TextEdit TextEditCode;
         private DevExpress.XtraEditors.TextEdit TextEditDesc;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
+        private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
         private DevExpress.XtraGrid.Columns.GridColumn colPACK;
 		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-		private DevExpress.XtraBars.BarManager barManager1;
+		private DevExpress.XtraBars.BarManager BarManager;
 		private DevExpress.XtraBars.Bar bar1;
 		private DevExpress.XtraBars.BarButtonItem barButtonItemNew;
 		private DevExpress.XtraBars.BarButtonItem barButtonItemDelete;
