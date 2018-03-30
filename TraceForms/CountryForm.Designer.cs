@@ -48,6 +48,7 @@
 			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
 			this.SearchLookupEditContinent = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+			this.BindingSourceIdName = new System.Windows.Forms.BindingSource(this.components);
 			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
 			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
 			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -59,7 +60,6 @@
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-			this.BindingSourceIdName = new System.Windows.Forms.BindingSource(this.components);
 			nAMELabel = new System.Windows.Forms.Label();
 			cODELabel = new System.Windows.Forms.Label();
 			label2 = new System.Windows.Forms.Label();
@@ -72,10 +72,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
 			this.SplitContainerControl.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditContinent.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSourceIdName)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
 			this.PanelControlStatus.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.BindingSourceIdName)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// nAMELabel
@@ -248,6 +248,10 @@
 			this.SearchLookupEditContinent.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
 			this.SearchLookupEditContinent.Leave += new System.EventHandler(this.SearchLookupEditContinent_Leave);
 			// 
+			// BindingSourceIdName
+			// 
+			this.BindingSourceIdName.DataSource = typeof(TraceForms.IdName);
+			// 
 			// PanelControlStatus
 			// 
 			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
@@ -357,10 +361,6 @@
 			this.barDockControlRight.Manager = this.BarManager;
 			this.barDockControlRight.Size = new System.Drawing.Size(0, 561);
 			// 
-			// BindingSourceIdName
-			// 
-			this.BindingSourceIdName.DataSource = typeof(TraceForms.IdName);
-			// 
 			// CountryForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,11 +388,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
 			this.SplitContainerControl.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditContinent.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSourceIdName)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
 			this.PanelControlStatus.ResumeLayout(false);
 			this.PanelControlStatus.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.BindingSourceIdName)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

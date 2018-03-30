@@ -1,122 +1,120 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraEditors.ViewInfo;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using FlexModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using FlexModel;
+using Custom_SearchLookupEdit;
+using System.Collections.Generic;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.Utils.Win;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace TraceForms
 {
    
     public partial class BusForm : DevExpress.XtraEditors.XtraForm
     {
-        public string currentVal;
-        public bool modified = false;
-        public bool newRec = false;
-		public bool ignoreLeaveRow = false, ignorePositionChange = false;
-        const string keyColName = "colID";
-        public FlextourEntities context;
-        public string username;
-        public Timer actionConfirmation;
-		public Bus _selectedRecord;
+		FlextourEntities _context;
+		Bus _selectedRecord;
+		Timer _actionConfirmation;
+		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 
-        public BusForm(FlexInterfaces.Core.ICoreSys sys)
+		public BusForm(FlexInterfaces.Core.ICoreSys sys)
         {
-            InitializeComponent();
-            Connect(sys);
-			LoadLookups();
-        }
-
-		void LoadLookups()
-		{
-            bindingNavigator.BackColor = BackColor;     //match the DevExpress style
-            setReadOnly(true);
-			enableNavigator(false);
-
+			try
+			{
+				InitializeComponent();
+				Connect(sys);
+				SetReadOnly(true);
+			}
+			catch (Exception ex)
+			{
+				DisplayHelper.DisplayError(this, ex);
+			}
 		}
-
-        void enableNavigator(bool value)
-        {
-			bindingNavigatorMoveNextItem.Enabled = value;
-			bindingNavigatorMoveLastItem.Enabled = value;
-			bindingNavigatorMoveFirstItem.Enabled = value;
-			bindingNavigatorMovePreviousItem.Enabled = value;
-			bindingNavigatorDeleteItem.Enabled = value;
-			bindingNavigatorSaveItem.Enabled = value;
-        }
 
         private void Connect(FlexInterfaces.Core.ICoreSys sys)
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
-            context = new FlextourEntities(sys.Settings.EFConnectionString);
-            username = sys.User.Name;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
         }
 
-		void setReadOnly(bool value)
+		void SetReadOnly(bool value)
 		{
-			foreach (Control control in splitContainerControl.Panel2.Controls) {
+			foreach (Control control in SplitContainerControl.Panel2.Controls)
+			{
 				control.Enabled = !value;
 			}
 		}
 
+		void SetReadOnlyKeyFields(bool value)
+		{
+			TextEditName.ReadOnly = value;
+		}
+
+		private bool IsModified(Bus record)
+		{
+			//Type-specific routine that takes into account relationships that should also be considered
+			//when deciding if there are unsaved changes.  The entity properties also return true if the
+			//record is new or deleted.
+			return record.IsModified(_context);
+		}
+
 		private bool SaveRecord(bool prompt)
 		{
-			try {
-				if (_selectedRecord == null) return true;
+			try
+			{
+				if (_selectedRecord == null)
+					return true;
 
-                //Call to make sure the modified flag is set, because the Save button doesn't take focus so the Leave event
-                //won't fire on the active control
-                SetErrorInfo(null, ActiveControl);
+				FinalizeBindings();
+				bool newRec = _selectedRecord.IsNew();
+				bool modified = newRec || IsModified(_selectedRecord);
 
-                if (modified || newRec) {
-                    if (prompt) {
-                        DialogResult result = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to confirm these changes?", this.Text, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                        if (result == System.Windows.Forms.DialogResult.No) {
-                            if (newRec) {
-                                RemoveRecord();
-                            }
-                            else {
-                                RefreshRecord();
-                            }
-                            modified = false;
-                            newRec = false;
-                            return true;
-                        }
-                        if (result == System.Windows.Forms.DialogResult.Cancel) {
-                            return false;
-                        }
-                    }
-                    FinalizeBindings();
-                    ValidateAll();
+				if (modified)
+				{
+					if (prompt)
+					{
+						DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+						if (result == DialogResult.No)
+						{
+							if (newRec)
+							{
+								RemoveRecord();
+							}
+							else
+							{
+								RefreshRecord();
+							}
+							return true;
+						}
+						else if (result == DialogResult.Cancel)
+						{
+							return false;
+						}
+					}
+					if (!ValidateAll())
+						return false;
 
-                    if (_selectedRecord.ID == 0) {
-                        context.Bus.AddObject(_selectedRecord);
-                    }
-                    context.SaveChanges();
-                    ShowActionConfirmation("Record Saved");
-                    newRec = false;
-                    modified = false;
-                }
-
-                return true;
-			}
-			catch (Exception ex) {
-				string message = ex.Message;
-				if (message.Contains("inner exception")) {
-					message = ex.InnerException.Message;
+					if (_selectedRecord.EntityState == EntityState.Detached)
+					{
+						_context.Bus.AddObject(_selectedRecord);
+					}
+					_context.SaveChanges();
+					ShowActionConfirmation("Record Saved");
 				}
-				XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				RefreshRecord();		//pull it back from db because that is its current state
-				//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+				return true;
+			}
+			catch (Exception ex)
+			{
+				DisplayHelper.DisplayError(this, ex);
+				RefreshRecord();        //pull it back from db because that is its current state
+										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
 				SetBindings();
 				return false;
 			}
@@ -124,227 +122,167 @@ namespace TraceForms
 
 		private void FinalizeBindings()
 		{
-			bindingSource.EndEdit();
+			BindingSource.EndEdit();
 		}
 
-		private void ValidateAll()
+		private bool ValidateAll()
 		{
-			if (!_selectedRecord.Validate()) {
-				if (_selectedRecord.Errors.ContainsKey("ID")) {
-					//Errors attached to the ID property are non-field specific, eg a duplicate record, so
-					//just show an error message without setting an error icon on a field.
-					throw new Exception(_selectedRecord.Errors["ID"]);
-				}
-				else {
-					ValidateMainControls();
-					throw new Exception("Errors were found. Please resolve them and try again.");
-				}
+			if (!_selectedRecord.Validate())
+			{
+				ShowMainControlErrors();
+				DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+				return false;
 			}
-			else {
-				errorProvider1.Clear();
+			else
+			{
+				ErrorProvider.Clear();
+				return true;
 			}
 		}
 
-		private void ValidateMainControls()
+		private void ShowMainControlErrors()
 		{
 			//Errors on the main form must be set manually
-			SetErrorInfo(_selectedRecord.ValidateName, textEditName);
+			SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
 		}
 
 		private void RefreshRecord()
 		{
-			if (_selectedRecord != null && _selectedRecord.ID != 0) {
-				context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, _selectedRecord);
+			//A Detached record has not yet been added to the context
+			//An Added record has been added but not yet saved, most likely because there was
+			//an error in SaveRecord, in which case we should not retrieve it from the db
+			if (_selectedRecord != null && _selectedRecord.EntityState != EntityState.Detached
+				&& _selectedRecord.EntityState != EntityState.Added)
+			{
+				_context.Refresh(RefreshMode.StoreWins, _selectedRecord);
+				SetReadOnlyKeyFields(true);
 			}
 		}
 
 		private void RemoveRecord()
 		{
-			bindingSource.RemoveCurrent();
+			BindingSource.RemoveCurrent();
 		}
 
 		private void ShowActionConfirmation(string confirmation)
 		{
-			panelControlStatus.Visible = true;
+			PanelControlStatus.Visible = true;
 			LabelStatus.Text = confirmation;
-			actionConfirmation = new Timer();
-			actionConfirmation.Interval = 3000;
-			actionConfirmation.Start();
-			actionConfirmation.Tick += TimedEvent;
+			_actionConfirmation = new Timer {
+				Interval = 3000
+			};
+			_actionConfirmation.Start();
+			_actionConfirmation.Tick += TimedEvent;
 		}
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
-            if (SaveRecord(true)) {
-				gridViewLookup.ClearColumnsFilter();
-				newRec = true;
-				bindingSource.AddNew();
-				//if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-				gridViewLookup.FocusedRowHandle = gridViewLookup.RowCount - 1;
-				textEditName.Focus();
-				setReadOnly(false);
-			}
-            ignoreLeaveRow = false;
-        }
 
         private void DeleteRecord()
 		{
-			if (_selectedRecord == null) return;
+			if (_selectedRecord == null)
+				return;
 
-			try {
-				if (XtraMessageBox.Show("Are you sure you want to delete this record?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-					ignoreLeaveRow = true;
-					ignorePositionChange = true;
+			try
+			{
+				if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes)
+				{
+					_ignoreLeaveRow = true;
+					_ignorePositionChange = true;
 					RemoveRecord();
-					errorProvider1.Clear();
-					if (!newRec) {
+					if (!_selectedRecord.IsNew())
+					{
 						//Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
 						//(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
 						//the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
 						//delete it manually.
 						if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
-							context.Bus.DeleteObject(_selectedRecord);
-						context.SaveChanges();
+							_context.Bus.DeleteObject(_selectedRecord);
+						_context.SaveChanges();
 					}
-					ignoreLeaveRow = false;
-					ignorePositionChange = false;
-					modified = false;
-					newRec = false;
-					if (gridViewLookup.RowCount == 0) {
+					if (GridViewLookup.RowCount == 0)
+					{
 						ClearBindings();
 					}
+					_ignoreLeaveRow = false;
+					_ignorePositionChange = false;
 					SetBindings();
 					ShowActionConfirmation("Record Deleted");
 				}
-				currentVal = textEditName.Text;
 			}
-			catch (Exception ex) {
-				string message = ex.Message;
-				if (message.Contains("inner exception")) {
-					message = ex.InnerException.Message;
-				}
-				XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				RefreshRecord();		//pull it back from db because that is it's current state
-				//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+			catch (Exception ex)
+			{
+				DisplayHelper.DisplayError(this, ex);
+				RefreshRecord();        //pull it back from db because that is it's current state
+										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
 				SetBindings();
 			}
 		}
 
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+		private void TimedEvent(object sender, EventArgs e)
         {
-			DeleteRecord();
-        }
-
-        private void TimedEvent(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            actionConfirmation.Stop();
-        }
-
-        private void BindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-			if (SaveRecord(false))
-				RefreshRecord();
-		}
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (SaveRecord(true))
-                bindingSource.MoveLast();
-        }
-
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {
-			//temp = newRec;
-			//if (!temp && checkForms())
-			//	context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (Bus)RouteBindingSource.Current);
-            //setReadOnly(true);
+            PanelControlStatus.Visible = false;
+            _actionConfirmation.Stop();
         }
 
         private void BusForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-			if (modified || newRec) {
-				DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", Name, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-				if (select == DialogResult.Yes) {
+			if (IsModified(_selectedRecord))
+			{
+				DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
+				if (select == DialogResult.Yes)
+				{
 					e.Cancel = false;
-					this.Dispose();
+					_context.Dispose();
+					Dispose();
 				}
-				else if (select == DialogResult.No)
+				else
 					e.Cancel = true;
 			}
-			else {
+			else
+			{
 				e.Cancel = false;
-				this.Dispose();
+				_context.Dispose();
+				Dispose();
 			}
-        }
-
-        private void enterControl(object sender, EventArgs e)
-        {
-			if (sender.GetType() == typeof(CheckEdit)) {
-				currentVal = ((CheckEdit)sender).Checked.ToString();
-			}
-			else {
-				currentVal = ((Control)sender).Text;
-			}
-        }
+		}
 
         private void BusForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && gridViewLookup.IsFilterRow(gridViewLookup.FocusedRowHandle))
-            {
-                executeQuery();
+			if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle))
+			{
+				ExecuteQuery();
 				e.Handled = true;
-            }
-        }
-
-        private void executeQuery()
-        {
-            this.Cursor = Cursors.WaitCursor;
-            string colName = gridViewLookup.FocusedColumn.FieldName;
-            string value = String.Empty;
-			value = gridViewLookup.GetFocusedDisplayText();
-			string query = "1=1";
-			if (!string.IsNullOrEmpty(gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "Name"))) {
-				query = String.Format(" and it.Name like '%{0}%'", gridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "Name"));
 			}
-			var special = context.Bus.Where(query);
-               
-            int count = special.Count();
-            if (count > 0)
-            {
-                bindingSource.DataSource = special;
-                gridViewLookup.ClearColumnsFilter();
-            }
-            else
-            {
+		}
+
+		private void ExecuteQuery()
+		{
+			Cursor = Cursors.WaitCursor;
+			string query = "1=1";
+			foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns)
+			{
+				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
+				if (!string.IsNullOrEmpty(value))
+				{
+					query += $" and it.{col.FieldName} like '%{value}%'";
+				}
+			}
+
+			var records = _context.Bus.Where(query);
+			if (records.Count() > 0)
+			{
+				BindingSource.DataSource = records;
+				GridViewLookup.ClearColumnsFilter();
+			}
+			else
+			{
 				ClearBindings();
-				XtraMessageBox.Show("No matching records found.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            this.Cursor = Cursors.Default; 
-        }
+				DisplayHelper.DisplayInfo(this, "No matching records found.");
+			}
+			Cursor = Cursors.Default;
+		}
 
 		void ClearBindings()
 		{
-			bindingSource.DataSource = typeof(Bus);
+			BindingSource.DataSource = typeof(Bus);
 		}
 
 		void SetBindings()
@@ -352,92 +290,63 @@ namespace TraceForms
 			//If the route list is filtered, there will be rows in the binding source
 			//that are not visible, and they can become selected if the last visible row
 			//is deleted, so handle that by checking rowcount.
-			if (bindingSource.Current == null) {
+			if (BindingSource.Current == null)
+			{
 				_selectedRecord = null;
-				enableNavigator(false);
-				setReadOnly(true);
+				SetReadOnly(true);
 			}
-			else {
-				_selectedRecord = ((Bus)bindingSource.Current);
-				enableNavigator(true);
-				setReadOnly(false);
+			else
+			{
+				_selectedRecord = ((Bus)BindingSource.Current);
+				SetReadOnly(false);
+				SetReadOnlyKeyFields(true);
 			}
+			ErrorProvider.Clear();
 		}
 
 		private void BusForm_Shown(object sender, EventArgs e)
 		{
-			gridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
-			gridControlLookup.Focus();
+			GridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
+			GridControlLookup.Focus();
 		}
 
 		private void SetErrorInfo(Func<String> validationMethod, object sender)
 		{
-            bindingSource.EndEdit();		//force changes back into context for validation
-            if (sender != null && sender != gridControlLookup) {
-                if (sender.GetType() == typeof(CheckEdit)) {
-                    if (currentVal != ((CheckEdit)sender).Checked.ToString()) {
-                        modified = true;
-                    }
-                }
-                else {
-                    if (currentVal != ((Control)sender).Text) {
-                        modified = true;
-                    }
-                }
-                //Put this here to save the current value of the control into currentVal in the cases
-                //where this event was fired without a new control gaining focus, ie when the Save
-                //button is clicked, otherwise when the focus changes later on, it will prompt to 
-                //save again.
-                enterControl(sender, new EventArgs());
-            }
-			if (validationMethod != null) {
+			BindingSource.EndEdit();        //force changes back into context for validation
+			if (validationMethod != null)
+			{
 				string error = validationMethod.Invoke();
-				errorProvider1.SetError((Control)sender, error);
+				ErrorProvider.SetError((Control)sender, error);
 			}
 		}
 
-		private void checkEditInService_Leave(object sender, EventArgs e)
-		{
-			if (_selectedRecord != null)
-				SetErrorInfo(null, sender);
-		}
-
-		private void gridViewLookup_BeforeLeaveRow(object sender, RowAllowEventArgs e)
+		private void GridViewLookup_BeforeLeaveRow(object sender, RowAllowEventArgs e)
 		{
 			//If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
 			//this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
 			//that may need to be saved. 
-			if (!ignoreLeaveRow && _selectedRecord != null && (modified || newRec)) {
+			if (!_ignoreLeaveRow && IsModified(_selectedRecord))
+			{
 				e.Allow = SaveRecord(true);
 			}
 		}
 
-		private void gridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
+		private void GridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
 		{
-			if (gridViewLookup.DataRowCount == 0) {
+			if (GridViewLookup.DataRowCount == 0) {
 				ClearBindings();
 			}
 		}
 
-		private void gridViewLookup_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+		private void GridViewLookup_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
 		{
 			e.ExceptionMode = ExceptionMode.NoAction;
 		}
 
-        private void textEditName_Leave(object sender, EventArgs e)
+        private void TextEditName_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateName, sender);
-        }
-
-        private void textEditFleetMgmtID_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textEditFleetMgmtIPAddress_Leave(object sender, EventArgs e)
-        {
-
         }
 
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
@@ -446,13 +355,42 @@ namespace TraceForms
 			//record in the table, then SetBindings will clear the bindings, which will cause the delete
 			//to fail because the associated entities will become detached when their BindingSources are cleared.
 			//Thus we have a flag which is set in that case to ignore this event.
-			if (!ignorePositionChange)
+			if (!_ignorePositionChange)
 				SetBindings();
 		}
 
-		private void spinEditCapacity_Leave(object sender, EventArgs e)
+		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
+			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
+			if (SaveRecord(true))
+			{
+				GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
+				BindingSource.AddNew();
+				//if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+				GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
+				SetReadOnlyKeyFields(false);
+				TextEditName.Focus();
+				SetReadOnly(false);
+			}
+			ErrorProvider.Clear();
+			_ignoreLeaveRow = false;
+		}
 
+		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			DeleteRecord();
+		}
+
+		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (SaveRecord(false))
+				RefreshRecord();
+		}
+
+		private void SpinEditCapacity_Leave(object sender, EventArgs e)
+		{
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCapacity, sender);
 		}
 
     }

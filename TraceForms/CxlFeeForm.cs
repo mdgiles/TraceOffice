@@ -1,862 +1,597 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using DevExpress.XtraEditors;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using System.Runtime.InteropServices;
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using System.Linq;
-using DevExpress.XtraGrid.Columns;
-using System.Runtime.InteropServices;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views;
-using DevExpress.XtraEditors.Repository;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid;
+using FlexModel;
+using Custom_SearchLookupEdit;
+using System.Collections.Generic;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Win;
+
 namespace TraceForms
 {
     
     public partial class CxlFeeForm : DevExpress.XtraEditors.XtraForm
     {
-        public string currentVal;
-        public bool modified = false;
-        public bool newRec = false;
-        public bool temp = false;
-        const string colName = "colCODE";
-        public FlextourEntities context;
-        public string username;
-        public Timer rowStatusDelete;
-        public Timer rowStatusSave;
-        public ImageComboBoxItemCollection opts;
-        public ImageComboBoxItemCollection htls;
-        public CxlFeeForm(FlexInterfaces.Core.ICoreSys sys)
+		FlextourEntities _context;
+		CXLFEE _selectedRecord;
+		Timer _actionConfirmation;
+		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+		Dictionary<String, List<CodeName>> _productLookups;
+
+		public CxlFeeForm(FlexInterfaces.Core.ICoreSys sys)
         {
             InitializeComponent();
             Connect(sys);
-            LoadLookups();           
+            LoadLookups();
+			SetReadOnly(true);
         }
 
         private void Connect(FlexInterfaces.Core.ICoreSys sys)
         {
-            Connection.EFConnectionString = sys.Settings.EFConnectionString;
-            context = new FlextourEntities(sys.Settings.EFConnectionString);
-            username = sys.User.Name;
-        }
+			Connection.EFConnectionString = sys.Settings.EFConnectionString;
+			_context = new FlextourEntities(sys.Settings.EFConnectionString);
+		}
 
-        private void LoadLookups()
+		void SetReadOnly(bool value)
+		{
+			foreach (Control control in SplitContainerControl.Panel2.Controls)
+			{
+				control.Enabled = !value;
+			}
+		}
+
+		private void LoadLookups()
         {
-            opts = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            htls = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            lockGrid(true);
-            var agy = from agyRec in context.AGY orderby agyRec.NO ascending select new { agyRec.NO, agyRec.NAME };
-            var cats = from catRec in context.ROOMCOD orderby catRec.CODE ascending select new { catRec.CODE, catRec.DESC };
-            var comps = from compRec in context.COMP orderby compRec.CODE ascending select new { compRec.CODE, compRec.NAME };
-            var hotels = from hotRec in context.HOTEL orderby hotRec.CODE ascending select new { hotRec.CODE, hotRec.NAME}; 
+			CodeName loadBlank = new CodeName(string.Empty);
 
-            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
-            ImageComboBoxEditCat.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditAgency.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditCode.Properties.Items.Add(loadBlank);
-            foreach (var result in agy)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.NO.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.NO.TrimEnd() };
-                ImageComboBoxEditAgency.Properties.Items.Add(load);
-            }
-            foreach (var result in cats)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.DESC.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditCat.Properties.Items.Add(load);
-            }
-            foreach (var result in comps)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditCode.Properties.Items.Add(load);
-                opts.Add(load);
-            }
-            foreach (var result in hotels)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                htls.Add(load);
-            }
-            enableNavigator(false);
-            expandContractGridButton.Tag = "right";
-        }
+			_productLookups = new Dictionary<String, List<CodeName>>();
 
-        void enableNavigator(bool value)
+			List<CodeName> lookup;
+			//EF will try to execute the entire projection on the sql side, which knows nothing about string.format so it will
+			//error. Putting AsEnumerable beforehand will tell EF to execute sql side up to there and return results, then the
+			//rest will be EF client side
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.HOTEL
+				.OrderBy(t => t.CODE)
+				.Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+			_productLookups.Add("HTL", lookup);
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.COMP
+				.OrderBy(t => t.CODE)
+				.Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+			_productLookups.Add("OPT", lookup);
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.PACK
+				.OrderBy(t => t.CODE)
+				.Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+			_productLookups.Add("PKG", lookup);
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.AGY
+				.OrderBy(t => t.NO)
+				.Select(t => new CodeName() { Code = t.NO, Name = t.NAME }));
+			SearchLookupEditAgency.Properties.DataSource = lookup;
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.ROOMCOD
+				.OrderBy(t => t.CODE)
+				.Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
+			SearchLookupEditCategory.Properties.DataSource = lookup;
+		}
+
+		private void ShowActionConfirmation(string confirmation)
+		{
+			PanelControlStatus.Visible = true;
+			LabelStatus.Text = confirmation;
+			_actionConfirmation = new Timer {
+				Interval = 3000
+			};
+			_actionConfirmation.Start();
+			_actionConfirmation.Tick += TimedEvent;
+		}
+
+		private void TimedEvent(object sender, EventArgs e)
+		{
+			PanelControlStatus.Visible = false;
+			_actionConfirmation.Stop();
+		}
+
+		private void RemoveRecord()
+		{
+			BindingSource.RemoveCurrent();
+		}
+
+		private void RefreshRecord()
+		{
+			//A Detached record has not yet been added to the context
+			//An Added record has been added but not yet saved, most likely because there was
+			//an error in SaveRecord, in which case we should not retrieve it from the db
+			if (_selectedRecord != null && _selectedRecord.EntityState != EntityState.Detached
+				&& _selectedRecord.EntityState != EntityState.Added)
+			{
+				_context.Refresh(RefreshMode.StoreWins, _selectedRecord);
+			}
+		}
+
+		private void SearchLookupEdit_Popup(object sender, EventArgs e)
+		{
+			//Hide the Find button because it doesn't do anything when auto - filtering, except it
+			//is useful to let the user know the purpose of the filter field, because it has no label
+			//LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+			//((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+			PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+			popupForm.KeyPreview = true;
+			popupForm.KeyUp -= PopupForm_KeyUp;
+			popupForm.KeyUp += PopupForm_KeyUp;
+
+			//SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+		}
+
+		private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+		{
+			bool gotMatch = false;
+			PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+			if (e.KeyData == Keys.Enter) {
+				string searchText = popupForm.Properties.View.FindFilterText;
+				if (!string.IsNullOrEmpty(searchText)) {
+					GridView view = popupForm.OwnerEdit.Properties.View;
+					//If there is a match is on the ValueMember (Code) column, that should take precedence
+					//This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+					//int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+					for (int row = 0; row < view.DataRowCount; row++) {
+						CodeName codeName = (CodeName)view.GetRow(row);
+						if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+							view.FocusedRowHandle = row;
+							gotMatch = true;
+							break;
+						}
+					}
+					if (!gotMatch) {
+						view.FocusedRowHandle = 0;
+					}
+					popupForm.OwnerEdit.ClosePopup();
+				}
+			}
+		}
+
+		private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e)
+		{
+			//Users did not like have to type quotes in order to get an exact match of entered terms rather than any word being matched
+			//https://www.devexpress.com/Support/Center/Example/Details/E3135/how-to-implement-an-event-allowing-you-to-customize-a-filter-string-produced-by-the-find
+			//Also requires the custom inherited version of the SearchLookupEdit in the Custom_SearchLookupEdit namespace
+			if (!string.IsNullOrEmpty(e.FilterText)) {
+				e.FilterText = '"' + e.FilterText + '"';
+			}
+		}
+
+		private bool SaveRecord(bool prompt)
+		{
+			try
+			{
+				if (_selectedRecord == null)
+					return true;
+
+				FinalizeBindings();
+				bool newRec = _selectedRecord.IsNew();
+				bool modified = newRec || IsModified(_selectedRecord);
+
+				if (modified)
+				{
+					if (prompt)
+					{
+						DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+						if (result == DialogResult.No)
+						{
+							if (newRec)
+							{
+								RemoveRecord();
+							}
+							else
+							{
+								RefreshRecord();
+							}
+							return true;
+						}
+						else if (result == DialogResult.Cancel)
+						{
+							return false;
+						}
+					}
+					if (!ValidateAll())
+						return false;
+
+					if (_selectedRecord.EntityState == EntityState.Detached)
+					{
+						_context.CXLFEE.AddObject(_selectedRecord);
+					}
+					_context.SaveChanges();
+					ShowActionConfirmation("Record Saved");
+				}
+				return true;
+			}
+			catch (Exception ex)
+			{
+				DisplayHelper.DisplayError(this, ex);
+				RefreshRecord();        //pull it back from db because that is its current state
+										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+				SetBindings();
+				return false;
+			}
+		}
+
+		private bool IsModified(CXLFEE record)
+		{
+			//Type-specific routine that takes into account relationships that should also be considered
+			//when deciding if there are unsaved changes.  The entity properties also return true if the
+			//record is new or deleted.
+			return record.IsModified(_context);
+		}
+
+		private void FinalizeBindings()
+		{
+			BindingSource.EndEdit();
+		}
+
+		void SetBindings()
+		{
+			//If the route list is filtered, there will be rows in the binding source
+			//that are not visible, and they can become selected if the last visible row
+			//is deleted, so handle that by checking rowcount.
+			if (BindingSource.Current == null)
+			{
+				_selectedRecord = null;
+				SetReadOnly(true);
+			}
+			else
+			{
+				_selectedRecord = ((CXLFEE)BindingSource.Current);
+				SetReadOnly(false);
+			}
+			ErrorProvider.Clear();
+		}
+
+		private bool ValidateAll()
+		{
+			if (!_selectedRecord.Validate())
+			{
+				ShowMainControlErrors();
+				DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+				return false;
+			}
+			else
+			{
+				ErrorProvider.Clear();
+				return true;
+			}
+		}
+
+		private void ShowMainControlErrors()
+		{
+			//The error indicators inside the grids are handled by binding, but errors on the main form must
+			//be set manually
+			SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
+			SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
+			SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
+			SetErrorInfo(_selectedRecord.ValidateCat, SearchLookupEditCategory);
+			SetErrorInfo(_selectedRecord.ValidateStart, DateEditStartDate);
+			SetErrorInfo(_selectedRecord.ValidateEnd, DateEditEndDate);
+			SetErrorInfo(_selectedRecord.ValidateNts, SpinEditNtsPrior);
+			SetErrorInfo(_selectedRecord.ValidateCxlDate, DateEditOnAfterDate);
+			SetErrorInfo(_selectedRecord.ValidateNbrNts, SpinEditNbrNts);
+			SetErrorInfo(_selectedRecord.ValidatePctAmt, SpinEditPctAmt);
+			SetErrorInfo(_selectedRecord.ValidateFlatFee, SpinEditFlatFee);
+			SetErrorInfo(_selectedRecord.ValidateTimeAfter, SpinEditTimeAfter);
+			SetErrorInfo(_selectedRecord.ValidateTimeBasis, ImageComboBoxEditTimeBasis);
+			SetErrorInfo(_selectedRecord.ValidateTimeUnits, ImageComboBoxEditTimeUnits);
+		}
+
+		private void SetErrorInfo(Func<String> validationMethod, object sender)
+		{
+			BindingSource.EndEdit();        //force changes back into context for validation
+			if (validationMethod != null)
+			{
+				string error = validationMethod.Invoke();
+				ErrorProvider.SetError((Control)sender, error);
+			}
+		}
+
+		private void DeleteRecord()
+		{
+			if (_selectedRecord == null)
+				return;
+
+			try {
+				if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+					_ignoreLeaveRow = true;
+					_ignorePositionChange = true;
+					RemoveRecord();
+					if (!_selectedRecord.IsNew()) {
+						//Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
+						//(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
+						//the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
+						//delete it manually.
+						if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
+							_context.CXLFEE.DeleteObject(_selectedRecord);
+						_context.SaveChanges();
+					}
+					if (GridViewLookup.RowCount == 0) {
+						ClearBindings();
+					}
+					_ignoreLeaveRow = false;
+					_ignorePositionChange = false;
+					SetBindings();
+					ShowActionConfirmation("Record Deleted");
+				}
+			}
+			catch (Exception ex) {
+				DisplayHelper.DisplayError(this, ex);
+				RefreshRecord();        //pull it back from db because that is it's current state
+										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+				SetBindings();
+			}
+		}
+
+		void ClearBindings()
+		{
+			BindingSource.DataSource = typeof(CXLFEE);
+		}
+
+
+		private void CxlFeeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
+			if (IsModified(_selectedRecord)) {
+				DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure you want to exit?");
+				if (select == DialogResult.Yes) {
+					e.Cancel = false;
+					_context.Dispose();
+					Dispose();
+				}
+				else
+					e.Cancel = true;
+			}
+			else {
+				e.Cancel = false;
+				_context.Dispose();
+				Dispose();
+			}
+		}
 
-        private void lockGrid(bool val)
-        {
-			return;
-            //Unique key is type, code, agency, cat, start date, end date, nts prior, cxl date
-			//tYPEComboBoxEdit.Properties.ReadOnly = val;
-			//ImageComboBoxEditAgency.Properties.ReadOnly = val;
-			//ImageComboBoxEditCat.Properties.ReadOnly = val;
-			//ImageComboBoxEditCode.Properties.ReadOnly = val;
-			//sTART_DATEDateEdit.Properties.ReadOnly = val;
-			//eND_DATEDateEdit.Properties.ReadOnly = val;
-			//nTS_PRIORSpinEdit.Enabled = !val;
-			//cXL_DATEDateEdit.Enabled = !val;
-			//GridViewCxlFee.Columns.ColumnByName(colName).OptionsColumn.AllowEdit = !(val);
-        }   
-
-        void ButtonEdit_QueryPopUp1(object sender, CancelEventArgs e)
-        {
-            e.Cancel = false;           
-        }
-
-        private void CxlFeeForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (modified || newRec)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", Name, MessageBoxButtons.YesNo);
-                if (select == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                    this.Dispose();
-                }
-                else if (select == DialogResult.No)
-                    e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = false;
-                this.Dispose();
-            }
-        }
-
-        private void enterControl(object sender, EventArgs e)
-        {
-            currentVal = ((Control)sender).Text;
-        }
-        /*
-         * ____ On the add of a new record, all the fields cleared but there was an warning message at the code field that it needed a value. 
-         * It did clear once I filled it.
-
-____ Clicked the No Show check box and the on/after date did go grey as it should, but I still could enter a date.  Also, the value in
- Nights prior should go to -1 and go grey. See the screen shots toward the end of this email (dated Thursday, August 15, 2013 1:52 PM).
-
-_____ was able to enter Fee / Number of nights as a negative number.  I am checking to see if this is ok or not…
-
-_____ Should not be able to change stuff in the lookup panel.  when I did and moved off that record it asked to save or not.
-
-
-         * 
-         * 
-         * 
-         * 
-         *  */
-        private void setValues()
-        {
-            checkEdit1.EditValue = false;
-            GridViewCxlFee.SetFocusedRowCellValue("CODE", string.Empty);
-            GridViewCxlFee.SetFocusedRowCellValue("TYPE", string.Empty);
-            GridViewCxlFee.SetFocusedRowCellValue("AGENCY", string.Empty);
-            GridViewCxlFee.SetFocusedRowCellValue("CAT", string.Empty);
-            GridViewCxlFee.SetFocusedRowCellValue("NTS_PRIOR", 0);
-            GridViewCxlFee.SetFocusedRowCellValue("NBR_NTS", 0);
-            GridViewCxlFee.SetFocusedRowCellValue("PCT_AMT", 0);
-            GridViewCxlFee.SetFocusedRowCellValue("FLAT_FEE", 0);
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            
-            GridViewCxlFee.ClearColumnsFilter();
-            if (CxlFeeBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                CxlFeeBindingSource.DataSource = from opt in context.CXLFEE where opt.CODE == "KJM9" select opt;
-                CxlFeeBindingSource.AddNew();
-                if (GridViewCxlFee.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewCxlFee.FocusedRowHandle = GridViewCxlFee.RowCount - 1;
-                setValues();
-               
-                lockGrid(false);
-                tYPEComboBoxEdit.Focus();
-                nTS_PRIORSpinEdit.Enabled = true;
-                newRec = true;
-                return;
-            }
-            tYPEComboBoxEdit.Focus();  //trigger field leave event
-            GridViewCxlFee.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-                CxlFeeBindingSource.AddNew();
-                if (GridViewCxlFee.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewCxlFee.FocusedRowHandle = GridViewCxlFee.RowCount - 1;
-                setValues();
-               
-                lockGrid(false);
-                tYPEComboBoxEdit.Focus();
-                nTS_PRIORSpinEdit.Enabled = true;
-                newRec = true;
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current == null)
-                return;
-
-            GridViewCxlFee.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                modified = false;
-                newRec = false;
-                CxlFeeBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-                lockGrid(true);
-            }
-
-
-            tYPEComboBoxEdit.Focus();
-            currentVal = ImageComboBoxEditCode.Text;  
-            modified = false;
-            newRec = false;
-        }
-
-        private void TimedEventDelete(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusDelete.Stop();
-        }
-
-
-        private bool checkForms()
-        {
-            if (!modified && !newRec)
-                return true;
-            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkAll, CxlFeeBindingSource);
-
-            if (validateMain)
-                return validCheck.saveRec(ref modified, true, ref newRec, context, CxlFeeBindingSource, Name, errorProvider1, Cursor);
-            else
-            {
-                validCheck.saveRec(ref modified, false, ref newRec, context, CxlFeeBindingSource, Name, errorProvider1, Cursor);
-                //errorProvider1.Clear();
-                return false;
-            }
-        }
-
-        private bool checkDuplicates()
-        {
-            
-            DateTime start = new DateTime();
-            DateTime end = new DateTime();
-            DateTime cxldate = new DateTime();
-            if (!string.IsNullOrWhiteSpace(sTART_DATEDateEdit.Text))
-                start = Convert.ToDateTime(sTART_DATEDateEdit.Text);
-
-            if (!string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text))
-                end = Convert.ToDateTime(eND_DATEDateEdit.Text);
-
-            if (!string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text))
-                cxldate = Convert.ToDateTime(cXL_DATEDateEdit.Text);
-
-            string code = ImageComboBoxEditCode.EditValue.ToString();
-            string agency = ImageComboBoxEditAgency.EditValue.ToString();
-            string cat = ImageComboBoxEditCat.EditValue.ToString();
-
-            if ((from cxlRec in context.CXLFEE where cxlRec.CODE == code && cxlRec.AGENCY == agency && cxlRec.CAT == cat && cxlRec.TYPE == tYPEComboBoxEdit.Text && cxlRec.NTS_PRIOR == nTS_PRIORSpinEdit.Value && cxlRec.START_DATE == start && cxlRec.END_DATE == end && cxlRec.CXL_DATE == cxldate select cxlRec).Count() > 0)
-                return true;
-
-            return false;
-        }
-
-        private void cXLFEEBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current == null)
-                return;
-
-            if (checkDuplicates())
-            {
-                MessageBox.Show("You are attempting to enter a duplicate record, please correct the values.");
-                return;
-            }
-
-            //if (nBR_NTSSpinEdit.Value == 0 && pCT_AMTTextEdit.Text == "0" && fLAT_FEETextEdit.Text == "0")
-            //{
-            //    MessageBox.Show("One of the fee methods must be entered.");
-            //    return;
-            //}
-            GridViewCxlFee.CloseEditor();
-            tYPEComboBoxEdit.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                tYPEComboBoxEdit.Focus();
-                lockGrid(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-            
-        }
-
-        private void TimedEventSave(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusSave.Stop();
-        }
-
-        private bool move()
-        {
-            GridViewCxlFee.CloseEditor();
-            tYPEComboBoxEdit.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-                lockGrid(true);                
-                newRec = false;
-                modified = false;
-                return true;
-            }
-            return false;
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                CxlFeeBindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                CxlFeeBindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                CxlFeeBindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                CxlFeeBindingSource.MoveLast();
-        }
-
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {
-            temp = newRec;
-            bool temp2 = modified;
-            if (checkForms())
-            {
-                e.Allow = true;
-                if ((!temp) && temp2)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-                lockGrid(true);
-            }
-            else
-            {
-                if (!temp && !modified)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-          
-                e.Allow = false;
-            }
-        }
-
-        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            if (!GridViewCxlFee.IsFilterRow(e.RowHandle))
-                modified = true;
-            labelControl2.Text = DateTime.Today.ToShortDateString();
-            labelControl4.Text = username;            
-        }
-
-        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
 
-        private void tYPEComboBoxEdit_Leave(object sender, EventArgs e)
+        private void ComboBoxEditType_Leave(object sender, EventArgs e)
         {
-            if (CxlFeeBindingSource.Current != null)
-            {
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkType, CxlFeeBindingSource);
-                }
-            }
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateType, sender);
+		}
 
-        private void sTART_DATEDateEdit_Leave(object sender, EventArgs e)
+        private void DateEditStartDate_Leave(object sender, EventArgs e)
         {
-           
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkStart, CxlFeeBindingSource);
-                }
-            
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateStart, sender);
+		}
 
-        private void eND_DATEDateEdit_Leave(object sender, EventArgs e)
+        private void DateEditEndDate_Leave(object sender, EventArgs e)
         {
-            
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkEnd, CxlFeeBindingSource);
-                }
-            
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateEnd, sender);
+		}
 
-        private void nTS_PRIORSpinEdit_Leave(object sender, EventArgs e)
+        private void SpinEditNtsPrior_Leave(object sender, EventArgs e)
         {
-            
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkNts, CxlFeeBindingSource);
-                }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateNts, sender);
+		}
 
-                if (nTS_PRIORSpinEdit.Value == -1)
-                {
-                    // checkEdit1.Checked = true;
-                    cXL_DATEDateEdit.Text = "";
-                    //cXL_DATEDateEdit.Enabled = false;
-                    cXL_DATEDateEdit.Enabled = false;
-                    //  nTS_PRIORSpinEdit.Enabled = false;
-                }
-
-                ////////////if (nTS_PRIORSpinEdit.Value == 0 )
-                ////////////{
-                ////////////    checkEdit1.Checked = false;
-                ////////////  // 
-                ////////////    nTS_PRIORSpinEdit.Enabled = false;
-                ////////////    //cXL_DATEDateEdit.Enabled = true;
-                ////////////    cXL_DATEDateEdit.Enabled = true;
-                ////////////}
-
-                if (nTS_PRIORSpinEdit.Value > 0)
-                {
-                    //checkEdit1.Checked = false;
-                    cXL_DATEDateEdit.Text = "";
-                    nTS_PRIORSpinEdit.Enabled = true;
-                    //  cXL_DATEDateEdit.Enabled = false;
-                    cXL_DATEDateEdit.Enabled = false;
-                }
-
-                if (string.IsNullOrWhiteSpace(nTS_PRIORSpinEdit.Text))
-                {
-                    //cXL_DATEDateEdit.Enabled = true;    
-                    cXL_DATEDateEdit.Enabled = true;
-                }
-
-
-        }
-
-        private void cXL_DATEDateEdit_Leave(object sender, EventArgs e)
+        private void DateEditCxlDate_Leave(object sender, EventArgs e)
         {
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkCxlDate, CxlFeeBindingSource);
-                }
-            
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCxlDate, sender);
+		}
 
-        private void nBR_NTSSpinEdit_Leave(object sender, EventArgs e)
+        private void SpinEditNbrNts_Leave(object sender, EventArgs e)
         {
-           
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkNbrNts, CxlFeeBindingSource);
-                }
-            
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateNbrNts, sender);
+		}
 
-        private void pCT_AMTTextEdit_Leave(object sender, EventArgs e)
+        private void TextEditPctAmt_Leave(object sender, EventArgs e)
         {
-            
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkPctAmt, CxlFeeBindingSource);
-                }
-          
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidatePctAmt, sender);
+		}
 
-        private void fLAT_FEETextEdit_Leave(object sender, EventArgs e)
+        private void TextEditFlatFee_Leave(object sender, EventArgs e)
         {
-            
-                if (CxlFeeBindingSource.Current != null)
-                {
-                    if (currentVal != ((Control)sender).Text)
-                    {
-                        modified = true;
-                        labelControl2.Text = DateTime.Today.ToShortDateString();
-                        labelControl4.Text = username;
-                    }
-                    validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkFltFee, CxlFeeBindingSource);
-                }
-          
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateFlatFee, sender);
+		}
 
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
+        private void ComboBoxEditType_TextChanged(object sender, EventArgs e)
         {
-            temp = newRec;
-           if (!temp && checkForms())
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (CXLFEE)CxlFeeBindingSource.Current);
-          
-        }
+			string type = ComboBoxEditType.Text;
+			LoadCodeLookupValues(type, SearchLookupEditCode);
+		}
 
-        private void tYPEComboBoxEdit_TextChanged(object sender, EventArgs e)
+		private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
+		{
+			if (_productLookups.ContainsKey(type)) {
+				editor.Properties.DataSource = _productLookups[type];
+			}
+			else {
+				editor.Properties.DataSource = null;
+			}
+		}
+
+		private void CxlFeeForm_KeyDown(object sender, KeyEventArgs e)
         {
-            ImageComboBoxEditCode.Properties.Items.Clear();
-            if (tYPEComboBoxEdit.Text == "OPT")
-            {                       
-                ImageComboBoxEditCode.Properties.Items.AddRange(opts);
-            }
-            if (tYPEComboBoxEdit.Text == "HTL")
-            {
-                ImageComboBoxEditCode.Properties.Items.AddRange(htls);
-            }
-        }
-           
+			if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
+				ExecuteQuery();
+				e.Handled = true;
+			}
+		}
 
-        private void sTART_DATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+		private void ExecuteQuery()
+		{
+			Cursor = Cursors.WaitCursor;
+			string query = "1=1";
+			foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
+				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
+				if (!string.IsNullOrEmpty(value)) {
+					query += $" and it.{col.FieldName} like '%{value}%'";
+				}
+			}
+
+			var records = _context.CXLFEE.Where(query);
+			if (records.Count() > 0) {
+				BindingSource.DataSource = records;
+				GridViewLookup.ClearColumnsFilter();
+			}
+			else {
+				ClearBindings();
+				DisplayHelper.DisplayInfo(this, "No matching records found.");
+			}
+			Cursor = Cursors.Default;
+		}
+
+		private void SearchLookupEditCode_Leave(object sender, System.EventArgs e)
         {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCode, sender);
+		}
 
-        private void sTART_DATEDateEdit_TextChanged(object sender, EventArgs e)
+        private void SearchLookupEditAgency_Leave(object sender, System.EventArgs e)
         {
-           // sTART_DATEDateEdit.Text = validCheck.convertDate(sTART_DATEDateEdit.Text);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateAgency, sender);
+		}
 
-            if (!string.IsNullOrWhiteSpace(sTART_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).START_DATE.ToString()))
-                sTART_DATEDateEdit.Text = validCheck.convertDate(sTART_DATEDateEdit.Text);
-            else if (string.IsNullOrWhiteSpace(sTART_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).START_DATE.ToString()))
-                sTART_DATEDateEdit.Text = validCheck.convertDate(((CXLFEE)CxlFeeBindingSource.Current).START_DATE.ToString());
-            else if (string.IsNullOrWhiteSpace(sTART_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).START_DATE.ToString()))
-                ((CXLFEE)CxlFeeBindingSource.Current).START_DATE = null;
-            else if (!string.IsNullOrWhiteSpace(sTART_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).START_DATE.ToString()))
-                sTART_DATEDateEdit.Text = validCheck.convertDate(sTART_DATEDateEdit.Text);
-        }
-
-        private void eND_DATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void SearchLookupEditCategory_Leave(object sender, System.EventArgs e)
         {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
+		}
 
-        private void eND_DATEDateEdit_TextChanged(object sender, EventArgs e)
+		private void ImageComboBoxEditTimeBasis_Leave(object sender, EventArgs e)
+		{
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
+		}
+
+		private void ImageComboBoxEditTimeUnits_Leave(object sender, EventArgs e)
+		{
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
+		}
+
+		private void SpinEditTimeAfter_Leave(object sender, EventArgs e)
+		{
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
+		}
+
+		private void BindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
-            //eND_DATEDateEdit.Text = validCheck.convertDate(eND_DATEDateEdit.Text);
+			//If the current record is changing as a result of removing a record to delete it, and it is the last
+			//record in the table, then SetBindings will clear the bindings, which will cause the delete
+			//to fail because the associated entities will become detached when their BindingSources are cleared.
+			//Thus we have a flag which is set in that case to ignore this event.
+			if (!_ignorePositionChange)
+				SetBindings();
+		}
 
-            if (!string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).END_DATE.ToString()))
-                eND_DATEDateEdit.Text = validCheck.convertDate(eND_DATEDateEdit.Text);
-            else if (string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).END_DATE.ToString()))
-                eND_DATEDateEdit.Text = validCheck.convertDate(eND_DATEDateEdit.Text);
-            else if (string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).END_DATE.ToString()))
-                ((CXLFEE)CxlFeeBindingSource.Current).END_DATE = null;
-            else if (!string.IsNullOrWhiteSpace(eND_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).END_DATE.ToString()))
-                eND_DATEDateEdit.Text = validCheck.convertDate(eND_DATEDateEdit.Text);
-        }
+		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
+			if (SaveRecord(true)) {
+				GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
+				BindingSource.AddNew();
+				//if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+				GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
+				SetReadOnly(false);
+			}
+			ErrorProvider.Clear();
+			_ignoreLeaveRow = false;
+		}
 
-        private void cXL_DATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
+		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			DeleteRecord();
+		}
 
-        private void cXL_DATEDateEdit_TextChanged(object sender, EventArgs e)
-        {
-            //cXL_DATEDateEdit.Text = validCheck.convertDate(cXL_DATEDateEdit.Text);
+		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (SaveRecord(false))
+				RefreshRecord();
+		}
 
-            if (!string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).CXL_DATE.ToString()))
-                cXL_DATEDateEdit.Text = validCheck.convertDate(cXL_DATEDateEdit.Text);
-            else if (string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).CXL_DATE.ToString()))
-                cXL_DATEDateEdit.Text = validCheck.convertDate(cXL_DATEDateEdit.Text);
-            else if (string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).CXL_DATE.ToString()))
-                ((CXLFEE)CxlFeeBindingSource.Current).CXL_DATE = null;
-            else if (!string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text) && !string.IsNullOrWhiteSpace(((CXLFEE)CxlFeeBindingSource.Current).CXL_DATE.ToString()))
-                cXL_DATEDateEdit.Text = validCheck.convertDate(cXL_DATEDateEdit.Text);
-
-
-            if (!string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text) && string.IsNullOrWhiteSpace(nTS_PRIORSpinEdit.Text))
-                nTS_PRIORSpinEdit.Enabled = false;
-
-            if (string.IsNullOrWhiteSpace(cXL_DATEDateEdit.Text))
-                nTS_PRIORSpinEdit.Enabled = true;
-        }
-
-        private void CxlFeeForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && GridViewCxlFee.IsFilterRow(GridViewCxlFee.FocusedRowHandle))
-            {
-                executeQuery();
-            }
-        }
-
-        private void executeQuery()
-        {
-            this.Cursor = Cursors.WaitCursor;
-            string colName = GridViewCxlFee.FocusedColumn.FieldName;
-            string value = String.Empty;
-            if (!string.IsNullOrWhiteSpace(GridViewCxlFee.GetFocusedDisplayText()))
-                value = GridViewCxlFee.GetFocusedDisplayText();
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                string query = String.Format("it.CODE like '{0}%'", GridViewCxlFee.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CODE"));
-                var special = context.CXLFEE.Where(query);
-               
-                if (!string.IsNullOrWhiteSpace(GridViewCxlFee.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CAT")))
-                {
-                    query = String.Format("it.{0} like '{1}%'", "CAT", GridViewCxlFee.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CAT"));
-                    special = special.Where(query);
-                }
-
-                int count = special.Count();
-                if (count > 0)
-                {
-                    CxlFeeBindingSource.DataSource = special;
-                    GridViewCxlFee.SetRowCellValue(GridControl.AutoFilterRowHandle, colName, value);
-                    GridViewCxlFee.FocusedRowHandle = 0;
-                    GridViewCxlFee.FocusedColumn.FieldName = colName;
-                    GridViewCxlFee.ClearColumnsFilter();
-                }
-                else
-                {
-                    MessageBox.Show("No records in database.");
-                    GridViewCxlFee.ClearColumnsFilter();
-                }
-            }
-            this.Cursor = Cursors.Default;
-        }
-
-        private void ImageComboBoxEditCode_Leave(object sender, System.EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl2.Text = DateTime.Today.ToShortDateString();
-                    labelControl4.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkCode, CxlFeeBindingSource);
-            }         
-
-        }
-
-        private void ImageComboBoxEditAgency_Leave(object sender, System.EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl2.Text = DateTime.Today.ToShortDateString();
-                    labelControl4.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkAgency, CxlFeeBindingSource);
-            }
-
-        }
-
-        private void ImageComboBoxEditCat_Leave(object sender, System.EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl2.Text = DateTime.Today.ToShortDateString();
-                    labelControl4.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((CXLFEE)CxlFeeBindingSource.Current).checkCat, CxlFeeBindingSource);
-            }
-        }
-
-        private void CxlFeeBindingSource_CurrentChanged(object sender, System.EventArgs e)
-        {
-            if (CxlFeeBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
-        }
-
-        private void expandContractGridButton_Click(object sender, System.EventArgs e)
-        {
-            if (expandContractGridButton.Tag.ToString() == "right")
-            {
-                expandContractGridButton.Image = TraceForms.Properties.Resources.arrow_left;
-                expandContractGridButton.Tag = "left";
-                GridViewCxlFee.Columns["AGENCY"].Visible = true;
-                GridViewCxlFee.Columns["AGENCY"].VisibleIndex = 4;
-                GridViewCxlFee.Columns["NTS_PRIOR"].Visible = true;
-                GridViewCxlFee.Columns["NTS_PRIOR"].VisibleIndex = 5;
-                //AdvBandedGridViewHrates.Columns["CAT"].Width = 35;
-                GridViewCxlFee.Columns["CODE"].Width = 65;
-            }
-            else
-            {
-                expandContractGridButton.Image = TraceForms.Properties.Resources.arrow_right;
-                expandContractGridButton.Tag = "right";
-                //AdvBandedGridViewHrates.Columns["CAT"].Visible = false;
-                GridViewCxlFee.Columns["AGENCY"].Visible = false;
-                GridViewCxlFee.Columns["NTS_PRIOR"].Visible = false;
-                //AdvBandedGridViewHrates.Columns["SvcDate_End"].Visible = false;
-            }
-        }
-
-        private void nTS_PRIORSpinEdit_TextChanged(object sender, System.EventArgs e)
-        {
-       
-        }
-
-        private void checkEdit1_Click(object sender, System.EventArgs e)
-        {
-            /*
+		private void CheckEditNoShow_CheckedChanged(object sender, EventArgs e)
+		{
+			/*
 ____ on an add or change - if there is an number in nights prior and the no-show checkbox is checked the number 
-            * of nights should change to -1 and on/after date is also greyed and blanked. 
+* of nights should change to -1 and on/after date is also greyed and blanked. 
 
 Here is the behavior of the Nights Prior field, NoShow checkbox and on/after date. 
 If the checkbox is checked then nights prior is  filled with ‘-1’ and on/after date is also greyed and blanked. 
 If the checkbox is unchecked, nights prior and on/after date are enabled for entry.  
 
-           */
+*/
+			//If changes aren't forced back into the context, then when the context PropertyChanged event fires
+			//when changing the value of the other checkbox, this checkbox will rebind to its prior value which
+			//is not yet in the context. 
+			BindingSource.EndEdit();
+			if (CheckEditNoShow.Checked) {
+				SpinEditNtsPrior.EditValue = -1;
+				DateEditOnAfterDate.EditValue = null;
+				DateEditOnAfterDate.Enabled = false;
+				SpinEditNtsPrior.Enabled = false;
+			}
+			else {
+				SpinEditNtsPrior.Enabled = true;
+				DateEditOnAfterDate.Enabled = true;
+				if (SpinEditNtsPrior.Value == -1)
+					SpinEditNtsPrior.EditValue = 0;
+			}
+		}
 
-            if (checkEdit1.Checked)
-            {
-                nTS_PRIORSpinEdit.Enabled = true;
-                cXL_DATEDateEdit.Enabled = true;
-                GridViewCxlFee.SetFocusedRowCellValue("NTS_PRIOR", 0);
-            }
-            else
-            {
-                GridViewCxlFee.SetFocusedRowCellValue("NTS_PRIOR",-1);
-                //nTS_PRIORSpinEdit.EditValue = -1;
-                cXL_DATEDateEdit.Text = "";
-                cXL_DATEDateEdit.Enabled = false;
-                nTS_PRIORSpinEdit.Enabled = false;
-                
-            }
-        }
+		private void SpinEditNtsPrior_EditValueChanged(object sender, EventArgs e)
+		{
+			CheckEditNoShow.Checked = (SpinEditNtsPrior.Value == -1);
+		}
 
-        private void GridViewCxlFee_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
-        {
-            //if (e.Column.FieldName == "START_DATE")
-            //    if (e.Value != null)
-            //        if (!string.IsNullOrWhiteSpace(e.Value.ToString()))
-            //            e.DisplayText = validCheck.convertDate(e.Value.ToString());
-
-            if (e.Column.FieldName == "START_DATE")
-                if (e.Value != null)
-                    if (!string.IsNullOrWhiteSpace(e.Value.ToString()))
-                        e.DisplayText = validCheck.convertDate(e.Value.ToString());
-
-            if (e.Column.FieldName == "END_DATE")
-                if (e.Value != null)
-                    if (!string.IsNullOrWhiteSpace(e.Value.ToString()))
-                        e.DisplayText = validCheck.convertDate(e.Value.ToString());
-
-            if (e.Column.FieldName == "CXL_DATE")
-                if (e.Value != null)
-                    if (!string.IsNullOrWhiteSpace(e.Value.ToString()))
-                        e.DisplayText = validCheck.convertDate(e.Value.ToString());
-        }
-
-        private void labelControl2_TextChanged(object sender, System.EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(labelControl2.Text))
-                labelControl2.Text = validCheck.convertDate(labelControl2.Text);
-        }
-
-        private void nTS_PRIORSpinEdit_EditValueChanged(object sender, System.EventArgs e)
-        {
-
-
-
-        }
-
-    }
+		private void BarButtonItemExpandContractGrid_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (BarButtonItemExpandContractGrid.Tag.ToString() == "contracted")
+			{
+				BarButtonItemExpandContractGrid.Tag = "expanded";
+				GridViewLookup.Columns["AGENCY"].Visible = true;
+				GridViewLookup.Columns["AGENCY"].VisibleIndex = 4;
+				GridViewLookup.Columns["NTS_PRIOR"].Visible = true;
+				GridViewLookup.Columns["NTS_PRIOR"].VisibleIndex = 5;
+				//AdvBandedGridViewHrates.Columns["CAT"].Width = 35;
+				GridViewLookup.Columns["CODE"].Width = 65;
+			}
+			else
+			{
+				BarButtonItemExpandContractGrid.Tag = "contracted";
+				//AdvBandedGridViewHrates.Columns["CAT"].Visible = false;
+				GridViewLookup.Columns["AGENCY"].Visible = false;
+				GridViewLookup.Columns["NTS_PRIOR"].Visible = false;
+				//AdvBandedGridViewHrates.Columns["SvcDate_End"].Visible = false;
+			}
+		}
+	}
 }
