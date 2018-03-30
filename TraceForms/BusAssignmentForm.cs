@@ -122,7 +122,11 @@ namespace TraceForms
 						Include(r => r.RESHDR).
 						Include(r => r.ResRoom).
 						Where(r => _sys.Settings.BusTourServiceType.Contains(r.COMP.SERV_TYPE)
-                            && r.STRT_DATE == _selectedDate && r.Inactive == false && r.Status == "R").ToList();
+                            && r.STRT_DATE == _selectedDate && r.Inactive == false && r.Status == "R"
+                            //The following restricts selection to only items that actually have a pickup or dropoff, so the manifest
+                            //will turn into a "boarding" or "disembarking" list rather than a manifest
+                            //&& (!string.IsNullOrEmpty(r.BUS_DRP_TYPE ?? string.Empty) || !string.IsNullOrEmpty(r.BUS_PUP_TYPE ?? string.Empty))
+                            ).ToList();
 
 			var items = _resItems.GroupBy(r => new {
 							Code = r.CODE,

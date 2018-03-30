@@ -141,6 +141,7 @@
             this.ColumnRegion1Pkg = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnSvcRestr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CheckEditMultipleTimes = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditServicesOnly = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.ImageComboBoxEditLanguage = new DevExpress.XtraEditors.ImageComboBoxEdit();
@@ -295,7 +296,6 @@
             this.ColumnExclusion1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            this.CheckEditMultipleTimes = new DevExpress.XtraEditors.CheckEdit();
             LabelInactive = new System.Windows.Forms.Label();
             LabelDate = new System.Windows.Forms.Label();
             LabelAgency = new System.Windows.Forms.Label();
@@ -306,6 +306,7 @@
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPackages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditServicesOnly.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditLanguage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
@@ -375,7 +376,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelInactive
@@ -1201,6 +1201,17 @@
             this.ColumnDisplayName.FieldName = "DisplayName";
             this.ColumnDisplayName.Name = "ColumnDisplayName";
             this.ColumnDisplayName.OptionsColumn.ReadOnly = true;
+            // 
+            // CheckEditMultipleTimes
+            // 
+            this.CheckEditMultipleTimes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PackBindingSource, "MultipleTimes", true));
+            this.CheckEditMultipleTimes.Location = new System.Drawing.Point(20, 393);
+            this.CheckEditMultipleTimes.Name = "CheckEditMultipleTimes";
+            this.CheckEditMultipleTimes.Properties.Caption = "Multiple departure times";
+            this.CheckEditMultipleTimes.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditMultipleTimes.Size = new System.Drawing.Size(258, 34);
+            this.CheckEditMultipleTimes.TabIndex = 23;
+            this.CheckEditMultipleTimes.Modified += new System.EventHandler(this.CheckEditMultipleTimes_Modified);
             // 
             // CheckEditServicesOnly
             // 
@@ -2809,17 +2820,6 @@
             this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
             // 
-            // CheckEditMultipleTimes
-            // 
-            this.CheckEditMultipleTimes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PackBindingSource, "MultipleTimes", true));
-            this.CheckEditMultipleTimes.Location = new System.Drawing.Point(20, 393);
-            this.CheckEditMultipleTimes.Name = "CheckEditMultipleTimes";
-            this.CheckEditMultipleTimes.Properties.Caption = "Multiple departure times";
-            this.CheckEditMultipleTimes.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditMultipleTimes.Size = new System.Drawing.Size(258, 34);
-            this.CheckEditMultipleTimes.TabIndex = 23;
-            this.CheckEditMultipleTimes.Modified += new System.EventHandler(this.CheckEditMultipleTimes_Modified);
-            // 
             // packForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -2845,6 +2845,7 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlPackages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPackages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditServicesOnly.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditLanguage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
@@ -2918,7 +2919,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

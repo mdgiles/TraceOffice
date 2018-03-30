@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label LabelCode;
             System.Windows.Forms.Label LabelName;
             System.Windows.Forms.Label LabelLinkCode;
@@ -38,10 +39,10 @@
             System.Windows.Forms.Label LabelMappings;
             System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CityCodeForm));
-            this.BindingSource = new System.Windows.Forms.BindingSource();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TextEditName = new DevExpress.XtraEditors.TextEdit();
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
-            this.ErrorProvider = new System.Windows.Forms.ErrorProvider();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
             this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
@@ -53,7 +54,7 @@
             this.gridColumnLookupRegion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnLookupCountry = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SearchLookupEditRegion = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource();
+            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -69,7 +70,7 @@
             this.BingSearchDataProvider = new DevExpress.XtraMap.BingSearchDataProvider();
             this.PanelControlMappings = new DevExpress.XtraEditors.PanelControl();
             this.GridControlSupplierCity = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceSupplierCity = new System.Windows.Forms.BindingSource();
+            this.BindingSourceSupplierCity = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewSupplierCity = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnSupplierCityId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSupplierGuid = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -101,7 +102,7 @@
             this.colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            this.BarManager = new DevExpress.XtraBars.BarManager();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.BarTools = new DevExpress.XtraBars.Bar();
             this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
@@ -174,7 +175,7 @@
             // LabelLinkCode
             // 
             LabelLinkCode.AutoSize = true;
-            LabelLinkCode.Location = new System.Drawing.Point(53, 152);
+            LabelLinkCode.Location = new System.Drawing.Point(53, 147);
             LabelLinkCode.Name = "LabelLinkCode";
             LabelLinkCode.Size = new System.Drawing.Size(110, 24);
             LabelLinkCode.TabIndex = 14;
@@ -201,7 +202,7 @@
             // LabelState
             // 
             LabelState.AutoSize = true;
-            LabelState.Location = new System.Drawing.Point(53, 196);
+            LabelState.Location = new System.Drawing.Point(53, 189);
             LabelState.Name = "LabelState";
             LabelState.Size = new System.Drawing.Size(57, 24);
             LabelState.TabIndex = 22;
@@ -210,7 +211,7 @@
             // LabelCountry
             // 
             LabelCountry.AutoSize = true;
-            LabelCountry.Location = new System.Drawing.Point(53, 282);
+            LabelCountry.Location = new System.Drawing.Point(53, 273);
             LabelCountry.Name = "LabelCountry";
             LabelCountry.Size = new System.Drawing.Size(79, 24);
             LabelCountry.TabIndex = 24;
@@ -228,7 +229,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(53, 240);
+            label1.Location = new System.Drawing.Point(53, 231);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(71, 24);
             label1.TabIndex = 275;
@@ -390,7 +391,7 @@
             // SearchLookupEditRegion
             // 
             this.SearchLookupEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Region_Code", true));
-            this.SearchLookupEditRegion.Location = new System.Drawing.Point(168, 235);
+            this.SearchLookupEditRegion.Location = new System.Drawing.Point(168, 227);
             this.SearchLookupEditRegion.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditRegion.Name = "SearchLookupEditRegion";
             this.SearchLookupEditRegion.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -674,7 +675,7 @@
             // SearchLookupEditLinkCode
             // 
             this.SearchLookupEditLinkCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LINKCODE", true));
-            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(168, 147);
+            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(168, 143);
             this.SearchLookupEditLinkCode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditLinkCode.Name = "SearchLookupEditLinkCode";
             this.SearchLookupEditLinkCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -728,7 +729,7 @@
             // SearchLookupEditState
             // 
             this.SearchLookupEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "State_Code", true));
-            this.SearchLookupEditState.Location = new System.Drawing.Point(168, 193);
+            this.SearchLookupEditState.Location = new System.Drawing.Point(168, 185);
             this.SearchLookupEditState.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditState.Name = "SearchLookupEditState";
             this.SearchLookupEditState.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -774,7 +775,7 @@
             // SearchLookupEditCountry
             // 
             this.SearchLookupEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Country_Code", true));
-            this.SearchLookupEditCountry.Location = new System.Drawing.Point(168, 277);
+            this.SearchLookupEditCountry.Location = new System.Drawing.Point(168, 269);
             this.SearchLookupEditCountry.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditCountry.Name = "SearchLookupEditCountry";
             this.SearchLookupEditCountry.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;

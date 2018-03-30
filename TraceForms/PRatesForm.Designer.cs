@@ -40,8 +40,8 @@
             System.Windows.Forms.Label cATLabel;
             System.Windows.Forms.Label aGENCYLabel;
             System.Windows.Forms.Label label1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PRatesForm));
             System.Windows.Forms.Label label18;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PRatesForm));
             this.cODELabel = new System.Windows.Forms.Label();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -140,14 +140,8 @@
             this.cHD_LIMITTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.LabelControlSingleLabel = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -275,6 +269,29 @@
             this.colROOMCOD1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.PanelControlRoomRates = new DevExpress.XtraEditors.PanelControl();
+            this.spinEditDblRetail = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditTplRetail = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditQuaRetail = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.dBL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.tPL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.qUA_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.dBL_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.tPL_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.qUA_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.mAX_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.mAX_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.mAX_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.ImageComboBoxEditSpecialValue = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.TimeEditTime = new DevExpress.XtraEditors.TimeEdit();
             this.spinEditSeniorRetail = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
@@ -282,10 +299,6 @@
             this.spinEditSeniorCost = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.spinEditSglRetail = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditDblRetail = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditTplRetail = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditQuaRetail = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditOthRetail = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditChdRetail = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditJrRetail = new DevExpress.XtraEditors.SpinEdit();
             this.ImageComboBoxEditHotelCode = new DevExpress.XtraEditors.ImageComboBoxEdit();
@@ -293,48 +306,37 @@
             this.ImageComboBoxEditAgency = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.sGL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.cOMM_PCTTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.dBL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.tPL_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.qUA_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.oTH_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.cHD_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.jR_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.sGL_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.dBL_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.tPL_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.qUA_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.oTH_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.cHD_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.jR_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_SGLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_CHDTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXG_JRTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_SGLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_CHDTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.eXN_JRTextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.mAX_SGLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.mAX_DBLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.mAX_TPLTextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.mAX_QUATextEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.mAX_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.spinEditSeniorAgeLimit = new DevExpress.XtraEditors.SpinEdit();
             this.SearchLookupEditCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.customSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PanelControlExtraNights = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.eXG_SGLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_CHDTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_JRTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_SGLTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_CHDTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_JRTextEdit = new DevExpress.XtraEditors.SpinEdit();
             this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            this.ImageComboBoxEditSpecialValue = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.spinEditOthRetail = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.oTH_GRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.oTH_NRATETextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.mAX_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXG_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.eXN_OTHTextEdit = new DevExpress.XtraEditors.SpinEdit();
             resDate_EndLabel = new System.Windows.Forms.Label();
             resDate_StartLabel = new System.Windows.Forms.Label();
             cOMM_PCTLabel = new System.Windows.Forms.Label();
@@ -371,15 +373,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlRoomRates)).BeginInit();
+            this.PanelControlRoomRates.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditDblRetail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditTplRetail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditQuaRetail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBL_GRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPL_GRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qUA_GRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBL_NRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPL_NRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qUA_NRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_DBLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_TPLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_QUATextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_DBLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_TPLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_QUATextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_DBLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_TPLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeEditTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorGross.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorCost.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSglRetail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditDblRetail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditTplRetail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditQuaRetail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOthRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditChdRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditJrRetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditHotelCode.Properties)).BeginInit();
@@ -387,45 +406,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditAgency.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_GRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOMM_PCTTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBL_GRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tPL_GRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qUA_GRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oTH_GRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHD_GRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jR_GRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_NRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBL_NRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tPL_NRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qUA_NRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oTH_NRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHD_NRATETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jR_NRATETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_SGLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_DBLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_TPLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_QUATextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_OTHTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_CHDTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_JRTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_SGLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_DBLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_TPLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_QUATextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_OTHTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_CHDTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_JRTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAX_SGLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_DBLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_TPLTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorAgeLimit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlExtraNights)).BeginInit();
+            this.PanelControlExtraNights.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_SGLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_CHDTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_JRTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_SGLTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_CHDTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_JRTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOthRetail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oTH_GRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oTH_NRATETextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_OTHTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_OTHTextEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // resDate_EndLabel
@@ -537,6 +543,16 @@
             label1.Size = new System.Drawing.Size(55, 24);
             label1.TabIndex = 267;
             label1.Text = "Time";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new System.Drawing.Point(736, 288);
+            label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label18.Name = "label18";
+            label18.Size = new System.Drawing.Size(95, 24);
+            label18.TabIndex = 269;
+            label18.Text = "Rate plan";
             // 
             // cODELabel
             // 
@@ -1181,81 +1197,27 @@
             this.labelControl16.TabIndex = 73;
             this.labelControl16.Text = "Child";
             // 
-            // labelControl15
+            // LabelControlSingleLabel
             // 
-            this.labelControl15.Location = new System.Drawing.Point(26, 683);
-            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(47, 23);
-            this.labelControl15.TabIndex = 66;
-            this.labelControl15.Text = "Other";
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Location = new System.Drawing.Point(26, 642);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(45, 23);
-            this.labelControl14.TabIndex = 59;
-            this.labelControl14.Text = "Quad";
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Location = new System.Drawing.Point(26, 600);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(47, 23);
-            this.labelControl13.TabIndex = 52;
-            this.labelControl13.Text = "Triple";
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Location = new System.Drawing.Point(26, 559);
-            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(59, 23);
-            this.labelControl12.TabIndex = 45;
-            this.labelControl12.Text = "Double";
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Location = new System.Drawing.Point(26, 519);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(51, 23);
-            this.labelControl11.TabIndex = 38;
-            this.labelControl11.Text = "Single";
+            this.LabelControlSingleLabel.Location = new System.Drawing.Point(26, 519);
+            this.LabelControlSingleLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LabelControlSingleLabel.Name = "LabelControlSingleLabel";
+            this.LabelControlSingleLabel.Size = new System.Drawing.Size(51, 23);
+            this.LabelControlSingleLabel.TabIndex = 38;
+            this.LabelControlSingleLabel.Text = "Single";
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(734, 464);
+            this.labelControl10.Location = new System.Drawing.Point(734, 475);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(110, 23);
             this.labelControl10.TabIndex = 37;
             this.labelControl10.Text = "Max Occ/Age";
             // 
-            // labelControl9
-            // 
-            this.labelControl9.Location = new System.Drawing.Point(500, 461);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(94, 46);
-            this.labelControl9.TabIndex = 35;
-            this.labelControl9.Text = "Extra Night\r\n    Cost";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Location = new System.Drawing.Point(623, 462);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(94, 46);
-            this.labelControl8.TabIndex = 36;
-            this.labelControl8.Text = "Extra Night\r\n    Gross";
-            // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(151, 462);
+            this.labelControl7.Location = new System.Drawing.Point(148, 475);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(35, 23);
@@ -1264,7 +1226,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(259, 464);
+            this.labelControl6.Location = new System.Drawing.Point(263, 475);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(87, 23);
@@ -2223,6 +2185,12 @@
             this.splitContainerControl1.Panel1.Controls.Add(this.GridControlPrates);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.AutoScroll = true;
+            this.splitContainerControl1.Panel2.Controls.Add(this.spinEditOthRetail);
+            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl15);
+            this.splitContainerControl1.Panel2.Controls.Add(this.oTH_GRATETextEdit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.oTH_NRATETextEdit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.mAX_OTHTextEdit);
+            this.splitContainerControl1.Panel2.Controls.Add(this.PanelControlRoomRates);
             this.splitContainerControl1.Panel2.Controls.Add(label18);
             this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditSpecialValue);
             this.splitContainerControl1.Panel2.Controls.Add(this.TimeEditTime);
@@ -2233,10 +2201,6 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSeniorCost);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl19);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSglRetail);
-            this.splitContainerControl1.Panel2.Controls.Add(this.spinEditDblRetail);
-            this.splitContainerControl1.Panel2.Controls.Add(this.spinEditTplRetail);
-            this.splitContainerControl1.Panel2.Controls.Add(this.spinEditQuaRetail);
-            this.splitContainerControl1.Panel2.Controls.Add(this.spinEditOthRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditChdRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditJrRetail);
             this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditHotelCode);
@@ -2276,55 +2240,446 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl17);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl7);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl16);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl8);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl15);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl9);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl14);
             this.splitContainerControl1.Panel2.Controls.Add(this.labelControl10);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl13);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl11);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl12);
+            this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlSingleLabel);
             this.splitContainerControl1.Panel2.Controls.Add(this.sGL_GRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.cOMM_PCTTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.dBL_GRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.tPL_GRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.qUA_GRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.oTH_GRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.cHD_GRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.jR_GRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.sGL_NRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.dBL_NRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.tPL_NRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.qUA_NRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.oTH_NRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.cHD_NRATETextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.jR_NRATETextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_SGLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_DBLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_TPLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_QUATextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_OTHTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_CHDTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXG_JRTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_SGLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_DBLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_TPLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_QUATextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_OTHTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_CHDTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.eXN_JRTextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.mAX_SGLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.mAX_DBLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.mAX_TPLTextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.mAX_QUATextEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.mAX_OTHTextEdit);
             this.splitContainerControl1.Panel2.Controls.Add(this.spinEditSeniorAgeLimit);
             this.splitContainerControl1.Panel2.Controls.Add(this.SearchLookupEditCode);
+            this.splitContainerControl1.Panel2.Controls.Add(this.PanelControlExtraNights);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1599, 1275);
             this.splitContainerControl1.SplitterPosition = 331;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // PanelControlRoomRates
+            // 
+            this.PanelControlRoomRates.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.PanelControlRoomRates.Controls.Add(this.spinEditDblRetail);
+            this.PanelControlRoomRates.Controls.Add(this.spinEditTplRetail);
+            this.PanelControlRoomRates.Controls.Add(this.spinEditQuaRetail);
+            this.PanelControlRoomRates.Controls.Add(this.labelControl14);
+            this.PanelControlRoomRates.Controls.Add(this.labelControl13);
+            this.PanelControlRoomRates.Controls.Add(this.labelControl12);
+            this.PanelControlRoomRates.Controls.Add(this.dBL_GRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.tPL_GRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.qUA_GRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.dBL_NRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.tPL_NRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.qUA_NRATETextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXG_DBLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXG_TPLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXG_QUATextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXN_DBLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXN_TPLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.eXN_QUATextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.mAX_DBLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.mAX_TPLTextEdit);
+            this.PanelControlRoomRates.Controls.Add(this.mAX_QUATextEdit);
+            this.PanelControlRoomRates.Location = new System.Drawing.Point(13, 555);
+            this.PanelControlRoomRates.Name = "PanelControlRoomRates";
+            this.PanelControlRoomRates.Size = new System.Drawing.Size(850, 122);
+            this.PanelControlRoomRates.TabIndex = 271;
+            // 
+            // spinEditDblRetail
+            // 
+            this.spinEditDblRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DblRetail", true));
+            this.spinEditDblRetail.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditDblRetail.Location = new System.Drawing.Point(355, 3);
+            this.spinEditDblRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.spinEditDblRetail.Name = "spinEditDblRetail";
+            this.spinEditDblRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditDblRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.spinEditDblRetail.Properties.Mask.EditMask = "f";
+            this.spinEditDblRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditDblRetail.Size = new System.Drawing.Size(113, 32);
+            this.spinEditDblRetail.TabIndex = 76;
+            // 
+            // spinEditTplRetail
+            // 
+            this.spinEditTplRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TplRetail", true));
+            this.spinEditTplRetail.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditTplRetail.Location = new System.Drawing.Point(355, 44);
+            this.spinEditTplRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.spinEditTplRetail.Name = "spinEditTplRetail";
+            this.spinEditTplRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditTplRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.spinEditTplRetail.Properties.Mask.EditMask = "f";
+            this.spinEditTplRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditTplRetail.Size = new System.Drawing.Size(113, 32);
+            this.spinEditTplRetail.TabIndex = 83;
+            // 
+            // spinEditQuaRetail
+            // 
+            this.spinEditQuaRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QuaRetail", true));
+            this.spinEditQuaRetail.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditQuaRetail.Location = new System.Drawing.Point(355, 85);
+            this.spinEditQuaRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.spinEditQuaRetail.Name = "spinEditQuaRetail";
+            this.spinEditQuaRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditQuaRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.spinEditQuaRetail.Properties.Mask.EditMask = "f";
+            this.spinEditQuaRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditQuaRetail.Size = new System.Drawing.Size(113, 32);
+            this.spinEditQuaRetail.TabIndex = 90;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(10, 85);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(45, 23);
+            this.labelControl14.TabIndex = 87;
+            this.labelControl14.Text = "Quad";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(10, 43);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(47, 23);
+            this.labelControl13.TabIndex = 80;
+            this.labelControl13.Text = "Triple";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Location = new System.Drawing.Point(10, 2);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(59, 23);
+            this.labelControl12.TabIndex = 73;
+            this.labelControl12.Text = "Double";
+            // 
+            // dBL_GRATETextEdit
+            // 
+            this.dBL_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DBL_GRATE", true));
+            this.dBL_GRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.dBL_GRATETextEdit.Location = new System.Drawing.Point(233, 4);
+            this.dBL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dBL_GRATETextEdit.Name = "dBL_GRATETextEdit";
+            this.dBL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dBL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.dBL_GRATETextEdit.Properties.Mask.EditMask = "f";
+            this.dBL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.dBL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.dBL_GRATETextEdit.TabIndex = 75;
+            // 
+            // tPL_GRATETextEdit
+            // 
+            this.tPL_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TPL_GRATE", true));
+            this.tPL_GRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.tPL_GRATETextEdit.Location = new System.Drawing.Point(233, 45);
+            this.tPL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tPL_GRATETextEdit.Name = "tPL_GRATETextEdit";
+            this.tPL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tPL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.tPL_GRATETextEdit.Properties.Mask.EditMask = "f";
+            this.tPL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.tPL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.tPL_GRATETextEdit.TabIndex = 82;
+            // 
+            // qUA_GRATETextEdit
+            // 
+            this.qUA_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QUA_GRATE", true));
+            this.qUA_GRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.qUA_GRATETextEdit.Location = new System.Drawing.Point(233, 86);
+            this.qUA_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.qUA_GRATETextEdit.Name = "qUA_GRATETextEdit";
+            this.qUA_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.qUA_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.qUA_GRATETextEdit.Properties.Mask.EditMask = "f";
+            this.qUA_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.qUA_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.qUA_GRATETextEdit.TabIndex = 89;
+            // 
+            // dBL_NRATETextEdit
+            // 
+            this.dBL_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DBL_NRATE", true));
+            this.dBL_NRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.dBL_NRATETextEdit.Location = new System.Drawing.Point(110, 3);
+            this.dBL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dBL_NRATETextEdit.Name = "dBL_NRATETextEdit";
+            this.dBL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dBL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.dBL_NRATETextEdit.Properties.Mask.EditMask = "f";
+            this.dBL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.dBL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.dBL_NRATETextEdit.TabIndex = 74;
+            // 
+            // tPL_NRATETextEdit
+            // 
+            this.tPL_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TPL_NRATE", true));
+            this.tPL_NRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.tPL_NRATETextEdit.Location = new System.Drawing.Point(110, 44);
+            this.tPL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tPL_NRATETextEdit.Name = "tPL_NRATETextEdit";
+            this.tPL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tPL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.tPL_NRATETextEdit.Properties.Mask.EditMask = "f";
+            this.tPL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.tPL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.tPL_NRATETextEdit.TabIndex = 81;
+            // 
+            // qUA_NRATETextEdit
+            // 
+            this.qUA_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QUA_NRATE", true));
+            this.qUA_NRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.qUA_NRATETextEdit.Location = new System.Drawing.Point(110, 85);
+            this.qUA_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.qUA_NRATETextEdit.Name = "qUA_NRATETextEdit";
+            this.qUA_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.qUA_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.qUA_NRATETextEdit.Properties.Mask.EditMask = "f";
+            this.qUA_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.qUA_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.qUA_NRATETextEdit.TabIndex = 88;
+            // 
+            // eXG_DBLTextEdit
+            // 
+            this.eXG_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_DBL", true));
+            this.eXG_DBLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_DBLTextEdit.Location = new System.Drawing.Point(599, 3);
+            this.eXG_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_DBLTextEdit.Name = "eXG_DBLTextEdit";
+            this.eXG_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_DBLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_DBLTextEdit.TabIndex = 78;
+            // 
+            // eXG_TPLTextEdit
+            // 
+            this.eXG_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_TPL", true));
+            this.eXG_TPLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_TPLTextEdit.Location = new System.Drawing.Point(599, 44);
+            this.eXG_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_TPLTextEdit.Name = "eXG_TPLTextEdit";
+            this.eXG_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_TPLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_TPLTextEdit.TabIndex = 85;
+            // 
+            // eXG_QUATextEdit
+            // 
+            this.eXG_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_QUA", true));
+            this.eXG_QUATextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_QUATextEdit.Location = new System.Drawing.Point(599, 85);
+            this.eXG_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_QUATextEdit.Name = "eXG_QUATextEdit";
+            this.eXG_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_QUATextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_QUATextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_QUATextEdit.TabIndex = 92;
+            // 
+            // eXN_DBLTextEdit
+            // 
+            this.eXN_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_DBL", true));
+            this.eXN_DBLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_DBLTextEdit.Location = new System.Drawing.Point(477, 3);
+            this.eXN_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_DBLTextEdit.Name = "eXN_DBLTextEdit";
+            this.eXN_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_DBLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_DBLTextEdit.TabIndex = 77;
+            // 
+            // eXN_TPLTextEdit
+            // 
+            this.eXN_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_TPL", true));
+            this.eXN_TPLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_TPLTextEdit.Location = new System.Drawing.Point(477, 43);
+            this.eXN_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_TPLTextEdit.Name = "eXN_TPLTextEdit";
+            this.eXN_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_TPLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_TPLTextEdit.TabIndex = 84;
+            // 
+            // eXN_QUATextEdit
+            // 
+            this.eXN_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_QUA", true));
+            this.eXN_QUATextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_QUATextEdit.Location = new System.Drawing.Point(477, 84);
+            this.eXN_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_QUATextEdit.Name = "eXN_QUATextEdit";
+            this.eXN_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_QUATextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_QUATextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_QUATextEdit.TabIndex = 91;
+            // 
+            // mAX_DBLTextEdit
+            // 
+            this.mAX_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_DBL", true));
+            this.mAX_DBLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.mAX_DBLTextEdit.Location = new System.Drawing.Point(721, 3);
+            this.mAX_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_DBLTextEdit.Name = "mAX_DBLTextEdit";
+            this.mAX_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.mAX_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.mAX_DBLTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.mAX_DBLTextEdit.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.mAX_DBLTextEdit.Size = new System.Drawing.Size(103, 32);
+            this.mAX_DBLTextEdit.TabIndex = 79;
+            // 
+            // mAX_TPLTextEdit
+            // 
+            this.mAX_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_TPL", true));
+            this.mAX_TPLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.mAX_TPLTextEdit.Location = new System.Drawing.Point(721, 44);
+            this.mAX_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_TPLTextEdit.Name = "mAX_TPLTextEdit";
+            this.mAX_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.mAX_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.mAX_TPLTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.mAX_TPLTextEdit.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.mAX_TPLTextEdit.Size = new System.Drawing.Size(103, 32);
+            this.mAX_TPLTextEdit.TabIndex = 86;
+            // 
+            // mAX_QUATextEdit
+            // 
+            this.mAX_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_QUA", true));
+            this.mAX_QUATextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.mAX_QUATextEdit.Location = new System.Drawing.Point(721, 85);
+            this.mAX_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_QUATextEdit.Name = "mAX_QUATextEdit";
+            this.mAX_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.mAX_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.mAX_QUATextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.mAX_QUATextEdit.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.mAX_QUATextEdit.Size = new System.Drawing.Size(103, 32);
+            this.mAX_QUATextEdit.TabIndex = 93;
+            // 
+            // ImageComboBoxEditSpecialValue
+            // 
+            this.ImageComboBoxEditSpecialValue.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "SpecialValue_Code", true));
+            this.ImageComboBoxEditSpecialValue.EnterMoveNextControl = true;
+            this.ImageComboBoxEditSpecialValue.Location = new System.Drawing.Point(861, 286);
+            this.ImageComboBoxEditSpecialValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditSpecialValue.Name = "ImageComboBoxEditSpecialValue";
+            this.ImageComboBoxEditSpecialValue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ImageComboBoxEditSpecialValue.Size = new System.Drawing.Size(277, 32);
+            this.ImageComboBoxEditSpecialValue.TabIndex = 270;
             // 
             // TimeEditTime
             // 
@@ -2418,7 +2773,7 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(403, 462);
+            this.labelControl19.Location = new System.Drawing.Point(403, 475);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(46, 23);
@@ -2445,90 +2800,6 @@
             this.spinEditSglRetail.TabIndex = 41;
             this.spinEditSglRetail.Enter += new System.EventHandler(this.enterControl);
             this.spinEditSglRetail.Leave += new System.EventHandler(this.spinEditSglRetail_Leave);
-            // 
-            // spinEditDblRetail
-            // 
-            this.spinEditDblRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DblRetail", true));
-            this.spinEditDblRetail.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditDblRetail.Location = new System.Drawing.Point(368, 557);
-            this.spinEditDblRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.spinEditDblRetail.Name = "spinEditDblRetail";
-            this.spinEditDblRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditDblRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.spinEditDblRetail.Properties.Mask.EditMask = "f";
-            this.spinEditDblRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditDblRetail.Size = new System.Drawing.Size(113, 32);
-            this.spinEditDblRetail.TabIndex = 48;
-            this.spinEditDblRetail.Enter += new System.EventHandler(this.enterControl);
-            this.spinEditDblRetail.Leave += new System.EventHandler(this.spinEditDblRetail_Leave);
-            // 
-            // spinEditTplRetail
-            // 
-            this.spinEditTplRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TplRetail", true));
-            this.spinEditTplRetail.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditTplRetail.Location = new System.Drawing.Point(368, 598);
-            this.spinEditTplRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.spinEditTplRetail.Name = "spinEditTplRetail";
-            this.spinEditTplRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditTplRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.spinEditTplRetail.Properties.Mask.EditMask = "f";
-            this.spinEditTplRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditTplRetail.Size = new System.Drawing.Size(113, 32);
-            this.spinEditTplRetail.TabIndex = 55;
-            this.spinEditTplRetail.Enter += new System.EventHandler(this.enterControl);
-            this.spinEditTplRetail.Leave += new System.EventHandler(this.spinEditTplRetail_Leave);
-            // 
-            // spinEditQuaRetail
-            // 
-            this.spinEditQuaRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QuaRetail", true));
-            this.spinEditQuaRetail.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditQuaRetail.Location = new System.Drawing.Point(368, 639);
-            this.spinEditQuaRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.spinEditQuaRetail.Name = "spinEditQuaRetail";
-            this.spinEditQuaRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditQuaRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.spinEditQuaRetail.Properties.Mask.EditMask = "f";
-            this.spinEditQuaRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditQuaRetail.Size = new System.Drawing.Size(113, 32);
-            this.spinEditQuaRetail.TabIndex = 62;
-            this.spinEditQuaRetail.Enter += new System.EventHandler(this.enterControl);
-            this.spinEditQuaRetail.Leave += new System.EventHandler(this.spinEditQuaRetail_Leave);
-            // 
-            // spinEditOthRetail
-            // 
-            this.spinEditOthRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OthRetail", true));
-            this.spinEditOthRetail.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditOthRetail.Location = new System.Drawing.Point(368, 680);
-            this.spinEditOthRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.spinEditOthRetail.Name = "spinEditOthRetail";
-            this.spinEditOthRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditOthRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.spinEditOthRetail.Properties.Mask.EditMask = "f";
-            this.spinEditOthRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditOthRetail.Size = new System.Drawing.Size(113, 32);
-            this.spinEditOthRetail.TabIndex = 69;
-            this.spinEditOthRetail.Enter += new System.EventHandler(this.enterControl);
-            this.spinEditOthRetail.Leave += new System.EventHandler(this.spinEditOthRetail_Leave);
             // 
             // spinEditChdRetail
             // 
@@ -2657,90 +2928,6 @@
             this.cOMM_PCTTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cOMM_PCTTextEdit.Leave += new System.EventHandler(this.cOMM_PCTTextEdit_Leave);
             // 
-            // dBL_GRATETextEdit
-            // 
-            this.dBL_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DBL_GRATE", true));
-            this.dBL_GRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.dBL_GRATETextEdit.Location = new System.Drawing.Point(246, 558);
-            this.dBL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dBL_GRATETextEdit.Name = "dBL_GRATETextEdit";
-            this.dBL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dBL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.dBL_GRATETextEdit.Properties.Mask.EditMask = "f";
-            this.dBL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.dBL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.dBL_GRATETextEdit.TabIndex = 47;
-            this.dBL_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.dBL_GRATETextEdit.Leave += new System.EventHandler(this.dBL_GRATETextEdit_Leave);
-            // 
-            // tPL_GRATETextEdit
-            // 
-            this.tPL_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TPL_GRATE", true));
-            this.tPL_GRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.tPL_GRATETextEdit.Location = new System.Drawing.Point(246, 599);
-            this.tPL_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tPL_GRATETextEdit.Name = "tPL_GRATETextEdit";
-            this.tPL_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tPL_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.tPL_GRATETextEdit.Properties.Mask.EditMask = "f";
-            this.tPL_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tPL_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.tPL_GRATETextEdit.TabIndex = 54;
-            this.tPL_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.tPL_GRATETextEdit.Leave += new System.EventHandler(this.tPL_GRATETextEdit_Leave);
-            // 
-            // qUA_GRATETextEdit
-            // 
-            this.qUA_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QUA_GRATE", true));
-            this.qUA_GRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.qUA_GRATETextEdit.Location = new System.Drawing.Point(246, 640);
-            this.qUA_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.qUA_GRATETextEdit.Name = "qUA_GRATETextEdit";
-            this.qUA_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.qUA_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.qUA_GRATETextEdit.Properties.Mask.EditMask = "f";
-            this.qUA_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.qUA_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.qUA_GRATETextEdit.TabIndex = 61;
-            this.qUA_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.qUA_GRATETextEdit.Leave += new System.EventHandler(this.qUA_GRATETextEdit_Leave);
-            // 
-            // oTH_GRATETextEdit
-            // 
-            this.oTH_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OTH_GRATE", true));
-            this.oTH_GRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.oTH_GRATETextEdit.Location = new System.Drawing.Point(246, 682);
-            this.oTH_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.oTH_GRATETextEdit.Name = "oTH_GRATETextEdit";
-            this.oTH_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.oTH_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.oTH_GRATETextEdit.Properties.Mask.EditMask = "f";
-            this.oTH_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.oTH_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.oTH_GRATETextEdit.TabIndex = 68;
-            this.oTH_GRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.oTH_GRATETextEdit.Leave += new System.EventHandler(this.oTH_GRATETextEdit_Leave);
-            // 
             // cHD_GRATETextEdit
             // 
             this.cHD_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CHD_GRATE", true));
@@ -2804,90 +2991,6 @@
             this.sGL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.sGL_NRATETextEdit.Leave += new System.EventHandler(this.sGL_NRATETextEdit_Leave);
             // 
-            // dBL_NRATETextEdit
-            // 
-            this.dBL_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "DBL_NRATE", true));
-            this.dBL_NRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.dBL_NRATETextEdit.Location = new System.Drawing.Point(123, 557);
-            this.dBL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dBL_NRATETextEdit.Name = "dBL_NRATETextEdit";
-            this.dBL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dBL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.dBL_NRATETextEdit.Properties.Mask.EditMask = "f";
-            this.dBL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.dBL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.dBL_NRATETextEdit.TabIndex = 46;
-            this.dBL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.dBL_NRATETextEdit.Leave += new System.EventHandler(this.dBL_NRATETextEdit_Leave);
-            // 
-            // tPL_NRATETextEdit
-            // 
-            this.tPL_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "TPL_NRATE", true));
-            this.tPL_NRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.tPL_NRATETextEdit.Location = new System.Drawing.Point(123, 598);
-            this.tPL_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tPL_NRATETextEdit.Name = "tPL_NRATETextEdit";
-            this.tPL_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tPL_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.tPL_NRATETextEdit.Properties.Mask.EditMask = "f";
-            this.tPL_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.tPL_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.tPL_NRATETextEdit.TabIndex = 53;
-            this.tPL_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.tPL_NRATETextEdit.Leave += new System.EventHandler(this.tPL_NRATETextEdit_Leave);
-            // 
-            // qUA_NRATETextEdit
-            // 
-            this.qUA_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "QUA_NRATE", true));
-            this.qUA_NRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.qUA_NRATETextEdit.Location = new System.Drawing.Point(123, 639);
-            this.qUA_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.qUA_NRATETextEdit.Name = "qUA_NRATETextEdit";
-            this.qUA_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.qUA_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.qUA_NRATETextEdit.Properties.Mask.EditMask = "f";
-            this.qUA_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.qUA_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.qUA_NRATETextEdit.TabIndex = 60;
-            this.qUA_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.qUA_NRATETextEdit.Leave += new System.EventHandler(this.qUA_NRATETextEdit_Leave);
-            // 
-            // oTH_NRATETextEdit
-            // 
-            this.oTH_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OTH_NRATE", true));
-            this.oTH_NRATETextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.oTH_NRATETextEdit.Location = new System.Drawing.Point(123, 680);
-            this.oTH_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.oTH_NRATETextEdit.Name = "oTH_NRATETextEdit";
-            this.oTH_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.oTH_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.oTH_NRATETextEdit.Properties.Mask.EditMask = "f";
-            this.oTH_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.oTH_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
-            this.oTH_NRATETextEdit.TabIndex = 67;
-            this.oTH_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.oTH_NRATETextEdit.Leave += new System.EventHandler(this.oTH_NRATETextEdit_Leave);
-            // 
             // cHD_NRATETextEdit
             // 
             this.cHD_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "CHD_NRATE", true));
@@ -2930,300 +3033,6 @@
             this.jR_NRATETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.jR_NRATETextEdit.Leave += new System.EventHandler(this.jR_NRATETextEdit_Leave);
             // 
-            // eXG_SGLTextEdit
-            // 
-            this.eXG_SGLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_SGL", true));
-            this.eXG_SGLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_SGLTextEdit.Location = new System.Drawing.Point(612, 516);
-            this.eXG_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_SGLTextEdit.Name = "eXG_SGLTextEdit";
-            this.eXG_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_SGLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_SGLTextEdit.TabIndex = 43;
-            this.eXG_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_SGLTextEdit.Leave += new System.EventHandler(this.eXG_SGLTextEdit_Leave);
-            // 
-            // eXG_DBLTextEdit
-            // 
-            this.eXG_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_DBL", true));
-            this.eXG_DBLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_DBLTextEdit.Location = new System.Drawing.Point(612, 557);
-            this.eXG_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_DBLTextEdit.Name = "eXG_DBLTextEdit";
-            this.eXG_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_DBLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_DBLTextEdit.TabIndex = 50;
-            this.eXG_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_DBLTextEdit.Leave += new System.EventHandler(this.eXG_DBLTextEdit_Leave);
-            // 
-            // eXG_TPLTextEdit
-            // 
-            this.eXG_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_TPL", true));
-            this.eXG_TPLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_TPLTextEdit.Location = new System.Drawing.Point(612, 598);
-            this.eXG_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_TPLTextEdit.Name = "eXG_TPLTextEdit";
-            this.eXG_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_TPLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_TPLTextEdit.TabIndex = 57;
-            this.eXG_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_TPLTextEdit.Leave += new System.EventHandler(this.eXG_TPLTextEdit_Leave);
-            // 
-            // eXG_QUATextEdit
-            // 
-            this.eXG_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_QUA", true));
-            this.eXG_QUATextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_QUATextEdit.Location = new System.Drawing.Point(612, 639);
-            this.eXG_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_QUATextEdit.Name = "eXG_QUATextEdit";
-            this.eXG_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_QUATextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_QUATextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_QUATextEdit.TabIndex = 64;
-            this.eXG_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_QUATextEdit.Leave += new System.EventHandler(this.eXG_QUATextEdit_Leave);
-            // 
-            // eXG_OTHTextEdit
-            // 
-            this.eXG_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_OTH", true));
-            this.eXG_OTHTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_OTHTextEdit.Location = new System.Drawing.Point(612, 680);
-            this.eXG_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_OTHTextEdit.Name = "eXG_OTHTextEdit";
-            this.eXG_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_OTHTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_OTHTextEdit.TabIndex = 71;
-            this.eXG_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_OTHTextEdit.Leave += new System.EventHandler(this.eXG_OTHTextEdit_Leave);
-            // 
-            // eXG_CHDTextEdit
-            // 
-            this.eXG_CHDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_CHD", true));
-            this.eXG_CHDTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_CHDTextEdit.Location = new System.Drawing.Point(612, 721);
-            this.eXG_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_CHDTextEdit.Name = "eXG_CHDTextEdit";
-            this.eXG_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_CHDTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_CHDTextEdit.TabIndex = 78;
-            this.eXG_CHDTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_CHDTextEdit.Leave += new System.EventHandler(this.eXG_CHDTextEdit_Leave);
-            // 
-            // eXG_JRTextEdit
-            // 
-            this.eXG_JRTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_JR", true));
-            this.eXG_JRTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXG_JRTextEdit.Location = new System.Drawing.Point(612, 763);
-            this.eXG_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXG_JRTextEdit.Name = "eXG_JRTextEdit";
-            this.eXG_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXG_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXG_JRTextEdit.Properties.Mask.EditMask = "f";
-            this.eXG_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXG_JRTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXG_JRTextEdit.TabIndex = 85;
-            this.eXG_JRTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXG_JRTextEdit.Leave += new System.EventHandler(this.eXG_JRTextEdit_Leave);
-            // 
-            // eXN_SGLTextEdit
-            // 
-            this.eXN_SGLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_SGL", true));
-            this.eXN_SGLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_SGLTextEdit.Location = new System.Drawing.Point(490, 516);
-            this.eXN_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_SGLTextEdit.Name = "eXN_SGLTextEdit";
-            this.eXN_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_SGLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_SGLTextEdit.TabIndex = 42;
-            this.eXN_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_SGLTextEdit.Leave += new System.EventHandler(this.eXN_SGLTextEdit_Leave);
-            // 
-            // eXN_DBLTextEdit
-            // 
-            this.eXN_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_DBL", true));
-            this.eXN_DBLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_DBLTextEdit.Location = new System.Drawing.Point(490, 557);
-            this.eXN_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_DBLTextEdit.Name = "eXN_DBLTextEdit";
-            this.eXN_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_DBLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_DBLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_DBLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_DBLTextEdit.TabIndex = 49;
-            this.eXN_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_DBLTextEdit.Leave += new System.EventHandler(this.eXN_DBLTextEdit_Leave);
-            // 
-            // eXN_TPLTextEdit
-            // 
-            this.eXN_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_TPL", true));
-            this.eXN_TPLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_TPLTextEdit.Location = new System.Drawing.Point(490, 597);
-            this.eXN_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_TPLTextEdit.Name = "eXN_TPLTextEdit";
-            this.eXN_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_TPLTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_TPLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_TPLTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_TPLTextEdit.TabIndex = 56;
-            this.eXN_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_TPLTextEdit.Leave += new System.EventHandler(this.eXN_TPLTextEdit_Leave);
-            // 
-            // eXN_QUATextEdit
-            // 
-            this.eXN_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_QUA", true));
-            this.eXN_QUATextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_QUATextEdit.Location = new System.Drawing.Point(490, 638);
-            this.eXN_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_QUATextEdit.Name = "eXN_QUATextEdit";
-            this.eXN_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_QUATextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_QUATextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_QUATextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_QUATextEdit.TabIndex = 63;
-            this.eXN_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_QUATextEdit.Leave += new System.EventHandler(this.eXN_QUATextEdit_Leave);
-            // 
-            // eXN_OTHTextEdit
-            // 
-            this.eXN_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_OTH", true));
-            this.eXN_OTHTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_OTHTextEdit.Location = new System.Drawing.Point(490, 679);
-            this.eXN_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_OTHTextEdit.Name = "eXN_OTHTextEdit";
-            this.eXN_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_OTHTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_OTHTextEdit.TabIndex = 70;
-            this.eXN_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_OTHTextEdit.Leave += new System.EventHandler(this.eXN_OTHTextEdit_Leave);
-            // 
-            // eXN_CHDTextEdit
-            // 
-            this.eXN_CHDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_CHD", true));
-            this.eXN_CHDTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_CHDTextEdit.Location = new System.Drawing.Point(490, 720);
-            this.eXN_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_CHDTextEdit.Name = "eXN_CHDTextEdit";
-            this.eXN_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_CHDTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_CHDTextEdit.TabIndex = 77;
-            this.eXN_CHDTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_CHDTextEdit.Leave += new System.EventHandler(this.eXN_CHDTextEdit_Leave);
-            // 
-            // eXN_JRTextEdit
-            // 
-            this.eXN_JRTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_JR", true));
-            this.eXN_JRTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.eXN_JRTextEdit.Location = new System.Drawing.Point(490, 761);
-            this.eXN_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eXN_JRTextEdit.Name = "eXN_JRTextEdit";
-            this.eXN_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.eXN_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.eXN_JRTextEdit.Properties.Mask.EditMask = "f";
-            this.eXN_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.eXN_JRTextEdit.Size = new System.Drawing.Size(113, 32);
-            this.eXN_JRTextEdit.TabIndex = 84;
-            this.eXN_JRTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.eXN_JRTextEdit.Leave += new System.EventHandler(this.eXN_JRTextEdit_Leave);
-            // 
             // mAX_SGLTextEdit
             // 
             this.mAX_SGLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_SGL", true));
@@ -3248,106 +3057,6 @@
             this.mAX_SGLTextEdit.TabIndex = 44;
             this.mAX_SGLTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_SGLTextEdit.Leave += new System.EventHandler(this.mAX_SGLTextEdit_Leave);
-            // 
-            // mAX_DBLTextEdit
-            // 
-            this.mAX_DBLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_DBL", true));
-            this.mAX_DBLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.mAX_DBLTextEdit.Location = new System.Drawing.Point(734, 557);
-            this.mAX_DBLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.mAX_DBLTextEdit.Name = "mAX_DBLTextEdit";
-            this.mAX_DBLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.mAX_DBLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.mAX_DBLTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.mAX_DBLTextEdit.Properties.MaxValue = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.mAX_DBLTextEdit.Size = new System.Drawing.Size(103, 32);
-            this.mAX_DBLTextEdit.TabIndex = 51;
-            this.mAX_DBLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.mAX_DBLTextEdit.Leave += new System.EventHandler(this.mAX_DBLTextEdit_Leave);
-            // 
-            // mAX_TPLTextEdit
-            // 
-            this.mAX_TPLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_TPL", true));
-            this.mAX_TPLTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.mAX_TPLTextEdit.Location = new System.Drawing.Point(734, 598);
-            this.mAX_TPLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.mAX_TPLTextEdit.Name = "mAX_TPLTextEdit";
-            this.mAX_TPLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.mAX_TPLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.mAX_TPLTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.mAX_TPLTextEdit.Properties.MaxValue = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.mAX_TPLTextEdit.Size = new System.Drawing.Size(103, 32);
-            this.mAX_TPLTextEdit.TabIndex = 58;
-            this.mAX_TPLTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.mAX_TPLTextEdit.Leave += new System.EventHandler(this.mAX_TPLTextEdit_Leave);
-            // 
-            // mAX_QUATextEdit
-            // 
-            this.mAX_QUATextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_QUA", true));
-            this.mAX_QUATextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.mAX_QUATextEdit.Location = new System.Drawing.Point(734, 639);
-            this.mAX_QUATextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.mAX_QUATextEdit.Name = "mAX_QUATextEdit";
-            this.mAX_QUATextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.mAX_QUATextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.mAX_QUATextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.mAX_QUATextEdit.Properties.MaxValue = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.mAX_QUATextEdit.Size = new System.Drawing.Size(103, 32);
-            this.mAX_QUATextEdit.TabIndex = 65;
-            this.mAX_QUATextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.mAX_QUATextEdit.Leave += new System.EventHandler(this.mAX_QUATextEdit_Leave);
-            // 
-            // mAX_OTHTextEdit
-            // 
-            this.mAX_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_OTH", true));
-            this.mAX_OTHTextEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.mAX_OTHTextEdit.Location = new System.Drawing.Point(734, 680);
-            this.mAX_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.mAX_OTHTextEdit.Name = "mAX_OTHTextEdit";
-            this.mAX_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.mAX_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.mAX_OTHTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.mAX_OTHTextEdit.Properties.MaxValue = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.mAX_OTHTextEdit.Size = new System.Drawing.Size(103, 32);
-            this.mAX_OTHTextEdit.TabIndex = 72;
-            this.mAX_OTHTextEdit.Enter += new System.EventHandler(this.enterControl);
-            this.mAX_OTHTextEdit.Leave += new System.EventHandler(this.mAX_OTHTextEdit_Leave);
             // 
             // spinEditSeniorAgeLimit
             // 
@@ -3423,6 +3132,156 @@
             this.colDisplayName.Name = "colDisplayName";
             this.colDisplayName.OptionsColumn.ReadOnly = true;
             // 
+            // PanelControlExtraNights
+            // 
+            this.PanelControlExtraNights.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.PanelControlExtraNights.Controls.Add(this.eXG_OTHTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXN_OTHTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.labelControl8);
+            this.PanelControlExtraNights.Controls.Add(this.labelControl9);
+            this.PanelControlExtraNights.Controls.Add(this.eXG_SGLTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXG_CHDTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXG_JRTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXN_SGLTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXN_CHDTextEdit);
+            this.PanelControlExtraNights.Controls.Add(this.eXN_JRTextEdit);
+            this.PanelControlExtraNights.Location = new System.Drawing.Point(488, 449);
+            this.PanelControlExtraNights.Name = "PanelControlExtraNights";
+            this.PanelControlExtraNights.Size = new System.Drawing.Size(239, 405);
+            this.PanelControlExtraNights.TabIndex = 272;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(134, 13);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(94, 46);
+            this.labelControl8.TabIndex = 93;
+            this.labelControl8.Text = "Extra Night\r\n    Gross";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(11, 12);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(94, 46);
+            this.labelControl9.TabIndex = 92;
+            this.labelControl9.Text = "Extra Night\r\n    Cost";
+            // 
+            // eXG_SGLTextEdit
+            // 
+            this.eXG_SGLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_SGL", true));
+            this.eXG_SGLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_SGLTextEdit.Location = new System.Drawing.Point(124, 67);
+            this.eXG_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_SGLTextEdit.Name = "eXG_SGLTextEdit";
+            this.eXG_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_SGLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_SGLTextEdit.TabIndex = 87;
+            // 
+            // eXG_CHDTextEdit
+            // 
+            this.eXG_CHDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_CHD", true));
+            this.eXG_CHDTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_CHDTextEdit.Location = new System.Drawing.Point(124, 272);
+            this.eXG_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_CHDTextEdit.Name = "eXG_CHDTextEdit";
+            this.eXG_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_CHDTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_CHDTextEdit.TabIndex = 89;
+            // 
+            // eXG_JRTextEdit
+            // 
+            this.eXG_JRTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_JR", true));
+            this.eXG_JRTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_JRTextEdit.Location = new System.Drawing.Point(124, 314);
+            this.eXG_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_JRTextEdit.Name = "eXG_JRTextEdit";
+            this.eXG_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_JRTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_JRTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_JRTextEdit.TabIndex = 91;
+            // 
+            // eXN_SGLTextEdit
+            // 
+            this.eXN_SGLTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_SGL", true));
+            this.eXN_SGLTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_SGLTextEdit.Location = new System.Drawing.Point(2, 67);
+            this.eXN_SGLTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_SGLTextEdit.Name = "eXN_SGLTextEdit";
+            this.eXN_SGLTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_SGLTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_SGLTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_SGLTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_SGLTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_SGLTextEdit.TabIndex = 86;
+            // 
+            // eXN_CHDTextEdit
+            // 
+            this.eXN_CHDTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_CHD", true));
+            this.eXN_CHDTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_CHDTextEdit.Location = new System.Drawing.Point(2, 271);
+            this.eXN_CHDTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_CHDTextEdit.Name = "eXN_CHDTextEdit";
+            this.eXN_CHDTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_CHDTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_CHDTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_CHDTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_CHDTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_CHDTextEdit.TabIndex = 88;
+            // 
+            // eXN_JRTextEdit
+            // 
+            this.eXN_JRTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_JR", true));
+            this.eXN_JRTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_JRTextEdit.Location = new System.Drawing.Point(2, 312);
+            this.eXN_JRTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_JRTextEdit.Name = "eXN_JRTextEdit";
+            this.eXN_JRTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_JRTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_JRTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_JRTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_JRTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_JRTextEdit.TabIndex = 90;
+            // 
             // BindingSourceCodeName
             // 
             this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
@@ -3448,27 +3307,132 @@
             this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
             // 
-            // label18
+            // spinEditOthRetail
             // 
-            label18.AutoSize = true;
-            label18.Location = new System.Drawing.Point(736, 288);
-            label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label18.Name = "label18";
-            label18.Size = new System.Drawing.Size(95, 24);
-            label18.TabIndex = 269;
-            label18.Text = "Rate plan";
-            // 
-            // ImageComboBoxEditSpecialValue
-            // 
-            this.ImageComboBoxEditSpecialValue.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "SpecialValue_Code", true));
-            this.ImageComboBoxEditSpecialValue.EnterMoveNextControl = true;
-            this.ImageComboBoxEditSpecialValue.Location = new System.Drawing.Point(861, 286);
-            this.ImageComboBoxEditSpecialValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ImageComboBoxEditSpecialValue.Name = "ImageComboBoxEditSpecialValue";
-            this.ImageComboBoxEditSpecialValue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinEditOthRetail.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OthRetail", true));
+            this.spinEditOthRetail.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditOthRetail.Location = new System.Drawing.Point(368, 682);
+            this.spinEditOthRetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.spinEditOthRetail.Name = "spinEditOthRetail";
+            this.spinEditOthRetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditSpecialValue.Size = new System.Drawing.Size(277, 32);
-            this.ImageComboBoxEditSpecialValue.TabIndex = 270;
+            this.spinEditOthRetail.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.spinEditOthRetail.Properties.Mask.EditMask = "f";
+            this.spinEditOthRetail.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.spinEditOthRetail.Size = new System.Drawing.Size(113, 32);
+            this.spinEditOthRetail.TabIndex = 276;
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(23, 682);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(47, 23);
+            this.labelControl15.TabIndex = 273;
+            this.labelControl15.Text = "Other";
+            // 
+            // oTH_GRATETextEdit
+            // 
+            this.oTH_GRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OTH_GRATE", true));
+            this.oTH_GRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.oTH_GRATETextEdit.Location = new System.Drawing.Point(246, 684);
+            this.oTH_GRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.oTH_GRATETextEdit.Name = "oTH_GRATETextEdit";
+            this.oTH_GRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.oTH_GRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.oTH_GRATETextEdit.Properties.Mask.EditMask = "f";
+            this.oTH_GRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.oTH_GRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.oTH_GRATETextEdit.TabIndex = 275;
+            // 
+            // oTH_NRATETextEdit
+            // 
+            this.oTH_NRATETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "OTH_NRATE", true));
+            this.oTH_NRATETextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.oTH_NRATETextEdit.Location = new System.Drawing.Point(123, 682);
+            this.oTH_NRATETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.oTH_NRATETextEdit.Name = "oTH_NRATETextEdit";
+            this.oTH_NRATETextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.oTH_NRATETextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.oTH_NRATETextEdit.Properties.Mask.EditMask = "f";
+            this.oTH_NRATETextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.oTH_NRATETextEdit.Size = new System.Drawing.Size(113, 32);
+            this.oTH_NRATETextEdit.TabIndex = 274;
+            // 
+            // mAX_OTHTextEdit
+            // 
+            this.mAX_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "MAX_OTH", true));
+            this.mAX_OTHTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.mAX_OTHTextEdit.Location = new System.Drawing.Point(734, 682);
+            this.mAX_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_OTHTextEdit.Name = "mAX_OTHTextEdit";
+            this.mAX_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.mAX_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.mAX_OTHTextEdit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.mAX_OTHTextEdit.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.mAX_OTHTextEdit.Size = new System.Drawing.Size(103, 32);
+            this.mAX_OTHTextEdit.TabIndex = 279;
+            // 
+            // eXG_OTHTextEdit
+            // 
+            this.eXG_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXG_OTH", true));
+            this.eXG_OTHTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXG_OTHTextEdit.Location = new System.Drawing.Point(125, 233);
+            this.eXG_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXG_OTHTextEdit.Name = "eXG_OTHTextEdit";
+            this.eXG_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXG_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXG_OTHTextEdit.Properties.Mask.EditMask = "f";
+            this.eXG_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXG_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXG_OTHTextEdit.TabIndex = 280;
+            // 
+            // eXN_OTHTextEdit
+            // 
+            this.eXN_OTHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PRateBindingSource, "EXN_OTH", true));
+            this.eXN_OTHTextEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.eXN_OTHTextEdit.Location = new System.Drawing.Point(3, 232);
+            this.eXN_OTHTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eXN_OTHTextEdit.Name = "eXN_OTHTextEdit";
+            this.eXN_OTHTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.eXN_OTHTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.eXN_OTHTextEdit.Properties.Mask.EditMask = "f";
+            this.eXN_OTHTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.eXN_OTHTextEdit.Size = new System.Drawing.Size(113, 32);
+            this.eXN_OTHTextEdit.TabIndex = 279;
             // 
             // PRatesForm
             // 
@@ -3511,15 +3475,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlRoomRates)).EndInit();
+            this.PanelControlRoomRates.ResumeLayout(false);
+            this.PanelControlRoomRates.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditDblRetail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditTplRetail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditQuaRetail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBL_GRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPL_GRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qUA_GRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBL_NRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPL_NRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qUA_NRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_DBLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_TPLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_QUATextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_DBLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_TPLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_QUATextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_DBLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_TPLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeEditTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorGross.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorCost.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSglRetail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditDblRetail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditTplRetail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditQuaRetail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditOthRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditChdRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditJrRetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditHotelCode.Properties)).EndInit();
@@ -3527,46 +3509,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditAgency.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_GRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOMM_PCTTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBL_GRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tPL_GRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qUA_GRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oTH_GRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHD_GRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jR_GRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sGL_NRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBL_NRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tPL_NRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qUA_NRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oTH_NRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHD_NRATETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jR_NRATETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_SGLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_DBLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_TPLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_QUATextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_OTHTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_CHDTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXG_JRTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_SGLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_DBLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_TPLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_QUATextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_OTHTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_CHDTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eXN_JRTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAX_SGLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_DBLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_TPLTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_QUATextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEditSeniorAgeLimit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlExtraNights)).EndInit();
+            this.PanelControlExtraNights.ResumeLayout(false);
+            this.PanelControlExtraNights.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_SGLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_CHDTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_JRTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_SGLTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_CHDTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_JRTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSpecialValue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditOthRetail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oTH_GRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oTH_NRATETextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mAX_OTHTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXG_OTHTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eXN_OTHTextEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3579,14 +3549,8 @@
         private DevExpress.XtraEditors.TextEdit cHD_LIMITTextEdit;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.LabelControl labelControl16;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl LabelControlSingleLabel;
         private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -3813,44 +3777,14 @@
         private System.Windows.Forms.ToolStripButton expandContractGridButton;
         private DevExpress.XtraEditors.SpinEdit sGL_GRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit cOMM_PCTTextEdit;
-        private DevExpress.XtraEditors.SpinEdit dBL_GRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit tPL_GRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit qUA_GRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit oTH_GRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit cHD_GRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit jR_GRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit sGL_NRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit dBL_NRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit tPL_NRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit qUA_NRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit oTH_NRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit cHD_NRATETextEdit;
         private DevExpress.XtraEditors.SpinEdit jR_NRATETextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_SGLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_DBLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_TPLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_QUATextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_OTHTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_CHDTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXG_JRTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_SGLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_DBLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_TPLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_QUATextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_OTHTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_CHDTextEdit;
-        private DevExpress.XtraEditors.SpinEdit eXN_JRTextEdit;
         private DevExpress.XtraEditors.SpinEdit mAX_SGLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit mAX_DBLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit mAX_TPLTextEdit;
-        private DevExpress.XtraEditors.SpinEdit mAX_QUATextEdit;
-        private DevExpress.XtraEditors.SpinEdit mAX_OTHTextEdit;
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.SpinEdit spinEditSglRetail;
-        private DevExpress.XtraEditors.SpinEdit spinEditDblRetail;
-        private DevExpress.XtraEditors.SpinEdit spinEditTplRetail;
-        private DevExpress.XtraEditors.SpinEdit spinEditQuaRetail;
-        private DevExpress.XtraEditors.SpinEdit spinEditOthRetail;
         private DevExpress.XtraEditors.SpinEdit spinEditChdRetail;
         private DevExpress.XtraEditors.SpinEdit spinEditJrRetail;
         private DevExpress.XtraEditors.SpinEdit spinEditSeniorRetail;
@@ -3867,5 +3801,43 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditSpecialValue;
+        private DevExpress.XtraEditors.PanelControl PanelControlRoomRates;
+        private DevExpress.XtraEditors.SpinEdit spinEditDblRetail;
+        private DevExpress.XtraEditors.SpinEdit spinEditTplRetail;
+        private DevExpress.XtraEditors.SpinEdit spinEditQuaRetail;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.SpinEdit dBL_GRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit tPL_GRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit qUA_GRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit dBL_NRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit tPL_NRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit qUA_NRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_DBLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_TPLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_QUATextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_DBLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_TPLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_QUATextEdit;
+        private DevExpress.XtraEditors.SpinEdit mAX_DBLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit mAX_TPLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit mAX_QUATextEdit;
+        private DevExpress.XtraEditors.PanelControl PanelControlExtraNights;
+        private DevExpress.XtraEditors.SpinEdit eXG_SGLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_CHDTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_JRTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_SGLTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_CHDTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_JRTextEdit;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.SpinEdit spinEditOthRetail;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private DevExpress.XtraEditors.SpinEdit oTH_GRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit oTH_NRATETextEdit;
+        private DevExpress.XtraEditors.SpinEdit mAX_OTHTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXG_OTHTextEdit;
+        private DevExpress.XtraEditors.SpinEdit eXN_OTHTextEdit;
     }
 }

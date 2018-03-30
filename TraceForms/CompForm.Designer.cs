@@ -113,10 +113,6 @@
             this.LabelState = new DevExpress.XtraEditors.LabelControl();
             this.LabelZip = new DevExpress.XtraEditors.LabelControl();
             this.TextEditAddr3 = new DevExpress.XtraEditors.TextEdit();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlPoliciesTab = new DevExpress.XtraEditors.PanelControl();
             this.checkEditDropoffInfoRequired = new DevExpress.XtraEditors.CheckEdit();
@@ -212,6 +208,9 @@
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnRoute = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBoxRoutes = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.gridColumnCat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTimeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlBookingReqs = new DevExpress.XtraGrid.GridControl();
@@ -550,6 +549,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryitemimagecomboboxCarOffice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryitemcheckeditExclusion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit)).BeginInit();
             this.xtraTabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
@@ -1224,7 +1224,6 @@
             this.PanelControlLocationTab.Controls.Add(this.LabelState);
             this.PanelControlLocationTab.Controls.Add(this.LabelZip);
             this.PanelControlLocationTab.Controls.Add(this.TextEditAddr3);
-            this.PanelControlLocationTab.Controls.Add(this.shapeContainer2);
             this.PanelControlLocationTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlLocationTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlLocationTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -1549,44 +1548,6 @@
             this.TextEditAddr3.TabIndex = 10;
             this.TextEditAddr3.Enter += new System.EventHandler(this.enterControl);
             this.TextEditAddr3.Leave += new System.EventHandler(this.TextEditAddr3_Leave);
-            // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.AutoScroll = true;
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 3);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape4,
-            this.rectangleShape3,
-            this.rectangleShape2});
-            this.shapeContainer2.Size = new System.Drawing.Size(1535, 746);
-            this.shapeContainer2.TabIndex = 19;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape4
-            // 
-            this.rectangleShape4.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.rectangleShape4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.rectangleShape4.Location = new System.Drawing.Point(422, 208);
-            this.rectangleShape4.Name = "rectangleShape4";
-            this.rectangleShape4.Size = new System.Drawing.Size(200, 133);
-            // 
-            // rectangleShape3
-            // 
-            this.rectangleShape3.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.rectangleShape3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.rectangleShape3.Location = new System.Drawing.Point(421, 115);
-            this.rectangleShape3.Name = "rectangleShape3";
-            this.rectangleShape3.Size = new System.Drawing.Size(379, 77);
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.rectangleShape2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.rectangleShape2.Location = new System.Drawing.Point(419, 20);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(380, 77);
             // 
             // xtraTabPage2
             // 
@@ -2474,7 +2435,8 @@
             this.repositoryitemcheckeditExclusion,
             this.repositoryitemimagecomboboxLocation,
             this.repositoryitemimagecomboboxCarOffice,
-            this.repositoryItemImageComboBoxRoutes});
+            this.repositoryItemImageComboBoxRoutes,
+            this.repositoryItemTimeEdit});
             this.GridControlTransferPoints.Size = new System.Drawing.Size(1513, 488);
             this.GridControlTransferPoints.TabIndex = 31;
             this.GridControlTransferPoints.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2503,7 +2465,9 @@
             this.ColumnArrivalTime,
             this.ColumnExclusion,
             this.colID,
-            this.ColumnRoute});
+            this.ColumnRoute,
+            this.gridColumnCat,
+            this.gridColumnServiceTime});
             this.gridViewTransferPoints.GridControl = this.GridControlTransferPoints;
             this.gridViewTransferPoints.Name = "gridViewTransferPoints";
             this.gridViewTransferPoints.OptionsView.ShowGroupPanel = false;
@@ -2539,7 +2503,7 @@
             this.ColumnPickDrop.Name = "ColumnPickDrop";
             this.ColumnPickDrop.Visible = true;
             this.ColumnPickDrop.VisibleIndex = 0;
-            this.ColumnPickDrop.Width = 127;
+            this.ColumnPickDrop.Width = 110;
             // 
             // repositoryItemImageComboBoxPickDrop
             // 
@@ -2560,7 +2524,7 @@
             this.ColumnStartDate.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.ColumnStartDate.Visible = true;
             this.ColumnStartDate.VisibleIndex = 1;
-            this.ColumnStartDate.Width = 178;
+            this.ColumnStartDate.Width = 154;
             // 
             // repositoryItemButtonEditDate
             // 
@@ -2578,7 +2542,7 @@
             this.ColumnLocation.Name = "ColumnLocation";
             this.ColumnLocation.Visible = true;
             this.ColumnLocation.VisibleIndex = 4;
-            this.ColumnLocation.Width = 434;
+            this.ColumnLocation.Width = 282;
             // 
             // repositoryitemimagecomboboxLocation
             // 
@@ -2595,7 +2559,7 @@
             this.ColumnDepartureTime.Name = "ColumnDepartureTime";
             this.ColumnDepartureTime.Visible = true;
             this.ColumnDepartureTime.VisibleIndex = 6;
-            this.ColumnDepartureTime.Width = 119;
+            this.ColumnDepartureTime.Width = 116;
             // 
             // ColumnLastUpd
             // 
@@ -2634,7 +2598,7 @@
             this.ColumnEndDate.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.ColumnEndDate.Visible = true;
             this.ColumnEndDate.VisibleIndex = 2;
-            this.ColumnEndDate.Width = 178;
+            this.ColumnEndDate.Width = 154;
             // 
             // ColumnLocationType
             // 
@@ -2644,7 +2608,7 @@
             this.ColumnLocationType.Name = "ColumnLocationType";
             this.ColumnLocationType.Visible = true;
             this.ColumnLocationType.VisibleIndex = 3;
-            this.ColumnLocationType.Width = 109;
+            this.ColumnLocationType.Width = 94;
             // 
             // repositoryitemcomboboxLocationType
             // 
@@ -2685,7 +2649,7 @@
             this.ColumnArrivalTime.Name = "ColumnArrivalTime";
             this.ColumnArrivalTime.Visible = true;
             this.ColumnArrivalTime.VisibleIndex = 7;
-            this.ColumnArrivalTime.Width = 118;
+            this.ColumnArrivalTime.Width = 115;
             // 
             // ColumnExclusion
             // 
@@ -2694,7 +2658,7 @@
             this.ColumnExclusion.Name = "ColumnExclusion";
             this.ColumnExclusion.Visible = true;
             this.ColumnExclusion.VisibleIndex = 5;
-            this.ColumnExclusion.Width = 106;
+            this.ColumnExclusion.Width = 103;
             // 
             // repositoryitemcheckeditExclusion
             // 
@@ -2717,7 +2681,7 @@
             this.ColumnRoute.Name = "ColumnRoute";
             this.ColumnRoute.Visible = true;
             this.ColumnRoute.VisibleIndex = 8;
-            this.ColumnRoute.Width = 298;
+            this.ColumnRoute.Width = 222;
             // 
             // repositoryItemImageComboBoxRoutes
             // 
@@ -2726,6 +2690,35 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemImageComboBoxRoutes.HideSelection = false;
             this.repositoryItemImageComboBoxRoutes.Name = "repositoryItemImageComboBoxRoutes";
+            // 
+            // gridColumnCat
+            // 
+            this.gridColumnCat.Caption = "Category";
+            this.gridColumnCat.FieldName = "CAT";
+            this.gridColumnCat.Name = "gridColumnCat";
+            this.gridColumnCat.Visible = true;
+            this.gridColumnCat.VisibleIndex = 9;
+            this.gridColumnCat.Width = 104;
+            // 
+            // gridColumnServiceTime
+            // 
+            this.gridColumnServiceTime.Caption = "Service time";
+            this.gridColumnServiceTime.ColumnEdit = this.repositoryItemTimeEdit;
+            this.gridColumnServiceTime.FieldName = "ServiceTime";
+            this.gridColumnServiceTime.Name = "gridColumnServiceTime";
+            this.gridColumnServiceTime.Visible = true;
+            this.gridColumnServiceTime.VisibleIndex = 10;
+            this.gridColumnServiceTime.Width = 120;
+            // 
+            // repositoryItemTimeEdit
+            // 
+            this.repositoryItemTimeEdit.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemTimeEdit.AutoHeight = false;
+            this.repositoryItemTimeEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit.DisplayFormat.FormatString = "h:mm tt";
+            this.repositoryItemTimeEdit.Mask.EditMask = "h:mm t";
+            this.repositoryItemTimeEdit.Name = "repositoryItemTimeEdit";
             // 
             // xtraTabPage5
             // 
@@ -4675,6 +4668,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryitemimagecomboboxCarOffice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryitemcheckeditExclusion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit)).EndInit();
             this.xtraTabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
@@ -4794,10 +4788,6 @@
         private DevExpress.XtraEditors.LabelControl LabelState;
         private DevExpress.XtraEditors.LabelControl LabelZip;
         private DevExpress.XtraEditors.TextEdit TextEditAddr3;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-		private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraEditors.PanelControl PanelControlPoliciesTab;
         private DevExpress.XtraEditors.CheckEdit CheckEditAllowFree;
@@ -5127,5 +5117,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditStop;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnToStop;
         private System.Windows.Forms.BindingSource bindingSourceBusRouteStop;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCat;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnServiceTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit;
     }
 }

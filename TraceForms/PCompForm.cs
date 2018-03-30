@@ -27,14 +27,16 @@ namespace TraceForms
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         string _username;
 
-        IQueryable<CodeName> _hotels;
+        List<CodeName> _hotels;
         IQueryable<CodeName> _airports;
         IQueryable<CodeName> _busstations;
         IQueryable<CodeName> _trainstations;
         IQueryable<CodeName> _seaports;
         IQueryable<CodeName> _waypoints;
         IQueryable<CodeName> _services;
-        
+        List<CodeName> _categories;
+        List<CodeName> _specialVals;
+
         public PCompForm(FlexInterfaces.Core.ICoreSys sys)
         {
             try {
@@ -65,8 +67,10 @@ namespace TraceForms
             _airports = _context.Airport.OrderBy(x => x.Code).Select(x => new CodeName() { Code = x.Code, Name = x.Name });
             _services = _context.COMP.Where(x => x.Inactive != "Y").OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
+
             _hotels = _context.HOTEL.Where(x => x.INACTIVE != "Y").OrderBy(x => x.CODE)
-                .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
+                .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME }).ToList();
+            _hotels.Insert(0, new CodeName());      //null is valid for a hotel
 
             SearchLookupEditCode.Properties.DataSource = _context.PACK.Where(x => x.Inactive != "Y").OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
@@ -77,13 +81,27 @@ namespace TraceForms
             SearchLookupEditArvArrivalCity.Properties.DataSource = cities;
             SearchLookupEditMeal.Properties.DataSource = _context.MEALCOD.OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.DESC });
-            var cat = _context.ROOMCOD.OrderBy(x => x.CODE).Select(x => new CodeName() { Code = x.CODE, Name = x.DESC });
-            SearchLookupEditCategory.Properties.DataSource = cat;
-            SearchLookupEditItemCategory.Properties.DataSource = cat;
             SearchLookupEditOperator.Properties.DataSource = _context.OPERATOR.OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
-            SearchLookupEditSpecialValue.Properties.DataSource = _context.SpecialValue.OrderBy(x => x.Code)
-                .Select(x => new CodeName() { Code = x.Code, Name = x.Name });
+            var cats = _context.ROOMCOD.OrderBy(x => x.CODE).Select(x => new CodeName() { Code = x.CODE, Name = x.DESC });
+            SearchLookupEditCategory.Properties.DataSource = cats;
+
+            //Create a list with a blank category for item category because item category can contain a category that
+            //does not match what's in the list.  Although blank is not allowed, the ProcessNewValue event fires after
+            //the Leave event, and until ProcessNewValue has fired, a new value is not posted to the binding source.  
+            //Thus, validation in the Leave event returns no error for an empty value, because unless it is in the lookup
+            //list is is considered a new value, and thus _selectedRecord still holds the prior (non-empty) value.
+            //The counter-intuitive way around this is to have an empty value in the lookup list so that it can immediately 
+            //be validated as an error.
+            _categories = cats.ToList();
+            _categories.Insert(0, new CodeName());
+            GridLookupEditItemCategory.Properties.DataSource = _categories;
+
+            _specialVals = _context.SpecialValue.OrderBy(x => x.Code)
+                .Select(x => new CodeName() { Code = x.Code, Name = x.Name }).ToList();
+            _specialVals.Insert(0, new CodeName());
+            SearchLookupEditSpecialValue.Properties.DataSource = _specialVals;
+            GridLookupEditItemSpecialValue.Properties.DataSource = _specialVals;
 
             //Set up a merged grouping for the key fields and sort by day and line
             GridViewLookup.SortInfo.ClearAndAddRange(
@@ -282,9 +300,38 @@ namespace TraceForms
             }
             else {
                 _selectedRecord = ((PCOMP)BindingSource.Current);
+                SetItemCategoryLookup(_selectedRecord.CAT1);
                 SetAllFieldsEnabledState(false);
                 SetReadOnlyKeyFields(true);
                 SetButtonEnabledState(true);
+            }
+        }
+
+        private void SetItemCategoryLookup(string itemCat)
+        {
+            //If the value of category isn't in ROOMCOD, add it to the list
+            //We allow non-matching categories so that API products can be booked
+            if (!string.IsNullOrEmpty(itemCat) && !_categories.Any(c => c.Code == itemCat)) {
+                var cats = _categories.ToList();
+                cats.Add(new CodeName(itemCat));
+                GridLookupEditItemCategory.Properties.DataSource = cats;
+            }
+            else {
+                GridLookupEditItemCategory.Properties.DataSource = _categories;
+            }
+        }
+
+        private void SetItemSpecialValueLookup(string itemVal)
+        {
+            //If the value of rate plan isn't in SpecialValue, add it to the list
+            //We allow non-matching rate plans so that API products can be booked
+            if (!string.IsNullOrEmpty(itemVal) && !_specialVals.Any(c => c.Code == itemVal)) {
+                var vals = _specialVals.ToList();
+                vals.Add(new CodeName(itemVal));
+                GridLookupEditItemSpecialValue.Properties.DataSource = vals;
+            }
+            else {
+                GridLookupEditItemSpecialValue.Properties.DataSource = _specialVals;
             }
         }
 
@@ -322,16 +369,20 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateDay, SpinEditDay);
             SetErrorInfo(_selectedRecord.ValidateLine, SpinEditLine);
             SetErrorInfo(_selectedRecord.ValidateItemCode, SearchLookupEditItemCode);
-            SetErrorInfo(_selectedRecord.ValidateItemCategory, SearchLookupEditItemCategory);
+            SetErrorInfo(_selectedRecord.ValidateSupplierProductId, SearchLookupEditSupplierProduct);
+            SetErrorInfo(_selectedRecord.ValidateItemCategory, GridLookupEditItemCategory);
             SetErrorInfo(_selectedRecord.ValidateUpdateInventory, ImageComboBoxEditUpdateInvt);
             SetErrorInfo(_selectedRecord.ValidateNights, SpinEditNights);
+            SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, GridLookupEditItemSpecialValue);
             SetErrorInfo(_selectedRecord.ValidateServiceTime, TimeEditServiceTime);
             SetErrorInfo(_selectedRecord.ValidateMeal, SearchLookupEditMeal);
             SetErrorInfo(_selectedRecord.ValidateOperator, SearchLookupEditOperator);
             SetErrorInfo(_selectedRecord.ValidatePickupType, ComboBoxEditPickupType);
             SetErrorInfo(_selectedRecord.ValidatePickupLocation, SearchLookupEditPickupLocation);
+            SetErrorInfo(_selectedRecord.ValidatePickupInfoRequired, CheckEditPickupInfoRequired);
             SetErrorInfo(_selectedRecord.ValidateDropoffType, ComboBoxEditDropoffType);
             SetErrorInfo(_selectedRecord.ValidateDropoffLocation, SearchLookupEditDropoffLocation);
+            SetErrorInfo(_selectedRecord.ValidateDropoffInfoRequired, CheckEditDropoffInfoRequired);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -490,8 +541,27 @@ namespace TraceForms
         //or from the value changing because of databinding
         private void ItemChanged()
         {
-            string code = SearchLookupEditItemCode.EditValue.ToString();
-            if (ComboBoxEditItemType.Text == "OPT") {
+            string code = SearchLookupEditItemCode.EditValue?.ToString();
+            //If the product is empty (ie blank hotel) do not allow supplier, cat, rate plan etc to be entered
+            if (string.IsNullOrEmpty(code)) {
+                ClearProductKeyFields(true);
+                SetProductKeyFieldsState(false, true);
+            }
+            else {
+                SetProductKeyFieldsState(true, true);
+                //The dropdown query does not take into account resdate or svcdate, so that users can see if there
+                //are expired mappings.  The validation does take this into account and will not allow it to be saved.
+                var suppProds = _context.SupplierProduct.Where(sp => sp.Product_Type == ComboBoxEditItemType.Text 
+                    && sp.Product_Code_Internal == code && !sp.Inactive)
+                    .Include(sp => sp.Supplier)
+                    .ToList();
+                if (suppProds.Count > 0) {
+                    suppProds.Insert(0, null);
+                }
+                SearchLookupEditSupplierProduct.Properties.DataSource = suppProds;
+            }
+
+            if (ComboBoxEditItemType.Text == "OPT" && !string.IsNullOrEmpty(code)) {
                 COMP rec = _context.COMP.FirstOrDefault(c => c.CODE == code);
                 if (rec != null) {
                     SetPickupDropoffArvDepState(rec);
@@ -503,8 +573,9 @@ namespace TraceForms
         //in which case we want to default various info
         private void ItemChangedByUser()
         {
-            string code = SearchLookupEditItemCode.EditValue.ToString();
-            if (ComboBoxEditItemType.Text == "HTL") {
+            string code = SearchLookupEditItemCode.EditValue?.ToString();
+
+            if (ComboBoxEditItemType.Text == "HTL" && !string.IsNullOrEmpty(code)) {
                 HOTEL rec = _context.HOTEL.FirstOrDefault(h => h.CODE == code);
                 if (rec != null)
                     SearchLookupEditOperator.EditValue = rec.OPER;
@@ -517,43 +588,66 @@ namespace TraceForms
             if (ComboBoxEditItemType.Text == "OPT") {
                 ClearPickupDropoffInfo();
 
-                COMP rec = _context.COMP.FirstOrDefault(c => c.CODE == code);
-                if (rec != null) {
-                    SearchLookupEditOperator.EditValue = rec.OPER;
-                    bool hasPickup = rec.PUDRP_REQ == "B" || rec.PUDRP_REQ == "P";
-                    bool hasDropoff = rec.PUDRP_REQ == "B" || rec.PUDRP_REQ == "D";
+                if (!string.IsNullOrEmpty(code)) {
+                    COMP rec = _context.COMP.FirstOrDefault(c => c.CODE == code);
+                    if (rec != null) {
+                        SearchLookupEditOperator.EditValue = rec.OPER;
+                        bool hasPickup = rec.PUDRP_REQ == "B" || rec.PUDRP_REQ == "P";
+                        bool hasDropoff = rec.PUDRP_REQ == "B" || rec.PUDRP_REQ == "D";
 
-                    if (hasPickup || hasDropoff) {
-                        //Automatically set the pickup info to the prior hotel, and dropoff info to the next hotel
-                        int currDay = (int)SpinEditDay.Value;
-                        int currLine = (int)SpinEditLine.Value;
-                        string cat = SearchLookupEditCategory.EditValue.ToString();
-                        DateTime? time = TimeEditDepartureTime.EditValue as DateTime?;
-                        string specialValue = SearchLookupEditSpecialValue.EditValue as string;
+                        if (hasPickup || hasDropoff) {
+                            //Automatically set the pickup info to the prior hotel, and dropoff info to the next hotel
+                            int currDay = (int)SpinEditDay.Value;
+                            int currLine = (int)SpinEditLine.Value;
+                            string cat = SearchLookupEditCategory.EditValue.ToString();
+                            DateTime? time = TimeEditDepartureTime.EditValue as DateTime?;
+                            string specialValue = SearchLookupEditSpecialValue.EditValue as string;
 
-                        if (hasPickup) {
-                            //previous hotel different day
-                            PCOMP previousRec = _context.PCOMP.Where(p => p.CODE == code && p.CAT == cat && p.DepartureTime == time && p.SpecialValue_Code == specialValue
-                                && p.DAY <= currDay && p.LINE < currLine && p.TYPE == "HTL").OrderByDescending(p => p.DAY).FirstOrDefault();
+                            if (hasPickup) {
+                                //previous hotel different day
+                                PCOMP previousRec = _context.PCOMP.Where(p => p.CODE == code && p.CAT == cat && p.DepartureTime == time && p.SpecialValue_Code == specialValue
+                                    && p.DAY <= currDay && p.LINE < currLine && p.TYPE == "HTL").OrderByDescending(p => p.DAY).FirstOrDefault();
 
-                            if (previousRec != null) {
-                                ComboBoxEditPickupType.EditValue = "HTL";
-                                SearchLookupEditPickupLocation.EditValue = previousRec.CODE1;
+                                if (previousRec != null) {
+                                    ComboBoxEditPickupType.EditValue = "HTL";
+                                    SearchLookupEditPickupLocation.EditValue = previousRec.CODE1;
+                                }
                             }
-                        }
 
-                        if (hasDropoff) {
-                            ///next hotel 
-                            PCOMP nextRec = _context.PCOMP.Where(p => p.CODE == code && p.CAT == cat && p.DepartureTime == time && p.SpecialValue_Code == specialValue
-                                && p.DAY > currDay && p.TYPE == "HTL").OrderByDescending(p => p.DAY).FirstOrDefault();
-                            if (nextRec != null) {
-                                ComboBoxEditDropoffType.EditValue = "HTL";
-                                SearchLookupEditDropoffLocation.EditValue = nextRec.CODE1;
+                            if (hasDropoff) {
+                                ///next hotel 
+                                PCOMP nextRec = _context.PCOMP.Where(p => p.CODE == code && p.CAT == cat && p.DepartureTime == time && p.SpecialValue_Code == specialValue
+                                    && p.DAY > currDay && p.TYPE == "HTL").OrderByDescending(p => p.DAY).FirstOrDefault();
+                                if (nextRec != null) {
+                                    ComboBoxEditDropoffType.EditValue = "HTL";
+                                    SearchLookupEditDropoffLocation.EditValue = nextRec.CODE1;
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+
+        private void ClearProductKeyFields(bool includeSupplierProduct)
+        {
+            if (includeSupplierProduct) {
+                SearchLookupEditSupplierProduct.Properties.DataSource = null;
+                SearchLookupEditSupplierProduct.EditValue = null;
+            }
+            GridLookupEditItemCategory.Properties.DataSource = null;
+            GridLookupEditItemCategory.EditValue = null;
+            SearchLookupEditSpecialValue.Properties.DataSource = null;
+            SearchLookupEditSpecialValue.EditValue = null;
+        }
+
+        private void SetProductKeyFieldsState(bool enabled, bool includeSupplierProduct)
+        {
+            if (includeSupplierProduct) {
+                SearchLookupEditSupplierProduct.Enabled = enabled;
+            }
+            GridLookupEditItemCategory.Enabled = enabled;
+            SearchLookupEditSpecialValue.Enabled = enabled;
         }
 
         private void SetPickupDropoffArvDepState(COMP rec)
@@ -685,6 +779,16 @@ namespace TraceForms
             }
         }
 
+        private void SupplierProductChangedByUser()
+        {
+            int? id = (int?)SearchLookupEditSupplierProduct.EditValue;
+            if (id != null) {
+                SupplierProduct rec = _context.SupplierProduct.FirstOrDefault(sp => sp.ID == id);
+                if (rec != null)
+                    SearchLookupEditOperator.EditValue = rec.Operator_Code;
+            }
+        }
+
         private void TimeEditServiceTime_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
@@ -748,6 +852,7 @@ namespace TraceForms
         private void ItemTypeChanged(string type)
         {
             SearchLookupEditItemCode.Properties.DataSource = null;
+            SearchLookupEditItemCode.EditValue = null;
             switch (type) {
                 case "":
                     TimeEditServiceTime.EditValue = null;
@@ -787,7 +892,7 @@ namespace TraceForms
             ItemTypeChanged(ComboBoxEditItemType.Text);
         }
 
-        private void SearchLookupEditEditCode_Leave(object sender, EventArgs e)
+        private void SearchLookupEditCode_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCode, sender);
@@ -805,7 +910,7 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateItemCode, sender);
         }
 
-        private void SearchLookupEditItemCategory_Leave(object sender, EventArgs e)
+        private void GridLookupEditItemCategory_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateItemCategory, sender);
@@ -1068,8 +1173,10 @@ namespace TraceForms
             //when changing the value of the other checkbox, this checkbox will rebind to its prior value which
             //is not yet in the context. 
             BindingSource.EndEdit();
-            if (CheckEditPickupInfoRequired.Checked)
+            if (CheckEditPickupInfoRequired.Checked) {
                 CheckEditPickupInfoProhibited.Checked = false;
+            }
+            SetErrorInfo(_selectedRecord.ValidatePickupInfoRequired, sender);
         }
 
         private void CheckEditPickupInfoProhibited_CheckedChanged(object sender, EventArgs e)
@@ -1085,8 +1192,10 @@ namespace TraceForms
         private void CheckEditDropoffInfoRequired_CheckedChanged(object sender, EventArgs e)
         {
             BindingSource.EndEdit();
-            if (CheckEditDropoffInfoRequired.Checked)
+            if (CheckEditDropoffInfoRequired.Checked) {
                 CheckEditDropoffInfoProhibited.Checked = false;
+            }
+            SetErrorInfo(_selectedRecord.ValidateDropoffInfoRequired, sender);
         }
 
         private void CheckEditDropoffInfoProhibited_CheckedChanged(object sender, EventArgs e)
@@ -1125,12 +1234,57 @@ namespace TraceForms
             PackageChanged(code);
         }
 
-        private void SearchLookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if ((sender as SearchLookUpEdit).Properties.DataSource == null)
+            if ((sender as LookUpEditBase).Properties.DataSource == null)
                 e.Cancel = true;
             else
                 e.Cancel = false;
+        }
+
+        private void GridLookupEditItemCategory_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        {
+            SetItemCategoryLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void SearchLookUpEditSupplierProduct_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSupplierProductId, sender);
+        }
+
+        private void SearchLookUpEditSupplierProduct_Closed(object sender, ClosedEventArgs e)
+        {
+            if (e.CloseMode == PopupCloseMode.Normal) {
+                SupplierProductChangedByUser();
+            }
+        }
+
+        private void GridLookUpEditProductSpecialValue_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, sender);
+        }
+
+        private void GridLookUpEditProductSpecialValue_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        {
+            SetItemSpecialValueLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void SearchLookupEditSupplierProduct_EditValueChanged(object sender, EventArgs e)
+        {
+            //If an external product is selected, inventory will not be updated
+            //Sometimes DevExpress converts EditValue to a new empty object {}, not a null, so hence check whether it is null
+            //or empty when converted to string, rather than just null
+            if (SearchLookupEditSupplierProduct.EditValue.IsNullOrEmpty()) {
+                ImageComboBoxEditUpdateInvt.Enabled = true;
+            }
+            else {
+                ImageComboBoxEditUpdateInvt.Enabled = false;
+                ImageComboBoxEditUpdateInvt.EditValue = "N";
+            }
         }
 
         private void PackageChanged(string code)
@@ -1140,12 +1294,14 @@ namespace TraceForms
             ComboBoxEditItemType.Properties.Items.Add("OPT");
             if (!string.IsNullOrEmpty(code)) {
                 PACK pkg = _context.PACK.FirstOrDefault(p => p.CODE == code);
-                if (!pkg.ServicesOnly) {
-                    ComboBoxEditItemType.Properties.Items.Add("HTL");
+                if (pkg != null) {
+                    if (!pkg.ServicesOnly) {
+                        ComboBoxEditItemType.Properties.Items.Add("HTL");
+                    }
+                    TimeEditDepartureTime.Enabled = pkg.MultipleTimes;
+                    if (!pkg.MultipleTimes)
+                        TimeEditDepartureTime.EditValue = null;
                 }
-                TimeEditDepartureTime.Enabled = pkg.MultipleTimes;
-                if (!pkg.MultipleTimes)
-                    TimeEditDepartureTime.EditValue = null;
             }
         }
     }

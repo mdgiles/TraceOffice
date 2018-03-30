@@ -1826,6 +1826,23 @@ namespace TraceForms
                 TimeEditTime.Enabled = package.MultipleTimes;
                 if (!package.MultipleTimes)
                     TimeEditTime.EditValue = null;
+                //Disable all the room rates except for single, and relabel the single as Adult
+                //The single rate will be interpreted as per person
+                foreach (BaseControl control in PanelControlRoomRates.Controls) {
+                    SetControlStateEnabled(control, !package.ServicesOnly, null);
+                }
+                foreach (BaseControl control in PanelControlExtraNights.Controls) {
+                    SetControlStateEnabled(control, !package.ServicesOnly, null);
+                }
+                LabelControlSingleLabel.Text = package.ServicesOnly ? "Adult" : "Single";
+            }
+        }
+
+        private void SetControlStateEnabled(BaseControl control, bool enabled, object disabledVal)
+        {
+            control.Enabled = enabled;
+            if (!control.Enabled && control.GetType() == typeof(BaseEdit)) {
+                ((BaseEdit)control).EditValue = disabledVal;
             }
         }
     }

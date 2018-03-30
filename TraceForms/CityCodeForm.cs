@@ -303,7 +303,6 @@ namespace TraceForms
                 suppCity.Citycod_Code = TextEditCode.Text;
             }
             BindingSourceSupplierCity.EndEdit();
-            SaveMapData();          //Mapping
         }
 
         void SetBindings()
@@ -709,6 +708,7 @@ namespace TraceForms
                 _pin.Location = point;
                 MapControl.EnableScrolling = true;
                 DisplayPointCoordinates((GeoPoint)point);
+                SaveMapData();
                 _pin = null;
             }
         }
@@ -768,6 +768,7 @@ namespace TraceForms
                 LocationInformation region = result.SearchResults.FirstOrDefault();
                 AddOrMovePushpin(region.Location);
                 MapControl.ZoomLevel = 13;
+                SaveMapData();
             }
 
             if (result.ResultCode == RequestResultCode.BadRequest)
@@ -821,7 +822,6 @@ namespace TraceForms
                 if (location.Longitude != 0 || location.Latitude != 0) {
                     if (_selectedRecord.GeoCode == null) {
                         _selectedRecord.GeoCode = new GeoCode();
-                        _context.GeoCode.AddObject(_selectedRecord.GeoCode);
                     }
                     GeoCode geoCode = _selectedRecord.GeoCode;
                     geoCode.PushLat = location.Latitude;

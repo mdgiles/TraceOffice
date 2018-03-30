@@ -923,6 +923,7 @@ namespace TraceForms
         private void CheckEditServicesOnly_Modified(object sender, EventArgs e)
         {
             Modified = true;
+            validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkServicesOnly, PackBindingSource);
         }
 
         private void CheckEditMultipleTimes_Modified(object sender, EventArgs e)

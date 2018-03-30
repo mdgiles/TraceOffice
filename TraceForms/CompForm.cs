@@ -53,6 +53,7 @@ namespace TraceForms
         COMP _selectedRecord;
         private string _PupDrpReq;
         RepositoryItemImageComboBox _busStopsCombo = new RepositoryItemImageComboBox();
+        RepositoryItemImageComboBox _roomcodCombo = new RepositoryItemImageComboBox();
 
         public CompForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -164,6 +165,13 @@ namespace TraceForms
                             .ToList());
             gridControlSupplierProduct.RepositoryItems.Add(_operatorCombo);        //per DX recommendation to avoid memory leaks
 
+            _roomcodCombo.Items.Add(loadBlank);
+            _roomcodCombo.Items.AddRange(_context.ROOMCOD
+                            .OrderBy(o => o.DESC).AsEnumerable()
+                            .Select(s => new ImageComboBoxItem() { Description = $"{s.CODE} ({s.DESC})", Value = s.CODE })
+                            .ToList());
+            GridControlTransferPoints.RepositoryItems.Add(_roomcodCombo);        //per DX recommendation to avoid memory leaks
+
             bindingSourceBusRoutes.DataSource = _context.BusRoute;
             setReadOnly(true);
             enableNavigator(false);
@@ -239,14 +247,16 @@ namespace TraceForms
                     TextEditDefaultTime.Enabled = true;
                     ImageComboBoxEditTourTime.Enabled = false;
                     TextEditDefaultTime.Text = _selectedRecord.Default_Time;
+                    gridColumnServiceTime.OptionsColumn.ReadOnly = true;
                 }
                 else
                 {
                     TextEditDefaultTime.Enabled = false;
                     ImageComboBoxEditTourTime.Enabled = true;
                     ImageComboBoxEditTourTime.EditValue = _selectedRecord.Default_Time;
+                    gridColumnServiceTime.OptionsColumn.ReadOnly = false;
                 }
-				xtraTabPageRoutes.PageEnabled = (_selectedRecord.SERV_TYPE == hopTourServiceType);
+                xtraTabPageRoutes.PageEnabled = (_selectedRecord.SERV_TYPE == hopTourServiceType);
 				gridViewTransferPoints.Columns["CompBusRoute_ID"].Visible = (_selectedRecord.SERV_TYPE == hopTourServiceType);
                 _PupDrpReq = _selectedRecord.PUDRP_REQ;
                 SetPupDrpCheckboxes();
@@ -1284,6 +1294,9 @@ namespace TraceForms
 				}
 				e.RepositoryItem = editor;
 			}
+            if (e.Column == gridColumnCat) {
+                e.RepositoryItem = _roomcodCombo;
+            }
         }
 
         private void TextEditCode_Leave(object sender, EventArgs e)
@@ -1570,11 +1583,20 @@ namespace TraceForms
             TextEditDefaultTime.Text = "";
             if (CheckEditMultTimes.Checked == true)
             {
+                gridColumnServiceTime.OptionsColumn.ReadOnly = false;
                 TextEditDefaultTime.Enabled = true;
                 ImageComboBoxEditTourTime.Enabled = false;
             }
             else
             {
+                //TODO: Should it be an error if there are service times specified in the transfer points for a
+                //service which does not have multiple times?  In which case making the column read only will not
+                //work because the user will not be able to get rid of them.  Or should we automatically set them
+                //all to null when the record is saved if it does not have multiple times?  This could lead to 
+                //duplicate transfer points if the same locations were there for different times. Technically the 
+                //same question applies to rates if the service switches from multiple times to a single time.
+                //What to do with the rates that have a time specified?  Also package components, invt.
+                gridColumnServiceTime.OptionsColumn.ReadOnly = true;
                 TextEditDefaultTime.Enabled = false;
                 ImageComboBoxEditTourTime.Enabled = true;
             }

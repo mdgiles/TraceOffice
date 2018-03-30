@@ -73,10 +73,6 @@ namespace TraceForms
             DevExpress.XtraGrid.Columns.GridColumn colCode5;
             DevExpress.XtraGrid.Columns.GridColumn colName3;
             DevExpress.XtraGrid.Columns.GridColumn colDisplayName3;
-            DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-            DevExpress.XtraGrid.Columns.GridColumn colCode6;
-            DevExpress.XtraGrid.Columns.GridColumn colName4;
-            DevExpress.XtraGrid.Columns.GridColumn colDisplayName4;
             DevExpress.XtraGrid.Views.Grid.GridView gridView5;
             DevExpress.XtraGrid.Columns.GridColumn colCode7;
             DevExpress.XtraGrid.Columns.GridColumn colName5;
@@ -89,7 +85,19 @@ namespace TraceForms
             DevExpress.XtraGrid.Columns.GridColumn colCode4;
             DevExpress.XtraGrid.Columns.GridColumn colName2;
             DevExpress.XtraGrid.Columns.GridColumn colDisplayName2;
+            DevExpress.XtraGrid.Views.Grid.GridView gridView3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PCompForm));
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSupplierName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProductCodeSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInactive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCustom1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCustom2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colResDate_Start = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colResDate_End = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSvcDate_Start = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSvcDate_End = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ImageComboBoxEditUpdateInvt = new DevExpress.XtraEditors.ImageComboBoxEdit();
@@ -142,6 +150,16 @@ namespace TraceForms
             this.colDRP_OFF = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBus_Pup_Type = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBus_Drp_Type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.GridLookupEditItemSpecialValue = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.SearchLookupEditSupplierProduct = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.BindingSourceSupplierProduct = new System.Windows.Forms.BindingSource(this.components);
             this.SimpleButtonDown = new DevExpress.XtraEditors.SimpleButton();
             this.SimpleButtonUp = new DevExpress.XtraEditors.SimpleButton();
             this.SimpleButtonClone = new DevExpress.XtraEditors.SimpleButton();
@@ -158,7 +176,6 @@ namespace TraceForms
             this.CheckEditDropoffInfoProhibited = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditDropoffInfoRequired = new DevExpress.XtraEditors.CheckEdit();
             this.SearchLookupEditDropoffLocation = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
             this.SearchLookupEditPickupLocation = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditCarOffice = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -210,10 +227,15 @@ namespace TraceForms
             this.SearchLookupEditCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditCategory = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditItemCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.SearchLookupEditItemCategory = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditMeal = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditOperator = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.SearchLookupEditSpecialValue = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.TimeEditServiceTime = new DevExpress.XtraEditors.TextEdit();
+            this.GridLookupEditItemCategory = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -225,7 +247,6 @@ namespace TraceForms
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.TimeEditServiceTime = new DevExpress.XtraEditors.TextEdit();
             label18 = new DevExpress.XtraEditors.LabelControl();
             label1 = new DevExpress.XtraEditors.LabelControl();
             gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -268,10 +289,6 @@ namespace TraceForms
             colCode5 = new DevExpress.XtraGrid.Columns.GridColumn();
             colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
             colDisplayName3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            colCode6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            colName4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            colDisplayName4 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             colCode7 = new DevExpress.XtraGrid.Columns.GridColumn();
             colName5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -284,6 +301,7 @@ namespace TraceForms
             colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
             colName2 = new DevExpress.XtraGrid.Columns.GridColumn();
             colDisplayName2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView7)).BeginInit();
@@ -294,10 +312,10 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(customSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(gridView9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditUpdateInvt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditPrivateCar.Properties)).BeginInit();
@@ -308,6 +326,11 @@ namespace TraceForms
             this.SplitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditItemSpecialValue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSupplierProduct.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditVoucherable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeEditDepartureTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPickupDropoff)).BeginInit();
@@ -317,7 +340,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditDropoffInfoProhibited.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditDropoffInfoRequired.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDropoffLocation.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditPickupLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCarOffice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditDropoffType.Properties)).BeginInit();
@@ -345,19 +367,20 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditItemCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditItemCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditMeal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSpecialValue.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditItemCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label18
             // 
-            label18.Location = new System.Drawing.Point(34, 122);
+            label18.Location = new System.Drawing.Point(32, 122);
             label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new System.Drawing.Size(80, 23);
@@ -693,38 +716,6 @@ namespace TraceForms
             colDisplayName3.Name = "colDisplayName3";
             colDisplayName3.OptionsColumn.ReadOnly = true;
             // 
-            // gridView3
-            // 
-            gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            colCode6,
-            colName4,
-            colDisplayName4});
-            gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            gridView3.Name = "gridView3";
-            gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            gridView3.OptionsView.ShowGroupPanel = false;
-            gridView3.OptionsView.ShowIndicator = false;
-            // 
-            // colCode6
-            // 
-            colCode6.FieldName = "Code";
-            colCode6.Name = "colCode6";
-            colCode6.Visible = true;
-            colCode6.VisibleIndex = 0;
-            // 
-            // colName4
-            // 
-            colName4.FieldName = "Name";
-            colName4.Name = "colName4";
-            colName4.Visible = true;
-            colName4.VisibleIndex = 1;
-            // 
-            // colDisplayName4
-            // 
-            colDisplayName4.FieldName = "DisplayName";
-            colDisplayName4.Name = "colDisplayName4";
-            colDisplayName4.OptionsColumn.ReadOnly = true;
-            // 
             // gridView5
             // 
             gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -821,14 +812,130 @@ namespace TraceForms
             colDisplayName2.Name = "colDisplayName2";
             colDisplayName2.OptionsColumn.ReadOnly = true;
             // 
+            // gridView3
+            // 
+            gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colID,
+            this.colSupplierName,
+            this.colProductCodeSupplier,
+            this.colInactive,
+            this.colCustom1,
+            this.colCustom2,
+            this.colResDate_Start,
+            this.colResDate_End,
+            this.colSvcDate_Start,
+            this.colSvcDate_End,
+            this.colDescription});
+            gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            gridView3.Name = "gridView3";
+            gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridView3.OptionsView.ShowGroupPanel = false;
+            gridView3.OptionsView.ShowIndicator = false;
+            // 
+            // colID
+            // 
+            this.colID.FieldName = "ID";
+            this.colID.Name = "colID";
+            // 
+            // colSupplierName
+            // 
+            this.colSupplierName.Caption = "Supplier";
+            this.colSupplierName.FieldName = "Supplier.Name";
+            this.colSupplierName.Name = "colSupplierName";
+            this.colSupplierName.Visible = true;
+            this.colSupplierName.VisibleIndex = 0;
+            this.colSupplierName.Width = 178;
+            // 
+            // colProductCodeSupplier
+            // 
+            this.colProductCodeSupplier.Caption = "Supplier Code";
+            this.colProductCodeSupplier.FieldName = "ProductCodeSupplier";
+            this.colProductCodeSupplier.Name = "colProductCodeSupplier";
+            this.colProductCodeSupplier.Visible = true;
+            this.colProductCodeSupplier.VisibleIndex = 1;
+            this.colProductCodeSupplier.Width = 178;
+            // 
+            // colInactive
+            // 
+            this.colInactive.FieldName = "Inactive";
+            this.colInactive.Name = "colInactive";
+            // 
+            // colCustom1
+            // 
+            this.colCustom1.FieldName = "Custom1";
+            this.colCustom1.Name = "colCustom1";
+            this.colCustom1.Visible = true;
+            this.colCustom1.VisibleIndex = 2;
+            this.colCustom1.Width = 178;
+            // 
+            // colCustom2
+            // 
+            this.colCustom2.FieldName = "Custom2";
+            this.colCustom2.Name = "colCustom2";
+            this.colCustom2.Visible = true;
+            this.colCustom2.VisibleIndex = 3;
+            this.colCustom2.Width = 178;
+            // 
+            // colResDate_Start
+            // 
+            this.colResDate_Start.Caption = "Res Start";
+            this.colResDate_Start.DisplayFormat.FormatString = "dd-MMM-yy";
+            this.colResDate_Start.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colResDate_Start.FieldName = "ResDate_Start";
+            this.colResDate_Start.Name = "colResDate_Start";
+            this.colResDate_Start.Visible = true;
+            this.colResDate_Start.VisibleIndex = 4;
+            this.colResDate_Start.Width = 129;
+            // 
+            // colResDate_End
+            // 
+            this.colResDate_End.Caption = "Res End";
+            this.colResDate_End.DisplayFormat.FormatString = "dd-MMM-yy";
+            this.colResDate_End.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colResDate_End.FieldName = "ResDate_End";
+            this.colResDate_End.Name = "colResDate_End";
+            this.colResDate_End.Visible = true;
+            this.colResDate_End.VisibleIndex = 5;
+            this.colResDate_End.Width = 131;
+            // 
+            // colSvcDate_Start
+            // 
+            this.colSvcDate_Start.Caption = "Svc Start";
+            this.colSvcDate_Start.DisplayFormat.FormatString = "dd-MMM-yy";
+            this.colSvcDate_Start.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colSvcDate_Start.FieldName = "SvcDate_Start";
+            this.colSvcDate_Start.Name = "colSvcDate_Start";
+            this.colSvcDate_Start.Visible = true;
+            this.colSvcDate_Start.VisibleIndex = 6;
+            this.colSvcDate_Start.Width = 146;
+            // 
+            // colSvcDate_End
+            // 
+            this.colSvcDate_End.Caption = "Svc End";
+            this.colSvcDate_End.DisplayFormat.FormatString = "dd-MMM-yy";
+            this.colSvcDate_End.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colSvcDate_End.FieldName = "SvcDate_End";
+            this.colSvcDate_End.Name = "colSvcDate_End";
+            this.colSvcDate_End.Visible = true;
+            this.colSvcDate_End.VisibleIndex = 7;
+            this.colSvcDate_End.Width = 134;
+            // 
+            // colDescription
+            // 
+            this.colDescription.FieldName = "Description";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.Visible = true;
+            this.colDescription.VisibleIndex = 8;
+            this.colDescription.Width = 352;
+            // 
             // labelControl32
             // 
-            this.labelControl32.Location = new System.Drawing.Point(33, 321);
+            this.labelControl32.Location = new System.Drawing.Point(32, 362);
             this.labelControl32.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(146, 23);
+            this.labelControl32.Size = new System.Drawing.Size(143, 23);
             this.labelControl32.TabIndex = 64;
-            this.labelControl32.Text = "Update Inventory";
+            this.labelControl32.Text = "Update inventory";
             // 
             // BindingSource
             // 
@@ -839,7 +946,7 @@ namespace TraceForms
             // 
             this.ImageComboBoxEditUpdateInvt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "INV_UPD", true));
             this.ImageComboBoxEditUpdateInvt.EnterMoveNextControl = true;
-            this.ImageComboBoxEditUpdateInvt.Location = new System.Drawing.Point(202, 317);
+            this.ImageComboBoxEditUpdateInvt.Location = new System.Drawing.Point(202, 359);
             this.ImageComboBoxEditUpdateInvt.Margin = new System.Windows.Forms.Padding(5);
             this.ImageComboBoxEditUpdateInvt.Name = "ImageComboBoxEditUpdateInvt";
             this.ImageComboBoxEditUpdateInvt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -854,7 +961,7 @@ namespace TraceForms
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(411, 363);
+            this.labelControl9.Location = new System.Drawing.Point(412, 405);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(90, 23);
@@ -881,7 +988,7 @@ namespace TraceForms
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(32, 485);
+            this.labelControl6.Location = new System.Drawing.Point(32, 531);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(74, 23);
@@ -892,7 +999,7 @@ namespace TraceForms
             // 
             this.ComboBoxEditRoom.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ROOM", true));
             this.ComboBoxEditRoom.EnterMoveNextControl = true;
-            this.ComboBoxEditRoom.Location = new System.Drawing.Point(517, 359);
+            this.ComboBoxEditRoom.Location = new System.Drawing.Point(518, 401);
             this.ComboBoxEditRoom.Margin = new System.Windows.Forms.Padding(5);
             this.ComboBoxEditRoom.Name = "ComboBoxEditRoom";
             this.ComboBoxEditRoom.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
@@ -912,16 +1019,16 @@ namespace TraceForms
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(32, 443);
+            this.labelControl5.Location = new System.Drawing.Point(32, 489);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(80, 23);
+            this.labelControl5.Size = new System.Drawing.Size(81, 23);
             this.labelControl5.TabIndex = 41;
-            this.labelControl5.Text = "Meal Plan";
+            this.labelControl5.Text = "Meal plan";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(33, 403);
+            this.labelControl3.Location = new System.Drawing.Point(736, 447);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(102, 23);
@@ -933,7 +1040,7 @@ namespace TraceForms
             this.CheckEditCheckOutTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CHK_OUT", true));
             this.CheckEditCheckOutTime.EditValue = "N";
             this.CheckEditCheckOutTime.EnterMoveNextControl = true;
-            this.CheckEditCheckOutTime.Location = new System.Drawing.Point(714, 358);
+            this.CheckEditCheckOutTime.Location = new System.Drawing.Point(715, 400);
             this.CheckEditCheckOutTime.Margin = new System.Windows.Forms.Padding(5);
             this.CheckEditCheckOutTime.Name = "CheckEditCheckOutTime";
             this.CheckEditCheckOutTime.Properties.Caption = "Print checkout time on voucher";
@@ -946,7 +1053,7 @@ namespace TraceForms
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(35, 80);
+            this.labelControl2.Location = new System.Drawing.Point(32, 80);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(74, 23);
@@ -955,7 +1062,7 @@ namespace TraceForms
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(35, 38);
+            this.labelControl1.Location = new System.Drawing.Point(32, 38);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(69, 23);
@@ -976,6 +1083,10 @@ namespace TraceForms
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.AutoScroll = true;
+            this.SplitContainerControl.Panel2.Controls.Add(this.labelControl13);
+            this.SplitContainerControl.Panel2.Controls.Add(this.GridLookupEditItemSpecialValue);
+            this.SplitContainerControl.Panel2.Controls.Add(this.labelControl10);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditSupplierProduct);
             this.SplitContainerControl.Panel2.Controls.Add(this.SimpleButtonDown);
             this.SplitContainerControl.Panel2.Controls.Add(this.SimpleButtonUp);
             this.SplitContainerControl.Panel2.Controls.Add(this.SimpleButtonClone);
@@ -1014,11 +1125,11 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCode);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCategory);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditItemCode);
-            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditItemCategory);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditMeal);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditOperator);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditSpecialValue);
             this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditServiceTime);
+            this.SplitContainerControl.Panel2.Controls.Add(this.GridLookupEditItemCategory);
             this.SplitContainerControl.Panel2.Text = "Panel2";
             this.SplitContainerControl.Size = new System.Drawing.Size(2104, 1259);
             this.SplitContainerControl.SplitterPosition = 915;
@@ -1305,6 +1416,116 @@ namespace TraceForms
             this.colBus_Drp_Type.FieldName = "Bus_Drp_Type";
             this.colBus_Drp_Type.Name = "colBus_Drp_Type";
             // 
+            // labelControl13
+            // 
+            this.labelControl13.Location = new System.Drawing.Point(32, 447);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(5);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(145, 23);
+            this.labelControl13.TabIndex = 284;
+            this.labelControl13.Text = "Product rate plan";
+            // 
+            // GridLookupEditItemSpecialValue
+            // 
+            this.GridLookupEditItemSpecialValue.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SpecialValue_Code_Item", true));
+            this.GridLookupEditItemSpecialValue.Enabled = false;
+            this.GridLookupEditItemSpecialValue.Location = new System.Drawing.Point(203, 443);
+            this.GridLookupEditItemSpecialValue.Margin = new System.Windows.Forms.Padding(5);
+            this.GridLookupEditItemSpecialValue.Name = "GridLookupEditItemSpecialValue";
+            this.GridLookupEditItemSpecialValue.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.GridLookupEditItemSpecialValue.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.GridLookupEditItemSpecialValue.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.GridLookupEditItemSpecialValue.Properties.DataSource = this.BindingSourceCodeName;
+            this.GridLookupEditItemSpecialValue.Properties.DisplayMember = "DisplayName";
+            this.GridLookupEditItemSpecialValue.Properties.ImmediatePopup = true;
+            this.GridLookupEditItemSpecialValue.Properties.MaxLength = 16;
+            this.GridLookupEditItemSpecialValue.Properties.NullText = "";
+            this.GridLookupEditItemSpecialValue.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.GridLookupEditItemSpecialValue.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.GridLookupEditItemSpecialValue.Properties.ValueMember = "Code";
+            this.GridLookupEditItemSpecialValue.Properties.View = this.gridView14;
+            this.GridLookupEditItemSpecialValue.Size = new System.Drawing.Size(518, 32);
+            this.GridLookupEditItemSpecialValue.TabIndex = 285;
+            this.GridLookupEditItemSpecialValue.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditProductSpecialValue_ProcessNewValue);
+            this.GridLookupEditItemSpecialValue.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            this.GridLookupEditItemSpecialValue.Leave += new System.EventHandler(this.GridLookUpEditProductSpecialValue_Leave);
+            // 
+            // BindingSourceCodeName
+            // 
+            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
+            // 
+            // gridView14
+            // 
+            this.gridView14.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9});
+            this.gridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView14.Name = "gridView14";
+            this.gridView14.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView14.OptionsView.ShowGroupPanel = false;
+            this.gridView14.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.FieldName = "Code";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 0;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.FieldName = "Name";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 1;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.FieldName = "DisplayName";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.ReadOnly = true;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(32, 279);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(5);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(139, 23);
+            this.labelControl10.TabIndex = 283;
+            this.labelControl10.Text = "External product";
+            // 
+            // SearchLookupEditSupplierProduct
+            // 
+            this.SearchLookupEditSupplierProduct.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SupplierProduct_Id", true));
+            this.SearchLookupEditSupplierProduct.Enabled = false;
+            this.SearchLookupEditSupplierProduct.Location = new System.Drawing.Point(202, 275);
+            this.SearchLookupEditSupplierProduct.Margin = new System.Windows.Forms.Padding(5);
+            this.SearchLookupEditSupplierProduct.Name = "SearchLookupEditSupplierProduct";
+            this.SearchLookupEditSupplierProduct.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.SearchLookupEditSupplierProduct.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditSupplierProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditSupplierProduct.Properties.DataSource = this.BindingSourceSupplierProduct;
+            this.SearchLookupEditSupplierProduct.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditSupplierProduct.Properties.NullText = "";
+            this.SearchLookupEditSupplierProduct.Properties.PopupSizeable = false;
+            this.SearchLookupEditSupplierProduct.Properties.ValueMember = "ID";
+            this.SearchLookupEditSupplierProduct.Properties.View = gridView3;
+            this.SearchLookupEditSupplierProduct.Size = new System.Drawing.Size(768, 32);
+            this.SearchLookupEditSupplierProduct.TabIndex = 282;
+            this.SearchLookupEditSupplierProduct.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.SearchLookupEditSupplierProduct.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditSupplierProduct.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            this.SearchLookupEditSupplierProduct.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookUpEditSupplierProduct_Closed);
+            this.SearchLookupEditSupplierProduct.EditValueChanged += new System.EventHandler(this.SearchLookupEditSupplierProduct_EditValueChanged);
+            this.SearchLookupEditSupplierProduct.Leave += new System.EventHandler(this.SearchLookUpEditSupplierProduct_Leave);
+            // 
+            // BindingSourceSupplierProduct
+            // 
+            this.BindingSourceSupplierProduct.DataSource = typeof(FlexModel.SupplierProduct);
+            // 
             // SimpleButtonDown
             // 
             this.SimpleButtonDown.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDown.ImageOptions.Image")));
@@ -1341,7 +1562,7 @@ namespace TraceForms
             // 
             this.CheckEditVoucherable.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Voucherable", true));
             this.CheckEditVoucherable.EnterMoveNextControl = true;
-            this.CheckEditVoucherable.Location = new System.Drawing.Point(409, 315);
+            this.CheckEditVoucherable.Location = new System.Drawing.Point(410, 357);
             this.CheckEditVoucherable.Margin = new System.Windows.Forms.Padding(5);
             this.CheckEditVoucherable.Name = "CheckEditVoucherable";
             this.CheckEditVoucherable.Properties.Caption = "Generate voucher";
@@ -1363,7 +1584,7 @@ namespace TraceForms
             // labelControlLastUpdatedBy
             // 
             this.labelControlLastUpdatedBy.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "UPD_INIT", true));
-            this.labelControlLastUpdatedBy.Location = new System.Drawing.Point(444, 848);
+            this.labelControlLastUpdatedBy.Location = new System.Drawing.Point(437, 894);
             this.labelControlLastUpdatedBy.Margin = new System.Windows.Forms.Padding(5);
             this.labelControlLastUpdatedBy.Name = "labelControlLastUpdatedBy";
             this.labelControlLastUpdatedBy.Size = new System.Drawing.Size(0, 23);
@@ -1388,7 +1609,7 @@ namespace TraceForms
             // labelControlLastUpdated
             // 
             this.labelControlLastUpdated.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "LAST_UPD", true));
-            this.labelControlLastUpdated.Location = new System.Drawing.Point(154, 848);
+            this.labelControlLastUpdated.Location = new System.Drawing.Point(147, 894);
             this.labelControlLastUpdated.Margin = new System.Windows.Forms.Padding(5);
             this.labelControlLastUpdated.Name = "labelControlLastUpdated";
             this.labelControlLastUpdated.Size = new System.Drawing.Size(0, 23);
@@ -1396,7 +1617,7 @@ namespace TraceForms
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(330, 848);
+            this.labelControl12.Location = new System.Drawing.Point(323, 894);
             this.labelControl12.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(104, 23);
@@ -1405,7 +1626,7 @@ namespace TraceForms
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(27, 848);
+            this.labelControl11.Location = new System.Drawing.Point(20, 894);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(117, 23);
@@ -1430,7 +1651,7 @@ namespace TraceForms
             this.PanelControlPickupDropoff.Controls.Add(this.ComboBoxEditPickupType);
             this.PanelControlPickupDropoff.Controls.Add(this.labelControl7);
             this.PanelControlPickupDropoff.Controls.Add(this.CheckEditPrivateCar);
-            this.PanelControlPickupDropoff.Location = new System.Drawing.Point(23, 523);
+            this.PanelControlPickupDropoff.Location = new System.Drawing.Point(16, 569);
             this.PanelControlPickupDropoff.Margin = new System.Windows.Forms.Padding(5);
             this.PanelControlPickupDropoff.Name = "PanelControlPickupDropoff";
             this.PanelControlPickupDropoff.Size = new System.Drawing.Size(1130, 315);
@@ -1512,11 +1733,8 @@ namespace TraceForms
             this.SearchLookupEditDropoffLocation.TabIndex = 23;
             this.SearchLookupEditDropoffLocation.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditDropoffLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditDropoffLocation.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditDropoffLocation.Leave += new System.EventHandler(this.SearchLookupEditDropoffLocation_Leave);
-            // 
-            // BindingSourceCodeName
-            // 
-            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
             // SearchLookupEditPickupLocation
             // 
@@ -1538,6 +1756,7 @@ namespace TraceForms
             this.SearchLookupEditPickupLocation.TabIndex = 22;
             this.SearchLookupEditPickupLocation.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditPickupLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditPickupLocation.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditPickupLocation.Leave += new System.EventHandler(this.SearchLookupEditPickupLocation_Leave);
             // 
             // SearchLookupEditCarOffice
@@ -1564,10 +1783,10 @@ namespace TraceForms
             this.labelControl8.Location = new System.Drawing.Point(353, 12);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(107, 23);
+            this.labelControl8.Size = new System.Drawing.Size(104, 23);
             this.labelControl8.TabIndex = 274;
             this.labelControl8.Tag = "";
-            this.labelControl8.Text = "Rental Office";
+            this.labelControl8.Text = "Rental office";
             this.labelControl8.Visible = false;
             // 
             // labelControl38
@@ -1575,9 +1794,9 @@ namespace TraceForms
             this.labelControl38.Location = new System.Drawing.Point(28, 184);
             this.labelControl38.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl38.Name = "labelControl38";
-            this.labelControl38.Size = new System.Drawing.Size(117, 23);
+            this.labelControl38.Size = new System.Drawing.Size(112, 23);
             this.labelControl38.TabIndex = 5;
-            this.labelControl38.Text = "Drop-off Type";
+            this.labelControl38.Text = "Drop-off type";
             // 
             // labelControl30
             // 
@@ -1628,9 +1847,9 @@ namespace TraceForms
             this.labelControl37.Location = new System.Drawing.Point(28, 61);
             this.labelControl37.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(101, 23);
+            this.labelControl37.Size = new System.Drawing.Size(96, 23);
             this.labelControl37.TabIndex = 4;
-            this.labelControl37.Text = "Pickup Type";
+            this.labelControl37.Text = "Pickup type";
             // 
             // ComboBoxEditPickupType
             // 
@@ -1691,18 +1910,18 @@ namespace TraceForms
             this.labelControl36.Location = new System.Drawing.Point(33, 195);
             this.labelControl36.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl36.Name = "labelControl36";
-            this.labelControl36.Size = new System.Drawing.Size(86, 23);
+            this.labelControl36.Size = new System.Drawing.Size(106, 23);
             this.labelControl36.TabIndex = 82;
-            this.labelControl36.Text = "Item Type";
+            this.labelControl36.Text = "Product type";
             // 
             // labelControl35
             // 
             this.labelControl35.Location = new System.Drawing.Point(32, 237);
             this.labelControl35.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(87, 23);
+            this.labelControl35.Size = new System.Drawing.Size(64, 23);
             this.labelControl35.TabIndex = 81;
-            this.labelControl35.Text = "Item Code";
+            this.labelControl35.Text = "Product";
             // 
             // PanelControlArvInfo
             // 
@@ -1719,7 +1938,7 @@ namespace TraceForms
             this.PanelControlArvInfo.Controls.Add(this.ComboBoxEditArvTransfer);
             this.PanelControlArvInfo.Controls.Add(this.TextEditArvDepartureTime);
             this.PanelControlArvInfo.Controls.Add(this.TextEditArvArrivalTime);
-            this.PanelControlArvInfo.Location = new System.Drawing.Point(23, 1054);
+            this.PanelControlArvInfo.Location = new System.Drawing.Point(24, 1108);
             this.PanelControlArvInfo.Margin = new System.Windows.Forms.Padding(5);
             this.PanelControlArvInfo.Name = "PanelControlArvInfo";
             this.PanelControlArvInfo.Size = new System.Drawing.Size(1122, 137);
@@ -1901,16 +2120,16 @@ namespace TraceForms
             // 
             // labelControl34
             // 
-            this.labelControl34.Location = new System.Drawing.Point(33, 279);
+            this.labelControl34.Location = new System.Drawing.Point(32, 321);
             this.labelControl34.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(119, 23);
+            this.labelControl34.Size = new System.Drawing.Size(142, 23);
             this.labelControl34.TabIndex = 80;
-            this.labelControl34.Text = "Item Category";
+            this.labelControl34.Text = "Product category";
             // 
             // labelControl33
             // 
-            this.labelControl33.Location = new System.Drawing.Point(34, 363);
+            this.labelControl33.Location = new System.Drawing.Point(32, 405);
             this.labelControl33.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl33.Name = "labelControl33";
             this.labelControl33.Size = new System.Drawing.Size(53, 23);
@@ -1927,7 +2146,7 @@ namespace TraceForms
             0});
             this.SpinEditNights.Enabled = false;
             this.SpinEditNights.EnterMoveNextControl = true;
-            this.SpinEditNights.Location = new System.Drawing.Point(202, 359);
+            this.SpinEditNights.Location = new System.Drawing.Point(203, 401);
             this.SpinEditNights.Margin = new System.Windows.Forms.Padding(5);
             this.SpinEditNights.Name = "SpinEditNights";
             this.SpinEditNights.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2036,7 +2255,7 @@ namespace TraceForms
             this.PanelControlDepInfo.Controls.Add(this.ComboBoxEditDepTransfer);
             this.PanelControlDepInfo.Controls.Add(this.TextEditDepDepartureTime);
             this.PanelControlDepInfo.Controls.Add(this.TextEditDepArrivalTime);
-            this.PanelControlDepInfo.Location = new System.Drawing.Point(23, 893);
+            this.PanelControlDepInfo.Location = new System.Drawing.Point(24, 962);
             this.PanelControlDepInfo.Margin = new System.Windows.Forms.Padding(5);
             this.PanelControlDepInfo.Name = "PanelControlDepInfo";
             this.PanelControlDepInfo.Size = new System.Drawing.Size(1122, 136);
@@ -2236,7 +2455,7 @@ namespace TraceForms
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditCode.EditValueChanged += new System.EventHandler(this.SearchLookupEditCode_EditValueChanged);
-            this.SearchLookupEditCode.Leave += new System.EventHandler(this.SearchLookupEditEditCode_Leave);
+            this.SearchLookupEditCode.Leave += new System.EventHandler(this.SearchLookupEditCode_Leave);
             // 
             // SearchLookupEditCategory
             // 
@@ -2280,37 +2499,15 @@ namespace TraceForms
             this.SearchLookupEditItemCode.TabIndex = 7;
             this.SearchLookupEditItemCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditItemCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditItemCode.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.SearchLookupEdit_QueryPopUp);
+            this.SearchLookupEditItemCode.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditItemCode.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookupEditItemCode_Closed);
             this.SearchLookupEditItemCode.EditValueChanged += new System.EventHandler(this.SearchLookupEditItemCode_EditValueChanged);
             this.SearchLookupEditItemCode.Leave += new System.EventHandler(this.SearchLookupEditItemCode_Leave);
             // 
-            // SearchLookupEditItemCategory
-            // 
-            this.SearchLookupEditItemCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT1", true));
-            this.SearchLookupEditItemCategory.Location = new System.Drawing.Point(202, 275);
-            this.SearchLookupEditItemCategory.Margin = new System.Windows.Forms.Padding(5);
-            this.SearchLookupEditItemCategory.Name = "SearchLookupEditItemCategory";
-            this.SearchLookupEditItemCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.SearchLookupEditItemCategory.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.SearchLookupEditItemCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditItemCategory.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditItemCategory.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditItemCategory.Properties.NullText = "";
-            this.SearchLookupEditItemCategory.Properties.PopupSizeable = false;
-            this.SearchLookupEditItemCategory.Properties.ValueMember = "Code";
-            this.SearchLookupEditItemCategory.Properties.View = gridView3;
-            this.SearchLookupEditItemCategory.Size = new System.Drawing.Size(768, 32);
-            this.SearchLookupEditItemCategory.TabIndex = 111;
-            this.SearchLookupEditItemCategory.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditItemCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditItemCategory.Leave += new System.EventHandler(this.SearchLookupEditItemCategory_Leave);
-            // 
             // SearchLookupEditMeal
             // 
             this.SearchLookupEditMeal.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MEALS", true));
-            this.SearchLookupEditMeal.Location = new System.Drawing.Point(202, 439);
+            this.SearchLookupEditMeal.Location = new System.Drawing.Point(202, 485);
             this.SearchLookupEditMeal.Margin = new System.Windows.Forms.Padding(5);
             this.SearchLookupEditMeal.Name = "SearchLookupEditMeal";
             this.SearchLookupEditMeal.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -2322,7 +2519,7 @@ namespace TraceForms
             this.SearchLookupEditMeal.Properties.PopupSizeable = false;
             this.SearchLookupEditMeal.Properties.ValueMember = "Code";
             this.SearchLookupEditMeal.Properties.View = gridView5;
-            this.SearchLookupEditMeal.Size = new System.Drawing.Size(455, 32);
+            this.SearchLookupEditMeal.Size = new System.Drawing.Size(518, 32);
             this.SearchLookupEditMeal.TabIndex = 15;
             this.SearchLookupEditMeal.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditMeal.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2331,7 +2528,7 @@ namespace TraceForms
             // SearchLookupEditOperator
             // 
             this.SearchLookupEditOperator.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "OPER", true));
-            this.SearchLookupEditOperator.Location = new System.Drawing.Point(202, 481);
+            this.SearchLookupEditOperator.Location = new System.Drawing.Point(202, 527);
             this.SearchLookupEditOperator.Margin = new System.Windows.Forms.Padding(5);
             this.SearchLookupEditOperator.Name = "SearchLookupEditOperator";
             this.SearchLookupEditOperator.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -2343,7 +2540,7 @@ namespace TraceForms
             this.SearchLookupEditOperator.Properties.PopupSizeable = false;
             this.SearchLookupEditOperator.Properties.ValueMember = "Code";
             this.SearchLookupEditOperator.Properties.View = gridView6;
-            this.SearchLookupEditOperator.Size = new System.Drawing.Size(455, 32);
+            this.SearchLookupEditOperator.Size = new System.Drawing.Size(518, 32);
             this.SearchLookupEditOperator.TabIndex = 16;
             this.SearchLookupEditOperator.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditOperator.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2370,6 +2567,79 @@ namespace TraceForms
             this.SearchLookupEditSpecialValue.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditSpecialValue.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditSpecialValue.Leave += new System.EventHandler(this.SearchLookupEditSpecialValue_Leave);
+            // 
+            // TimeEditServiceTime
+            // 
+            this.TimeEditServiceTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TOUR_TIME", true));
+            this.TimeEditServiceTime.EditValue = "";
+            this.TimeEditServiceTime.Enabled = false;
+            this.TimeEditServiceTime.Location = new System.Drawing.Point(851, 443);
+            this.TimeEditServiceTime.Name = "TimeEditServiceTime";
+            this.TimeEditServiceTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.TimeEditServiceTime.Properties.Mask.EditMask = "hhmm";
+            this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.TimeEditServiceTime.Properties.MaxLength = 4;
+            this.TimeEditServiceTime.Size = new System.Drawing.Size(120, 32);
+            this.TimeEditServiceTime.TabIndex = 273;
+            this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
+            // 
+            // GridLookupEditItemCategory
+            // 
+            this.GridLookupEditItemCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT1", true));
+            this.GridLookupEditItemCategory.Enabled = false;
+            this.GridLookupEditItemCategory.Location = new System.Drawing.Point(203, 317);
+            this.GridLookupEditItemCategory.Margin = new System.Windows.Forms.Padding(5);
+            this.GridLookupEditItemCategory.Name = "GridLookupEditItemCategory";
+            this.GridLookupEditItemCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.GridLookupEditItemCategory.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.GridLookupEditItemCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.GridLookupEditItemCategory.Properties.DataSource = this.BindingSourceCodeName;
+            this.GridLookupEditItemCategory.Properties.DisplayMember = "DisplayName";
+            this.GridLookupEditItemCategory.Properties.ImmediatePopup = true;
+            this.GridLookupEditItemCategory.Properties.MaxLength = 16;
+            this.GridLookupEditItemCategory.Properties.NullText = "";
+            this.GridLookupEditItemCategory.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.GridLookupEditItemCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.GridLookupEditItemCategory.Properties.ValueMember = "Code";
+            this.GridLookupEditItemCategory.Properties.View = this.gridLookUpEdit1View;
+            this.GridLookupEditItemCategory.Size = new System.Drawing.Size(768, 32);
+            this.GridLookupEditItemCategory.TabIndex = 111;
+            this.GridLookupEditItemCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditItemCategory_ProcessNewValue);
+            this.GridLookupEditItemCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            this.GridLookupEditItemCategory.Leave += new System.EventHandler(this.GridLookupEditItemCategory_Leave);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.gridLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.FieldName = "DisplayName";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             // 
             // PanelControlStatus
             // 
@@ -2484,20 +2754,6 @@ namespace TraceForms
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1259);
             // 
-            // TimeEditServiceTime
-            // 
-            this.TimeEditServiceTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TOUR_TIME", true));
-            this.TimeEditServiceTime.EditValue = "";
-            this.TimeEditServiceTime.Location = new System.Drawing.Point(202, 399);
-            this.TimeEditServiceTime.Name = "TimeEditServiceTime";
-            this.TimeEditServiceTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.TimeEditServiceTime.Properties.Mask.EditMask = "hhmm";
-            this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.TimeEditServiceTime.Properties.MaxLength = 4;
-            this.TimeEditServiceTime.Size = new System.Drawing.Size(120, 32);
-            this.TimeEditServiceTime.TabIndex = 273;
-            this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
-            // 
             // PCompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -2528,10 +2784,10 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(customSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(gridView9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditUpdateInvt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditPrivateCar.Properties)).EndInit();
@@ -2542,6 +2798,11 @@ namespace TraceForms
             this.SplitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditItemSpecialValue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSupplierProduct.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceSupplierProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditVoucherable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeEditDepartureTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPickupDropoff)).EndInit();
@@ -2552,7 +2813,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditDropoffInfoProhibited.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditDropoffInfoRequired.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDropoffLocation.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditPickupLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCarOffice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditDropoffType.Properties)).EndInit();
@@ -2582,15 +2842,16 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditItemCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditItemCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditMeal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSpecialValue.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditItemCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2662,7 +2923,6 @@ namespace TraceForms
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditCode;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditCategory;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditItemCode;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditItemCategory;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditMeal;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditOperator;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditDropoffLocation;
@@ -2733,5 +2993,30 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colBus_Pup_Type;
         private DevExpress.XtraGrid.Columns.GridColumn colBus_Drp_Type;
         private DevExpress.XtraEditors.TextEdit TimeEditServiceTime;
+        private DevExpress.XtraEditors.GridLookUpEdit GridLookupEditItemCategory;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditSupplierProduct;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.GridLookUpEdit GridLookupEditItemSpecialValue;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private System.Windows.Forms.BindingSource BindingSourceSupplierProduct;
+        private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupplierName;
+        private DevExpress.XtraGrid.Columns.GridColumn colProductCodeSupplier;
+        private DevExpress.XtraGrid.Columns.GridColumn colInactive;
+        private DevExpress.XtraGrid.Columns.GridColumn colCustom1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCustom2;
+        private DevExpress.XtraGrid.Columns.GridColumn colResDate_Start;
+        private DevExpress.XtraGrid.Columns.GridColumn colResDate_End;
+        private DevExpress.XtraGrid.Columns.GridColumn colSvcDate_Start;
+        private DevExpress.XtraGrid.Columns.GridColumn colSvcDate_End;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
     }
 }
