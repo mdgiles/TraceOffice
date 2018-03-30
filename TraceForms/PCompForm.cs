@@ -54,7 +54,6 @@ namespace TraceForms
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
-            _context.ContextOptions.UseCSharpNullComparisonBehavior = true;
             _username = sys.User.Name;
         }
 
