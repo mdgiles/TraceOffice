@@ -28,497 +28,434 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label labelType;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label3;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusForm));
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.gridControlLookup = new DevExpress.XtraGrid.GridControl();
-            this.gridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFleetMgmtID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFlexMgmtIPAddress = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colInService = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.spinEditCapacity = new DevExpress.XtraEditors.SpinEdit();
-            this.textEditFleetMgmtIPAddress = new DevExpress.XtraEditors.TextEdit();
-            this.textEditFleetMgmtID = new DevExpress.XtraEditors.TextEdit();
-            this.textEditName = new DevExpress.XtraEditors.TextEdit();
-            this.checkEditInService = new DevExpress.XtraEditors.CheckEdit();
-            this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
-            this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            labelType = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).BeginInit();
-            this.splitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlLookup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewLookup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditCapacity.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditFleetMgmtIPAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditFleetMgmtID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditInService.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
-            this.bindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-            this.panelControlStatus.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // labelType
-            // 
-            labelType.AutoSize = true;
-            labelType.Location = new System.Drawing.Point(128, 299);
-            labelType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            labelType.Name = "labelType";
-            labelType.Size = new System.Drawing.Size(161, 19);
-            labelType.TabIndex = 2;
-            labelType.Text = "Fleet management ID";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(128, 239);
-            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(50, 19);
-            label1.TabIndex = 0;
-            label1.Text = "Name";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(128, 354);
-            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(218, 19);
-            label2.TabIndex = 4;
-            label2.Text = "Fleet management IP address";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(128, 450);
-            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(68, 19);
-            label3.TabIndex = 7;
-            label3.Text = "Capacity";
-            // 
-            // bindingSource
-            // 
-            this.bindingSource.DataSource = typeof(FlexModel.Bus);
-            this.bindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // splitContainerControl
-            // 
-            this.splitContainerControl.Location = new System.Drawing.Point(0, 41);
-            this.splitContainerControl.Margin = new System.Windows.Forms.Padding(4);
-            this.splitContainerControl.Name = "splitContainerControl";
-            this.splitContainerControl.Panel1.AutoScroll = true;
-            this.splitContainerControl.Panel1.Controls.Add(this.gridControlLookup);
-            this.splitContainerControl.Panel2.AutoScroll = true;
-            this.splitContainerControl.Panel2.Controls.Add(label3);
-            this.splitContainerControl.Panel2.Controls.Add(this.spinEditCapacity);
-            this.splitContainerControl.Panel2.Controls.Add(this.textEditFleetMgmtIPAddress);
-            this.splitContainerControl.Panel2.Controls.Add(this.textEditFleetMgmtID);
-            this.splitContainerControl.Panel2.Controls.Add(this.textEditName);
-            this.splitContainerControl.Panel2.Controls.Add(label1);
-            this.splitContainerControl.Panel2.Controls.Add(label2);
-            this.splitContainerControl.Panel2.Controls.Add(labelType);
-            this.splitContainerControl.Panel2.Controls.Add(this.checkEditInService);
-            this.splitContainerControl.Size = new System.Drawing.Size(1896, 1307);
-            this.splitContainerControl.SplitterPosition = 442;
-            this.splitContainerControl.TabIndex = 39;
-            // 
-            // gridControlLookup
-            // 
-            this.gridControlLookup.DataSource = this.bindingSource;
-            this.gridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlLookup.Location = new System.Drawing.Point(0, 0);
-            this.gridControlLookup.MainView = this.gridViewLookup;
-            this.gridControlLookup.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlLookup.Name = "gridControlLookup";
-            this.gridControlLookup.Size = new System.Drawing.Size(442, 1307);
-            this.gridControlLookup.TabIndex = 0;
-            this.gridControlLookup.TabStop = false;
-            this.gridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewLookup});
-            // 
-            // gridViewLookup
-            // 
-            this.gridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.Label labelType;
+			System.Windows.Forms.Label label1;
+			System.Windows.Forms.Label label2;
+			System.Windows.Forms.Label label3;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusForm));
+			this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
+			this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colFleetMgmtID = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colFlexMgmtIPAddress = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colInService = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.SpinEditCapacity = new DevExpress.XtraEditors.SpinEdit();
+			this.TextEditFleetMgmtIPAddress = new DevExpress.XtraEditors.TextEdit();
+			this.TextEditFleetMgmtID = new DevExpress.XtraEditors.TextEdit();
+			this.TextEditName = new DevExpress.XtraEditors.TextEdit();
+			this.CheckEditInService = new DevExpress.XtraEditors.CheckEdit();
+			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
+			this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.bar1 = new DevExpress.XtraBars.Bar();
+			this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			labelType = new System.Windows.Forms.Label();
+			label1 = new System.Windows.Forms.Label();
+			label2 = new System.Windows.Forms.Label();
+			label3 = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
+			this.SplitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SpinEditCapacity.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditFleetMgmtIPAddress.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditFleetMgmtID.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditName.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditInService.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+			this.PanelControlStatus.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// labelType
+			// 
+			labelType.AutoSize = true;
+			labelType.Location = new System.Drawing.Point(85, 205);
+			labelType.Name = "labelType";
+			labelType.Size = new System.Drawing.Size(110, 13);
+			labelType.TabIndex = 2;
+			labelType.Text = "Fleet management ID";
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new System.Drawing.Point(85, 164);
+			label1.Name = "label1";
+			label1.Size = new System.Drawing.Size(34, 13);
+			label1.TabIndex = 0;
+			label1.Text = "Name";
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new System.Drawing.Point(85, 243);
+			label2.Name = "label2";
+			label2.Size = new System.Drawing.Size(150, 13);
+			label2.TabIndex = 4;
+			label2.Text = "Fleet management IP address";
+			// 
+			// label3
+			// 
+			label3.AutoSize = true;
+			label3.Location = new System.Drawing.Point(85, 308);
+			label3.Name = "label3";
+			label3.Size = new System.Drawing.Size(49, 13);
+			label3.TabIndex = 7;
+			label3.Text = "Capacity";
+			// 
+			// BindingSource
+			// 
+			this.BindingSource.DataSource = typeof(FlexModel.Bus);
+			this.BindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
+			// 
+			// ErrorProvider
+			// 
+			this.ErrorProvider.ContainerControl = this;
+			// 
+			// SplitContainerControl
+			// 
+			this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+			this.SplitContainerControl.Name = "SplitContainerControl";
+			this.SplitContainerControl.Panel1.AutoScroll = true;
+			this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
+			this.SplitContainerControl.Panel2.AutoScroll = true;
+			this.SplitContainerControl.Panel2.Controls.Add(label3);
+			this.SplitContainerControl.Panel2.Controls.Add(this.SpinEditCapacity);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditFleetMgmtIPAddress);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditFleetMgmtID);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditName);
+			this.SplitContainerControl.Panel2.Controls.Add(label1);
+			this.SplitContainerControl.Panel2.Controls.Add(label2);
+			this.SplitContainerControl.Panel2.Controls.Add(labelType);
+			this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditInService);
+			this.SplitContainerControl.Size = new System.Drawing.Size(1020, 572);
+			this.SplitContainerControl.SplitterPosition = 295;
+			this.SplitContainerControl.TabIndex = 39;
+			// 
+			// GridControlLookup
+			// 
+			this.GridControlLookup.DataSource = this.BindingSource;
+			this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
+			this.GridControlLookup.MainView = this.GridViewLookup;
+			this.GridControlLookup.Name = "GridControlLookup";
+			this.GridControlLookup.Size = new System.Drawing.Size(295, 572);
+			this.GridControlLookup.TabIndex = 0;
+			this.GridControlLookup.TabStop = false;
+			this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewLookup});
+			// 
+			// GridViewLookup
+			// 
+			this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
-            this.colName,
+            this.colName1,
             this.colFleetMgmtID,
             this.colFlexMgmtIPAddress,
             this.colInService});
-            this.gridViewLookup.GridControl = this.gridControlLookup;
-            this.gridViewLookup.Name = "gridViewLookup";
-            this.gridViewLookup.OptionsBehavior.Editable = false;
-            this.gridViewLookup.OptionsView.ShowAutoFilterRow = true;
-            this.gridViewLookup.OptionsView.ShowGroupPanel = false;
-            this.gridViewLookup.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridViewLookup_InvalidRowException);
-            this.gridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.gridViewLookup_BeforeLeaveRow);
-            this.gridViewLookup.ColumnFilterChanged += new System.EventHandler(this.gridViewLookup_ColumnFilterChanged);
-            // 
-            // colID
-            // 
-            this.colID.FieldName = "ID";
-            this.colID.Name = "colID";
-            // 
-            // colName
-            // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            // 
-            // colFleetMgmtID
-            // 
-            this.colFleetMgmtID.FieldName = "FleetMgmtID";
-            this.colFleetMgmtID.Name = "colFleetMgmtID";
-            // 
-            // colFlexMgmtIPAddress
-            // 
-            this.colFlexMgmtIPAddress.FieldName = "FlexMgmtIPAddress";
-            this.colFlexMgmtIPAddress.Name = "colFlexMgmtIPAddress";
-            // 
-            // colInService
-            // 
-            this.colInService.FieldName = "InService";
-            this.colInService.Name = "colInService";
-            // 
-            // spinEditCapacity
-            // 
-            this.spinEditCapacity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource, "Capacity", true));
-            this.spinEditCapacity.EditValue = new decimal(new int[] {
+			this.GridViewLookup.GridControl = this.GridControlLookup;
+			this.GridViewLookup.Name = "GridViewLookup";
+			this.GridViewLookup.OptionsBehavior.Editable = false;
+			this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
+			this.GridViewLookup.OptionsView.ShowGroupPanel = false;
+			this.GridViewLookup.ColumnFilterChanged += new System.EventHandler(this.GridViewLookup_ColumnFilterChanged);
+			// 
+			// colID
+			// 
+			this.colID.FieldName = "ID";
+			this.colID.Name = "colID";
+			// 
+			// colName1
+			// 
+			this.colName1.FieldName = "Name";
+			this.colName1.Name = "colName1";
+			this.colName1.Visible = true;
+			this.colName1.VisibleIndex = 0;
+			// 
+			// colFleetMgmtID
+			// 
+			this.colFleetMgmtID.FieldName = "FleetMgmtID";
+			this.colFleetMgmtID.Name = "colFleetMgmtID";
+			// 
+			// colFlexMgmtIPAddress
+			// 
+			this.colFlexMgmtIPAddress.FieldName = "FlexMgmtIPAddress";
+			this.colFlexMgmtIPAddress.Name = "colFlexMgmtIPAddress";
+			// 
+			// colInService
+			// 
+			this.colInService.FieldName = "InService";
+			this.colInService.Name = "colInService";
+			// 
+			// SpinEditCapacity
+			// 
+			this.SpinEditCapacity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Capacity", true));
+			this.SpinEditCapacity.EditValue = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.spinEditCapacity.Location = new System.Drawing.Point(356, 447);
-            this.spinEditCapacity.Name = "spinEditCapacity";
-            this.spinEditCapacity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.SpinEditCapacity.Location = new System.Drawing.Point(237, 306);
+			this.SpinEditCapacity.Margin = new System.Windows.Forms.Padding(2);
+			this.SpinEditCapacity.Name = "SpinEditCapacity";
+			this.SpinEditCapacity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditCapacity.Properties.Mask.EditMask = "###";
-            this.spinEditCapacity.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.spinEditCapacity.Properties.MaxValue = new decimal(new int[] {
+			this.SpinEditCapacity.Properties.Mask.EditMask = "###";
+			this.SpinEditCapacity.Properties.Mask.UseMaskAsDisplayFormat = true;
+			this.SpinEditCapacity.Properties.MaxValue = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.spinEditCapacity.Properties.MinValue = new decimal(new int[] {
+			this.SpinEditCapacity.Properties.MinValue = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.spinEditCapacity.Size = new System.Drawing.Size(100, 26);
-            this.spinEditCapacity.TabIndex = 8;
-            this.spinEditCapacity.Enter += new System.EventHandler(this.enterControl);
-            this.spinEditCapacity.Leave += new System.EventHandler(this.spinEditCapacity_Leave);
-            // 
-            // textEditFleetMgmtIPAddress
-            // 
-            this.textEditFleetMgmtIPAddress.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource, "FlexMgmtIPAddress", true));
-            this.textEditFleetMgmtIPAddress.EnterMoveNextControl = true;
-            this.textEditFleetMgmtIPAddress.Location = new System.Drawing.Point(356, 351);
-            this.textEditFleetMgmtIPAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.textEditFleetMgmtIPAddress.Name = "textEditFleetMgmtIPAddress";
-            this.textEditFleetMgmtIPAddress.Properties.MaxLength = 12;
-            this.textEditFleetMgmtIPAddress.Size = new System.Drawing.Size(252, 26);
-            this.textEditFleetMgmtIPAddress.TabIndex = 5;
-            this.textEditFleetMgmtIPAddress.Enter += new System.EventHandler(this.enterControl);
-            this.textEditFleetMgmtIPAddress.Leave += new System.EventHandler(this.textEditFleetMgmtIPAddress_Leave);
-            // 
-            // textEditFleetMgmtID
-            // 
-            this.textEditFleetMgmtID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource, "FleetMgmtID", true));
-            this.textEditFleetMgmtID.EnterMoveNextControl = true;
-            this.textEditFleetMgmtID.Location = new System.Drawing.Point(356, 296);
-            this.textEditFleetMgmtID.Margin = new System.Windows.Forms.Padding(4);
-            this.textEditFleetMgmtID.Name = "textEditFleetMgmtID";
-            this.textEditFleetMgmtID.Properties.MaxLength = 60;
-            this.textEditFleetMgmtID.Size = new System.Drawing.Size(443, 26);
-            this.textEditFleetMgmtID.TabIndex = 3;
-            this.textEditFleetMgmtID.Enter += new System.EventHandler(this.enterControl);
-            this.textEditFleetMgmtID.Leave += new System.EventHandler(this.textEditFleetMgmtID_Leave);
-            // 
-            // textEditName
-            // 
-            this.textEditName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource, "Name", true));
-            this.textEditName.EnterMoveNextControl = true;
-            this.textEditName.Location = new System.Drawing.Point(356, 236);
-            this.textEditName.Margin = new System.Windows.Forms.Padding(4);
-            this.textEditName.Name = "textEditName";
-            this.textEditName.Properties.MaxLength = 60;
-            this.textEditName.Size = new System.Drawing.Size(671, 26);
-            this.textEditName.TabIndex = 1;
-            this.textEditName.Enter += new System.EventHandler(this.enterControl);
-            this.textEditName.Leave += new System.EventHandler(this.textEditName_Leave);
-            // 
-            // checkEditInService
-            // 
-            this.checkEditInService.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bindingSource, "InService", true));
-            this.checkEditInService.Location = new System.Drawing.Point(129, 401);
-            this.checkEditInService.Name = "checkEditInService";
-            this.checkEditInService.Properties.Caption = "In Service";
-            this.checkEditInService.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditInService.Size = new System.Drawing.Size(244, 23);
-            this.checkEditInService.TabIndex = 6;
-            this.checkEditInService.Enter += new System.EventHandler(this.enterControl);
-            this.checkEditInService.Leave += new System.EventHandler(this.checkEditInService_Leave);
-            // 
-            // bindingNavigator
-            // 
-            this.bindingNavigator.AddNewItem = null;
-            this.bindingNavigator.BindingSource = this.bindingSource;
-            this.bindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator.DeleteItem = null;
-            this.bindingNavigator.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.bindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.bindingNavigatorSaveItem});
-            this.bindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator.MoveFirstItem = null;
-            this.bindingNavigator.MoveLastItem = null;
-            this.bindingNavigator.MoveNextItem = null;
-            this.bindingNavigator.MovePreviousItem = null;
-            this.bindingNavigator.Name = "bindingNavigator";
-            this.bindingNavigator.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator.Size = new System.Drawing.Size(1530, 31);
-            this.bindingNavigator.TabIndex = 23;
-            this.bindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(73, 31);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // bindingNavigatorSaveItem
-            // 
-            this.bindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorSaveItem.Image")));
-            this.bindingNavigatorSaveItem.Name = "bindingNavigatorSaveItem";
-            this.bindingNavigatorSaveItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorSaveItem.Text = "Save Data";
-            this.bindingNavigatorSaveItem.Click += new System.EventHandler(this.BindingNavigatorSaveItem_Click);
-            // 
-            // panelControlStatus
-            // 
-            this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-            this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-            this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(548, 3);
-            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4);
-            this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(180, 34);
-            this.panelControlStatus.TabIndex = 265;
-            this.panelControlStatus.Visible = false;
-            // 
-            // LabelStatus
-            // 
-            this.LabelStatus.Location = new System.Drawing.Point(45, 7);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4);
-            this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 19);
-            this.LabelStatus.TabIndex = 5;
-            // 
-            // BusForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1530, 1084);
-            this.Controls.Add(this.panelControlStatus);
-            this.Controls.Add(this.bindingNavigator);
-            this.Controls.Add(this.splitContainerControl);
-            this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimizeBox = false;
-            this.Name = "BusForm";
-            this.ShowInTaskbar = false;
-            this.Text = "Bus General Information";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BusForm_FormClosing);
-            this.Shown += new System.EventHandler(this.BusForm_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl)).EndInit();
-            this.splitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlLookup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewLookup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditCapacity.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditFleetMgmtIPAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditFleetMgmtID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditInService.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
-            this.bindingNavigator.ResumeLayout(false);
-            this.bindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-            this.panelControlStatus.ResumeLayout(false);
-            this.panelControlStatus.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.SpinEditCapacity.Size = new System.Drawing.Size(67, 20);
+			this.SpinEditCapacity.TabIndex = 8;
+			this.SpinEditCapacity.Leave += new System.EventHandler(this.SpinEditCapacity_Leave);
+			// 
+			// TextEditFleetMgmtIPAddress
+			// 
+			this.TextEditFleetMgmtIPAddress.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FlexMgmtIPAddress", true));
+			this.TextEditFleetMgmtIPAddress.EnterMoveNextControl = true;
+			this.TextEditFleetMgmtIPAddress.Location = new System.Drawing.Point(237, 240);
+			this.TextEditFleetMgmtIPAddress.Name = "TextEditFleetMgmtIPAddress";
+			this.TextEditFleetMgmtIPAddress.Properties.MaxLength = 12;
+			this.TextEditFleetMgmtIPAddress.Size = new System.Drawing.Size(168, 20);
+			this.TextEditFleetMgmtIPAddress.TabIndex = 5;
+			// 
+			// TextEditFleetMgmtID
+			// 
+			this.TextEditFleetMgmtID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FleetMgmtID", true));
+			this.TextEditFleetMgmtID.EnterMoveNextControl = true;
+			this.TextEditFleetMgmtID.Location = new System.Drawing.Point(237, 203);
+			this.TextEditFleetMgmtID.Name = "TextEditFleetMgmtID";
+			this.TextEditFleetMgmtID.Properties.MaxLength = 50;
+			this.TextEditFleetMgmtID.Size = new System.Drawing.Size(295, 20);
+			this.TextEditFleetMgmtID.TabIndex = 3;
+			// 
+			// TextEditName
+			// 
+			this.TextEditName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Name", true));
+			this.TextEditName.EnterMoveNextControl = true;
+			this.TextEditName.Location = new System.Drawing.Point(237, 161);
+			this.TextEditName.Name = "TextEditName";
+			this.TextEditName.Properties.MaxLength = 60;
+			this.TextEditName.Size = new System.Drawing.Size(447, 20);
+			this.TextEditName.TabIndex = 1;
+			this.TextEditName.Leave += new System.EventHandler(this.TextEditName_Leave);
+			// 
+			// CheckEditInService
+			// 
+			this.CheckEditInService.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "InService", true));
+			this.CheckEditInService.Location = new System.Drawing.Point(86, 274);
+			this.CheckEditInService.Margin = new System.Windows.Forms.Padding(2);
+			this.CheckEditInService.Name = "CheckEditInService";
+			this.CheckEditInService.Properties.Caption = "In Service";
+			this.CheckEditInService.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+			this.CheckEditInService.Size = new System.Drawing.Size(168, 19);
+			this.CheckEditInService.TabIndex = 6;
+			// 
+			// LabelStatus
+			// 
+			this.LabelStatus.Location = new System.Drawing.Point(30, 5);
+			this.LabelStatus.Name = "LabelStatus";
+			this.LabelStatus.Size = new System.Drawing.Size(0, 13);
+			this.LabelStatus.TabIndex = 5;
+			// 
+			// PanelControlStatus
+			// 
+			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+			this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+			this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.PanelControlStatus.Controls.Add(this.LabelStatus);
+			this.PanelControlStatus.Location = new System.Drawing.Point(365, 2);
+			this.PanelControlStatus.Name = "PanelControlStatus";
+			this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
+			this.PanelControlStatus.TabIndex = 265;
+			this.PanelControlStatus.Visible = false;
+			// 
+			// colName
+			// 
+			this.colName.FieldName = "Name";
+			this.colName.Name = "colName";
+			this.colName.Visible = true;
+			this.colName.VisibleIndex = 0;
+			// 
+			// BarManager
+			// 
+			this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1});
+			this.BarManager.DockControls.Add(this.barDockControlTop);
+			this.BarManager.DockControls.Add(this.barDockControlBottom);
+			this.BarManager.DockControls.Add(this.barDockControlLeft);
+			this.BarManager.DockControls.Add(this.barDockControlRight);
+			this.BarManager.Form = this;
+			this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+			this.BarManager.MaxItemId = 3;
+			// 
+			// bar1
+			// 
+			this.bar1.BarName = "Tools";
+			this.bar1.DockCol = 0;
+			this.bar1.DockRow = 0;
+			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.BarButtonItemNew, DevExpress.XtraBars.BarItemPaintStyle.Standard),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+			this.bar1.OptionsBar.AllowQuickCustomization = false;
+			this.bar1.OptionsBar.DrawDragBorder = false;
+			this.bar1.OptionsBar.UseWholeRow = true;
+			this.bar1.Text = "Tools";
+			// 
+			// BarButtonItemNew
+			// 
+			this.BarButtonItemNew.Caption = "New";
+			this.BarButtonItemNew.Id = 0;
+			this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.Image")));
+			this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.LargeImage")));
+			this.BarButtonItemNew.Name = "BarButtonItemNew";
+			this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+			// 
+			// BarButtonItemDelete
+			// 
+			this.BarButtonItemDelete.Caption = "Delete";
+			this.BarButtonItemDelete.Id = 1;
+			this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
+			this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
+			this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+			this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+			// 
+			// BarButtonItemSave
+			// 
+			this.BarButtonItemSave.Caption = "Save";
+			this.BarButtonItemSave.Id = 2;
+			this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.Image")));
+			this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
+			this.BarButtonItemSave.Name = "BarButtonItemSave";
+			this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+			// 
+			// barDockControlTop
+			// 
+			this.barDockControlTop.CausesValidation = false;
+			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+			this.barDockControlTop.Manager = this.BarManager;
+			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
+			// 
+			// barDockControlBottom
+			// 
+			this.barDockControlBottom.CausesValidation = false;
+			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 603);
+			this.barDockControlBottom.Manager = this.BarManager;
+			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
+			// 
+			// barDockControlLeft
+			// 
+			this.barDockControlLeft.CausesValidation = false;
+			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+			this.barDockControlLeft.Manager = this.BarManager;
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 572);
+			// 
+			// barDockControlRight
+			// 
+			this.barDockControlRight.CausesValidation = false;
+			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
+			this.barDockControlRight.Manager = this.BarManager;
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 572);
+			// 
+			// BusForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1020, 603);
+			this.Controls.Add(this.PanelControlStatus);
+			this.Controls.Add(this.SplitContainerControl);
+			this.Controls.Add(this.barDockControlLeft);
+			this.Controls.Add(this.barDockControlRight);
+			this.Controls.Add(this.barDockControlBottom);
+			this.Controls.Add(this.barDockControlTop);
+			this.KeyPreview = true;
+			this.MinimizeBox = false;
+			this.Name = "BusForm";
+			this.ShowInTaskbar = false;
+			this.Text = "Bus General Information";
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BusForm_FormClosing);
+			this.Shown += new System.EventHandler(this.BusForm_Shown);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusForm_KeyDown);
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
+			this.SplitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SpinEditCapacity.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditFleetMgmtIPAddress.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditFleetMgmtID.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditName.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditInService.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+			this.PanelControlStatus.ResumeLayout(false);
+			this.PanelControlStatus.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.BindingSource bindingSource;
-		private System.Windows.Forms.ErrorProvider errorProvider1;
-        private DevExpress.XtraGrid.GridControl gridControlLookup;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridViewLookup;
-        private System.Windows.Forms.BindingNavigator bindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-		private System.Windows.Forms.ToolStripButton bindingNavigatorSaveItem;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private System.Windows.Forms.BindingSource BindingSource;
+		private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
+		private DevExpress.XtraEditors.CheckEdit CheckEditInService;
+        private DevExpress.XtraEditors.TextEdit TextEditFleetMgmtIPAddress;
+		private DevExpress.XtraEditors.SpinEdit SpinEditCapacity;
+		private DevExpress.XtraEditors.PanelControl PanelControlStatus;
 		private DevExpress.XtraEditors.LabelControl LabelStatus;
-		private DevExpress.XtraEditors.CheckEdit checkEditInService;
-        private DevExpress.XtraEditors.TextEdit textEditFleetMgmtIPAddress;
-        private DevExpress.XtraEditors.TextEdit textEditFleetMgmtID;
-        private DevExpress.XtraEditors.TextEdit textEditName;
-        private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colName;
-        private DevExpress.XtraGrid.Columns.GridColumn colFleetMgmtID;
-        private DevExpress.XtraGrid.Columns.GridColumn colFlexMgmtIPAddress;
-        private DevExpress.XtraGrid.Columns.GridColumn colInService;
-		private DevExpress.XtraEditors.SpinEdit spinEditCapacity;
-    }
+		private DevExpress.XtraGrid.GridControl GridControlLookup;
+		private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
+		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+		private DevExpress.XtraBars.BarManager BarManager;
+		private DevExpress.XtraBars.Bar bar1;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+		private DevExpress.XtraBars.BarDockControl barDockControlTop;
+		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+		private DevExpress.XtraBars.BarDockControl barDockControlRight;
+		private DevExpress.XtraGrid.Columns.GridColumn colName;
+		private DevExpress.XtraEditors.TextEdit TextEditFleetMgmtID;
+		private DevExpress.XtraEditors.TextEdit TextEditName;
+		private DevExpress.XtraGrid.Columns.GridColumn colID;
+		private DevExpress.XtraGrid.Columns.GridColumn colName1;
+		private DevExpress.XtraGrid.Columns.GridColumn colFleetMgmtID;
+		private DevExpress.XtraGrid.Columns.GridColumn colFlexMgmtIPAddress;
+		private DevExpress.XtraGrid.Columns.GridColumn colInService;
+	}
 }
