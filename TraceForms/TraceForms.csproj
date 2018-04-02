@@ -482,11 +482,11 @@
     <Compile Include="InsuranForm.Designer.cs">
       <DependentUpon>InsuranForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InvMaint.cs">
+    <Compile Include="InvtMaint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InvMaint.designer.cs">
-      <DependentUpon>InvMaint.cs</DependentUpon>
+    <Compile Include="InvtMaint.designer.cs">
+      <DependentUpon>InvtMaint.cs</DependentUpon>
     </Compile>
     <Compile Include="InvtChgForm.cs">
       <SubType>Form</SubType>
@@ -1062,8 +1062,8 @@
     <EmbeddedResource Include="InsuranForm.resx">
       <DependentUpon>InsuranForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InvMaint.resx">
-      <DependentUpon>InvMaint.cs</DependentUpon>
+    <EmbeddedResource Include="InvtMaint.resx">
+      <DependentUpon>InvtMaint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvtChgForm.resx">
       <DependentUpon>InvtChgForm.cs</DependentUpon>

@@ -648,7 +648,7 @@ namespace TraceForms
 
         private void barButtonInventMaint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            InvMaint xform1 = new InvMaint(false, _FlexSys) { };
+            InvtMaint xform1 = new InvtMaint(false, _FlexSys) { };
             xform1.Show();
         }
 

@@ -735,7 +735,7 @@ namespace FlexOffice
         private void barButtonInventMaint_ItemClick(object sender, ItemClickEventArgs e)
         {
             //XtraForm1 xform1 = new XtraForm1(_FlexSys.Settings.EFConnectionString) { MdiParent = this };
-            InvMaint xform1 = new InvMaint(false, _FlexSys) { MdiParent = this };
+            InvtMaint xform1 = new InvtMaint(false, _FlexSys) { MdiParent = this };
             xform1.Show();
         }
 
@@ -994,7 +994,7 @@ namespace FlexOffice
 
         private void BarButtonItemInvBuild_ItemClick(object sender, ItemClickEventArgs e)
         {
-            InvMaint xform1 = new InvMaint(true, _FlexSys) { MdiParent = this };
+            InvtMaint xform1 = new InvtMaint(true, _FlexSys) { MdiParent = this };
             xform1.Show();
         }
 
