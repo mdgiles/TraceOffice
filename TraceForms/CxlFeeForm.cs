@@ -24,8 +24,9 @@ namespace TraceForms
 		Timer _actionConfirmation;
 		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 		Dictionary<String, List<CodeName>> _productLookups;
+        string _username;
 
-		public CxlFeeForm(FlexInterfaces.Core.ICoreSys sys)
+        public CxlFeeForm(FlexInterfaces.Core.ICoreSys sys)
         {
             InitializeComponent();
             Connect(sys);
@@ -37,9 +38,10 @@ namespace TraceForms
         {
 			Connection.EFConnectionString = sys.Settings.EFConnectionString;
 			_context = new FlextourEntities(sys.Settings.EFConnectionString);
-		}
+            _username = sys.User.Name;
+        }
 
-		void SetReadOnly(bool value)
+        void SetReadOnly(bool value)
 		{
 			foreach (Control control in SplitContainerControl.Panel2.Controls)
 			{
@@ -215,7 +217,8 @@ namespace TraceForms
 					{
 						_context.CXLFEE.AddObject(_selectedRecord);
 					}
-					_context.SaveChanges();
+                    SetUpdateFields(_selectedRecord);
+                    _context.SaveChanges();
 					ShowActionConfirmation("Record Saved");
 				}
 				return true;
@@ -230,7 +233,13 @@ namespace TraceForms
 			}
 		}
 
-		private bool IsModified(CXLFEE record)
+        private void SetUpdateFields(CXLFEE record)
+        {
+            record.LAST_UPD = DateTime.Now;
+            record.UPD_INIT = _username;
+        }
+
+        private bool IsModified(CXLFEE record)
 		{
 			//Type-specific routine that takes into account relationships that should also be considered
 			//when deciding if there are unsaved changes.  The entity properties also return true if the
