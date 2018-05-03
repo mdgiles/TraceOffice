@@ -13,6 +13,7 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.Utils.Win;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Base;
+using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {

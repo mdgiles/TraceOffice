@@ -406,7 +406,7 @@ namespace TraceForms
 				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
 				if (!string.IsNullOrEmpty(value))
 				{
-					query += $" and it.{col.FieldName} like '%{value}%'";
+					query += $" and it.[{col.FieldName}] like '%{value}%'";
 				}
 			}
 

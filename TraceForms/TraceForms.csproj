@@ -135,7 +135,7 @@
       <HintPath>..\..\SharedBin\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FlexBObj">
-      <HintPath>..\..\FlexBObj\bin\Debug\FlexBObj.dll</HintPath>
+      <HintPath>..\..\FlexBObj\bin\$(Configuration)\FlexBObj.dll</HintPath>
     </Reference>
     <Reference Include="FlexCommissions">
       <HintPath>..\..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>

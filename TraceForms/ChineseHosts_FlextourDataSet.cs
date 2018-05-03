@@ -2,7 +2,7 @@
 {
 
 
-    public partial class ChineseHosts_FlextourDataSet
-    {
-    }
+	public partial class ChineseHosts_FlextourDataSet
+	{
+	}
 }
