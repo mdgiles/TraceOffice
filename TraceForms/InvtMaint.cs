@@ -27,7 +27,7 @@ using DevExpress.XtraGrid;
 namespace TraceForms
 {
     
-    public partial class InvMaint : DevExpress.XtraEditors.XtraForm
+    public partial class InvtMaint : DevExpress.XtraEditors.XtraForm
     {
         public string currentVal;
         public bool _modified = false;
@@ -49,7 +49,7 @@ namespace TraceForms
         public Timer rowStatusDelete;
         public Timer rowStatusSave;
         private char[] TrimChars = new char[2] {'.',' '};
-        public InvMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
+        public InvtMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
         {
             InitializeComponent();
             Connection.EFConnectionString = sys.Settings.EFConnectionString;

@@ -212,7 +212,7 @@
   <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="barButtonItemAddRec.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="barButtonItemAddRec.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABblJREFUWEe1l3lsFGUYxlcxSsSa2LTcFVIMqSHBJtBIC4TDoAv9BwlHitESIBhu
@@ -242,7 +242,7 @@
         pc8CFBQUDEhMTHzTYDAkkoaQhsZB7DnJpLdTU1NfT0lJCX6Ww/AvDZDKCyjtmuIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="barButtonItemSaveRec.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="barButtonItemSaveRec.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABpxJREFUWEe1l3lMVFcUh4dlWIcZtkYY2VSqgCIugKDWamyLijVaU2vrvgBWJSrg
@@ -276,7 +276,7 @@
         YCDV06f3JOpgRsgJy3eAiGuqp6dPefT0/gGT4whP82fGQwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="barButtonItemDelRec.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="barButtonItemDelRec.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABK9JREFUWEetl21IW1cYx6NdMa7IWIp01FRLGVSoFWkr2BTBbrAvFka/lLHPfWFf
