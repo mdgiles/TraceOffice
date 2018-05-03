@@ -1039,6 +1039,7 @@ namespace TraceForms
                 else
                     GridViewAdditionalImages.SetFocusedRowCellValue("LINK_VALUE", GridViewMediaInfo.GetFocusedRowCellValue("ID"));
                 GridViewAdditionalImages.SetFocusedRowCellValue("RECTYPE", "IMAGE");
+                GridViewAdditionalImages.SetFocusedRowCellValue("TAG", "1");    //medium res, just for something to use as default
                 GridViewAdditionalImages.SetFocusedRowCellValue("USER_DEC1", 0);
                 GridViewAdditionalImages.SetFocusedRowCellValue("USER_DEC2", 0);
                 GridViewAdditionalImages.SetFocusedRowCellValue("USER_INT1", 0);
@@ -1148,11 +1149,11 @@ namespace TraceForms
                 e.Valid = false;
                 view.SetColumnError(colItem, "Filename cannot be blank.");
             }
-            if (string.IsNullOrWhiteSpace(val2))
-            {
-                e.Valid = false;
-                view.SetColumnError(colDesc, "Caption cannot be blank.");
-            }
+            //if (string.IsNullOrWhiteSpace(val2))
+            //{
+            //    e.Valid = false;
+            //    view.SetColumnError(colDesc, "Caption cannot be blank.");
+            //}
             if (string.IsNullOrWhiteSpace(val3))
             {
                 e.Valid = false;
