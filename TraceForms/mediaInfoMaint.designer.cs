@@ -121,9 +121,6 @@ namespace TraceForms
             this.pictureEditPreviewImage4 = new DevExpress.XtraEditors.PictureEdit();
             this.xtraTabPageAdditionalImages = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.ButtonSaveChanges = new DevExpress.XtraEditors.SimpleButton();
-            this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
-            this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
             this.GridControlAdditionalImages = new DevExpress.XtraGrid.GridControl();
             this.ResourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewAdditionalImages = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -141,6 +138,7 @@ namespace TraceForms
             this.ColumnUserInt1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserInt2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserTxt1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxImagePurpose = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.ColumnUserTxt2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserTxt3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserTxt4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -150,6 +148,9 @@ namespace TraceForms
             this.repositoryItemPopupContainerEditPreview = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.popupContainerControlPreview = new DevExpress.XtraEditors.PopupContainerControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ButtonSaveChanges = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPageDisplay = new DevExpress.XtraTab.XtraTabPage();
             this.panelControlDisplay = new DevExpress.XtraEditors.PanelControl();
             this.ImageComboBoxEditSeverity = new DevExpress.XtraEditors.ImageComboBoxEdit();
@@ -290,6 +291,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -983,19 +985,19 @@ namespace TraceForms
             this.htmlEditor.CmbFontName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.htmlEditor.CmbFontName.MaxDropDownItems = 17;
             this.htmlEditor.CmbFontName.Name = "_factoryCmbFontName";
-            this.htmlEditor.CmbFontName.Size = new System.Drawing.Size(137, 38);
+            this.htmlEditor.CmbFontName.Size = new System.Drawing.Size(114, 38);
             this.htmlEditor.CmbFontName.Text = "Arial";
             // 
             // htmlEditor.CmbFontSize
             // 
             this.htmlEditor.CmbFontSize.Name = "_factoryCmbFontSize";
-            this.htmlEditor.CmbFontSize.Size = new System.Drawing.Size(137, 38);
+            this.htmlEditor.CmbFontSize.Size = new System.Drawing.Size(114, 38);
             this.htmlEditor.CmbFontSize.Text = "12pt";
             // 
             // htmlEditor.CmbTitleInsert
             // 
             this.htmlEditor.CmbTitleInsert.Name = "_factoryCmbTitleInsert";
-            this.htmlEditor.CmbTitleInsert.Size = new System.Drawing.Size(182, 38);
+            this.htmlEditor.CmbTitleInsert.Size = new System.Drawing.Size(151, 38);
             this.htmlEditor.DefaultFontFamily = "Arial";
             this.htmlEditor.DocumentHtml = resources.GetString("htmlEditor.DocumentHtml");
             this.htmlEditor.EditorContextMenuStrip = null;
@@ -1572,58 +1574,16 @@ namespace TraceForms
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.GridControlAdditionalImages);
             this.panelControl3.Controls.Add(this.ButtonSaveChanges);
             this.panelControl3.Controls.Add(this.ButtonDelRow);
             this.panelControl3.Controls.Add(this.ButtonAddRow);
-            this.panelControl3.Controls.Add(this.GridControlAdditionalImages);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(1074, 594);
             this.panelControl3.TabIndex = 0;
-            // 
-            // ButtonSaveChanges
-            // 
-            this.ButtonSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonSaveChanges.ImageOptions.Image = global::TraceForms.Properties.Resources.save;
-            this.ButtonSaveChanges.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonSaveChanges.Location = new System.Drawing.Point(183, 492);
-            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ButtonSaveChanges.Name = "ButtonSaveChanges";
-            this.ButtonSaveChanges.Size = new System.Drawing.Size(64, 64);
-            this.ButtonSaveChanges.TabIndex = 3;
-            this.ButtonSaveChanges.TabStop = false;
-            this.ButtonSaveChanges.Text = "simpleButton3";
-            this.ButtonSaveChanges.Click += new System.EventHandler(this.ButtonSaveChanges_Click);
-            // 
-            // ButtonDelRow
-            // 
-            this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonDelRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_delete2;
-            this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(118, 492);
-            this.ButtonDelRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ButtonDelRow.Name = "ButtonDelRow";
-            this.ButtonDelRow.Size = new System.Drawing.Size(57, 64);
-            this.ButtonDelRow.TabIndex = 2;
-            this.ButtonDelRow.TabStop = false;
-            this.ButtonDelRow.Text = "simpleButton4";
-            this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
-            // 
-            // ButtonAddRow
-            // 
-            this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonAddRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_new;
-            this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(49, 492);
-            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ButtonAddRow.Name = "ButtonAddRow";
-            this.ButtonAddRow.Size = new System.Drawing.Size(60, 64);
-            this.ButtonAddRow.TabIndex = 1;
-            this.ButtonAddRow.TabStop = false;
-            this.ButtonAddRow.Text = "simpleButton3";
-            this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
             // 
             // GridControlAdditionalImages
             // 
@@ -1633,16 +1593,17 @@ namespace TraceForms
             this.GridControlAdditionalImages.CausesValidation = false;
             this.GridControlAdditionalImages.DataSource = this.ResourceBindingSource;
             this.GridControlAdditionalImages.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlAdditionalImages.Location = new System.Drawing.Point(49, 15);
+            this.GridControlAdditionalImages.Location = new System.Drawing.Point(22, 14);
             this.GridControlAdditionalImages.MainView = this.GridViewAdditionalImages;
             this.GridControlAdditionalImages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridControlAdditionalImages.Name = "GridControlAdditionalImages";
             this.GridControlAdditionalImages.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit_Item,
             this.repositoryItemImageComboBoxTag,
-            this.repositoryItemPopupContainerEditPreview});
-            this.GridControlAdditionalImages.Size = new System.Drawing.Size(1128, 468);
-            this.GridControlAdditionalImages.TabIndex = 17;
+            this.repositoryItemPopupContainerEditPreview,
+            this.repositoryItemComboBoxImagePurpose});
+            this.GridControlAdditionalImages.Size = new System.Drawing.Size(1034, 468);
+            this.GridControlAdditionalImages.TabIndex = 19;
             this.GridControlAdditionalImages.TabStop = false;
             this.GridControlAdditionalImages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewAdditionalImages,
@@ -1677,8 +1638,6 @@ namespace TraceForms
             this.GridViewAdditionalImages.Name = "GridViewAdditionalImages";
             this.GridViewAdditionalImages.OptionsView.ShowGroupPanel = false;
             this.GridViewAdditionalImages.OptionsView.ShowIndicator = false;
-            this.GridViewAdditionalImages.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewAdditionalImages_InvalidRowException);
-            this.GridViewAdditionalImages.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewAdditionalImages_ValidateRow);
             // 
             // ColumnID1
             // 
@@ -1708,7 +1667,7 @@ namespace TraceForms
             this.ColumnTag.Name = "ColumnTag";
             this.ColumnTag.OptionsColumn.FixedWidth = true;
             this.ColumnTag.Visible = true;
-            this.ColumnTag.VisibleIndex = 3;
+            this.ColumnTag.VisibleIndex = 4;
             this.ColumnTag.Width = 100;
             // 
             // repositoryItemImageComboBoxTag
@@ -1731,7 +1690,7 @@ namespace TraceForms
             this.ColumnItem.Name = "ColumnItem";
             this.ColumnItem.Visible = true;
             this.ColumnItem.VisibleIndex = 1;
-            this.ColumnItem.Width = 238;
+            this.ColumnItem.Width = 430;
             // 
             // repositoryItemButtonEdit_Item
             // 
@@ -1748,7 +1707,7 @@ namespace TraceForms
             this.ColumnDesc.Name = "ColumnDesc";
             this.ColumnDesc.Visible = true;
             this.ColumnDesc.VisibleIndex = 2;
-            this.ColumnDesc.Width = 150;
+            this.ColumnDesc.Width = 683;
             // 
             // ColumnUserDec1
             // 
@@ -1772,8 +1731,23 @@ namespace TraceForms
             // 
             // ColumnUserTxt1
             // 
+            this.ColumnUserTxt1.Caption = "Purpose";
+            this.ColumnUserTxt1.ColumnEdit = this.repositoryItemComboBoxImagePurpose;
             this.ColumnUserTxt1.FieldName = "USER_TXT1";
             this.ColumnUserTxt1.Name = "ColumnUserTxt1";
+            this.ColumnUserTxt1.Visible = true;
+            this.ColumnUserTxt1.VisibleIndex = 3;
+            this.ColumnUserTxt1.Width = 346;
+            // 
+            // repositoryItemComboBoxImagePurpose
+            // 
+            this.repositoryItemComboBoxImagePurpose.AutoHeight = false;
+            this.repositoryItemComboBoxImagePurpose.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxImagePurpose.Items.AddRange(new object[] {
+            "",
+            "SEATMAP"});
+            this.repositoryItemComboBoxImagePurpose.Name = "repositoryItemComboBoxImagePurpose";
             // 
             // ColumnUserTxt2
             // 
@@ -1832,6 +1806,48 @@ namespace TraceForms
             // 
             this.gridView1.GridControl = this.GridControlAdditionalImages;
             this.gridView1.Name = "gridView1";
+            // 
+            // ButtonSaveChanges
+            // 
+            this.ButtonSaveChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonSaveChanges.ImageOptions.Image = global::TraceForms.Properties.Resources.save;
+            this.ButtonSaveChanges.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonSaveChanges.Location = new System.Drawing.Point(183, 492);
+            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonSaveChanges.Name = "ButtonSaveChanges";
+            this.ButtonSaveChanges.Size = new System.Drawing.Size(64, 64);
+            this.ButtonSaveChanges.TabIndex = 3;
+            this.ButtonSaveChanges.TabStop = false;
+            this.ButtonSaveChanges.Text = "simpleButton3";
+            this.ButtonSaveChanges.Click += new System.EventHandler(this.ButtonSaveChanges_Click);
+            // 
+            // ButtonDelRow
+            // 
+            this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonDelRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_delete2;
+            this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDelRow.Location = new System.Drawing.Point(118, 492);
+            this.ButtonDelRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonDelRow.Name = "ButtonDelRow";
+            this.ButtonDelRow.Size = new System.Drawing.Size(57, 64);
+            this.ButtonDelRow.TabIndex = 2;
+            this.ButtonDelRow.TabStop = false;
+            this.ButtonDelRow.Text = "simpleButton4";
+            this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
+            // 
+            // ButtonAddRow
+            // 
+            this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonAddRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_new;
+            this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddRow.Location = new System.Drawing.Point(49, 492);
+            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonAddRow.Name = "ButtonAddRow";
+            this.ButtonAddRow.Size = new System.Drawing.Size(60, 64);
+            this.ButtonAddRow.TabIndex = 1;
+            this.ButtonAddRow.TabStop = false;
+            this.ButtonAddRow.Text = "simpleButton3";
+            this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
             // 
             // xtraTabPageDisplay
             // 
@@ -2426,6 +2442,7 @@ namespace TraceForms
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemClone),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemExpand),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItemReports)});
+            this.barTools.OptionsBar.AllowQuickCustomization = false;
             this.barTools.OptionsBar.DrawDragBorder = false;
             this.barTools.OptionsBar.UseWholeRow = true;
             this.barTools.Text = "Tools";
@@ -2636,6 +2653,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -2774,35 +2792,10 @@ namespace TraceForms
         private SimpleButton ButtonSaveChanges;
         private SimpleButton ButtonDelRow;
         private SimpleButton ButtonAddRow;
-        private GridControl GridControlAdditionalImages;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewAdditionalImages;
-        private GridColumn ColumnID1;
-        private GridColumn ColumnLinkTable;
-        private GridColumn ColumnLinkValue;
-        private GridColumn ColumnRecType;
-        private GridColumn ColumnTag;
-        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBoxTag;
-        private GridColumn ColumnItem;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit_Item;
-        private GridColumn ColumnDesc;
-        private GridColumn ColumnUserDec1;
-        private GridColumn ColumnUserDec2;
-        private GridColumn ColumnUserInt1;
-        private GridColumn ColumnUserInt2;
-        private GridColumn ColumnUserTxt1;
-        private GridColumn ColumnUserTxt2;
-        private GridColumn ColumnUserTxt3;
-        private GridColumn ColumnUserTxt4;
-        private GridColumn ColumnUserDte1;
-        private GridColumn ColumnUserDte2;
-        private GridColumn gridColumnPreview;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEditPreview;
-        private PopupContainerControl popupContainerControlPreview;
         private PanelControl panelControlDisplay;
         private ImageComboBoxEdit ImageComboBoxEditSeverity;
         private CheckEdit CheckEditConsent;
         private CheckEdit CheckEditInactive;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private PictureEdit pictureEditPreviewAddImg;
         private SpiceLogic.WinHTMLEditor.WinForm.WinFormHtmlEditor htmlEditor;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -2822,5 +2815,31 @@ namespace TraceForms
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem barButtonItemCreateNewReports;
+        private GridControl GridControlAdditionalImages;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewAdditionalImages;
+        private GridColumn ColumnID1;
+        private GridColumn ColumnLinkTable;
+        private GridColumn ColumnLinkValue;
+        private GridColumn ColumnRecType;
+        private GridColumn ColumnTag;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBoxTag;
+        private GridColumn ColumnItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit_Item;
+        private GridColumn ColumnDesc;
+        private GridColumn ColumnUserDec1;
+        private GridColumn ColumnUserDec2;
+        private GridColumn ColumnUserInt1;
+        private GridColumn ColumnUserInt2;
+        private GridColumn ColumnUserTxt1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxImagePurpose;
+        private GridColumn ColumnUserTxt2;
+        private GridColumn ColumnUserTxt3;
+        private GridColumn ColumnUserTxt4;
+        private GridColumn ColumnUserDte1;
+        private GridColumn ColumnUserDte2;
+        private GridColumn gridColumnPreview;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEditPreview;
+        private PopupContainerControl popupContainerControlPreview;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

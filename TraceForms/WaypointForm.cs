@@ -172,10 +172,12 @@ namespace TraceForms
 
 		private bool IsModified(WAYPOINT record)
 		{
-			//Type-specific routine that takes into account relationships that should also be considered
-			//when deciding if there are unsaved changes.  The entity properties also return true if the
-			//record is new or deleted.
-			return record.IsModified(_context)
+            //Type-specific routine that takes into account relationships that should also be considered
+            //when deciding if there are unsaved changes.  The entity properties also return true if the
+            //record is new or deleted.
+            if (record == null)
+                return false;
+            return record.IsModified(_context)
 					|| record.GeoCode.IsModified(_context);     //Mapping
 
 		}

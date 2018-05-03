@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,10 +10,11 @@ namespace TraceForms
 {
     internal static class Configurator
     {
-
         internal static string HotelProductionReport_Recipients
         {
-            get { return GetValue("HotelProductionReport_Recipients"); }
+            get {
+                return GetValue("HotelProductionReport_Recipients");
+            }
         }
 
         internal static int HotelProductionReport_PastDays
@@ -52,7 +54,17 @@ namespace TraceForms
 
         internal static string GetValue(string key)
         {
-            return ConfigurationManager.AppSettings[key];
+            //This method of opening the exe config file works when running from VB6 if the TraceOffice config file
+            //is in the same folder as the TraceForms assembly (which it always should be)
+            ExeConfigurationFileMap map = new ExeConfigurationFileMap { ExeConfigFilename = "TraceOffice.exe.config" };
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+            var setting = config.AppSettings.Settings[key];
+            if (setting == null) {
+                return string.Empty;
+            }
+            else {
+                return setting.Value;
+            }
         }
 
         internal static string InfoButtonUrl
