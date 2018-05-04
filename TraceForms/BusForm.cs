@@ -13,7 +13,6 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.Utils.Win;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Base;
-using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
@@ -263,7 +262,7 @@ namespace TraceForms
 				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
 				if (!string.IsNullOrEmpty(value))
 				{
-					query += $" and it.{col.FieldName} like '%{value}%'";
+					query += $" and it.[{col.FieldName}] like '%{value}%'";
 				}
 			}
 
