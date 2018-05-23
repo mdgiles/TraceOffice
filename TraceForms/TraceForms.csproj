@@ -1240,6 +1240,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BusAssignment.datasource" />
     <None Include="Properties\DataSources\CodeName.datasource" />
+    <None Include="Properties\DataSources\CodeName1.datasource" />
     <None Include="Properties\DataSources\FlexBObj.PaymentProfiles.datasource" />
     <None Include="Properties\DataSources\FlexModel.Address.datasource" />
     <None Include="Properties\DataSources\FlexModel.AddressType.datasource" />
