@@ -1528,31 +1528,34 @@ namespace TraceForms
             // 
             // SimpleButtonDown
             // 
+            this.SimpleButtonDown.AutoSize = true;
             this.SimpleButtonDown.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDown.ImageOptions.Image")));
             this.SimpleButtonDown.Location = new System.Drawing.Point(924, 181);
             this.SimpleButtonDown.Name = "SimpleButtonDown";
-            this.SimpleButtonDown.Size = new System.Drawing.Size(46, 44);
+            this.SimpleButtonDown.Size = new System.Drawing.Size(44, 42);
             this.SimpleButtonDown.TabIndex = 281;
             this.SimpleButtonDown.ToolTip = "Move item to later in package";
             this.SimpleButtonDown.Click += new System.EventHandler(this.SimpleButtonDown_Click);
             // 
             // SimpleButtonUp
             // 
+            this.SimpleButtonUp.AutoSize = true;
             this.SimpleButtonUp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonUp.ImageOptions.Image")));
             this.SimpleButtonUp.Location = new System.Drawing.Point(875, 181);
             this.SimpleButtonUp.Name = "SimpleButtonUp";
-            this.SimpleButtonUp.Size = new System.Drawing.Size(46, 44);
+            this.SimpleButtonUp.Size = new System.Drawing.Size(44, 42);
             this.SimpleButtonUp.TabIndex = 280;
             this.SimpleButtonUp.ToolTip = "Move item to earlier in package";
             this.SimpleButtonUp.Click += new System.EventHandler(this.SimpleButtonUp_Click);
             // 
             // SimpleButtonClone
             // 
+            this.SimpleButtonClone.AutoSize = true;
             this.SimpleButtonClone.Enabled = false;
             this.SimpleButtonClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonClone.ImageOptions.Image")));
             this.SimpleButtonClone.Location = new System.Drawing.Point(978, 104);
             this.SimpleButtonClone.Name = "SimpleButtonClone";
-            this.SimpleButtonClone.Size = new System.Drawing.Size(121, 44);
+            this.SimpleButtonClone.Size = new System.Drawing.Size(107, 42);
             this.SimpleButtonClone.TabIndex = 279;
             this.SimpleButtonClone.Text = "Clone";
             this.SimpleButtonClone.ToolTip = "Begin a new record with the same key values";
@@ -2767,7 +2770,6 @@ namespace TraceForms
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PCompForm";
             this.ShowInTaskbar = false;

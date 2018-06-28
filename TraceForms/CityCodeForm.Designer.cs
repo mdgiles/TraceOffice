@@ -456,7 +456,7 @@
             this.SimpleButtonPlot.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPlot.ImageOptions.Image")));
             this.SimpleButtonPlot.Location = new System.Drawing.Point(57, 324);
             this.SimpleButtonPlot.Name = "SimpleButtonPlot";
-            this.SimpleButtonPlot.Size = new System.Drawing.Size(93, 49);
+            this.SimpleButtonPlot.Size = new System.Drawing.Size(111, 42);
             this.SimpleButtonPlot.TabIndex = 271;
             this.SimpleButtonPlot.Text = "Plot";
             this.SimpleButtonPlot.Click += new System.EventHandler(this.SimpleButtonPlot_Click);
@@ -1001,11 +1001,6 @@
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
         private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
-        private DevExpress.XtraGrid.GridControl GridControlLookup;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCode;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupLinkCode;
         private DevExpress.XtraEditors.PanelControl PanelControlMappings;
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteMapping;
         private DevExpress.XtraEditors.SimpleButton ButtonAddMapping;
@@ -1061,12 +1056,17 @@
         private DevExpress.XtraEditors.SimpleButton SimpleButtonPlot;
         private DevExpress.XtraEditors.LabelControl LabelControlLon;
         private DevExpress.XtraEditors.LabelControl LabelControlLat;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupState;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupRegion;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCountry;
         private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditRegion;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.GridControl GridControlLookup;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCode;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupLinkCode;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupState;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupRegion;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCountry;
     }
 }
