@@ -28,465 +28,452 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label cODELabel;
-            System.Windows.Forms.Label dESCRIPLabel;
-            System.Windows.Forms.Label starsLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HtlRatingForm));
-            this.starRating1 = new TraceForms.starRating();
-            this.GridControlHtlRating = new DevExpress.XtraGrid.GridControl();
-            this.HtlRatingBindingSource = new System.Windows.Forms.BindingSource();
-            this.GridViewHtlRating = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCODE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDESCRIP = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colImage_Path = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colStars = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHOTEL = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dESCRIPTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.cODETextBox = new DevExpress.XtraEditors.TextEdit();
-            this.HtlRatingBindingNavigator = new System.Windows.Forms.BindingNavigator();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.hTLRATNGBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.starsSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
-            this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            cODELabel = new System.Windows.Forms.Label();
-            dESCRIPLabel = new System.Windows.Forms.Label();
-            starsLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlHtlRating)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HtlRatingBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewHtlRating)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dESCRIPTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cODETextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HtlRatingBindingNavigator)).BeginInit();
-            this.HtlRatingBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.starsSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-            this.panelControlStatus.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // cODELabel
-            // 
-            cODELabel.AutoSize = true;
-            cODELabel.Location = new System.Drawing.Point(64, 62);
-            cODELabel.Name = "cODELabel";
-            cODELabel.Size = new System.Drawing.Size(32, 13);
-            cODELabel.TabIndex = 8;
-            cODELabel.Text = "Code";
-            // 
-            // dESCRIPLabel
-            // 
-            dESCRIPLabel.AutoSize = true;
-            dESCRIPLabel.Location = new System.Drawing.Point(64, 116);
-            dESCRIPLabel.Name = "dESCRIPLabel";
-            dESCRIPLabel.Size = new System.Drawing.Size(60, 13);
-            dESCRIPLabel.TabIndex = 10;
-            dESCRIPLabel.Text = "Description";
-            // 
-            // starsLabel
-            // 
-            starsLabel.AutoSize = true;
-            starsLabel.Location = new System.Drawing.Point(82, 168);
-            starsLabel.Name = "starsLabel";
-            starsLabel.Size = new System.Drawing.Size(36, 13);
-            starsLabel.TabIndex = 13;
-            starsLabel.Text = "Stars:";
-            // 
-            // starRating1
-            // 
-            this.starRating1.Location = new System.Drawing.Point(124, 217);
-            this.starRating1.Name = "starRating1";
-            this.starRating1.rating = 0D;
-            this.starRating1.Size = new System.Drawing.Size(163, 55);
-            this.starRating1.stars = 5;
-            this.starRating1.TabIndex = 13;
-            this.starRating1.Leave += new System.EventHandler(this.starRating1_Leave);
-            this.starRating1.MouseLeave += new System.EventHandler(this.starRating1_MouseLeave);
-            // 
-            // GridControlHtlRating
-            // 
-            this.GridControlHtlRating.DataSource = this.HtlRatingBindingSource;
-            this.GridControlHtlRating.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlHtlRating.Location = new System.Drawing.Point(0, 0);
-            this.GridControlHtlRating.MainView = this.GridViewHtlRating;
-            this.GridControlHtlRating.Name = "GridControlHtlRating";
-            this.GridControlHtlRating.Size = new System.Drawing.Size(253, 717);
-            this.GridControlHtlRating.TabIndex = 12;
-            this.GridControlHtlRating.TabStop = false;
-            this.GridControlHtlRating.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewHtlRating});
-            // 
-            // HtlRatingBindingSource
-            // 
-            this.HtlRatingBindingSource.DataSource = typeof(FlexModel.HTLRATNG);
-            this.HtlRatingBindingSource.CurrentChanged += new System.EventHandler(this.HtlRatingBindingSource_CurrentChanged);
-            // 
-            // GridViewHtlRating
-            // 
-            this.GridViewHtlRating.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.Label cODELabel;
+			System.Windows.Forms.Label dESCRIPLabel;
+			System.Windows.Forms.Label starsLabel;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HtlRatingForm));
+			this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
+			this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.GridColumnCode = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.GridColumnDescrip = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colImage_Path = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colStars = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colHOTEL = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.TextEditDescrip = new DevExpress.XtraEditors.TextEdit();
+			this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
+			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+			this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+			this.ButtonEditImagePath = new DevExpress.XtraEditors.ButtonEdit();
+			this.PictureEdit = new DevExpress.XtraEditors.PictureEdit();
+			this.RatingControlStars = new DevExpress.XtraEditors.RatingControl();
+			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
+			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.bar1 = new DevExpress.XtraBars.Bar();
+			this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+			cODELabel = new System.Windows.Forms.Label();
+			dESCRIPLabel = new System.Windows.Forms.Label();
+			starsLabel = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditDescrip.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
+			this.SplitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ButtonEditImagePath.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PictureEdit.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.RatingControlStars.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+			this.PanelControlStatus.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// cODELabel
+			// 
+			cODELabel.AutoSize = true;
+			cODELabel.Location = new System.Drawing.Point(64, 62);
+			cODELabel.Name = "cODELabel";
+			cODELabel.Size = new System.Drawing.Size(32, 13);
+			cODELabel.TabIndex = 8;
+			cODELabel.Text = "Code";
+			// 
+			// dESCRIPLabel
+			// 
+			dESCRIPLabel.AutoSize = true;
+			dESCRIPLabel.Location = new System.Drawing.Point(64, 116);
+			dESCRIPLabel.Name = "dESCRIPLabel";
+			dESCRIPLabel.Size = new System.Drawing.Size(60, 13);
+			dESCRIPLabel.TabIndex = 10;
+			dESCRIPLabel.Text = "Description";
+			// 
+			// starsLabel
+			// 
+			starsLabel.AutoSize = true;
+			starsLabel.Location = new System.Drawing.Point(64, 157);
+			starsLabel.Name = "starsLabel";
+			starsLabel.Size = new System.Drawing.Size(36, 13);
+			starsLabel.TabIndex = 13;
+			starsLabel.Text = "Stars:";
+			// 
+			// GridControlLookup
+			// 
+			this.GridControlLookup.DataSource = this.BindingSource;
+			this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
+			this.GridControlLookup.MainView = this.GridViewLookup;
+			this.GridControlLookup.Name = "GridControlLookup";
+			this.GridControlLookup.Size = new System.Drawing.Size(253, 711);
+			this.GridControlLookup.TabIndex = 12;
+			this.GridControlLookup.TabStop = false;
+			this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewLookup});
+			// 
+			// BindingSource
+			// 
+			this.BindingSource.DataSource = typeof(FlexModel.HTLRATNG);
+			this.BindingSource.CurrentChanged += new System.EventHandler(this.HtlRatingBindingSource_CurrentChanged);
+			// 
+			// GridViewLookup
+			// 
+			this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDisplayName,
-            this.colCODE,
-            this.colDESCRIP,
+            this.GridColumnCode,
+            this.GridColumnDescrip,
             this.colImage_Path,
             this.colStars,
             this.colHOTEL});
-            this.GridViewHtlRating.GridControl = this.GridControlHtlRating;
-            this.GridViewHtlRating.Name = "GridViewHtlRating";
-            this.GridViewHtlRating.OptionsView.ShowAutoFilterRow = true;
-            this.GridViewHtlRating.OptionsView.ShowGroupPanel = false;
-            this.GridViewHtlRating.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
-            this.GridViewHtlRating.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
-            this.GridViewHtlRating.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.gridView1_BeforeLeaveRow);
-            // 
-            // colDisplayName
-            // 
-            this.colDisplayName.FieldName = "DisplayName";
-            this.colDisplayName.Name = "colDisplayName";
-            this.colDisplayName.OptionsColumn.ReadOnly = true;
-            // 
-            // colCODE
-            // 
-            this.colCODE.FieldName = "CODE";
-            this.colCODE.Name = "colCODE";
-            this.colCODE.OptionsColumn.AllowEdit = false;
-            this.colCODE.Visible = true;
-            this.colCODE.VisibleIndex = 0;
-            // 
-            // colDESCRIP
-            // 
-            this.colDESCRIP.FieldName = "DESCRIP";
-            this.colDESCRIP.Name = "colDESCRIP";
-            this.colDESCRIP.OptionsColumn.AllowEdit = false;
-            this.colDESCRIP.Visible = true;
-            this.colDESCRIP.VisibleIndex = 1;
-            // 
-            // colImage_Path
-            // 
-            this.colImage_Path.FieldName = "Image_Path";
-            this.colImage_Path.Name = "colImage_Path";
-            // 
-            // colStars
-            // 
-            this.colStars.FieldName = "Stars";
-            this.colStars.Name = "colStars";
-            // 
-            // colHOTEL
-            // 
-            this.colHOTEL.FieldName = "HOTEL";
-            this.colHOTEL.Name = "colHOTEL";
-            // 
-            // dESCRIPTextBox
-            // 
-            this.dESCRIPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HtlRatingBindingSource, "DESCRIP", true));
-            this.dESCRIPTextBox.EnterMoveNextControl = true;
-            this.dESCRIPTextBox.Location = new System.Drawing.Point(124, 113);
-            this.dESCRIPTextBox.Name = "dESCRIPTextBox";
-            this.dESCRIPTextBox.Properties.MaxLength = 12;
-            this.dESCRIPTextBox.Size = new System.Drawing.Size(129, 20);
-            this.dESCRIPTextBox.TabIndex = 2;
-            this.dESCRIPTextBox.Enter += new System.EventHandler(this.cODETextBox_Enter);
-            this.dESCRIPTextBox.Leave += new System.EventHandler(this.dESCRIPTextBox_Leave);
-            // 
-            // cODETextBox
-            // 
-            this.cODETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HtlRatingBindingSource, "CODE", true));
-            this.cODETextBox.EnterMoveNextControl = true;
-            this.cODETextBox.Location = new System.Drawing.Point(124, 59);
-            this.cODETextBox.Name = "cODETextBox";
-            this.cODETextBox.Properties.MaxLength = 2;
-            this.cODETextBox.Size = new System.Drawing.Size(132, 20);
-            this.cODETextBox.TabIndex = 1;
-            this.cODETextBox.TextChanged += new System.EventHandler(this.cODETextBox_TextChanged);
-            this.cODETextBox.Enter += new System.EventHandler(this.cODETextBox_Enter);
-            this.cODETextBox.Leave += new System.EventHandler(this.cODETextBox_Leave);
-            // 
-            // HtlRatingBindingNavigator
-            // 
-            this.HtlRatingBindingNavigator.AddNewItem = null;
-            this.HtlRatingBindingNavigator.BindingSource = this.HtlRatingBindingSource;
-            this.HtlRatingBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.HtlRatingBindingNavigator.DeleteItem = null;
-            this.HtlRatingBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.hTLRATNGBindingNavigatorSaveItem});
-            this.HtlRatingBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.HtlRatingBindingNavigator.MoveFirstItem = null;
-            this.HtlRatingBindingNavigator.MoveLastItem = null;
-            this.HtlRatingBindingNavigator.MoveNextItem = null;
-            this.HtlRatingBindingNavigator.MovePreviousItem = null;
-            this.HtlRatingBindingNavigator.Name = "HtlRatingBindingNavigator";
-            this.HtlRatingBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.HtlRatingBindingNavigator.Size = new System.Drawing.Size(1020, 25);
-            this.HtlRatingBindingNavigator.TabIndex = 7;
-            this.HtlRatingBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // hTLRATNGBindingNavigatorSaveItem
-            // 
-            this.hTLRATNGBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.hTLRATNGBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("hTLRATNGBindingNavigatorSaveItem.Image")));
-            this.hTLRATNGBindingNavigatorSaveItem.Name = "hTLRATNGBindingNavigatorSaveItem";
-            this.hTLRATNGBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.hTLRATNGBindingNavigatorSaveItem.Text = "Save Data";
-            this.hTLRATNGBindingNavigatorSaveItem.Click += new System.EventHandler(this.hTLRATNGBindingNavigatorSaveItem_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // splitContainerControl1
-            // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.AutoScroll = true;
-            this.splitContainerControl1.Panel1.Controls.Add(this.GridControlHtlRating);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.AutoScroll = true;
-            this.splitContainerControl1.Panel2.Controls.Add(starsLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.starsSpinEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(this.starRating1);
-            this.splitContainerControl1.Panel2.Controls.Add(this.cODETextBox);
-            this.splitContainerControl1.Panel2.Controls.Add(this.dESCRIPTextBox);
-            this.splitContainerControl1.Panel2.Controls.Add(dESCRIPLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(cODELabel);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1020, 717);
-            this.splitContainerControl1.SplitterPosition = 253;
-            this.splitContainerControl1.TabIndex = 8;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // starsSpinEdit
-            // 
-            this.starsSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HtlRatingBindingSource, "Stars", true));
-            this.starsSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.starsSpinEdit.Location = new System.Drawing.Point(124, 165);
-            this.starsSpinEdit.Name = "starsSpinEdit";
-            this.starsSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.GridViewLookup.GridControl = this.GridControlLookup;
+			this.GridViewLookup.Name = "GridViewLookup";
+			this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
+			this.GridViewLookup.OptionsView.ShowGroupPanel = false;
+			this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
+			// 
+			// colDisplayName
+			// 
+			this.colDisplayName.FieldName = "DisplayName";
+			this.colDisplayName.Name = "colDisplayName";
+			this.colDisplayName.OptionsColumn.ReadOnly = true;
+			// 
+			// GridColumnCode
+			// 
+			this.GridColumnCode.FieldName = "CODE";
+			this.GridColumnCode.Name = "GridColumnCode";
+			this.GridColumnCode.OptionsColumn.AllowEdit = false;
+			this.GridColumnCode.Visible = true;
+			this.GridColumnCode.VisibleIndex = 0;
+			// 
+			// GridColumnDescrip
+			// 
+			this.GridColumnDescrip.FieldName = "DESCRIP";
+			this.GridColumnDescrip.Name = "GridColumnDescrip";
+			this.GridColumnDescrip.OptionsColumn.AllowEdit = false;
+			this.GridColumnDescrip.Visible = true;
+			this.GridColumnDescrip.VisibleIndex = 1;
+			// 
+			// colImage_Path
+			// 
+			this.colImage_Path.FieldName = "Image_Path";
+			this.colImage_Path.Name = "colImage_Path";
+			// 
+			// colStars
+			// 
+			this.colStars.FieldName = "Stars";
+			this.colStars.Name = "colStars";
+			// 
+			// colHOTEL
+			// 
+			this.colHOTEL.FieldName = "HOTEL";
+			this.colHOTEL.Name = "colHOTEL";
+			// 
+			// TextEditDescrip
+			// 
+			this.TextEditDescrip.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "DESCRIP", true));
+			this.TextEditDescrip.EnterMoveNextControl = true;
+			this.TextEditDescrip.Location = new System.Drawing.Point(149, 109);
+			this.TextEditDescrip.Name = "TextEditDescrip";
+			this.TextEditDescrip.Properties.MaxLength = 12;
+			this.TextEditDescrip.Size = new System.Drawing.Size(129, 20);
+			this.TextEditDescrip.TabIndex = 2;
+			this.TextEditDescrip.Leave += new System.EventHandler(this.TextEditDescrip_Leave);
+			// 
+			// TextEditCode
+			// 
+			this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "CODE", true));
+			this.TextEditCode.EnterMoveNextControl = true;
+			this.TextEditCode.Location = new System.Drawing.Point(149, 59);
+			this.TextEditCode.Name = "TextEditCode";
+			this.TextEditCode.Properties.MaxLength = 2;
+			this.TextEditCode.Size = new System.Drawing.Size(132, 20);
+			this.TextEditCode.TabIndex = 1;
+			this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
+			// 
+			// ErrorProvider
+			// 
+			this.ErrorProvider.ContainerControl = this;
+			// 
+			// SplitContainerControl
+			// 
+			this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+			this.SplitContainerControl.Name = "SplitContainerControl";
+			this.SplitContainerControl.Panel1.AutoScroll = true;
+			this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
+			this.SplitContainerControl.Panel1.Text = "Panel1";
+			this.SplitContainerControl.Panel2.AutoScroll = true;
+			this.SplitContainerControl.Panel2.Controls.Add(this.labelControl7);
+			this.SplitContainerControl.Panel2.Controls.Add(this.labelControl8);
+			this.SplitContainerControl.Panel2.Controls.Add(this.ButtonEditImagePath);
+			this.SplitContainerControl.Panel2.Controls.Add(this.PictureEdit);
+			this.SplitContainerControl.Panel2.Controls.Add(starsLabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditCode);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditDescrip);
+			this.SplitContainerControl.Panel2.Controls.Add(dESCRIPLabel);
+			this.SplitContainerControl.Panel2.Controls.Add(cODELabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.RatingControlStars);
+			this.SplitContainerControl.Panel2.Text = "Panel2";
+			this.SplitContainerControl.Size = new System.Drawing.Size(1020, 711);
+			this.SplitContainerControl.SplitterPosition = 253;
+			this.SplitContainerControl.TabIndex = 8;
+			this.SplitContainerControl.Text = "splitContainerControl1";
+			// 
+			// labelControl7
+			// 
+			this.labelControl7.Location = new System.Drawing.Point(67, 198);
+			this.labelControl7.Name = "labelControl7";
+			this.labelControl7.Size = new System.Drawing.Size(55, 13);
+			this.labelControl7.TabIndex = 49;
+			this.labelControl7.Text = "Image Path";
+			// 
+			// labelControl8
+			// 
+			this.labelControl8.Location = new System.Drawing.Point(67, 230);
+			this.labelControl8.Name = "labelControl8";
+			this.labelControl8.Size = new System.Drawing.Size(38, 13);
+			this.labelControl8.TabIndex = 50;
+			this.labelControl8.Text = "Preview";
+			// 
+			// ButtonEditImagePath
+			// 
+			this.ButtonEditImagePath.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Stars", true));
+			this.ButtonEditImagePath.EnterMoveNextControl = true;
+			this.ButtonEditImagePath.Location = new System.Drawing.Point(149, 195);
+			this.ButtonEditImagePath.Name = "ButtonEditImagePath";
+			this.ButtonEditImagePath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.starsSpinEdit.Properties.Increment = new decimal(new int[] {
-            5,
+			this.ButtonEditImagePath.Properties.MaxLength = 255;
+			this.ButtonEditImagePath.Size = new System.Drawing.Size(152, 20);
+			this.ButtonEditImagePath.TabIndex = 47;
+			this.ButtonEditImagePath.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImagePath_ButtonPressed);
+			this.ButtonEditImagePath.TextChanged += new System.EventHandler(this.ButtonEditImagePath_TextChanged);
+			// 
+			// PictureEdit
+			// 
+			this.PictureEdit.Cursor = System.Windows.Forms.Cursors.Default;
+			this.PictureEdit.Location = new System.Drawing.Point(149, 230);
+			this.PictureEdit.Name = "PictureEdit";
+			this.PictureEdit.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+			this.PictureEdit.Properties.Appearance.Options.UseBackColor = true;
+			this.PictureEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+			this.PictureEdit.Properties.PictureAlignment = System.Drawing.ContentAlignment.TopLeft;
+			this.PictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+			this.PictureEdit.Size = new System.Drawing.Size(152, 141);
+			this.PictureEdit.TabIndex = 48;
+			// 
+			// RatingControlStars
+			// 
+			this.RatingControlStars.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Stars", true));
+			this.RatingControlStars.EditValue = new decimal(new int[] {
             0,
-            0,
-            65536});
-            this.starsSpinEdit.Properties.Mask.EditMask = "0.0";
-            this.starsSpinEdit.Properties.MaxValue = new decimal(new int[] {
-            5,
             0,
             0,
             0});
-            this.starsSpinEdit.Size = new System.Drawing.Size(61, 20);
-            this.starsSpinEdit.TabIndex = 14;
-            this.starsSpinEdit.EditValueChanged += new System.EventHandler(this.starsSpinEdit_EditValueChanged);
-            this.starsSpinEdit.Enter += new System.EventHandler(this.cODETextBox_Enter);
-            this.starsSpinEdit.Leave += new System.EventHandler(this.starsSpinEdit_Leave);
-            // 
-            // panelControlStatus
-            // 
-            this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-            this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-            this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(310, 2);
-            this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(120, 23);
-            this.panelControlStatus.TabIndex = 265;
-            this.panelControlStatus.Visible = false;
-            // 
-            // LabelStatus
-            // 
-            this.LabelStatus.Location = new System.Drawing.Point(30, 5);
-            this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 13);
-            this.LabelStatus.TabIndex = 5;
-            // 
-            // HtlRatingForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 742);
-            this.Controls.Add(this.panelControlStatus);
-            this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.HtlRatingBindingNavigator);
-            this.KeyPreview = true;
-            this.MinimizeBox = false;
-            this.Name = "HtlRatingForm";
-            this.ShowInTaskbar = false;
-            this.Text = "Hotel Rating";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HtlRatingForm_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HtlRatingForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlHtlRating)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HtlRatingBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewHtlRating)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dESCRIPTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cODETextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HtlRatingBindingNavigator)).EndInit();
-            this.HtlRatingBindingNavigator.ResumeLayout(false);
-            this.HtlRatingBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.starsSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-            this.panelControlStatus.ResumeLayout(false);
-            this.panelControlStatus.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.RatingControlStars.Location = new System.Drawing.Point(149, 157);
+			this.RatingControlStars.Name = "RatingControlStars";
+			this.RatingControlStars.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
+			this.RatingControlStars.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+			this.RatingControlStars.Rating = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+			this.RatingControlStars.Size = new System.Drawing.Size(89, 18);
+			this.RatingControlStars.TabIndex = 14;
+			this.RatingControlStars.Text = "0";
+			this.RatingControlStars.Leave += new System.EventHandler(this.RatingControlStars_Leave);
+			// 
+			// PanelControlStatus
+			// 
+			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+			this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+			this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.PanelControlStatus.Controls.Add(this.LabelStatus);
+			this.PanelControlStatus.Location = new System.Drawing.Point(310, 2);
+			this.PanelControlStatus.Name = "PanelControlStatus";
+			this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
+			this.PanelControlStatus.TabIndex = 265;
+			this.PanelControlStatus.Visible = false;
+			// 
+			// LabelStatus
+			// 
+			this.LabelStatus.Location = new System.Drawing.Point(30, 5);
+			this.LabelStatus.Name = "LabelStatus";
+			this.LabelStatus.Size = new System.Drawing.Size(0, 13);
+			this.LabelStatus.TabIndex = 5;
+			// 
+			// BarManager
+			// 
+			this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1});
+			this.BarManager.DockControls.Add(this.barDockControlTop);
+			this.BarManager.DockControls.Add(this.barDockControlBottom);
+			this.BarManager.DockControls.Add(this.barDockControlLeft);
+			this.BarManager.DockControls.Add(this.barDockControlRight);
+			this.BarManager.Form = this;
+			this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+			this.BarManager.MaxItemId = 3;
+			// 
+			// bar1
+			// 
+			this.bar1.BarName = "Tools";
+			this.bar1.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+			this.bar1.DockCol = 0;
+			this.bar1.DockRow = 0;
+			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+			this.bar1.OptionsBar.AllowQuickCustomization = false;
+			this.bar1.OptionsBar.DrawDragBorder = false;
+			this.bar1.OptionsBar.UseWholeRow = true;
+			this.bar1.Text = "Tools";
+			// 
+			// BarButtonItemNew
+			// 
+			this.BarButtonItemNew.Caption = "New";
+			this.BarButtonItemNew.Id = 0;
+			this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.Image")));
+			this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.LargeImage")));
+			this.BarButtonItemNew.Name = "BarButtonItemNew";
+			this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+			// 
+			// BarButtonItemDelete
+			// 
+			this.BarButtonItemDelete.Caption = "Delete";
+			this.BarButtonItemDelete.Id = 1;
+			this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
+			this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
+			this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+			this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+			// 
+			// BarButtonItemSave
+			// 
+			this.BarButtonItemSave.Caption = "Save";
+			this.BarButtonItemSave.Id = 2;
+			this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.Image")));
+			this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
+			this.BarButtonItemSave.Name = "BarButtonItemSave";
+			this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+			// 
+			// barDockControlTop
+			// 
+			this.barDockControlTop.CausesValidation = false;
+			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+			this.barDockControlTop.Manager = this.BarManager;
+			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
+			// 
+			// barDockControlBottom
+			// 
+			this.barDockControlBottom.CausesValidation = false;
+			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
+			this.barDockControlBottom.Manager = this.BarManager;
+			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
+			// 
+			// barDockControlLeft
+			// 
+			this.barDockControlLeft.CausesValidation = false;
+			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+			this.barDockControlLeft.Manager = this.BarManager;
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
+			// 
+			// barDockControlRight
+			// 
+			this.barDockControlRight.CausesValidation = false;
+			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
+			this.barDockControlRight.Manager = this.BarManager;
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
+			// 
+			// HtlRatingForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1020, 742);
+			this.Controls.Add(this.PanelControlStatus);
+			this.Controls.Add(this.SplitContainerControl);
+			this.Controls.Add(this.barDockControlLeft);
+			this.Controls.Add(this.barDockControlRight);
+			this.Controls.Add(this.barDockControlBottom);
+			this.Controls.Add(this.barDockControlTop);
+			this.KeyPreview = true;
+			this.MinimizeBox = false;
+			this.Name = "HtlRatingForm";
+			this.ShowInTaskbar = false;
+			this.Text = "Hotel Rating";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HtlRatingForm_FormClosing);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HtlRatingForm_KeyDown);
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditDescrip.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
+			this.SplitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.ButtonEditImagePath.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PictureEdit.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.RatingControlStars.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+			this.PanelControlStatus.ResumeLayout(false);
+			this.PanelControlStatus.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
-
-        private starRating starRating1;
-        private DevExpress.XtraGrid.GridControl GridControlHtlRating;
-        private System.Windows.Forms.BindingSource HtlRatingBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewHtlRating;
-        private DevExpress.XtraEditors.TextEdit dESCRIPTextBox;
-        private DevExpress.XtraEditors.TextEdit cODETextBox;
-        private System.Windows.Forms.BindingNavigator HtlRatingBindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton hTLRATNGBindingNavigatorSaveItem;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private DevExpress.XtraGrid.GridControl GridControlLookup;
+        private System.Windows.Forms.BindingSource BindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
+        private DevExpress.XtraEditors.TextEdit TextEditDescrip;
+        private DevExpress.XtraEditors.TextEdit TextEditCode;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
+        private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
-        private DevExpress.XtraGrid.Columns.GridColumn colCODE;
-        private DevExpress.XtraGrid.Columns.GridColumn colDESCRIP;
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnCode;
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnDescrip;
         private DevExpress.XtraGrid.Columns.GridColumn colImage_Path;
         private DevExpress.XtraGrid.Columns.GridColumn colStars;
         private DevExpress.XtraGrid.Columns.GridColumn colHOTEL;
-        private DevExpress.XtraEditors.SpinEdit starsSpinEdit;
-
-    }
+		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+		private DevExpress.XtraBars.BarManager BarManager;
+		private DevExpress.XtraBars.Bar bar1;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+		private DevExpress.XtraBars.BarDockControl barDockControlTop;
+		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+		private DevExpress.XtraBars.BarDockControl barDockControlRight;
+		private DevExpress.XtraEditors.RatingControl RatingControlStars;
+		private DevExpress.XtraEditors.LabelControl labelControl7;
+		private DevExpress.XtraEditors.LabelControl labelControl8;
+		private DevExpress.XtraEditors.ButtonEdit ButtonEditImagePath;
+		private DevExpress.XtraEditors.PictureEdit PictureEdit;
+		private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+	}
 }

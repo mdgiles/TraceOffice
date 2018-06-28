@@ -12,7 +12,6 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using FlexModel;
-using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
@@ -36,7 +35,6 @@ namespace TraceForms
 			{
 				DisplayHelper.DisplayError(this, ex);
 			}
-
 		}
 
 		private void Connect(FlexInterfaces.Core.ICoreSys sys)
@@ -94,7 +92,6 @@ namespace TraceForms
 			}
 		}
 
-
         private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
 			//If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
@@ -104,7 +101,6 @@ namespace TraceForms
 			{
 				e.Allow = SaveRecord(true);
 			}
-
 		}
 
 		private void RegionForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -342,7 +338,6 @@ namespace TraceForms
 			}
 			Cursor = Cursors.Default;
 		}
-
 
         private void RegionBindingSource_CurrentChanged(object sender, System.EventArgs e)
         {

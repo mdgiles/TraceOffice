@@ -95,7 +95,6 @@ namespace TraceForms
             GridViewLanguage.SetFocusedRowCellValue("Searchable", false);           
         }
 
-
         private bool checkForms()
         {
             if (!modified && !newRec)
@@ -127,6 +126,7 @@ namespace TraceForms
 
         private void BindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
+
         }
 
         private void TimedEventSave(object sender, EventArgs e)

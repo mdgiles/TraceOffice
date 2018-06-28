@@ -10,10 +10,13 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using FlexModel;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.Utils.Win;
+using DevExpress.XtraGrid.Views.Grid;
+using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
-
 	public partial class InvtMaint : DevExpress.XtraEditors.XtraForm
     {
 		FlextourEntities _context;
@@ -21,7 +24,7 @@ namespace TraceForms
 		Timer _actionConfirmation;
 		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 		Dictionary<String, List<CodeName>> _productLookups;
-		bool _build;
+		bool _build = false;
 
 		public InvtMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
         {
@@ -30,6 +33,7 @@ namespace TraceForms
 			LoadLookups();
 			SetReadOnly(true);
 			SetReadOnlyKeyFields(true);
+			GroupControlBuild.Enabled = false;
 		}
 
 		private void Connect(FlexInterfaces.Core.ICoreSys sys)
@@ -94,10 +98,22 @@ namespace TraceForms
 			SearchLookupEditAgency.Properties.DataSource = lookup;
 
 			lookup = new List<CodeName>();
+			lookup.AddRange(_context.AGY
+				.OrderBy(t => t.NO)
+				.Select(t => new CodeName() { Code = t.NO, Name = t.NAME }));
+			SearchLookupEditRelAgency.Properties.DataSource = lookup;
+
+			lookup = new List<CodeName>();
 			lookup.AddRange(_context.ROOMCOD
 				.OrderBy(t => t.CODE)
 				.Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
 			SearchLookupEditCat.Properties.DataSource = lookup;
+
+			lookup = new List<CodeName>();
+			lookup.AddRange(_context.ROOMCOD
+				.OrderBy(t => t.CODE)
+				.Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
+			SearchLookupEditRelCat.Properties.DataSource = lookup;
 		}
 
 		void SetReadOnly(bool value)
@@ -223,10 +239,22 @@ namespace TraceForms
 		{
 			//The error indicators inside the grids are handled by binding, but errors on the main form must
 			//be set manually
-			//SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
-			//SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
-			//SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
-			//SetErrorInfo(_selectedRecord.ValidateCat, SearchLookupEditCat);
+			SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
+			SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
+			SetErrorInfo(_selectedRecord.ValidateCat, SearchLookupEditCat);
+			SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
+			SetErrorInfo(_selectedRecord.ValidateRelCode, SearchLookupEditRelCode);
+			SetErrorInfo(_selectedRecord.ValidateRelCat, SearchLookupEditRelCat);
+			SetErrorInfo(_selectedRecord.ValidateRelAgency, SearchLookupEditRelAgency);
+			SetErrorInfo(_selectedRecord.ValidateMin, SpinEditMin);
+			SetErrorInfo(_selectedRecord.ValidateMax, SpinEditMax);
+			SetErrorInfo(_selectedRecord.ValidateMinBkDays, SpinEditMinBkDays);
+			SetErrorInfo(_selectedRecord.ValidateHold, SpinEditHold);
+			SetErrorInfo(_selectedRecord.ValidateAv, ComboBoxEditAv);
+			SetErrorInfo(_selectedRecord.ValidateCanc, SpinEditCanc);
+			SetErrorInfo(_selectedRecord.ValidateOrigAmt, SpinEditOrigAmt);
+			SetErrorInfo(_selectedRecord.ValidateAlloctd, SpinEditAlloctd);
+			SetErrorInfo(_selectedRecord.ValidateRelDays, SpinEditRel);
 		}
 
 		private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -327,7 +355,7 @@ namespace TraceForms
 		//    ((FlextourEntities)e.Tag).Dispose();
 		//}
 
-		private void advBandedGridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+		private void AdvBandedGridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             //if ((e.FocusedRowHandle >= 0) && (!GridViewInvt.IsGroupRow(e.FocusedRowHandle)))
             //{
@@ -335,44 +363,25 @@ namespace TraceForms
             //}
         }
 
-        //private void EditItem(int rowHandle)
-        //{
-        //    try
-        //    {
-        //        //Single value key
-        //        int key = Convert.ToInt32(GridViewInvt.GetRowCellValue(rowHandle, "ID"));
-        //        _item = context.INVT.Single<INVT>(i => i.ID == key);
-        //        EditItem(_item);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //}
-
-        //private void EditItem(INVT item)
-        //{
-        //    InvtBindingSource.DataSource = item;
-        //    InvtBindingSource.MoveFirst();
-        //}
-
-        private void InvMaint_Load(object sender, EventArgs e)
+		private void InvMaint_Load(object sender, EventArgs e)
         {
 
 
             /// change the rmcabin to readonly true on selection of type
         }
 
-        private void advBandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private void AdvBandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
 
         private void InvMaint_FormClosing(object sender, FormClosingEventArgs e)
         {
-			if (IsModified(_selectedRecord)) {
+			if (IsModified(_selectedRecord)) 
+			{
 				DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
-				if (select == DialogResult.Yes) {
+				if (select == DialogResult.Yes)
+				{
 					e.Cancel = false;
 					_context.Dispose();
 					Dispose();
@@ -380,7 +389,8 @@ namespace TraceForms
 				else
 					e.Cancel = true;
 			}
-			else {
+			else 
+			{
 				e.Cancel = false;
 				_context.Dispose();
 				Dispose();
@@ -389,115 +399,109 @@ namespace TraceForms
 
         private void ComboBoxEditType_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateType, sender);
-		}      
-
-        private void DateEditDate_Leave(object sender, EventArgs e)
-        {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateDate, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateType, sender);
 		}
 
         private void ComboBoxEditAv_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateAv, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateAv, sender);
 		}
 
         private void SpinEditMax_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateMax, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateMax, sender);
 		}
 
         private void SpinEditMin_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateMin, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateMin, sender);
 		}
 
         private void SpinEditCanc_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateCanc, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCanc, sender);
 		}
 
         private void SpinEditMinBkDays_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateMinBkDays, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateMinBkDays, sender);
 		}
 
         private void SpinEditOrigAmt_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateOrigAmt, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateOrigAmt, sender);
 		}
 
         private void SpinEditAlloctd_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateAlloctd, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateAlloctd, sender);
 		}
 
         private void SpinEditAvAmt_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateAvAmt, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateAvAmt, sender);
 		}
 
         private void SpinEditHold_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateHold, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateHold, sender);
 		}
 
         private void SpinEditRel_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateRel, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRelDays, sender);
 		}
 
         private void ComboBoxEditRelTyp_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateCode, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRelTyp, sender);
 		}
 
         private void ComboBoxEditTp_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateTp, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRmCab, sender);
 		}
 
-        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        private void CheckEditSyn_CheckedChanged(object sender, EventArgs e)
         {
             if (CheckEditSyn.Checked == true)
             {
-                SpinEditOrig_Amt.Properties.ReadOnly = true;
+                SpinEditOrigAmt.Properties.ReadOnly = true;
             }
             if (CheckEditSyn.Checked == false)
             {
-                SpinEditOrig_Amt.Properties.ReadOnly = false;               
+                SpinEditOrigAmt.Properties.ReadOnly = false;               
             }
         }
 
-        private void dateEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
         }
 
-        private void dateEdit2_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEdit2_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
         }
 
-        private void dATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEditDate_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
@@ -535,52 +539,45 @@ namespace TraceForms
 			Cursor = Cursors.Default;
 		}
 
-        //private bool buildForms()
-        //{
-        //    bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, ErrorProvider, ((INVT)BindingSource.Current).checkAll, BindingSource);
-        //    if (validateMain)
-        //        return true;
-        //    else
-        //    {
-        //        MessageBox.Show("Please correct error(s) before attempting to build the records.");
-        //        return false;
-        //    }
-        //}
+		//private bool BuildForms()
+		//{
 
-        private void SearchLookupEditCode_Leave(object sender, EventArgs e)
+		//}
+
+		private void SearchLookupEditCode_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateCode, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCode, sender);
 		}
 
         private void SearchLookupEditAgency_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateAgency, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateAgency, sender);
 		}
 
         private void SearchLookupEditCat_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateCat, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
 		}
 
         private void SearchLookupEditRelCode_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateRelCode, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRelCode, sender);
 		}
 
         private void SearchLookupEditRelAgency_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateRelAgency, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRelAgency, sender);
 		}
 
         private void SearchLookupEditRelCat_Leave(object sender, EventArgs e)
         {
-			//if (_selectedRecord != null)
-			//	SetErrorInfo(_selectedRecord.ValidateRelCat, sender);
+			if (_selectedRecord != null)
+				SetErrorInfo(_selectedRecord.ValidateRelCat, sender);
 		}
 
         private void InvtBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -593,41 +590,98 @@ namespace TraceForms
 				SetBindings();
 		}
 
-        private void aV_AMTSpinEdit_ValueChanged(object sender, EventArgs e)
+        private void Av_AmtSpinEdit_ValueChanged(object sender, EventArgs e)
         {
-            if (SpinEditOrig_Amt.Properties.ReadOnly == true)
+            if (CheckEditSyn.Checked == true)
             {
-                SpinEditOrig_Amt.Value = SpinEditAv_Amt.Value;
+                SpinEditOrigAmt.Value = SpinEditAv_Amt.Value;
             }
         }
 
-        private void CheckEditSync_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditSkip_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditOverwrite_Click(object sender, EventArgs e)
-        {
-
-        }
-
-		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void SearchLookupEdit_Popup(object sender, EventArgs e)
 		{
-			DeleteRecord();
+			//Hide the Find button because it doesn't do anything when auto - filtering, except it
+			//is useful to let the user know the purpose of the filter field, because it has no label
+			//LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+			//((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+			PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+			popupForm.KeyPreview = true;
+			popupForm.KeyUp -= PopupForm_KeyUp;
+			popupForm.KeyUp += PopupForm_KeyUp;
+
+			//SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
 		}
 
-		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e)
 		{
-			if (SaveRecord(false))
-				RefreshRecord();
+			//Users did not like have to type quotes in order to get an exact match of entered terms rather than any word being matched
+			//https://www.devexpress.com/Support/Center/Example/Details/E3135/how-to-implement-an-event-allowing-you-to-customize-a-filter-string-produced-by-the-find
+			//Also requires the custom inherited version of the SearchLookupEdit in the Custom_SearchLookupEdit namespace
+			if (!string.IsNullOrEmpty(e.FilterText)) {
+				e.FilterText = '"' + e.FilterText + '"';
+			}
+		}
+
+		private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+		{
+			bool gotMatch = false;
+			PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+			if (e.KeyData == Keys.Enter) {
+				string searchText = popupForm.Properties.View.FindFilterText;
+				if (!string.IsNullOrEmpty(searchText)) {
+					GridView view = popupForm.OwnerEdit.Properties.View;
+					//If there is a match is on the ValueMember (Code) column, that should take precedence
+					//This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+					//int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+					for (int row = 0; row < view.DataRowCount; row++) {
+						CodeName codeName = (CodeName)view.GetRow(row);
+						if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+							view.FocusedRowHandle = row;
+							gotMatch = true;
+							break;
+						}
+					}
+					if (!gotMatch) {
+						view.FocusedRowHandle = 0;
+					}
+					popupForm.OwnerEdit.ClosePopup();
+				}
+			}
+		}
+
+		private void ComboBoxEditType_SelectedValueChanged(object sender, EventArgs e)
+		{
+			ComboBoxEditTP.Enabled = (ComboBoxEditType.Text == "HTL");
+			if (ComboBoxEditType.Text == "PKG") {
+				ComboBoxEditTP.Text = "NON";
+			}
+			else if (ComboBoxEditType.Text != "HTL") {
+				ComboBoxEditTP.Text = string.Empty;
+			}
+			string type = ComboBoxEditType.Text;
+			if (type != null) {			
+				LoadCodeLookupValues(type, SearchLookupEditCode);
+				LoadCodeLookupValues(type, SearchLookupEditRelCode);
+			}
+		}
+
+		private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
+		{
+			if (_productLookups.ContainsKey(type)) {
+				editor.Properties.DataSource = _productLookups[type];
+			}
+			else {
+				editor.Properties.DataSource = null;
+			}
 		}
 
 		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			CreateNewRecord();
+		}
+
+		private void CreateNewRecord()
 		{
 			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
 			if (SaveRecord(true)) {
@@ -635,12 +689,137 @@ namespace TraceForms
 				BindingSource.Add(_selectedRecord);
 				GridViewLookup.FocusedRowHandle = GridViewLookup.FindRow(_selectedRecord);
 				SetReadOnlyKeyFields(false);
-				SearchLookupEditCode.Focus();
+				ComboBoxEditType.Focus();
 				SetReadOnly(false);
 			}
 			ErrorProvider.Clear();
 			_ignoreLeaveRow = false;
 		}
-	}
 
+		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			DeleteRecord();
+		}
+
+		private void CheckEditSync_CheckedChanged(object sender, EventArgs e)
+		{
+			SearchLookupEditRelCode.Enabled = CheckEditSync.Checked;
+			if (!CheckEditSync.Checked){
+				SearchLookupEditRelCode.EditValue = null;
+			}
+			ComboBoxEditRelTyp.Enabled = CheckEditSync.Checked;
+			if (!CheckEditSync.Checked) {
+				ComboBoxEditRelTyp.EditValue = null;
+			}
+			SearchLookupEditRelCat.Enabled = CheckEditSync.Checked;
+			if (!CheckEditSync.Checked) {
+				SearchLookupEditRelCat.EditValue = null;
+			}
+			SearchLookupEditRelAgency.Enabled = CheckEditSync.Checked;
+			if (!CheckEditSync.Checked) {
+				SearchLookupEditRelAgency.EditValue = null;
+			}
+			SpinEditRel.Enabled = CheckEditSync.Checked;
+			if (!CheckEditSync.Checked) {
+				SpinEditRel.EditValue = null;
+			}
+		}
+
+		public bool BuildRecords()
+		{
+			int days = 0;
+			DateTime date;
+			try {
+				do {
+					date = DateEditBuildFrom.DateTime.AddDays(days);
+					if (!String.IsNullOrWhiteSpace(ComboBoxEditBuildEvery.Text)) {
+						if(String.Compare(date.DayOfWeek.ToString(), ComboBoxEditBuildEvery.Text, true) == 0) {
+							int buildDays = 0;
+							do {
+								date = DateEditBuildFrom.DateTime.AddDays(days);
+
+								CreateNewRecord();
+								buildDays++;
+								days++;
+							} while (buildDays < (int)SpinEditBuildDays.Value);
+						}
+						else {
+
+						}
+					}
+					else {
+						CreateNewRecord();
+						days++;
+					}
+				} while (date < DateEditBuildThrough.DateTime);
+				return true;
+			}
+			catch (Exception ex) {
+				DisplayHelper.DisplayError(this, ex);
+				return false;
+			}
+		}
+
+		private void ComboBoxEditAv_SelectedValueChanged(object sender, EventArgs e)
+		{
+			if (ComboBoxEditAv.Text == "R") {
+				foreach (Control control in GroupControlRelease.Controls) {
+					control.Enabled = false;
+				}
+
+				foreach (Control control in GroupControlQuantities.Controls) {
+					control.Enabled = false;
+				}
+			}
+
+			else if (ComboBoxEditAv.Text == "Q") {
+				foreach (Control control in GroupControlRelease.Controls) {
+					control.Enabled = false;
+				}
+
+				foreach (Control control in GroupControlQuantities.Controls) {
+					control.Enabled = false;
+				}
+			}
+
+			else {
+				foreach (Control control in GroupControlRelease.Controls) {
+					control.Enabled = true;
+				}
+
+				foreach (Control control in GroupControlQuantities.Controls) {
+					control.Enabled = true;
+				}
+			}
+		}
+
+		private void BarToggleSwitchItemBuild_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (BarToggleSwitchItemBuild.Checked == false) {
+				GroupControlBuild.Enabled = false;
+				DateEditDate.Enabled = true;
+				BarButtonItemDelete.Enabled = true;
+				BarButtonItemNew.Enabled = true;
+
+			}
+			else if (BarToggleSwitchItemBuild.Checked == true) {
+				CreateNewRecord();
+				GroupControlBuild.Enabled = true;
+				DateEditDate.Enabled = false;
+				BarButtonItemDelete.Enabled = false;
+				BarButtonItemNew.Enabled = false;
+			}
+		}
+
+		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (BarToggleSwitchItemBuild.Checked == false) {
+				if (SaveRecord(false))
+					RefreshRecord();
+			}
+			else {
+				BuildRecords();
+			}
+		}
+	}
 }
