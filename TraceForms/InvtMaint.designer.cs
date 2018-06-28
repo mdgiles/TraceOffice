@@ -97,10 +97,22 @@
 			this.GridColumnRoomCod = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
 			this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-			this.DateEditDate = new DevExpress.XtraEditors.ButtonEdit();
 			this.ComboBoxEditType = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+			this.GroupControlBuild = new DevExpress.XtraEditors.GroupControl();
+			this.LabelControlBuild = new DevExpress.XtraEditors.LabelControl();
+			this.LabelControlDays = new DevExpress.XtraEditors.LabelControl();
+			this.ComboBoxEditBuildEvery = new DevExpress.XtraEditors.ComboBoxEdit();
+			this.LabelControlSkips = new DevExpress.XtraEditors.LabelControl();
+			this.LabelControlBuildFrom = new DevExpress.XtraEditors.LabelControl();
+			this.LabelControlOver = new DevExpress.XtraEditors.LabelControl();
+			this.LabelControlBuildThrough = new DevExpress.XtraEditors.LabelControl();
+			this.CheckEditOverwrite = new DevExpress.XtraEditors.CheckEdit();
+			this.LabelControlBuildEvery = new DevExpress.XtraEditors.LabelControl();
+			this.CheckEditSkip = new DevExpress.XtraEditors.CheckEdit();
+			this.SpinEditBuildDays = new DevExpress.XtraEditors.SpinEdit();
+			this.GroupControlRestrictions = new DevExpress.XtraEditors.GroupControl();
 			this.GroupControlQuantities = new DevExpress.XtraEditors.GroupControl();
 			this.GroupControlRelease = new DevExpress.XtraEditors.GroupControl();
 			this.CheckEditSync = new DevExpress.XtraEditors.CheckEdit();
@@ -123,19 +135,6 @@
 			this.ComboBoxEditRelTyp = new DevExpress.XtraEditors.ComboBoxEdit();
 			this.SpinEditRel = new DevExpress.XtraEditors.SpinEdit();
 			this.labelControlDate = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlBuild = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlDays = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlSkips = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlOver = new DevExpress.XtraEditors.LabelControl();
-			this.CheckEditOverwrite = new DevExpress.XtraEditors.CheckEdit();
-			this.CheckEditSkip = new DevExpress.XtraEditors.CheckEdit();
-			this.SpinEditBuildDays = new DevExpress.XtraEditors.SpinEdit();
-			this.LabelControlBuildEvery = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlBuildThrough = new DevExpress.XtraEditors.LabelControl();
-			this.LabelControlBuildFrom = new DevExpress.XtraEditors.LabelControl();
-			this.ComboBoxEditBuildEvery = new DevExpress.XtraEditors.ComboBoxEdit();
-			this.DateEditBuildThrough = new DevExpress.XtraEditors.ButtonEdit();
-			this.DateEditBuildFrom = new DevExpress.XtraEditors.ButtonEdit();
 			this.SearchLookupEditCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
 			this.customSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -158,12 +157,15 @@
 			this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
 			this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
 			this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+			this.BarToggleSwitchItemBuild = new DevExpress.XtraBars.BarToggleSwitchItem();
 			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
-			this.GroupControlRestrictions = new DevExpress.XtraEditors.GroupControl();
+			this.DateEditBuildFrom = new DevExpress.XtraEditors.DateEdit();
+			this.DateEditBuildThrough = new DevExpress.XtraEditors.DateEdit();
+			this.DateEditDate = new DevExpress.XtraEditors.DateEdit();
 			aGENCYLabel = new System.Windows.Forms.Label();
 			tYPELabel = new System.Windows.Forms.Label();
 			cATLabel = new System.Windows.Forms.Label();
@@ -201,11 +203,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditAv.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridControlInvMaint)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
 			this.splitContainerControl1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.GroupControlBuild)).BeginInit();
+			this.GroupControlBuild.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditBuildEvery.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).BeginInit();
+			this.GroupControlRestrictions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlQuantities)).BeginInit();
 			this.GroupControlQuantities.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlRelease)).BeginInit();
@@ -220,12 +229,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditRelTyp.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SpinEditRel.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditBuildEvery.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).BeginInit();
@@ -235,14 +238,18 @@
 			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
 			this.PanelControlStatus.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).BeginInit();
-			this.GroupControlRestrictions.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// aGENCYLabel
 			// 
 			aGENCYLabel.AutoSize = true;
-			aGENCYLabel.Location = new System.Drawing.Point(33, 89);
+			aGENCYLabel.Location = new System.Drawing.Point(33, 45);
 			aGENCYLabel.Name = "aGENCYLabel";
 			aGENCYLabel.Size = new System.Drawing.Size(43, 13);
 			aGENCYLabel.TabIndex = 0;
@@ -251,7 +258,7 @@
 			// tYPELabel
 			// 
 			tYPELabel.AutoSize = true;
-			tYPELabel.Location = new System.Drawing.Point(33, 53);
+			tYPELabel.Location = new System.Drawing.Point(33, 18);
 			tYPELabel.Name = "tYPELabel";
 			tYPELabel.Size = new System.Drawing.Size(31, 13);
 			tYPELabel.TabIndex = 2;
@@ -260,7 +267,7 @@
 			// cATLabel
 			// 
 			cATLabel.AutoSize = true;
-			cATLabel.Location = new System.Drawing.Point(33, 125);
+			cATLabel.Location = new System.Drawing.Point(33, 76);
 			cATLabel.Name = "cATLabel";
 			cATLabel.Size = new System.Drawing.Size(52, 13);
 			cATLabel.TabIndex = 4;
@@ -269,7 +276,7 @@
 			// cODELabel
 			// 
 			cODELabel.AutoSize = true;
-			cODELabel.Location = new System.Drawing.Point(213, 53);
+			cODELabel.Location = new System.Drawing.Point(211, 18);
 			cODELabel.Name = "cODELabel";
 			cODELabel.Size = new System.Drawing.Size(32, 13);
 			cODELabel.TabIndex = 6;
@@ -278,7 +285,7 @@
 			// uPD_DATELabel
 			// 
 			uPD_DATELabel.AutoSize = true;
-			uPD_DATELabel.Location = new System.Drawing.Point(33, 200);
+			uPD_DATELabel.Location = new System.Drawing.Point(45, 638);
 			uPD_DATELabel.Name = "uPD_DATELabel";
 			uPD_DATELabel.Size = new System.Drawing.Size(74, 13);
 			uPD_DATELabel.TabIndex = 11;
@@ -287,7 +294,7 @@
 			// uPD_BYLabel
 			// 
 			uPD_BYLabel.AutoSize = true;
-			uPD_BYLabel.Location = new System.Drawing.Point(233, 201);
+			uPD_BYLabel.Location = new System.Drawing.Point(245, 639);
 			uPD_BYLabel.Name = "uPD_BYLabel";
 			uPD_BYLabel.Size = new System.Drawing.Size(23, 13);
 			uPD_BYLabel.TabIndex = 13;
@@ -296,7 +303,7 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Location = new System.Drawing.Point(364, 125);
+			label1.Location = new System.Drawing.Point(364, 45);
 			label1.Name = "label1";
 			label1.Size = new System.Drawing.Size(69, 13);
 			label1.TabIndex = 17;
@@ -431,7 +438,7 @@
 			// rELAGYLabel
 			// 
 			rELAGYLabel.AutoSize = true;
-			rELAGYLabel.Location = new System.Drawing.Point(465, 46);
+			rELAGYLabel.Location = new System.Drawing.Point(449, 46);
 			rELAGYLabel.Name = "rELAGYLabel";
 			rELAGYLabel.Size = new System.Drawing.Size(43, 13);
 			rELAGYLabel.TabIndex = 54;
@@ -456,7 +463,7 @@
 			// 
 			this.ComboBoxEditTP.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TP", true));
 			this.ComboBoxEditTP.EnterMoveNextControl = true;
-			this.ComboBoxEditTP.Location = new System.Drawing.Point(439, 122);
+			this.ComboBoxEditTP.Location = new System.Drawing.Point(444, 42);
 			this.ComboBoxEditTP.Name = "ComboBoxEditTP";
 			this.ComboBoxEditTP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -531,7 +538,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
 			this.SpinEditAv_Amt.Size = new System.Drawing.Size(56, 20);
 			this.SpinEditAv_Amt.TabIndex = 18;
-			this.SpinEditAv_Amt.ValueChanged += new System.EventHandler(this.aV_AMTSpinEdit_ValueChanged);
+			this.SpinEditAv_Amt.ValueChanged += new System.EventHandler(this.Av_AmtSpinEdit_ValueChanged);
 			this.SpinEditAv_Amt.Leave += new System.EventHandler(this.SpinEditAvAmt_Leave);
 			// 
 			// SpinEditOrigAmt
@@ -653,7 +660,7 @@
 			this.GridControlInvMaint.Location = new System.Drawing.Point(0, 0);
 			this.GridControlInvMaint.MainView = this.GridViewLookup;
 			this.GridControlInvMaint.Name = "GridControlInvMaint";
-			this.GridControlInvMaint.Size = new System.Drawing.Size(211, 734);
+			this.GridControlInvMaint.Size = new System.Drawing.Size(211, 692);
 			this.GridControlInvMaint.TabIndex = 22;
 			this.GridControlInvMaint.TabStop = false;
 			this.GridControlInvMaint.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -847,7 +854,7 @@
 			// labelControl2
 			// 
 			this.labelControl2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "UPD_BY", true));
-			this.labelControl2.Location = new System.Drawing.Point(262, 201);
+			this.labelControl2.Location = new System.Drawing.Point(274, 639);
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(0, 13);
 			this.labelControl2.TabIndex = 21;
@@ -855,29 +862,16 @@
 			// labelControl1
 			// 
 			this.labelControl1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "UPD_DATE", true));
-			this.labelControl1.Location = new System.Drawing.Point(113, 201);
+			this.labelControl1.Location = new System.Drawing.Point(125, 639);
 			this.labelControl1.Name = "labelControl1";
 			this.labelControl1.Size = new System.Drawing.Size(0, 13);
 			this.labelControl1.TabIndex = 20;
-			// 
-			// DateEditDate
-			// 
-			this.DateEditDate.CausesValidation = false;
-			this.DateEditDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
-			this.DateEditDate.EnterMoveNextControl = true;
-			this.DateEditDate.Location = new System.Drawing.Point(585, 122);
-			this.DateEditDate.Name = "DateEditDate";
-			this.DateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditDate.Size = new System.Drawing.Size(100, 20);
-			this.DateEditDate.TabIndex = 6;
-			this.DateEditDate.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dATEDateEdit_ButtonClick);
 			// 
 			// ComboBoxEditType
 			// 
 			this.ComboBoxEditType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
 			this.ComboBoxEditType.EnterMoveNextControl = true;
-			this.ComboBoxEditType.Location = new System.Drawing.Point(92, 50);
+			this.ComboBoxEditType.Location = new System.Drawing.Point(92, 15);
 			this.ComboBoxEditType.Name = "ComboBoxEditType";
 			this.ComboBoxEditType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -899,49 +893,195 @@
 			// splitContainerControl1
 			// 
 			this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainerControl1.Location = new System.Drawing.Point(0, 31);
+			this.splitContainerControl1.Location = new System.Drawing.Point(0, 33);
 			this.splitContainerControl1.Name = "splitContainerControl1";
 			this.splitContainerControl1.Panel1.AutoScroll = true;
 			this.splitContainerControl1.Panel1.Controls.Add(this.GridControlInvMaint);
 			this.splitContainerControl1.Panel1.Text = "Panel1";
 			this.splitContainerControl1.Panel2.AutoScroll = true;
+			this.splitContainerControl1.Panel2.Controls.Add(this.GroupControlBuild);
+			this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
 			this.splitContainerControl1.Panel2.Controls.Add(this.GroupControlRestrictions);
 			this.splitContainerControl1.Panel2.Controls.Add(this.GroupControlQuantities);
+			this.splitContainerControl1.Panel2.Controls.Add(this.labelControl1);
 			this.splitContainerControl1.Panel2.Controls.Add(this.GroupControlRelease);
 			this.splitContainerControl1.Panel2.Controls.Add(this.labelControlDate);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlBuild);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlDays);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlSkips);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlOver);
-			this.splitContainerControl1.Panel2.Controls.Add(this.CheckEditOverwrite);
-			this.splitContainerControl1.Panel2.Controls.Add(this.CheckEditSkip);
-			this.splitContainerControl1.Panel2.Controls.Add(this.SpinEditBuildDays);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlBuildEvery);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlBuildThrough);
-			this.splitContainerControl1.Panel2.Controls.Add(this.LabelControlBuildFrom);
-			this.splitContainerControl1.Panel2.Controls.Add(this.ComboBoxEditBuildEvery);
-			this.splitContainerControl1.Panel2.Controls.Add(this.DateEditBuildThrough);
-			this.splitContainerControl1.Panel2.Controls.Add(this.DateEditBuildFrom);
+			this.splitContainerControl1.Panel2.Controls.Add(uPD_BYLabel);
 			this.splitContainerControl1.Panel2.Controls.Add(this.ComboBoxEditType);
 			this.splitContainerControl1.Panel2.Controls.Add(aGENCYLabel);
+			this.splitContainerControl1.Panel2.Controls.Add(uPD_DATELabel);
 			this.splitContainerControl1.Panel2.Controls.Add(this.ComboBoxEditTP);
 			this.splitContainerControl1.Panel2.Controls.Add(tYPELabel);
 			this.splitContainerControl1.Panel2.Controls.Add(cATLabel);
 			this.splitContainerControl1.Panel2.Controls.Add(cODELabel);
-			this.splitContainerControl1.Panel2.Controls.Add(this.DateEditDate);
-			this.splitContainerControl1.Panel2.Controls.Add(uPD_DATELabel);
-			this.splitContainerControl1.Panel2.Controls.Add(uPD_BYLabel);
 			this.splitContainerControl1.Panel2.Controls.Add(label1);
-			this.splitContainerControl1.Panel2.Controls.Add(this.labelControl1);
-			this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
 			this.splitContainerControl1.Panel2.Controls.Add(this.SearchLookupEditCode);
 			this.splitContainerControl1.Panel2.Controls.Add(this.SearchLookupEditAgency);
 			this.splitContainerControl1.Panel2.Controls.Add(this.SearchLookupEditCat);
+			this.splitContainerControl1.Panel2.Controls.Add(this.DateEditDate);
 			this.splitContainerControl1.Panel2.Text = "Panel2";
-			this.splitContainerControl1.Size = new System.Drawing.Size(1020, 734);
+			this.splitContainerControl1.Size = new System.Drawing.Size(1020, 692);
 			this.splitContainerControl1.SplitterPosition = 211;
 			this.splitContainerControl1.TabIndex = 27;
 			this.splitContainerControl1.Text = "splitContainerControl1";
+			// 
+			// GroupControlBuild
+			// 
+			this.GroupControlBuild.Controls.Add(this.LabelControlBuild);
+			this.GroupControlBuild.Controls.Add(this.LabelControlDays);
+			this.GroupControlBuild.Controls.Add(this.ComboBoxEditBuildEvery);
+			this.GroupControlBuild.Controls.Add(this.LabelControlSkips);
+			this.GroupControlBuild.Controls.Add(this.LabelControlBuildFrom);
+			this.GroupControlBuild.Controls.Add(this.LabelControlOver);
+			this.GroupControlBuild.Controls.Add(this.LabelControlBuildThrough);
+			this.GroupControlBuild.Controls.Add(this.CheckEditOverwrite);
+			this.GroupControlBuild.Controls.Add(this.LabelControlBuildEvery);
+			this.GroupControlBuild.Controls.Add(this.CheckEditSkip);
+			this.GroupControlBuild.Controls.Add(this.SpinEditBuildDays);
+			this.GroupControlBuild.Controls.Add(this.DateEditBuildFrom);
+			this.GroupControlBuild.Controls.Add(this.DateEditBuildThrough);
+			this.GroupControlBuild.Location = new System.Drawing.Point(36, 110);
+			this.GroupControlBuild.Name = "GroupControlBuild";
+			this.GroupControlBuild.Size = new System.Drawing.Size(725, 120);
+			this.GroupControlBuild.TabIndex = 270;
+			this.GroupControlBuild.Text = "Build";
+			// 
+			// LabelControlBuild
+			// 
+			this.LabelControlBuild.Location = new System.Drawing.Point(397, 87);
+			this.LabelControlBuild.Name = "LabelControlBuild";
+			this.LabelControlBuild.Size = new System.Drawing.Size(22, 13);
+			this.LabelControlBuild.TabIndex = 75;
+			this.LabelControlBuild.Text = "Build";
+			// 
+			// LabelControlDays
+			// 
+			this.LabelControlDays.Location = new System.Drawing.Point(484, 87);
+			this.LabelControlDays.Name = "LabelControlDays";
+			this.LabelControlDays.Size = new System.Drawing.Size(31, 13);
+			this.LabelControlDays.TabIndex = 74;
+			this.LabelControlDays.Text = "day(s)";
+			// 
+			// ComboBoxEditBuildEvery
+			// 
+			this.ComboBoxEditBuildEvery.EnterMoveNextControl = true;
+			this.ComboBoxEditBuildEvery.Location = new System.Drawing.Point(431, 44);
+			this.ComboBoxEditBuildEvery.Name = "ComboBoxEditBuildEvery";
+			this.ComboBoxEditBuildEvery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.ComboBoxEditBuildEvery.Properties.Items.AddRange(new object[] {
+            "",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "# days"});
+			this.ComboBoxEditBuildEvery.Size = new System.Drawing.Size(100, 20);
+			this.ComboBoxEditBuildEvery.TabIndex = 9;
+			// 
+			// LabelControlSkips
+			// 
+			this.LabelControlSkips.Location = new System.Drawing.Point(264, 87);
+			this.LabelControlSkips.Name = "LabelControlSkips";
+			this.LabelControlSkips.Size = new System.Drawing.Size(98, 13);
+			this.LabelControlSkips.TabIndex = 73;
+			this.LabelControlSkips.Text = "Skip existing records";
+			// 
+			// LabelControlBuildFrom
+			// 
+			this.LabelControlBuildFrom.Location = new System.Drawing.Point(46, 47);
+			this.LabelControlBuildFrom.Name = "LabelControlBuildFrom";
+			this.LabelControlBuildFrom.Size = new System.Drawing.Size(24, 13);
+			this.LabelControlBuildFrom.TabIndex = 63;
+			this.LabelControlBuildFrom.Text = "From";
+			// 
+			// LabelControlOver
+			// 
+			this.LabelControlOver.Location = new System.Drawing.Point(72, 87);
+			this.LabelControlOver.Name = "LabelControlOver";
+			this.LabelControlOver.Size = new System.Drawing.Size(127, 13);
+			this.LabelControlOver.TabIndex = 72;
+			this.LabelControlOver.Text = "Overwrite existing records";
+			// 
+			// LabelControlBuildThrough
+			// 
+			this.LabelControlBuildThrough.Location = new System.Drawing.Point(218, 47);
+			this.LabelControlBuildThrough.Name = "LabelControlBuildThrough";
+			this.LabelControlBuildThrough.Size = new System.Drawing.Size(40, 13);
+			this.LabelControlBuildThrough.TabIndex = 64;
+			this.LabelControlBuildThrough.Text = "Through";
+			// 
+			// CheckEditOverwrite
+			// 
+			this.CheckEditOverwrite.Location = new System.Drawing.Point(46, 84);
+			this.CheckEditOverwrite.Name = "CheckEditOverwrite";
+			this.CheckEditOverwrite.Properties.Caption = "";
+			this.CheckEditOverwrite.Size = new System.Drawing.Size(28, 19);
+			this.CheckEditOverwrite.TabIndex = 71;
+			// 
+			// LabelControlBuildEvery
+			// 
+			this.LabelControlBuildEvery.Location = new System.Drawing.Point(397, 47);
+			this.LabelControlBuildEvery.Name = "LabelControlBuildEvery";
+			this.LabelControlBuildEvery.Size = new System.Drawing.Size(28, 13);
+			this.LabelControlBuildEvery.TabIndex = 65;
+			this.LabelControlBuildEvery.Text = "Every";
+			// 
+			// CheckEditSkip
+			// 
+			this.CheckEditSkip.Location = new System.Drawing.Point(238, 84);
+			this.CheckEditSkip.Name = "CheckEditSkip";
+			this.CheckEditSkip.Properties.Caption = "";
+			this.CheckEditSkip.Size = new System.Drawing.Size(29, 19);
+			this.CheckEditSkip.TabIndex = 69;
+			// 
+			// SpinEditBuildDays
+			// 
+			this.SpinEditBuildDays.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.SpinEditBuildDays.Location = new System.Drawing.Point(431, 84);
+			this.SpinEditBuildDays.Name = "SpinEditBuildDays";
+			this.SpinEditBuildDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+			this.SpinEditBuildDays.Properties.MaxValue = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+			this.SpinEditBuildDays.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.SpinEditBuildDays.Size = new System.Drawing.Size(47, 20);
+			this.SpinEditBuildDays.TabIndex = 66;
+			// 
+			// GroupControlRestrictions
+			// 
+			this.GroupControlRestrictions.Controls.Add(this.ComboBoxEditAv);
+			this.GroupControlRestrictions.Controls.Add(this.labelControl3);
+			this.GroupControlRestrictions.Controls.Add(this.SpinEditCanc);
+			this.GroupControlRestrictions.Controls.Add(this.SpinEditMinBkDays);
+			this.GroupControlRestrictions.Controls.Add(this.SpinEditMin);
+			this.GroupControlRestrictions.Controls.Add(this.SpinEditMax);
+			this.GroupControlRestrictions.Controls.Add(cANCLabel);
+			this.GroupControlRestrictions.Controls.Add(mIN_BK_DAYSLabel);
+			this.GroupControlRestrictions.Controls.Add(mAXLabel);
+			this.GroupControlRestrictions.Controls.Add(mINLabel);
+			this.GroupControlRestrictions.Controls.Add(aVLabel);
+			this.GroupControlRestrictions.Controls.Add(this.CheckEditReq);
+			this.GroupControlRestrictions.Controls.Add(requestableLabel);
+			this.GroupControlRestrictions.Location = new System.Drawing.Point(36, 236);
+			this.GroupControlRestrictions.Name = "GroupControlRestrictions";
+			this.GroupControlRestrictions.Size = new System.Drawing.Size(727, 136);
+			this.GroupControlRestrictions.TabIndex = 79;
+			this.GroupControlRestrictions.Text = "Restrictions";
 			// 
 			// GroupControlQuantities
 			// 
@@ -954,9 +1094,9 @@
 			this.GroupControlQuantities.Controls.Add(this.SpinEditAv_Amt);
 			this.GroupControlQuantities.Controls.Add(this.SpinEditAlloctd);
 			this.GroupControlQuantities.Controls.Add(this.SpinEditHold);
-			this.GroupControlQuantities.Location = new System.Drawing.Point(36, 392);
+			this.GroupControlQuantities.Location = new System.Drawing.Point(36, 378);
 			this.GroupControlQuantities.Name = "GroupControlQuantities";
-			this.GroupControlQuantities.Size = new System.Drawing.Size(765, 133);
+			this.GroupControlQuantities.Size = new System.Drawing.Size(727, 133);
 			this.GroupControlQuantities.TabIndex = 78;
 			this.GroupControlQuantities.Text = "Quantities";
 			// 
@@ -973,9 +1113,9 @@
 			this.GroupControlRelease.Controls.Add(rELTYPLabel);
 			this.GroupControlRelease.Controls.Add(rELAGYLabel);
 			this.GroupControlRelease.Controls.Add(this.SpinEditRel);
-			this.GroupControlRelease.Location = new System.Drawing.Point(36, 552);
+			this.GroupControlRelease.Location = new System.Drawing.Point(36, 517);
 			this.GroupControlRelease.Name = "GroupControlRelease";
-			this.GroupControlRelease.Size = new System.Drawing.Size(765, 118);
+			this.GroupControlRelease.Size = new System.Drawing.Size(727, 118);
 			this.GroupControlRelease.TabIndex = 77;
 			this.GroupControlRelease.Text = "Release Information";
 			// 
@@ -1098,7 +1238,7 @@
 			// SearchLookupEditRelAgency
 			// 
 			this.SearchLookupEditRelAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "RELAGY", true));
-			this.SearchLookupEditRelAgency.Location = new System.Drawing.Point(511, 43);
+			this.SearchLookupEditRelAgency.Location = new System.Drawing.Point(498, 43);
 			this.SearchLookupEditRelAgency.Name = "SearchLookupEditRelAgency";
 			this.SearchLookupEditRelAgency.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
 			this.SearchLookupEditRelAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1187,156 +1327,16 @@
 			// 
 			// labelControlDate
 			// 
-			this.labelControlDate.Location = new System.Drawing.Point(558, 125);
+			this.labelControlDate.Location = new System.Drawing.Point(405, 76);
 			this.labelControlDate.Name = "labelControlDate";
 			this.labelControlDate.Size = new System.Drawing.Size(23, 13);
 			this.labelControlDate.TabIndex = 76;
 			this.labelControlDate.Text = "Date";
 			// 
-			// LabelControlBuild
-			// 
-			this.LabelControlBuild.Location = new System.Drawing.Point(550, 160);
-			this.LabelControlBuild.Name = "LabelControlBuild";
-			this.LabelControlBuild.Size = new System.Drawing.Size(22, 13);
-			this.LabelControlBuild.TabIndex = 75;
-			this.LabelControlBuild.Text = "Build";
-			// 
-			// LabelControlDays
-			// 
-			this.LabelControlDays.Location = new System.Drawing.Point(631, 160);
-			this.LabelControlDays.Name = "LabelControlDays";
-			this.LabelControlDays.Size = new System.Drawing.Size(31, 13);
-			this.LabelControlDays.TabIndex = 74;
-			this.LabelControlDays.Text = "day(s)";
-			// 
-			// LabelControlSkips
-			// 
-			this.LabelControlSkips.Location = new System.Drawing.Point(582, 200);
-			this.LabelControlSkips.Name = "LabelControlSkips";
-			this.LabelControlSkips.Size = new System.Drawing.Size(98, 13);
-			this.LabelControlSkips.TabIndex = 73;
-			this.LabelControlSkips.Text = "Skip existing records";
-			// 
-			// LabelControlOver
-			// 
-			this.LabelControlOver.Location = new System.Drawing.Point(391, 200);
-			this.LabelControlOver.Name = "LabelControlOver";
-			this.LabelControlOver.Size = new System.Drawing.Size(127, 13);
-			this.LabelControlOver.TabIndex = 72;
-			this.LabelControlOver.Text = "Overwrite existing records";
-			// 
-			// CheckEditOverwrite
-			// 
-			this.CheckEditOverwrite.Location = new System.Drawing.Point(359, 197);
-			this.CheckEditOverwrite.Name = "CheckEditOverwrite";
-			this.CheckEditOverwrite.Properties.Caption = "";
-			this.CheckEditOverwrite.Size = new System.Drawing.Size(28, 19);
-			this.CheckEditOverwrite.TabIndex = 71;
-			// 
-			// CheckEditSkip
-			// 
-			this.CheckEditSkip.Location = new System.Drawing.Point(552, 198);
-			this.CheckEditSkip.Name = "CheckEditSkip";
-			this.CheckEditSkip.Properties.Caption = "";
-			this.CheckEditSkip.Size = new System.Drawing.Size(29, 19);
-			this.CheckEditSkip.TabIndex = 69;
-			// 
-			// SpinEditBuildDays
-			// 
-			this.SpinEditBuildDays.EditValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.SpinEditBuildDays.Location = new System.Drawing.Point(578, 157);
-			this.SpinEditBuildDays.Name = "SpinEditBuildDays";
-			this.SpinEditBuildDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.SpinEditBuildDays.Properties.MaxValue = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
-			this.SpinEditBuildDays.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.SpinEditBuildDays.Size = new System.Drawing.Size(47, 20);
-			this.SpinEditBuildDays.TabIndex = 66;
-			// 
-			// LabelControlBuildEvery
-			// 
-			this.LabelControlBuildEvery.Location = new System.Drawing.Point(387, 160);
-			this.LabelControlBuildEvery.Name = "LabelControlBuildEvery";
-			this.LabelControlBuildEvery.Size = new System.Drawing.Size(28, 13);
-			this.LabelControlBuildEvery.TabIndex = 65;
-			this.LabelControlBuildEvery.Text = "Every";
-			// 
-			// LabelControlBuildThrough
-			// 
-			this.LabelControlBuildThrough.Location = new System.Drawing.Point(208, 160);
-			this.LabelControlBuildThrough.Name = "LabelControlBuildThrough";
-			this.LabelControlBuildThrough.Size = new System.Drawing.Size(40, 13);
-			this.LabelControlBuildThrough.TabIndex = 64;
-			this.LabelControlBuildThrough.Text = "Through";
-			// 
-			// LabelControlBuildFrom
-			// 
-			this.LabelControlBuildFrom.Location = new System.Drawing.Point(36, 160);
-			this.LabelControlBuildFrom.Name = "LabelControlBuildFrom";
-			this.LabelControlBuildFrom.Size = new System.Drawing.Size(24, 13);
-			this.LabelControlBuildFrom.TabIndex = 63;
-			this.LabelControlBuildFrom.Text = "From";
-			// 
-			// ComboBoxEditBuildEvery
-			// 
-			this.ComboBoxEditBuildEvery.EnterMoveNextControl = true;
-			this.ComboBoxEditBuildEvery.Location = new System.Drawing.Point(421, 157);
-			this.ComboBoxEditBuildEvery.Name = "ComboBoxEditBuildEvery";
-			this.ComboBoxEditBuildEvery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.ComboBoxEditBuildEvery.Properties.Items.AddRange(new object[] {
-            "",
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "# days"});
-			this.ComboBoxEditBuildEvery.Size = new System.Drawing.Size(100, 20);
-			this.ComboBoxEditBuildEvery.TabIndex = 9;
-			// 
-			// DateEditBuildThrough
-			// 
-			this.DateEditBuildThrough.CausesValidation = false;
-			this.DateEditBuildThrough.EnterMoveNextControl = true;
-			this.DateEditBuildThrough.Location = new System.Drawing.Point(254, 157);
-			this.DateEditBuildThrough.Name = "DateEditBuildThrough";
-			this.DateEditBuildThrough.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildThrough.Size = new System.Drawing.Size(100, 20);
-			this.DateEditBuildThrough.TabIndex = 8;
-			this.DateEditBuildThrough.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEdit2_ButtonClick);
-			// 
-			// DateEditBuildFrom
-			// 
-			this.DateEditBuildFrom.CausesValidation = false;
-			this.DateEditBuildFrom.EnterMoveNextControl = true;
-			this.DateEditBuildFrom.Location = new System.Drawing.Point(93, 157);
-			this.DateEditBuildFrom.Name = "DateEditBuildFrom";
-			this.DateEditBuildFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildFrom.Size = new System.Drawing.Size(100, 20);
-			this.DateEditBuildFrom.TabIndex = 7;
-			this.DateEditBuildFrom.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateEdit1_ButtonClick);
-			// 
 			// SearchLookupEditCode
 			// 
 			this.SearchLookupEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
-			this.SearchLookupEditCode.Location = new System.Drawing.Point(249, 50);
+			this.SearchLookupEditCode.Location = new System.Drawing.Point(249, 15);
 			this.SearchLookupEditCode.Name = "SearchLookupEditCode";
 			this.SearchLookupEditCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
 			this.SearchLookupEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1389,7 +1389,7 @@
 			// SearchLookupEditAgency
 			// 
 			this.SearchLookupEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "AGENCY", true));
-			this.SearchLookupEditAgency.Location = new System.Drawing.Point(93, 86);
+			this.SearchLookupEditAgency.Location = new System.Drawing.Point(92, 42);
 			this.SearchLookupEditAgency.Name = "SearchLookupEditAgency";
 			this.SearchLookupEditAgency.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
 			this.SearchLookupEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1439,7 +1439,7 @@
 			// SearchLookupEditCat
 			// 
 			this.SearchLookupEditCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
-			this.SearchLookupEditCat.Location = new System.Drawing.Point(92, 122);
+			this.SearchLookupEditCat.Location = new System.Drawing.Point(92, 73);
 			this.SearchLookupEditCat.Name = "SearchLookupEditCat";
 			this.SearchLookupEditCat.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
 			this.SearchLookupEditCat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1520,8 +1520,9 @@
 			this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.BarButtonItemNew,
             this.BarButtonItemDelete,
-            this.BarButtonItemSave});
-			this.BarManager.MaxItemId = 3;
+            this.BarButtonItemSave,
+            this.BarToggleSwitchItemBuild});
+			this.BarManager.MaxItemId = 4;
 			// 
 			// bar1
 			// 
@@ -1533,7 +1534,8 @@
 			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarToggleSwitchItemBuild)});
 			this.bar1.OptionsBar.AllowQuickCustomization = false;
 			this.bar1.OptionsBar.DrawDragBorder = false;
 			this.bar1.OptionsBar.UseWholeRow = true;
@@ -1566,19 +1568,26 @@
 			this.BarButtonItemSave.Name = "BarButtonItemSave";
 			this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
 			// 
+			// BarToggleSwitchItemBuild
+			// 
+			this.BarToggleSwitchItemBuild.Caption = "Build";
+			this.BarToggleSwitchItemBuild.Id = 3;
+			this.BarToggleSwitchItemBuild.Name = "BarToggleSwitchItemBuild";
+			this.BarToggleSwitchItemBuild.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.BarToggleSwitchItemBuild_CheckedChanged);
+			// 
 			// barDockControlTop
 			// 
 			this.barDockControlTop.CausesValidation = false;
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.BarManager;
-			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
+			this.barDockControlTop.Size = new System.Drawing.Size(1020, 33);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 765);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 725);
 			this.barDockControlBottom.Manager = this.BarManager;
 			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
 			// 
@@ -1586,49 +1595,83 @@
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 33);
 			this.barDockControlLeft.Manager = this.BarManager;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 734);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 692);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
+			this.barDockControlRight.Location = new System.Drawing.Point(1020, 33);
 			this.barDockControlRight.Manager = this.BarManager;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 734);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 692);
 			// 
 			// EntityInstantFeedbackSource
 			// 
 			this.EntityInstantFeedbackSource.DesignTimeElementType = typeof(FlexModel.INVT);
 			this.EntityInstantFeedbackSource.KeyExpression = "ID";
 			// 
-			// GroupControlRestrictions
+			// DateEditBuildFrom
 			// 
-			this.GroupControlRestrictions.Controls.Add(this.ComboBoxEditAv);
-			this.GroupControlRestrictions.Controls.Add(this.labelControl3);
-			this.GroupControlRestrictions.Controls.Add(this.SpinEditCanc);
-			this.GroupControlRestrictions.Controls.Add(this.SpinEditMinBkDays);
-			this.GroupControlRestrictions.Controls.Add(this.SpinEditMin);
-			this.GroupControlRestrictions.Controls.Add(this.SpinEditMax);
-			this.GroupControlRestrictions.Controls.Add(cANCLabel);
-			this.GroupControlRestrictions.Controls.Add(mIN_BK_DAYSLabel);
-			this.GroupControlRestrictions.Controls.Add(mAXLabel);
-			this.GroupControlRestrictions.Controls.Add(mINLabel);
-			this.GroupControlRestrictions.Controls.Add(aVLabel);
-			this.GroupControlRestrictions.Controls.Add(this.CheckEditReq);
-			this.GroupControlRestrictions.Controls.Add(requestableLabel);
-			this.GroupControlRestrictions.Location = new System.Drawing.Point(36, 235);
-			this.GroupControlRestrictions.Name = "GroupControlRestrictions";
-			this.GroupControlRestrictions.Size = new System.Drawing.Size(765, 136);
-			this.GroupControlRestrictions.TabIndex = 79;
-			this.GroupControlRestrictions.Text = "Restrictions";
+			this.DateEditBuildFrom.CausesValidation = false;
+			this.DateEditBuildFrom.EditValue = null;
+			this.DateEditBuildFrom.Location = new System.Drawing.Point(76, 44);
+			this.DateEditBuildFrom.Name = "DateEditBuildFrom";
+			this.DateEditBuildFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildFrom.Properties.DisplayFormat.FormatString = "";
+			this.DateEditBuildFrom.Properties.EditFormat.FormatString = "";
+			this.DateEditBuildFrom.Properties.Mask.EditMask = "";
+			this.DateEditBuildFrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditBuildFrom.Size = new System.Drawing.Size(100, 20);
+			this.DateEditBuildFrom.TabIndex = 7;
+			this.DateEditBuildFrom.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit1_ButtonClick);
+			// 
+			// DateEditBuildThrough
+			// 
+			this.DateEditBuildThrough.CausesValidation = false;
+			this.DateEditBuildThrough.EditValue = null;
+			this.DateEditBuildThrough.Location = new System.Drawing.Point(264, 44);
+			this.DateEditBuildThrough.Name = "DateEditBuildThrough";
+			this.DateEditBuildThrough.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildThrough.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildThrough.Properties.DisplayFormat.FormatString = "";
+			this.DateEditBuildThrough.Properties.EditFormat.FormatString = "";
+			this.DateEditBuildThrough.Properties.Mask.EditMask = "";
+			this.DateEditBuildThrough.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditBuildThrough.Size = new System.Drawing.Size(100, 20);
+			this.DateEditBuildThrough.TabIndex = 8;
+			this.DateEditBuildThrough.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit2_ButtonClick);
+			// 
+			// DateEditDate
+			// 
+			this.DateEditDate.CausesValidation = false;
+			this.DateEditDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
+			this.DateEditDate.EditValue = null;
+			this.DateEditDate.Location = new System.Drawing.Point(444, 73);
+			this.DateEditDate.Name = "DateEditDate";
+			this.DateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditDate.Properties.DisplayFormat.FormatString = "";
+			this.DateEditDate.Properties.EditFormat.FormatString = "";
+			this.DateEditDate.Properties.Mask.EditMask = "";
+			this.DateEditDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditDate.Size = new System.Drawing.Size(100, 20);
+			this.DateEditDate.TabIndex = 6;
+			this.DateEditDate.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEditDate_ButtonClick);
 			// 
 			// InvtMaint
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1020, 765);
+			this.ClientSize = new System.Drawing.Size(1020, 725);
 			this.Controls.Add(this.PanelControlStatus);
 			this.Controls.Add(this.splitContainerControl1);
 			this.Controls.Add(this.barDockControlLeft);
@@ -1658,11 +1701,20 @@
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditAv.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridControlInvMaint)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
 			this.splitContainerControl1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.GroupControlBuild)).EndInit();
+			this.GroupControlBuild.ResumeLayout(false);
+			this.GroupControlBuild.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditBuildEvery.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).EndInit();
+			this.GroupControlRestrictions.ResumeLayout(false);
+			this.GroupControlRestrictions.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlQuantities)).EndInit();
 			this.GroupControlQuantities.ResumeLayout(false);
 			this.GroupControlQuantities.PerformLayout();
@@ -1679,12 +1731,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditRelTyp.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SpinEditRel.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditBuildEvery.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).EndInit();
@@ -1695,9 +1741,12 @@
 			this.PanelControlStatus.ResumeLayout(false);
 			this.PanelControlStatus.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).EndInit();
-			this.GroupControlRestrictions.ResumeLayout(false);
-			this.GroupControlRestrictions.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1706,7 +1755,6 @@
         #endregion
 
         private System.Windows.Forms.BindingSource BindingSource;
-        private DevExpress.XtraEditors.ButtonEdit DateEditDate;
         private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditType;
         private DevExpress.XtraGrid.GridControl GridControlInvMaint;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -1730,8 +1778,6 @@
         private DevExpress.XtraEditors.LabelControl LabelControlBuildThrough;
         private DevExpress.XtraEditors.LabelControl LabelControlBuildFrom;
         private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditBuildEvery;
-        private DevExpress.XtraEditors.ButtonEdit DateEditBuildThrough;
-        private DevExpress.XtraEditors.ButtonEdit DateEditBuildFrom;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
         private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
@@ -1817,5 +1863,10 @@
 		private DevExpress.XtraEditors.SpinEdit SpinEditRel;
 		private DevExpress.XtraEditors.GroupControl GroupControlQuantities;
 		private DevExpress.XtraEditors.GroupControl GroupControlRestrictions;
+		private DevExpress.XtraBars.BarToggleSwitchItem BarToggleSwitchItemBuild;
+		private DevExpress.XtraEditors.GroupControl GroupControlBuild;
+		private DevExpress.XtraEditors.DateEdit DateEditBuildFrom;
+		private DevExpress.XtraEditors.DateEdit DateEditBuildThrough;
+		private DevExpress.XtraEditors.DateEdit DateEditDate;
 	}
 }

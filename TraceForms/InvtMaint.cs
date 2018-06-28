@@ -17,7 +17,6 @@ using Custom_SearchLookupEdit;
 
 namespace TraceForms
 {
-
 	public partial class InvtMaint : DevExpress.XtraEditors.XtraForm
     {
 		FlextourEntities _context;
@@ -25,7 +24,7 @@ namespace TraceForms
 		Timer _actionConfirmation;
 		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 		Dictionary<String, List<CodeName>> _productLookups;
-		bool _build;
+		bool _build = false;
 
 		public InvtMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
         {
@@ -34,6 +33,7 @@ namespace TraceForms
 			LoadLookups();
 			SetReadOnly(true);
 			SetReadOnlyKeyFields(true);
+			GroupControlBuild.Enabled = false;
 		}
 
 		private void Connect(FlexInterfaces.Core.ICoreSys sys)
@@ -355,7 +355,7 @@ namespace TraceForms
 		//    ((FlextourEntities)e.Tag).Dispose();
 		//}
 
-		private void advBandedGridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+		private void AdvBandedGridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             //if ((e.FocusedRowHandle >= 0) && (!GridViewInvt.IsGroupRow(e.FocusedRowHandle)))
             //{
@@ -370,7 +370,7 @@ namespace TraceForms
             /// change the rmcabin to readonly true on selection of type
         }
 
-        private void advBandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private void AdvBandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
@@ -487,21 +487,21 @@ namespace TraceForms
             }
         }
 
-        private void dateEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
         }
 
-        private void dateEdit2_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEdit2_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
         }
 
-        private void dATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
+        private void DateEditDate_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
@@ -590,7 +590,7 @@ namespace TraceForms
 				SetBindings();
 		}
 
-        private void aV_AMTSpinEdit_ValueChanged(object sender, EventArgs e)
+        private void Av_AmtSpinEdit_ValueChanged(object sender, EventArgs e)
         {
             if (CheckEditSyn.Checked == true)
             {
@@ -678,6 +678,11 @@ namespace TraceForms
 
 		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
+			CreateNewRecord();
+		}
+
+		private void CreateNewRecord()
+		{
 			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
 			if (SaveRecord(true)) {
 				_selectedRecord = new INVT();
@@ -720,6 +725,41 @@ namespace TraceForms
 			}
 		}
 
+		public bool BuildRecords()
+		{
+			int days = 0;
+			DateTime date;
+			try {
+				do {
+					date = DateEditBuildFrom.DateTime.AddDays(days);
+					if (!String.IsNullOrWhiteSpace(ComboBoxEditBuildEvery.Text)) {
+						if(String.Compare(date.DayOfWeek.ToString(), ComboBoxEditBuildEvery.Text, true) == 0) {
+							int buildDays = 0;
+							do {
+								date = DateEditBuildFrom.DateTime.AddDays(days);
+
+								CreateNewRecord();
+								buildDays++;
+								days++;
+							} while (buildDays < (int)SpinEditBuildDays.Value);
+						}
+						else {
+
+						}
+					}
+					else {
+						CreateNewRecord();
+						days++;
+					}
+				} while (date < DateEditBuildThrough.DateTime);
+				return true;
+			}
+			catch (Exception ex) {
+				DisplayHelper.DisplayError(this, ex);
+				return false;
+			}
+		}
+
 		private void ComboBoxEditAv_SelectedValueChanged(object sender, EventArgs e)
 		{
 			if (ComboBoxEditAv.Text == "R") {
@@ -753,10 +793,33 @@ namespace TraceForms
 			}
 		}
 
+		private void BarToggleSwitchItemBuild_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if (BarToggleSwitchItemBuild.Checked == false) {
+				GroupControlBuild.Enabled = false;
+				DateEditDate.Enabled = true;
+				BarButtonItemDelete.Enabled = true;
+				BarButtonItemNew.Enabled = true;
+
+			}
+			else if (BarToggleSwitchItemBuild.Checked == true) {
+				CreateNewRecord();
+				GroupControlBuild.Enabled = true;
+				DateEditDate.Enabled = false;
+				BarButtonItemDelete.Enabled = false;
+				BarButtonItemNew.Enabled = false;
+			}
+		}
+
 		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			if (SaveRecord(false))
-				RefreshRecord();
+			if (BarToggleSwitchItemBuild.Checked == false) {
+				if (SaveRecord(false))
+					RefreshRecord();
+			}
+			else {
+				BuildRecords();
+			}
 		}
 	}
 }

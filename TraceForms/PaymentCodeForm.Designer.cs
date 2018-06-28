@@ -28,392 +28,338 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label pMT_DESCLabel;
-            System.Windows.Forms.Label pMT_CODELabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentCodeForm));
-            this.GridControlPayCode = new DevExpress.XtraGrid.GridControl();
-            this.PmtCodeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.GridViewPayCode = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colPMT_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPMT_DESC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pMT_DESCTextBox = new DevExpress.XtraEditors.TextEdit();
-            this.PmtCodeBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.pMTCODEBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
-            this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            pMT_DESCLabel = new System.Windows.Forms.Label();
-            pMT_CODELabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlPayCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PmtCodeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewPayCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pMT_DESCTextBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PmtCodeBindingNavigator)).BeginInit();
-            this.PmtCodeBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-            this.panelControlStatus.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // pMT_DESCLabel
-            // 
-            pMT_DESCLabel.AutoSize = true;
-            pMT_DESCLabel.Location = new System.Drawing.Point(53, 112);
-            pMT_DESCLabel.Name = "pMT_DESCLabel";
-            pMT_DESCLabel.Size = new System.Drawing.Size(60, 13);
-            pMT_DESCLabel.TabIndex = 17;
-            pMT_DESCLabel.Text = "Description";
-            // 
-            // pMT_CODELabel
-            // 
-            pMT_CODELabel.AutoSize = true;
-            pMT_CODELabel.Location = new System.Drawing.Point(53, 69);
-            pMT_CODELabel.Name = "pMT_CODELabel";
-            pMT_CODELabel.Size = new System.Drawing.Size(32, 13);
-            pMT_CODELabel.TabIndex = 16;
-            pMT_CODELabel.Text = "Code";
-            // 
-            // GridControlPayCode
-            // 
-            this.GridControlPayCode.DataSource = this.PmtCodeBindingSource;
-            this.GridControlPayCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlPayCode.Location = new System.Drawing.Point(0, 0);
-            this.GridControlPayCode.MainView = this.GridViewPayCode;
-            this.GridControlPayCode.Name = "GridControlPayCode";
-            this.GridControlPayCode.Size = new System.Drawing.Size(294, 717);
-            this.GridControlPayCode.TabIndex = 15;
-            this.GridControlPayCode.TabStop = false;
-            this.GridControlPayCode.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewPayCode});
-            // 
-            // PmtCodeBindingSource
-            // 
-            this.PmtCodeBindingSource.DataSource = typeof(FlexModel.PMTCODE);
-            this.PmtCodeBindingSource.CurrentChanged += new System.EventHandler(this.PmtCodeBindingSource_CurrentChanged);
-            // 
-            // GridViewPayCode
-            // 
-            this.GridViewPayCode.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colPMT_CODE,
-            this.colPMT_DESC,
-            this.colDisplayName});
-            this.GridViewPayCode.GridControl = this.GridControlPayCode;
-            this.GridViewPayCode.Name = "GridViewPayCode";
-            this.GridViewPayCode.OptionsView.ShowAutoFilterRow = true;
-            this.GridViewPayCode.OptionsView.ShowGroupPanel = false;
-            this.GridViewPayCode.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
-            this.GridViewPayCode.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
-            this.GridViewPayCode.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.gridView1_BeforeLeaveRow);
-            // 
-            // colPMT_CODE
-            // 
-            this.colPMT_CODE.Caption = "Code";
-            this.colPMT_CODE.FieldName = "PMT_CODE";
-            this.colPMT_CODE.Name = "colPMT_CODE";
-            this.colPMT_CODE.Visible = true;
-            this.colPMT_CODE.VisibleIndex = 0;
-            // 
-            // colPMT_DESC
-            // 
-            this.colPMT_DESC.Caption = "Description";
-            this.colPMT_DESC.FieldName = "PMT_DESC";
-            this.colPMT_DESC.Name = "colPMT_DESC";
-            this.colPMT_DESC.Visible = true;
-            this.colPMT_DESC.VisibleIndex = 1;
-            // 
-            // colDisplayName
-            // 
-            this.colDisplayName.FieldName = "DisplayName";
-            this.colDisplayName.Name = "colDisplayName";
-            this.colDisplayName.OptionsColumn.ReadOnly = true;
-            // 
-            // TextEditCode
-            // 
-            this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.PmtCodeBindingSource, "PMT_CODE", true));
-            this.TextEditCode.Location = new System.Drawing.Point(118, 66);
-            this.TextEditCode.Name = "TextEditCode";
-            this.TextEditCode.Properties.MaxLength = 2;
-            this.TextEditCode.Size = new System.Drawing.Size(100, 20);
-            this.TextEditCode.TabIndex = 1;
-            this.TextEditCode.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditCode.Leave += new System.EventHandler(this.code_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Payments";
-            // 
-            // pMT_DESCTextBox
-            // 
-            this.pMT_DESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.PmtCodeBindingSource, "PMT_DESC", true));
-            this.pMT_DESCTextBox.Location = new System.Drawing.Point(118, 109);
-            this.pMT_DESCTextBox.Name = "pMT_DESCTextBox";
-            this.pMT_DESCTextBox.Properties.MaxLength = 10;
-            this.pMT_DESCTextBox.Size = new System.Drawing.Size(182, 20);
-            this.pMT_DESCTextBox.TabIndex = 2;
-            this.pMT_DESCTextBox.Enter += new System.EventHandler(this.enterControl);
-            this.pMT_DESCTextBox.Leave += new System.EventHandler(this.pMT_DESCTextBox_Leave);
-            // 
-            // PmtCodeBindingNavigator
-            // 
-            this.PmtCodeBindingNavigator.AddNewItem = null;
-            this.PmtCodeBindingNavigator.BindingSource = this.PmtCodeBindingSource;
-            this.PmtCodeBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.PmtCodeBindingNavigator.DeleteItem = null;
-            this.PmtCodeBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.pMTCODEBindingNavigatorSaveItem});
-            this.PmtCodeBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.PmtCodeBindingNavigator.MoveFirstItem = null;
-            this.PmtCodeBindingNavigator.MoveLastItem = null;
-            this.PmtCodeBindingNavigator.MoveNextItem = null;
-            this.PmtCodeBindingNavigator.MovePreviousItem = null;
-            this.PmtCodeBindingNavigator.Name = "PmtCodeBindingNavigator";
-            this.PmtCodeBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.PmtCodeBindingNavigator.Size = new System.Drawing.Size(1020, 25);
-            this.PmtCodeBindingNavigator.TabIndex = 14;
-            this.PmtCodeBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // pMTCODEBindingNavigatorSaveItem
-            // 
-            this.pMTCODEBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pMTCODEBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("pMTCODEBindingNavigatorSaveItem.Image")));
-            this.pMTCODEBindingNavigatorSaveItem.Name = "pMTCODEBindingNavigatorSaveItem";
-            this.pMTCODEBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.pMTCODEBindingNavigatorSaveItem.Text = "Save Data";
-            this.pMTCODEBindingNavigatorSaveItem.Click += new System.EventHandler(this.pMTCODEBindingNavigatorSaveItem_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // splitContainerControl1
-            // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.AutoScroll = true;
-            this.splitContainerControl1.Panel1.Controls.Add(this.GridControlPayCode);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.AutoScroll = true;
-            this.splitContainerControl1.Panel2.Controls.Add(pMT_DESCLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.TextEditCode);
-            this.splitContainerControl1.Panel2.Controls.Add(pMT_CODELabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.label1);
-            this.splitContainerControl1.Panel2.Controls.Add(this.pMT_DESCTextBox);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1020, 717);
-            this.splitContainerControl1.SplitterPosition = 294;
-            this.splitContainerControl1.TabIndex = 22;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // panelControlStatus
-            // 
-            this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-            this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-            this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(324, 2);
-            this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(120, 23);
-            this.panelControlStatus.TabIndex = 265;
-            this.panelControlStatus.Visible = false;
-            // 
-            // LabelStatus
-            // 
-            this.LabelStatus.Location = new System.Drawing.Point(30, 5);
-            this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 13);
-            this.LabelStatus.TabIndex = 5;
-            // 
-            // PaymentCodeForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 742);
-            this.Controls.Add(this.panelControlStatus);
-            this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.PmtCodeBindingNavigator);
-            this.KeyPreview = true;
-            this.MinimizeBox = false;
-            this.Name = "PaymentCodeForm";
-            this.ShowInTaskbar = false;
-            this.Text = "Payment Codes";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PaymentCodeForm_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaymentCodeForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlPayCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PmtCodeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewPayCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pMT_DESCTextBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PmtCodeBindingNavigator)).EndInit();
-            this.PmtCodeBindingNavigator.ResumeLayout(false);
-            this.PmtCodeBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-            this.panelControlStatus.ResumeLayout(false);
-            this.panelControlStatus.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.Label pMT_DESCLabel;
+			System.Windows.Forms.Label pMT_CODELabel;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentCodeForm));
+			this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
+			this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.GridColumnPmt_Code = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.GridColumnPmtDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.GridColumnDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
+			this.label1 = new System.Windows.Forms.Label();
+			this.TextEditDesc = new DevExpress.XtraEditors.TextEdit();
+			this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+			this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
+			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+			this.bar1 = new DevExpress.XtraBars.Bar();
+			this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+			this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+			this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+			pMT_DESCLabel = new System.Windows.Forms.Label();
+			pMT_CODELabel = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditDesc.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
+			this.SplitContainerControl.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+			this.PanelControlStatus.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// pMT_DESCLabel
+			// 
+			pMT_DESCLabel.AutoSize = true;
+			pMT_DESCLabel.Location = new System.Drawing.Point(53, 112);
+			pMT_DESCLabel.Name = "pMT_DESCLabel";
+			pMT_DESCLabel.Size = new System.Drawing.Size(60, 13);
+			pMT_DESCLabel.TabIndex = 17;
+			pMT_DESCLabel.Text = "Description";
+			// 
+			// pMT_CODELabel
+			// 
+			pMT_CODELabel.AutoSize = true;
+			pMT_CODELabel.Location = new System.Drawing.Point(53, 69);
+			pMT_CODELabel.Name = "pMT_CODELabel";
+			pMT_CODELabel.Size = new System.Drawing.Size(32, 13);
+			pMT_CODELabel.TabIndex = 16;
+			pMT_CODELabel.Text = "Code";
+			// 
+			// GridControlLookup
+			// 
+			this.GridControlLookup.DataSource = this.BindingSource;
+			this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
+			this.GridControlLookup.MainView = this.GridViewLookup;
+			this.GridControlLookup.Name = "GridControlLookup";
+			this.GridControlLookup.Size = new System.Drawing.Size(294, 711);
+			this.GridControlLookup.TabIndex = 15;
+			this.GridControlLookup.TabStop = false;
+			this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewLookup});
+			// 
+			// BindingSource
+			// 
+			this.BindingSource.DataSource = typeof(FlexModel.PMTCODE);
+			this.BindingSource.CurrentChanged += new System.EventHandler(this.PmtCodeBindingSource_CurrentChanged);
+			// 
+			// GridViewLookup
+			// 
+			this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.GridColumnPmt_Code,
+            this.GridColumnPmtDesc,
+            this.GridColumnDisplayName});
+			this.GridViewLookup.GridControl = this.GridControlLookup;
+			this.GridViewLookup.Name = "GridViewLookup";
+			this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
+			this.GridViewLookup.OptionsView.ShowGroupPanel = false;
+			this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
+			// 
+			// GridColumnPmt_Code
+			// 
+			this.GridColumnPmt_Code.Caption = "Code";
+			this.GridColumnPmt_Code.FieldName = "PMT_CODE";
+			this.GridColumnPmt_Code.Name = "GridColumnPmt_Code";
+			this.GridColumnPmt_Code.Visible = true;
+			this.GridColumnPmt_Code.VisibleIndex = 0;
+			// 
+			// GridColumnPmtDesc
+			// 
+			this.GridColumnPmtDesc.Caption = "Description";
+			this.GridColumnPmtDesc.FieldName = "PMT_DESC";
+			this.GridColumnPmtDesc.Name = "GridColumnPmtDesc";
+			this.GridColumnPmtDesc.Visible = true;
+			this.GridColumnPmtDesc.VisibleIndex = 1;
+			// 
+			// GridColumnDisplayName
+			// 
+			this.GridColumnDisplayName.FieldName = "DisplayName";
+			this.GridColumnDisplayName.Name = "GridColumnDisplayName";
+			this.GridColumnDisplayName.OptionsColumn.ReadOnly = true;
+			// 
+			// TextEditCode
+			// 
+			this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PMT_CODE", true));
+			this.TextEditCode.Location = new System.Drawing.Point(118, 66);
+			this.TextEditCode.Name = "TextEditCode";
+			this.TextEditCode.Properties.MaxLength = 2;
+			this.TextEditCode.Size = new System.Drawing.Size(100, 20);
+			this.TextEditCode.TabIndex = 1;
+			this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(22, 16);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(54, 13);
+			this.label1.TabIndex = 19;
+			this.label1.Text = "Payments";
+			// 
+			// TextEditDesc
+			// 
+			this.TextEditDesc.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "PMT_DESC", true));
+			this.TextEditDesc.Location = new System.Drawing.Point(118, 109);
+			this.TextEditDesc.Name = "TextEditDesc";
+			this.TextEditDesc.Properties.MaxLength = 10;
+			this.TextEditDesc.Size = new System.Drawing.Size(182, 20);
+			this.TextEditDesc.TabIndex = 2;
+			this.TextEditDesc.Leave += new System.EventHandler(this.TextEditDesc_Leave);
+			// 
+			// ErrorProvider
+			// 
+			this.ErrorProvider.ContainerControl = this;
+			// 
+			// SplitContainerControl
+			// 
+			this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
+			this.SplitContainerControl.Name = "SplitContainerControl";
+			this.SplitContainerControl.Panel1.AutoScroll = true;
+			this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
+			this.SplitContainerControl.Panel1.Text = "Panel1";
+			this.SplitContainerControl.Panel2.AutoScroll = true;
+			this.SplitContainerControl.Panel2.Controls.Add(pMT_DESCLabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditCode);
+			this.SplitContainerControl.Panel2.Controls.Add(pMT_CODELabel);
+			this.SplitContainerControl.Panel2.Controls.Add(this.label1);
+			this.SplitContainerControl.Panel2.Controls.Add(this.TextEditDesc);
+			this.SplitContainerControl.Panel2.Text = "Panel2";
+			this.SplitContainerControl.Size = new System.Drawing.Size(1020, 711);
+			this.SplitContainerControl.SplitterPosition = 294;
+			this.SplitContainerControl.TabIndex = 22;
+			this.SplitContainerControl.Text = "splitContainerControl1";
+			// 
+			// PanelControlStatus
+			// 
+			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+			this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+			this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+			this.PanelControlStatus.Controls.Add(this.LabelStatus);
+			this.PanelControlStatus.Location = new System.Drawing.Point(324, 2);
+			this.PanelControlStatus.Name = "PanelControlStatus";
+			this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
+			this.PanelControlStatus.TabIndex = 265;
+			this.PanelControlStatus.Visible = false;
+			// 
+			// LabelStatus
+			// 
+			this.LabelStatus.Location = new System.Drawing.Point(30, 5);
+			this.LabelStatus.Name = "LabelStatus";
+			this.LabelStatus.Size = new System.Drawing.Size(0, 13);
+			this.LabelStatus.TabIndex = 5;
+			// 
+			// BarManager
+			// 
+			this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1});
+			this.BarManager.DockControls.Add(this.barDockControlTop);
+			this.BarManager.DockControls.Add(this.barDockControlBottom);
+			this.BarManager.DockControls.Add(this.barDockControlLeft);
+			this.BarManager.DockControls.Add(this.barDockControlRight);
+			this.BarManager.Form = this;
+			this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+			this.BarManager.MaxItemId = 3;
+			// 
+			// bar1
+			// 
+			this.bar1.BarName = "Tools";
+			this.bar1.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+			this.bar1.DockCol = 0;
+			this.bar1.DockRow = 0;
+			this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+			this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+			this.bar1.OptionsBar.AllowQuickCustomization = false;
+			this.bar1.OptionsBar.DrawDragBorder = false;
+			this.bar1.OptionsBar.UseWholeRow = true;
+			this.bar1.Text = "Tools";
+			// 
+			// BarButtonItemNew
+			// 
+			this.BarButtonItemNew.Caption = "New";
+			this.BarButtonItemNew.Id = 0;
+			this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.Image")));
+			this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.LargeImage")));
+			this.BarButtonItemNew.Name = "BarButtonItemNew";
+			this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+			// 
+			// BarButtonItemDelete
+			// 
+			this.BarButtonItemDelete.Caption = "Delete";
+			this.BarButtonItemDelete.Id = 1;
+			this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
+			this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
+			this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+			this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+			// 
+			// BarButtonItemSave
+			// 
+			this.BarButtonItemSave.Caption = "Save";
+			this.BarButtonItemSave.Id = 2;
+			this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.Image")));
+			this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
+			this.BarButtonItemSave.Name = "BarButtonItemSave";
+			this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+			// 
+			// barDockControlTop
+			// 
+			this.barDockControlTop.CausesValidation = false;
+			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+			this.barDockControlTop.Manager = this.BarManager;
+			this.barDockControlTop.Size = new System.Drawing.Size(1020, 31);
+			// 
+			// barDockControlBottom
+			// 
+			this.barDockControlBottom.CausesValidation = false;
+			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
+			this.barDockControlBottom.Manager = this.BarManager;
+			this.barDockControlBottom.Size = new System.Drawing.Size(1020, 0);
+			// 
+			// barDockControlLeft
+			// 
+			this.barDockControlLeft.CausesValidation = false;
+			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+			this.barDockControlLeft.Manager = this.BarManager;
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
+			// 
+			// barDockControlRight
+			// 
+			this.barDockControlRight.CausesValidation = false;
+			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.barDockControlRight.Location = new System.Drawing.Point(1020, 31);
+			this.barDockControlRight.Manager = this.BarManager;
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
+			// 
+			// PaymentCodeForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1020, 742);
+			this.Controls.Add(this.PanelControlStatus);
+			this.Controls.Add(this.SplitContainerControl);
+			this.Controls.Add(this.barDockControlLeft);
+			this.Controls.Add(this.barDockControlRight);
+			this.Controls.Add(this.barDockControlBottom);
+			this.Controls.Add(this.barDockControlTop);
+			this.KeyPreview = true;
+			this.MinimizeBox = false;
+			this.Name = "PaymentCodeForm";
+			this.ShowInTaskbar = false;
+			this.Text = "Payment Codes";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PaymentCodeForm_FormClosing);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaymentCodeForm_KeyDown);
+			((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.TextEditDesc.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
+			this.SplitContainerControl.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+			this.PanelControlStatus.ResumeLayout(false);
+			this.PanelControlStatus.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl GridControlPayCode;
-        private System.Windows.Forms.BindingSource PmtCodeBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewPayCode;
+        private DevExpress.XtraGrid.GridControl GridControlLookup;
+        private System.Windows.Forms.BindingSource BindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
         private DevExpress.XtraEditors.TextEdit TextEditCode;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.TextEdit pMT_DESCTextBox;
-        private System.Windows.Forms.BindingNavigator PmtCodeBindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton pMTCODEBindingNavigatorSaveItem;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private DevExpress.XtraEditors.TextEdit TextEditDesc;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
+        private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
-        private DevExpress.XtraGrid.Columns.GridColumn colPMT_CODE;
-        private DevExpress.XtraGrid.Columns.GridColumn colPMT_DESC;
-        private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
-
-    }
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnPmt_Code;
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnPmtDesc;
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnDisplayName;
+		private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+		private DevExpress.XtraBars.BarManager BarManager;
+		private DevExpress.XtraBars.Bar bar1;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+		private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+		private DevExpress.XtraBars.BarDockControl barDockControlTop;
+		private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+		private DevExpress.XtraBars.BarDockControl barDockControlRight;
+	}
 }
