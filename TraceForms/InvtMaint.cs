@@ -598,6 +598,16 @@ namespace TraceForms
             }
         }
 
+		private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+		{
+			//If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
+			//this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
+			//that may need to be saved. 
+			if (!_ignoreLeaveRow && IsModified(_selectedRecord)) {
+				e.Allow = SaveRecord(true);
+			}
+		}
+
 		private void SearchLookupEdit_Popup(object sender, EventArgs e)
 		{
 			//Hide the Find button because it doesn't do anything when auto - filtering, except it

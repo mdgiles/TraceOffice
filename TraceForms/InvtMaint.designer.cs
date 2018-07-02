@@ -112,6 +112,8 @@
 			this.LabelControlBuildEvery = new DevExpress.XtraEditors.LabelControl();
 			this.CheckEditSkip = new DevExpress.XtraEditors.CheckEdit();
 			this.SpinEditBuildDays = new DevExpress.XtraEditors.SpinEdit();
+			this.DateEditBuildFrom = new DevExpress.XtraEditors.DateEdit();
+			this.DateEditBuildThrough = new DevExpress.XtraEditors.DateEdit();
 			this.GroupControlRestrictions = new DevExpress.XtraEditors.GroupControl();
 			this.GroupControlQuantities = new DevExpress.XtraEditors.GroupControl();
 			this.GroupControlRelease = new DevExpress.XtraEditors.GroupControl();
@@ -150,6 +152,7 @@
 			this.colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colName4 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDisplayName4 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.DateEditDate = new DevExpress.XtraEditors.DateEdit();
 			this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
 			this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
 			this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -163,9 +166,6 @@
 			this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
 			this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
 			this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
-			this.DateEditBuildFrom = new DevExpress.XtraEditors.DateEdit();
-			this.DateEditBuildThrough = new DevExpress.XtraEditors.DateEdit();
-			this.DateEditDate = new DevExpress.XtraEditors.DateEdit();
 			aGENCYLabel = new System.Windows.Forms.Label();
 			tYPELabel = new System.Windows.Forms.Label();
 			cATLabel = new System.Windows.Forms.Label();
@@ -213,6 +213,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).BeginInit();
 			this.GroupControlRestrictions.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlQuantities)).BeginInit();
@@ -235,15 +239,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCat.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
 			this.PanelControlStatus.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// aGENCYLabel
@@ -705,6 +705,7 @@
 			this.GridViewLookup.OptionsView.ShowGroupPanel = false;
 			this.GridViewLookup.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
 			this.GridViewLookup.OptionsView.ShowIndicator = false;
+			this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
 			// 
 			// GridColumnType
 			// 
@@ -1061,6 +1062,46 @@
             0});
 			this.SpinEditBuildDays.Size = new System.Drawing.Size(47, 20);
 			this.SpinEditBuildDays.TabIndex = 66;
+			// 
+			// DateEditBuildFrom
+			// 
+			this.DateEditBuildFrom.CausesValidation = false;
+			this.DateEditBuildFrom.EditValue = null;
+			this.DateEditBuildFrom.Location = new System.Drawing.Point(76, 44);
+			this.DateEditBuildFrom.Name = "DateEditBuildFrom";
+			this.DateEditBuildFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildFrom.Properties.DisplayFormat.FormatString = "";
+			this.DateEditBuildFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditBuildFrom.Properties.EditFormat.FormatString = "";
+			this.DateEditBuildFrom.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditBuildFrom.Properties.Mask.EditMask = "";
+			this.DateEditBuildFrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditBuildFrom.Size = new System.Drawing.Size(100, 20);
+			this.DateEditBuildFrom.TabIndex = 7;
+			this.DateEditBuildFrom.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit1_ButtonClick);
+			// 
+			// DateEditBuildThrough
+			// 
+			this.DateEditBuildThrough.CausesValidation = false;
+			this.DateEditBuildThrough.EditValue = null;
+			this.DateEditBuildThrough.Location = new System.Drawing.Point(264, 44);
+			this.DateEditBuildThrough.Name = "DateEditBuildThrough";
+			this.DateEditBuildThrough.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildThrough.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditBuildThrough.Properties.DisplayFormat.FormatString = "";
+			this.DateEditBuildThrough.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditBuildThrough.Properties.EditFormat.FormatString = "";
+			this.DateEditBuildThrough.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditBuildThrough.Properties.Mask.EditMask = "";
+			this.DateEditBuildThrough.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditBuildThrough.Size = new System.Drawing.Size(100, 20);
+			this.DateEditBuildThrough.TabIndex = 8;
+			this.DateEditBuildThrough.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit2_ButtonClick);
 			// 
 			// GroupControlRestrictions
 			// 
@@ -1489,6 +1530,27 @@
 			this.colDisplayName4.Name = "colDisplayName4";
 			this.colDisplayName4.OptionsColumn.ReadOnly = true;
 			// 
+			// DateEditDate
+			// 
+			this.DateEditDate.CausesValidation = false;
+			this.DateEditDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
+			this.DateEditDate.EditValue = null;
+			this.DateEditDate.Location = new System.Drawing.Point(444, 73);
+			this.DateEditDate.Name = "DateEditDate";
+			this.DateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.DateEditDate.Properties.DisplayFormat.FormatString = "";
+			this.DateEditDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditDate.Properties.EditFormat.FormatString = "";
+			this.DateEditDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+			this.DateEditDate.Properties.Mask.EditMask = "";
+			this.DateEditDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+			this.DateEditDate.Size = new System.Drawing.Size(100, 20);
+			this.DateEditDate.TabIndex = 6;
+			this.DateEditDate.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEditDate_ButtonClick);
+			// 
 			// PanelControlStatus
 			// 
 			this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
@@ -1612,61 +1674,6 @@
 			this.EntityInstantFeedbackSource.DesignTimeElementType = typeof(FlexModel.INVT);
 			this.EntityInstantFeedbackSource.KeyExpression = "ID";
 			// 
-			// DateEditBuildFrom
-			// 
-			this.DateEditBuildFrom.CausesValidation = false;
-			this.DateEditBuildFrom.EditValue = null;
-			this.DateEditBuildFrom.Location = new System.Drawing.Point(76, 44);
-			this.DateEditBuildFrom.Name = "DateEditBuildFrom";
-			this.DateEditBuildFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildFrom.Properties.DisplayFormat.FormatString = "";
-			this.DateEditBuildFrom.Properties.EditFormat.FormatString = "";
-			this.DateEditBuildFrom.Properties.Mask.EditMask = "";
-			this.DateEditBuildFrom.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-			this.DateEditBuildFrom.Size = new System.Drawing.Size(100, 20);
-			this.DateEditBuildFrom.TabIndex = 7;
-			this.DateEditBuildFrom.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit1_ButtonClick);
-			// 
-			// DateEditBuildThrough
-			// 
-			this.DateEditBuildThrough.CausesValidation = false;
-			this.DateEditBuildThrough.EditValue = null;
-			this.DateEditBuildThrough.Location = new System.Drawing.Point(264, 44);
-			this.DateEditBuildThrough.Name = "DateEditBuildThrough";
-			this.DateEditBuildThrough.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildThrough.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditBuildThrough.Properties.DisplayFormat.FormatString = "";
-			this.DateEditBuildThrough.Properties.EditFormat.FormatString = "";
-			this.DateEditBuildThrough.Properties.Mask.EditMask = "";
-			this.DateEditBuildThrough.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-			this.DateEditBuildThrough.Size = new System.Drawing.Size(100, 20);
-			this.DateEditBuildThrough.TabIndex = 8;
-			this.DateEditBuildThrough.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEdit2_ButtonClick);
-			// 
-			// DateEditDate
-			// 
-			this.DateEditDate.CausesValidation = false;
-			this.DateEditDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
-			this.DateEditDate.EditValue = null;
-			this.DateEditDate.Location = new System.Drawing.Point(444, 73);
-			this.DateEditDate.Name = "DateEditDate";
-			this.DateEditDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-			this.DateEditDate.Properties.DisplayFormat.FormatString = "";
-			this.DateEditDate.Properties.EditFormat.FormatString = "";
-			this.DateEditDate.Properties.Mask.EditMask = "";
-			this.DateEditDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-			this.DateEditDate.Size = new System.Drawing.Size(100, 20);
-			this.DateEditDate.TabIndex = 6;
-			this.DateEditDate.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.DateEditDate_ButtonClick);
-			// 
 			// InvtMaint
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1712,6 +1719,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.CheckEditOverwrite.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.CheckEditSkip.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SpinEditBuildDays.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.GroupControlRestrictions)).EndInit();
 			this.GroupControlRestrictions.ResumeLayout(false);
 			this.GroupControlRestrictions.PerformLayout();
@@ -1737,16 +1748,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCat.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
 			this.PanelControlStatus.ResumeLayout(false);
 			this.PanelControlStatus.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildFrom.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditBuildThrough.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties.CalendarTimeProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.DateEditDate.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
