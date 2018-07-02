@@ -732,20 +732,22 @@ namespace TraceForms
 			try {
 				do {
 					date = DateEditBuildFrom.DateTime.AddDays(days);
-					if (!String.IsNullOrWhiteSpace(ComboBoxEditBuildEvery.Text)) {
-						if(String.Compare(date.DayOfWeek.ToString(), ComboBoxEditBuildEvery.Text, true) == 0) {
+					if (Enum.TryParse<DayOfWeek>(ComboBoxEditBuildEvery.Text, out DayOfWeek dayOfWeek)) {  //If the "build every" field is a day of the week
+						if(date.DayOfWeek == dayOfWeek) {  //If the current date is the same day of the week as the "build every" day of the week
 							int buildDays = 0;
-							do {
+							do {  //Build the specified number of days while build days is less than the value of SpinEditBuildDays
 								date = DateEditBuildFrom.DateTime.AddDays(days);
-
 								CreateNewRecord();
 								buildDays++;
 								days++;
 							} while (buildDays < (int)SpinEditBuildDays.Value);
 						}
 						else {
-
+							days++;
 						}
+					}
+					else if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
+						
 					}
 					else {
 						CreateNewRecord();
@@ -758,6 +760,19 @@ namespace TraceForms
 				DisplayHelper.DisplayError(this, ex);
 				return false;
 			}
+		}
+
+		public string ValidateBuildFields()
+		{
+			if (SpinEditBuildDays.Value <= 0) {
+				return "The number of days built cannot be less than or equal to zero.";
+			}
+			else if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
+				if (everyDays < (int)SpinEditBuildDays.Value) {
+					return "The number of days to build cannot exceed the days between build every days.";
+				}
+			}
+			return String.Empty;
 		}
 
 		private void ComboBoxEditAv_SelectedValueChanged(object sender, EventArgs e)
