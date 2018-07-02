@@ -269,8 +269,6 @@ namespace TraceForms
             //Type-specific routine that takes into account relationships that should also be considered
             //when deciding if there are unsaved changes.  The entity properties also return true if the
             //record is new or deleted.
-            if (record == null)
-                return false;
             return record.IsModified(_context);
         }
 
@@ -289,7 +287,7 @@ namespace TraceForms
             foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
                 string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
                 if (!string.IsNullOrEmpty(value)) {
-                    query += $" and it.{col.FieldName} like '%{value}%'";
+                    query += $" and it.[{col.FieldName}] like '%{value}%'";
                 }
             }
             query += " order by it.Product_Type, it.Product_Code, it.Position";

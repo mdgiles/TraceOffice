@@ -419,6 +419,7 @@ namespace TraceForms
             this.ButtonEditLastInvDate = new DevExpress.XtraEditors.ButtonEdit();
             this.xtraTabPage14 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.checkEditAllowElectronicPayment = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditRequireCVV2 = new DevExpress.XtraEditors.CheckEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.DelCredButton = new DevExpress.XtraEditors.SimpleButton();
@@ -665,7 +666,6 @@ namespace TraceForms
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.chineseHosts_FlextourDataSet = new TraceForms.ChineseHosts_FlextourDataSet();
-            this.checkEditAllowElectronicPayment = new DevExpress.XtraEditors.CheckEdit();
             eMAILLabel = new System.Windows.Forms.Label();
             fAX_NUMLabel = new System.Windows.Forms.Label();
             pHONELabel = new System.Windows.Forms.Label();
@@ -849,6 +849,7 @@ namespace TraceForms
             this.xtraTabPage14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditAllowElectronicPayment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditDefaultProfileID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBankProfiles)).BeginInit();
@@ -959,7 +960,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditAllowElectronicPayment.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // eMAILLabel
@@ -4856,6 +4856,17 @@ namespace TraceForms
             this.panelControl1.Size = new System.Drawing.Size(1679, 838);
             this.panelControl1.TabIndex = 0;
             // 
+            // checkEditAllowElectronicPayment
+            // 
+            this.checkEditAllowElectronicPayment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "AllowElectronicPayment", true));
+            this.checkEditAllowElectronicPayment.Location = new System.Drawing.Point(45, 32);
+            this.checkEditAllowElectronicPayment.Name = "checkEditAllowElectronicPayment";
+            this.checkEditAllowElectronicPayment.Properties.Caption = "Allow Electronic Payment";
+            this.checkEditAllowElectronicPayment.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEditAllowElectronicPayment.Size = new System.Drawing.Size(261, 34);
+            this.checkEditAllowElectronicPayment.TabIndex = 72;
+            this.checkEditAllowElectronicPayment.Click += new System.EventHandler(this.checkEditAllowElectronicPayment_Click);
+            // 
             // CheckEditRequireCVV2
             // 
             this.CheckEditRequireCVV2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "RequireCVV2Number", true));
@@ -6735,6 +6746,7 @@ namespace TraceForms
             // 
             // checkEditAgentInactive
             // 
+            this.checkEditAgentInactive.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgcyLogBindingSource, "Inactive", true));
             this.checkEditAgentInactive.Location = new System.Drawing.Point(470, 125);
             this.checkEditAgentInactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkEditAgentInactive.Name = "checkEditAgentInactive";
@@ -6742,6 +6754,7 @@ namespace TraceForms
             this.checkEditAgentInactive.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditAgentInactive.Size = new System.Drawing.Size(181, 34);
             this.checkEditAgentInactive.TabIndex = 98;
+            this.checkEditAgentInactive.Click += new System.EventHandler(this.checkEditAgentInactive_Click);
             // 
             // imageComboBoxEditAgentDelegate
             // 
@@ -7408,17 +7421,6 @@ namespace TraceForms
             this.chineseHosts_FlextourDataSet.DataSetName = "ChineseHosts_FlextourDataSet";
             this.chineseHosts_FlextourDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // checkEditAllowElectronicPayment
-            // 
-            this.checkEditAllowElectronicPayment.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "AllowElectronicPayment", true));
-            this.checkEditAllowElectronicPayment.Location = new System.Drawing.Point(45, 32);
-            this.checkEditAllowElectronicPayment.Name = "checkEditAllowElectronicPayment";
-            this.checkEditAllowElectronicPayment.Properties.Caption = "Allow Electronic Payment";
-            this.checkEditAllowElectronicPayment.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditAllowElectronicPayment.Size = new System.Drawing.Size(261, 34);
-            this.checkEditAllowElectronicPayment.TabIndex = 72;
-            this.checkEditAllowElectronicPayment.Click += new System.EventHandler(this.checkEditAllowElectronicPayment_Click);
-            // 
             // AgencyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -7549,6 +7551,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditAllowElectronicPayment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditDefaultProfileID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBankProfiles)).EndInit();
@@ -7668,7 +7671,6 @@ namespace TraceForms
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditAllowElectronicPayment.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

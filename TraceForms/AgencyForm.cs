@@ -3971,6 +3971,11 @@ namespace TraceForms
         {
             modified = true;
         }
+
+        private void checkEditAgentInactive_Click(object sender, EventArgs e)
+        {
+            modified = true;
+        }
     }
 
     public static class StringExtension

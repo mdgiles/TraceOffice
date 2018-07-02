@@ -425,7 +425,7 @@ namespace TraceForms
             foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
                 string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
                 if (!string.IsNullOrEmpty(value)) {
-                    query += $" and it.{col.FieldName} like '%{value}%'";
+                    query += $" and it.[{col.FieldName}] like '%{value}%'";
                 }
             }
             query += " order by it.CODE, it.CAT, it.SpecialValue_Code, it.DepartureTime, it.DAY, it.LINE";

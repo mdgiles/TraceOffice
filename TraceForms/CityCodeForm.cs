@@ -424,28 +424,28 @@ namespace TraceForms
             //}
         }
 
-        private void ExecuteQuery()
-        {
-            Cursor = Cursors.WaitCursor;
-            string query = "1=1";
-            foreach (GridColumn col in GridViewLookup.VisibleColumns) {
-                string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-                if (!string.IsNullOrEmpty(value)) {
-                    query += $" and it.{col.FieldName} like '%{value}%'";
-                }
-            }
+        //private void ExecuteQuery()
+        //{
+        //    Cursor = Cursors.WaitCursor;
+        //    string query = "1=1";
+        //    foreach (GridColumn col in GridViewLookup.VisibleColumns) {
+        //        string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
+        //        if (!string.IsNullOrEmpty(value)) {
+        //            query += $" and it.{col.FieldName} like '%{value}%'";
+        //        }
+        //    }
 
-            var records = _context.CITYCOD.Where(query);
-            if (records.Count() > 0) {
-                BindingSource.DataSource = records;
-                GridViewLookup.ClearColumnsFilter();
-            }
-            else {
-                ClearBindings();
-                DisplayHelper.DisplayInfo(this, "No matching records found.");
-            }
-            Cursor = Cursors.Default;
-        }
+        //    var records = _context.CITYCOD.Where(query);
+        //    if (records.Count() > 0) {
+        //        BindingSource.DataSource = records;
+        //        GridViewLookup.ClearColumnsFilter();
+        //    }
+        //    else {
+        //        ClearBindings();
+        //        DisplayHelper.DisplayInfo(this, "No matching records found.");
+        //    }
+        //    Cursor = Cursors.Default;
+        //}
 
         private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {

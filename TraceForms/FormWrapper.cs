@@ -268,5 +268,14 @@ namespace TraceForms
         }
     }
 
+    [ClassInterface(ClassInterfaceType.None)]
+    public class PCompWrapper : FlexInterfaces.Office.IFlexForm
+    {
+        public void Show(FlexInterfaces.Core.ICoreSys sys)
+        {
+            PCompForm xform1 = new PCompForm(sys);
+            xform1.ShowDialog();
+        }
+    }
 }
 
