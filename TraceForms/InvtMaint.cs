@@ -14,6 +14,9 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.Utils.Win;
 using DevExpress.XtraGrid.Views.Grid;
 using Custom_SearchLookupEdit;
+using DevExpress.Data.Async.Helpers;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace TraceForms
 {
@@ -24,16 +27,21 @@ namespace TraceForms
 		Timer _actionConfirmation;
 		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 		Dictionary<String, List<CodeName>> _productLookups;
-		bool _build = false;
+        FlexInterfaces.Core.ICoreSys _sys;
 
-		public InvtMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
+        public InvtMaint(bool val, FlexInterfaces.Core.ICoreSys sys)
         {
-			InitializeComponent();
-			Connect(sys);
-			LoadLookups();
-			SetReadOnly(true);
-			SetReadOnlyKeyFields(true);
-			GroupControlBuild.Enabled = false;
+            try {
+                InitializeComponent();
+                Connect(sys);
+                LoadLookups();
+                _sys = sys;
+                SetReadOnly(true);
+                SetReadOnlyKeyFields(true);
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+            }
 		}
 
 		private void Connect(FlexInterfaces.Core.ICoreSys sys)
@@ -41,26 +49,6 @@ namespace TraceForms
 			Connection.EFConnectionString = sys.Settings.EFConnectionString;
 			_context = new FlextourEntities(sys.Settings.EFConnectionString);
 		}
-
-        private void ShowOrHideBuild()
-        {
-            labelControlDate.Visible = !_build;
-            DateEditDate.Visible = !_build;
-            SpinEditBuildDays.Visible = _build;
-            LabelControlBuild.Visible = _build;
-            LabelControlDays.Visible = _build;
-            CheckEditOverwrite.Visible = _build;
-            LabelControlOver.Visible = _build;
-            CheckEditSkip.Visible = _build;
-            LabelControlSkips.Visible = _build;
-            CheckEditSyn.Visible = _build;
-            LabelControlBuildFrom.Visible = _build;
-            LabelControlBuildThrough.Visible = _build;
-            LabelControlBuildEvery.Visible = _build;
-            DateEditBuildFrom.Visible = _build;
-            DateEditBuildThrough.Visible = _build;
-            ComboBoxEditBuildEvery.Visible = _build;
-        }
 
         private void LoadLookups()
         {
@@ -114,11 +102,21 @@ namespace TraceForms
 				.OrderBy(t => t.CODE)
 				.Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
 			SearchLookupEditRelCat.Properties.DataSource = lookup;
-		}
 
-		void SetReadOnly(bool value)
+            SearchLookupEditRelCode.Properties.DataSource = null;
+            SearchLookupEditCode.Properties.DataSource = null;
+
+            var specialVals = _context.SpecialValue.OrderBy(x => x.Code)
+            .Select(x => new CodeName() { Code = x.Code, Name = x.Name }).ToList();
+            specialVals.Insert(0, new CodeName());
+            SearchLookupEditSpecialValue.Properties.DataSource = specialVals;
+
+            SpinEditStartNumber.EditValue = null;
+        }
+
+        void SetReadOnly(bool value)
 		{
-			foreach (Control control in splitContainerControl1.Panel2.Controls) {
+			foreach (Control control in SplitContainerControl.Panel2.Controls) {
 				control.Enabled = !value;
 			}
 		}
@@ -197,7 +195,8 @@ namespace TraceForms
 					if (_selectedRecord.EntityState == EntityState.Detached) {
 						_context.INVT.AddObject(_selectedRecord);
 					}
-					_context.SaveChanges();
+                    SetUpdateFields(_selectedRecord);
+                    _context.SaveChanges();
 					EntityInstantFeedbackSource.Refresh();
 					ShowActionConfirmation("Record Saved");
 				}
@@ -212,7 +211,13 @@ namespace TraceForms
 			}
 		}
 
-		private bool IsModified(INVT record)
+        private void SetUpdateFields(INVT record)
+        {
+            record.UPD_DATE = DateTime.Now;
+            record.UPD_BY = _sys.User.Name;
+        }
+
+        private bool IsModified(INVT record)
 		{
 			//Type-specific routine that takes into account relationships that should also be considered
 			//when deciding if there are unsaved changes.  The entity properties also return true if the
@@ -224,7 +229,7 @@ namespace TraceForms
 
 		private bool ValidateAll()
 		{
-			if (!_selectedRecord.Validate()) {
+			if (!_selectedRecord.Validate(BarToggleSwitchItemBuild.Checked)) {
 				ShowMainControlErrors();
 				DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
 				return false;
@@ -237,27 +242,42 @@ namespace TraceForms
 
 		private void ShowMainControlErrors()
 		{
-			//The error indicators inside the grids are handled by binding, but errors on the main form must
-			//be set manually
-			SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
-			SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
-			SetErrorInfo(_selectedRecord.ValidateCat, SearchLookupEditCat);
-			SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
-			SetErrorInfo(_selectedRecord.ValidateRelCode, SearchLookupEditRelCode);
-			SetErrorInfo(_selectedRecord.ValidateRelCat, SearchLookupEditRelCat);
-			SetErrorInfo(_selectedRecord.ValidateRelAgency, SearchLookupEditRelAgency);
-			SetErrorInfo(_selectedRecord.ValidateMin, SpinEditMin);
-			SetErrorInfo(_selectedRecord.ValidateMax, SpinEditMax);
-			SetErrorInfo(_selectedRecord.ValidateMinBkDays, SpinEditMinBkDays);
-			SetErrorInfo(_selectedRecord.ValidateHold, SpinEditHold);
-			SetErrorInfo(_selectedRecord.ValidateAv, ComboBoxEditAv);
-			SetErrorInfo(_selectedRecord.ValidateCanc, SpinEditCanc);
-			SetErrorInfo(_selectedRecord.ValidateOrigAmt, SpinEditOrigAmt);
-			SetErrorInfo(_selectedRecord.ValidateAlloctd, SpinEditAlloctd);
-			SetErrorInfo(_selectedRecord.ValidateRelDays, SpinEditRel);
-		}
+            //The error indicators inside the grids are handled by binding, but errors on the main form must
+            //be set manually
+            if (BarToggleSwitchItemBuild.Checked) {
+                SetErrorInfo(ValidateBuildFrom, DateEditBuildFrom);
+                SetErrorInfo(ValidateBuildThrough, DateEditBuildThrough);
+                SetErrorInfo(ValidateBuildEvery, ComboBoxEditBuildEvery);
+                SetErrorInfo(ValidateBuildDays, SpinEditBuildDays);
+            }
+            else {
+                SetErrorInfo(_selectedRecord.ValidateDate, DateEditDate);
+            }
+            SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
+            SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
+            SetErrorInfo(_selectedRecord.ValidateCat, SearchLookupEditCat);
+            SetErrorInfo(_selectedRecord.ValidateRmCab, ComboBoxEditTP);
+            SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
+            SetErrorInfo(_selectedRecord.ValidateRelCode, SearchLookupEditRelCode);
+            SetErrorInfo(_selectedRecord.ValidateRelCat, SearchLookupEditRelCat);
+            SetErrorInfo(_selectedRecord.ValidateRelAgency, SearchLookupEditRelAgency);
+            SetErrorInfo(_selectedRecord.ValidateMin, SpinEditMin);
+            SetErrorInfo(_selectedRecord.ValidateMax, SpinEditMax);
+            SetErrorInfo(_selectedRecord.ValidateMinBkDays, SpinEditMinBkDays);
+            SetErrorInfo(_selectedRecord.ValidateHold, SpinEditHold);
+            SetErrorInfo(_selectedRecord.ValidateAv, ComboBoxEditAv);
+            SetErrorInfo(_selectedRecord.ValidateCanc, SpinEditCanc);
+            SetErrorInfo(_selectedRecord.ValidateOrigAmt, SpinEditOrigAmt);
+            SetErrorInfo(_selectedRecord.ValidateAvAmt, SpinEditAvAmt);
+            SetErrorInfo(_selectedRecord.ValidateAlloctd, SpinEditAlloctd);
+            SetErrorInfo(_selectedRecord.ValidateRelDays, SpinEditRel);
+            SetErrorInfo(_selectedRecord.ValidateRelRmCab, ComboBoxEditRelTyp);
+            SetErrorInfo(_selectedRecord.ValidateSpecialValue, SearchLookupEditSpecialValue);
+            SetErrorInfo(_selectedRecord.ValidateStartNumber, SpinEditStartNumber);
+            SetErrorInfo(_selectedRecord.ValidateEndNumber, SpinEditEndNumber);
+        }
 
-		private void SetErrorInfo(Func<String> validationMethod, object sender)
+        private void SetErrorInfo(Func<String> validationMethod, object sender)
 		{
 			BindingSource.EndEdit();        //force changes back into context for validation
 			if (validationMethod != null) {
@@ -342,34 +362,6 @@ namespace TraceForms
 			_ignorePositionChange = false;
 		}
 
-
-		//private void efSrc_GetQueryable(object sender, GetQueryableEventArgs e)
-		//{
-		//    FlextourEntities context = new FlextourEntities(_sys.Settings.EFConnectionString);
-		//    e.QueryableSource = context.INVT;
-		//    e.Tag = context;
-		//}
-
-		//private void efSrc_DismissQueryable(object sender, GetQueryableEventArgs e)
-		//{
-		//    ((FlextourEntities)e.Tag).Dispose();
-		//}
-
-		private void AdvBandedGridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
-        {
-            //if ((e.FocusedRowHandle >= 0) && (!GridViewInvt.IsGroupRow(e.FocusedRowHandle)))
-            //{
-            //    EditItem(e.FocusedRowHandle);
-            //}
-        }
-
-		private void InvMaint_Load(object sender, EventArgs e)
-        {
-
-
-            /// change the rmcabin to readonly true on selection of type
-        }
-
         private void AdvBandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
@@ -377,17 +369,16 @@ namespace TraceForms
 
         private void InvMaint_FormClosing(object sender, FormClosingEventArgs e)
         {
-			if (IsModified(_selectedRecord)) 
+			if (!BarToggleSwitchItemBuild.Checked && IsModified(_selectedRecord)) 
 			{
-				DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
-				if (select == DialogResult.Yes)
-				{
-					e.Cancel = false;
-					_context.Dispose();
-					Dispose();
-				}
-				else
-					e.Cancel = true;
+                DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
+                if (select == DialogResult.Yes) {
+                    e.Cancel = false;
+                    _context.Dispose();
+                    Dispose();
+                }
+                else
+                    e.Cancel = true;
 			}
 			else 
 			{
@@ -401,6 +392,14 @@ namespace TraceForms
         {
 			if (_selectedRecord != null)
 				SetErrorInfo(_selectedRecord.ValidateType, sender);
+            if (ComboBoxEditType != null) {
+                if (ComboBoxEditType.Text != "HTL") {
+                    ComboBoxEditTP.Enabled = false;
+                }
+                else if (ComboBoxEditType.Text == "HTL") {
+                    ComboBoxEditTP.Enabled = true;
+                }
+            }
 		}
 
         private void ComboBoxEditAv_Leave(object sender, EventArgs e)
@@ -466,14 +465,21 @@ namespace TraceForms
         private void ComboBoxEditRelTyp_Leave(object sender, EventArgs e)
         {
 			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateRelTyp, sender);
+				SetErrorInfo(_selectedRecord.ValidateRelRmCab, sender);
 		}
 
         private void ComboBoxEditTp_Leave(object sender, EventArgs e)
         {
-			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateRmCab, sender);
-		}
+            if (_selectedRecord != null) {
+                SetErrorInfo(_selectedRecord.ValidateRmCab, sender);
+                //The validation for the release field is called here when CheckEditSync is checked because
+                //the leave event is never triggered for the release fields when CheckEditSync is checked,
+                //since the fields are not enabled, and therefore cannot be entered or left.
+                if (CheckEditSync.Checked) {
+                    SetErrorInfo(_selectedRecord.ValidateRelRmCab, ComboBoxEditRelTyp);
+                }
+            }
+        }
 
         private void CheckEditSyn_CheckedChanged(object sender, EventArgs e)
         {
@@ -487,80 +493,44 @@ namespace TraceForms
             }
         }
 
-        private void DateEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void DateEdit2_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void DateEditDate_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void InvMaint_KeyDown(object sender, KeyEventArgs e)
-        {
-			if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
-			    ExecuteQuery();
-			    e.Handled = true;
-			}
-		}
-
-		private void ExecuteQuery()
-		{
-			Cursor = Cursors.WaitCursor;
-			string query = "1=1";
-			foreach (GridColumn col in GridViewLookup.VisibleColumns) {
-				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-				if (!string.IsNullOrEmpty(value)) {
-					query += $" and it.{col.FieldName} like '%{value}%'";
-				}
-			}
-
-			var records = _context.INVT.Where(query);
-			if (records.Count() > 0) {
-				BindingSource.DataSource = records;
-				GridViewLookup.ClearColumnsFilter();
-			}
-			else {
-				ClearBindings();
-				DisplayHelper.DisplayInfo(this, "No matching records found.");
-			}
-			Cursor = Cursors.Default;
-		}
-
-		//private bool BuildForms()
-		//{
-
-		//}
-
 		private void SearchLookupEditCode_Leave(object sender, EventArgs e)
         {
-			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateCode, sender);
+			if (_selectedRecord != null) {
+                SetErrorInfo(_selectedRecord.ValidateCode, sender);
+                //The validation for the release field is called here when CheckEditSync is checked because
+                //the leave event is never triggered for the release fields when CheckEditSync is checked,
+                //since the fields are not enabled, and therefore cannot be entered or left.
+                if (CheckEditSync.Checked) {
+                    SetErrorInfo(_selectedRecord.ValidateRelCode, SearchLookupEditRelCode);
+                }
+            }
 		}
 
         private void SearchLookupEditAgency_Leave(object sender, EventArgs e)
         {
-			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateAgency, sender);
-		}
+            if (_selectedRecord != null) {
+                SetErrorInfo(_selectedRecord.ValidateAgency, sender);
+                //The validation for the release field is called here when CheckEditSync is checked because
+                //the leave event is never triggered for the release fields when CheckEditSync is checked,
+                //since the fields are not enabled, and therefore cannot be entered or left.
+                if (CheckEditSync.Checked) {
+                    SetErrorInfo(_selectedRecord.ValidateRelAgency, SearchLookupEditRelAgency);
+                }
+            }
+        }
 
         private void SearchLookupEditCat_Leave(object sender, EventArgs e)
         {
-			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateCat, sender);
-		}
+            if (_selectedRecord != null) {
+                SetErrorInfo(_selectedRecord.ValidateCat, sender);
+                //The validation for the release field is called here when CheckEditSync is checked because
+                //the leave event is never triggered for the release fields when CheckEditSync is checked,
+                //since the fields are not enabled, and therefore cannot be entered or left.
+                if (CheckEditSync.Checked) {
+                    SetErrorInfo(_selectedRecord.ValidateRelCat, SearchLookupEditRelCat);
+                }
+            }
+        }
 
         private void SearchLookupEditRelCode_Leave(object sender, EventArgs e)
         {
@@ -580,7 +550,13 @@ namespace TraceForms
 				SetErrorInfo(_selectedRecord.ValidateRelCat, sender);
 		}
 
-        private void InvtBindingSource_CurrentChanged(object sender, EventArgs e)
+        private void DateEditDate_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDate, sender);
+        }
+
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
 			//If the current record is changing as a result of removing a record to delete it, and it is the last
 			//record in the table, then SetBindings will clear the bindings, which will cause the delete
@@ -594,7 +570,7 @@ namespace TraceForms
         {
             if (CheckEditSyn.Checked == true)
             {
-                SpinEditOrigAmt.Value = SpinEditAv_Amt.Value;
+                SpinEditOrigAmt.Value = SpinEditAvAmt.Value;
             }
         }
 
@@ -664,21 +640,26 @@ namespace TraceForms
 		{
 			ComboBoxEditTP.Enabled = (ComboBoxEditType.Text == "HTL");
 			if (ComboBoxEditType.Text == "PKG") {
-				ComboBoxEditTP.Text = "NON";
+				ComboBoxEditTP.EditValue = "NON";
+            }
+            else if (ComboBoxEditType.Text != "HTL") {
+				ComboBoxEditTP.EditValue = string.Empty;
 			}
-			else if (ComboBoxEditType.Text != "HTL") {
-				ComboBoxEditTP.Text = string.Empty;
-			}
-			string type = ComboBoxEditType.Text;
-			if (type != null) {			
-				LoadCodeLookupValues(type, SearchLookupEditCode);
-				LoadCodeLookupValues(type, SearchLookupEditRelCode);
-			}
+            string type = ComboBoxEditType.Text;
+			LoadCodeLookupValues(type, SearchLookupEditCode);
+			LoadCodeLookupValues(type, SearchLookupEditRelCode);
 		}
 
-		private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
+        private void GridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
+        {
+            if (GridViewLookup.DataRowCount == 0) {
+                ClearBindings();
+            }
+        }
+
+        private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
 		{
-			if (_productLookups.ContainsKey(type)) {
+			if (!string.IsNullOrEmpty(type) && _productLookups.ContainsKey(type)) {
 				editor.Properties.DataSource = _productLookups[type];
 			}
 			else {
@@ -686,104 +667,215 @@ namespace TraceForms
 			}
 		}
 
-		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-		{
-			CreateNewRecord();
-		}
-
 		private void CreateNewRecord()
 		{
 			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
-			if (SaveRecord(true)) {
-				_selectedRecord = new INVT();
-				BindingSource.Add(_selectedRecord);
-				GridViewLookup.FocusedRowHandle = GridViewLookup.FindRow(_selectedRecord);
-				SetReadOnlyKeyFields(false);
+            if (SaveRecord(true)) {
+                //For some reason when there is no existing record in the binding source the Add method does not
+                //trigger the CurrentChanged event, but AddNew does so use that instead
+                BindingSource.AddNew();
+                //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                //the focused row to the filter row just so that no other existing row is visually highlighted
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                SetReadOnlyKeyFields(false);
 				ComboBoxEditType.Focus();
 				SetReadOnly(false);
 			}
 			ErrorProvider.Clear();
+            SetBuildMode(false);
 			_ignoreLeaveRow = false;
 		}
 
-		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-		{
-			DeleteRecord();
-		}
+        private INVT CreateFilledRecord(INVT source, DateTime date)
+        {
+            INVT invt = new INVT();
+            FillRecord(invt, source, date);
+            _context.INVT.AddObject(invt);
+            return invt;
+        }
+
+        private void FillRecord(INVT dest, INVT source, DateTime date)
+        {
+            dest.DATE = date;
+            dest.TYPE = source.TYPE;
+            dest.CODE = source.CODE;
+            dest.CAT = source.CAT;
+            dest.TP = source.TP;
+            dest.UPD_DATE = source.UPD_DATE;
+            dest.UPD_BY = source.UPD_BY;
+            dest.ORIG_AMT = source.ORIG_AMT;
+            dest.AV_AMT = source.AV_AMT;
+            dest.AV = source.AV;
+            dest.MIN = source.MIN;
+            dest.CANC = source.CANC;
+            dest.REL = source.REL;
+            dest.AGENCY = source.AGENCY;
+            dest.RELCODE = source.RELCODE;
+            dest.RELCAT = source.RELCAT;
+            dest.RELTYP = source.RELTYP;
+            dest.RELAGY = source.RELAGY;
+            dest.ALLOCTD = source.ALLOCTD;
+            dest.HOLD = source.HOLD;
+            dest.MIN_BK_DAYS = source.MIN_BK_DAYS;
+            dest.MAX = source.MAX;
+            dest.Requestable = source.Requestable;
+            dest.StartNumberRange = source.StartNumberRange;
+            dest.EndNumberRange = source.EndNumberRange;
+            dest.Time = source.Time;
+            dest.SpecialValue_Code = source.SpecialValue_Code;
+        }
 
 		private void CheckEditSync_CheckedChanged(object sender, EventArgs e)
 		{
-			SearchLookupEditRelCode.Enabled = CheckEditSync.Checked;
+			SearchLookupEditRelCode.Enabled = !CheckEditSync.Checked;
 			if (!CheckEditSync.Checked){
 				SearchLookupEditRelCode.EditValue = null;
 			}
-			ComboBoxEditRelTyp.Enabled = CheckEditSync.Checked;
+			ComboBoxEditRelTyp.Enabled = !CheckEditSync.Checked;
 			if (!CheckEditSync.Checked) {
 				ComboBoxEditRelTyp.EditValue = null;
 			}
-			SearchLookupEditRelCat.Enabled = CheckEditSync.Checked;
+			SearchLookupEditRelCat.Enabled = !CheckEditSync.Checked;
 			if (!CheckEditSync.Checked) {
 				SearchLookupEditRelCat.EditValue = null;
 			}
-			SearchLookupEditRelAgency.Enabled = CheckEditSync.Checked;
+			SearchLookupEditRelAgency.Enabled = !CheckEditSync.Checked;
 			if (!CheckEditSync.Checked) {
 				SearchLookupEditRelAgency.EditValue = null;
 			}
-			SpinEditRel.Enabled = CheckEditSync.Checked;
-			if (!CheckEditSync.Checked) {
-				SpinEditRel.EditValue = null;
-			}
-		}
+            if (CheckEditSync.Checked) {
+                SearchLookupEditRelCode.EditValue = SearchLookupEditCode.EditValue;
+                SearchLookupEditRelCat.EditValue = SearchLookupEditCat.EditValue;
+                ComboBoxEditRelTyp.EditValue = ComboBoxEditTP.EditValue;
+                SearchLookupEditRelAgency.EditValue = SearchLookupEditAgency.EditValue;
+            }
+        }
 
 		public bool BuildRecords()
 		{
 			int days = 0;
 			DateTime date;
-			try {
-				do {
-					date = DateEditBuildFrom.DateTime.AddDays(days);
-					if (Enum.TryParse<DayOfWeek>(ComboBoxEditBuildEvery.Text, out DayOfWeek dayOfWeek)) {  //If the "build every" field is a day of the week
-						if(date.DayOfWeek == dayOfWeek) {  //If the current date is the same day of the week as the "build every" day of the week
-							int buildDays = 0;
-							do {  //Build the specified number of days while build days is less than the value of SpinEditBuildDays
-								date = DateEditBuildFrom.DateTime.AddDays(days);
-								CreateNewRecord();
-								buildDays++;
-								days++;
-							} while (buildDays < (int)SpinEditBuildDays.Value);
-						}
-						else {
-							days++;
-						}
-					}
-					else if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
-						
-					}
-					else {
-						CreateNewRecord();
-						days++;
-					}
-				} while (date < DateEditBuildThrough.DateTime);
-				return true;
-			}
-			catch (Exception ex) {
-				DisplayHelper.DisplayError(this, ex);
-				return false;
-			}
-		}
 
-		public string ValidateBuildFields()
-		{
-			if (SpinEditBuildDays.Value <= 0) {
-				return "The number of days built cannot be less than or equal to zero.";
-			}
-			else if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
-				if (everyDays < (int)SpinEditBuildDays.Value) {
-					return "The number of days to build cannot exceed the days between build every days.";
+            SetUpdateFields(_selectedRecord);
+			do {
+                INVT newRec = null;
+                date = DateEditBuildFrom.DateTime.AddDays(days);
+				if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
+                    if (days == everyDays)
+                    {
+                        int buildDays = 0;
+                        do
+                        {  //Build the specified number of days while build days is less than the value of SpinEditBuildDays
+                            date = DateEditBuildFrom.DateTime.AddDays(days);
+                            newRec = CreateFilledRecord(_selectedRecord, date);
+                            if (!SaveContext(newRec, date))
+                                return false;
+                            buildDays++;
+                            days++;
+                        } while (buildDays < (int)SpinEditBuildDays.Value);
+                    }
+                }
+                else if (Enum.TryParse(ComboBoxEditBuildEvery.Text, out DayOfWeek dayOfWeek)) {  //If the "build every" field is a day of the week
+                    if (date.DayOfWeek == dayOfWeek) {  //If the current date is the same day of the week as the "build every" day of the week
+                        int buildDays = 0;
+                        do {  //Build the specified number of days while build days is less than the value of SpinEditBuildDays
+                            date = DateEditBuildFrom.DateTime.AddDays(days);
+                            newRec = CreateFilledRecord(_selectedRecord, date);
+                            if (!SaveContext(newRec, date))
+                                return false;
+                            buildDays++;
+                            days++;
+                        } while (buildDays < (int)SpinEditBuildDays.Value);
+                    }
+                    else {
+                        days++;
+                    }
+                }
+                else {
+					newRec = CreateFilledRecord(_selectedRecord, date);
+                    if (!SaveContext(newRec, date))
+                        return false;
+                    days++;
 				}
-			}
+            } while (date < DateEditBuildThrough.DateTime);
+            ShowActionConfirmation("Records built");
+            return true;
+        }
+
+        private bool SaveContext(INVT rec, DateTime date)
+        {
+            try {
+                _context.SaveChanges();
+                return true;
+            }
+            catch (UpdateException) {
+                _context.INVT.DeleteObject(rec);
+                if (CheckEditSkip.Checked) {
+                    return true;
+                }
+                if (CheckEditOverwrite.Checked) {
+                    INVT existing = _context.INVT.First(i => i.TYPE == _selectedRecord.TYPE && i.CODE == _selectedRecord.CODE &&
+                        i.AGENCY == _selectedRecord.AGENCY && i.CAT == _selectedRecord.CAT &&
+                        i.TP == _selectedRecord.TP && i.DATE == date);
+                    FillRecord(existing, _selectedRecord, date);
+                    try {
+                        _context.SaveChanges();
+                    }
+                    catch (Exception ex) {
+                        this.DisplayError(ex);
+                        return false;
+                    }
+                    return true;
+                }
+                this.DisplayError("Records were found with the same values as the values being built. Build has been cancelled.");
+                return false;
+            }
+            catch (Exception ex) {
+                this.DisplayError(ex);
+                return false;
+            }
+        }
+
+        public string ValidateBuildDays()
+		{
+            if (SpinEditBuildDays.Value <= 0) {
+                return "Please fill in this field.";
+            }
+
+            if (int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
+                if (everyDays < (int)SpinEditBuildDays.Value) {
+                    return $"The number of days to build cannot be greater than {everyDays}.";
+                }
+            }
+
+            if (Enum.TryParse(ComboBoxEditBuildEvery.Text, out DayOfWeek dayOfWeek)) {
+                if (SpinEditBuildDays.Value > 7) {
+                    return "The number of days to build cannot be greater than seven.";
+                }
+            }
+
 			return String.Empty;
 		}
+
+        public string ValidateBuildFrom()
+        {
+            if (DateEditBuildFrom.EditValue == null) {
+                return "Please fill in this field.";
+            }
+            return string.Empty;
+        }
+
+        public string ValidateBuildThrough()
+        {
+            if (DateEditBuildThrough.EditValue == null) {
+                return "Please fill in this field.";
+            }
+            if (DateEditBuildFrom.DateTime > DateEditBuildThrough.DateTime) {
+                return "The build through date must be on or after the build from date.";
+            }
+
+            return string.Empty;
+        }
 
 		private void ComboBoxEditAv_SelectedValueChanged(object sender, EventArgs e)
 		{
@@ -809,8 +901,10 @@ namespace TraceForms
 
 			else {
 				foreach (Control control in GroupControlRelease.Controls) {
-					control.Enabled = true;
+					control.Enabled = !CheckEditSync.Checked;
 				}
+                SpinEditRel.Enabled = true;
+                CheckEditSync.Enabled = true;
 
 				foreach (Control control in GroupControlQuantities.Controls) {
 					control.Enabled = true;
@@ -820,31 +914,229 @@ namespace TraceForms
 
 		private void BarToggleSwitchItemBuild_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			if (BarToggleSwitchItemBuild.Checked == false) {
-				GroupControlBuild.Enabled = false;
-				DateEditDate.Enabled = true;
-				BarButtonItemDelete.Enabled = true;
-				BarButtonItemNew.Enabled = true;
+			if (BarToggleSwitchItemBuild.Checked) {
+                if (_selectedRecord == null)
+                    CreateNewRecord();
+                SetBuildMode(true);
+            }
+            else {
+                _ignoreLeaveRow = true;
+                ClearBuildControls();
+                SetBuildMode(false);
+                _ignoreLeaveRow = false;
+            }
+        }
 
-			}
-			else if (BarToggleSwitchItemBuild.Checked == true) {
-				CreateNewRecord();
-				GroupControlBuild.Enabled = true;
-				DateEditDate.Enabled = false;
-				BarButtonItemDelete.Enabled = false;
-				BarButtonItemNew.Enabled = false;
-			}
-		}
+        private void SetBuildMode(bool buildMode)
+        {
+            GridControlLookup.Visible = !buildMode;
+            GroupControlBuild.Enabled = buildMode;
+            DateEditDate.Enabled = !buildMode;
+            DateEditDate.EditValue = null;
+            BarButtonItemDelete.Enabled = !buildMode;
+        }
 
-		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void ClearBuildControls()
+        {
+            foreach (Control control in GroupControlBuild.Controls) {
+                if (control is BaseEdit) {
+                    if (control is CheckEdit) {
+                        ((CheckEdit)control).EditValue = false;
+                    }
+                    else {
+                        ((BaseEdit)control).EditValue = null;
+                    }
+                }
+            }
+        }
+
+        public string ValidateBuildEvery()
+        {
+            if (BarToggleSwitchItemBuild.Checked) {
+                if (!string.IsNullOrEmpty(ComboBoxEditBuildEvery.Text)) {
+                    if (!Enum.TryParse(ComboBoxEditBuildEvery.Text, out DayOfWeek dayOfWeek)
+                      && !int.TryParse(ComboBoxEditBuildEvery.Text, out int everyDays)) {
+                        return "Please enter a day of the week or a number of days.";
+                    }
+                }
+            }
+            return string.Empty;
+        }
+
+        public string ValidateOverwrite()
+        {
+            if (CheckEditOverwrite.Checked && CheckEditSkip.Checked) {
+                return "Records cannot be both skipped and overwritten.  Please choose one or the other.";
+            }
+            return string.Empty;
+        }
+
+        public string ValidateSkip()
+        {
+            if (CheckEditOverwrite.Checked && CheckEditSkip.Checked) {
+                return "Records cannot be both skipped and overwritten.  Please choose one or the other.";
+            }
+            return string.Empty;
+        }
+
+        private void DateEditBuildFrom_Leave(object sender, EventArgs e)
+        {
+            if (BarToggleSwitchItemBuild.Checked) 
+                SetErrorInfo(ValidateBuildFrom, sender);
+        }
+
+        private void DateEditBuildThrough_Leave(object sender, EventArgs e)
+        {
+            if (BarToggleSwitchItemBuild.Checked)
+                SetErrorInfo(ValidateBuildThrough, sender);
+        }
+
+        private void ComboBoxEditBuildEvery_Leave(object sender, EventArgs e)
+        {
+            if (BarToggleSwitchItemBuild.Checked)
+                SetErrorInfo(ValidateBuildEvery, sender);
+        }
+
+        private void SpinEditBuildDays_Leave(object sender, EventArgs e)
+        {
+            if (BarToggleSwitchItemBuild.Checked)
+                SetErrorInfo(ValidateBuildDays, sender);
+        }
+
+        private void SearchLookupEditCode_CloseUp(object sender, CloseUpEventArgs e)
+        {
+            if (e.CloseMode == PopupCloseMode.Normal && CheckEditSync.Checked) {
+                SearchLookupEditRelCode.EditValue = e.Value;
+            }
+        }
+
+        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((sender as LookUpEditBase).Properties.DataSource == null)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+        }
+
+        private void SearchLookupEditAgency_CloseUp(object sender, CloseUpEventArgs e)
+        {
+            if (e.CloseMode == PopupCloseMode.Normal && CheckEditSync.Checked) {
+                SearchLookupEditRelAgency.EditValue = e.Value;
+            }
+        }
+
+        private void SearchLookupEditCat_CloseUp(object sender, CloseUpEventArgs e)
+        {
+            if (e.CloseMode == PopupCloseMode.Normal && CheckEditSync.Checked) {
+                SearchLookupEditRelCat.EditValue = e.Value;
+            }
+        }
+
+        private void ComboBoxEditTP_CloseUp(object sender, CloseUpEventArgs e)
+        {
+            if (e.CloseMode == PopupCloseMode.Normal && CheckEditSync.Checked) {
+                ComboBoxEditRelTyp.EditValue = e.Value;
+            }
+        }
+
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.INVT;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                object row = view.GetRow(e.FocusedRowHandle);
+                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                    INVT record = (INVT)proxy.OriginalRow;
+                    BindingSource.DataSource = _context.INVT.Where(c => c.CODE == record.CODE);
+                }
+                else {
+                    ClearBindings();
+                }
+            }
+        }
+
+        private void InvtMaint_Shown(object sender, EventArgs e)
+        {
+            GridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
+            GridControlLookup.Focus();
+        }
+
+        private void BarHeaderItemBuildMode_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            BarToggleSwitchItemBuild.Checked = !BarToggleSwitchItemBuild.Checked;
+        }
+
+        private void SearchLookupEditAgency_EditValueChanged(object sender, EventArgs e)
+        {
+            SpinEditHold.Enabled = (SearchLookupEditAgency.EditValue.ToString() == _sys.Settings.DefaultAgency);
+            if (!SpinEditHold.Enabled) {
+                SpinEditHold.EditValue = 0;
+            }
+        }
+
+        private void SpinEditStartNumber_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateStartNumber, sender);
+                SetErrorInfo(_selectedRecord.ValidateEndNumber, SpinEditEndNumber);
+        }
+
+        private void SpinEditEndNumber_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEndNumber, sender);
+                SetErrorInfo(_selectedRecord.ValidateStartNumber, SpinEditStartNumber);
+        }
+
+        private void SearchLookupEditSpecialValue_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSpecialValue, sender);
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (BarToggleSwitchItemBuild.Checked) {
+                _ignoreLeaveRow = true;
+                _ignorePositionChange = true;
+                BindingSource.Remove(_selectedRecord);
+                _selectedRecord = (INVT)BindingSource.AddNew();     //set _selectedRecord here because SetBindings will not be called
+                _ignorePositionChange = false;
+                _ignoreLeaveRow = false;
+                ErrorProvider.Clear();
+            }
+            else {
+                CreateNewRecord();
+            }
+        }
+
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DeleteRecord();
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			if (BarToggleSwitchItemBuild.Checked == false) {
 				if (SaveRecord(false))
 					RefreshRecord();
 			}
 			else {
-				BuildRecords();
-			}
+                if (ValidateAll())
+				    BuildRecords();
+            }
 		}
 	}
 }

@@ -103,27 +103,9 @@
             DevExpress.XtraEditors.LabelControl mGMT_COLabel;
             System.Windows.Forms.Label requestableLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HotelGenInfo));
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.nAMECHGLabel = new DevExpress.XtraEditors.LabelControl();
             this.uSE_CLIENT_LOGOLabel = new DevExpress.XtraEditors.LabelControl();
             this.HotelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.HotelBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.hOTELBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.TextEditName = new DevExpress.XtraEditors.TextEdit();
             this.GridControlHotels = new DevExpress.XtraGrid.GridControl();
             this.GridViewHotels = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -612,13 +594,22 @@
             this.colSupplierHotelRatePlan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.supplierHotelMappingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
             this.typeTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
             cODELabel = new DevExpress.XtraEditors.LabelControl();
             lAST_UPDLabel = new DevExpress.XtraEditors.LabelControl();
             nAMELabel = new DevExpress.XtraEditors.LabelControl();
@@ -692,10 +683,7 @@
             oPERLabel = new DevExpress.XtraEditors.LabelControl();
             mGMT_COLabel = new DevExpress.XtraEditors.LabelControl();
             requestableLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HotelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HotelBindingNavigator)).BeginInit();
-            this.HotelBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlHotels)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewHotels)).BeginInit();
@@ -868,733 +856,689 @@
             ((System.ComponentModel.ISupportInitialize)(this.supplierHotelRoomTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSuppRoomType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierHotelMappingBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // cODELabel
             // 
-            cODELabel.Location = new System.Drawing.Point(25, 32);
-            cODELabel.Margin = new System.Windows.Forms.Padding(4);
+            cODELabel.Location = new System.Drawing.Point(33, 42);
+            cODELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cODELabel.Name = "cODELabel";
-            cODELabel.Size = new System.Drawing.Size(37, 19);
+            cODELabel.Size = new System.Drawing.Size(48, 25);
             cODELabel.TabIndex = 2;
             cODELabel.Text = "Hotel";
             // 
             // lAST_UPDLabel
             // 
-            lAST_UPDLabel.Location = new System.Drawing.Point(381, 30);
-            lAST_UPDLabel.Margin = new System.Windows.Forms.Padding(4);
+            lAST_UPDLabel.Location = new System.Drawing.Point(508, 39);
+            lAST_UPDLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             lAST_UPDLabel.Name = "lAST_UPDLabel";
-            lAST_UPDLabel.Size = new System.Drawing.Size(96, 19);
+            lAST_UPDLabel.Size = new System.Drawing.Size(128, 25);
             lAST_UPDLabel.TabIndex = 4;
             lAST_UPDLabel.Text = "Last updated:";
             // 
             // nAMELabel
             // 
-            nAMELabel.Location = new System.Drawing.Point(25, 64);
-            nAMELabel.Margin = new System.Windows.Forms.Padding(4);
+            nAMELabel.Location = new System.Drawing.Point(33, 84);
+            nAMELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             nAMELabel.Name = "nAMELabel";
-            nAMELabel.Size = new System.Drawing.Size(41, 19);
+            nAMELabel.Size = new System.Drawing.Size(54, 25);
             nAMELabel.TabIndex = 6;
             nAMELabel.Text = "Name";
             // 
             // aRLabel
             // 
-            aRLabel.Location = new System.Drawing.Point(45, 136);
-            aRLabel.Margin = new System.Windows.Forms.Padding(4);
+            aRLabel.Location = new System.Drawing.Point(60, 179);
+            aRLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aRLabel.Name = "aRLabel";
-            aRLabel.Size = new System.Drawing.Size(89, 19);
+            aRLabel.Size = new System.Drawing.Size(116, 25);
             aRLabel.TabIndex = 29;
             aRLabel.Text = "A/R Number";
             // 
             // aPLabel
             // 
-            aPLabel.Location = new System.Drawing.Point(45, 175);
-            aPLabel.Margin = new System.Windows.Forms.Padding(4);
+            aPLabel.Location = new System.Drawing.Point(60, 230);
+            aPLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aPLabel.Name = "aPLabel";
-            aPLabel.Size = new System.Drawing.Size(88, 19);
+            aPLabel.Size = new System.Drawing.Size(115, 25);
             aPLabel.TabIndex = 31;
             aPLabel.Text = "A/P Number";
             // 
             // bILLACCTLabel
             // 
-            bILLACCTLabel.Location = new System.Drawing.Point(45, 215);
-            bILLACCTLabel.Margin = new System.Windows.Forms.Padding(4);
+            bILLACCTLabel.Location = new System.Drawing.Point(60, 283);
+            bILLACCTLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             bILLACCTLabel.Name = "bILLACCTLabel";
-            bILLACCTLabel.Size = new System.Drawing.Size(133, 19);
+            bILLACCTLabel.Size = new System.Drawing.Size(176, 25);
             bILLACCTLabel.TabIndex = 33;
             bILLACCTLabel.Text = "Billing / Account #";
             // 
             // aP_MGRLabel
             // 
-            aP_MGRLabel.Location = new System.Drawing.Point(75, 365);
-            aP_MGRLabel.Margin = new System.Windows.Forms.Padding(4);
+            aP_MGRLabel.Location = new System.Drawing.Point(100, 480);
+            aP_MGRLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aP_MGRLabel.Name = "aP_MGRLabel";
-            aP_MGRLabel.Size = new System.Drawing.Size(91, 19);
+            aP_MGRLabel.Size = new System.Drawing.Size(121, 25);
             aP_MGRLabel.TabIndex = 32;
             aP_MGRLabel.Text = "A/P Manager";
             // 
             // aP_EMAILLabel
             // 
-            aP_EMAILLabel.Location = new System.Drawing.Point(75, 405);
-            aP_EMAILLabel.Margin = new System.Windows.Forms.Padding(4);
+            aP_EMAILLabel.Location = new System.Drawing.Point(100, 533);
+            aP_EMAILLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aP_EMAILLabel.Name = "aP_EMAILLabel";
-            aP_EMAILLabel.Size = new System.Drawing.Size(70, 19);
+            aP_EMAILLabel.Size = new System.Drawing.Size(91, 25);
             aP_EMAILLabel.TabIndex = 34;
             aP_EMAILLabel.Text = "A/P Email";
             // 
             // tAXRATELabel
             // 
-            tAXRATELabel.Location = new System.Drawing.Point(698, 136);
-            tAXRATELabel.Margin = new System.Windows.Forms.Padding(4);
+            tAXRATELabel.Location = new System.Drawing.Point(931, 179);
+            tAXRATELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             tAXRATELabel.Name = "tAXRATELabel";
-            tAXRATELabel.Size = new System.Drawing.Size(79, 19);
+            tAXRATELabel.Size = new System.Drawing.Size(105, 25);
             tAXRATELabel.TabIndex = 39;
             tAXRATELabel.Text = "Tax rate %";
             // 
             // rOOMTAXLabel
             // 
-            rOOMTAXLabel.Location = new System.Drawing.Point(698, 174);
-            rOOMTAXLabel.Margin = new System.Windows.Forms.Padding(4);
+            rOOMTAXLabel.Location = new System.Drawing.Point(931, 229);
+            rOOMTAXLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rOOMTAXLabel.Name = "rOOMTAXLabel";
-            rOOMTAXLabel.Size = new System.Drawing.Size(87, 19);
+            rOOMTAXLabel.Size = new System.Drawing.Size(111, 25);
             rOOMTAXLabel.TabIndex = 40;
             rOOMTAXLabel.Text = "Room Tax $";
             // 
             // pERSONTAXLabel
             // 
-            pERSONTAXLabel.Location = new System.Drawing.Point(698, 215);
-            pERSONTAXLabel.Margin = new System.Windows.Forms.Padding(4);
+            pERSONTAXLabel.Location = new System.Drawing.Point(931, 283);
+            pERSONTAXLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             pERSONTAXLabel.Name = "pERSONTAXLabel";
-            pERSONTAXLabel.Size = new System.Drawing.Size(88, 19);
+            pERSONTAXLabel.Size = new System.Drawing.Size(116, 25);
             pERSONTAXLabel.TabIndex = 41;
             pERSONTAXLabel.Text = "Person tax $";
             // 
             // due_DaysLabel
             // 
             due_DaysLabel.AutoSize = true;
-            due_DaysLabel.Location = new System.Drawing.Point(718, 371);
-            due_DaysLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            due_DaysLabel.Location = new System.Drawing.Point(957, 488);
+            due_DaysLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             due_DaysLabel.Name = "due_DaysLabel";
-            due_DaysLabel.Size = new System.Drawing.Size(101, 19);
+            due_DaysLabel.Size = new System.Drawing.Size(132, 25);
             due_DaysLabel.TabIndex = 41;
             due_DaysLabel.Text = "AP Due Days";
             // 
             // nO_RMSLabel
             // 
-            nO_RMSLabel.Location = new System.Drawing.Point(39, 98);
-            nO_RMSLabel.Margin = new System.Windows.Forms.Padding(4);
+            nO_RMSLabel.Location = new System.Drawing.Point(52, 129);
+            nO_RMSLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             nO_RMSLabel.Name = "nO_RMSLabel";
-            nO_RMSLabel.Size = new System.Drawing.Size(126, 19);
+            nO_RMSLabel.Size = new System.Drawing.Size(164, 25);
             nO_RMSLabel.TabIndex = 29;
             nO_RMSLabel.Text = "Number of rooms";
             // 
             // nO_RESTLabel
             // 
-            nO_RESTLabel.Location = new System.Drawing.Point(39, 142);
-            nO_RESTLabel.Margin = new System.Windows.Forms.Padding(4);
+            nO_RESTLabel.Location = new System.Drawing.Point(52, 187);
+            nO_RESTLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             nO_RESTLabel.Name = "nO_RESTLabel";
-            nO_RESTLabel.Size = new System.Drawing.Size(159, 19);
+            nO_RESTLabel.Size = new System.Drawing.Size(212, 25);
             nO_RESTLabel.TabIndex = 30;
             nO_RESTLabel.Text = "Number of restaurants";
             // 
             // nO_LOUNGESLabel
             // 
-            nO_LOUNGESLabel.Location = new System.Drawing.Point(39, 183);
-            nO_LOUNGESLabel.Margin = new System.Windows.Forms.Padding(4);
+            nO_LOUNGESLabel.Location = new System.Drawing.Point(52, 241);
+            nO_LOUNGESLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             nO_LOUNGESLabel.Name = "nO_LOUNGESLabel";
-            nO_LOUNGESLabel.Size = new System.Drawing.Size(136, 19);
+            nO_LOUNGESLabel.Size = new System.Drawing.Size(179, 25);
             nO_LOUNGESLabel.TabIndex = 31;
             nO_LOUNGESLabel.Text = "Number of lounges";
             // 
             // rOOM_DESCLabel
             // 
-            rOOM_DESCLabel.Location = new System.Drawing.Point(39, 227);
-            rOOM_DESCLabel.Margin = new System.Windows.Forms.Padding(4);
+            rOOM_DESCLabel.Location = new System.Drawing.Point(52, 299);
+            rOOM_DESCLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rOOM_DESCLabel.Name = "rOOM_DESCLabel";
-            rOOM_DESCLabel.Size = new System.Drawing.Size(133, 19);
+            rOOM_DESCLabel.Size = new System.Drawing.Size(173, 25);
             rOOM_DESCLabel.TabIndex = 32;
             rOOM_DESCLabel.Text = "Room Descriptions";
             // 
             // cOMMENT1Label
             // 
-            cOMMENT1Label.Location = new System.Drawing.Point(39, 276);
-            cOMMENT1Label.Margin = new System.Windows.Forms.Padding(4);
+            cOMMENT1Label.Location = new System.Drawing.Point(52, 363);
+            cOMMENT1Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cOMMENT1Label.Name = "cOMMENT1Label";
-            cOMMENT1Label.Size = new System.Drawing.Size(69, 19);
+            cOMMENT1Label.Size = new System.Drawing.Size(90, 25);
             cOMMENT1Label.TabIndex = 34;
             cOMMENT1Label.Text = "Comment";
             // 
             // aDV_PMTLabel
             // 
-            aDV_PMTLabel.Location = new System.Drawing.Point(30, 73);
-            aDV_PMTLabel.Margin = new System.Windows.Forms.Padding(4);
+            aDV_PMTLabel.Location = new System.Drawing.Point(40, 96);
+            aDV_PMTLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aDV_PMTLabel.Name = "aDV_PMTLabel";
-            aDV_PMTLabel.Size = new System.Drawing.Size(194, 19);
+            aDV_PMTLabel.Size = new System.Drawing.Size(258, 25);
             aDV_PMTLabel.TabIndex = 46;
             aDV_PMTLabel.Text = "Advance Payment Required";
             // 
             // dEP_RQLabel
             // 
-            dEP_RQLabel.Location = new System.Drawing.Point(30, 123);
-            dEP_RQLabel.Margin = new System.Windows.Forms.Padding(4);
+            dEP_RQLabel.Location = new System.Drawing.Point(40, 162);
+            dEP_RQLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             dEP_RQLabel.Name = "dEP_RQLabel";
-            dEP_RQLabel.Size = new System.Drawing.Size(121, 19);
+            dEP_RQLabel.Size = new System.Drawing.Size(160, 25);
             dEP_RQLabel.TabIndex = 50;
             dEP_RQLabel.Text = "Deposit Required";
             // 
             // cANC_PERLabel
             // 
-            cANC_PERLabel.Location = new System.Drawing.Point(30, 156);
-            cANC_PERLabel.Margin = new System.Windows.Forms.Padding(4);
+            cANC_PERLabel.Location = new System.Drawing.Point(40, 205);
+            cANC_PERLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cANC_PERLabel.Name = "cANC_PERLabel";
-            cANC_PERLabel.Size = new System.Drawing.Size(134, 19);
+            cANC_PERLabel.Size = new System.Drawing.Size(178, 25);
             cANC_PERLabel.TabIndex = 51;
             cANC_PERLabel.Text = "Cancellation Notice";
             // 
             // dFLT_CATLabel
             // 
-            dFLT_CATLabel.Location = new System.Drawing.Point(30, 193);
-            dFLT_CATLabel.Margin = new System.Windows.Forms.Padding(4);
+            dFLT_CATLabel.Location = new System.Drawing.Point(40, 254);
+            dFLT_CATLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             dFLT_CATLabel.Name = "dFLT_CATLabel";
-            dFLT_CATLabel.Size = new System.Drawing.Size(118, 19);
+            dFLT_CATLabel.Size = new System.Drawing.Size(157, 25);
             dFLT_CATLabel.TabIndex = 52;
             dFLT_CATLabel.Text = "Default Category";
             // 
             // dEF_ROOMLabel
             // 
-            dEF_ROOMLabel.Location = new System.Drawing.Point(30, 231);
-            dEF_ROOMLabel.Margin = new System.Windows.Forms.Padding(4);
+            dEF_ROOMLabel.Location = new System.Drawing.Point(40, 304);
+            dEF_ROOMLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             dEF_ROOMLabel.Name = "dEF_ROOMLabel";
-            dEF_ROOMLabel.Size = new System.Drawing.Size(103, 19);
+            dEF_ROOMLabel.Size = new System.Drawing.Size(134, 25);
             dEF_ROOMLabel.TabIndex = 53;
             dEF_ROOMLabel.Text = "Default Room:";
             // 
             // rATE_BASISLabel
             // 
-            rATE_BASISLabel.Location = new System.Drawing.Point(549, 117);
-            rATE_BASISLabel.Margin = new System.Windows.Forms.Padding(4);
+            rATE_BASISLabel.Location = new System.Drawing.Point(732, 154);
+            rATE_BASISLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rATE_BASISLabel.Name = "rATE_BASISLabel";
-            rATE_BASISLabel.Size = new System.Drawing.Size(77, 19);
+            rATE_BASISLabel.Size = new System.Drawing.Size(102, 25);
             rATE_BASISLabel.TabIndex = 55;
             rATE_BASISLabel.Text = "Rate basis:";
             // 
             // cHECK_INLabel
             // 
-            cHECK_INLabel.Location = new System.Drawing.Point(530, 156);
-            cHECK_INLabel.Margin = new System.Windows.Forms.Padding(4);
+            cHECK_INLabel.Location = new System.Drawing.Point(707, 205);
+            cHECK_INLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cHECK_INLabel.Name = "cHECK_INLabel";
-            cHECK_INLabel.Size = new System.Drawing.Size(102, 19);
+            cHECK_INLabel.Size = new System.Drawing.Size(135, 25);
             cHECK_INLabel.TabIndex = 56;
             cHECK_INLabel.Text = "Check in time:";
             // 
             // cHILD_DESCLabel
             // 
-            cHILD_DESCLabel.Location = new System.Drawing.Point(561, 196);
-            cHILD_DESCLabel.Margin = new System.Windows.Forms.Padding(4);
+            cHILD_DESCLabel.Location = new System.Drawing.Point(748, 258);
+            cHILD_DESCLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cHILD_DESCLabel.Name = "cHILD_DESCLabel";
-            cHILD_DESCLabel.Size = new System.Drawing.Size(65, 19);
+            cHILD_DESCLabel.Size = new System.Drawing.Size(85, 25);
             cHILD_DESCLabel.TabIndex = 58;
             cHILD_DESCLabel.Text = "Children:";
             // 
             // cRED_CARDSLabel
             // 
-            cRED_CARDSLabel.Location = new System.Drawing.Point(530, 235);
-            cRED_CARDSLabel.Margin = new System.Windows.Forms.Padding(4);
+            cRED_CARDSLabel.Location = new System.Drawing.Point(707, 309);
+            cRED_CARDSLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cRED_CARDSLabel.Name = "cRED_CARDSLabel";
-            cRED_CARDSLabel.Size = new System.Drawing.Size(93, 19);
+            cRED_CARDSLabel.Size = new System.Drawing.Size(123, 25);
             cRED_CARDSLabel.TabIndex = 60;
             cRED_CARDSLabel.Text = "Credit Cards:";
             // 
             // mAX_SGLLabel
             // 
-            mAX_SGLLabel.Location = new System.Drawing.Point(276, 301);
-            mAX_SGLLabel.Margin = new System.Windows.Forms.Padding(4);
+            mAX_SGLLabel.Location = new System.Drawing.Point(368, 396);
+            mAX_SGLLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAX_SGLLabel.Name = "mAX_SGLLabel";
-            mAX_SGLLabel.Size = new System.Drawing.Size(34, 19);
+            mAX_SGLLabel.Size = new System.Drawing.Size(43, 25);
             mAX_SGLLabel.TabIndex = 63;
             mAX_SGLLabel.Text = "SGL:";
             // 
             // mAX_DBLLabel
             // 
-            mAX_DBLLabel.Location = new System.Drawing.Point(428, 301);
-            mAX_DBLLabel.Margin = new System.Windows.Forms.Padding(4);
+            mAX_DBLLabel.Location = new System.Drawing.Point(571, 396);
+            mAX_DBLLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAX_DBLLabel.Name = "mAX_DBLLabel";
-            mAX_DBLLabel.Size = new System.Drawing.Size(34, 19);
+            mAX_DBLLabel.Size = new System.Drawing.Size(44, 25);
             mAX_DBLLabel.TabIndex = 64;
             mAX_DBLLabel.Text = "DBL:";
             // 
             // mAX_TPLLabel
             // 
-            mAX_TPLLabel.Location = new System.Drawing.Point(578, 301);
-            mAX_TPLLabel.Margin = new System.Windows.Forms.Padding(4);
+            mAX_TPLLabel.Location = new System.Drawing.Point(771, 396);
+            mAX_TPLLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAX_TPLLabel.Name = "mAX_TPLLabel";
-            mAX_TPLLabel.Size = new System.Drawing.Size(33, 19);
+            mAX_TPLLabel.Size = new System.Drawing.Size(41, 25);
             mAX_TPLLabel.TabIndex = 65;
             mAX_TPLLabel.Text = "TPL:";
             // 
             // mAX_QUALabel
             // 
-            mAX_QUALabel.Location = new System.Drawing.Point(729, 301);
-            mAX_QUALabel.Margin = new System.Windows.Forms.Padding(4);
+            mAX_QUALabel.Location = new System.Drawing.Point(972, 396);
+            mAX_QUALabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAX_QUALabel.Name = "mAX_QUALabel";
-            mAX_QUALabel.Size = new System.Drawing.Size(40, 19);
+            mAX_QUALabel.Size = new System.Drawing.Size(49, 25);
             mAX_QUALabel.TabIndex = 66;
             mAX_QUALabel.Text = "QUA:";
             // 
             // mAX_OTHLabel
             // 
-            mAX_OTHLabel.Location = new System.Drawing.Point(890, 295);
-            mAX_OTHLabel.Margin = new System.Windows.Forms.Padding(4);
+            mAX_OTHLabel.Location = new System.Drawing.Point(1187, 388);
+            mAX_OTHLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAX_OTHLabel.Name = "mAX_OTHLabel";
-            mAX_OTHLabel.Size = new System.Drawing.Size(39, 19);
+            mAX_OTHLabel.Size = new System.Drawing.Size(48, 25);
             mAX_OTHLabel.TabIndex = 67;
             mAX_OTHLabel.Text = "OTH:";
             // 
             // vOUCH_DAYS_PRIORLabel
             // 
-            vOUCH_DAYS_PRIORLabel.Location = new System.Drawing.Point(230, 362);
-            vOUCH_DAYS_PRIORLabel.Margin = new System.Windows.Forms.Padding(4);
+            vOUCH_DAYS_PRIORLabel.Location = new System.Drawing.Point(307, 476);
+            vOUCH_DAYS_PRIORLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             vOUCH_DAYS_PRIORLabel.Name = "vOUCH_DAYS_PRIORLabel";
-            vOUCH_DAYS_PRIORLabel.Size = new System.Drawing.Size(79, 19);
+            vOUCH_DAYS_PRIORLabel.Size = new System.Drawing.Size(102, 25);
             vOUCH_DAYS_PRIORLabel.TabIndex = 69;
             vOUCH_DAYS_PRIORLabel.Text = "Days prior:";
             // 
             // gEN_MGRLabel
             // 
-            gEN_MGRLabel.Location = new System.Drawing.Point(27, 77);
-            gEN_MGRLabel.Margin = new System.Windows.Forms.Padding(4);
+            gEN_MGRLabel.Location = new System.Drawing.Point(36, 101);
+            gEN_MGRLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             gEN_MGRLabel.Name = "gEN_MGRLabel";
-            gEN_MGRLabel.Size = new System.Drawing.Size(41, 19);
+            gEN_MGRLabel.Size = new System.Drawing.Size(54, 25);
             gEN_MGRLabel.TabIndex = 26;
             gEN_MGRLabel.Text = "Name";
             // 
             // tELEXLabel1
             // 
-            tELEXLabel1.Location = new System.Drawing.Point(27, 180);
-            tELEXLabel1.Margin = new System.Windows.Forms.Padding(4);
+            tELEXLabel1.Location = new System.Drawing.Point(36, 237);
+            tELEXLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             tELEXLabel1.Name = "tELEXLabel1";
-            tELEXLabel1.Size = new System.Drawing.Size(24, 19);
+            tELEXLabel1.Size = new System.Drawing.Size(32, 25);
             tELEXLabel1.TabIndex = 28;
             tELEXLabel1.Text = "Fax";
             // 
             // pHONELabel
             // 
-            pHONELabel.Location = new System.Drawing.Point(470, 82);
-            pHONELabel.Margin = new System.Windows.Forms.Padding(4);
+            pHONELabel.Location = new System.Drawing.Point(627, 108);
+            pHONELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             pHONELabel.Name = "pHONELabel";
-            pHONELabel.Size = new System.Drawing.Size(44, 19);
+            pHONELabel.Size = new System.Drawing.Size(58, 25);
             pHONELabel.TabIndex = 30;
             pHONELabel.Text = "Phone";
             // 
             // rES_EMAILLabel
             // 
-            rES_EMAILLabel.Location = new System.Drawing.Point(470, 180);
-            rES_EMAILLabel.Margin = new System.Windows.Forms.Padding(4);
+            rES_EMAILLabel.Location = new System.Drawing.Point(627, 237);
+            rES_EMAILLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rES_EMAILLabel.Name = "rES_EMAILLabel";
-            rES_EMAILLabel.Size = new System.Drawing.Size(98, 19);
+            rES_EMAILLabel.Size = new System.Drawing.Size(130, 25);
             rES_EMAILLabel.TabIndex = 32;
             rES_EMAILLabel.Text = "Email address";
             // 
             // mAILFAXLabel
             // 
-            mAILFAXLabel.Location = new System.Drawing.Point(27, 127);
-            mAILFAXLabel.Margin = new System.Windows.Forms.Padding(4);
+            mAILFAXLabel.Location = new System.Drawing.Point(36, 167);
+            mAILFAXLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mAILFAXLabel.Name = "mAILFAXLabel";
-            mAILFAXLabel.Size = new System.Drawing.Size(139, 19);
+            mAILFAXLabel.Size = new System.Drawing.Size(185, 25);
             mAILFAXLabel.TabIndex = 34;
             mAILFAXLabel.Text = "Send documents by";
             // 
             // aDDR1Label
             // 
-            aDDR1Label.Location = new System.Drawing.Point(38, 132);
-            aDDR1Label.Margin = new System.Windows.Forms.Padding(4);
+            aDDR1Label.Location = new System.Drawing.Point(51, 174);
+            aDDR1Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aDDR1Label.Name = "aDDR1Label";
-            aDDR1Label.Size = new System.Drawing.Size(41, 19);
+            aDDR1Label.Size = new System.Drawing.Size(56, 25);
             aDDR1Label.TabIndex = 75;
             aDDR1Label.Text = "Street";
             // 
             // cITYLabel
             // 
-            cITYLabel.Location = new System.Drawing.Point(38, 246);
-            cITYLabel.Margin = new System.Windows.Forms.Padding(4);
+            cITYLabel.Location = new System.Drawing.Point(51, 324);
+            cITYLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cITYLabel.Name = "cITYLabel";
-            cITYLabel.Size = new System.Drawing.Size(27, 19);
+            cITYLabel.Size = new System.Drawing.Size(35, 25);
             cITYLabel.TabIndex = 81;
             cITYLabel.Text = "City";
             // 
             // sTATELabel
             // 
-            sTATELabel.Location = new System.Drawing.Point(38, 285);
-            sTATELabel.Margin = new System.Windows.Forms.Padding(4);
+            sTATELabel.Location = new System.Drawing.Point(51, 375);
+            sTATELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             sTATELabel.Name = "sTATELabel";
-            sTATELabel.Size = new System.Drawing.Size(35, 19);
+            sTATELabel.Size = new System.Drawing.Size(48, 25);
             sTATELabel.TabIndex = 82;
             sTATELabel.Text = "State";
             // 
             // zIPLabel
             // 
-            zIPLabel.Location = new System.Drawing.Point(38, 329);
-            zIPLabel.Margin = new System.Windows.Forms.Padding(4);
+            zIPLabel.Location = new System.Drawing.Point(51, 433);
+            zIPLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             zIPLabel.Name = "zIPLabel";
-            zIPLabel.Size = new System.Drawing.Size(22, 19);
+            zIPLabel.Size = new System.Drawing.Size(29, 25);
             zIPLabel.TabIndex = 84;
             zIPLabel.Text = "Zip";
             // 
             // rEGIONLabel
             // 
-            rEGIONLabel.Location = new System.Drawing.Point(38, 368);
-            rEGIONLabel.Margin = new System.Windows.Forms.Padding(4);
+            rEGIONLabel.Location = new System.Drawing.Point(51, 484);
+            rEGIONLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rEGIONLabel.Name = "rEGIONLabel";
-            rEGIONLabel.Size = new System.Drawing.Size(49, 19);
+            rEGIONLabel.Size = new System.Drawing.Size(64, 25);
             rEGIONLabel.TabIndex = 87;
             rEGIONLabel.Text = "Region";
             // 
             // lOCAL_PHONELabel
             // 
-            lOCAL_PHONELabel.Location = new System.Drawing.Point(36, 408);
-            lOCAL_PHONELabel.Margin = new System.Windows.Forms.Padding(4);
+            lOCAL_PHONELabel.Location = new System.Drawing.Point(48, 537);
+            lOCAL_PHONELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             lOCAL_PHONELabel.Name = "lOCAL_PHONELabel";
-            lOCAL_PHONELabel.Size = new System.Drawing.Size(44, 19);
+            lOCAL_PHONELabel.Size = new System.Drawing.Size(58, 25);
             lOCAL_PHONELabel.TabIndex = 88;
             lOCAL_PHONELabel.Text = "Phone";
             // 
             // tELEXLabel
             // 
-            tELEXLabel.Location = new System.Drawing.Point(388, 408);
-            tELEXLabel.Margin = new System.Windows.Forms.Padding(4);
+            tELEXLabel.Location = new System.Drawing.Point(517, 537);
+            tELEXLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             tELEXLabel.Name = "tELEXLabel";
-            tELEXLabel.Size = new System.Drawing.Size(24, 19);
+            tELEXLabel.Size = new System.Drawing.Size(32, 25);
             tELEXLabel.TabIndex = 90;
             tELEXLabel.Text = "Fax";
             // 
             // cOUNTRY_CODELabel
             // 
-            cOUNTRY_CODELabel.Location = new System.Drawing.Point(376, 368);
-            cOUNTRY_CODELabel.Margin = new System.Windows.Forms.Padding(4);
+            cOUNTRY_CODELabel.Location = new System.Drawing.Point(501, 484);
+            cOUNTRY_CODELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cOUNTRY_CODELabel.Name = "cOUNTRY_CODELabel";
-            cOUNTRY_CODELabel.Size = new System.Drawing.Size(56, 19);
+            cOUNTRY_CODELabel.Size = new System.Drawing.Size(73, 25);
             cOUNTRY_CODELabel.TabIndex = 92;
             cOUNTRY_CODELabel.Text = "Country";
             // 
             // aIRPORTLabel1
             // 
-            aIRPORTLabel1.Location = new System.Drawing.Point(784, 134);
-            aIRPORTLabel1.Margin = new System.Windows.Forms.Padding(4);
+            aIRPORTLabel1.Location = new System.Drawing.Point(1045, 176);
+            aIRPORTLabel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aIRPORTLabel1.Name = "aIRPORTLabel1";
-            aIRPORTLabel1.Size = new System.Drawing.Size(36, 19);
+            aIRPORTLabel1.Size = new System.Drawing.Size(47, 25);
             aIRPORTLabel1.TabIndex = 79;
             aIRPORTLabel1.Text = "Code";
             // 
             // aIR_MILabel
             // 
-            aIR_MILabel.Location = new System.Drawing.Point(1233, 132);
-            aIR_MILabel.Margin = new System.Windows.Forms.Padding(4);
+            aIR_MILabel.Location = new System.Drawing.Point(1644, 174);
+            aIR_MILabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aIR_MILabel.Name = "aIR_MILabel";
-            aIR_MILabel.Size = new System.Drawing.Size(54, 19);
+            aIR_MILabel.Size = new System.Drawing.Size(71, 25);
             aIR_MILabel.TabIndex = 80;
             aIR_MILabel.Text = "Miles to";
             // 
             // aCT_CITYLabel
             // 
-            aCT_CITYLabel.Location = new System.Drawing.Point(784, 263);
-            aCT_CITYLabel.Margin = new System.Windows.Forms.Padding(4);
+            aCT_CITYLabel.Location = new System.Drawing.Point(1045, 346);
+            aCT_CITYLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aCT_CITYLabel.Name = "aCT_CITYLabel";
-            aCT_CITYLabel.Size = new System.Drawing.Size(36, 19);
+            aCT_CITYLabel.Size = new System.Drawing.Size(47, 25);
             aCT_CITYLabel.TabIndex = 79;
             aCT_CITYLabel.Text = "Code";
             // 
             // labelControl6
             // 
-            labelControl6.Location = new System.Drawing.Point(1233, 263);
-            labelControl6.Margin = new System.Windows.Forms.Padding(4);
+            labelControl6.Location = new System.Drawing.Point(1644, 346);
+            labelControl6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             labelControl6.Name = "labelControl6";
-            labelControl6.Size = new System.Drawing.Size(54, 19);
+            labelControl6.Size = new System.Drawing.Size(71, 25);
             labelControl6.TabIndex = 83;
             labelControl6.Text = "Miles to";
             // 
             // lATITUDELabel
             // 
-            lATITUDELabel.Location = new System.Drawing.Point(848, 392);
-            lATITUDELabel.Margin = new System.Windows.Forms.Padding(4);
+            lATITUDELabel.Location = new System.Drawing.Point(1131, 516);
+            lATITUDELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             lATITUDELabel.Name = "lATITUDELabel";
-            lATITUDELabel.Size = new System.Drawing.Size(56, 19);
+            lATITUDELabel.Size = new System.Drawing.Size(75, 25);
             lATITUDELabel.TabIndex = 74;
             lATITUDELabel.Text = "Latitude";
             // 
             // lONGITUDELabel
             // 
-            lONGITUDELabel.Location = new System.Drawing.Point(848, 437);
-            lONGITUDELabel.Margin = new System.Windows.Forms.Padding(4);
+            lONGITUDELabel.Location = new System.Drawing.Point(1131, 575);
+            lONGITUDELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             lONGITUDELabel.Name = "lONGITUDELabel";
-            lONGITUDELabel.Size = new System.Drawing.Size(70, 19);
+            lONGITUDELabel.Size = new System.Drawing.Size(92, 25);
             lONGITUDELabel.TabIndex = 76;
             lONGITUDELabel.Text = "Longitude";
             // 
             // cONTR_CDELabel
             // 
-            cONTR_CDELabel.Location = new System.Drawing.Point(54, 102);
-            cONTR_CDELabel.Margin = new System.Windows.Forms.Padding(4);
+            cONTR_CDELabel.Location = new System.Drawing.Point(72, 134);
+            cONTR_CDELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cONTR_CDELabel.Name = "cONTR_CDELabel";
-            cONTR_CDELabel.Size = new System.Drawing.Size(35, 19);
+            cONTR_CDELabel.Size = new System.Drawing.Size(45, 25);
             cONTR_CDELabel.TabIndex = 14;
             cONTR_CDELabel.Text = "Type";
             // 
             // cONTR_AGYLabel
             // 
-            cONTR_AGYLabel.Location = new System.Drawing.Point(372, 102);
-            cONTR_AGYLabel.Margin = new System.Windows.Forms.Padding(4);
+            cONTR_AGYLabel.Location = new System.Drawing.Point(496, 134);
+            cONTR_AGYLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cONTR_AGYLabel.Name = "cONTR_AGYLabel";
-            cONTR_AGYLabel.Size = new System.Drawing.Size(52, 19);
+            cONTR_AGYLabel.Size = new System.Drawing.Size(68, 25);
             cONTR_AGYLabel.TabIndex = 15;
             cONTR_AGYLabel.Text = "Agency";
             // 
             // rSTR_CDELabel
             // 
-            rSTR_CDELabel.Location = new System.Drawing.Point(54, 156);
-            rSTR_CDELabel.Margin = new System.Windows.Forms.Padding(4);
+            rSTR_CDELabel.Location = new System.Drawing.Point(72, 205);
+            rSTR_CDELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rSTR_CDELabel.Name = "rSTR_CDELabel";
-            rSTR_CDELabel.Size = new System.Drawing.Size(93, 19);
+            rSTR_CDELabel.Size = new System.Drawing.Size(123, 25);
             rSTR_CDELabel.TabIndex = 16;
             rSTR_CDELabel.Text = "Restricted To";
             // 
             // rESTRICTCODELabel
             // 
-            rESTRICTCODELabel.Location = new System.Drawing.Point(280, 314);
-            rESTRICTCODELabel.Margin = new System.Windows.Forms.Padding(4);
+            rESTRICTCODELabel.Location = new System.Drawing.Point(373, 413);
+            rESTRICTCODELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rESTRICTCODELabel.Name = "rESTRICTCODELabel";
-            rESTRICTCODELabel.Size = new System.Drawing.Size(36, 19);
+            rESTRICTCODELabel.Size = new System.Drawing.Size(47, 25);
             rESTRICTCODELabel.TabIndex = 23;
             rESTRICTCODELabel.Text = "Code";
             // 
             // rESTRICTDESCLabel
             // 
-            rESTRICTDESCLabel.Location = new System.Drawing.Point(284, 354);
-            rESTRICTDESCLabel.Margin = new System.Windows.Forms.Padding(4);
+            rESTRICTDESCLabel.Location = new System.Drawing.Point(379, 466);
+            rESTRICTDESCLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rESTRICTDESCLabel.Name = "rESTRICTDESCLabel";
-            rESTRICTDESCLabel.Size = new System.Drawing.Size(79, 19);
+            rESTRICTDESCLabel.Size = new System.Drawing.Size(104, 25);
             rESTRICTDESCLabel.TabIndex = 25;
             rESTRICTDESCLabel.Text = "Description";
             // 
             // aDMINCLOSEDLabel
             // 
-            aDMINCLOSEDLabel.Location = new System.Drawing.Point(106, 70);
-            aDMINCLOSEDLabel.Margin = new System.Windows.Forms.Padding(4);
+            aDMINCLOSEDLabel.Location = new System.Drawing.Point(141, 92);
+            aDMINCLOSEDLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aDMINCLOSEDLabel.Name = "aDMINCLOSEDLabel";
-            aDMINCLOSEDLabel.Size = new System.Drawing.Size(105, 19);
+            aDMINCLOSEDLabel.Size = new System.Drawing.Size(135, 25);
             aDMINCLOSEDLabel.TabIndex = 25;
             aDMINCLOSEDLabel.Text = "Admin Closed:";
             // 
             // iNACTIVELabel
             // 
-            iNACTIVELabel.Location = new System.Drawing.Point(144, 114);
-            iNACTIVELabel.Margin = new System.Windows.Forms.Padding(4);
+            iNACTIVELabel.Location = new System.Drawing.Point(192, 150);
+            iNACTIVELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             iNACTIVELabel.Name = "iNACTIVELabel";
-            iNACTIVELabel.Size = new System.Drawing.Size(61, 19);
+            iNACTIVELabel.Size = new System.Drawing.Size(81, 25);
             iNACTIVELabel.TabIndex = 27;
             iNACTIVELabel.Text = "Inactive:";
             // 
             // pFRD_FLGLabel
             // 
-            pFRD_FLGLabel.Location = new System.Drawing.Point(99, 158);
-            pFRD_FLGLabel.Margin = new System.Windows.Forms.Padding(4);
+            pFRD_FLGLabel.Location = new System.Drawing.Point(132, 208);
+            pFRD_FLGLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             pFRD_FLGLabel.Name = "pFRD_FLGLabel";
-            pFRD_FLGLabel.Size = new System.Drawing.Size(113, 19);
+            pFRD_FLGLabel.Size = new System.Drawing.Size(150, 25);
             pFRD_FLGLabel.TabIndex = 29;
             pFRD_FLGLabel.Text = "Preferred Hotel:";
             // 
             // rATELabel
             // 
-            rATELabel.Location = new System.Drawing.Point(176, 199);
-            rATELabel.Margin = new System.Windows.Forms.Padding(4);
+            rATELabel.Location = new System.Drawing.Point(235, 262);
+            rATELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             rATELabel.Name = "rATELabel";
-            rATELabel.Size = new System.Drawing.Size(51, 19);
+            rATELabel.Size = new System.Drawing.Size(67, 25);
             rATELabel.TabIndex = 31;
             rATELabel.Text = "Rating:";
             // 
             // typeLabel
             // 
-            typeLabel.Location = new System.Drawing.Point(178, 238);
-            typeLabel.Margin = new System.Windows.Forms.Padding(4);
+            typeLabel.Location = new System.Drawing.Point(237, 313);
+            typeLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             typeLabel.Name = "typeLabel";
-            typeLabel.Size = new System.Drawing.Size(41, 19);
+            typeLabel.Size = new System.Drawing.Size(52, 25);
             typeLabel.TabIndex = 32;
             typeLabel.Text = "Type:";
             // 
             // cITY_CODELabel
             // 
-            cITY_CODELabel.Location = new System.Drawing.Point(176, 278);
-            cITY_CODELabel.Margin = new System.Windows.Forms.Padding(4);
+            cITY_CODELabel.Location = new System.Drawing.Point(235, 366);
+            cITY_CODELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cITY_CODELabel.Name = "cITY_CODELabel";
-            cITY_CODELabel.Size = new System.Drawing.Size(39, 19);
+            cITY_CODELabel.Size = new System.Drawing.Size(50, 25);
             cITY_CODELabel.TabIndex = 36;
             cITY_CODELabel.Text = "Area:";
             // 
             // aLTERN_1Label
             // 
-            aLTERN_1Label.Location = new System.Drawing.Point(81, 317);
-            aLTERN_1Label.Margin = new System.Windows.Forms.Padding(4);
+            aLTERN_1Label.Location = new System.Drawing.Point(108, 417);
+            aLTERN_1Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aLTERN_1Label.Name = "aLTERN_1Label";
-            aLTERN_1Label.Size = new System.Drawing.Size(137, 19);
+            aLTERN_1Label.Size = new System.Drawing.Size(180, 25);
             aLTERN_1Label.TabIndex = 37;
             aLTERN_1Label.Text = "Primary Alternates:";
             // 
             // aLTERN_2Label
             // 
-            aLTERN_2Label.Location = new System.Drawing.Point(144, 357);
-            aLTERN_2Label.Margin = new System.Windows.Forms.Padding(4);
+            aLTERN_2Label.Location = new System.Drawing.Point(192, 470);
+            aLTERN_2Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aLTERN_2Label.Name = "aLTERN_2Label";
-            aLTERN_2Label.Size = new System.Drawing.Size(0, 19);
+            aLTERN_2Label.Size = new System.Drawing.Size(0, 25);
             aLTERN_2Label.TabIndex = 38;
             // 
             // aLTERN_3Label
             // 
-            aLTERN_3Label.Location = new System.Drawing.Point(144, 396);
-            aLTERN_3Label.Margin = new System.Windows.Forms.Padding(4);
+            aLTERN_3Label.Location = new System.Drawing.Point(192, 521);
+            aLTERN_3Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             aLTERN_3Label.Name = "aLTERN_3Label";
-            aLTERN_3Label.Size = new System.Drawing.Size(0, 19);
+            aLTERN_3Label.Size = new System.Drawing.Size(0, 25);
             aLTERN_3Label.TabIndex = 39;
             // 
             // cLOSEUPDDATELabel
             // 
-            cLOSEUPDDATELabel.Location = new System.Drawing.Point(362, 76);
-            cLOSEUPDDATELabel.Margin = new System.Windows.Forms.Padding(4);
+            cLOSEUPDDATELabel.Location = new System.Drawing.Point(483, 100);
+            cLOSEUPDDATELabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cLOSEUPDDATELabel.Name = "cLOSEUPDDATELabel";
-            cLOSEUPDDATELabel.Size = new System.Drawing.Size(91, 19);
+            cLOSEUPDDATELabel.Size = new System.Drawing.Size(120, 25);
             cLOSEUPDDATELabel.TabIndex = 40;
             cLOSEUPDDATELabel.Text = "Changed on:";
             // 
             // cLOSEUPDBYLabel
             // 
-            cLOSEUPDBYLabel.Location = new System.Drawing.Point(704, 75);
-            cLOSEUPDBYLabel.Margin = new System.Windows.Forms.Padding(4);
+            cLOSEUPDBYLabel.Location = new System.Drawing.Point(939, 99);
+            cLOSEUPDBYLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cLOSEUPDBYLabel.Name = "cLOSEUPDBYLabel";
-            cLOSEUPDBYLabel.Size = new System.Drawing.Size(23, 19);
+            cLOSEUPDBYLabel.Size = new System.Drawing.Size(30, 25);
             cLOSEUPDBYLabel.TabIndex = 42;
             cLOSEUPDBYLabel.Text = "By:";
             // 
             // tourfaxEmailFormatLabel
             // 
             tourfaxEmailFormatLabel.AutoSize = true;
-            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(465, 132);
-            tourfaxEmailFormatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(620, 174);
+            tourfaxEmailFormatLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             tourfaxEmailFormatLabel.Name = "tourfaxEmailFormatLabel";
-            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(163, 19);
+            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(214, 25);
             tourfaxEmailFormatLabel.TabIndex = 91;
             tourfaxEmailFormatLabel.Text = "Tourfax Email Format";
             // 
             // cHAINLabel
             // 
-            cHAINLabel.Location = new System.Drawing.Point(124, 58);
-            cHAINLabel.Margin = new System.Windows.Forms.Padding(4);
+            cHAINLabel.Location = new System.Drawing.Point(165, 76);
+            cHAINLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             cHAINLabel.Name = "cHAINLabel";
-            cHAINLabel.Size = new System.Drawing.Size(40, 19);
+            cHAINLabel.Size = new System.Drawing.Size(53, 25);
             cHAINLabel.TabIndex = 11;
             cHAINLabel.Text = "Chain";
             // 
             // bRANDLabel
             // 
-            bRANDLabel.Location = new System.Drawing.Point(630, 58);
-            bRANDLabel.Margin = new System.Windows.Forms.Padding(4);
+            bRANDLabel.Location = new System.Drawing.Point(840, 76);
+            bRANDLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             bRANDLabel.Name = "bRANDLabel";
-            bRANDLabel.Size = new System.Drawing.Size(41, 19);
+            bRANDLabel.Size = new System.Drawing.Size(56, 25);
             bRANDLabel.TabIndex = 12;
             bRANDLabel.Text = "Brand";
             // 
             // oPERLabel
             // 
-            oPERLabel.Location = new System.Drawing.Point(124, 120);
-            oPERLabel.Margin = new System.Windows.Forms.Padding(4);
+            oPERLabel.Location = new System.Drawing.Point(165, 158);
+            oPERLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             oPERLabel.Name = "oPERLabel";
-            oPERLabel.Size = new System.Drawing.Size(63, 19);
+            oPERLabel.Size = new System.Drawing.Size(83, 25);
             oPERLabel.TabIndex = 13;
             oPERLabel.Text = "Operator";
             // 
             // mGMT_COLabel
             // 
-            mGMT_COLabel.Location = new System.Drawing.Point(630, 120);
-            mGMT_COLabel.Margin = new System.Windows.Forms.Padding(4);
+            mGMT_COLabel.Location = new System.Drawing.Point(840, 158);
+            mGMT_COLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             mGMT_COLabel.Name = "mGMT_COLabel";
-            mGMT_COLabel.Size = new System.Drawing.Size(69, 19);
+            mGMT_COLabel.Size = new System.Drawing.Size(90, 25);
             mGMT_COLabel.TabIndex = 14;
             mGMT_COLabel.Text = "Mgmt Co.";
             // 
             // requestableLabel
             // 
             requestableLabel.AutoSize = true;
-            requestableLabel.Location = new System.Drawing.Point(657, 70);
-            requestableLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            requestableLabel.Location = new System.Drawing.Point(876, 92);
+            requestableLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             requestableLabel.Name = "requestableLabel";
-            requestableLabel.Size = new System.Drawing.Size(100, 19);
+            requestableLabel.Size = new System.Drawing.Size(133, 25);
             requestableLabel.TabIndex = 100;
             requestableLabel.Text = "Requestable:";
             // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.MaxItemId = 0;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1740, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 918);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1740, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 918);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1740, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 918);
-            // 
             // nAMECHGLabel
             // 
-            this.nAMECHGLabel.Location = new System.Drawing.Point(322, 70);
-            this.nAMECHGLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.nAMECHGLabel.Location = new System.Drawing.Point(429, 92);
+            this.nAMECHGLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.nAMECHGLabel.Name = "nAMECHGLabel";
-            this.nAMECHGLabel.Size = new System.Drawing.Size(144, 19);
+            this.nAMECHGLabel.Size = new System.Drawing.Size(189, 25);
             this.nAMECHGLabel.TabIndex = 48;
             this.nAMECHGLabel.Text = "Allow Name Change";
             // 
             // uSE_CLIENT_LOGOLabel
             // 
-            this.uSE_CLIENT_LOGOLabel.Location = new System.Drawing.Point(448, 362);
-            this.uSE_CLIENT_LOGOLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.uSE_CLIENT_LOGOLabel.Location = new System.Drawing.Point(597, 476);
+            this.uSE_CLIENT_LOGOLabel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.uSE_CLIENT_LOGOLabel.Name = "uSE_CLIENT_LOGOLabel";
-            this.uSE_CLIENT_LOGOLabel.Size = new System.Drawing.Size(131, 19);
+            this.uSE_CLIENT_LOGOLabel.Size = new System.Drawing.Size(168, 25);
             this.uSE_CLIENT_LOGOLabel.TabIndex = 70;
             this.uSE_CLIENT_LOGOLabel.Text = "Allow Client Logo:";
             // 
@@ -1603,148 +1547,15 @@
             this.HotelBindingSource.DataSource = typeof(FlexModel.HOTEL);
             this.HotelBindingSource.CurrentChanged += new System.EventHandler(this.hOTELBindingSource_CurrentChanged);
             // 
-            // HotelBindingNavigator
-            // 
-            this.HotelBindingNavigator.AddNewItem = null;
-            this.HotelBindingNavigator.BindingSource = this.HotelBindingSource;
-            this.HotelBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.HotelBindingNavigator.DeleteItem = null;
-            this.HotelBindingNavigator.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.HotelBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.hOTELBindingNavigatorSaveItem});
-            this.HotelBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.HotelBindingNavigator.MoveFirstItem = null;
-            this.HotelBindingNavigator.MoveLastItem = null;
-            this.HotelBindingNavigator.MoveNextItem = null;
-            this.HotelBindingNavigator.MovePreviousItem = null;
-            this.HotelBindingNavigator.Name = "HotelBindingNavigator";
-            this.HotelBindingNavigator.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.HotelBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.HotelBindingNavigator.Size = new System.Drawing.Size(1740, 31);
-            this.HotelBindingNavigator.TabIndex = 1;
-            this.HotelBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(54, 28);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(73, 31);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(28, 28);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // hOTELBindingNavigatorSaveItem
-            // 
-            this.hOTELBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.hOTELBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("hOTELBindingNavigatorSaveItem.Image")));
-            this.hOTELBindingNavigatorSaveItem.Name = "hOTELBindingNavigatorSaveItem";
-            this.hOTELBindingNavigatorSaveItem.Size = new System.Drawing.Size(28, 28);
-            this.hOTELBindingNavigatorSaveItem.Text = "Save Data";
-            this.hOTELBindingNavigatorSaveItem.Click += new System.EventHandler(this.hOTELBindingNavigatorSaveItem_Click);
-            // 
             // TextEditName
             // 
             this.TextEditName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "NAME", true));
             this.TextEditName.EnterMoveNextControl = true;
-            this.TextEditName.Location = new System.Drawing.Point(106, 61);
-            this.TextEditName.Margin = new System.Windows.Forms.Padding(4);
+            this.TextEditName.Location = new System.Drawing.Point(141, 80);
+            this.TextEditName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.TextEditName.Name = "TextEditName";
             this.TextEditName.Properties.MaxLength = 60;
-            this.TextEditName.Size = new System.Drawing.Size(618, 26);
+            this.TextEditName.Size = new System.Drawing.Size(824, 34);
             this.TextEditName.TabIndex = 2;
             this.TextEditName.Enter += new System.EventHandler(this.enterControl);
             this.TextEditName.Leave += new System.EventHandler(this.nAMETextBox_Leave);
@@ -1753,12 +1564,12 @@
             // 
             this.GridControlHotels.DataSource = this.HotelBindingSource;
             this.GridControlHotels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlHotels.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlHotels.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlHotels.Location = new System.Drawing.Point(0, 0);
             this.GridControlHotels.MainView = this.GridViewHotels;
-            this.GridControlHotels.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlHotels.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlHotels.Name = "GridControlHotels";
-            this.GridControlHotels.Size = new System.Drawing.Size(270, 887);
+            this.GridControlHotels.Size = new System.Drawing.Size(360, 1148);
             this.GridControlHotels.TabIndex = 8;
             this.GridControlHotels.TabStop = false;
             this.GridControlHotels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2520,36 +2331,36 @@
             // labelControl1
             // 
             this.labelControl1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "LAST_UPD", true));
-            this.labelControl1.Location = new System.Drawing.Point(493, 30);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl1.Location = new System.Drawing.Point(657, 39);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(0, 19);
+            this.labelControl1.Size = new System.Drawing.Size(0, 25);
             this.labelControl1.TabIndex = 10;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(677, 30);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl2.Location = new System.Drawing.Point(903, 39);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(23, 19);
+            this.labelControl2.Size = new System.Drawing.Size(30, 25);
             this.labelControl2.TabIndex = 11;
             this.labelControl2.Text = "By:";
             // 
             // labelControl3
             // 
             this.labelControl3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "UPD_INIT", true));
-            this.labelControl3.Location = new System.Drawing.Point(710, 29);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl3.Location = new System.Drawing.Point(947, 38);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(0, 19);
+            this.labelControl3.Size = new System.Drawing.Size(0, 25);
             this.labelControl3.TabIndex = 12;
             // 
             // xtraTabPage10
             // 
             this.xtraTabPage10.Controls.Add(this.panelControl20);
-            this.xtraTabPage10.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage10.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage10.Name = "xtraTabPage10";
-            this.xtraTabPage10.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage10.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage10.Text = "Commissions";
             // 
             // panelControl20
@@ -2567,51 +2378,51 @@
             this.panelControl20.Controls.Add(this.simpleButton2);
             this.panelControl20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl20.Location = new System.Drawing.Point(0, 0);
-            this.panelControl20.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl20.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl20.Name = "panelControl20";
-            this.panelControl20.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl20.Size = new System.Drawing.Size(1872, 906);
             this.panelControl20.TabIndex = 0;
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(18, 387);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl14.Location = new System.Drawing.Point(24, 509);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(59, 19);
+            this.labelControl14.Size = new System.Drawing.Size(78, 25);
             this.labelControl14.TabIndex = 84;
             this.labelControl14.Text = "Markups";
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(18, 83);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl13.Location = new System.Drawing.Point(24, 109);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(94, 19);
+            this.labelControl13.Size = new System.Drawing.Size(120, 25);
             this.labelControl13.TabIndex = 83;
             this.labelControl13.Text = "Commissions";
             // 
             // ImageComboBoxEditAgentComm
             // 
             this.ImageComboBoxEditAgentComm.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAgentComm.Location = new System.Drawing.Point(266, 31);
-            this.ImageComboBoxEditAgentComm.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditAgentComm.Location = new System.Drawing.Point(355, 41);
+            this.ImageComboBoxEditAgentComm.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditAgentComm.Name = "ImageComboBoxEditAgentComm";
             this.ImageComboBoxEditAgentComm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAgentComm.Size = new System.Drawing.Size(280, 26);
+            this.ImageComboBoxEditAgentComm.Size = new System.Drawing.Size(373, 34);
             this.ImageComboBoxEditAgentComm.TabIndex = 81;
             // 
             // gridControl5
             // 
-            this.gridControl5.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl5.Location = new System.Drawing.Point(14, 419);
+            this.gridControl5.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gridControl5.Location = new System.Drawing.Point(19, 551);
             this.gridControl5.MainView = this.gridView6;
-            this.gridControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gridControl5.Name = "gridControl5";
             this.gridControl5.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit4,
             this.repositoryItemCheckEdit1});
-            this.gridControl5.Size = new System.Drawing.Size(1366, 235);
+            this.gridControl5.Size = new System.Drawing.Size(1821, 309);
             this.gridControl5.TabIndex = 44;
             this.gridControl5.TabStop = false;
             this.gridControl5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2759,15 +2570,15 @@
             // 
             // gridControl6
             // 
-            this.gridControl6.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControl6.Location = new System.Drawing.Point(14, 111);
+            this.gridControl6.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gridControl6.Location = new System.Drawing.Point(19, 146);
             this.gridControl6.MainView = this.gridView5;
-            this.gridControl6.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControl6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gridControl6.Name = "gridControl6";
             this.gridControl6.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2,
             this.repositoryItemCheckEdit3});
-            this.gridControl6.Size = new System.Drawing.Size(1366, 235);
+            this.gridControl6.Size = new System.Drawing.Size(1821, 309);
             this.gridControl6.TabIndex = 43;
             this.gridControl6.TabStop = false;
             this.gridControl6.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2915,18 +2726,18 @@
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(21, 35);
-            this.labelControl12.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl12.Location = new System.Drawing.Point(28, 46);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(48, 19);
+            this.labelControl12.Size = new System.Drawing.Size(64, 25);
             this.labelControl12.TabIndex = 39;
             this.labelControl12.Text = "Source";
             // 
             // ComboBoxEditSource
             // 
             this.ComboBoxEditSource.EnterMoveNextControl = true;
-            this.ComboBoxEditSource.Location = new System.Drawing.Point(82, 29);
-            this.ComboBoxEditSource.Margin = new System.Windows.Forms.Padding(4);
+            this.ComboBoxEditSource.Location = new System.Drawing.Point(109, 38);
+            this.ComboBoxEditSource.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ComboBoxEditSource.Name = "ComboBoxEditSource";
             this.ComboBoxEditSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2935,15 +2746,15 @@
             "REMOTE",
             "H2H",
             "WEB"});
-            this.ComboBoxEditSource.Size = new System.Drawing.Size(105, 26);
+            this.ComboBoxEditSource.Size = new System.Drawing.Size(140, 34);
             this.ComboBoxEditSource.TabIndex = 80;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(572, 35);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl11.Location = new System.Drawing.Point(763, 46);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(70, 19);
+            this.labelControl11.Size = new System.Drawing.Size(95, 25);
             this.labelControl11.TabIndex = 0;
             this.labelControl11.Text = "Start Date";
             // 
@@ -2951,31 +2762,31 @@
             // 
             this.dateComm.CausesValidation = false;
             this.dateComm.EnterMoveNextControl = true;
-            this.dateComm.Location = new System.Drawing.Point(658, 29);
-            this.dateComm.Margin = new System.Windows.Forms.Padding(4);
+            this.dateComm.Location = new System.Drawing.Point(877, 38);
+            this.dateComm.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dateComm.Name = "dateComm";
             this.dateComm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateComm.Size = new System.Drawing.Size(226, 26);
+            this.dateComm.Size = new System.Drawing.Size(301, 34);
             this.dateComm.TabIndex = 82;
             this.dateComm.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateComm_ButtonClick);
             this.dateComm.TextChanged += new System.EventHandler(this.dateComm_TextChanged);
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(200, 35);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl10.Location = new System.Drawing.Point(267, 46);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(52, 19);
+            this.labelControl10.Size = new System.Drawing.Size(68, 25);
             this.labelControl10.TabIndex = 0;
             this.labelControl10.Text = "Agency";
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(897, 29);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButton2.Location = new System.Drawing.Point(1196, 38);
+            this.simpleButton2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(82, 31);
+            this.simpleButton2.Size = new System.Drawing.Size(109, 41);
             this.simpleButton2.TabIndex = 3;
             this.simpleButton2.Text = "Search";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -2983,9 +2794,9 @@
             // xtraTabPage9
             // 
             this.xtraTabPage9.Controls.Add(this.panelControl9);
-            this.xtraTabPage9.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage9.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage9.Name = "xtraTabPage9";
-            this.xtraTabPage9.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage9.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage9.Text = "Custom";
             // 
             // panelControl9
@@ -2994,20 +2805,20 @@
             this.panelControl9.Controls.Add(this.labelControl8);
             this.panelControl9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl9.Location = new System.Drawing.Point(0, 0);
-            this.panelControl9.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl9.Name = "panelControl9";
-            this.panelControl9.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl9.Size = new System.Drawing.Size(1872, 906);
             this.panelControl9.TabIndex = 0;
             // 
             // GridControlCustom
             // 
             this.GridControlCustom.DataSource = this.UserfieldBindingSource;
-            this.GridControlCustom.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlCustom.Location = new System.Drawing.Point(36, 95);
+            this.GridControlCustom.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlCustom.Location = new System.Drawing.Point(48, 125);
             this.GridControlCustom.MainView = this.GridViewCustom;
-            this.GridControlCustom.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlCustom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlCustom.Name = "GridControlCustom";
-            this.GridControlCustom.Size = new System.Drawing.Size(1148, 443);
+            this.GridControlCustom.Size = new System.Drawing.Size(1531, 583);
             this.GridControlCustom.TabIndex = 1;
             this.GridControlCustom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewCustom});
@@ -3127,10 +2938,10 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(38, 38);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl8.Location = new System.Drawing.Point(51, 50);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(138, 19);
+            this.labelControl8.Size = new System.Drawing.Size(183, 25);
             this.labelControl8.TabIndex = 0;
             this.labelControl8.Text = "User-defined fields:";
             // 
@@ -3138,10 +2949,10 @@
             // 
             this.ButtonSaveChanges.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonSaveChanges.ImageOptions.Image")));
             this.ButtonSaveChanges.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonSaveChanges.Location = new System.Drawing.Point(196, 583);
-            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonSaveChanges.Location = new System.Drawing.Point(261, 767);
+            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ButtonSaveChanges.Name = "ButtonSaveChanges";
-            this.ButtonSaveChanges.Size = new System.Drawing.Size(58, 53);
+            this.ButtonSaveChanges.Size = new System.Drawing.Size(77, 70);
             this.ButtonSaveChanges.TabIndex = 3;
             this.ButtonSaveChanges.TabStop = false;
             this.ButtonSaveChanges.Text = "simpleButton3";
@@ -3151,10 +2962,10 @@
             // 
             this.DelRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DelRow.ImageOptions.Image")));
             this.DelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.DelRow.Location = new System.Drawing.Point(123, 583);
-            this.DelRow.Margin = new System.Windows.Forms.Padding(4);
+            this.DelRow.Location = new System.Drawing.Point(164, 767);
+            this.DelRow.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.DelRow.Name = "DelRow";
-            this.DelRow.Size = new System.Drawing.Size(51, 53);
+            this.DelRow.Size = new System.Drawing.Size(68, 70);
             this.DelRow.TabIndex = 4;
             this.DelRow.TabStop = false;
             this.DelRow.Text = "simpleButton4";
@@ -3164,10 +2975,10 @@
             // 
             this.ButtonAddRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRow.ImageOptions.Image")));
             this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(45, 583);
-            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonAddRow.Location = new System.Drawing.Point(60, 767);
+            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ButtonAddRow.Name = "ButtonAddRow";
-            this.ButtonAddRow.Size = new System.Drawing.Size(54, 53);
+            this.ButtonAddRow.Size = new System.Drawing.Size(72, 70);
             this.ButtonAddRow.TabIndex = 5;
             this.ButtonAddRow.TabStop = false;
             this.ButtonAddRow.Text = "simpleButton3";
@@ -3176,9 +2987,9 @@
             // xtraTabPage8
             // 
             this.xtraTabPage8.Controls.Add(this.panelControl8);
-            this.xtraTabPage8.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage8.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage8.Name = "xtraTabPage8";
-            this.xtraTabPage8.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage8.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage8.Text = "Memberships";
             // 
             // panelControl8
@@ -3198,23 +3009,23 @@
             this.panelControl8.Controls.Add(cHAINLabel);
             this.panelControl8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl8.Location = new System.Drawing.Point(0, 0);
-            this.panelControl8.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl8.Name = "panelControl8";
-            this.panelControl8.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl8.Size = new System.Drawing.Size(1872, 906);
             this.panelControl8.TabIndex = 0;
             // 
             // GridControlDetail
             // 
             this.GridControlDetail.DataSource = this.DetailBindingSource;
-            this.GridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlDetail.Location = new System.Drawing.Point(45, 191);
+            this.GridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlDetail.Location = new System.Drawing.Point(60, 251);
             this.GridControlDetail.MainView = this.GridViewDetail;
-            this.GridControlDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlDetail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlDetail.Name = "GridControlDetail";
             this.GridControlDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2,
             this.repositoryItemPopupContainerEdit1});
-            this.GridControlDetail.Size = new System.Drawing.Size(1131, 355);
+            this.GridControlDetail.Size = new System.Drawing.Size(1508, 467);
             this.GridControlDetail.TabIndex = 20;
             this.GridControlDetail.TabStop = false;
             this.GridControlDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -3291,28 +3102,28 @@
             this.popupContainerControlLookup.Controls.Add(this.LookupButtonCancel);
             this.popupContainerControlLookup.Controls.Add(this.LookupButtonOk);
             this.popupContainerControlLookup.Controls.Add(this.GridControlLookup);
-            this.popupContainerControlLookup.Location = new System.Drawing.Point(106, 837);
-            this.popupContainerControlLookup.Margin = new System.Windows.Forms.Padding(4);
+            this.popupContainerControlLookup.Location = new System.Drawing.Point(141, 1101);
+            this.popupContainerControlLookup.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.popupContainerControlLookup.Name = "popupContainerControlLookup";
-            this.popupContainerControlLookup.Size = new System.Drawing.Size(596, 574);
+            this.popupContainerControlLookup.Size = new System.Drawing.Size(795, 755);
             this.popupContainerControlLookup.TabIndex = 18;
             // 
             // LookupButtonCancel
             // 
-            this.LookupButtonCancel.Location = new System.Drawing.Point(321, 438);
-            this.LookupButtonCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.LookupButtonCancel.Location = new System.Drawing.Point(428, 576);
+            this.LookupButtonCancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.LookupButtonCancel.Name = "LookupButtonCancel";
-            this.LookupButtonCancel.Size = new System.Drawing.Size(112, 34);
+            this.LookupButtonCancel.Size = new System.Drawing.Size(149, 45);
             this.LookupButtonCancel.TabIndex = 2;
             this.LookupButtonCancel.Text = "Cancel";
             this.LookupButtonCancel.Click += new System.EventHandler(this.LookupButtonCancel_Click);
             // 
             // LookupButtonOk
             // 
-            this.LookupButtonOk.Location = new System.Drawing.Point(150, 438);
-            this.LookupButtonOk.Margin = new System.Windows.Forms.Padding(4);
+            this.LookupButtonOk.Location = new System.Drawing.Point(200, 576);
+            this.LookupButtonOk.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.LookupButtonOk.Name = "LookupButtonOk";
-            this.LookupButtonOk.Size = new System.Drawing.Size(112, 34);
+            this.LookupButtonOk.Size = new System.Drawing.Size(149, 45);
             this.LookupButtonOk.TabIndex = 1;
             this.LookupButtonOk.Text = "OK";
             this.LookupButtonOk.Click += new System.EventHandler(this.LookupButtonOk_Click);
@@ -3320,12 +3131,12 @@
             // GridControlLookup
             // 
             this.GridControlLookup.DataSource = this.lOOKUPBindingSource;
-            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlLookup.Location = new System.Drawing.Point(40, 32);
+            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlLookup.Location = new System.Drawing.Point(53, 42);
             this.GridControlLookup.MainView = this.GridViewLookup;
-            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(492, 380);
+            this.GridControlLookup.Size = new System.Drawing.Size(656, 500);
             this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -3456,12 +3267,12 @@
             // 
             this.ImageComboBoxEditMgmt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "MGMT_CO", true));
             this.ImageComboBoxEditMgmt.EnterMoveNextControl = true;
-            this.ImageComboBoxEditMgmt.Location = new System.Drawing.Point(705, 115);
-            this.ImageComboBoxEditMgmt.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditMgmt.Location = new System.Drawing.Point(940, 151);
+            this.ImageComboBoxEditMgmt.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditMgmt.Name = "ImageComboBoxEditMgmt";
             this.ImageComboBoxEditMgmt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditMgmt.Size = new System.Drawing.Size(339, 26);
+            this.ImageComboBoxEditMgmt.Size = new System.Drawing.Size(452, 34);
             this.ImageComboBoxEditMgmt.TabIndex = 75;
             this.ImageComboBoxEditMgmt.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditMgmt.Leave += new System.EventHandler(this.ImageComboBoxEditMgmt_Leave);
@@ -3470,12 +3281,12 @@
             // 
             this.ImageComboBoxEditOper.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "OPER", true));
             this.ImageComboBoxEditOper.EnterMoveNextControl = true;
-            this.ImageComboBoxEditOper.Location = new System.Drawing.Point(208, 115);
-            this.ImageComboBoxEditOper.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditOper.Location = new System.Drawing.Point(277, 151);
+            this.ImageComboBoxEditOper.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditOper.Name = "ImageComboBoxEditOper";
             this.ImageComboBoxEditOper.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditOper.Size = new System.Drawing.Size(369, 26);
+            this.ImageComboBoxEditOper.Size = new System.Drawing.Size(492, 34);
             this.ImageComboBoxEditOper.TabIndex = 74;
             this.ImageComboBoxEditOper.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditOper.Leave += new System.EventHandler(this.ImageComboBoxEditOper_Leave);
@@ -3484,12 +3295,12 @@
             // 
             this.ImageComboBoxEditBrand.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "BRAND", true));
             this.ImageComboBoxEditBrand.EnterMoveNextControl = true;
-            this.ImageComboBoxEditBrand.Location = new System.Drawing.Point(705, 54);
-            this.ImageComboBoxEditBrand.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditBrand.Location = new System.Drawing.Point(940, 71);
+            this.ImageComboBoxEditBrand.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditBrand.Name = "ImageComboBoxEditBrand";
             this.ImageComboBoxEditBrand.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditBrand.Size = new System.Drawing.Size(339, 26);
+            this.ImageComboBoxEditBrand.Size = new System.Drawing.Size(452, 34);
             this.ImageComboBoxEditBrand.TabIndex = 73;
             this.ImageComboBoxEditBrand.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditBrand.Leave += new System.EventHandler(this.ImageComboBoxEditBrand_Leave);
@@ -3498,22 +3309,22 @@
             // 
             this.ImageComboBoxEditChain.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CHAIN", true));
             this.ImageComboBoxEditChain.EnterMoveNextControl = true;
-            this.ImageComboBoxEditChain.Location = new System.Drawing.Point(207, 54);
-            this.ImageComboBoxEditChain.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditChain.Location = new System.Drawing.Point(276, 71);
+            this.ImageComboBoxEditChain.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditChain.Name = "ImageComboBoxEditChain";
             this.ImageComboBoxEditChain.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditChain.Size = new System.Drawing.Size(369, 26);
+            this.ImageComboBoxEditChain.Size = new System.Drawing.Size(492, 34);
             this.ImageComboBoxEditChain.TabIndex = 72;
             this.ImageComboBoxEditChain.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditChain.Leave += new System.EventHandler(this.ImageComboBoxEditChain_Leave);
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(40, 162);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl7.Location = new System.Drawing.Point(53, 213);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(104, 19);
+            this.labelControl7.Size = new System.Drawing.Size(136, 25);
             this.labelControl7.TabIndex = 19;
             this.labelControl7.Text = "Classifications:";
             // 
@@ -3521,9 +3332,9 @@
             // 
             this.xtraTabPage7.AutoScroll = true;
             this.xtraTabPage7.Controls.Add(this.panelControl7);
-            this.xtraTabPage7.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage7.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage7.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage7.Text = "Accounting";
             // 
             // panelControl7
@@ -3551,9 +3362,9 @@
             this.panelControl7.Controls.Add(this.shapeContainer6);
             this.panelControl7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl7.Location = new System.Drawing.Point(0, 0);
-            this.panelControl7.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl7.Size = new System.Drawing.Size(1872, 906);
             this.panelControl7.TabIndex = 0;
             // 
             // pERSONTAXSpinEdit
@@ -3565,12 +3376,12 @@
             0,
             0});
             this.pERSONTAXSpinEdit.EnterMoveNextControl = true;
-            this.pERSONTAXSpinEdit.Location = new System.Drawing.Point(870, 210);
-            this.pERSONTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.pERSONTAXSpinEdit.Location = new System.Drawing.Point(1160, 276);
+            this.pERSONTAXSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pERSONTAXSpinEdit.Name = "pERSONTAXSpinEdit";
             this.pERSONTAXSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.pERSONTAXSpinEdit.Size = new System.Drawing.Size(86, 26);
+            this.pERSONTAXSpinEdit.Size = new System.Drawing.Size(115, 34);
             this.pERSONTAXSpinEdit.TabIndex = 68;
             this.pERSONTAXSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.pERSONTAXSpinEdit.Leave += new System.EventHandler(this.pERSONTAXSpinEdit_Leave);
@@ -3579,10 +3390,10 @@
             // 
             this.label11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Appearance.Options.UseFont = true;
-            this.label11.Location = new System.Drawing.Point(692, 79);
-            this.label11.Margin = new System.Windows.Forms.Padding(4);
+            this.label11.Location = new System.Drawing.Point(923, 104);
+            this.label11.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 21);
+            this.label11.Size = new System.Drawing.Size(58, 27);
             this.label11.TabIndex = 42;
             this.label11.Text = "Taxes";
             // 
@@ -3595,12 +3406,12 @@
             0,
             0});
             this.rOOMTAXSpinEdit.EnterMoveNextControl = true;
-            this.rOOMTAXSpinEdit.Location = new System.Drawing.Point(870, 170);
-            this.rOOMTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.rOOMTAXSpinEdit.Location = new System.Drawing.Point(1160, 224);
+            this.rOOMTAXSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rOOMTAXSpinEdit.Name = "rOOMTAXSpinEdit";
             this.rOOMTAXSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.rOOMTAXSpinEdit.Size = new System.Drawing.Size(86, 26);
+            this.rOOMTAXSpinEdit.Size = new System.Drawing.Size(115, 34);
             this.rOOMTAXSpinEdit.TabIndex = 67;
             this.rOOMTAXSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.rOOMTAXSpinEdit.Leave += new System.EventHandler(this.rOOMTAXSpinEdit_Leave);
@@ -3609,11 +3420,11 @@
             // 
             this.aP_MGRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP_MGR", true));
             this.aP_MGRTextBox.EnterMoveNextControl = true;
-            this.aP_MGRTextBox.Location = new System.Drawing.Point(190, 361);
-            this.aP_MGRTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aP_MGRTextBox.Location = new System.Drawing.Point(253, 475);
+            this.aP_MGRTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aP_MGRTextBox.Name = "aP_MGRTextBox";
             this.aP_MGRTextBox.Properties.MaxLength = 20;
-            this.aP_MGRTextBox.Size = new System.Drawing.Size(374, 26);
+            this.aP_MGRTextBox.Size = new System.Drawing.Size(499, 34);
             this.aP_MGRTextBox.TabIndex = 69;
             this.aP_MGRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aP_MGRTextBox.Leave += new System.EventHandler(this.aP_MGRTextBox_Leave);
@@ -3622,11 +3433,11 @@
             // 
             this.aP_EMAILTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP_EMAIL", true));
             this.aP_EMAILTextBox.EnterMoveNextControl = true;
-            this.aP_EMAILTextBox.Location = new System.Drawing.Point(190, 400);
-            this.aP_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aP_EMAILTextBox.Location = new System.Drawing.Point(253, 526);
+            this.aP_EMAILTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aP_EMAILTextBox.Name = "aP_EMAILTextBox";
             this.aP_EMAILTextBox.Properties.MaxLength = 50;
-            this.aP_EMAILTextBox.Size = new System.Drawing.Size(374, 26);
+            this.aP_EMAILTextBox.Size = new System.Drawing.Size(499, 34);
             this.aP_EMAILTextBox.TabIndex = 70;
             this.aP_EMAILTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aP_EMAILTextBox.Leave += new System.EventHandler(this.aP_EMAILTextBox_Leave);
@@ -3640,22 +3451,22 @@
             0,
             0});
             this.tAXRATESpinEdit.EnterMoveNextControl = true;
-            this.tAXRATESpinEdit.Location = new System.Drawing.Point(870, 132);
-            this.tAXRATESpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.tAXRATESpinEdit.Location = new System.Drawing.Point(1160, 174);
+            this.tAXRATESpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tAXRATESpinEdit.Name = "tAXRATESpinEdit";
             this.tAXRATESpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.tAXRATESpinEdit.Size = new System.Drawing.Size(86, 26);
+            this.tAXRATESpinEdit.Size = new System.Drawing.Size(115, 34);
             this.tAXRATESpinEdit.TabIndex = 66;
             this.tAXRATESpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.tAXRATESpinEdit.Leave += new System.EventHandler(this.tAXRATESpinEdit_Leave);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(40, 79);
-            this.label10.Margin = new System.Windows.Forms.Padding(4);
+            this.label10.Location = new System.Drawing.Point(53, 104);
+            this.label10.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(126, 19);
+            this.label10.Size = new System.Drawing.Size(166, 25);
             this.label10.TabIndex = 28;
             this.label10.Text = "Account Numbers";
             // 
@@ -3663,10 +3474,10 @@
             // 
             this.due_DaysTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Due_Days", true));
             this.due_DaysTextEdit.EnterMoveNextControl = true;
-            this.due_DaysTextEdit.Location = new System.Drawing.Point(828, 367);
-            this.due_DaysTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.due_DaysTextEdit.Location = new System.Drawing.Point(1104, 483);
+            this.due_DaysTextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.due_DaysTextEdit.Name = "due_DaysTextEdit";
-            this.due_DaysTextEdit.Size = new System.Drawing.Size(150, 26);
+            this.due_DaysTextEdit.Size = new System.Drawing.Size(200, 34);
             this.due_DaysTextEdit.TabIndex = 71;
             this.due_DaysTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.due_DaysTextEdit.Leave += new System.EventHandler(this.due_DaysTextEdit_Leave);
@@ -3675,11 +3486,11 @@
             // 
             this.bILLACCTTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "BILLACCT", true));
             this.bILLACCTTextBox.EnterMoveNextControl = true;
-            this.bILLACCTTextBox.Location = new System.Drawing.Point(190, 210);
-            this.bILLACCTTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.bILLACCTTextBox.Location = new System.Drawing.Point(253, 276);
+            this.bILLACCTTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.bILLACCTTextBox.Name = "bILLACCTTextBox";
             this.bILLACCTTextBox.Properties.MaxLength = 30;
-            this.bILLACCTTextBox.Size = new System.Drawing.Size(374, 26);
+            this.bILLACCTTextBox.Size = new System.Drawing.Size(499, 34);
             this.bILLACCTTextBox.TabIndex = 65;
             this.bILLACCTTextBox.Enter += new System.EventHandler(this.enterControl);
             this.bILLACCTTextBox.Leave += new System.EventHandler(this.bILLACCTTextBox_Leave);
@@ -3688,11 +3499,11 @@
             // 
             this.aRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AR", true));
             this.aRTextBox.EnterMoveNextControl = true;
-            this.aRTextBox.Location = new System.Drawing.Point(190, 132);
-            this.aRTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aRTextBox.Location = new System.Drawing.Point(253, 174);
+            this.aRTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aRTextBox.Name = "aRTextBox";
             this.aRTextBox.Properties.MaxLength = 12;
-            this.aRTextBox.Size = new System.Drawing.Size(243, 26);
+            this.aRTextBox.Size = new System.Drawing.Size(324, 34);
             this.aRTextBox.TabIndex = 63;
             this.aRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aRTextBox.Leave += new System.EventHandler(this.aRTextBox_Leave);
@@ -3701,11 +3512,11 @@
             // 
             this.aPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP", true));
             this.aPTextBox.EnterMoveNextControl = true;
-            this.aPTextBox.Location = new System.Drawing.Point(190, 171);
-            this.aPTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aPTextBox.Location = new System.Drawing.Point(253, 225);
+            this.aPTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aPTextBox.Name = "aPTextBox";
             this.aPTextBox.Properties.MaxLength = 6;
-            this.aPTextBox.Size = new System.Drawing.Size(243, 26);
+            this.aPTextBox.Size = new System.Drawing.Size(324, 34);
             this.aPTextBox.TabIndex = 64;
             this.aPTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aPTextBox.Leave += new System.EventHandler(this.aPTextBox_Leave);
@@ -3719,7 +3530,7 @@
             this.rectangleShape10,
             this.rectangleShape9,
             this.rectangleShape8});
-            this.shapeContainer6.Size = new System.Drawing.Size(1397, 681);
+            this.shapeContainer6.Size = new System.Drawing.Size(1866, 900);
             this.shapeContainer6.TabIndex = 43;
             this.shapeContainer6.TabStop = false;
             // 
@@ -3751,9 +3562,9 @@
             // 
             this.xtraTabPage6.AutoScroll = true;
             this.xtraTabPage6.Controls.Add(this.panelControl6);
-            this.xtraTabPage6.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage6.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage6.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage6.Text = "Description";
             // 
             // panelControl6
@@ -3772,9 +3583,9 @@
             this.panelControl6.Controls.Add(this.shapeContainer5);
             this.panelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl6.Location = new System.Drawing.Point(0, 0);
-            this.panelControl6.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl6.Size = new System.Drawing.Size(1872, 906);
             this.panelControl6.TabIndex = 0;
             // 
             // nO_LOUNGESSpinEdit
@@ -3786,12 +3597,12 @@
             0,
             0});
             this.nO_LOUNGESSpinEdit.EnterMoveNextControl = true;
-            this.nO_LOUNGESSpinEdit.Location = new System.Drawing.Point(220, 178);
-            this.nO_LOUNGESSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.nO_LOUNGESSpinEdit.Location = new System.Drawing.Point(293, 234);
+            this.nO_LOUNGESSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.nO_LOUNGESSpinEdit.Name = "nO_LOUNGESSpinEdit";
             this.nO_LOUNGESSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_LOUNGESSpinEdit.Size = new System.Drawing.Size(88, 26);
+            this.nO_LOUNGESSpinEdit.Size = new System.Drawing.Size(117, 34);
             this.nO_LOUNGESSpinEdit.TabIndex = 59;
             this.nO_LOUNGESSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_LOUNGESSpinEdit.Leave += new System.EventHandler(this.nO_LOUNGESSpinEdit_Leave);
@@ -3800,11 +3611,11 @@
             // 
             this.cOMMENT1TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "COMMENT1", true));
             this.cOMMENT1TextBox.EnterMoveNextControl = true;
-            this.cOMMENT1TextBox.Location = new System.Drawing.Point(220, 278);
-            this.cOMMENT1TextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cOMMENT1TextBox.Location = new System.Drawing.Point(293, 366);
+            this.cOMMENT1TextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cOMMENT1TextBox.Name = "cOMMENT1TextBox";
             this.cOMMENT1TextBox.Properties.MaxLength = 50;
-            this.cOMMENT1TextBox.Size = new System.Drawing.Size(810, 26);
+            this.cOMMENT1TextBox.Size = new System.Drawing.Size(1080, 34);
             this.cOMMENT1TextBox.TabIndex = 61;
             this.cOMMENT1TextBox.Enter += new System.EventHandler(this.enterControl);
             this.cOMMENT1TextBox.Leave += new System.EventHandler(this.cOMMENT1TextBox_Leave);
@@ -3818,12 +3629,12 @@
             0,
             0});
             this.nO_RESTSpinEdit.EnterMoveNextControl = true;
-            this.nO_RESTSpinEdit.Location = new System.Drawing.Point(220, 137);
-            this.nO_RESTSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.nO_RESTSpinEdit.Location = new System.Drawing.Point(293, 180);
+            this.nO_RESTSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.nO_RESTSpinEdit.Name = "nO_RESTSpinEdit";
             this.nO_RESTSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_RESTSpinEdit.Size = new System.Drawing.Size(88, 26);
+            this.nO_RESTSpinEdit.Size = new System.Drawing.Size(117, 34);
             this.nO_RESTSpinEdit.TabIndex = 58;
             this.nO_RESTSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_RESTSpinEdit.Leave += new System.EventHandler(this.nO_RESTSpinEdit_Leave);
@@ -3837,12 +3648,12 @@
             0,
             0});
             this.nO_RMSSpinEdit.EnterMoveNextControl = true;
-            this.nO_RMSSpinEdit.Location = new System.Drawing.Point(220, 94);
-            this.nO_RMSSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.nO_RMSSpinEdit.Location = new System.Drawing.Point(293, 124);
+            this.nO_RMSSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.nO_RMSSpinEdit.Name = "nO_RMSSpinEdit";
             this.nO_RMSSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_RMSSpinEdit.Size = new System.Drawing.Size(88, 26);
+            this.nO_RMSSpinEdit.Size = new System.Drawing.Size(117, 34);
             this.nO_RMSSpinEdit.TabIndex = 57;
             this.nO_RMSSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_RMSSpinEdit.Leave += new System.EventHandler(this.nO_RMSSpinEdit_Leave);
@@ -3851,11 +3662,11 @@
             // 
             this.rOOM_DESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ROOM_DESC", true));
             this.rOOM_DESCTextBox.EnterMoveNextControl = true;
-            this.rOOM_DESCTextBox.Location = new System.Drawing.Point(220, 222);
-            this.rOOM_DESCTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rOOM_DESCTextBox.Location = new System.Drawing.Point(293, 292);
+            this.rOOM_DESCTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rOOM_DESCTextBox.Name = "rOOM_DESCTextBox";
             this.rOOM_DESCTextBox.Properties.MaxLength = 40;
-            this.rOOM_DESCTextBox.Size = new System.Drawing.Size(810, 26);
+            this.rOOM_DESCTextBox.Size = new System.Drawing.Size(1080, 34);
             this.rOOM_DESCTextBox.TabIndex = 60;
             this.rOOM_DESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rOOM_DESCTextBox.Leave += new System.EventHandler(this.rOOM_DESCTextBox_Leave);
@@ -3864,11 +3675,11 @@
             // 
             this.cOMMENT2TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "COMMENT2", true));
             this.cOMMENT2TextBox.EnterMoveNextControl = true;
-            this.cOMMENT2TextBox.Location = new System.Drawing.Point(220, 323);
-            this.cOMMENT2TextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cOMMENT2TextBox.Location = new System.Drawing.Point(293, 425);
+            this.cOMMENT2TextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cOMMENT2TextBox.Name = "cOMMENT2TextBox";
             this.cOMMENT2TextBox.Properties.MaxLength = 50;
-            this.cOMMENT2TextBox.Size = new System.Drawing.Size(810, 26);
+            this.cOMMENT2TextBox.Size = new System.Drawing.Size(1080, 34);
             this.cOMMENT2TextBox.TabIndex = 62;
             this.cOMMENT2TextBox.Enter += new System.EventHandler(this.enterControl);
             this.cOMMENT2TextBox.Leave += new System.EventHandler(this.cOMMENT2TextBox_Leave);
@@ -3880,7 +3691,7 @@
             this.shapeContainer5.Name = "shapeContainer5";
             this.shapeContainer5.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape7});
-            this.shapeContainer5.Size = new System.Drawing.Size(1397, 681);
+            this.shapeContainer5.Size = new System.Drawing.Size(1866, 900);
             this.shapeContainer5.TabIndex = 40;
             this.shapeContainer5.TabStop = false;
             // 
@@ -3896,9 +3707,9 @@
             // 
             this.xtraTabPage5.AutoScroll = true;
             this.xtraTabPage5.Controls.Add(this.panelControl5);
-            this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage5.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage5.Text = "Policies";
             // 
             // panelControl5
@@ -3946,46 +3757,47 @@
             this.panelControl5.Controls.Add(aDV_PMTLabel);
             this.panelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl5.Location = new System.Drawing.Point(0, 0);
-            this.panelControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl5.Size = new System.Drawing.Size(1872, 906);
             this.panelControl5.TabIndex = 0;
             // 
             // checkEditAccountingServiceItem
             // 
             this.checkEditAccountingServiceItem.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AccountingServiceItem", true));
-            this.checkEditAccountingServiceItem.Location = new System.Drawing.Point(936, 358);
+            this.checkEditAccountingServiceItem.Location = new System.Drawing.Point(1248, 471);
+            this.checkEditAccountingServiceItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkEditAccountingServiceItem.Name = "checkEditAccountingServiceItem";
             this.checkEditAccountingServiceItem.Properties.Caption = "Accounting service item";
             this.checkEditAccountingServiceItem.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditAccountingServiceItem.Properties.ValueGrayed = false;
-            this.checkEditAccountingServiceItem.Size = new System.Drawing.Size(214, 23);
+            this.checkEditAccountingServiceItem.Size = new System.Drawing.Size(285, 34);
             this.checkEditAccountingServiceItem.TabIndex = 104;
             this.checkEditAccountingServiceItem.Click += new System.EventHandler(this.checkEditAccountingServiceItem_Click);
             // 
             // checkEditPreTaxRatesOnAdvice
             // 
             this.checkEditPreTaxRatesOnAdvice.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "PreTaxRatesOnAdvice", true));
-            this.checkEditPreTaxRatesOnAdvice.Location = new System.Drawing.Point(30, 416);
-            this.checkEditPreTaxRatesOnAdvice.MenuManager = this.barManager1;
+            this.checkEditPreTaxRatesOnAdvice.Location = new System.Drawing.Point(40, 547);
+            this.checkEditPreTaxRatesOnAdvice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkEditPreTaxRatesOnAdvice.Name = "checkEditPreTaxRatesOnAdvice";
             this.checkEditPreTaxRatesOnAdvice.Properties.Caption = "Use pre-tax rates on hotel advice";
             this.checkEditPreTaxRatesOnAdvice.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditPreTaxRatesOnAdvice.Properties.ValueGrayed = false;
-            this.checkEditPreTaxRatesOnAdvice.Size = new System.Drawing.Size(279, 23);
+            this.checkEditPreTaxRatesOnAdvice.Size = new System.Drawing.Size(372, 34);
             this.checkEditPreTaxRatesOnAdvice.TabIndex = 102;
             this.checkEditPreTaxRatesOnAdvice.Click += new System.EventHandler(this.checkEditPreTaxRatesOnAdvice_Click);
             // 
             // checkEditVendorPrepayReqd
             // 
             this.checkEditVendorPrepayReqd.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "VendorPrepayReqd", true));
-            this.checkEditVendorPrepayReqd.Location = new System.Drawing.Point(662, 358);
-            this.checkEditVendorPrepayReqd.MenuManager = this.barManager1;
+            this.checkEditVendorPrepayReqd.Location = new System.Drawing.Point(883, 471);
+            this.checkEditVendorPrepayReqd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkEditVendorPrepayReqd.Name = "checkEditVendorPrepayReqd";
             this.checkEditVendorPrepayReqd.Properties.Caption = "Vendor prepayment required";
             this.checkEditVendorPrepayReqd.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditVendorPrepayReqd.Properties.ValueGrayed = false;
-            this.checkEditVendorPrepayReqd.Size = new System.Drawing.Size(240, 23);
+            this.checkEditVendorPrepayReqd.Size = new System.Drawing.Size(320, 34);
             this.checkEditVendorPrepayReqd.TabIndex = 101;
             this.checkEditVendorPrepayReqd.Click += new System.EventHandler(this.checkEditVendorPrepayReqd_Click);
             // 
@@ -3993,12 +3805,11 @@
             // 
             this.requestableCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Requestable", true));
             this.requestableCheckEdit.EnterMoveNextControl = true;
-            this.requestableCheckEdit.Location = new System.Drawing.Point(772, 66);
-            this.requestableCheckEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.requestableCheckEdit.MenuManager = this.barManager1;
+            this.requestableCheckEdit.Location = new System.Drawing.Point(1029, 87);
+            this.requestableCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.requestableCheckEdit.Name = "requestableCheckEdit";
             this.requestableCheckEdit.Properties.Caption = "";
-            this.requestableCheckEdit.Size = new System.Drawing.Size(39, 19);
+            this.requestableCheckEdit.Size = new System.Drawing.Size(52, 34);
             this.requestableCheckEdit.TabIndex = 41;
             this.requestableCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4006,12 +3817,12 @@
             // 
             this.ImageComboBoxEditDefCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "DFLT_CAT", true));
             this.ImageComboBoxEditDefCat.EnterMoveNextControl = true;
-            this.ImageComboBoxEditDefCat.Location = new System.Drawing.Point(244, 189);
-            this.ImageComboBoxEditDefCat.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditDefCat.Location = new System.Drawing.Point(325, 249);
+            this.ImageComboBoxEditDefCat.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditDefCat.Name = "ImageComboBoxEditDefCat";
             this.ImageComboBoxEditDefCat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditDefCat.Size = new System.Drawing.Size(262, 26);
+            this.ImageComboBoxEditDefCat.Size = new System.Drawing.Size(349, 34);
             this.ImageComboBoxEditDefCat.TabIndex = 46;
             this.ImageComboBoxEditDefCat.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditDefCat.Leave += new System.EventHandler(this.ImageComboBoxEditDefCat_Leave);
@@ -4020,13 +3831,13 @@
             // 
             this.uSE_CLIENT_LOGOCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "USE_CLIENT_LOGO", true));
             this.uSE_CLIENT_LOGOCheckEdit.EnterMoveNextControl = true;
-            this.uSE_CLIENT_LOGOCheckEdit.Location = new System.Drawing.Point(585, 360);
-            this.uSE_CLIENT_LOGOCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.uSE_CLIENT_LOGOCheckEdit.Location = new System.Drawing.Point(780, 474);
+            this.uSE_CLIENT_LOGOCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.uSE_CLIENT_LOGOCheckEdit.Name = "uSE_CLIENT_LOGOCheckEdit";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.Caption = "";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.ValueChecked = "Y";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.ValueUnchecked = "N";
-            this.uSE_CLIENT_LOGOCheckEdit.Size = new System.Drawing.Size(33, 19);
+            this.uSE_CLIENT_LOGOCheckEdit.Size = new System.Drawing.Size(44, 34);
             this.uSE_CLIENT_LOGOCheckEdit.TabIndex = 56;
             this.uSE_CLIENT_LOGOCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4034,13 +3845,13 @@
             // 
             this.nAMECHGCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "NAMECHG", true));
             this.nAMECHGCheckEdit.EnterMoveNextControl = true;
-            this.nAMECHGCheckEdit.Location = new System.Drawing.Point(477, 67);
-            this.nAMECHGCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.nAMECHGCheckEdit.Location = new System.Drawing.Point(636, 88);
+            this.nAMECHGCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.nAMECHGCheckEdit.Name = "nAMECHGCheckEdit";
             this.nAMECHGCheckEdit.Properties.Caption = "";
             this.nAMECHGCheckEdit.Properties.ValueChecked = "Y";
             this.nAMECHGCheckEdit.Properties.ValueUnchecked = "N";
-            this.nAMECHGCheckEdit.Size = new System.Drawing.Size(30, 19);
+            this.nAMECHGCheckEdit.Size = new System.Drawing.Size(40, 34);
             this.nAMECHGCheckEdit.TabIndex = 40;
             this.nAMECHGCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4048,13 +3859,13 @@
             // 
             this.aDV_PMTCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ADV_PMT", true));
             this.aDV_PMTCheckEdit.EnterMoveNextControl = true;
-            this.aDV_PMTCheckEdit.Location = new System.Drawing.Point(242, 69);
-            this.aDV_PMTCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.aDV_PMTCheckEdit.Location = new System.Drawing.Point(323, 91);
+            this.aDV_PMTCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aDV_PMTCheckEdit.Name = "aDV_PMTCheckEdit";
             this.aDV_PMTCheckEdit.Properties.Caption = "";
             this.aDV_PMTCheckEdit.Properties.ValueChecked = "Y";
             this.aDV_PMTCheckEdit.Properties.ValueUnchecked = "N";
-            this.aDV_PMTCheckEdit.Size = new System.Drawing.Size(28, 19);
+            this.aDV_PMTCheckEdit.Size = new System.Drawing.Size(37, 34);
             this.aDV_PMTCheckEdit.TabIndex = 39;
             this.aDV_PMTCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4062,15 +3873,15 @@
             // 
             this.rATE_BASISImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RATE_BASIS", true));
             this.rATE_BASISImageComboBoxEdit.EnterMoveNextControl = true;
-            this.rATE_BASISImageComboBoxEdit.Location = new System.Drawing.Point(662, 113);
-            this.rATE_BASISImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.rATE_BASISImageComboBoxEdit.Location = new System.Drawing.Point(883, 149);
+            this.rATE_BASISImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rATE_BASISImageComboBoxEdit.Name = "rATE_BASISImageComboBoxEdit";
             this.rATE_BASISImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.rATE_BASISImageComboBoxEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Arrival", "A", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Daily", "D", -1)});
-            this.rATE_BASISImageComboBoxEdit.Size = new System.Drawing.Size(150, 26);
+            this.rATE_BASISImageComboBoxEdit.Size = new System.Drawing.Size(200, 34);
             this.rATE_BASISImageComboBoxEdit.TabIndex = 43;
             this.rATE_BASISImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.rATE_BASISImageComboBoxEdit.Leave += new System.EventHandler(this.rATE_BASISImageComboBoxEdit_Leave);
@@ -4084,12 +3895,12 @@
             0,
             0});
             this.vOUCH_DAYS_PRIORSpinEdit.EnterMoveNextControl = true;
-            this.vOUCH_DAYS_PRIORSpinEdit.Location = new System.Drawing.Point(318, 361);
-            this.vOUCH_DAYS_PRIORSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.vOUCH_DAYS_PRIORSpinEdit.Location = new System.Drawing.Point(424, 475);
+            this.vOUCH_DAYS_PRIORSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.vOUCH_DAYS_PRIORSpinEdit.Name = "vOUCH_DAYS_PRIORSpinEdit";
             this.vOUCH_DAYS_PRIORSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.vOUCH_DAYS_PRIORSpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.vOUCH_DAYS_PRIORSpinEdit.Size = new System.Drawing.Size(91, 34);
             this.vOUCH_DAYS_PRIORSpinEdit.TabIndex = 55;
             this.vOUCH_DAYS_PRIORSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.vOUCH_DAYS_PRIORSpinEdit.Leave += new System.EventHandler(this.vOUCH_DAYS_PRIORSpinEdit_Leave);
@@ -4103,8 +3914,8 @@
             0,
             0});
             this.mAX_OTHSpinEdit.EnterMoveNextControl = true;
-            this.mAX_OTHSpinEdit.Location = new System.Drawing.Point(936, 297);
-            this.mAX_OTHSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_OTHSpinEdit.Location = new System.Drawing.Point(1248, 391);
+            this.mAX_OTHSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAX_OTHSpinEdit.Name = "mAX_OTHSpinEdit";
             this.mAX_OTHSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4113,7 +3924,7 @@
             0,
             0,
             0});
-            this.mAX_OTHSpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.mAX_OTHSpinEdit.Size = new System.Drawing.Size(91, 34);
             this.mAX_OTHSpinEdit.TabIndex = 54;
             this.mAX_OTHSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_OTHSpinEdit.Leave += new System.EventHandler(this.mAX_OTHSpinEdit_Leave);
@@ -4127,8 +3938,8 @@
             0,
             0});
             this.mAX_QUASpinEdit.EnterMoveNextControl = true;
-            this.mAX_QUASpinEdit.Location = new System.Drawing.Point(777, 297);
-            this.mAX_QUASpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_QUASpinEdit.Location = new System.Drawing.Point(1036, 391);
+            this.mAX_QUASpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAX_QUASpinEdit.Name = "mAX_QUASpinEdit";
             this.mAX_QUASpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4137,7 +3948,7 @@
             0,
             0,
             0});
-            this.mAX_QUASpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.mAX_QUASpinEdit.Size = new System.Drawing.Size(91, 34);
             this.mAX_QUASpinEdit.TabIndex = 53;
             this.mAX_QUASpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_QUASpinEdit.Leave += new System.EventHandler(this.mAX_QUASpinEdit_Leave);
@@ -4151,8 +3962,8 @@
             0,
             0});
             this.mAX_TPLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_TPLSpinEdit.Location = new System.Drawing.Point(618, 297);
-            this.mAX_TPLSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_TPLSpinEdit.Location = new System.Drawing.Point(824, 391);
+            this.mAX_TPLSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAX_TPLSpinEdit.Name = "mAX_TPLSpinEdit";
             this.mAX_TPLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4161,7 +3972,7 @@
             0,
             0,
             0});
-            this.mAX_TPLSpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.mAX_TPLSpinEdit.Size = new System.Drawing.Size(91, 34);
             this.mAX_TPLSpinEdit.TabIndex = 52;
             this.mAX_TPLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_TPLSpinEdit.Leave += new System.EventHandler(this.mAX_TPLSpinEdit_Leave);
@@ -4175,8 +3986,8 @@
             0,
             0});
             this.mAX_DBLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_DBLSpinEdit.Location = new System.Drawing.Point(480, 297);
-            this.mAX_DBLSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_DBLSpinEdit.Location = new System.Drawing.Point(640, 391);
+            this.mAX_DBLSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAX_DBLSpinEdit.Name = "mAX_DBLSpinEdit";
             this.mAX_DBLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4185,7 +3996,7 @@
             0,
             0,
             0});
-            this.mAX_DBLSpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.mAX_DBLSpinEdit.Size = new System.Drawing.Size(91, 34);
             this.mAX_DBLSpinEdit.TabIndex = 51;
             this.mAX_DBLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_DBLSpinEdit.Leave += new System.EventHandler(this.mAX_DBLSpinEdit_Leave);
@@ -4199,8 +4010,8 @@
             0,
             0});
             this.mAX_SGLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_SGLSpinEdit.Location = new System.Drawing.Point(318, 297);
-            this.mAX_SGLSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAX_SGLSpinEdit.Location = new System.Drawing.Point(424, 391);
+            this.mAX_SGLSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAX_SGLSpinEdit.Name = "mAX_SGLSpinEdit";
             this.mAX_SGLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4209,7 +4020,7 @@
             0,
             0,
             0});
-            this.mAX_SGLSpinEdit.Size = new System.Drawing.Size(68, 26);
+            this.mAX_SGLSpinEdit.Size = new System.Drawing.Size(91, 34);
             this.mAX_SGLSpinEdit.TabIndex = 50;
             this.mAX_SGLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_SGLSpinEdit.Leave += new System.EventHandler(this.mAX_SGLSpinEdit_Leave);
@@ -4223,12 +4034,12 @@
             0,
             0});
             this.cANC_PERSpinEdit.EnterMoveNextControl = true;
-            this.cANC_PERSpinEdit.Location = new System.Drawing.Point(244, 152);
-            this.cANC_PERSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cANC_PERSpinEdit.Location = new System.Drawing.Point(325, 200);
+            this.cANC_PERSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cANC_PERSpinEdit.Name = "cANC_PERSpinEdit";
             this.cANC_PERSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.cANC_PERSpinEdit.Size = new System.Drawing.Size(82, 26);
+            this.cANC_PERSpinEdit.Size = new System.Drawing.Size(109, 34);
             this.cANC_PERSpinEdit.TabIndex = 44;
             this.cANC_PERSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.cANC_PERSpinEdit.Leave += new System.EventHandler(this.cANC_PERSpinEdit_Leave);
@@ -4242,12 +4053,12 @@
             0,
             0});
             this.dEP_RQSpinEdit.EnterMoveNextControl = true;
-            this.dEP_RQSpinEdit.Location = new System.Drawing.Point(244, 114);
-            this.dEP_RQSpinEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.dEP_RQSpinEdit.Location = new System.Drawing.Point(325, 150);
+            this.dEP_RQSpinEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dEP_RQSpinEdit.Name = "dEP_RQSpinEdit";
             this.dEP_RQSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dEP_RQSpinEdit.Size = new System.Drawing.Size(82, 26);
+            this.dEP_RQSpinEdit.Size = new System.Drawing.Size(109, 34);
             this.dEP_RQSpinEdit.TabIndex = 42;
             this.dEP_RQSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.dEP_RQSpinEdit.Leave += new System.EventHandler(this.dEP_RQSpinEdit_Leave);
@@ -4256,8 +4067,8 @@
             // 
             this.dEF_ROOMComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "DEF_ROOM", true));
             this.dEF_ROOMComboBoxEdit.EnterMoveNextControl = true;
-            this.dEF_ROOMComboBoxEdit.Location = new System.Drawing.Point(244, 227);
-            this.dEF_ROOMComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.dEF_ROOMComboBoxEdit.Location = new System.Drawing.Point(325, 299);
+            this.dEF_ROOMComboBoxEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dEF_ROOMComboBoxEdit.Name = "dEF_ROOMComboBoxEdit";
             this.dEF_ROOMComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -4266,26 +4077,26 @@
             "SGL",
             "TPL",
             "QUA"});
-            this.dEF_ROOMComboBoxEdit.Size = new System.Drawing.Size(262, 26);
+            this.dEF_ROOMComboBoxEdit.Size = new System.Drawing.Size(349, 34);
             this.dEF_ROOMComboBoxEdit.TabIndex = 48;
             this.dEF_ROOMComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.dEF_ROOMComboBoxEdit.Leave += new System.EventHandler(this.dEF_ROOMComboBoxEdit_Leave);
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(100, 362);
-            this.label9.Margin = new System.Windows.Forms.Padding(4);
+            this.label9.Location = new System.Drawing.Point(133, 476);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 19);
+            this.label9.Size = new System.Drawing.Size(113, 25);
             this.label9.TabIndex = 68;
             this.label9.Text = "Vouchering:";
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(30, 295);
-            this.label8.Margin = new System.Windows.Forms.Padding(4);
+            this.label8.Location = new System.Drawing.Point(40, 388);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(156, 19);
+            this.label8.Size = new System.Drawing.Size(206, 25);
             this.label8.TabIndex = 62;
             this.label8.Text = "Maximum Occupancy:";
             // 
@@ -4293,11 +4104,11 @@
             // 
             this.cRED_CARDSTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CRED_CARDS", true));
             this.cRED_CARDSTextBox.EnterMoveNextControl = true;
-            this.cRED_CARDSTextBox.Location = new System.Drawing.Point(662, 231);
-            this.cRED_CARDSTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cRED_CARDSTextBox.Location = new System.Drawing.Point(883, 304);
+            this.cRED_CARDSTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cRED_CARDSTextBox.Name = "cRED_CARDSTextBox";
             this.cRED_CARDSTextBox.Properties.MaxLength = 15;
-            this.cRED_CARDSTextBox.Size = new System.Drawing.Size(394, 26);
+            this.cRED_CARDSTextBox.Size = new System.Drawing.Size(525, 34);
             this.cRED_CARDSTextBox.TabIndex = 49;
             this.cRED_CARDSTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cRED_CARDSTextBox.Leave += new System.EventHandler(this.cRED_CARDSTextBox_Leave);
@@ -4306,11 +4117,11 @@
             // 
             this.cHILD_DESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CHILD_DESC", true));
             this.cHILD_DESCTextBox.EnterMoveNextControl = true;
-            this.cHILD_DESCTextBox.Location = new System.Drawing.Point(662, 191);
-            this.cHILD_DESCTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cHILD_DESCTextBox.Location = new System.Drawing.Point(883, 251);
+            this.cHILD_DESCTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cHILD_DESCTextBox.Name = "cHILD_DESCTextBox";
             this.cHILD_DESCTextBox.Properties.MaxLength = 20;
-            this.cHILD_DESCTextBox.Size = new System.Drawing.Size(394, 26);
+            this.cHILD_DESCTextBox.Size = new System.Drawing.Size(525, 34);
             this.cHILD_DESCTextBox.TabIndex = 47;
             this.cHILD_DESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cHILD_DESCTextBox.Leave += new System.EventHandler(this.cHILD_DESCTextBox_Leave);
@@ -4319,11 +4130,11 @@
             // 
             this.cHECK_INTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CHECK_IN", true));
             this.cHECK_INTextBox.EnterMoveNextControl = true;
-            this.cHECK_INTextBox.Location = new System.Drawing.Point(662, 152);
-            this.cHECK_INTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cHECK_INTextBox.Location = new System.Drawing.Point(883, 200);
+            this.cHECK_INTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cHECK_INTextBox.Name = "cHECK_INTextBox";
             this.cHECK_INTextBox.Properties.MaxLength = 6;
-            this.cHECK_INTextBox.Size = new System.Drawing.Size(150, 26);
+            this.cHECK_INTextBox.Size = new System.Drawing.Size(200, 34);
             this.cHECK_INTextBox.TabIndex = 45;
             this.cHECK_INTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cHECK_INTextBox.Leave += new System.EventHandler(this.cHECK_INTextBox_Leave);
@@ -4331,9 +4142,9 @@
             // xtraTabPage4
             // 
             this.xtraTabPage4.Controls.Add(this.panelControl4);
-            this.xtraTabPage4.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage4.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage4.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage4.Text = "Contacts";
             // 
             // panelControl4
@@ -4359,9 +4170,9 @@
             this.panelControl4.Controls.Add(this.rES_EMAILTextBox);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
-            this.panelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl4.Size = new System.Drawing.Size(1872, 906);
             this.panelControl4.TabIndex = 13;
             // 
             // tourfaxEmailFormatComboBox
@@ -4372,10 +4183,10 @@
             "htm",
             "pdf",
             "txt"});
-            this.tourfaxEmailFormatComboBox.Location = new System.Drawing.Point(645, 123);
-            this.tourfaxEmailFormatComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.tourfaxEmailFormatComboBox.Location = new System.Drawing.Point(860, 162);
+            this.tourfaxEmailFormatComboBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tourfaxEmailFormatComboBox.Name = "tourfaxEmailFormatComboBox";
-            this.tourfaxEmailFormatComboBox.Size = new System.Drawing.Size(202, 27);
+            this.tourfaxEmailFormatComboBox.Size = new System.Drawing.Size(268, 33);
             this.tourfaxEmailFormatComboBox.TabIndex = 96;
             this.tourfaxEmailFormatComboBox.Enter += new System.EventHandler(this.enterControl);
             this.tourfaxEmailFormatComboBox.Leave += new System.EventHandler(this.tourfaxEmailFormatComboBoxEdit_Leave);
@@ -4384,10 +4195,10 @@
             // 
             this.ButtonContactSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonContactSave.ImageOptions.Image")));
             this.ButtonContactSave.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonContactSave.Location = new System.Drawing.Point(178, 592);
-            this.ButtonContactSave.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonContactSave.Location = new System.Drawing.Point(237, 779);
+            this.ButtonContactSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ButtonContactSave.Name = "ButtonContactSave";
-            this.ButtonContactSave.Size = new System.Drawing.Size(58, 53);
+            this.ButtonContactSave.Size = new System.Drawing.Size(77, 70);
             this.ButtonContactSave.TabIndex = 93;
             this.ButtonContactSave.TabStop = false;
             this.ButtonContactSave.Text = "simpleButton3";
@@ -4397,10 +4208,10 @@
             // 
             this.ButtonDelRowContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelRowContact.ImageOptions.Image")));
             this.ButtonDelRowContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRowContact.Location = new System.Drawing.Point(105, 592);
-            this.ButtonDelRowContact.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonDelRowContact.Location = new System.Drawing.Point(140, 779);
+            this.ButtonDelRowContact.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ButtonDelRowContact.Name = "ButtonDelRowContact";
-            this.ButtonDelRowContact.Size = new System.Drawing.Size(51, 53);
+            this.ButtonDelRowContact.Size = new System.Drawing.Size(68, 70);
             this.ButtonDelRowContact.TabIndex = 94;
             this.ButtonDelRowContact.TabStop = false;
             this.ButtonDelRowContact.Text = "simpleButton4";
@@ -4410,10 +4221,10 @@
             // 
             this.ButtonAddRowContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRowContact.ImageOptions.Image")));
             this.ButtonAddRowContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRowContact.Location = new System.Drawing.Point(27, 592);
-            this.ButtonAddRowContact.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonAddRowContact.Location = new System.Drawing.Point(36, 779);
+            this.ButtonAddRowContact.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ButtonAddRowContact.Name = "ButtonAddRowContact";
-            this.ButtonAddRowContact.Size = new System.Drawing.Size(54, 53);
+            this.ButtonAddRowContact.Size = new System.Drawing.Size(72, 70);
             this.ButtonAddRowContact.TabIndex = 95;
             this.ButtonAddRowContact.TabStop = false;
             this.ButtonAddRowContact.Text = "simpleButton3";
@@ -4429,16 +4240,16 @@
             this.gridSearchControl1.FilterOn = false;
             this.gridSearchControl1.GridVisible = false;
             this.gridSearchControl1.LastError = "";
-            this.gridSearchControl1.Location = new System.Drawing.Point(75, -450);
+            this.gridSearchControl1.Location = new System.Drawing.Point(100, -592);
             this.gridSearchControl1.LookupName = "value";
-            this.gridSearchControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.gridSearchControl1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.gridSearchControl1.MaxWidth = 500;
             this.gridSearchControl1.MinWidth = 250;
             this.gridSearchControl1.Name = "gridSearchControl1";
             this.gridSearchControl1.PromptOnChange = false;
             this.gridSearchControl1.PromptText = "";
             this.gridSearchControl1.ShowPopupNumberOfChars = 3;
-            this.gridSearchControl1.Size = new System.Drawing.Size(164, 38);
+            this.gridSearchControl1.Size = new System.Drawing.Size(219, 50);
             this.gridSearchControl1.TabIndex = 9;
             this.gridSearchControl1.ValidateOnEnter = false;
             this.gridSearchControl1.ValidateOnSelection = false;
@@ -4449,11 +4260,11 @@
             // 
             this.tELEXTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "TELEX", true));
             this.tELEXTextBox.EnterMoveNextControl = true;
-            this.tELEXTextBox.Location = new System.Drawing.Point(186, 175);
-            this.tELEXTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.tELEXTextBox.Location = new System.Drawing.Point(248, 230);
+            this.tELEXTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tELEXTextBox.Name = "tELEXTextBox";
             this.tELEXTextBox.Properties.MaxLength = 15;
-            this.tELEXTextBox.Size = new System.Drawing.Size(252, 26);
+            this.tELEXTextBox.Size = new System.Drawing.Size(336, 34);
             this.tELEXTextBox.TabIndex = 37;
             this.tELEXTextBox.Enter += new System.EventHandler(this.enterControl);
             this.tELEXTextBox.Leave += new System.EventHandler(this.tELEXTextBox_Leave);
@@ -4462,8 +4273,8 @@
             // 
             this.mAILFAXImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "MAILFAX", true));
             this.mAILFAXImageComboBoxEdit.EnterMoveNextControl = true;
-            this.mAILFAXImageComboBoxEdit.Location = new System.Drawing.Point(188, 124);
-            this.mAILFAXImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.mAILFAXImageComboBoxEdit.Location = new System.Drawing.Point(251, 163);
+            this.mAILFAXImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.mAILFAXImageComboBoxEdit.Name = "mAILFAXImageComboBoxEdit";
             this.mAILFAXImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -4471,7 +4282,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Email", "E", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Fax", "F", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", "", -1)});
-            this.mAILFAXImageComboBoxEdit.Size = new System.Drawing.Size(250, 26);
+            this.mAILFAXImageComboBoxEdit.Size = new System.Drawing.Size(333, 34);
             this.mAILFAXImageComboBoxEdit.TabIndex = 35;
             this.mAILFAXImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAILFAXImageComboBoxEdit.Leave += new System.EventHandler(this.mAILFAXImageComboBoxEdit_Leave);
@@ -4480,11 +4291,11 @@
             // 
             this.gEN_MGRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "GEN_MGR", true));
             this.gEN_MGRTextBox.EnterMoveNextControl = true;
-            this.gEN_MGRTextBox.Location = new System.Drawing.Point(186, 73);
-            this.gEN_MGRTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.gEN_MGRTextBox.Location = new System.Drawing.Point(248, 96);
+            this.gEN_MGRTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gEN_MGRTextBox.Name = "gEN_MGRTextBox";
             this.gEN_MGRTextBox.Properties.MaxLength = 20;
-            this.gEN_MGRTextBox.Size = new System.Drawing.Size(252, 26);
+            this.gEN_MGRTextBox.Size = new System.Drawing.Size(336, 34);
             this.gEN_MGRTextBox.TabIndex = 33;
             this.gEN_MGRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.gEN_MGRTextBox.Leave += new System.EventHandler(this.gEN_MGRTextBox_Leave);
@@ -4493,27 +4304,27 @@
             // 
             this.label7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Appearance.Options.UseFont = true;
-            this.label7.Location = new System.Drawing.Point(27, 34);
-            this.label7.Margin = new System.Windows.Forms.Padding(4);
+            this.label7.Location = new System.Drawing.Point(36, 45);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 21);
+            this.label7.Size = new System.Drawing.Size(154, 27);
             this.label7.TabIndex = 35;
             this.label7.Text = "Primary Contact";
             // 
             // GridControlAdditionalContacts
             // 
             this.GridControlAdditionalContacts.DataSource = this.ContactBindingSource;
-            this.GridControlAdditionalContacts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlAdditionalContacts.Location = new System.Drawing.Point(16, 286);
+            this.GridControlAdditionalContacts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlAdditionalContacts.Location = new System.Drawing.Point(21, 376);
             this.GridControlAdditionalContacts.MainView = this.GridViewAdditionalContacts;
-            this.GridControlAdditionalContacts.Margin = new System.Windows.Forms.Padding(4);
+            this.GridControlAdditionalContacts.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlAdditionalContacts.Name = "GridControlAdditionalContacts";
             this.GridControlAdditionalContacts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBoxCommPref,
             this.repositoryItemTextEdit1,
             this.repositoryItemPopupContainerEditRptType,
             this.repositoryItemComboBoxDept});
-            this.GridControlAdditionalContacts.Size = new System.Drawing.Size(1368, 297);
+            this.GridControlAdditionalContacts.Size = new System.Drawing.Size(1824, 391);
             this.GridControlAdditionalContacts.TabIndex = 25;
             this.GridControlAdditionalContacts.TabStop = false;
             this.GridControlAdditionalContacts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -4853,28 +4664,28 @@
             this.popupContainerControl1.Controls.Add(this.CancelButton);
             this.popupContainerControl1.Controls.Add(this.OkButton);
             this.popupContainerControl1.Controls.Add(this.gridControlPopup);
-            this.popupContainerControl1.Location = new System.Drawing.Point(783, 837);
-            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.popupContainerControl1.Location = new System.Drawing.Point(1044, 1101);
+            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(596, 574);
+            this.popupContainerControl1.Size = new System.Drawing.Size(795, 755);
             this.popupContainerControl1.TabIndex = 17;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(321, 438);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.CancelButton.Location = new System.Drawing.Point(428, 576);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(112, 34);
+            this.CancelButton.Size = new System.Drawing.Size(149, 45);
             this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(150, 438);
-            this.OkButton.Margin = new System.Windows.Forms.Padding(4);
+            this.OkButton.Location = new System.Drawing.Point(200, 576);
+            this.OkButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(112, 34);
+            this.OkButton.Size = new System.Drawing.Size(149, 45);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "OK";
             this.OkButton.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -4882,12 +4693,12 @@
             // gridControlPopup
             // 
             this.gridControlPopup.DataSource = this.rPTTYPEBindingSource;
-            this.gridControlPopup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlPopup.Location = new System.Drawing.Point(40, 32);
+            this.gridControlPopup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gridControlPopup.Location = new System.Drawing.Point(53, 42);
             this.gridControlPopup.MainView = this.gridViewPopup;
-            this.gridControlPopup.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControlPopup.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gridControlPopup.Name = "gridControlPopup";
-            this.gridControlPopup.Size = new System.Drawing.Size(492, 380);
+            this.gridControlPopup.Size = new System.Drawing.Size(656, 500);
             this.gridControlPopup.TabIndex = 0;
             this.gridControlPopup.TabStop = false;
             this.gridControlPopup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -4983,10 +4794,10 @@
             // 
             this.label6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Appearance.Options.UseFont = true;
-            this.label6.Location = new System.Drawing.Point(16, 259);
-            this.label6.Margin = new System.Windows.Forms.Padding(4);
+            this.label6.Location = new System.Drawing.Point(21, 341);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 21);
+            this.label6.Size = new System.Drawing.Size(182, 27);
             this.label6.TabIndex = 23;
             this.label6.Text = "Additional contacts";
             // 
@@ -4994,11 +4805,11 @@
             // 
             this.pHONETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "PHONE", true));
             this.pHONETextBox.EnterMoveNextControl = true;
-            this.pHONETextBox.Location = new System.Drawing.Point(645, 77);
-            this.pHONETextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.pHONETextBox.Location = new System.Drawing.Point(860, 101);
+            this.pHONETextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pHONETextBox.Name = "pHONETextBox";
             this.pHONETextBox.Properties.MaxLength = 15;
-            this.pHONETextBox.Size = new System.Drawing.Size(204, 26);
+            this.pHONETextBox.Size = new System.Drawing.Size(272, 34);
             this.pHONETextBox.TabIndex = 34;
             this.pHONETextBox.Enter += new System.EventHandler(this.enterControl);
             this.pHONETextBox.Leave += new System.EventHandler(this.pHONETextBox_Leave);
@@ -5007,11 +4818,11 @@
             // 
             this.rES_EMAILTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RES_EMAIL", true));
             this.rES_EMAILTextBox.EnterMoveNextControl = true;
-            this.rES_EMAILTextBox.Location = new System.Drawing.Point(646, 175);
-            this.rES_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rES_EMAILTextBox.Location = new System.Drawing.Point(861, 230);
+            this.rES_EMAILTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rES_EMAILTextBox.Name = "rES_EMAILTextBox";
             this.rES_EMAILTextBox.Properties.MaxLength = 50;
-            this.rES_EMAILTextBox.Size = new System.Drawing.Size(513, 26);
+            this.rES_EMAILTextBox.Size = new System.Drawing.Size(684, 34);
             this.rES_EMAILTextBox.TabIndex = 38;
             this.rES_EMAILTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rES_EMAILTextBox.Leave += new System.EventHandler(this.rES_EMAILTextBox_Leave);
@@ -5020,9 +4831,9 @@
             // 
             this.xtraTabPage3.AutoScroll = true;
             this.xtraTabPage3.Controls.Add(this.panelControl3);
-            this.xtraTabPage3.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage3.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage3.Text = "Location";
             // 
             // panelControl3
@@ -5069,27 +4880,29 @@
             this.panelControl3.Controls.Add(this.shapeContainer3);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
-            this.panelControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl3.Size = new System.Drawing.Size(1872, 906);
             this.panelControl3.TabIndex = 0;
             // 
             // labelControl17
             // 
-            this.labelControl17.Location = new System.Drawing.Point(39, 486);
+            this.labelControl17.Location = new System.Drawing.Point(52, 639);
+            this.labelControl17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(272, 19);
+            this.labelControl17.Size = new System.Drawing.Size(362, 25);
             this.labelControl17.TabIndex = 99;
             this.labelControl17.Text = "Distance to search from this item (km)";
             // 
             // checkEditProximitySearch
             // 
             this.checkEditProximitySearch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ProximitySearch", true));
-            this.checkEditProximitySearch.Location = new System.Drawing.Point(37, 447);
+            this.checkEditProximitySearch.Location = new System.Drawing.Point(49, 588);
+            this.checkEditProximitySearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkEditProximitySearch.Name = "checkEditProximitySearch";
             this.checkEditProximitySearch.Properties.Caption = "Enable proximity search for this item on a map";
             this.checkEditProximitySearch.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditProximitySearch.Size = new System.Drawing.Size(368, 23);
+            this.checkEditProximitySearch.Size = new System.Drawing.Size(491, 34);
             this.checkEditProximitySearch.TabIndex = 98;
             this.checkEditProximitySearch.CheckedChanged += new System.EventHandler(this.checkEditProximitySearch_CheckedChanged);
             this.checkEditProximitySearch.Click += new System.EventHandler(this.checkEditProximitySearch_Click);
@@ -5105,7 +4918,8 @@
             0,
             0});
             this.spinEditDistance.Enabled = false;
-            this.spinEditDistance.Location = new System.Drawing.Point(328, 483);
+            this.spinEditDistance.Location = new System.Drawing.Point(437, 636);
+            this.spinEditDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.spinEditDistance.Name = "spinEditDistance";
             this.spinEditDistance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5114,7 +4928,7 @@
             0,
             0,
             0});
-            this.spinEditDistance.Size = new System.Drawing.Size(100, 26);
+            this.spinEditDistance.Size = new System.Drawing.Size(133, 34);
             this.spinEditDistance.TabIndex = 100;
             this.spinEditDistance.Enter += new System.EventHandler(this.enterControl);
             this.spinEditDistance.Leave += new System.EventHandler(this.spinEditDistance_Leave);
@@ -5123,12 +4937,12 @@
             // 
             this.ImageComboBoxEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "COUNTRY_CODE", true));
             this.ImageComboBoxEditCountry.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCountry.Location = new System.Drawing.Point(441, 364);
-            this.ImageComboBoxEditCountry.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditCountry.Location = new System.Drawing.Point(588, 479);
+            this.ImageComboBoxEditCountry.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditCountry.Name = "ImageComboBoxEditCountry";
             this.ImageComboBoxEditCountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCountry.Size = new System.Drawing.Size(303, 26);
+            this.ImageComboBoxEditCountry.Size = new System.Drawing.Size(404, 34);
             this.ImageComboBoxEditCountry.TabIndex = 24;
             this.ImageComboBoxEditCountry.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditCountry.Leave += new System.EventHandler(this.ImageComboBoxEditCountry_Leave);
@@ -5137,12 +4951,12 @@
             // 
             this.ImageComboBoxEditCityCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ACT_CITY", true));
             this.ImageComboBoxEditCityCode.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCityCode.Location = new System.Drawing.Point(831, 257);
-            this.ImageComboBoxEditCityCode.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditCityCode.Location = new System.Drawing.Point(1108, 338);
+            this.ImageComboBoxEditCityCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditCityCode.Name = "ImageComboBoxEditCityCode";
             this.ImageComboBoxEditCityCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCityCode.Size = new System.Drawing.Size(393, 26);
+            this.ImageComboBoxEditCityCode.Size = new System.Drawing.Size(524, 34);
             this.ImageComboBoxEditCityCode.TabIndex = 29;
             this.ImageComboBoxEditCityCode.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditCityCode.Leave += new System.EventHandler(this.ImageComboBoxEditCityCode_Leave);
@@ -5151,12 +4965,12 @@
             // 
             this.ImageComboBoxEditAirport.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AIRPORT", true));
             this.ImageComboBoxEditAirport.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAirport.Location = new System.Drawing.Point(831, 129);
-            this.ImageComboBoxEditAirport.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditAirport.Location = new System.Drawing.Point(1108, 170);
+            this.ImageComboBoxEditAirport.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditAirport.Name = "ImageComboBoxEditAirport";
             this.ImageComboBoxEditAirport.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAirport.Size = new System.Drawing.Size(393, 26);
+            this.ImageComboBoxEditAirport.Size = new System.Drawing.Size(524, 34);
             this.ImageComboBoxEditAirport.TabIndex = 27;
             this.ImageComboBoxEditAirport.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditAirport.Leave += new System.EventHandler(this.ImageComboBoxEditAirport_Leave);
@@ -5165,12 +4979,12 @@
             // 
             this.ImageComboBoxEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "REGION", true));
             this.ImageComboBoxEditRegion.EnterMoveNextControl = true;
-            this.ImageComboBoxEditRegion.Location = new System.Drawing.Point(114, 365);
-            this.ImageComboBoxEditRegion.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditRegion.Location = new System.Drawing.Point(152, 480);
+            this.ImageComboBoxEditRegion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditRegion.Name = "ImageComboBoxEditRegion";
             this.ImageComboBoxEditRegion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditRegion.Size = new System.Drawing.Size(249, 26);
+            this.ImageComboBoxEditRegion.Size = new System.Drawing.Size(332, 34);
             this.ImageComboBoxEditRegion.TabIndex = 23;
             this.ImageComboBoxEditRegion.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditRegion.Leave += new System.EventHandler(this.ImageComboBoxEditRegion_Leave);
@@ -5179,12 +4993,12 @@
             // 
             this.ImageComboBoxEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "STATE", true));
             this.ImageComboBoxEditState.EnterMoveNextControl = true;
-            this.ImageComboBoxEditState.Location = new System.Drawing.Point(114, 281);
-            this.ImageComboBoxEditState.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditState.Location = new System.Drawing.Point(152, 370);
+            this.ImageComboBoxEditState.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditState.Name = "ImageComboBoxEditState";
             this.ImageComboBoxEditState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditState.Size = new System.Drawing.Size(249, 26);
+            this.ImageComboBoxEditState.Size = new System.Drawing.Size(332, 34);
             this.ImageComboBoxEditState.TabIndex = 21;
             this.ImageComboBoxEditState.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditState.Leave += new System.EventHandler(this.ImageComboBoxEditState_Leave);
@@ -5193,21 +5007,21 @@
             // 
             this.lOCAL_NAMETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "LOCAL_NAME", true));
             this.lOCAL_NAMETextEdit.EnterMoveNextControl = true;
-            this.lOCAL_NAMETextEdit.Location = new System.Drawing.Point(441, 403);
-            this.lOCAL_NAMETextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.lOCAL_NAMETextEdit.Location = new System.Drawing.Point(588, 530);
+            this.lOCAL_NAMETextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.lOCAL_NAMETextEdit.Name = "lOCAL_NAMETextEdit";
             this.lOCAL_NAMETextEdit.Properties.MaxLength = 20;
-            this.lOCAL_NAMETextEdit.Size = new System.Drawing.Size(150, 26);
+            this.lOCAL_NAMETextEdit.Size = new System.Drawing.Size(200, 34);
             this.lOCAL_NAMETextEdit.TabIndex = 26;
             this.lOCAL_NAMETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.lOCAL_NAMETextEdit.Leave += new System.EventHandler(this.lOCAL_NAMETextEdit_Leave);
             // 
             // simpleButton6
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(1038, 472);
-            this.simpleButton6.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButton6.Location = new System.Drawing.Point(1384, 621);
+            this.simpleButton6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(54, 34);
+            this.simpleButton6.Size = new System.Drawing.Size(72, 45);
             this.simpleButton6.TabIndex = 97;
             this.simpleButton6.Text = "Map";
             this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
@@ -5216,19 +5030,19 @@
             // 
             this.label3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Appearance.Options.UseFont = true;
-            this.label3.Location = new System.Drawing.Point(783, 83);
-            this.label3.Margin = new System.Windows.Forms.Padding(4);
+            this.label3.Location = new System.Drawing.Point(1044, 109);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 21);
+            this.label3.Size = new System.Drawing.Size(65, 27);
             this.label3.TabIndex = 78;
             this.label3.Text = "Airport";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(782, 349);
-            this.label5.Margin = new System.Windows.Forms.Padding(4);
+            this.label5.Location = new System.Drawing.Point(1043, 459);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 19);
+            this.label5.Size = new System.Drawing.Size(80, 25);
             this.label5.TabIndex = 73;
             this.label5.Text = "Geocode";
             // 
@@ -5236,10 +5050,10 @@
             // 
             this.lATITUDETextBox.Enabled = false;
             this.lATITUDETextBox.EnterMoveNextControl = true;
-            this.lATITUDETextBox.Location = new System.Drawing.Point(942, 381);
-            this.lATITUDETextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lATITUDETextBox.Location = new System.Drawing.Point(1256, 501);
+            this.lATITUDETextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.lATITUDETextBox.Name = "lATITUDETextBox";
-            this.lATITUDETextBox.Size = new System.Drawing.Size(174, 26);
+            this.lATITUDETextBox.Size = new System.Drawing.Size(232, 34);
             this.lATITUDETextBox.TabIndex = 31;
             this.lATITUDETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lATITUDETextBox.Leave += new System.EventHandler(this.lATITUDETextBox_Leave);
@@ -5248,10 +5062,10 @@
             // 
             this.lONGITUDETextBox.Enabled = false;
             this.lONGITUDETextBox.EnterMoveNextControl = true;
-            this.lONGITUDETextBox.Location = new System.Drawing.Point(942, 434);
-            this.lONGITUDETextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lONGITUDETextBox.Location = new System.Drawing.Point(1256, 571);
+            this.lONGITUDETextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.lONGITUDETextBox.Name = "lONGITUDETextBox";
-            this.lONGITUDETextBox.Size = new System.Drawing.Size(174, 26);
+            this.lONGITUDETextBox.Size = new System.Drawing.Size(232, 34);
             this.lONGITUDETextBox.TabIndex = 32;
             this.lONGITUDETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lONGITUDETextBox.Leave += new System.EventHandler(this.lONGITUDETextBox_Leave);
@@ -5260,10 +5074,10 @@
             // 
             this.aIR_MITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AIR_MI", true));
             this.aIR_MITextEdit.EnterMoveNextControl = true;
-            this.aIR_MITextEdit.Location = new System.Drawing.Point(1292, 127);
-            this.aIR_MITextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.aIR_MITextEdit.Location = new System.Drawing.Point(1723, 167);
+            this.aIR_MITextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aIR_MITextEdit.Name = "aIR_MITextEdit";
-            this.aIR_MITextEdit.Size = new System.Drawing.Size(56, 26);
+            this.aIR_MITextEdit.Size = new System.Drawing.Size(75, 34);
             this.aIR_MITextEdit.TabIndex = 28;
             this.aIR_MITextEdit.Enter += new System.EventHandler(this.enterControl);
             this.aIR_MITextEdit.Leave += new System.EventHandler(this.aIR_MITextEdit_Leave);
@@ -5272,10 +5086,10 @@
             // 
             this.label4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Appearance.Options.UseFont = true;
-            this.label4.Location = new System.Drawing.Point(782, 224);
-            this.label4.Margin = new System.Windows.Forms.Padding(4);
+            this.label4.Location = new System.Drawing.Point(1043, 295);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 21);
+            this.label4.Size = new System.Drawing.Size(36, 27);
             this.label4.TabIndex = 78;
             this.label4.Text = "City";
             // 
@@ -5283,20 +5097,20 @@
             // 
             this.cITY_MITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY_MI", true));
             this.cITY_MITextEdit.EnterMoveNextControl = true;
-            this.cITY_MITextEdit.Location = new System.Drawing.Point(1292, 259);
-            this.cITY_MITextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cITY_MITextEdit.Location = new System.Drawing.Point(1723, 341);
+            this.cITY_MITextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cITY_MITextEdit.Name = "cITY_MITextEdit";
-            this.cITY_MITextEdit.Size = new System.Drawing.Size(56, 26);
+            this.cITY_MITextEdit.Size = new System.Drawing.Size(75, 34);
             this.cITY_MITextEdit.TabIndex = 30;
             this.cITY_MITextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cITY_MITextEdit.Leave += new System.EventHandler(this.cITY_MITextEdit_Leave);
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(690, 400);
-            this.simpleButton5.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButton5.Location = new System.Drawing.Point(920, 526);
+            this.simpleButton5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(54, 34);
+            this.simpleButton5.Size = new System.Drawing.Size(72, 45);
             this.simpleButton5.TabIndex = 96;
             this.simpleButton5.Text = "Map";
             this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
@@ -5305,10 +5119,10 @@
             // 
             this.label2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Appearance.Options.UseFont = true;
-            this.label2.Location = new System.Drawing.Point(28, 91);
-            this.label2.Margin = new System.Windows.Forms.Padding(4);
+            this.label2.Location = new System.Drawing.Point(37, 120);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 21);
+            this.label2.Size = new System.Drawing.Size(77, 27);
             this.label2.TabIndex = 93;
             this.label2.Text = "Address";
             // 
@@ -5316,11 +5130,11 @@
             // 
             this.cITYTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY", true));
             this.cITYTextEdit.EnterMoveNextControl = true;
-            this.cITYTextEdit.Location = new System.Drawing.Point(114, 241);
-            this.cITYTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cITYTextEdit.Location = new System.Drawing.Point(152, 317);
+            this.cITYTextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cITYTextEdit.Name = "cITYTextEdit";
             this.cITYTextEdit.Properties.MaxLength = 30;
-            this.cITYTextEdit.Size = new System.Drawing.Size(453, 26);
+            this.cITYTextEdit.Size = new System.Drawing.Size(604, 34);
             this.cITYTextEdit.TabIndex = 20;
             this.cITYTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cITYTextEdit.Leave += new System.EventHandler(this.cITYTextEdit_Leave);
@@ -5329,11 +5143,11 @@
             // 
             this.aDDR1TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR1", true));
             this.aDDR1TextBox.EnterMoveNextControl = true;
-            this.aDDR1TextBox.Location = new System.Drawing.Point(114, 127);
-            this.aDDR1TextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aDDR1TextBox.Location = new System.Drawing.Point(152, 167);
+            this.aDDR1TextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aDDR1TextBox.Name = "aDDR1TextBox";
             this.aDDR1TextBox.Properties.MaxLength = 30;
-            this.aDDR1TextBox.Size = new System.Drawing.Size(453, 26);
+            this.aDDR1TextBox.Size = new System.Drawing.Size(604, 34);
             this.aDDR1TextBox.TabIndex = 17;
             this.aDDR1TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR1TextBox.Leave += new System.EventHandler(this.aDDR1TextBox_Leave);
@@ -5342,11 +5156,11 @@
             // 
             this.lOCAL_PHONETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "LOCAL_PHONE", true));
             this.lOCAL_PHONETextBox.EnterMoveNextControl = true;
-            this.lOCAL_PHONETextBox.Location = new System.Drawing.Point(114, 403);
-            this.lOCAL_PHONETextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lOCAL_PHONETextBox.Location = new System.Drawing.Point(152, 530);
+            this.lOCAL_PHONETextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.lOCAL_PHONETextBox.Name = "lOCAL_PHONETextBox";
             this.lOCAL_PHONETextBox.Properties.MaxLength = 15;
-            this.lOCAL_PHONETextBox.Size = new System.Drawing.Size(249, 26);
+            this.lOCAL_PHONETextBox.Size = new System.Drawing.Size(332, 34);
             this.lOCAL_PHONETextBox.TabIndex = 25;
             this.lOCAL_PHONETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lOCAL_PHONETextBox.Leave += new System.EventHandler(this.lOCAL_PHONETextBox_Leave);
@@ -5355,11 +5169,11 @@
             // 
             this.aDDR2TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR2", true));
             this.aDDR2TextBox.EnterMoveNextControl = true;
-            this.aDDR2TextBox.Location = new System.Drawing.Point(114, 167);
-            this.aDDR2TextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aDDR2TextBox.Location = new System.Drawing.Point(152, 220);
+            this.aDDR2TextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aDDR2TextBox.Name = "aDDR2TextBox";
             this.aDDR2TextBox.Properties.MaxLength = 30;
-            this.aDDR2TextBox.Size = new System.Drawing.Size(453, 26);
+            this.aDDR2TextBox.Size = new System.Drawing.Size(604, 34);
             this.aDDR2TextBox.TabIndex = 18;
             this.aDDR2TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR2TextBox.Leave += new System.EventHandler(this.aDDR2TextBox_Leave);
@@ -5368,11 +5182,11 @@
             // 
             this.aDDR3TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR3", true));
             this.aDDR3TextBox.EnterMoveNextControl = true;
-            this.aDDR3TextBox.Location = new System.Drawing.Point(114, 206);
-            this.aDDR3TextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.aDDR3TextBox.Location = new System.Drawing.Point(152, 271);
+            this.aDDR3TextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aDDR3TextBox.Name = "aDDR3TextBox";
             this.aDDR3TextBox.Properties.MaxLength = 30;
-            this.aDDR3TextBox.Size = new System.Drawing.Size(453, 26);
+            this.aDDR3TextBox.Size = new System.Drawing.Size(604, 34);
             this.aDDR3TextBox.TabIndex = 19;
             this.aDDR3TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR3TextBox.Leave += new System.EventHandler(this.aDDR3TextBox_Leave);
@@ -5381,11 +5195,11 @@
             // 
             this.zIPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ZIP", true));
             this.zIPTextBox.EnterMoveNextControl = true;
-            this.zIPTextBox.Location = new System.Drawing.Point(114, 324);
-            this.zIPTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.zIPTextBox.Location = new System.Drawing.Point(152, 426);
+            this.zIPTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.zIPTextBox.Name = "zIPTextBox";
             this.zIPTextBox.Properties.MaxLength = 10;
-            this.zIPTextBox.Size = new System.Drawing.Size(249, 26);
+            this.zIPTextBox.Size = new System.Drawing.Size(332, 34);
             this.zIPTextBox.TabIndex = 22;
             this.zIPTextBox.Enter += new System.EventHandler(this.enterControl);
             this.zIPTextBox.Leave += new System.EventHandler(this.zIPTextBox_Leave);
@@ -5400,7 +5214,7 @@
             this.rectangleShape4,
             this.rectangleShape3,
             this.rectangleShape2});
-            this.shapeContainer3.Size = new System.Drawing.Size(1397, 681);
+            this.shapeContainer3.Size = new System.Drawing.Size(1866, 900);
             this.shapeContainer3.TabIndex = 97;
             this.shapeContainer3.TabStop = false;
             // 
@@ -5439,9 +5253,9 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.PanelControlRestrictionsTab);
-            this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage2.Text = "Restrictions";
             // 
             // PanelControlRestrictionsTab
@@ -5460,21 +5274,21 @@
             this.PanelControlRestrictionsTab.Controls.Add(this.shapeContainer2);
             this.PanelControlRestrictionsTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlRestrictionsTab.Location = new System.Drawing.Point(0, 0);
-            this.PanelControlRestrictionsTab.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelControlRestrictionsTab.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.PanelControlRestrictionsTab.Name = "PanelControlRestrictionsTab";
-            this.PanelControlRestrictionsTab.Size = new System.Drawing.Size(1403, 687);
+            this.PanelControlRestrictionsTab.Size = new System.Drawing.Size(1872, 906);
             this.PanelControlRestrictionsTab.TabIndex = 0;
             // 
             // ImageComboBoxEditAgency
             // 
             this.ImageComboBoxEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CONTR_AGY", true));
             this.ImageComboBoxEditAgency.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(462, 98);
-            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(616, 129);
+            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditAgency.Name = "ImageComboBoxEditAgency";
             this.ImageComboBoxEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(280, 26);
+            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(373, 34);
             this.ImageComboBoxEditAgency.TabIndex = 13;
             this.ImageComboBoxEditAgency.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditAgency.Leave += new System.EventHandler(this.ImageComboBoxEditAgency_Leave);
@@ -5483,8 +5297,8 @@
             // 
             this.rSTR_CDEImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RSTR_CDE", true));
             this.rSTR_CDEImageComboBoxEdit.EnterMoveNextControl = true;
-            this.rSTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(176, 152);
-            this.rSTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.rSTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(235, 200);
+            this.rSTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rSTR_CDEImageComboBoxEdit.Name = "rSTR_CDEImageComboBoxEdit";
             this.rSTR_CDEImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5492,7 +5306,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Open", "O", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("House", "H", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Agency", "A", -1)});
-            this.rSTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(150, 26);
+            this.rSTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(200, 34);
             this.rSTR_CDEImageComboBoxEdit.TabIndex = 14;
             this.rSTR_CDEImageComboBoxEdit.SelectedValueChanged += new System.EventHandler(this.rSTR_CDEImageComboBoxEdit_SelectedValueChanged);
             this.rSTR_CDEImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
@@ -5502,8 +5316,8 @@
             // 
             this.cONTR_CDEImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CONTR_CDE", true));
             this.cONTR_CDEImageComboBoxEdit.EnterMoveNextControl = true;
-            this.cONTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(176, 98);
-            this.cONTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.cONTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(235, 129);
+            this.cONTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cONTR_CDEImageComboBoxEdit.Name = "cONTR_CDEImageComboBoxEdit";
             this.cONTR_CDEImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5511,7 +5325,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Contract", "C", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Prepay", "P", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", "", -1)});
-            this.cONTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(150, 26);
+            this.cONTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(200, 34);
             this.cONTR_CDEImageComboBoxEdit.TabIndex = 12;
             this.cONTR_CDEImageComboBoxEdit.SelectedValueChanged += new System.EventHandler(this.cONTR_CDEImageComboBoxEdit_SelectedValueChanged);
             this.cONTR_CDEImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
@@ -5521,11 +5335,11 @@
             // 
             this.rESTRICTCODETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RESTRICTCODE", true));
             this.rESTRICTCODETextBox.EnterMoveNextControl = true;
-            this.rESTRICTCODETextBox.Location = new System.Drawing.Point(422, 310);
-            this.rESTRICTCODETextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rESTRICTCODETextBox.Location = new System.Drawing.Point(563, 408);
+            this.rESTRICTCODETextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rESTRICTCODETextBox.Name = "rESTRICTCODETextBox";
             this.rESTRICTCODETextBox.Properties.MaxLength = 4;
-            this.rESTRICTCODETextBox.Size = new System.Drawing.Size(150, 26);
+            this.rESTRICTCODETextBox.Size = new System.Drawing.Size(200, 34);
             this.rESTRICTCODETextBox.TabIndex = 15;
             this.rESTRICTCODETextBox.Enter += new System.EventHandler(this.enterControl);
             this.rESTRICTCODETextBox.Leave += new System.EventHandler(this.rESTRICTCODETextBox_Leave);
@@ -5534,10 +5348,10 @@
             // 
             this.label1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Appearance.Options.UseFont = true;
-            this.label1.Location = new System.Drawing.Point(262, 227);
-            this.label1.Margin = new System.Windows.Forms.Padding(4);
+            this.label1.Location = new System.Drawing.Point(349, 299);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 24);
+            this.label1.Size = new System.Drawing.Size(136, 31);
             this.label1.TabIndex = 22;
             this.label1.Text = "Host 2 Host";
             // 
@@ -5545,11 +5359,11 @@
             // 
             this.rESTRICTDESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RESTRICTDESC", true));
             this.rESTRICTDESCTextBox.EnterMoveNextControl = true;
-            this.rESTRICTDESCTextBox.Location = new System.Drawing.Point(422, 349);
-            this.rESTRICTDESCTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rESTRICTDESCTextBox.Location = new System.Drawing.Point(563, 459);
+            this.rESTRICTDESCTextBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rESTRICTDESCTextBox.Name = "rESTRICTDESCTextBox";
             this.rESTRICTDESCTextBox.Properties.MaxLength = 30;
-            this.rESTRICTDESCTextBox.Size = new System.Drawing.Size(150, 26);
+            this.rESTRICTDESCTextBox.Size = new System.Drawing.Size(200, 34);
             this.rESTRICTDESCTextBox.TabIndex = 16;
             this.rESTRICTDESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rESTRICTDESCTextBox.Leave += new System.EventHandler(this.rESTRICTDESCTextBox_Leave);
@@ -5561,7 +5375,7 @@
             this.shapeContainer2.Name = "shapeContainer2";
             this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(1397, 681);
+            this.shapeContainer2.Size = new System.Drawing.Size(1866, 900);
             this.shapeContainer2.TabIndex = 25;
             this.shapeContainer2.TabStop = false;
             // 
@@ -5577,9 +5391,9 @@
             // 
             this.xtraTabPage1.AutoScroll = true;
             this.xtraTabPage1.Controls.Add(this.PanelControlAvailabilityTab);
-            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPage1.Text = "Availability";
             // 
             // PanelControlAvailabilityTab
@@ -5608,15 +5422,16 @@
             this.PanelControlAvailabilityTab.Controls.Add(aDMINCLOSEDLabel);
             this.PanelControlAvailabilityTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAvailabilityTab.Location = new System.Drawing.Point(0, 0);
-            this.PanelControlAvailabilityTab.Margin = new System.Windows.Forms.Padding(4);
+            this.PanelControlAvailabilityTab.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.PanelControlAvailabilityTab.Name = "PanelControlAvailabilityTab";
-            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(1403, 687);
+            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(1872, 906);
             this.PanelControlAvailabilityTab.TabIndex = 0;
             // 
             // gridLookUpEditAlternates3
             // 
             this.gridLookUpEditAlternates3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_3", true));
-            this.gridLookUpEditAlternates3.Location = new System.Drawing.Point(249, 378);
+            this.gridLookUpEditAlternates3.Location = new System.Drawing.Point(332, 497);
+            this.gridLookUpEditAlternates3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridLookUpEditAlternates3.Name = "gridLookUpEditAlternates3";
             this.gridLookUpEditAlternates3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5628,7 +5443,7 @@
             this.gridLookUpEditAlternates3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates3.Properties.ValueMember = "Code";
             this.gridLookUpEditAlternates3.Properties.View = this.gridView2;
-            this.gridLookUpEditAlternates3.Size = new System.Drawing.Size(372, 26);
+            this.gridLookUpEditAlternates3.Size = new System.Drawing.Size(496, 34);
             this.gridLookUpEditAlternates3.TabIndex = 51;
             this.gridLookUpEditAlternates3.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates3.Leave += new System.EventHandler(this.imageComboBoxEditAlternates3_Leave);
@@ -5674,7 +5489,8 @@
             // gridLookUpEditAlternates2
             // 
             this.gridLookUpEditAlternates2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_2", true));
-            this.gridLookUpEditAlternates2.Location = new System.Drawing.Point(249, 346);
+            this.gridLookUpEditAlternates2.Location = new System.Drawing.Point(332, 455);
+            this.gridLookUpEditAlternates2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridLookUpEditAlternates2.Name = "gridLookUpEditAlternates2";
             this.gridLookUpEditAlternates2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5686,7 +5502,7 @@
             this.gridLookUpEditAlternates2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates2.Properties.ValueMember = "Code";
             this.gridLookUpEditAlternates2.Properties.View = this.gridView1;
-            this.gridLookUpEditAlternates2.Size = new System.Drawing.Size(372, 26);
+            this.gridLookUpEditAlternates2.Size = new System.Drawing.Size(496, 34);
             this.gridLookUpEditAlternates2.TabIndex = 50;
             this.gridLookUpEditAlternates2.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates2.Leave += new System.EventHandler(this.imageComboBoxEditAlternates2_Leave);
@@ -5728,7 +5544,8 @@
             // gridLookUpEditAlternates1
             // 
             this.gridLookUpEditAlternates1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_1", true));
-            this.gridLookUpEditAlternates1.Location = new System.Drawing.Point(249, 314);
+            this.gridLookUpEditAlternates1.Location = new System.Drawing.Point(332, 413);
+            this.gridLookUpEditAlternates1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridLookUpEditAlternates1.Name = "gridLookUpEditAlternates1";
             this.gridLookUpEditAlternates1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5740,7 +5557,7 @@
             this.gridLookUpEditAlternates1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates1.Properties.ValueMember = "Code";
             this.gridLookUpEditAlternates1.Properties.View = this.gridLookUpEditProductView;
-            this.gridLookUpEditAlternates1.Size = new System.Drawing.Size(372, 26);
+            this.gridLookUpEditAlternates1.Size = new System.Drawing.Size(496, 34);
             this.gridLookUpEditAlternates1.TabIndex = 49;
             this.gridLookUpEditAlternates1.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates1.Leave += new System.EventHandler(this.imageComboBoxEditAlternates1_Leave);
@@ -5783,12 +5600,12 @@
             // 
             this.ImageComboBoxEditArea.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY_CODE", true));
             this.ImageComboBoxEditArea.EnterMoveNextControl = true;
-            this.ImageComboBoxEditArea.Location = new System.Drawing.Point(249, 273);
-            this.ImageComboBoxEditArea.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditArea.Location = new System.Drawing.Point(332, 359);
+            this.ImageComboBoxEditArea.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditArea.Name = "ImageComboBoxEditArea";
             this.ImageComboBoxEditArea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditArea.Size = new System.Drawing.Size(358, 26);
+            this.ImageComboBoxEditArea.Size = new System.Drawing.Size(477, 34);
             this.ImageComboBoxEditArea.TabIndex = 8;
             this.ImageComboBoxEditArea.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditArea.Leave += new System.EventHandler(this.imageComboBoxEditArea_Leave);
@@ -5797,12 +5614,12 @@
             // 
             this.ImageComboBoxEditType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "LOCATION", true));
             this.ImageComboBoxEditType.EnterMoveNextControl = true;
-            this.ImageComboBoxEditType.Location = new System.Drawing.Point(248, 234);
-            this.ImageComboBoxEditType.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditType.Location = new System.Drawing.Point(331, 308);
+            this.ImageComboBoxEditType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditType.Name = "ImageComboBoxEditType";
             this.ImageComboBoxEditType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditType.Size = new System.Drawing.Size(360, 26);
+            this.ImageComboBoxEditType.Size = new System.Drawing.Size(480, 34);
             this.ImageComboBoxEditType.TabIndex = 7;
             this.ImageComboBoxEditType.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditType.Leave += new System.EventHandler(this.ImageComboBoxEditType_Leave);
@@ -5811,12 +5628,12 @@
             // 
             this.ImageComboBoxEditRating.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RATE", true));
             this.ImageComboBoxEditRating.EnterMoveNextControl = true;
-            this.ImageComboBoxEditRating.Location = new System.Drawing.Point(249, 194);
-            this.ImageComboBoxEditRating.Margin = new System.Windows.Forms.Padding(4);
+            this.ImageComboBoxEditRating.Location = new System.Drawing.Point(332, 255);
+            this.ImageComboBoxEditRating.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ImageComboBoxEditRating.Name = "ImageComboBoxEditRating";
             this.ImageComboBoxEditRating.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditRating.Size = new System.Drawing.Size(358, 26);
+            this.ImageComboBoxEditRating.Size = new System.Drawing.Size(477, 34);
             this.ImageComboBoxEditRating.TabIndex = 6;
             this.ImageComboBoxEditRating.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditRating.Leave += new System.EventHandler(this.ImageComboBoxEditRating_Leave);
@@ -5825,13 +5642,13 @@
             // 
             this.pFRD_FLGCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "PFRD_FLG", true));
             this.pFRD_FLGCheckEdit.EnterMoveNextControl = true;
-            this.pFRD_FLGCheckEdit.Location = new System.Drawing.Point(246, 158);
-            this.pFRD_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.pFRD_FLGCheckEdit.Location = new System.Drawing.Point(328, 208);
+            this.pFRD_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pFRD_FLGCheckEdit.Name = "pFRD_FLGCheckEdit";
             this.pFRD_FLGCheckEdit.Properties.Caption = "";
             this.pFRD_FLGCheckEdit.Properties.ValueChecked = "Y";
             this.pFRD_FLGCheckEdit.Properties.ValueUnchecked = "N";
-            this.pFRD_FLGCheckEdit.Size = new System.Drawing.Size(30, 19);
+            this.pFRD_FLGCheckEdit.Size = new System.Drawing.Size(40, 34);
             this.pFRD_FLGCheckEdit.TabIndex = 5;
             this.pFRD_FLGCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -5839,13 +5656,13 @@
             // 
             this.iNACTIVECheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "INACTIVE", true));
             this.iNACTIVECheckEdit.EnterMoveNextControl = true;
-            this.iNACTIVECheckEdit.Location = new System.Drawing.Point(244, 117);
-            this.iNACTIVECheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.iNACTIVECheckEdit.Location = new System.Drawing.Point(325, 154);
+            this.iNACTIVECheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.iNACTIVECheckEdit.Name = "iNACTIVECheckEdit";
             this.iNACTIVECheckEdit.Properties.Caption = "";
             this.iNACTIVECheckEdit.Properties.ValueChecked = "Y";
             this.iNACTIVECheckEdit.Properties.ValueUnchecked = "N";
-            this.iNACTIVECheckEdit.Size = new System.Drawing.Size(33, 19);
+            this.iNACTIVECheckEdit.Size = new System.Drawing.Size(44, 34);
             this.iNACTIVECheckEdit.TabIndex = 4;
             this.iNACTIVECheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -5853,13 +5670,13 @@
             // 
             this.aDMINCLOSEDCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ADMINCLOSED", true));
             this.aDMINCLOSEDCheckEdit.EnterMoveNextControl = true;
-            this.aDMINCLOSEDCheckEdit.Location = new System.Drawing.Point(244, 70);
-            this.aDMINCLOSEDCheckEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.aDMINCLOSEDCheckEdit.Location = new System.Drawing.Point(325, 92);
+            this.aDMINCLOSEDCheckEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.aDMINCLOSEDCheckEdit.Name = "aDMINCLOSEDCheckEdit";
             this.aDMINCLOSEDCheckEdit.Properties.Caption = "";
             this.aDMINCLOSEDCheckEdit.Properties.ValueChecked = "Y";
             this.aDMINCLOSEDCheckEdit.Properties.ValueUnchecked = "N";
-            this.aDMINCLOSEDCheckEdit.Size = new System.Drawing.Size(33, 19);
+            this.aDMINCLOSEDCheckEdit.Size = new System.Drawing.Size(44, 34);
             this.aDMINCLOSEDCheckEdit.TabIndex = 3;
             this.aDMINCLOSEDCheckEdit.Modified += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Modified);
             this.aDMINCLOSEDCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
@@ -5867,19 +5684,19 @@
             // labelControl5
             // 
             this.labelControl5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CLOSEUPDBY", true));
-            this.labelControl5.Location = new System.Drawing.Point(736, 76);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl5.Location = new System.Drawing.Point(981, 100);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(0, 19);
+            this.labelControl5.Size = new System.Drawing.Size(0, 25);
             this.labelControl5.TabIndex = 48;
             // 
             // labelControl4
             // 
             this.labelControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CLOSEUPDDATE", true));
-            this.labelControl4.Location = new System.Drawing.Point(464, 75);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl4.Location = new System.Drawing.Point(619, 99);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(0, 19);
+            this.labelControl4.Size = new System.Drawing.Size(0, 25);
             this.labelControl4.TabIndex = 47;
             // 
             // BusStationBindingSource
@@ -5888,11 +5705,11 @@
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(25, 106);
-            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.xtraTabControl1.Location = new System.Drawing.Point(33, 139);
+            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1413, 729);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1884, 959);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -5912,9 +5729,9 @@
             // xtraTabPageSupplierHotels
             // 
             this.xtraTabPageSupplierHotels.Controls.Add(this.panelControl10);
-            this.xtraTabPageSupplierHotels.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPageSupplierHotels.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPageSupplierHotels.Name = "xtraTabPageSupplierHotels";
-            this.xtraTabPageSupplierHotels.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPageSupplierHotels.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPageSupplierHotels.Text = "Supplier Mapping";
             // 
             // panelControl10
@@ -5924,19 +5741,19 @@
             this.panelControl10.Controls.Add(this.gridControlSupplierProduct);
             this.panelControl10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl10.Location = new System.Drawing.Point(0, 0);
-            this.panelControl10.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl10.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl10.Name = "panelControl10";
-            this.panelControl10.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl10.Size = new System.Drawing.Size(1872, 906);
             this.panelControl10.TabIndex = 0;
             // 
             // MappingDelButton
             // 
             this.MappingDelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingDelButton.ImageOptions.Image")));
             this.MappingDelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingDelButton.Location = new System.Drawing.Point(1295, 234);
-            this.MappingDelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.MappingDelButton.Location = new System.Drawing.Point(1727, 308);
+            this.MappingDelButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MappingDelButton.Name = "MappingDelButton";
-            this.MappingDelButton.Size = new System.Drawing.Size(54, 64);
+            this.MappingDelButton.Size = new System.Drawing.Size(72, 84);
             this.MappingDelButton.TabIndex = 99;
             this.MappingDelButton.TabStop = false;
             this.MappingDelButton.Text = "simpleButton4";
@@ -5946,10 +5763,10 @@
             // 
             this.MappingAddButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingAddButton.ImageOptions.Image")));
             this.MappingAddButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingAddButton.Location = new System.Drawing.Point(1295, 162);
-            this.MappingAddButton.Margin = new System.Windows.Forms.Padding(4);
+            this.MappingAddButton.Location = new System.Drawing.Point(1727, 213);
+            this.MappingAddButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MappingAddButton.Name = "MappingAddButton";
-            this.MappingAddButton.Size = new System.Drawing.Size(54, 64);
+            this.MappingAddButton.Size = new System.Drawing.Size(72, 84);
             this.MappingAddButton.TabIndex = 98;
             this.MappingAddButton.TabStop = false;
             this.MappingAddButton.Text = "simpleButton3";
@@ -5958,15 +5775,14 @@
             // gridControlSupplierProduct
             // 
             this.gridControlSupplierProduct.DataSource = this.bindingSourceSupplierProduct;
-            this.gridControlSupplierProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlSupplierProduct.Location = new System.Drawing.Point(69, 45);
+            this.gridControlSupplierProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gridControlSupplierProduct.Location = new System.Drawing.Point(92, 59);
             this.gridControlSupplierProduct.MainView = this.gridViewSupplierProduct;
-            this.gridControlSupplierProduct.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlSupplierProduct.MenuManager = this.barManager1;
+            this.gridControlSupplierProduct.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gridControlSupplierProduct.Name = "gridControlSupplierProduct";
             this.gridControlSupplierProduct.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEditMax50});
-            this.gridControlSupplierProduct.Size = new System.Drawing.Size(1218, 437);
+            this.gridControlSupplierProduct.Size = new System.Drawing.Size(1624, 575);
             this.gridControlSupplierProduct.TabIndex = 83;
             this.gridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSupplierProduct});
@@ -6079,9 +5895,9 @@
             // xtraTabPageSupplierRoomTypes
             // 
             this.xtraTabPageSupplierRoomTypes.Controls.Add(this.panelControl11);
-            this.xtraTabPageSupplierRoomTypes.Margin = new System.Windows.Forms.Padding(6);
+            this.xtraTabPageSupplierRoomTypes.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.xtraTabPageSupplierRoomTypes.Name = "xtraTabPageSupplierRoomTypes";
-            this.xtraTabPageSupplierRoomTypes.Size = new System.Drawing.Size(1403, 687);
+            this.xtraTabPageSupplierRoomTypes.Size = new System.Drawing.Size(1872, 906);
             this.xtraTabPageSupplierRoomTypes.Text = "Supplier Room Type";
             // 
             // panelControl11
@@ -6096,26 +5912,26 @@
             this.panelControl11.Controls.Add(this.GridControlSuppRoomType);
             this.panelControl11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl11.Location = new System.Drawing.Point(0, 0);
-            this.panelControl11.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl11.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControl11.Name = "panelControl11";
-            this.panelControl11.Size = new System.Drawing.Size(1403, 687);
+            this.panelControl11.Size = new System.Drawing.Size(1872, 906);
             this.panelControl11.TabIndex = 0;
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(42, 38);
-            this.labelControl16.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl16.Location = new System.Drawing.Point(56, 50);
+            this.labelControl16.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(145, 19);
+            this.labelControl16.Size = new System.Drawing.Size(189, 25);
             this.labelControl16.TabIndex = 105;
             this.labelControl16.Text = "Supplier Room Type";
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(42, 360);
-            this.labelControl15.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl15.Location = new System.Drawing.Point(56, 474);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(129, 19);
+            this.labelControl15.Size = new System.Drawing.Size(173, 25);
             this.labelControl15.TabIndex = 104;
             this.labelControl15.Text = "Supplier Rate Plan";
             // 
@@ -6123,10 +5939,10 @@
             // 
             this.simpleButtonRatePlanDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRatePlanDel.ImageOptions.Image")));
             this.simpleButtonRatePlanDel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRatePlanDel.Location = new System.Drawing.Point(1324, 471);
-            this.simpleButtonRatePlanDel.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButtonRatePlanDel.Location = new System.Drawing.Point(1765, 620);
+            this.simpleButtonRatePlanDel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButtonRatePlanDel.Name = "simpleButtonRatePlanDel";
-            this.simpleButtonRatePlanDel.Size = new System.Drawing.Size(51, 64);
+            this.simpleButtonRatePlanDel.Size = new System.Drawing.Size(68, 84);
             this.simpleButtonRatePlanDel.TabIndex = 103;
             this.simpleButtonRatePlanDel.TabStop = false;
             this.simpleButtonRatePlanDel.Text = "simpleButton4";
@@ -6136,10 +5952,10 @@
             // 
             this.simpleButtonRatePlanAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRatePlanAdd.ImageOptions.Image")));
             this.simpleButtonRatePlanAdd.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRatePlanAdd.Location = new System.Drawing.Point(1324, 398);
-            this.simpleButtonRatePlanAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButtonRatePlanAdd.Location = new System.Drawing.Point(1765, 524);
+            this.simpleButtonRatePlanAdd.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButtonRatePlanAdd.Name = "simpleButtonRatePlanAdd";
-            this.simpleButtonRatePlanAdd.Size = new System.Drawing.Size(54, 64);
+            this.simpleButtonRatePlanAdd.Size = new System.Drawing.Size(72, 84);
             this.simpleButtonRatePlanAdd.TabIndex = 102;
             this.simpleButtonRatePlanAdd.TabStop = false;
             this.simpleButtonRatePlanAdd.Text = "simpleButton3";
@@ -6149,10 +5965,10 @@
             // 
             this.simpleButtonRoomTypeDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRoomTypeDel.ImageOptions.Image")));
             this.simpleButtonRoomTypeDel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRoomTypeDel.Location = new System.Drawing.Point(1324, 148);
-            this.simpleButtonRoomTypeDel.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButtonRoomTypeDel.Location = new System.Drawing.Point(1765, 195);
+            this.simpleButtonRoomTypeDel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButtonRoomTypeDel.Name = "simpleButtonRoomTypeDel";
-            this.simpleButtonRoomTypeDel.Size = new System.Drawing.Size(51, 64);
+            this.simpleButtonRoomTypeDel.Size = new System.Drawing.Size(68, 84);
             this.simpleButtonRoomTypeDel.TabIndex = 101;
             this.simpleButtonRoomTypeDel.TabStop = false;
             this.simpleButtonRoomTypeDel.Text = "simpleButton4";
@@ -6161,15 +5977,14 @@
             // GridControlSuppRatePlan
             // 
             this.GridControlSuppRatePlan.DataSource = this.supplierHotelRatePlanBindingSource;
-            this.GridControlSuppRatePlan.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlSuppRatePlan.Location = new System.Drawing.Point(33, 395);
+            this.GridControlSuppRatePlan.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlSuppRatePlan.Location = new System.Drawing.Point(44, 520);
             this.GridControlSuppRatePlan.MainView = this.GridViewSuppRatePlan;
-            this.GridControlSuppRatePlan.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlSuppRatePlan.MenuManager = this.barManager1;
+            this.GridControlSuppRatePlan.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlSuppRatePlan.Name = "GridControlSuppRatePlan";
             this.GridControlSuppRatePlan.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditRoomType});
-            this.GridControlSuppRatePlan.Size = new System.Drawing.Size(1264, 257);
+            this.GridControlSuppRatePlan.Size = new System.Drawing.Size(1685, 338);
             this.GridControlSuppRatePlan.TabIndex = 1;
             this.GridControlSuppRatePlan.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSuppRatePlan});
@@ -6271,10 +6086,10 @@
             // 
             this.simpleButtonRoomTypeAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRoomTypeAdd.ImageOptions.Image")));
             this.simpleButtonRoomTypeAdd.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRoomTypeAdd.Location = new System.Drawing.Point(1324, 75);
-            this.simpleButtonRoomTypeAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButtonRoomTypeAdd.Location = new System.Drawing.Point(1765, 99);
+            this.simpleButtonRoomTypeAdd.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.simpleButtonRoomTypeAdd.Name = "simpleButtonRoomTypeAdd";
-            this.simpleButtonRoomTypeAdd.Size = new System.Drawing.Size(54, 64);
+            this.simpleButtonRoomTypeAdd.Size = new System.Drawing.Size(72, 84);
             this.simpleButtonRoomTypeAdd.TabIndex = 100;
             this.simpleButtonRoomTypeAdd.TabStop = false;
             this.simpleButtonRoomTypeAdd.Text = "simpleButton3";
@@ -6283,13 +6098,12 @@
             // GridControlSuppRoomType
             // 
             this.GridControlSuppRoomType.DataSource = this.supplierHotelRoomTypeBindingSource;
-            this.GridControlSuppRoomType.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlSuppRoomType.Location = new System.Drawing.Point(33, 66);
+            this.GridControlSuppRoomType.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlSuppRoomType.Location = new System.Drawing.Point(44, 87);
             this.GridControlSuppRoomType.MainView = this.GridViewSuppRoomType;
-            this.GridControlSuppRoomType.Margin = new System.Windows.Forms.Padding(4);
-            this.GridControlSuppRoomType.MenuManager = this.barManager1;
+            this.GridControlSuppRoomType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GridControlSuppRoomType.Name = "GridControlSuppRoomType";
-            this.GridControlSuppRoomType.Size = new System.Drawing.Size(1264, 243);
+            this.GridControlSuppRoomType.Size = new System.Drawing.Size(1685, 320);
             this.GridControlSuppRoomType.TabIndex = 0;
             this.GridControlSuppRoomType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSuppRoomType});
@@ -6398,15 +6212,15 @@
             // 
             this.supplierHotelMappingBindingSource.DataSource = typeof(FlexModel.SupplierProduct);
             // 
-            // errorProvider1
+            // ErrorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.ErrorProvider.ContainerControl = this;
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 31);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 60);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.AutoScroll = true;
             this.splitContainerControl1.Panel1.Controls.Add(this.GridControlHotels);
@@ -6425,8 +6239,8 @@
             this.splitContainerControl1.Panel2.Controls.Add(nAMELabel);
             this.splitContainerControl1.Panel2.Controls.Add(this.typeTextEdit);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1740, 887);
-            this.splitContainerControl1.SplitterPosition = 270;
+            this.splitContainerControl1.Size = new System.Drawing.Size(2320, 1148);
+            this.splitContainerControl1.SplitterPosition = 360;
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -6434,11 +6248,11 @@
             // 
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CODE", true));
             this.TextEditCode.EnterMoveNextControl = true;
-            this.TextEditCode.Location = new System.Drawing.Point(106, 27);
-            this.TextEditCode.Margin = new System.Windows.Forms.Padding(4);
+            this.TextEditCode.Location = new System.Drawing.Point(141, 36);
+            this.TextEditCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Properties.MaxLength = 12;
-            this.TextEditCode.Size = new System.Drawing.Size(256, 26);
+            this.TextEditCode.Size = new System.Drawing.Size(341, 34);
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Enter += new System.EventHandler(this.enterControl);
             this.TextEditCode.Leave += new System.EventHandler(this.codeSearch_Leave);
@@ -6446,10 +6260,10 @@
             // typeTextEdit
             // 
             this.typeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Type", true));
-            this.typeTextEdit.Location = new System.Drawing.Point(763, 61);
-            this.typeTextEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.typeTextEdit.Location = new System.Drawing.Point(1017, 80);
+            this.typeTextEdit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.typeTextEdit.Name = "typeTextEdit";
-            this.typeTextEdit.Size = new System.Drawing.Size(150, 26);
+            this.typeTextEdit.Size = new System.Drawing.Size(200, 34);
             this.typeTextEdit.TabIndex = 14;
             this.typeTextEdit.TabStop = false;
             this.typeTextEdit.Visible = false;
@@ -6461,44 +6275,133 @@
             this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.panelControlStatus.Controls.Add(this.labelControl9);
             this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(460, 1);
-            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControlStatus.Location = new System.Drawing.Point(613, 1);
+            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(180, 37);
+            this.panelControlStatus.Size = new System.Drawing.Size(240, 49);
             this.panelControlStatus.TabIndex = 40;
             this.panelControlStatus.Visible = false;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(45, 7);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl9.Location = new System.Drawing.Point(60, 9);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(0, 19);
+            this.labelControl9.Size = new System.Drawing.Size(0, 25);
             this.labelControl9.TabIndex = 5;
             // 
             // LabelStatus
             // 
-            this.LabelStatus.Location = new System.Drawing.Point(36, 7);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.LabelStatus.Location = new System.Drawing.Point(48, 9);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 19);
+            this.LabelStatus.Size = new System.Drawing.Size(0, 25);
             this.LabelStatus.TabIndex = 38;
+            // 
+            // BarManager
+            // 
+            this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1});
+            this.BarManager.DockControls.Add(this.barDockControlTop);
+            this.BarManager.DockControls.Add(this.barDockControlBottom);
+            this.BarManager.DockControls.Add(this.barDockControlLeft);
+            this.BarManager.DockControls.Add(this.barDockControlRight);
+            this.BarManager.Form = this;
+            this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+            this.BarManager.MaxItemId = 3;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.BarManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(2320, 60);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1208);
+            this.barDockControlBottom.Manager = this.BarManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(2320, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
+            this.barDockControlLeft.Manager = this.BarManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1148);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(2320, 60);
+            this.barDockControlRight.Manager = this.BarManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1148);
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Tools";
+            // 
+            // BarButtonItemNew
+            // 
+            this.BarButtonItemNew.Caption = "New";
+            this.BarButtonItemNew.Id = 0;
+            this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.BarButtonItemNew.Name = "BarButtonItemNew";
+            this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+            // 
+            // BarButtonItemDelete
+            // 
+            this.BarButtonItemDelete.Caption = "Delete";
+            this.BarButtonItemDelete.Id = 1;
+            this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+            this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+            // 
+            // BarButtonItemSave
+            // 
+            this.BarButtonItemSave.Caption = "Save";
+            this.BarButtonItemSave.Id = 2;
+            this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.BarButtonItemSave.Name = "BarButtonItemSave";
+            this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
             // 
             // HotelGenInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1740, 918);
+            this.ClientSize = new System.Drawing.Size(2320, 1208);
             this.Controls.Add(this.panelControlStatus);
             this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.HotelBindingNavigator);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MinimizeBox = false;
             this.Name = "HotelGenInfo";
             this.ShowInTaskbar = false;
@@ -6506,11 +6409,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HotelGenInfo_FormClosing);
             this.Load += new System.EventHandler(this.HotelGenInfo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotelGenInfo_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HotelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HotelBindingNavigator)).EndInit();
-            this.HotelBindingNavigator.ResumeLayout(false);
-            this.HotelBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlHotels)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewHotels)).EndInit();
@@ -6694,7 +6593,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.supplierHotelRoomTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSuppRoomType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierHotelMappingBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
@@ -6702,6 +6601,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6710,19 +6610,6 @@
         #endregion
 
         private System.Windows.Forms.BindingSource HotelBindingSource;
-        private System.Windows.Forms.BindingNavigator HotelBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton hOTELBindingNavigatorSaveItem;
         private DevExpress.XtraEditors.TextEdit TextEditName;
         private DevExpress.XtraGrid.GridControl GridControlHotels;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewHotels;
@@ -6887,7 +6774,7 @@
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
         private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
         private System.Windows.Forms.BindingSource DetailBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colID1;
         private DevExpress.XtraGrid.Columns.GridColumn colLINK_TABLE1;
@@ -7001,11 +6888,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colReplyToEmail;
         private DevExpress.XtraGrid.Columns.GridColumn colReplyToMessage;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-		private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraEditors.SimpleButton OkButton;
         private DevExpress.XtraEditors.SimpleButton CancelButton;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageSupplierHotels;
@@ -7225,5 +7107,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayNameProduct;
         private System.Windows.Forms.BindingSource bindingSourceCodeNameProduct;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnMappingOperator;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarManager BarManager;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
     }
 }

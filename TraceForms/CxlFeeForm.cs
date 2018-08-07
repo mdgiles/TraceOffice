@@ -13,6 +13,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraEditors.Popup;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Win;
+using DevExpress.Data.Async.Helpers;
 
 namespace TraceForms
 {
@@ -179,59 +180,50 @@ namespace TraceForms
 
 		private bool SaveRecord(bool prompt)
 		{
-			try
-			{
-				if (_selectedRecord == null)
-					return true;
+            try {
+                if (_selectedRecord == null)
+                    return true;
 
-				FinalizeBindings();
-				bool newRec = _selectedRecord.IsNew();
-				bool modified = newRec || IsModified(_selectedRecord);
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
 
-				if (modified)
-				{
-					if (prompt)
-					{
-						DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
-						if (result == DialogResult.No)
-						{
-							if (newRec)
-							{
-								RemoveRecord();
-							}
-							else
-							{
-								RefreshRecord();
-							}
-							return true;
-						}
-						else if (result == DialogResult.Cancel)
-						{
-							return false;
-						}
-					}
-					if (!ValidateAll())
-						return false;
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            if (newRec) {
+                                RemoveRecord();
+                            }
+                            else {
+                                RefreshRecord();
+                            }
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    if (!ValidateAll())
+                        return false;
 
-					if (_selectedRecord.EntityState == EntityState.Detached)
-					{
-						_context.CXLFEE.AddObject(_selectedRecord);
-					}
-                    SetUpdateFields(_selectedRecord);
+                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                        _context.CXLFEE.AddObject(_selectedRecord);
+                    }
                     _context.SaveChanges();
-					ShowActionConfirmation("Record Saved");
-				}
-				return true;
-			}
-			catch (Exception ex)
-			{
-				DisplayHelper.DisplayError(this, ex);
-				RefreshRecord();        //pull it back from db because that is its current state
-										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
-				SetBindings();
-				return false;
-			}
-		}
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Saved");
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecord();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+                return false;
+            }
+        }
 
         private void SetUpdateFields(CXLFEE record)
         {
@@ -254,21 +246,17 @@ namespace TraceForms
 
 		void SetBindings()
 		{
-			//If the route list is filtered, there will be rows in the binding source
-			//that are not visible, and they can become selected if the last visible row
-			//is deleted, so handle that by checking rowcount.
-			if (BindingSource.Current == null)
-			{
-				_selectedRecord = null;
-				SetReadOnly(true);
-			}
-			else
-			{
-				_selectedRecord = ((CXLFEE)BindingSource.Current);
-				SetReadOnly(false);
-			}
-			ErrorProvider.Clear();
-		}
+            if (BindingSource.Current == null) {
+                ClearBindings();
+            }
+            else {
+                _selectedRecord = ((CXLFEE)BindingSource.Current);
+                SetReadOnly(false);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
+            }
+            ErrorProvider.Clear();
+        }
 
 		private bool ValidateAll()
 		{
@@ -317,44 +305,59 @@ namespace TraceForms
 
 		private void DeleteRecord()
 		{
-			if (_selectedRecord == null)
-				return;
+            if (_selectedRecord == null)
+                return;
 
-			try {
-				if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
-					_ignoreLeaveRow = true;
-					_ignorePositionChange = true;
-					RemoveRecord();
-					if (!_selectedRecord.IsNew()) {
-						//Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
-						//(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
-						//the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
-						//delete it manually.
-						if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
-							_context.CXLFEE.DeleteObject(_selectedRecord);
-						_context.SaveChanges();
-					}
-					if (GridViewLookup.RowCount == 0) {
-						ClearBindings();
-					}
-					_ignoreLeaveRow = false;
-					_ignorePositionChange = false;
-					SetBindings();
-					ShowActionConfirmation("Record Deleted");
-				}
-			}
-			catch (Exception ex) {
-				DisplayHelper.DisplayError(this, ex);
-				RefreshRecord();        //pull it back from db because that is it's current state
-										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
-				SetBindings();
-			}
-		}
+            try {
+                if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
+                    //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
+                    //We do not want these events to perform their usual code of checking whether there are changes in the active
+                    //record that should be saved before proceeding, because we know we have just deleted the active record.
+                    _ignoreLeaveRow = true;
+                    _ignorePositionChange = true;
+                    RemoveRecord();
+                    if (!_selectedRecord.IsNew()) {
+                        //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
+                        //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
+                        //the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
+                        //delete it manually.
+                        if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
+                            _context.CXLFEE.DeleteObject(_selectedRecord);
+                        _context.SaveChanges();
+                    }
+                    if (GridViewLookup.DataRowCount == 0) {
+                        ClearBindings();
+                    }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
+                    SetBindings();
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Deleted");
+                }
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                _ignoreLeaveRow = false;
+                _ignorePositionChange = false;
+                RefreshRecord();        //pull it back from db because that is it's current state
+                //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+            }
+        }
 
 		void ClearBindings()
 		{
-			BindingSource.DataSource = typeof(CXLFEE);
-		}
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            SetReadOnly(true);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
+            BindingSource.DataSource = typeof(CXLFEE);
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
+        }
 
 
 		private void CxlFeeForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -445,37 +448,6 @@ namespace TraceForms
 			}
 		}
 
-		private void CxlFeeForm_KeyDown(object sender, KeyEventArgs e)
-        {
-			if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
-				ExecuteQuery();
-				e.Handled = true;
-			}
-		}
-
-		private void ExecuteQuery()
-		{
-			Cursor = Cursors.WaitCursor;
-			string query = "1=1";
-			foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
-				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-				if (!string.IsNullOrEmpty(value)) {
-					query += $" and it.[{col.FieldName}] like '%{value}%'";
-				}
-			}
-
-			var records = _context.CXLFEE.Where(query);
-			if (records.Count() > 0) {
-				BindingSource.DataSource = records;
-				GridViewLookup.ClearColumnsFilter();
-			}
-			else {
-				ClearBindings();
-				DisplayHelper.DisplayInfo(this, "No matching records found.");
-			}
-			Cursor = Cursors.Default;
-		}
-
 		private void SearchLookupEditCode_Leave(object sender, System.EventArgs e)
         {
 			if (_selectedRecord != null)
@@ -522,7 +494,33 @@ namespace TraceForms
 				SetBindings();
 		}
 
-		private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.CXLFEE;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            GridView view = (GridView)sender;
+            object row = view.GetRow(e.FocusedRowHandle);
+            if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                CXLFEE record = (CXLFEE)proxy.OriginalRow;
+                BindingSource.DataSource = _context.CXLFEE.Where(c => c.CODE == record.CODE);
+            }
+            else {
+                ClearBindings();
+            }
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
 			if (SaveRecord(true)) {

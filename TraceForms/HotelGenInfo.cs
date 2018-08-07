@@ -226,7 +226,6 @@ namespace TraceForms
             Modified = false;
             newRec = false;
             setReadOnly(true);
-            enableNavigator(false);
         }
 
         private bool Modified
@@ -249,14 +248,6 @@ namespace TraceForms
             }
         }
 
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
-
         void setReadOnly(bool value)
         {
             TextEditCode.Properties.ReadOnly = value;
@@ -274,20 +265,20 @@ namespace TraceForms
             if (!_modified && !newRec)
                 return true;
             if (!CheckMappings()) return false;
-            bool ok = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkSplitContainer, HotelBindingSource);
-            bool ok1 = validCheck.checkAll(PanelControlAvailabilityTab.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel1, HotelBindingSource);
-            bool ok2 = validCheck.checkAll(PanelControlRestrictionsTab.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel2, HotelBindingSource);
-            bool ok3 = validCheck.checkAll(panelControl3.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel3, HotelBindingSource);
-            bool ok4 = validCheck.checkAll(panelControl4.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel4, HotelBindingSource);
-            bool ok5 = validCheck.checkAll(panelControl5.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel5, HotelBindingSource);
-            bool ok6 = validCheck.checkAll(panelControl6.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel6, HotelBindingSource);
-            bool ok7 = validCheck.checkAll(panelControl7.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel7, HotelBindingSource);
-            bool ok8 = validCheck.checkAll(panelControl7.Controls, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPanel8, HotelBindingSource);
+            bool ok = validCheck.checkAll(splitContainerControl1.Panel2.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkSplitContainer, HotelBindingSource);
+            bool ok1 = validCheck.checkAll(PanelControlAvailabilityTab.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel1, HotelBindingSource);
+            bool ok2 = validCheck.checkAll(PanelControlRestrictionsTab.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel2, HotelBindingSource);
+            bool ok3 = validCheck.checkAll(panelControl3.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel3, HotelBindingSource);
+            bool ok4 = validCheck.checkAll(panelControl4.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel4, HotelBindingSource);
+            bool ok5 = validCheck.checkAll(panelControl5.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel5, HotelBindingSource);
+            bool ok6 = validCheck.checkAll(panelControl6.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel6, HotelBindingSource);
+            bool ok7 = validCheck.checkAll(panelControl7.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel7, HotelBindingSource);
+            bool ok8 = validCheck.checkAll(panelControl7.Controls, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPanel8, HotelBindingSource);
 			if (!CheckRoomTypes()) return false;
 			if (!CheckRatePlans()) return false;
 
             if (ok && ok1 && ok2 && ok3 && ok4 && ok5 && ok6 && ok7 && ok8) {
-                var ret = validCheck.saveRec(ref _modified, true, ref newRec, context, HotelBindingSource, this.Name, errorProvider1, Cursor);
+                var ret = validCheck.saveRec(ref _modified, true, ref newRec, context, HotelBindingSource, this.Name, ErrorProvider, Cursor);
                 if (ret) {
                     AccountingAPI.InvokeForProduct(_accountingURL, "HTL", ((HOTEL)HotelBindingSource.Current).CODE);
                 }
@@ -295,7 +286,7 @@ namespace TraceForms
             }
             else
             {
-                validCheck.saveRec(ref _modified, false, ref newRec, context, HotelBindingSource, this.Name, errorProvider1, Cursor);
+                validCheck.saveRec(ref _modified, false, ref newRec, context, HotelBindingSource, this.Name, ErrorProvider, Cursor);
                 return false;
             }
         }
@@ -477,165 +468,10 @@ namespace TraceForms
             }
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            //test comment
-            GridViewHotels.ClearColumnsFilter();
-            GridControlAdditionalContacts.DataSource = null;
-            GridControlCustom.DataSource = null;
-            gridControlSupplierProduct.DataSource = null;
-            supplierHotelRoomTypeBindingSource.DataSource = null;
-			supplierHotelRatePlanBindingSource.DataSource = null;
-			if (HotelBindingSource.Current == null)
-            {
-                HotelBindingSource.DataSource = from opt in context.HOTEL where opt.CODE == "KJM9" select opt;
-                HotelBindingSource.AddNew();
-                if (GridViewHotels.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewHotels.FocusedRowHandle = GridViewHotels.RowCount - 1;
-                TextEditCode.Focus();
-                setReadOnly(false);
-                newRec = true;
-                setCheckEdits();
-                return;
-            }
-            TextEditCode.Focus();
-            //bindingNavigatorPositionItem.Focus();
-            GridViewHotels.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
-                HotelBindingSource.AddNew();
-                if (GridViewHotels.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewHotels.FocusedRowHandle = GridViewHotels.RowCount - 1;
-                TextEditCode.Focus();
-                setReadOnly(false);
-                newRec = true;
-                setCheckEdits();
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if (HotelBindingSource.Current == null)
-                return;
-            GridViewHotels.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-
-                IEnumerable<CONTACT> contactRecs = from contact in context.CONTACT where contact.LINK_VALUE == TextEditCode.Text select contact;
-                foreach (CONTACT rec in contactRecs)
-                    context.DeleteObject(rec);
-
-                IEnumerable<RptContact> rptContactRecs = from contact in context.RptContact where contact.Code == TextEditCode.Text select contact;
-                foreach (RptContact rec in rptContactRecs)
-                    context.DeleteObject(rec);
-
-
-                Modified = false;
-                newRec = false;
-                HotelBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-            }
-            currentVal = TextEditCode.Text;
-            TextEditCode.Focus();
-        }
-
         private void TimedEventDelete(object sender, EventArgs e)
         {
             panelControlStatus.Visible = false;
             rowStatusDelete.Stop();
-        }
-
-        private void hOTELBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            //HOTEL current = (HOTEL)HotelBindingSource.Current;
-            //if (current.GeoCode_ID == null)
-            //    current.GeoCode_ID = 0;
-            TextEditCode.Focus();
-            int? contactID = 0, roomTypeID = 0;
-            if (HotelBindingSource.Current == null)
-                return;
-            HOTEL hotel = (HOTEL)HotelBindingSource.Current;
-            if (string.IsNullOrEmpty(hotel.ACT_CITY)) {
-                hotel.ACT_CITY = null;
-            }
-            GridViewHotels.CloseEditor();
-            if (GridViewAdditionalContacts.RowCount > 0)
-                contactID = (int?)GridViewAdditionalContacts.GetFocusedRowCellValue("ID");
-
-			if (GridViewSuppRoomType.RowCount > 0) 
-				roomTypeID = (int?)GridViewSuppRoomType.GetRowCellValue(roomTypenewRowHandle, "Id");
-
-            if (gridViewSupplierProduct.UpdateCurrentRow()) {
-                bindingSourceSupplierProduct.EndEdit();
-            }
-
-            bool temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                setReadOnly(true);
-                if ((contactID ?? int.MaxValue) == int.MaxValue)
-                {
-                    int newID = (int)GridViewAdditionalContacts.GetFocusedRowCellValue("ID");
-                    var values1 = from rec in context.RPTTYPE where rec.RecipientType == "Hotel" select new { rec.CODE };
-                    foreach (var result in values1)
-                    {
-                        if (globalRptType.Contains(result.CODE))
-                        {
-                            RptContact lol = new RptContact();
-                            lol.Code = TextEditCode.Text;
-                            lol.RptType = result.CODE;
-                            lol.Contact_ID = newID;
-                            context.RptContact.AddObject(lol);
-                        }
-                    }
-                    globalRptType = string.Empty;
-                    context.SaveChanges();
-                    contactNewRowRec = false;                    
-                }
-
-                if ((roomTypeID ?? int.MaxValue) == int.MaxValue)
-                {
-                    int newID = (int)GridViewSuppRoomType.GetRowCellValue(roomTypenewRowHandle, "Id");
-                    for (int i = 0; i < GridViewSuppRatePlan.RowCount; i++)
-                    {
-                        int ratePlanID = (int)GridViewSuppRatePlan.GetRowCellValue(i, "SupplierCategory_Id");
-                        if (ratePlanID == int.MaxValue)
-                            GridViewSuppRatePlan.SetRowCellValue(i, "SupplierCategory_Id", newID);
-                    }
-                   
-                    context.SaveChanges();                          
-                }
-                roomTypenewRowHandle = 0;
-                contactNewRowRec = false;
-                newRowRec = false;
-                ratePlanNewRec = false;     
-                roomTypNewRec = false;                       
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-				LoadRoomTypeLookup(TextEditCode.Text);
-            }
-
-            if(!temp && !_modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
-            
-
         }
 
 		private void LoadRoomTypeLookup(string code)
@@ -676,54 +512,6 @@ namespace TraceForms
 
         private void hOTELBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            _selectedRecord = (HOTEL)HotelBindingSource.Current;
-            ComboBoxEditSource.Text = string.Empty;
-            ImageComboBoxEditAgentComm.Text = string.Empty;
-            dateComm.Text = string.Empty;
-            gridControl5.DataSource = null;
-            gridControl6.DataSource = null;
-            if (_selectedRecord != null) {
-                enableNavigator(true);
-                
-                GridControlAdditionalContacts.DataSource = (from contRec in context.CONTACT
-                                                            where contRec.LINK_VALUE == _selectedRecord.CODE && contRec.RECTYPE == "HTLCONTACT" 
-                                                                && contRec.LINK_TABLE == "HOTEL"
-                                                            select contRec).Distinct();
-            
-                //UpdateCommMarkupGrid(rec.CODE, null, "ALL");
-                GridControlDetail.DataSource = from c in context.DETAIL where c.LINK_VALUE.TrimEnd() == _selectedRecord.CODE.TrimEnd() select c;
-                GridControlCustom.DataSource = from c in context.USERFIELDS
-                                          where c.LINK_TABLE.Equals("HOTEL")
-                                          select c;
-
-                if (!String.IsNullOrEmpty(_selectedRecord.CODE)) { //new record
-                    _selectedRecord.SupplierProduct.Load(MergeOption.OverwriteChanges);
-                }
-                bindingSourceSupplierProduct.DataSource = _selectedRecord.SupplierProduct;
-
-                LoadRoomTypeLookup(_selectedRecord.CODE);
-				supplierHotelRoomTypeBindingSource.DataSource = from supRec in context.SupplierCategory
-                                                                where supRec.Product_Code == _selectedRecord.CODE && supRec.Product_Type == "HTL"
-                                                                select supRec;
-				supplierHotelRatePlanBindingSource.DataSource = from supRec in context.SupplierRatePlan
-                                                                where supRec.Product_Code == _selectedRecord.CODE && supRec.Product_Type == "HTL"
-                                                                select supRec;
-				GridControlSuppRoomType.RefreshDataSource();
-				GridControlSuppRatePlan.RefreshDataSource();
-
-                for (int i = 0; i < GridViewCustom.DataRowCount; i++)
-                    GridViewCustom.RefreshRow(i);
-
-                if ((_selectedRecord.CONTR_CDE == "C" || _selectedRecord.CONTR_CDE == "P") || (_selectedRecord.RSTR_CDE == "A"))
-                    ImageComboBoxEditAgency.Properties.ReadOnly = false;
-                else
-                    ImageComboBoxEditAgency.Properties.ReadOnly = true;
-
-            }
-            else
-                enableNavigator(false);
-            
-
             
         }
 
@@ -751,25 +539,6 @@ namespace TraceForms
 		//	supplierHotelRoomTypeBindingSource.DataSource = from supRec in context.SupplierHotelRoomType.Include("SupplierHotelRatePlan") where supRec.Hotel_Code == TextEditCode.Text select supRec;
 		//}
 
-        private bool move()
-        {
-
-            GridViewHotels.CloseEditor();
-            HotelBindingNavigator.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
-                setReadOnly(true);
-                newRec = false;
-                Modified = false;
-                return true;
-            }
-            return false;
-        }
-
         private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             if (newRowRec == true || contactNewRowRec == true)
@@ -792,7 +561,7 @@ namespace TraceForms
             bool temp2 = _modified;
             if (checkForms())
             {
-                errorProvider1.Clear();
+                ErrorProvider.Clear();
                 e.Allow = true;
                 if ((!temp) && temp2)
                     context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
@@ -820,70 +589,6 @@ namespace TraceForms
         private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || contactNewRowRec == true)
-            {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                HotelBindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || contactNewRowRec == true)
-            {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                HotelBindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || contactNewRowRec == true)
-            {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                HotelBindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || contactNewRowRec == true)
-            {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                HotelBindingSource.MoveLast();
-        }
-
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {
-            temp = newRec;
-            if (!temp && checkForms())
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
-            setReadOnly(true);
         }
 
         private void HotelGenInfo_FormClosing(object sender, FormClosingEventArgs e)
@@ -914,7 +619,7 @@ namespace TraceForms
             {
                 Modified = true;
                 TextEditCode.Text = TextEditCode.Text.ToUpper();
-                validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCode, HotelBindingSource);
+                validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCode, HotelBindingSource);
             }
         }
         }
@@ -926,7 +631,7 @@ namespace TraceForms
             if (currentVal != ((Control)sender).Text)
             {
                 Modified = true;
-                validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkName, HotelBindingSource);
+                validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkName, HotelBindingSource);
             }
         }
         }
@@ -939,7 +644,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAgree, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAgree, HotelBindingSource);
         }
         }
 
@@ -951,7 +656,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRstrCde, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRstrCde, HotelBindingSource);
         }
         }
 
@@ -963,7 +668,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRestrictCode, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRestrictCode, HotelBindingSource);
         }
         }
 
@@ -975,7 +680,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRestrictDesc, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRestrictDesc, HotelBindingSource);
         }
         }
 
@@ -987,7 +692,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAddress1, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAddress1, HotelBindingSource);
         }
         }
 
@@ -999,7 +704,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAddress2, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAddress2, HotelBindingSource);
         }
         }
 
@@ -1011,7 +716,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAddress3, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAddress3, HotelBindingSource);
         }
         }
 
@@ -1023,7 +728,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkTown, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkTown, HotelBindingSource);
         }
         }
 
@@ -1035,7 +740,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkZip, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkZip, HotelBindingSource);
         }
         }
 
@@ -1047,7 +752,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkLocalPhone, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkLocalPhone, HotelBindingSource);
         }
         }
 
@@ -1059,7 +764,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkLocalName, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkLocalName, HotelBindingSource);
         }
         }
 
@@ -1071,7 +776,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAirMiles, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAirMiles, HotelBindingSource);
         }
         }
 
@@ -1084,7 +789,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCityMiles, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCityMiles, HotelBindingSource);
         }
         }
 
@@ -1096,7 +801,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkLat, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkLat, HotelBindingSource);
         }
         }
 
@@ -1108,7 +813,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkLong, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkLong, HotelBindingSource);
         }
         }
 
@@ -1120,7 +825,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkGenMgr, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkGenMgr, HotelBindingSource);
         }
         }
 
@@ -1132,7 +837,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPhone, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPhone, HotelBindingSource);
         }
         }
 
@@ -1144,7 +849,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMailFax, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMailFax, HotelBindingSource);
         }
         }
 
@@ -1156,7 +861,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkTourFaxEmail, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkTourFaxEmail, HotelBindingSource);
         }
         }
 
@@ -1168,7 +873,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkFax, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkFax, HotelBindingSource);
         }
         }
 
@@ -1180,7 +885,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkEmail, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkEmail, HotelBindingSource);
         }
         }
 
@@ -1192,7 +897,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkDeposit, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkDeposit, HotelBindingSource);
         }
         }
 
@@ -1204,7 +909,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRateBasis, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRateBasis, HotelBindingSource);
         }
         }
 
@@ -1216,7 +921,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCancel, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCancel, HotelBindingSource);
         }
         }
 
@@ -1228,7 +933,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkTime, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkTime, HotelBindingSource);
         }
         }
 
@@ -1240,7 +945,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkChildren, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkChildren, HotelBindingSource);
         }
         }
 
@@ -1252,7 +957,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkDefRoom, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkDefRoom, HotelBindingSource);
         }
         }
 
@@ -1264,7 +969,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCreditCards, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCreditCards, HotelBindingSource);
         }
         }
 
@@ -1276,7 +981,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMaxSgl, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMaxSgl, HotelBindingSource);
         }
         }
 
@@ -1288,7 +993,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMaxDbl, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMaxDbl, HotelBindingSource);
         }
         }
 
@@ -1300,7 +1005,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMaxTpl, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMaxTpl, HotelBindingSource);
         }
         }
 
@@ -1312,7 +1017,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMaxQua, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMaxQua, HotelBindingSource);
         }
         }
 
@@ -1324,7 +1029,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMaxOth, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMaxOth, HotelBindingSource);
         }
         }
 
@@ -1336,7 +1041,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkVouchDays, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkVouchDays, HotelBindingSource);
         }
         }
 
@@ -1348,7 +1053,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkNoRooms, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkNoRooms, HotelBindingSource);
         }
         }
 
@@ -1360,7 +1065,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkNoRests, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkNoRests, HotelBindingSource);
         }
         }
 
@@ -1372,7 +1077,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkNoLounges, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkNoLounges, HotelBindingSource);
         }
         }
 
@@ -1384,7 +1089,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRoomDesc, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRoomDesc, HotelBindingSource);
         }
         }
 
@@ -1396,7 +1101,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkComment1, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkComment1, HotelBindingSource);
         }
         }
 
@@ -1408,7 +1113,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkComment2, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkComment2, HotelBindingSource);
         }
         }
 
@@ -1420,7 +1125,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAr, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAr, HotelBindingSource);
         }
         }
 
@@ -1432,7 +1137,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAp, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAp, HotelBindingSource);
         }
         }
 
@@ -1444,7 +1149,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkBillAct, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkBillAct, HotelBindingSource);
         }
         }
 
@@ -1456,7 +1161,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkTaxRate, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkTaxRate, HotelBindingSource);
         }
         }
 
@@ -1468,7 +1173,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRoomTax, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRoomTax, HotelBindingSource);
         }
         }
 
@@ -1480,7 +1185,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkPersonTax, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkPersonTax, HotelBindingSource);
         }
         }
 
@@ -1492,7 +1197,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkApManager, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkApManager, HotelBindingSource);
         }
         }
 
@@ -1504,7 +1209,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkApEmail, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkApEmail, HotelBindingSource);
         }
         }
 
@@ -1516,7 +1221,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkDueDays, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkDueDays, HotelBindingSource);
         }
         }
 
@@ -1663,7 +1368,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRating, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRating, HotelBindingSource);
         }
         }
 
@@ -1675,7 +1380,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkType, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkType, HotelBindingSource);
         }
         }
 
@@ -1687,7 +1392,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkArea, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkArea, HotelBindingSource);
         }
         }
 
@@ -1699,7 +1404,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAlternate1, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAlternate1, HotelBindingSource);
         }
         }
 
@@ -1711,7 +1416,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAlternate2, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAlternate2, HotelBindingSource);
         }
         }
 
@@ -1723,7 +1428,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAlternate3, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAlternate3, HotelBindingSource);
         }
         }
 
@@ -1735,7 +1440,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAgreeAgy, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAgreeAgy, HotelBindingSource);
         }
         }
 
@@ -1747,7 +1452,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkState, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkState, HotelBindingSource);
         }
         }
 
@@ -1759,7 +1464,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkRegion, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkRegion, HotelBindingSource);
         }
         }
 
@@ -1771,7 +1476,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCountry, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCountry, HotelBindingSource);
         }
         }
 
@@ -1783,7 +1488,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkAirport, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkAirport, HotelBindingSource);
         }
         }
 
@@ -1795,7 +1500,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkCity, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkCity, HotelBindingSource);
         }
         }
 
@@ -1807,7 +1512,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkDefCat, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkDefCat, HotelBindingSource);
         }
         }
 
@@ -1819,7 +1524,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkChain, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkChain, HotelBindingSource);
         }
         }
 
@@ -1831,7 +1536,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkBrand, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkBrand, HotelBindingSource);
         }
         }
 
@@ -1843,7 +1548,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkOperator, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkOperator, HotelBindingSource);
             if (!string.IsNullOrWhiteSpace(ImageComboBoxEditOper.EditValue.ToString()))
             {
                 string oper = ImageComboBoxEditOper.EditValue.ToString();
@@ -1862,7 +1567,7 @@ namespace TraceForms
             {
                 Modified = true;
             }
-            validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkMgmtCo, HotelBindingSource);
+            validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkMgmtCo, HotelBindingSource);
         }
         }
 
@@ -1924,7 +1629,7 @@ namespace TraceForms
             if (GridViewDetail.UpdateCurrentRow())
             {
                 DetailBindingSource.EndEdit();
-                hOTELBindingNavigatorSaveItem_Click(sender, e);
+                SaveRecord();
                 newRowRec = false;
                 Modified = false;
             }
@@ -2032,7 +1737,7 @@ namespace TraceForms
             if (GridViewAdditionalContacts.UpdateCurrentRow())
             {
                 ContactBindingSource.EndEdit();
-                hOTELBindingNavigatorSaveItem_Click(sender, e);
+                SaveRecord();
                 contactNewRowRec = false;
                 Modified = false;
             }
@@ -2420,7 +2125,7 @@ namespace TraceForms
 			if (HotelBindingSource.Current != null) {
 				if (currentVal != ((Control)sender).Text.ToString())
 					Modified = true;
-				validCheck.check(sender, errorProvider1, ((HOTEL)HotelBindingSource.Current).checkDistance, HotelBindingSource);
+				validCheck.check(sender, ErrorProvider, ((HOTEL)HotelBindingSource.Current).checkDistance, HotelBindingSource);
 			}
 		}
 
@@ -2490,6 +2195,155 @@ namespace TraceForms
                 e.RepositoryItem = _catCombo;
             }
 
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //test comment
+            GridViewHotels.ClearColumnsFilter();
+            GridControlAdditionalContacts.DataSource = null;
+            GridControlCustom.DataSource = null;
+            gridControlSupplierProduct.DataSource = null;
+            supplierHotelRoomTypeBindingSource.DataSource = null;
+            supplierHotelRatePlanBindingSource.DataSource = null;
+            if (HotelBindingSource.Current == null) {
+                HotelBindingSource.DataSource = from opt in context.HOTEL where opt.CODE == "KJM9" select opt;
+                HotelBindingSource.AddNew();
+                if (GridViewHotels.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    GridViewHotels.FocusedRowHandle = GridViewHotels.RowCount - 1;
+                TextEditCode.Focus();
+                setReadOnly(false);
+                newRec = true;
+                setCheckEdits();
+                return;
+            }
+            TextEditCode.Focus();
+            //bindingNavigatorPositionItem.Focus();
+            GridViewHotels.CloseEditor();
+            temp = newRec;
+            if (checkForms()) {
+                ErrorProvider.Clear();
+                if (!temp)
+                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
+                HotelBindingSource.AddNew();
+                if (GridViewHotels.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    GridViewHotels.FocusedRowHandle = GridViewHotels.RowCount - 1;
+                TextEditCode.Focus();
+                setReadOnly(false);
+                newRec = true;
+                setCheckEdits();
+            }
+        }
+
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (HotelBindingSource.Current == null)
+                return;
+            GridViewHotels.CloseEditor();
+            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+
+                IEnumerable<CONTACT> contactRecs = from contact in context.CONTACT where contact.LINK_VALUE == TextEditCode.Text select contact;
+                foreach (CONTACT rec in contactRecs)
+                    context.DeleteObject(rec);
+
+                IEnumerable<RptContact> rptContactRecs = from contact in context.RptContact where contact.Code == TextEditCode.Text select contact;
+                foreach (RptContact rec in rptContactRecs)
+                    context.DeleteObject(rec);
+
+
+                Modified = false;
+                newRec = false;
+                HotelBindingSource.RemoveCurrent();
+                ErrorProvider.Clear();
+                context.SaveChanges();
+                setReadOnly(true);
+                panelControlStatus.Visible = true;
+                LabelStatus.Text = "Record Deleted";
+                rowStatusDelete = new Timer();
+                rowStatusDelete.Interval = 3000;
+                rowStatusDelete.Start();
+                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+            }
+            currentVal = TextEditCode.Text;
+            TextEditCode.Focus();
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SaveRecord();
+        }
+
+        private void SaveRecord()
+        {
+            //HOTEL current = (HOTEL)HotelBindingSource.Current;
+            //if (current.GeoCode_ID == null)
+            //    current.GeoCode_ID = 0;
+            TextEditCode.Focus();
+            int? contactID = 0, roomTypeID = 0;
+            if (HotelBindingSource.Current == null)
+                return;
+            HOTEL hotel = (HOTEL)HotelBindingSource.Current;
+            if (string.IsNullOrEmpty(hotel.ACT_CITY)) {
+                hotel.ACT_CITY = null;
+            }
+            GridViewHotels.CloseEditor();
+            if (GridViewAdditionalContacts.RowCount > 0)
+                contactID = (int?)GridViewAdditionalContacts.GetFocusedRowCellValue("ID");
+
+            if (GridViewSuppRoomType.RowCount > 0)
+                roomTypeID = (int?)GridViewSuppRoomType.GetRowCellValue(roomTypenewRowHandle, "Id");
+
+            if (gridViewSupplierProduct.UpdateCurrentRow()) {
+                bindingSourceSupplierProduct.EndEdit();
+            }
+
+            bool temp = newRec;
+            if (checkForms()) {
+                ErrorProvider.Clear();
+                setReadOnly(true);
+                if ((contactID ?? int.MaxValue) == int.MaxValue) {
+                    int newID = (int)GridViewAdditionalContacts.GetFocusedRowCellValue("ID");
+                    var values1 = from rec in context.RPTTYPE where rec.RecipientType == "Hotel" select new { rec.CODE };
+                    foreach (var result in values1) {
+                        if (globalRptType.Contains(result.CODE)) {
+                            RptContact lol = new RptContact();
+                            lol.Code = TextEditCode.Text;
+                            lol.RptType = result.CODE;
+                            lol.Contact_ID = newID;
+                            context.RptContact.AddObject(lol);
+                        }
+                    }
+                    globalRptType = string.Empty;
+                    context.SaveChanges();
+                    contactNewRowRec = false;
+                }
+
+                if ((roomTypeID ?? int.MaxValue) == int.MaxValue) {
+                    int newID = (int)GridViewSuppRoomType.GetRowCellValue(roomTypenewRowHandle, "Id");
+                    for (int i = 0; i < GridViewSuppRatePlan.RowCount; i++) {
+                        int ratePlanID = (int)GridViewSuppRatePlan.GetRowCellValue(i, "SupplierCategory_Id");
+                        if (ratePlanID == int.MaxValue)
+                            GridViewSuppRatePlan.SetRowCellValue(i, "SupplierCategory_Id", newID);
+                    }
+
+                    context.SaveChanges();
+                }
+                roomTypenewRowHandle = 0;
+                contactNewRowRec = false;
+                newRowRec = false;
+                ratePlanNewRec = false;
+                roomTypNewRec = false;
+                panelControlStatus.Visible = true;
+                LabelStatus.Text = "Record Saved";
+                rowStatusSave = new Timer();
+                rowStatusSave.Interval = 3000;
+                rowStatusSave.Start();
+                rowStatusSave.Tick += TimedEventSave;
+                LoadRoomTypeLookup(TextEditCode.Text);
+            }
+
+            if (!temp && !_modified)
+                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
         }
     }
 }

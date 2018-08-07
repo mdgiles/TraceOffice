@@ -113,8 +113,6 @@ namespace TraceForms
             newRec = false;
             temp = newRec;
             setReadOnly(true);
-            enableNavigator(false);
-
         }
 
         private bool Modified
@@ -138,14 +136,6 @@ namespace TraceForms
             }
         }
 
-        void enableNavigator(bool value)
-        {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
-        }
-
         void setReadOnly(bool value)
         {
             TextEditCode.Properties.ReadOnly = value;
@@ -156,12 +146,12 @@ namespace TraceForms
         {
             if (!_modified && !newRec)
                 return true;
-            bool ok1 = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((PACK)PackBindingSource.Current).checkSplitContainer, PackBindingSource);
-            bool ok2 = validCheck.checkAll(panelControlPolicies.Controls, errorProvider1, ((PACK)PackBindingSource.Current).checkPanelPolicies, PackBindingSource);
-            bool ok3 = validCheck.checkAll(panelControlAlternatePkgs.Controls, errorProvider1, ((PACK)PackBindingSource.Current).checkPanelAlternates, PackBindingSource);
-            bool ok4 = validCheck.checkAll(panelControlSvcsIncluded.Controls, errorProvider1, ((PACK)PackBindingSource.Current).checkPanelSvcs, PackBindingSource);
+            bool ok1 = validCheck.checkAll(splitContainerControl1.Panel2.Controls, ErrorProvider, ((PACK)PackBindingSource.Current).checkSplitContainer, PackBindingSource);
+            bool ok2 = validCheck.checkAll(panelControlPolicies.Controls, ErrorProvider, ((PACK)PackBindingSource.Current).checkPanelPolicies, PackBindingSource);
+            bool ok3 = validCheck.checkAll(panelControlAlternatePkgs.Controls, ErrorProvider, ((PACK)PackBindingSource.Current).checkPanelAlternates, PackBindingSource);
+            bool ok4 = validCheck.checkAll(panelControlSvcsIncluded.Controls, ErrorProvider, ((PACK)PackBindingSource.Current).checkPanelSvcs, PackBindingSource);
             if (ok1 && ok2 && ok3 && ok4) {
-                var ret = validCheck.saveRec(ref _modified, true, ref newRec, context, PackBindingSource, this.Name, errorProvider1, Cursor);
+                var ret = validCheck.saveRec(ref _modified, true, ref newRec, context, PackBindingSource, this.Name, ErrorProvider, Cursor);
                 if (ret) {
                     AccountingAPI.InvokeForProduct(_accountingURL, "PKG", ((PACK)PackBindingSource.Current).CODE);
                 }
@@ -169,7 +159,7 @@ namespace TraceForms
             }
             else
             {
-                validCheck.saveRec(ref _modified, false, ref newRec, context, PackBindingSource, this.Name, errorProvider1, Cursor);
+                validCheck.saveRec(ref _modified, false, ref newRec, context, PackBindingSource, this.Name, ErrorProvider, Cursor);
                 return false;
             }
         }
@@ -188,7 +178,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkCode, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkCode, PackBindingSource);
                 TextEditCode.Text = TextEditCode.Text.ToUpper();
             }
         }
@@ -201,7 +191,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkName, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkName, PackBindingSource);
             }
         }
 
@@ -213,7 +203,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkNts, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkNts, PackBindingSource);
             }
         }
 
@@ -225,7 +215,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkRateBasis, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkRateBasis, PackBindingSource);
             }
         }
 
@@ -237,7 +227,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkRstrCode, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkRstrCode, PackBindingSource);
             }
         }
 
@@ -249,7 +239,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkAltern1, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkAltern1, PackBindingSource);
             }
         }
 
@@ -261,7 +251,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkAltern2, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkAltern2, PackBindingSource);
             }
         }
 
@@ -273,7 +263,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkAltern3, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkAltern3, PackBindingSource);
             }
         }
 
@@ -285,7 +275,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkOper, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkOper, PackBindingSource);
             }
         }
 
@@ -297,7 +287,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkPkgType, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkPkgType, PackBindingSource);
             }
         }
 
@@ -309,7 +299,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkRegion, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkRegion, PackBindingSource);
             }
         }
 
@@ -321,7 +311,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkMaxSgl, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkMaxSgl, PackBindingSource);
             }
         }
 
@@ -333,7 +323,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkMaxDbl, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkMaxDbl, PackBindingSource);
             }
         }
 
@@ -345,7 +335,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkMaxTpl, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkMaxTpl, PackBindingSource);
             }
         }
 
@@ -357,7 +347,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkMaxQua, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkMaxQua, PackBindingSource);
             }
         }
 
@@ -369,7 +359,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkMaxOth, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkMaxOth, PackBindingSource);
             }
         }
 
@@ -381,7 +371,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude1, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude1, PackBindingSource);
             }
         }
 
@@ -393,7 +383,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude2, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude2, PackBindingSource);
             }
         }
 
@@ -405,7 +395,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude4, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude4, PackBindingSource);
             }
         }
 
@@ -417,7 +407,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude4, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude4, PackBindingSource);
             }
         }
 
@@ -429,7 +419,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude5, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude5, PackBindingSource);
             }
         }
 
@@ -441,7 +431,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkInclude6, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkInclude6, PackBindingSource);
             }
         }
 
@@ -484,164 +474,16 @@ namespace TraceForms
             }
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            gridViewPackages.ClearColumnsFilter();
-            if (PackBindingSource.Current == null)
-            {
-                PackBindingSource.DataSource = from packrec in context.PACK where packrec.CODE == "KJM987" select packrec;
-                PackBindingSource.AddNew();
-                if (gridViewPackages.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    gridViewPackages.FocusedRowHandle = gridViewPackages.RowCount - 1;
-                TextEditCode.Focus();
-                TextEditCode.Properties.ReadOnly = false;                
-                newRec = true;
-                setReadOnly(false);
-                setCheckEdits();
-                return;
-            }
-            TextEditCode.Focus();
-            //bindingNavigatorPositionItem.Focus()//;  //trigger field leave event
-            gridViewPackages.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
-                PackBindingSource.AddNew();
-                if (gridViewPackages.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    gridViewPackages.FocusedRowHandle = gridViewPackages.RowCount - 1;
-                TextEditCode.Focus();
-                TextEditCode.Properties.ReadOnly = false;                
-                newRec = true;
-                setCheckEdits();
-                setReadOnly(false);
-            }
-           
-           
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            try {
-                gridViewPackages.ClearColumnsFilter();
-                if (PackBindingSource.Current == null)
-                    return;
-                gridViewPackages.CloseEditor();
-                if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                    Modified = false;
-                    newRec = false;
-                    PackBindingSource.RemoveCurrent();
-                    errorProvider1.Clear();
-                    context.SaveChanges();
-                    panelControlStatus.Visible = true;
-                    LabelStatus.Text = "Record Deleted";
-                    rowStatusDelete = new Timer();
-                    rowStatusDelete.Interval = 3000;
-                    rowStatusDelete.Start();
-                    rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-
-                }
-                currentVal = TextEditCode.Text;
-                setReadOnly(true);
-            }
-            catch (Exception ex) {
-                DisplayHelper.DisplayError(this, ex);
-            }
-        }
-
         private void TimedEventDelete(object sender, EventArgs e)
         {
             panelControlStatus.Visible = false;
             rowStatusDelete.Stop();
         }
 
-        private void PackBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            gridViewPackages.ClearColumnsFilter();
-            if (PackBindingSource.Current == null)
-                return;
-            gridViewPackages.CloseEditor();
-            TextEditCode.Focus();
-           //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-                setReadOnly(true);
-            }
-
-            if (!temp && !_modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
-             
-           
-        }
-
         private void TimedEventSave(object sender, EventArgs e)
         {
             panelControlStatus.Visible = false;
             rowStatusSave.Stop();
-        }
-
-        private bool move()
-        {
-            gridViewPackages.CloseEditor();
-            TextEditCode.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms())
-            {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
-                newRec = false;
-                Modified = false;
-                setReadOnly(true);
-                return true;
-            }
-            return false;
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                PackBindingSource.MoveFirst();
-            currentVal = TextEditCode.Text;
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                PackBindingSource.MovePrevious();
-            currentVal = TextEditCode.Text;
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                PackBindingSource.MoveNext();
-            currentVal = TextEditCode.Text;
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                PackBindingSource.MoveLast();
-            currentVal = TextEditCode.Text;
-        }
-
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {
-            temp = newRec;
-            if (!temp && checkForms())
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
-            setReadOnly(true);
         }
 
         private void packForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -675,7 +517,7 @@ namespace TraceForms
             bool temp2 = _modified;
             if (checkForms())
             {
-                errorProvider1.Clear();
+                ErrorProvider.Clear();
                 e.Allow = true;
                 if ((!temp) && temp2)
                     context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
@@ -707,20 +549,7 @@ namespace TraceForms
 
         private void PackBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            //HOTEL rec = (HOTEL)PackBindingSource.Current;
-            if (PackBindingSource.Current != null)
-            {
-                enableNavigator(true);
-            ImageComboBoxEditAgency.Text = "";
-            ButtonEditDate.Text = "";
-            ComboBoxEditSource.Text = "";
-            GridControlUserfields.DataSource = from userRec in context.USERFIELDS
-                                               where userRec.LINK_TABLE.Equals("PACK")
-                                               select  userRec;
-            UpdateCommMarkupGrid("TARIFF", null, "ALL");//refactor to method
-            }               
-            else
-                enableNavigator(false);
+
         }
 
         private void gridViewUserFields_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -793,7 +622,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkCity, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkCity, PackBindingSource);
             }
         }
 
@@ -906,7 +735,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkLang, PackBindingSource);
+                validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkLang, PackBindingSource);
             }
         }
 
@@ -923,12 +752,99 @@ namespace TraceForms
         private void CheckEditServicesOnly_Modified(object sender, EventArgs e)
         {
             Modified = true;
-            validCheck.check(sender, errorProvider1, ((PACK)PackBindingSource.Current).checkServicesOnly, PackBindingSource);
+            validCheck.check(sender, ErrorProvider, ((PACK)PackBindingSource.Current).checkServicesOnly, PackBindingSource);
         }
 
         private void CheckEditMultipleTimes_Modified(object sender, EventArgs e)
         {
             Modified = true;
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            gridViewPackages.ClearColumnsFilter();
+            if (PackBindingSource.Current == null) {
+                PackBindingSource.DataSource = from packrec in context.PACK where packrec.CODE == "KJM987" select packrec;
+                PackBindingSource.AddNew();
+                if (gridViewPackages.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    gridViewPackages.FocusedRowHandle = gridViewPackages.RowCount - 1;
+                TextEditCode.Focus();
+                TextEditCode.Properties.ReadOnly = false;
+                newRec = true;
+                setReadOnly(false);
+                setCheckEdits();
+                return;
+            }
+            TextEditCode.Focus();
+            //bindingNavigatorPositionItem.Focus()//;  //trigger field leave event
+            gridViewPackages.CloseEditor();
+            temp = newRec;
+            if (checkForms()) {
+                ErrorProvider.Clear();
+                if (!temp)
+                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
+                PackBindingSource.AddNew();
+                if (gridViewPackages.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+                    gridViewPackages.FocusedRowHandle = gridViewPackages.RowCount - 1;
+                TextEditCode.Focus();
+                TextEditCode.Properties.ReadOnly = false;
+                newRec = true;
+                setCheckEdits();
+                setReadOnly(false);
+            }
+        }
+
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try {
+                gridViewPackages.ClearColumnsFilter();
+                if (PackBindingSource.Current == null)
+                    return;
+                gridViewPackages.CloseEditor();
+                if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                    Modified = false;
+                    newRec = false;
+                    PackBindingSource.RemoveCurrent();
+                    ErrorProvider.Clear();
+                    context.SaveChanges();
+                    panelControlStatus.Visible = true;
+                    LabelStatus.Text = "Record Deleted";
+                    rowStatusDelete = new Timer();
+                    rowStatusDelete.Interval = 3000;
+                    rowStatusDelete.Start();
+                    rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
+
+                }
+                currentVal = TextEditCode.Text;
+                setReadOnly(true);
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+            }
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            gridViewPackages.ClearColumnsFilter();
+            if (PackBindingSource.Current == null)
+                return;
+            gridViewPackages.CloseEditor();
+            TextEditCode.Focus();
+            //bindingNavigatorPositionItem.Focus();//trigger field leave event
+            bool temp = newRec;
+            if (checkForms()) {
+                ErrorProvider.Clear();
+                panelControlStatus.Visible = true;
+                LabelStatus.Text = "Record Saved";
+                rowStatusSave = new Timer();
+                rowStatusSave.Interval = 3000;
+                rowStatusSave.Start();
+                rowStatusSave.Tick += TimedEventSave;
+                setReadOnly(true);
+            }
+
+            if (!temp && !_modified)
+                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (PACK)PackBindingSource.Current);
         }
     }
 }

@@ -43,7 +43,6 @@ namespace TraceForms
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
         }
 
-
 		void SetReadOnly(bool value)
 		{
 			foreach (Control control in SplitContainerControl.Panel2.Controls)
