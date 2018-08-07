@@ -259,8 +259,8 @@
             this.TextEditCode.Location = new System.Drawing.Point(168, 55);
             this.TextEditCode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextEditCode.Name = "TextEditCode";
-            this.TextEditCode.Properties.MaxLength = 3;
-            this.TextEditCode.Size = new System.Drawing.Size(128, 32);
+            this.TextEditCode.Properties.MaxLength = 12;
+            this.TextEditCode.Size = new System.Drawing.Size(168, 32);
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
@@ -954,7 +954,6 @@
             this.Text = "City Codes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CityCodeForm_FormClosing);
             this.Shown += new System.EventHandler(this.CityCodeForm_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CityCodeForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();

@@ -416,37 +416,6 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateLinkCode, sender);
         }
 
-        private void CityCodeForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle)) {
-            //    ExecuteQuery();
-            //    e.Handled = true;
-            //}
-        }
-
-        //private void ExecuteQuery()
-        //{
-        //    Cursor = Cursors.WaitCursor;
-        //    string query = "1=1";
-        //    foreach (GridColumn col in GridViewLookup.VisibleColumns) {
-        //        string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-        //        if (!string.IsNullOrEmpty(value)) {
-        //            query += $" and it.{col.FieldName} like '%{value}%'";
-        //        }
-        //    }
-
-        //    var records = _context.CITYCOD.Where(query);
-        //    if (records.Count() > 0) {
-        //        BindingSource.DataSource = records;
-        //        GridViewLookup.ClearColumnsFilter();
-        //    }
-        //    else {
-        //        ClearBindings();
-        //        DisplayHelper.DisplayInfo(this, "No matching records found.");
-        //    }
-        //    Cursor = Cursors.Default;
-        //}
-
         private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
@@ -515,7 +484,7 @@ namespace TraceForms
 
         private void CityCodeForm_Shown(object sender, EventArgs e)
         {
-            GridViewLookup.FocusedRowHandle = DevExpress.Data.CurrencyDataController.FilterRow;
+            GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
             GridControlLookup.Focus();
         }
 
@@ -576,9 +545,12 @@ namespace TraceForms
         {
             _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
-                _selectedRecord = new CITYCOD();
-                BindingSource.Add(_selectedRecord);
-                GridViewLookup.FocusedRowHandle = GridViewLookup.FindRow(_selectedRecord);
+                //For some reason when there is no existing record in the binding source the Add method does not
+                //trigger the CurrentChanged event, but AddNew does so use that instead
+                _selectedRecord = (CITYCOD)BindingSource.AddNew();
+                //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                //the focused row to the filter row just so that no other existing row is visually highlighted
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
                 SetReadOnlyKeyFields(false);
                 TextEditCode.Focus();
                 SetReadOnly(false);
@@ -629,16 +601,18 @@ namespace TraceForms
 
         private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GridView view = (GridView)sender;
-            object row = view.GetRow(e.FocusedRowHandle);
-            if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
-                ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
-                CITYCOD record = (CITYCOD)proxy.OriginalRow;
-                BindingSource.DataSource = _context.CITYCOD.Where(c => c.CODE == record.CODE)
-                    .Include(c => c.GeoCode);
-            }
-            else {
-                ClearBindings();
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                object row = view.GetRow(e.FocusedRowHandle);
+                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                    CITYCOD record = (CITYCOD)proxy.OriginalRow;
+                    BindingSource.DataSource = _context.CITYCOD.Where(c => c.CODE == record.CODE)
+                        .Include(c => c.GeoCode);
+                }
+                else {
+                    ClearBindings();
+                }
             }
         }
 

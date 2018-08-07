@@ -38,11 +38,11 @@
             System.Windows.Forms.Label cATLabel;
             System.Windows.Forms.Label aGENCYLabel;
             System.Windows.Forms.Label LabelTimeAfter;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CxlFeeForm));
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label pCT_AMTLabel;
             System.Windows.Forms.Label nBR_NTSLabel;
             System.Windows.Forms.Label fLAT_FEELabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CxlFeeForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -71,7 +71,8 @@
             this.colROOMCOD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.SpinEditTimeAfter = new DevExpress.XtraEditors.SpinEdit();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.CheckEditNonRefundable = new DevExpress.XtraEditors.CheckEdit();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
@@ -82,6 +83,11 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.SpinEditNbrNts = new DevExpress.XtraEditors.SpinEdit();
+            this.SpinEditFlatFee = new DevExpress.XtraEditors.SpinEdit();
+            this.SpinEditPctAmt = new DevExpress.XtraEditors.SpinEdit();
+            this.SpinEditTimeAfter = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.ImageComboBoxEditTimeUnits = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -110,12 +116,6 @@
             this.DateEditOnAfterDate = new DevExpress.XtraEditors.DateEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.CheckEditNonRefundable = new DevExpress.XtraEditors.CheckEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.SpinEditNbrNts = new DevExpress.XtraEditors.SpinEdit();
-            this.SpinEditFlatFee = new DevExpress.XtraEditors.SpinEdit();
-            this.SpinEditPctAmt = new DevExpress.XtraEditors.SpinEdit();
             tYPELabel = new System.Windows.Forms.Label();
             LabelCxlDate = new System.Windows.Forms.Label();
             LabelNightsPrior = new System.Windows.Forms.Label();
@@ -137,8 +137,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
             this.SplitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditTimeAfter.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditNonRefundable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditNbrNts.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditFlatFee.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditPctAmt.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditTimeAfter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTimeUnits.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTimeBasis.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditDescription.Properties)).BeginInit();
@@ -158,12 +164,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateEditOnAfterDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditNonRefundable.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditNbrNts.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditFlatFee.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditPctAmt.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tYPELabel
@@ -256,6 +256,46 @@
             LabelTimeAfter.TabIndex = 20;
             LabelTimeAfter.Text = "Time after";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(233, 284);
+            label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(53, 24);
+            label1.TabIndex = 9;
+            label1.Text = "Start";
+            // 
+            // pCT_AMTLabel
+            // 
+            pCT_AMTLabel.AutoSize = true;
+            pCT_AMTLabel.Location = new System.Drawing.Point(21, 144);
+            pCT_AMTLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            pCT_AMTLabel.Name = "pCT_AMTLabel";
+            pCT_AMTLabel.Size = new System.Drawing.Size(209, 24);
+            pCT_AMTLabel.TabIndex = 4;
+            pCT_AMTLabel.Text = "Percentage of booking";
+            // 
+            // nBR_NTSLabel
+            // 
+            nBR_NTSLabel.AutoSize = true;
+            nBR_NTSLabel.Location = new System.Drawing.Point(21, 102);
+            nBR_NTSLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            nBR_NTSLabel.Name = "nBR_NTSLabel";
+            nBR_NTSLabel.Size = new System.Drawing.Size(163, 24);
+            nBR_NTSLabel.TabIndex = 2;
+            nBR_NTSLabel.Text = "Number of nights";
+            // 
+            // fLAT_FEELabel
+            // 
+            fLAT_FEELabel.AutoSize = true;
+            fLAT_FEELabel.Location = new System.Drawing.Point(20, 186);
+            fLAT_FEELabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            fLAT_FEELabel.Name = "fLAT_FEELabel";
+            fLAT_FEELabel.Size = new System.Drawing.Size(117, 24);
+            fLAT_FEELabel.TabIndex = 6;
+            fLAT_FEELabel.Text = "Flat amount";
+            // 
             // BindingSource
             // 
             this.BindingSource.DataSource = typeof(FlexModel.CXLFEE);
@@ -265,7 +305,7 @@
             // 
             this.labelControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "UPD_INIT", true));
             this.labelControl4.Location = new System.Drawing.Point(421, 804);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(0, 23);
             this.labelControl4.TabIndex = 30;
@@ -273,7 +313,7 @@
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(385, 804);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(27, 23);
             this.labelControl3.TabIndex = 29;
@@ -283,7 +323,7 @@
             // 
             this.labelControl2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "LAST_UPD", true));
             this.labelControl2.Location = new System.Drawing.Point(216, 804);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(0, 23);
             this.labelControl2.TabIndex = 28;
@@ -291,7 +331,7 @@
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(95, 804);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(116, 23);
             this.labelControl1.TabIndex = 27;
@@ -301,7 +341,7 @@
             // 
             this.CheckEditNoShow.EnterMoveNextControl = true;
             this.CheckEditNoShow.Location = new System.Drawing.Point(397, 404);
-            this.CheckEditNoShow.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.CheckEditNoShow.Margin = new System.Windows.Forms.Padding(5);
             this.CheckEditNoShow.Name = "CheckEditNoShow";
             this.CheckEditNoShow.Properties.Caption = "No Show";
             this.CheckEditNoShow.Size = new System.Drawing.Size(125, 34);
@@ -318,7 +358,7 @@
             0});
             this.SpinEditNtsPrior.EnterMoveNextControl = true;
             this.SpinEditNtsPrior.Location = new System.Drawing.Point(237, 405);
-            this.SpinEditNtsPrior.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SpinEditNtsPrior.Margin = new System.Windows.Forms.Padding(5);
             this.SpinEditNtsPrior.Name = "SpinEditNtsPrior";
             this.SpinEditNtsPrior.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.SpinEditNtsPrior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -343,10 +383,10 @@
             // 
             this.GridControlLookup.DataSource = this.BindingSource;
             this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
             this.GridControlLookup.MainView = this.GridViewLookup;
-            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlLookup.Name = "GridControlLookup";
             this.GridControlLookup.Size = new System.Drawing.Size(470, 1082);
             this.GridControlLookup.TabIndex = 0;
@@ -380,6 +420,7 @@
             this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
             this.GridViewLookup.OptionsView.ShowGroupPanel = false;
             this.GridViewLookup.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewLookup_InvalidRowException);
+            this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
             // 
             // colTYPE
             // 
@@ -486,7 +527,7 @@
             // 
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainerControl.Location = new System.Drawing.Point(0, 54);
-            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(5);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.AutoScroll = true;
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
@@ -529,34 +570,32 @@
             this.SplitContainerControl.TabIndex = 57;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
-            // SpinEditTimeAfter
+            // panelControl1
             // 
-            this.SpinEditTimeAfter.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TimeAfter", true));
-            this.SpinEditTimeAfter.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.SpinEditTimeAfter.EnterMoveNextControl = true;
-            this.SpinEditTimeAfter.Location = new System.Drawing.Point(709, 405);
-            this.SpinEditTimeAfter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.SpinEditTimeAfter.Name = "SpinEditTimeAfter";
-            this.SpinEditTimeAfter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.SpinEditTimeAfter.Properties.Mask.EditMask = "d";
-            this.SpinEditTimeAfter.Properties.MaxValue = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.SpinEditTimeAfter.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.SpinEditTimeAfter.Size = new System.Drawing.Size(167, 32);
-            this.SpinEditTimeAfter.TabIndex = 21;
-            this.SpinEditTimeAfter.Leave += new System.EventHandler(this.SpinEditTimeAfter_Leave);
+            this.panelControl1.Controls.Add(this.CheckEditNonRefundable);
+            this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.SpinEditNbrNts);
+            this.panelControl1.Controls.Add(pCT_AMTLabel);
+            this.panelControl1.Controls.Add(nBR_NTSLabel);
+            this.panelControl1.Controls.Add(fLAT_FEELabel);
+            this.panelControl1.Controls.Add(this.SpinEditFlatFee);
+            this.panelControl1.Controls.Add(this.SpinEditPctAmt);
+            this.panelControl1.Location = new System.Drawing.Point(92, 498);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(784, 236);
+            this.panelControl1.TabIndex = 24;
+            // 
+            // CheckEditNonRefundable
+            // 
+            this.CheckEditNonRefundable.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "NonRefundable", true));
+            this.CheckEditNonRefundable.Location = new System.Drawing.Point(24, 54);
+            this.CheckEditNonRefundable.Margin = new System.Windows.Forms.Padding(5);
+            this.CheckEditNonRefundable.MenuManager = this.BarManager;
+            this.CheckEditNonRefundable.Name = "CheckEditNonRefundable";
+            this.CheckEditNonRefundable.Properties.Caption = "Non-refundable";
+            this.CheckEditNonRefundable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditNonRefundable.Size = new System.Drawing.Size(243, 34);
+            this.CheckEditNonRefundable.TabIndex = 1;
             // 
             // BarManager
             // 
@@ -634,7 +673,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(5);
             this.barDockControlTop.Size = new System.Drawing.Size(1576, 54);
             // 
             // barDockControlBottom
@@ -643,7 +682,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 1136);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(5);
             this.barDockControlBottom.Size = new System.Drawing.Size(1576, 0);
             // 
             // barDockControlLeft
@@ -652,7 +691,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(5);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 1082);
             // 
             // barDockControlRight
@@ -661,13 +700,111 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1576, 54);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(5);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1082);
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.142858F, System.Drawing.FontStyle.Bold);
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(24, 21);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(43, 23);
+            this.labelControl5.TabIndex = 0;
+            this.labelControl5.Text = "Fees";
+            // 
+            // SpinEditNbrNts
+            // 
+            this.SpinEditNbrNts.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "NBR_NTS", true));
+            this.SpinEditNbrNts.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SpinEditNbrNts.EnterMoveNextControl = true;
+            this.SpinEditNbrNts.Location = new System.Drawing.Point(240, 98);
+            this.SpinEditNbrNts.Margin = new System.Windows.Forms.Padding(5);
+            this.SpinEditNbrNts.Name = "SpinEditNbrNts";
+            this.SpinEditNbrNts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.SpinEditNbrNts.Size = new System.Drawing.Size(132, 32);
+            this.SpinEditNbrNts.TabIndex = 3;
+            // 
+            // SpinEditFlatFee
+            // 
+            this.SpinEditFlatFee.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FLAT_FEE", true));
+            this.SpinEditFlatFee.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SpinEditFlatFee.Location = new System.Drawing.Point(240, 182);
+            this.SpinEditFlatFee.Margin = new System.Windows.Forms.Padding(5);
+            this.SpinEditFlatFee.Name = "SpinEditFlatFee";
+            this.SpinEditFlatFee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SpinEditFlatFee.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.SpinEditFlatFee.Properties.Mask.EditMask = "c";
+            this.SpinEditFlatFee.Size = new System.Drawing.Size(132, 32);
+            this.SpinEditFlatFee.TabIndex = 7;
+            // 
+            // SpinEditPctAmt
+            // 
+            this.SpinEditPctAmt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PCT_AMT", true));
+            this.SpinEditPctAmt.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SpinEditPctAmt.Location = new System.Drawing.Point(240, 140);
+            this.SpinEditPctAmt.Margin = new System.Windows.Forms.Padding(5);
+            this.SpinEditPctAmt.Name = "SpinEditPctAmt";
+            this.SpinEditPctAmt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SpinEditPctAmt.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.SpinEditPctAmt.Properties.Mask.EditMask = "0.00";
+            this.SpinEditPctAmt.Properties.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.SpinEditPctAmt.Size = new System.Drawing.Size(132, 32);
+            this.SpinEditPctAmt.TabIndex = 5;
+            // 
+            // SpinEditTimeAfter
+            // 
+            this.SpinEditTimeAfter.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TimeAfter", true));
+            this.SpinEditTimeAfter.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SpinEditTimeAfter.EnterMoveNextControl = true;
+            this.SpinEditTimeAfter.Location = new System.Drawing.Point(709, 405);
+            this.SpinEditTimeAfter.Margin = new System.Windows.Forms.Padding(5);
+            this.SpinEditTimeAfter.Name = "SpinEditTimeAfter";
+            this.SpinEditTimeAfter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.SpinEditTimeAfter.Properties.Mask.EditMask = "d";
+            this.SpinEditTimeAfter.Properties.MaxValue = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.SpinEditTimeAfter.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.SpinEditTimeAfter.Size = new System.Drawing.Size(167, 32);
+            this.SpinEditTimeAfter.TabIndex = 21;
+            this.SpinEditTimeAfter.Leave += new System.EventHandler(this.SpinEditTimeAfter_Leave);
             // 
             // labelControl8
             // 
             this.labelControl8.Location = new System.Drawing.Point(92, 325);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(87, 23);
             this.labelControl8.TabIndex = 13;
@@ -677,7 +814,7 @@
             // 
             this.ImageComboBoxEditTimeUnits.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TimeUnits", true));
             this.ImageComboBoxEditTimeUnits.Location = new System.Drawing.Point(237, 321);
-            this.ImageComboBoxEditTimeUnits.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ImageComboBoxEditTimeUnits.Margin = new System.Windows.Forms.Padding(5);
             this.ImageComboBoxEditTimeUnits.MenuManager = this.BarManager;
             this.ImageComboBoxEditTimeUnits.Name = "ImageComboBoxEditTimeUnits";
             this.ImageComboBoxEditTimeUnits.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -692,7 +829,7 @@
             // labelControl7
             // 
             this.labelControl7.Location = new System.Drawing.Point(92, 367);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(88, 23);
             this.labelControl7.TabIndex = 15;
@@ -702,7 +839,7 @@
             // 
             this.ImageComboBoxEditTimeBasis.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TimeBasis", true));
             this.ImageComboBoxEditTimeBasis.Location = new System.Drawing.Point(237, 363);
-            this.ImageComboBoxEditTimeBasis.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ImageComboBoxEditTimeBasis.Margin = new System.Windows.Forms.Padding(5);
             this.ImageComboBoxEditTimeBasis.MenuManager = this.BarManager;
             this.ImageComboBoxEditTimeBasis.Name = "ImageComboBoxEditTimeBasis";
             this.ImageComboBoxEditTimeBasis.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -717,7 +854,7 @@
             // labelControl6
             // 
             this.labelControl6.Location = new System.Drawing.Point(94, 757);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(93, 23);
             this.labelControl6.TabIndex = 25;
@@ -727,7 +864,7 @@
             // 
             this.TextEditDescription.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Description", true));
             this.TextEditDescription.Location = new System.Drawing.Point(237, 753);
-            this.TextEditDescription.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.TextEditDescription.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditDescription.MenuManager = this.BarManager;
             this.TextEditDescription.Name = "TextEditDescription";
             this.TextEditDescription.Size = new System.Drawing.Size(638, 32);
@@ -737,7 +874,7 @@
             // 
             this.SearchLookupEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "AGENCY", true));
             this.SearchLookupEditAgency.Location = new System.Drawing.Point(237, 237);
-            this.SearchLookupEditAgency.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SearchLookupEditAgency.Margin = new System.Windows.Forms.Padding(5);
             this.SearchLookupEditAgency.Name = "SearchLookupEditAgency";
             this.SearchLookupEditAgency.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -795,7 +932,7 @@
             // 
             this.SearchLookupEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
             this.SearchLookupEditCategory.Location = new System.Drawing.Point(237, 195);
-            this.SearchLookupEditCategory.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SearchLookupEditCategory.Margin = new System.Windows.Forms.Padding(5);
             this.SearchLookupEditCategory.Name = "SearchLookupEditCategory";
             this.SearchLookupEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -847,7 +984,7 @@
             // 
             this.SearchLookupEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
             this.SearchLookupEditCode.Location = new System.Drawing.Point(237, 153);
-            this.SearchLookupEditCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SearchLookupEditCode.Margin = new System.Windows.Forms.Padding(5);
             this.SearchLookupEditCode.Name = "SearchLookupEditCode";
             this.SearchLookupEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -861,6 +998,7 @@
             this.SearchLookupEditCode.TabIndex = 3;
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCode.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.SearchLookupEditCode_QueryPopUp);
             this.SearchLookupEditCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             this.SearchLookupEditCode.Leave += new System.EventHandler(this.SearchLookupEditCode_Leave);
             // 
@@ -899,7 +1037,7 @@
             // 
             this.ComboBoxEditType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
             this.ComboBoxEditType.Location = new System.Drawing.Point(237, 111);
-            this.ComboBoxEditType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ComboBoxEditType.Margin = new System.Windows.Forms.Padding(5);
             this.ComboBoxEditType.Name = "ComboBoxEditType";
             this.ComboBoxEditType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -920,7 +1058,7 @@
             this.DateEditStartDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "START_DATE", true));
             this.DateEditStartDate.EditValue = null;
             this.DateEditStartDate.Location = new System.Drawing.Point(296, 279);
-            this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(5);
             this.DateEditStartDate.Name = "DateEditStartDate";
             this.DateEditStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -940,7 +1078,7 @@
             this.DateEditEndDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "END_DATE", true));
             this.DateEditEndDate.EditValue = null;
             this.DateEditEndDate.Location = new System.Drawing.Point(565, 279);
-            this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(5);
             this.DateEditEndDate.Name = "DateEditEndDate";
             this.DateEditEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -960,7 +1098,7 @@
             this.DateEditOnAfterDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CXL_DATE", true));
             this.DateEditOnAfterDate.EditValue = null;
             this.DateEditOnAfterDate.Location = new System.Drawing.Point(237, 447);
-            this.DateEditOnAfterDate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.DateEditOnAfterDate.Margin = new System.Windows.Forms.Padding(5);
             this.DateEditOnAfterDate.Name = "DateEditOnAfterDate";
             this.DateEditOnAfterDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -981,7 +1119,7 @@
             this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.PanelControlStatus.Controls.Add(this.LabelStatus);
             this.PanelControlStatus.Location = new System.Drawing.Point(548, 0);
-            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(5);
             this.PanelControlStatus.Name = "PanelControlStatus";
             this.PanelControlStatus.Size = new System.Drawing.Size(200, 41);
             this.PanelControlStatus.TabIndex = 265;
@@ -990,146 +1128,10 @@
             // LabelStatus
             // 
             this.LabelStatus.Location = new System.Drawing.Point(50, 9);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(5);
             this.LabelStatus.Name = "LabelStatus";
             this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(233, 284);
-            label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(53, 24);
-            label1.TabIndex = 9;
-            label1.Text = "Start";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.CheckEditNonRefundable);
-            this.panelControl1.Controls.Add(this.labelControl5);
-            this.panelControl1.Controls.Add(this.SpinEditNbrNts);
-            this.panelControl1.Controls.Add(pCT_AMTLabel);
-            this.panelControl1.Controls.Add(nBR_NTSLabel);
-            this.panelControl1.Controls.Add(fLAT_FEELabel);
-            this.panelControl1.Controls.Add(this.SpinEditFlatFee);
-            this.panelControl1.Controls.Add(this.SpinEditPctAmt);
-            this.panelControl1.Location = new System.Drawing.Point(92, 498);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(784, 236);
-            this.panelControl1.TabIndex = 24;
-            // 
-            // CheckEditNonRefundable
-            // 
-            this.CheckEditNonRefundable.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "NonRefundable", true));
-            this.CheckEditNonRefundable.Location = new System.Drawing.Point(24, 54);
-            this.CheckEditNonRefundable.Margin = new System.Windows.Forms.Padding(5);
-            this.CheckEditNonRefundable.MenuManager = this.BarManager;
-            this.CheckEditNonRefundable.Name = "CheckEditNonRefundable";
-            this.CheckEditNonRefundable.Properties.Caption = "Non-refundable";
-            this.CheckEditNonRefundable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditNonRefundable.Size = new System.Drawing.Size(243, 34);
-            this.CheckEditNonRefundable.TabIndex = 1;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.142858F, System.Drawing.FontStyle.Bold);
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(24, 21);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(43, 23);
-            this.labelControl5.TabIndex = 0;
-            this.labelControl5.Text = "Fees";
-            // 
-            // SpinEditNbrNts
-            // 
-            this.SpinEditNbrNts.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "NBR_NTS", true));
-            this.SpinEditNbrNts.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.SpinEditNbrNts.EnterMoveNextControl = true;
-            this.SpinEditNbrNts.Location = new System.Drawing.Point(240, 98);
-            this.SpinEditNbrNts.Margin = new System.Windows.Forms.Padding(5);
-            this.SpinEditNbrNts.Name = "SpinEditNbrNts";
-            this.SpinEditNbrNts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.SpinEditNbrNts.Size = new System.Drawing.Size(132, 32);
-            this.SpinEditNbrNts.TabIndex = 3;
-            // 
-            // pCT_AMTLabel
-            // 
-            pCT_AMTLabel.AutoSize = true;
-            pCT_AMTLabel.Location = new System.Drawing.Point(21, 144);
-            pCT_AMTLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            pCT_AMTLabel.Name = "pCT_AMTLabel";
-            pCT_AMTLabel.Size = new System.Drawing.Size(209, 24);
-            pCT_AMTLabel.TabIndex = 4;
-            pCT_AMTLabel.Text = "Percentage of booking";
-            // 
-            // nBR_NTSLabel
-            // 
-            nBR_NTSLabel.AutoSize = true;
-            nBR_NTSLabel.Location = new System.Drawing.Point(21, 102);
-            nBR_NTSLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            nBR_NTSLabel.Name = "nBR_NTSLabel";
-            nBR_NTSLabel.Size = new System.Drawing.Size(163, 24);
-            nBR_NTSLabel.TabIndex = 2;
-            nBR_NTSLabel.Text = "Number of nights";
-            // 
-            // fLAT_FEELabel
-            // 
-            fLAT_FEELabel.AutoSize = true;
-            fLAT_FEELabel.Location = new System.Drawing.Point(20, 186);
-            fLAT_FEELabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            fLAT_FEELabel.Name = "fLAT_FEELabel";
-            fLAT_FEELabel.Size = new System.Drawing.Size(117, 24);
-            fLAT_FEELabel.TabIndex = 6;
-            fLAT_FEELabel.Text = "Flat amount";
-            // 
-            // SpinEditFlatFee
-            // 
-            this.SpinEditFlatFee.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FLAT_FEE", true));
-            this.SpinEditFlatFee.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.SpinEditFlatFee.Location = new System.Drawing.Point(240, 182);
-            this.SpinEditFlatFee.Margin = new System.Windows.Forms.Padding(5);
-            this.SpinEditFlatFee.Name = "SpinEditFlatFee";
-            this.SpinEditFlatFee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SpinEditFlatFee.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.SpinEditFlatFee.Properties.Mask.EditMask = "c";
-            this.SpinEditFlatFee.Size = new System.Drawing.Size(132, 32);
-            this.SpinEditFlatFee.TabIndex = 7;
-            // 
-            // SpinEditPctAmt
-            // 
-            this.SpinEditPctAmt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PCT_AMT", true));
-            this.SpinEditPctAmt.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.SpinEditPctAmt.Location = new System.Drawing.Point(240, 140);
-            this.SpinEditPctAmt.Margin = new System.Windows.Forms.Padding(5);
-            this.SpinEditPctAmt.Name = "SpinEditPctAmt";
-            this.SpinEditPctAmt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SpinEditPctAmt.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.SpinEditPctAmt.Properties.Mask.EditMask = "0.00";
-            this.SpinEditPctAmt.Properties.MaxValue = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SpinEditPctAmt.Size = new System.Drawing.Size(132, 32);
-            this.SpinEditPctAmt.TabIndex = 5;
             // 
             // CxlFeeForm
             // 
@@ -1143,7 +1145,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimizeBox = false;
             this.Name = "CxlFeeForm";
             this.ShowInTaskbar = false;
@@ -1158,8 +1160,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
             this.SplitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditTimeAfter.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditNonRefundable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditNbrNts.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditFlatFee.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditPctAmt.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditTimeAfter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTimeUnits.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTimeBasis.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditDescription.Properties)).EndInit();
@@ -1180,13 +1189,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditNonRefundable.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditNbrNts.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditFlatFee.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SpinEditPctAmt.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

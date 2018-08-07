@@ -1194,6 +1194,7 @@ namespace TraceForms
             this.GridViewLookup.Name = "GridViewLookup";
             this.GridViewLookup.OptionsBehavior.AutoExpandAllGroups = true;
             this.GridViewLookup.OptionsBehavior.Editable = false;
+            this.GridViewLookup.OptionsBehavior.ImmediateUpdateRowPosition = false;
             this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
             this.GridViewLookup.OptionsView.ShowGroupedColumns = true;
             this.GridViewLookup.OptionsView.ShowIndicator = false;
@@ -1447,9 +1448,9 @@ namespace TraceForms
             this.GridLookupEditItemSpecialValue.Properties.View = this.gridView14;
             this.GridLookupEditItemSpecialValue.Size = new System.Drawing.Size(518, 32);
             this.GridLookupEditItemSpecialValue.TabIndex = 285;
-            this.GridLookupEditItemSpecialValue.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditProductSpecialValue_ProcessNewValue);
+            this.GridLookupEditItemSpecialValue.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditItemSpecialValue_ProcessNewValue);
             this.GridLookupEditItemSpecialValue.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
-            this.GridLookupEditItemSpecialValue.Leave += new System.EventHandler(this.GridLookUpEditProductSpecialValue_Leave);
+            this.GridLookupEditItemSpecialValue.Leave += new System.EventHandler(this.GridLookUpEditItemSpecialValue_Leave);
             // 
             // BindingSourceCodeName
             // 
@@ -1555,7 +1556,7 @@ namespace TraceForms
             this.SimpleButtonClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonClone.ImageOptions.Image")));
             this.SimpleButtonClone.Location = new System.Drawing.Point(978, 104);
             this.SimpleButtonClone.Name = "SimpleButtonClone";
-            this.SimpleButtonClone.Size = new System.Drawing.Size(107, 42);
+            this.SimpleButtonClone.Size = new System.Drawing.Size(94, 42);
             this.SimpleButtonClone.TabIndex = 279;
             this.SimpleButtonClone.Text = "Clone";
             this.SimpleButtonClone.ToolTip = "Begin a new record with the same key values";
