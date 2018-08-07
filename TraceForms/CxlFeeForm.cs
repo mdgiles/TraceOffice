@@ -50,7 +50,18 @@ namespace TraceForms
 			}
 		}
 
-		private void LoadLookups()
+        private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        {
+            //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
+            //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
+            //that may need to be saved. 
+            if (!_ignoreLeaveRow && IsModified(_selectedRecord))
+            {
+                e.Allow = SaveRecord(true);
+            }
+        }
+
+        private void LoadLookups()
         {
 			CodeName loadBlank = new CodeName(string.Empty);
 
@@ -579,7 +590,12 @@ If the checkbox is unchecked, nights prior and on/after date are enabled for ent
 			CheckEditNoShow.Checked = (SpinEditNtsPrior.Value == -1);
 		}
 
-		private void BarButtonItemExpandContractGrid_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void SearchLookupEditCode_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void BarButtonItemExpandContractGrid_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
 			if (BarButtonItemExpandContractGrid.Tag.ToString() == "contracted")
 			{

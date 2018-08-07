@@ -40,8 +40,8 @@ namespace FlexOffice
             context = new FlextourEntities(_FlexSys.Settings.EFConnectionString);
             username = _FlexSys.User.Name;
             _menus = context.MenuItem.Where(c => (c.Visible ?? false) && c.AppName == "FlexOffice").
-                OrderBy(c => c.ParentID).ThenBy(c => c.Position);
-            _security = context.MenuItemSecurity.Where(c => c.UserID == username);
+                OrderBy(c => c.ParentID).ThenBy(c => c.Position).ToList();
+            _security = context.MenuItemSecurity.Where(c => c.UserID == username).ToList();
             var root = _menus.First(m => m.ParentID == null);
 
             createRibControl();

@@ -82,7 +82,7 @@ namespace TraceForms
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.DESC });
             SearchLookupEditOperator.Properties.DataSource = _context.OPERATOR.OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
-            var cats = _context.ROOMCOD.OrderBy(x => x.CODE).Select(x => new CodeName() { Code = x.CODE, Name = x.DESC });
+            var cats = _context.ROOMCOD.OrderBy(x => x.CODE).Select(x => new CodeName() { Code = x.CODE, Name = x.DESC }).ToList();
             SearchLookupEditCategory.Properties.DataSource = cats;
 
             //Create a list with a blank category for item category because item category can contain a category that
@@ -92,7 +92,7 @@ namespace TraceForms
             //list is is considered a new value, and thus _selectedRecord still holds the prior (non-empty) value.
             //The counter-intuitive way around this is to have an empty value in the lookup list so that it can immediately 
             //be validated as an error.
-            _categories = cats.ToList();
+            _categories = new List<CodeName>(cats);
             _categories.Insert(0, new CodeName());
             GridLookupEditItemCategory.Properties.DataSource = _categories;
 
@@ -299,7 +299,6 @@ namespace TraceForms
             }
             else {
                 _selectedRecord = ((PCOMP)BindingSource.Current);
-                SetItemCategoryLookup(_selectedRecord.CAT1);
                 SetAllFieldsEnabledState(false);
                 SetReadOnlyKeyFields(true);
                 SetButtonEnabledState(true);
@@ -308,15 +307,15 @@ namespace TraceForms
 
         private void SetItemCategoryLookup(string itemCat)
         {
-            //If the value of category isn't in ROOMCOD, add it to the list
-            //We allow non-matching categories so that API products can be booked
-            if (!string.IsNullOrEmpty(itemCat) && !_categories.Any(c => c.Code == itemCat)) {
-                var cats = _categories.ToList();
-                cats.Add(new CodeName(itemCat));
-                GridLookupEditItemCategory.Properties.DataSource = cats;
+            if (string.IsNullOrEmpty(itemCat) || _categories.Any(c => c.Code == itemCat)) {
+                GridLookupEditItemCategory.Properties.DataSource = _categories;
             }
             else {
-                GridLookupEditItemCategory.Properties.DataSource = _categories;
+                //If the value of category isn't in ROOMCOD, add it to the list
+                //We allow non-matching categories so that API products can be booked
+                var cats = new List<CodeName>(_categories);
+                cats.Add(new CodeName(itemCat));
+                GridLookupEditItemCategory.Properties.DataSource = cats;
             }
         }
 
@@ -420,27 +419,36 @@ namespace TraceForms
 
         private void ExecuteQuery()
         {
-            Cursor = Cursors.WaitCursor;
-            string query = "1=1";
-            foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns) {
-                string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-                if (!string.IsNullOrEmpty(value)) {
-                    query += $" and it.[{col.FieldName}] like '%{value}%'";
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                string query = "1=1";
+                foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns)
+                {
+                    string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        query += $" and it.[{col.FieldName}] like '%{value}%'";
+                    }
                 }
-            }
-            query += " order by it.CODE, it.CAT, it.SpecialValue_Code, it.DepartureTime, it.DAY, it.LINE";
+                query += " order by it.CODE, it.CAT, it.SpecialValue_Code, it.DepartureTime, it.DAY, it.LINE";
 
-            var records = _context.PCOMP.Where(query);
-            GridViewLookup.DataSourceChanged += GridViewLookup_DataSourceChanged;
-            //When the datasource is set, it automatically selects the first row even though the grid does not automatically select a row
-            //Also the grid databinding may not have finished by the time BindingSource_CurrentChanged fires.
-            //Thus we want to ignore the BindingSource_CurrentChanged event and allow the GridViewLookup_DataSourceChanged 
-            //to handle selecting a record
-            _ignorePositionChange = true;
-            BindingSource.DataSource = records;
-            GridViewLookup.ClearColumnsFilter();
-            _ignorePositionChange = false;
-            Cursor = Cursors.Default;
+                var records = _context.PCOMP.Where(query);
+                GridViewLookup.DataSourceChanged += GridViewLookup_DataSourceChanged;
+                //When the datasource is set, it automatically selects the first row even though the grid does not automatically select a row
+                //Also the grid databinding may not have finished by the time BindingSource_CurrentChanged fires.
+                //Thus we want to ignore the BindingSource_CurrentChanged event and allow the GridViewLookup_DataSourceChanged 
+                //to handle selecting a record
+                _ignorePositionChange = true;
+                BindingSource.DataSource = records;
+                GridViewLookup.ClearColumnsFilter();
+                _ignorePositionChange = false;
+                Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                this.DisplayError(ex);
+            }
         }
 
         private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -548,6 +556,8 @@ namespace TraceForms
             }
             else {
                 SetProductKeyFieldsState(true, true);
+                SetItemCategoryLookup(_selectedRecord.CAT1);
+                SetItemSpecialValueLookup(_selectedRecord.SpecialValue_Code_Item);
                 //The dropdown query does not take into account resdate or svcdate, so that users can see if there
                 //are expired mappings.  The validation does take this into account and will not allow it to be saved.
                 var suppProds = _context.SupplierProduct.Where(sp => sp.Product_Type == ComboBoxEditItemType.Text 
@@ -636,8 +646,8 @@ namespace TraceForms
             }
             GridLookupEditItemCategory.Properties.DataSource = null;
             GridLookupEditItemCategory.EditValue = null;
-            SearchLookupEditSpecialValue.Properties.DataSource = null;
-            SearchLookupEditSpecialValue.EditValue = null;
+            GridLookupEditItemSpecialValue.Properties.DataSource = null;
+            GridLookupEditItemSpecialValue.EditValue = null;
         }
 
         private void SetProductKeyFieldsState(bool enabled, bool includeSupplierProduct)
@@ -912,7 +922,9 @@ namespace TraceForms
         private void GridLookupEditItemCategory_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
-                SetErrorInfo(_selectedRecord.ValidateItemCategory, sender);
+            //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
+            GridLookupEditItemCategory.DataBindings[0].WriteValue();
+            SetErrorInfo(_selectedRecord.ValidateItemCategory, sender);
         }
 
         private void SearchLookupEditEditMeal_Leave(object sender, EventArgs e)
@@ -1260,13 +1272,15 @@ namespace TraceForms
             }
         }
 
-        private void GridLookUpEditProductSpecialValue_Leave(object sender, EventArgs e)
+        private void GridLookUpEditItemSpecialValue_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
-                SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, sender);
+            //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
+            GridLookupEditItemSpecialValue.DataBindings[0].WriteValue();
+            SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, sender);
         }
 
-        private void GridLookUpEditProductSpecialValue_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        private void GridLookUpEditItemSpecialValue_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
         {
             SetItemSpecialValueLookup(e.DisplayValue.ToString());
             e.Handled = true;
