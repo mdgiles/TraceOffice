@@ -1046,6 +1046,9 @@
             this.SearchLookupEditSpecialValue.Properties.View = gridView6;
             this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(345, 34);
             this.SearchLookupEditSpecialValue.TabIndex = 283;
+            this.SearchLookupEditSpecialValue.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.SearchLookupEditSpecialValue.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditSpecialValue.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             this.SearchLookupEditSpecialValue.Leave += new System.EventHandler(this.SearchLookupEditSpecialValue_Leave);
             // 
             // BindingSourceCodeName
