@@ -446,8 +446,6 @@ namespace FlexOffice
 
         private void barButtonVouchGen_ItemClick(object sender, ItemClickEventArgs e)
         {
-            VouchGenForm xform1 = new VouchGenForm(_FlexSys) { MdiParent = this };
-            xform1.Show();
         }
 
         private void barButtonBusStation_ItemClick(object sender, ItemClickEventArgs e)
@@ -512,8 +510,6 @@ namespace FlexOffice
 
         private void barButtonGroupRateUtil_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GroupCopyForm xform1 = new GroupCopyForm(_FlexSys) { MdiParent = this };
-            xform1.Show();
         }
 
         private void barButtonPackRateUtil_ItemClick(object sender, ItemClickEventArgs e)
@@ -572,8 +568,6 @@ namespace FlexOffice
 
         private void barButtonGroup_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GroupForm xform1 = new GroupForm(_FlexSys) { MdiParent = this };
-            xform1.Show();
         }
 
         private void barButtonBookCombo_ItemClick(object sender, ItemClickEventArgs e)

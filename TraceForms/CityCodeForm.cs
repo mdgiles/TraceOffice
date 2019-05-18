@@ -462,8 +462,9 @@ namespace TraceForms
 
         private void ButtonAddMapping_Click(object sender, EventArgs e)
         {
-            SupplierCity suppCity = new SupplierCity();
-            suppCity.Citycod_Code = TextEditCode.Text;
+            SupplierCity suppCity = new SupplierCity {
+                Citycod_Code = TextEditCode.Text
+            };
             _selectedRecord.SupplierCity.Add(suppCity);
             BindSupplierCities();
             GridViewSupplierCity.FocusedRowHandle = BindingSourceSupplierCity.Count - 1;
@@ -477,7 +478,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierCity.DeleteObject(suppCity);
+                if (!suppCity.IsNew()) {
+                    _context.SupplierCity.DeleteObject(suppCity);
+                }
                 BindSupplierCities();
             }
         }

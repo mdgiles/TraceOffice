@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label aGENCYLabel;
-            System.Windows.Forms.Label tYPELabel;
+            System.Windows.Forms.Label LabelAgency;
+            System.Windows.Forms.Label LabelType;
             System.Windows.Forms.Label cATLabel;
             System.Windows.Forms.Label cODELabel;
-            System.Windows.Forms.Label uPD_DATELabel;
-            System.Windows.Forms.Label uPD_BYLabel;
+            System.Windows.Forms.Label LabelUpdatedDate;
+            System.Windows.Forms.Label LabelUpdatedBy;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label cANCLabel;
-            System.Windows.Forms.Label mIN_BK_DAYSLabel;
-            System.Windows.Forms.Label mAXLabel;
-            System.Windows.Forms.Label mINLabel;
-            System.Windows.Forms.Label aVLabel;
+            System.Windows.Forms.Label LabelMinBkDays;
+            System.Windows.Forms.Label LabelMax;
+            System.Windows.Forms.Label LabelMin;
+            System.Windows.Forms.Label LabelAv;
             System.Windows.Forms.Label hOLDLabel;
-            System.Windows.Forms.Label aV_AMTLabel;
-            System.Windows.Forms.Label aLLOCTDLabel;
-            System.Windows.Forms.Label oRIG_AMTLabel;
-            System.Windows.Forms.Label rELLabel;
-            System.Windows.Forms.Label rELCATLabel;
-            System.Windows.Forms.Label rELCODELabel;
-            System.Windows.Forms.Label rELTYPLabel;
-            System.Windows.Forms.Label rELAGYLabel;
+            System.Windows.Forms.Label LabelAvAmt;
+            System.Windows.Forms.Label LabelAlloctd;
+            System.Windows.Forms.Label LabelOrigAmt;
+            System.Windows.Forms.Label LabelRel;
+            System.Windows.Forms.Label LabelRelCat;
+            System.Windows.Forms.Label LabelRelCode;
+            System.Windows.Forms.Label LabelRelType;
+            System.Windows.Forms.Label LabelRelAgy;
             DevExpress.XtraEditors.LabelControl labelControl4;
             DevExpress.XtraGrid.Views.Grid.GridView gridView6;
             DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -176,27 +176,27 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            aGENCYLabel = new System.Windows.Forms.Label();
-            tYPELabel = new System.Windows.Forms.Label();
+            LabelAgency = new System.Windows.Forms.Label();
+            LabelType = new System.Windows.Forms.Label();
             cATLabel = new System.Windows.Forms.Label();
             cODELabel = new System.Windows.Forms.Label();
-            uPD_DATELabel = new System.Windows.Forms.Label();
-            uPD_BYLabel = new System.Windows.Forms.Label();
+            LabelUpdatedDate = new System.Windows.Forms.Label();
+            LabelUpdatedBy = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             cANCLabel = new System.Windows.Forms.Label();
-            mIN_BK_DAYSLabel = new System.Windows.Forms.Label();
-            mAXLabel = new System.Windows.Forms.Label();
-            mINLabel = new System.Windows.Forms.Label();
-            aVLabel = new System.Windows.Forms.Label();
+            LabelMinBkDays = new System.Windows.Forms.Label();
+            LabelMax = new System.Windows.Forms.Label();
+            LabelMin = new System.Windows.Forms.Label();
+            LabelAv = new System.Windows.Forms.Label();
             hOLDLabel = new System.Windows.Forms.Label();
-            aV_AMTLabel = new System.Windows.Forms.Label();
-            aLLOCTDLabel = new System.Windows.Forms.Label();
-            oRIG_AMTLabel = new System.Windows.Forms.Label();
-            rELLabel = new System.Windows.Forms.Label();
-            rELCATLabel = new System.Windows.Forms.Label();
-            rELCODELabel = new System.Windows.Forms.Label();
-            rELTYPLabel = new System.Windows.Forms.Label();
-            rELAGYLabel = new System.Windows.Forms.Label();
+            LabelAvAmt = new System.Windows.Forms.Label();
+            LabelAlloctd = new System.Windows.Forms.Label();
+            LabelOrigAmt = new System.Windows.Forms.Label();
+            LabelRel = new System.Windows.Forms.Label();
+            LabelRelCat = new System.Windows.Forms.Label();
+            LabelRelCode = new System.Windows.Forms.Label();
+            LabelRelType = new System.Windows.Forms.Label();
+            LabelRelAgy = new System.Windows.Forms.Label();
             labelControl4 = new DevExpress.XtraEditors.LabelControl();
             gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -265,25 +265,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
-            // aGENCYLabel
+            // LabelAgency
             // 
-            aGENCYLabel.AutoSize = true;
-            aGENCYLabel.Location = new System.Drawing.Point(66, 87);
-            aGENCYLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            aGENCYLabel.Name = "aGENCYLabel";
-            aGENCYLabel.Size = new System.Drawing.Size(80, 25);
-            aGENCYLabel.TabIndex = 0;
-            aGENCYLabel.Text = "Agency";
+            LabelAgency.AutoSize = true;
+            LabelAgency.Location = new System.Drawing.Point(66, 87);
+            LabelAgency.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelAgency.Name = "LabelAgency";
+            LabelAgency.Size = new System.Drawing.Size(80, 25);
+            LabelAgency.TabIndex = 0;
+            LabelAgency.Text = "Agency";
             // 
-            // tYPELabel
+            // LabelType
             // 
-            tYPELabel.AutoSize = true;
-            tYPELabel.Location = new System.Drawing.Point(66, 35);
-            tYPELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tYPELabel.Name = "tYPELabel";
-            tYPELabel.Size = new System.Drawing.Size(57, 25);
-            tYPELabel.TabIndex = 2;
-            tYPELabel.Text = "Type";
+            LabelType.AutoSize = true;
+            LabelType.Location = new System.Drawing.Point(66, 35);
+            LabelType.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelType.Name = "LabelType";
+            LabelType.Size = new System.Drawing.Size(57, 25);
+            LabelType.TabIndex = 2;
+            LabelType.Text = "Type";
             // 
             // cATLabel
             // 
@@ -305,25 +305,25 @@
             cODELabel.TabIndex = 6;
             cODELabel.Text = "Code";
             // 
-            // uPD_DATELabel
+            // LabelUpdatedDate
             // 
-            uPD_DATELabel.AutoSize = true;
-            uPD_DATELabel.Location = new System.Drawing.Point(89, 1345);
-            uPD_DATELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            uPD_DATELabel.Name = "uPD_DATELabel";
-            uPD_DATELabel.Size = new System.Drawing.Size(140, 25);
-            uPD_DATELabel.TabIndex = 11;
-            uPD_DATELabel.Text = "Last updated:";
+            LabelUpdatedDate.AutoSize = true;
+            LabelUpdatedDate.Location = new System.Drawing.Point(89, 1345);
+            LabelUpdatedDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelUpdatedDate.Name = "LabelUpdatedDate";
+            LabelUpdatedDate.Size = new System.Drawing.Size(140, 25);
+            LabelUpdatedDate.TabIndex = 11;
+            LabelUpdatedDate.Text = "Last updated:";
             // 
-            // uPD_BYLabel
+            // LabelUpdatedBy
             // 
-            uPD_BYLabel.AutoSize = true;
-            uPD_BYLabel.Location = new System.Drawing.Point(520, 1345);
-            uPD_BYLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            uPD_BYLabel.Name = "uPD_BYLabel";
-            uPD_BYLabel.Size = new System.Drawing.Size(42, 25);
-            uPD_BYLabel.TabIndex = 13;
-            uPD_BYLabel.Text = "By:";
+            LabelUpdatedBy.AutoSize = true;
+            LabelUpdatedBy.Location = new System.Drawing.Point(520, 1345);
+            LabelUpdatedBy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelUpdatedBy.Name = "LabelUpdatedBy";
+            LabelUpdatedBy.Size = new System.Drawing.Size(42, 25);
+            LabelUpdatedBy.TabIndex = 13;
+            LabelUpdatedBy.Text = "By:";
             // 
             // label1
             // 
@@ -346,45 +346,45 @@
             cANCLabel.Text = "Cancellation days";
             cANCLabel.Visible = false;
             // 
-            // mIN_BK_DAYSLabel
+            // LabelMinBkDays
             // 
-            mIN_BK_DAYSLabel.AutoSize = true;
-            mIN_BK_DAYSLabel.Location = new System.Drawing.Point(952, 92);
-            mIN_BK_DAYSLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            mIN_BK_DAYSLabel.Name = "mIN_BK_DAYSLabel";
-            mIN_BK_DAYSLabel.Size = new System.Drawing.Size(145, 25);
-            mIN_BK_DAYSLabel.TabIndex = 31;
-            mIN_BK_DAYSLabel.Text = "Min book days";
+            LabelMinBkDays.AutoSize = true;
+            LabelMinBkDays.Location = new System.Drawing.Point(952, 92);
+            LabelMinBkDays.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelMinBkDays.Name = "LabelMinBkDays";
+            LabelMinBkDays.Size = new System.Drawing.Size(145, 25);
+            LabelMinBkDays.TabIndex = 31;
+            LabelMinBkDays.Text = "Min book days";
             // 
-            // mAXLabel
+            // LabelMax
             // 
-            mAXLabel.AutoSize = true;
-            mAXLabel.Location = new System.Drawing.Point(76, 169);
-            mAXLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            mAXLabel.Name = "mAXLabel";
-            mAXLabel.Size = new System.Drawing.Size(195, 25);
-            mAXLabel.TabIndex = 30;
-            mAXLabel.Text = "Maximum stay days";
+            LabelMax.AutoSize = true;
+            LabelMax.Location = new System.Drawing.Point(76, 169);
+            LabelMax.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelMax.Name = "LabelMax";
+            LabelMax.Size = new System.Drawing.Size(195, 25);
+            LabelMax.TabIndex = 30;
+            LabelMax.Text = "Maximum stay days";
             // 
-            // mINLabel
+            // LabelMin
             // 
-            mINLabel.AutoSize = true;
-            mINLabel.Location = new System.Drawing.Point(498, 169);
-            mINLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            mINLabel.Name = "mINLabel";
-            mINLabel.Size = new System.Drawing.Size(191, 25);
-            mINLabel.TabIndex = 29;
-            mINLabel.Text = "Minimum stay days";
+            LabelMin.AutoSize = true;
+            LabelMin.Location = new System.Drawing.Point(498, 169);
+            LabelMin.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelMin.Name = "LabelMin";
+            LabelMin.Size = new System.Drawing.Size(191, 25);
+            LabelMin.TabIndex = 29;
+            LabelMin.Text = "Minimum stay days";
             // 
-            // aVLabel
+            // LabelAv
             // 
-            aVLabel.AutoSize = true;
-            aVLabel.Location = new System.Drawing.Point(76, 92);
-            aVLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            aVLabel.Name = "aVLabel";
-            aVLabel.Size = new System.Drawing.Size(162, 25);
-            aVLabel.TabIndex = 27;
-            aVLabel.Text = "Availability code";
+            LabelAv.AutoSize = true;
+            LabelAv.Location = new System.Drawing.Point(76, 92);
+            LabelAv.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelAv.Name = "LabelAv";
+            LabelAv.Size = new System.Drawing.Size(162, 25);
+            LabelAv.TabIndex = 27;
+            LabelAv.Text = "Availability code";
             // 
             // hOLDLabel
             // 
@@ -396,85 +396,85 @@
             hOLDLabel.TabIndex = 42;
             hOLDLabel.Text = "Held inventory (FIT hotels-house only)";
             // 
-            // aV_AMTLabel
+            // LabelAvAmt
             // 
-            aV_AMTLabel.AutoSize = true;
-            aV_AMTLabel.Location = new System.Drawing.Point(662, 102);
-            aV_AMTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            aV_AMTLabel.Name = "aV_AMTLabel";
-            aV_AMTLabel.Size = new System.Drawing.Size(267, 25);
-            aV_AMTLabel.TabIndex = 41;
-            aV_AMTLabel.Text = "Available allotment amount";
+            LabelAvAmt.AutoSize = true;
+            LabelAvAmt.Location = new System.Drawing.Point(662, 102);
+            LabelAvAmt.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelAvAmt.Name = "LabelAvAmt";
+            LabelAvAmt.Size = new System.Drawing.Size(267, 25);
+            LabelAvAmt.TabIndex = 41;
+            LabelAvAmt.Text = "Available allotment amount";
             // 
-            // aLLOCTDLabel
+            // LabelAlloctd
             // 
-            aLLOCTDLabel.AutoSize = true;
-            aLLOCTDLabel.Location = new System.Drawing.Point(62, 167);
-            aLLOCTDLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            aLLOCTDLabel.Name = "aLLOCTDLabel";
-            aLLOCTDLabel.Size = new System.Drawing.Size(190, 25);
-            aLLOCTDLabel.TabIndex = 40;
-            aLLOCTDLabel.Text = "Allocated inventory";
+            LabelAlloctd.AutoSize = true;
+            LabelAlloctd.Location = new System.Drawing.Point(62, 167);
+            LabelAlloctd.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelAlloctd.Name = "LabelAlloctd";
+            LabelAlloctd.Size = new System.Drawing.Size(190, 25);
+            LabelAlloctd.TabIndex = 40;
+            LabelAlloctd.Text = "Allocated inventory";
             // 
-            // oRIG_AMTLabel
+            // LabelOrigAmt
             // 
-            oRIG_AMTLabel.AutoSize = true;
-            oRIG_AMTLabel.Location = new System.Drawing.Point(62, 102);
-            oRIG_AMTLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            oRIG_AMTLabel.Name = "oRIG_AMTLabel";
-            oRIG_AMTLabel.Size = new System.Drawing.Size(257, 25);
-            oRIG_AMTLabel.TabIndex = 39;
-            oRIG_AMTLabel.Text = "Original allotment amount";
+            LabelOrigAmt.AutoSize = true;
+            LabelOrigAmt.Location = new System.Drawing.Point(62, 102);
+            LabelOrigAmt.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelOrigAmt.Name = "LabelOrigAmt";
+            LabelOrigAmt.Size = new System.Drawing.Size(257, 25);
+            LabelOrigAmt.TabIndex = 39;
+            LabelOrigAmt.Text = "Original allotment amount";
             // 
-            // rELLabel
+            // LabelRel
             // 
-            rELLabel.AutoSize = true;
-            rELLabel.Location = new System.Drawing.Point(62, 87);
-            rELLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            rELLabel.Name = "rELLabel";
-            rELLabel.Size = new System.Drawing.Size(56, 25);
-            rELLabel.TabIndex = 49;
-            rELLabel.Text = "Days";
+            LabelRel.AutoSize = true;
+            LabelRel.Location = new System.Drawing.Point(62, 87);
+            LabelRel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelRel.Name = "LabelRel";
+            LabelRel.Size = new System.Drawing.Size(56, 25);
+            LabelRel.TabIndex = 49;
+            LabelRel.Text = "Days";
             // 
-            // rELCATLabel
+            // LabelRelCat
             // 
-            rELCATLabel.AutoSize = true;
-            rELCATLabel.Location = new System.Drawing.Point(62, 162);
-            rELCATLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            rELCATLabel.Name = "rELCATLabel";
-            rELCATLabel.Size = new System.Drawing.Size(95, 25);
-            rELCATLabel.TabIndex = 50;
-            rELCATLabel.Text = "Category";
+            LabelRelCat.AutoSize = true;
+            LabelRelCat.Location = new System.Drawing.Point(62, 162);
+            LabelRelCat.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelRelCat.Name = "LabelRelCat";
+            LabelRelCat.Size = new System.Drawing.Size(95, 25);
+            LabelRelCat.TabIndex = 50;
+            LabelRelCat.Text = "Category";
             // 
-            // rELCODELabel
+            // LabelRelCode
             // 
-            rELCODELabel.AutoSize = true;
-            rELCODELabel.Location = new System.Drawing.Point(280, 87);
-            rELCODELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            rELCODELabel.Name = "rELCODELabel";
-            rELCODELabel.Size = new System.Drawing.Size(59, 25);
-            rELCODELabel.TabIndex = 51;
-            rELCODELabel.Text = "Code";
+            LabelRelCode.AutoSize = true;
+            LabelRelCode.Location = new System.Drawing.Point(280, 87);
+            LabelRelCode.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelRelCode.Name = "LabelRelCode";
+            LabelRelCode.Size = new System.Drawing.Size(59, 25);
+            LabelRelCode.TabIndex = 51;
+            LabelRelCode.Text = "Code";
             // 
-            // rELTYPLabel
+            // LabelRelType
             // 
-            rELTYPLabel.AutoSize = true;
-            rELTYPLabel.Location = new System.Drawing.Point(755, 162);
-            rELTYPLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            rELTYPLabel.Name = "rELTYPLabel";
-            rELTYPLabel.Size = new System.Drawing.Size(137, 25);
-            rELTYPLabel.TabIndex = 52;
-            rELTYPLabel.Text = "Room / cabin";
+            LabelRelType.AutoSize = true;
+            LabelRelType.Location = new System.Drawing.Point(755, 162);
+            LabelRelType.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelRelType.Name = "LabelRelType";
+            LabelRelType.Size = new System.Drawing.Size(137, 25);
+            LabelRelType.TabIndex = 52;
+            LabelRelType.Text = "Room / cabin";
             // 
-            // rELAGYLabel
+            // LabelRelAgy
             // 
-            rELAGYLabel.AutoSize = true;
-            rELAGYLabel.Location = new System.Drawing.Point(898, 88);
-            rELAGYLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            rELAGYLabel.Name = "rELAGYLabel";
-            rELAGYLabel.Size = new System.Drawing.Size(80, 25);
-            rELAGYLabel.TabIndex = 54;
-            rELAGYLabel.Text = "Agency";
+            LabelRelAgy.AutoSize = true;
+            LabelRelAgy.Location = new System.Drawing.Point(898, 88);
+            LabelRelAgy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            LabelRelAgy.Name = "LabelRelAgy";
+            LabelRelAgy.Size = new System.Drawing.Size(80, 25);
+            LabelRelAgy.TabIndex = 54;
+            LabelRelAgy.Text = "Agency";
             // 
             // labelControl4
             // 
@@ -1000,12 +1000,12 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.labelControl1);
             this.SplitContainerControl.Panel2.Controls.Add(this.GroupControlRelease);
             this.SplitContainerControl.Panel2.Controls.Add(this.labelControlDate);
-            this.SplitContainerControl.Panel2.Controls.Add(uPD_BYLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(LabelUpdatedBy);
             this.SplitContainerControl.Panel2.Controls.Add(this.ComboBoxEditType);
-            this.SplitContainerControl.Panel2.Controls.Add(aGENCYLabel);
-            this.SplitContainerControl.Panel2.Controls.Add(uPD_DATELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(LabelAgency);
+            this.SplitContainerControl.Panel2.Controls.Add(LabelUpdatedDate);
             this.SplitContainerControl.Panel2.Controls.Add(this.ComboBoxEditTP);
-            this.SplitContainerControl.Panel2.Controls.Add(tYPELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(LabelType);
             this.SplitContainerControl.Panel2.Controls.Add(cATLabel);
             this.SplitContainerControl.Panel2.Controls.Add(cODELabel);
             this.SplitContainerControl.Panel2.Controls.Add(label1);
@@ -1320,10 +1320,10 @@
             this.GroupControlRestrictions.Controls.Add(this.SpinEditMin);
             this.GroupControlRestrictions.Controls.Add(this.SpinEditMax);
             this.GroupControlRestrictions.Controls.Add(cANCLabel);
-            this.GroupControlRestrictions.Controls.Add(mIN_BK_DAYSLabel);
-            this.GroupControlRestrictions.Controls.Add(mAXLabel);
-            this.GroupControlRestrictions.Controls.Add(mINLabel);
-            this.GroupControlRestrictions.Controls.Add(aVLabel);
+            this.GroupControlRestrictions.Controls.Add(LabelMinBkDays);
+            this.GroupControlRestrictions.Controls.Add(LabelMax);
+            this.GroupControlRestrictions.Controls.Add(LabelMin);
+            this.GroupControlRestrictions.Controls.Add(LabelAv);
             this.GroupControlRestrictions.Controls.Add(this.CheckEditReq);
             this.GroupControlRestrictions.Controls.Add(this.ComboBoxEditAv);
             this.GroupControlRestrictions.Location = new System.Drawing.Point(72, 570);
@@ -1356,9 +1356,9 @@
             // GroupControlQuantities
             // 
             this.GroupControlQuantities.Controls.Add(this.CheckEditSyn);
-            this.GroupControlQuantities.Controls.Add(oRIG_AMTLabel);
-            this.GroupControlQuantities.Controls.Add(aLLOCTDLabel);
-            this.GroupControlQuantities.Controls.Add(aV_AMTLabel);
+            this.GroupControlQuantities.Controls.Add(LabelOrigAmt);
+            this.GroupControlQuantities.Controls.Add(LabelAlloctd);
+            this.GroupControlQuantities.Controls.Add(LabelAvAmt);
             this.GroupControlQuantities.Controls.Add(hOLDLabel);
             this.GroupControlQuantities.Controls.Add(this.SpinEditOrigAmt);
             this.GroupControlQuantities.Controls.Add(this.SpinEditAvAmt);
@@ -1377,12 +1377,12 @@
             this.GroupControlRelease.Controls.Add(this.SearchLookupEditRelCode);
             this.GroupControlRelease.Controls.Add(this.SearchLookupEditRelCat);
             this.GroupControlRelease.Controls.Add(this.SearchLookupEditRelAgency);
-            this.GroupControlRelease.Controls.Add(rELLabel);
-            this.GroupControlRelease.Controls.Add(rELCATLabel);
-            this.GroupControlRelease.Controls.Add(rELCODELabel);
+            this.GroupControlRelease.Controls.Add(LabelRel);
+            this.GroupControlRelease.Controls.Add(LabelRelCat);
+            this.GroupControlRelease.Controls.Add(LabelRelCode);
             this.GroupControlRelease.Controls.Add(this.ComboBoxEditRelTyp);
-            this.GroupControlRelease.Controls.Add(rELTYPLabel);
-            this.GroupControlRelease.Controls.Add(rELAGYLabel);
+            this.GroupControlRelease.Controls.Add(LabelRelType);
+            this.GroupControlRelease.Controls.Add(LabelRelAgy);
             this.GroupControlRelease.Controls.Add(this.SpinEditRel);
             this.GroupControlRelease.Location = new System.Drawing.Point(72, 1112);
             this.GroupControlRelease.Margin = new System.Windows.Forms.Padding(6);
@@ -1952,7 +1952,7 @@
             this.MinimizeBox = false;
             this.Name = "InvtMaint";
             this.ShowInTaskbar = false;
-            this.Text = "Inventory Maintenance";
+            this.Text = "s";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InvMaint_FormClosing);
             this.Shown += new System.EventHandler(this.InvtMaint_Shown);
             ((System.ComponentModel.ISupportInitialize)(gridView6)).EndInit();

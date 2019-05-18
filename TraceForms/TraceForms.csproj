@@ -427,29 +427,11 @@
     <Compile Include="DigItmForm.Designer.cs">
       <DependentUpon>DigItmForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="dummyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dummyForm.Designer.cs">
-      <DependentUpon>dummyForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ExtendedIndex.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ExtendedIndex.Designer.cs">
       <DependentUpon>ExtendedIndex.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GroupCopyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GroupCopyForm.Designer.cs">
-      <DependentUpon>GroupCopyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GroupForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GroupForm.Designer.cs">
-      <DependentUpon>GroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="gsLoad.cs" />
     <Compile Include="hRateCopyForm.cs">
@@ -872,12 +854,6 @@
       <DependentUpon>UserFieldsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="validCheck.cs" />
-    <Compile Include="VouchGenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VouchGenForm.Designer.cs">
-      <DependentUpon>VouchGenForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="VouchUtilityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1020,17 +996,8 @@
     <EmbeddedResource Include="DigItmForm.resx">
       <DependentUpon>DigItmForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dummyForm.resx">
-      <DependentUpon>dummyForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ExtendedIndex.resx">
       <DependentUpon>ExtendedIndex.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GroupCopyForm.resx">
-      <DependentUpon>GroupCopyForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GroupForm.resx">
-      <DependentUpon>GroupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HotelGenInfo.resx">
       <DependentUpon>HotelGenInfo.cs</DependentUpon>
@@ -1268,10 +1235,14 @@
     <None Include="Properties\DataSources\FlexModel.SupplierCity.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierConnection.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierConnectionRule.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierCountry.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierHotelMapping.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierHotelRatePlan.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierHotelRoomType.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierProduct.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierRegion.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierServiceType.datasource" />
+    <None Include="Properties\DataSources\FlexModel.SupplierState.datasource" />
     <None Include="Properties\DataSources\IdName.datasource" />
     <None Include="Properties\DataSources\NameAssignment.datasource" />
     <None Include="Properties\DataSources\PassengerAssignment.datasource" />
@@ -1284,9 +1255,6 @@
     </None>
     <EmbeddedResource Include="UserFieldsForm.resx">
       <DependentUpon>UserFieldsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VouchGenForm.resx">
-      <DependentUpon>VouchGenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VouchUtilityForm.resx">
       <DependentUpon>VouchUtilityForm.cs</DependentUpon>

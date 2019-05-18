@@ -438,8 +438,6 @@ namespace TraceForms
 
         private void barButtonGroupRateUtil_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            GroupCopyForm xform1 = new GroupCopyForm(_FlexSys) { };
-            xform1.Show();
         }
 
         private void barButtonPackRateUtil_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -498,8 +496,6 @@ namespace TraceForms
 
         private void barButtonGroup_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            GroupForm xform1 = new GroupForm(_FlexSys) { };
-            xform1.Show();
         }
 
         private void barButtonBookCombo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -14,6 +14,7 @@ using DevExpress.Utils.Win;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Map;
 using DevExpress.XtraMap;
+using DevExpress.Data.Async.Helpers;
 
 namespace TraceForms
 {
@@ -117,58 +118,50 @@ namespace TraceForms
 
 		private bool SaveRecord(bool prompt)
 		{
-			try
-			{
-				if (_selectedRecord == null)
-					return true;
+            try {
+                if (_selectedRecord == null)
+                    return true;
 
-				FinalizeBindings();
-				bool newRec = _selectedRecord.IsNew();
-				bool modified = newRec || IsModified(_selectedRecord);
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
 
-				if (modified)
-				{
-					if (prompt)
-					{
-						DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
-						if (result == DialogResult.No)
-						{
-							if (newRec)
-							{
-								RemoveRecord();
-							}
-							else
-							{
-								RefreshRecord();
-							}
-							return true;
-						}
-						else if (result == DialogResult.Cancel)
-						{
-							return false;
-						}
-					}
-					if (!ValidateAll())
-						return false;
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            if (newRec) {
+                                RemoveRecord();
+                            }
+                            else {
+                                RefreshRecord();
+                            }
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    if (!ValidateAll())
+                        return false;
 
-					if (_selectedRecord.EntityState == EntityState.Detached)
-					{
-						_context.WAYPOINT.AddObject(_selectedRecord);
-					}
-					_context.SaveChanges();
-					ShowActionConfirmation("Record Saved");
-				}
-				return true;
-			}
-			catch (Exception ex)
-			{
-				DisplayHelper.DisplayError(this, ex);
-				RefreshRecord();        //pull it back from db because that is its current state
-										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
-				SetBindings();
-				return false;
-			}
-		}
+                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                        _context.WAYPOINT.AddObject(_selectedRecord);
+                    }
+                    _context.SaveChanges();
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Saved");
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecord();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+                return false;
+            }
+        }
 
 		private bool IsModified(WAYPOINT record)
 		{
@@ -189,25 +182,54 @@ namespace TraceForms
 
 		void SetBindings()
 		{
-			//If the route list is filtered, there will be rows in the binding source
-			//that are not visible, and they can become selected if the last visible row
-			//is deleted, so handle that by checking rowcount.
-			if (BindingSource.Current == null)
-			{
-				_selectedRecord = null;
-				SetReadOnly(true);
-			}
-			else
-			{
-				_selectedRecord = ((WAYPOINT)BindingSource.Current);
-				SetReadOnly(false);
-				SetReadOnlyKeyFields(true);
-				ShowMapData(_selectedRecord);           //Mapping
-			}
-			ErrorProvider.Clear();
-		}
+            if (BindingSource.Current == null) {
+                ClearBindings();
+            }
+            else {
+                _selectedRecord = ((WAYPOINT)BindingSource.Current);
+                LoadAndBindSupplierProducts();
+                SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
+                ShowMapData(_selectedRecord);           //Mapping
+            }
+            ErrorProvider.Clear();
+        }
 
-		private bool ValidateAll()
+        void LoadAndBindSupplierProducts()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.SupplierProduct.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceSupplierProduct.DataSource = _selectedRecord.SupplierProduct;
+            BindSupplierProducts();
+        }
+
+        void BindSupplierProducts()
+        {
+            GridControlSupplierProduct.DataSource = BindingSourceSupplierProduct;
+            GridControlSupplierProduct.RefreshDataSource();
+        }
+
+        private void ButtonAddMapping_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonDeleteMapping_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool ValidateAll()
 		{
 			if (!_selectedRecord.Validate())
 			{
@@ -304,9 +326,18 @@ namespace TraceForms
 
 		void ClearBindings()
 		{
-			BindingSource.DataSource = typeof(WAYPOINT);
-			ClearMapData();                 //Mapping
-		}
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            BindingSourceSupplierProduct.Clear();
+            SetReadOnly(true);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
+            BindingSource.DataSource = typeof(CITYCOD);
+            ClearMapData();                 //Mapping
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
+        }
 
 		private void TextEditCode_Leave(object sender, EventArgs e)
         {
@@ -476,7 +507,36 @@ namespace TraceForms
 				RefreshRecord();
 		}
 
-		private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.WAYPOINT;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                object row = view.GetRow(e.FocusedRowHandle);
+                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                    WAYPOINT record = (WAYPOINT)proxy.OriginalRow;
+                    BindingSource.DataSource = _context.WAYPOINT.Where(c => c.CODE == record.CODE)
+                        .Include(c => c.GeoCode);
+                }
+                else {
+                    ClearBindings();
+                }
+            }
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
 		{
 			bool gotMatch = false;
 			PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
