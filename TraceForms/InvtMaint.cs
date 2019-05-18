@@ -613,7 +613,7 @@ namespace TraceForms
 		{
 			bool gotMatch = false;
 			PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
-			if (e.KeyData == Keys.Enter) {
+			if (e.KeyData == Keys.Enter && popupForm != null) {
 				string searchText = popupForm.Properties.View.FindFilterText;
 				if (!string.IsNullOrEmpty(searchText)) {
 					GridView view = popupForm.OwnerEdit.Properties.View;
