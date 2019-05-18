@@ -106,7 +106,7 @@ namespace TraceForms
 			}
 			catch (Exception ex) {
 				Cursor = Cursors.Default;
-				XtraMessageBox.Show(ex.Message);
+                this.DisplayError(ex);
 			}
 		}
 

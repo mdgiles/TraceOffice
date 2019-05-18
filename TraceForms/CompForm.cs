@@ -22,16 +22,13 @@ using FlexEntities.Entities;
 using System.Data.Entity.Core.Objects;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-
-
+using DevExpress.XtraEditors.Popup;
+using DevExpress.Utils.Win;
 
 namespace TraceForms
 {
     public partial class CompForm : DevExpress.XtraEditors.XtraForm
     {
-        public int newRowHandle;
-        public string supplierGuidNewRec = string.Empty;
-        public string supplierGuidModifiedRec = string.Empty;
         public List<IComprod2> myCommRecs;
         public List<IComprod2> myCommRecsAgy;
         public List<ICommLevel> myCommLvl;
@@ -54,6 +51,7 @@ namespace TraceForms
         private string _PupDrpReq;
         RepositoryItemImageComboBox _busStopsCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _roomcodCombo = new RepositoryItemImageComboBox();
+        Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
 
         public CompForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -92,7 +90,7 @@ namespace TraceForms
             var svc = from svcRec in _context.SERVTYPE orderby svcRec.TYPE ascending select new { svcRec.TYPE, svcRec.DESCRIP };
             var lang = from langRec in _context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
             var diff = from diffRec in _context.CompDifficulty orderby diffRec.Name ascending select new { diffRec.Name, diffRec.Description, diffRec.DifficultyId };
-            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
+            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = null };
             ImageComboBoxEditOperator.Properties.Items.Add(loadBlank);
             ImageComboBoxEditState.Properties.Items.Add(loadBlank);
             ImageComboBoxEditCountry.Properties.Items.Add(loadBlank);
@@ -157,7 +155,6 @@ namespace TraceForms
                             .ToList());
             gridControlSupplierProduct.RepositoryItems.Add(_supplierCombo);        //per DX recommendation to avoid memory leaks
 
-
             _operatorCombo.Items.Add(loadBlank);
             _operatorCombo.Items.AddRange(_context.OPERATOR
                             .OrderBy(o => o.NAME).AsEnumerable()
@@ -171,6 +168,41 @@ namespace TraceForms
                             .Select(s => new ImageComboBoxItem() { Description = $"{s.CODE} ({s.DESC})", Value = s.CODE })
                             .ToList());
             GridControlTransferPoints.RepositoryItems.Add(_roomcodCombo);        //per DX recommendation to avoid memory leaks
+
+            //For the CustomSearchLookupEdit, there are lots of properties to set so we create a repository item
+            //in the designer and just assign a data source
+            var lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.ROOMCOD
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }));
+            repositoryItemCustomSearchLookUpEditDefaultCat.DataSource = lookup;
+            repositoryItemCustomSearchLookUpEditMappingCat.DataSource = lookup;
+
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.COMP
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            _locationLookups.Add("OPT", lookup);
+
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.HOTEL
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            _locationLookups.Add("HTL", lookup);
+
+            lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.WAYPOINT
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }));
+            _locationLookups.Add("WAY", lookup);
 
             bindingSourceBusRoutes.DataSource = _context.BusRoute;
             setReadOnly(true);
@@ -210,19 +242,62 @@ namespace TraceForms
 
         private void CompBindingSource_CurrentChanged(object sender, EventArgs e)
         {
+            _selectedRecord = (COMP)CompBindingSource.Current;
+            if (_selectedRecord != null) {
+                ImageComboBoxEditAgency.Text = "";
+                ButtonEditDate.Text = "";
+                ImageComboBoxEditTourTime.Text = "";
+                TextEditDefaultTime.Text = "";
+                ComboBoxEditSource.Text = "";
+                GridControlTransferPoints.DataSource = from busTabRec in _context.BUSTABLE where busTabRec.CODE == _selectedRecord.CODE select busTabRec;
+                if (!String.IsNullOrEmpty(_selectedRecord.CODE)) { //new record
+                    _selectedRecord.CompBusRoute.Load(MergeOption.OverwriteChanges);
+                    _selectedRecord.SupplierProduct.Load(MergeOption.OverwriteChanges);
+                    _selectedRecord.SupplierCategory.Load(MergeOption.OverwriteChanges);
+                }
+                bindingSourceCompBusRoutes.DataSource = _selectedRecord.CompBusRoute;
+                bindingSourceSupplierProduct.DataSource = _selectedRecord.SupplierProduct;
+                supplierCategoryBindingSource.DataSource = _selectedRecord.SupplierCategory;
+                GridControlDetail.DataSource = from c in _context.DETAIL where c.LINK_VALUE.TrimEnd() == _selectedRecord.CODE.TrimEnd() select c;
 
+                GridControlUserfields.DataSource = from userRec in _context.USERFIELDS
+                                                   where userRec.LINK_TABLE.Equals("COMP")
+                                                   select userRec;
+
+                UpdateCommMarkupGrid("TARIFF", null, "ALL");
+
+                if (_selectedRecord.Multiple_Times == "1") {
+                    TextEditDefaultTime.Enabled = true;
+                    ImageComboBoxEditTourTime.Enabled = false;
+                    TextEditDefaultTime.Text = _selectedRecord.Default_Time;
+                    gridColumnServiceTime.OptionsColumn.ReadOnly = true;
+                }
+                else {
+                    TextEditDefaultTime.Enabled = false;
+                    ImageComboBoxEditTourTime.Enabled = true;
+                    ImageComboBoxEditTourTime.EditValue = _selectedRecord.Default_Time;
+                    gridColumnServiceTime.OptionsColumn.ReadOnly = false;
+                }
+                xtraTabPageRoutes.PageEnabled = (_selectedRecord.SERV_TYPE == hopTourServiceType);
+                gridViewTransferPoints.Columns["CompBusRoute_ID"].Visible = (_selectedRecord.SERV_TYPE == hopTourServiceType);
+                _PupDrpReq = _selectedRecord.PUDRP_REQ;
+                SetPupDrpCheckboxes();
+                Modified = false;
+            }
         }
 
         private bool checkForms()
         {           
             if (!_modified && !newRec)
                 return true;
-            if (!CheckMappings()) return false;
             bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, ErrorProvider, ((COMP)CompBindingSource.Current).checkMain, CompBindingSource);
             bool validateLocation = validCheck.checkAll(PanelControlLocationTab.Controls, ErrorProvider, ((COMP)CompBindingSource.Current).checkLocationTab, CompBindingSource);
             bool validateAccount = validCheck.checkAll(PanelControlAccountTab.Controls, ErrorProvider, ((COMP)CompBindingSource.Current).checkAccountTab, CompBindingSource);
             bool validatePolicies = validCheck.checkAll(PanelControlPoliciesTab.Controls, ErrorProvider, ((COMP)CompBindingSource.Current).checkPoliciesTab, CompBindingSource);
             bool validateServices = validCheck.checkAll(PanelControlServicesTab.Controls, ErrorProvider, ((COMP)CompBindingSource.Current).checkServicesTab, CompBindingSource);
+            if (!CheckMappings()) return false;
+            if (!CheckSupplierCategories()) return false;
+
             if (validateMain && validateLocation && validateAccount && validatePolicies && validateServices) {
                 var ret = validCheck.saveRec(ref _modified, true, ref newRec, _context, CompBindingSource, Name, ErrorProvider, Cursor);
                 if (ret) {
@@ -245,11 +320,27 @@ namespace TraceForms
                 product.Product_Type = "OPT";
 
                 if (product.Supplier_GUID == null) {
-                    MessageBox.Show("Please select a Supplier from the dropdown for the new Supplier Mapping record.");
+                    MessageBox.Show("Please select a Supplier from the dropdown for the Supplier Mapping record.");
                     return false;
                 }
                 if (string.IsNullOrEmpty(product.ProductCodeSupplier)) {
-                    MessageBox.Show("Please enter a Supplier Product Code for the new Supplier Mapping record.");
+                    MessageBox.Show("Please enter a Supplier Product Code for the Supplier Mapping record.");
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(product.Pickup_LocationType_Default) && string.IsNullOrEmpty(product.Pickup_Location_Default)) {
+                    MessageBox.Show("Please enter a default pickup location for the Supplier Mapping record.");
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(product.Pickup_LocationType_Default) && product.Pickup_Time_Default == null) {
+                    MessageBox.Show("Please enter a default pickup time for the Supplier Mapping record.");
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(product.Dropoff_LocationType_Default) && string.IsNullOrEmpty(product.Dropoff_Location_Default)) {
+                    MessageBox.Show("Please enter a default dropoff location for the Supplier Mapping record.");
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(product.Dropoff_LocationType_Default) && product.Dropoff_Time_Default == null) {
+                    MessageBox.Show("Please enter a default dropoff time for the Supplier Mapping record.");
                     return false;
                 }
             }
@@ -650,6 +741,16 @@ namespace TraceForms
             }
         }
 
+        private void ButtonSaveChanges_Click(object sender, EventArgs e)
+        {
+            gridViewTransferPoints.FocusedColumn = gridViewTransferPoints.Columns["TYPE"];
+            if (gridViewTransferPoints.UpdateCurrentRow()) {
+                BusTableBindingSource.EndEdit();
+                newRowRec = false;
+                Modified = false;
+            }
+        }
+
         private void gridViewUserFields_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
         {
             if (e.Column.FieldName == "HotelValue" && e.IsGetData)
@@ -938,42 +1039,42 @@ namespace TraceForms
                 editor.Items.Add(loadBlank);
                 switch (name)
                 {
-                    case "BUS":
-                        var bus = from busRec in _context.BusStation orderby busRec.Code ascending select new { busRec.Code, busRec.Name };
-                        col.OptionsColumn.AllowFocus = false;    
-                        foreach (var result in bus)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };                            
-                            editor.Items.Add(load);
-                        }
-                        break;
-                    case "CAR":
-                        var car = from carRec in _context.CARINFO orderby carRec.CODE ascending select new { carRec.CODE, carRec.NAME };
-                        col.OptionsColumn.AllowFocus = true;    
-                        foreach (var result in car)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE + "  " + "(" + result.NAME + ")", Value = result.CODE };
-                            editor.Items.Add(load);
-                        }
-                        break;
-                    case "CRU":
-                        var cru = from cruRec in _context.SeaPort orderby cruRec.Code ascending select new { cruRec.Code, cruRec.Name };
-                        col.OptionsColumn.AllowFocus = false;    
-                        foreach (var result in cru)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };
-                            editor.Items.Add(load);
-                        }
-                        break;
-                    case "CTY":
-                        var cty = from ctyRec in _context.CITYCOD orderby ctyRec.CODE ascending select new { ctyRec.CODE, ctyRec.NAME };
-                        col.OptionsColumn.AllowFocus = false;    
-                        foreach (var result in cty)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE + "  " + "(" + result.NAME + ")", Value = result.CODE };
-                            editor.Items.Add(load);
-                        }
-                        break;
+                    //case "BUS":
+                    //    var bus = from busRec in _context.BusStation orderby busRec.Code ascending select new { busRec.Code, busRec.Name };
+                    //    col.OptionsColumn.AllowFocus = false;    
+                    //    foreach (var result in bus)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };                            
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
+                    //case "CAR":
+                    //    var car = from carRec in _context.CARINFO orderby carRec.CODE ascending select new { carRec.CODE, carRec.NAME };
+                    //    col.OptionsColumn.AllowFocus = true;    
+                    //    foreach (var result in car)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE + "  " + "(" + result.NAME + ")", Value = result.CODE };
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
+                    //case "CRU":
+                    //    var cru = from cruRec in _context.SeaPort orderby cruRec.Code ascending select new { cruRec.Code, cruRec.Name };
+                    //    col.OptionsColumn.AllowFocus = false;    
+                    //    foreach (var result in cru)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
+                    //case "CTY":
+                    //    var cty = from ctyRec in _context.CITYCOD orderby ctyRec.CODE ascending select new { ctyRec.CODE, ctyRec.NAME };
+                    //    col.OptionsColumn.AllowFocus = false;    
+                    //    foreach (var result in cty)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE + "  " + "(" + result.NAME + ")", Value = result.CODE };
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
                     case "HTL":
                         var htl = from htlRec in _context.HOTEL orderby htlRec.CODE ascending select new { htlRec.CODE, htlRec.NAME };
                         col.OptionsColumn.AllowFocus = false;    
@@ -983,15 +1084,15 @@ namespace TraceForms
                             editor.Items.Add(load);
                         }
                         break;
-                    case "TRN":
-                        var trn = from trnRec in _context.TrainStation orderby trnRec.Code ascending select new { trnRec.Code, trnRec.Name };
-                        col.OptionsColumn.AllowFocus = false;    
-                        foreach (var result in trn)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };
-                            editor.Items.Add(load);
-                        }
-                        break;
+                    //case "TRN":
+                    //    var trn = from trnRec in _context.TrainStation orderby trnRec.Code ascending select new { trnRec.Code, trnRec.Name };
+                    //    col.OptionsColumn.AllowFocus = false;    
+                    //    foreach (var result in trn)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code + "  " + "(" + result.Name + ")", Value = result.Code };
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
                     case "WAY":
                         var way = from wayRec in _context.WAYPOINT orderby wayRec.CODE ascending select new { wayRec.CODE, wayRec.DESC };
                         col.OptionsColumn.AllowFocus = false;    
@@ -1001,15 +1102,15 @@ namespace TraceForms
                             editor.Items.Add(load);
                         }
                         break;
-                    case "AIR":
-                        var air = from airRec in _context.Airport orderby airRec.Code ascending select new { airRec.Code, airRec.Name };
-                        col.OptionsColumn.AllowFocus = false;    
-                        foreach (var result in air)
-                        {
-                            ImageComboBoxItem load = new ImageComboBoxItem() { Description = String.Format("{0}  ({1})", result.Code, result.Name), Value = result.Code };
-                            editor.Items.Add(load);
-                        }
-                        break;
+                    //case "AIR":
+                    //    var air = from airRec in _context.Airport orderby airRec.Code ascending select new { airRec.Code, airRec.Name };
+                    //    col.OptionsColumn.AllowFocus = false;    
+                    //    foreach (var result in air)
+                    //    {
+                    //        ImageComboBoxItem load = new ImageComboBoxItem() { Description = String.Format("{0}  ({1})", result.Code, result.Name), Value = result.Code };
+                    //        editor.Items.Add(load);
+                    //    }
+                    //    break;
                     default:
                         col.OptionsColumn.AllowFocus = false; 
                         break;
@@ -1331,8 +1432,8 @@ namespace TraceForms
             if (CheckEditMultTimes.Checked == true)
             {
                 gridColumnServiceTime.OptionsColumn.ReadOnly = false;
-                TextEditDefaultTime.Enabled = true;
-                ImageComboBoxEditTourTime.Enabled = false;
+                TextEditDefaultTime.Enabled = false;
+                TextEditDefaultTime.EditValue = null;
             }
             else
             {
@@ -1344,8 +1445,7 @@ namespace TraceForms
                 //same question applies to rates if the service switches from multiple times to a single time.
                 //What to do with the rates that have a time specified?  Also package components, invt.
                 gridColumnServiceTime.OptionsColumn.ReadOnly = true;
-                TextEditDefaultTime.Enabled = false;
-                ImageComboBoxEditTourTime.Enabled = true;
+                TextEditDefaultTime.Enabled = true;
             }
         }
 
@@ -1718,26 +1818,79 @@ namespace TraceForms
             else if (e.Column == gridColumnMappingOperator) {
                 e.RepositoryItem = _operatorCombo;
             }
+            else if (e.Column == colPickup_Location_Default) {
+                string type = gridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
+                if (_locationLookups.ContainsKey(type)) {
+                    repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
+                }
+                else {
+                    repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DataSource = null;
+                }
+            }
+            else if (e.Column == colDropoff_Location_Default) {
+                string type = gridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
+                if (_locationLookups.ContainsKey(type)) {
+                    repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
+                }
+                else {
+                    repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = null;
+                }
+            }
         }
 
         private void gridViewSupplierProduct_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             Modified = true;
+            //Clear the associated time when the pickup or dropoff location changes because we want staff to be conscious
+            //that time should probably change if the location changes (downside is that if the time was supposed to be the
+            //same and they were not paying attention they may not remember what it was before it was cleared)
+            if (e.Column == colPickup_LocationType_Default) {
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colPickup_Location_Default, null);
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colPickup_Time_Default, null);
+            }
+            else if (e.Column == colDropoff_LocationType_Default) {
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colDropoff_Location_Default, null);
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colDropoff_Time_Default, null);
+            }
+            else if (e.Column == colPickup_Location_Default) {
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colPickup_Time_Default, null);
+            }
+            else if (e.Column == colDropoff_Location_Default) {
+                gridViewSupplierProduct.SetRowCellValue(e.RowHandle, colDropoff_Time_Default, null);
+            }
         }
 
         private void gridViewSupplierProduct_ValidateRow(object sender, ValidateRowEventArgs e)
         {
             ColumnView view = sender as ColumnView;
             view.ClearColumnErrors();
-            GridColumn colSupplier = view.Columns["Supplier_GUID"];
-            GridColumn colSupplierCode = view.Columns["ProductCodeSupplier"];
-            if (view.GetRowCellValue(e.RowHandle, colSupplier) == null) {
+            if (view.GetRowCellValue(e.RowHandle, gridColumnSupplierGuid) == null) {
                 e.Valid = false;
-                view.SetColumnError(colSupplier, "Please select a Supplier from the dropdown for the new Supplier Mapping record.");
+                view.SetColumnError(colSupplier, "Please enter a Supplier for the Supplier Mapping record.");
             }
-            if (string.IsNullOrEmpty(view.GetRowCellValue(e.RowHandle, colSupplierCode).ToString())) {
+            if (string.IsNullOrEmpty(view.GetRowCellValue(e.RowHandle, gridColumnProductSupplierCode).ToString())) {
                 e.Valid = false;
-                view.SetColumnError(colSupplierCode, "Please enter a Supplier Product Code for the new Supplier Mapping record.");
+                view.SetColumnError(gridColumnProductSupplierCode, "Please enter a Supplier Product Code for the Supplier Mapping record.");
+            }
+            if (!view.GetRowCellValue(e.RowHandle, colPickup_LocationType_Default).IsNullOrEmpty()) {
+                if (view.GetRowCellValue(e.RowHandle, colPickup_Location_Default).IsNullOrEmpty()) {
+                    e.Valid = false;
+                    view.SetColumnError(colPickup_LocationType_Default, "Please enter a default pickup location for the Supplier Mapping record.");
+                }
+                if (view.GetRowCellValue(e.RowHandle, colPickup_Time_Default).IsNullOrEmpty()) {
+                    e.Valid = false;
+                    view.SetColumnError(colPickup_Time_Default, "Please enter a default pickup time for the Supplier Mapping record.");
+                }
+            }
+            if (!view.GetRowCellValue(e.RowHandle, colDropoff_LocationType_Default).IsNullOrEmpty()) {
+                if (view.GetRowCellValue(e.RowHandle, colDropoff_Location_Default).IsNullOrEmpty()) {
+                    e.Valid = false;
+                    view.SetColumnError(colDropoff_Location_Default, "Please enter a default dropoff location for the Supplier Mapping record.");
+                }
+                if (view.GetRowCellValue(e.RowHandle, colDropoff_Time_Default).IsNullOrEmpty()) {
+                    e.Valid = false;
+                    view.SetColumnError(colDropoff_Time_Default, "Please enter a default dropoff time for the Supplier Mapping record.");
+                }
             }
         }
 
@@ -1855,6 +2008,11 @@ namespace TraceForms
                 }
             }
 
+            gridViewSupplierCategory.CloseEditor();
+            if (gridViewSupplierCategory.UpdateCurrentRow()) {
+                supplierCategoryBindingSource.EndEdit();
+            }
+
             gridViewSupplierProduct.CloseEditor();
             if (gridViewSupplierProduct.UpdateCurrentRow()) {
                 bindingSourceSupplierProduct.EndEdit();
@@ -1886,6 +2044,156 @@ namespace TraceForms
             }
             if (!temp && !_modified)
                 _context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (COMP)CompBindingSource.Current);
+        }
+
+        void BindSupplierCategories() {
+            gridControlSupplierCategory.DataSource = supplierCategoryBindingSource;
+            gridControlSupplierCategory.RefreshDataSource();
+        }
+
+        private void simpleButtonAddSupplierCategory_Click(object sender, EventArgs e) {
+            if (_selectedRecord != null) {
+                SupplierCategory cat = new SupplierCategory();
+                cat.Product_Code = TextEditCode.Text;
+                cat.Product_Type = "OPT";
+                _selectedRecord.SupplierCategory.Add(cat);
+                BindSupplierCategories();
+                gridViewSupplierCategory.FocusedRowHandle = supplierCategoryBindingSource.Count - 1;
+                Modified = true;
+            }
+        }
+
+        private void simpleButtonDelSupplierCategory_Click(object sender, EventArgs e) {
+            if (gridViewSupplierCategory.FocusedRowHandle >= 0) {
+                SupplierCategory cat = (SupplierCategory)gridViewSupplierCategory.GetFocusedRow();
+                supplierCategoryBindingSource.Remove(cat);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                _context.SupplierCategory.DeleteObject(cat);
+                BindSupplierCategories();
+                Modified = true;
+            }
+        }
+
+        private bool CheckSupplierCategories() {
+            gridViewSupplierCategory.UpdateCurrentRow();
+            for (int row = 0; row < gridViewSupplierCategory.DataRowCount; row++) {
+                var roomType = (SupplierCategory)gridViewSupplierCategory.GetRow(row);
+                if (roomType.Supplier_GUID == null) {
+                    SetGridError(xtraTabControl1, xtraTabPageSupplierCategories, gridControlSupplierCategory, gridViewSupplierCategory,
+                        row, "Supplier_GUID", "The Supplier is required.");
+                    return false;
+                }
+                if (string.IsNullOrEmpty(roomType.Code)) {
+                    SetGridError(xtraTabControl1, xtraTabPageSupplierCategories, gridControlSupplierCategory, gridViewSupplierCategory,
+                        row, "Code", "The Supplier category is required.");
+                    return false;
+                }
+            }
+
+            //Empty string represents no category mapping, but it needs to be null for the foreign key
+            foreach (SupplierCategory roomType in supplierCategoryBindingSource) {
+                if (string.IsNullOrWhiteSpace(roomType.Roomcod_Code)) {
+                    roomType.Roomcod_Code = null;
+                }
+                roomType.Product_Code = TextEditCode.Text;
+                roomType.Product_Type = "OPT";
+            }
+
+            return true;
+        }
+
+        private void SetGridError(DevExpress.XtraTab.XtraTabControl tabControl, DevExpress.XtraTab.XtraTabPage tabPage,
+            GridControl gridControl, GridView gridView, int row, string field, string errorText) {
+            tabControl.SelectedTabPage = tabPage;
+            gridControl.Focus();
+            gridView.FocusedRowHandle = row;
+            gridView.FocusedColumn = gridViewSupplierCategory.Columns[field];
+            gridView.ShowEditor();
+            if (gridView.ActiveEditor != null) {
+                gridView.ActiveEditor.ErrorText = errorText;
+                gridView.ActiveEditor.IsModified = true;
+            }
+            MessageBox.Show(errorText, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void GridViewSupplierCategory_CellValueChanged(object sender, CellValueChangedEventArgs e) {
+            Modified = true;
+        }
+
+        private void GridViewSupplierCategory_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
+            if (e.Column == colCatMappingSupplier) {
+                e.RepositoryItem = _supplierCombo;
+            }
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e) {
+            bool gotMatch = false;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
+                    }
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
+                }
+            }
+        }
+
+        private void SearchLookupEdit_Popup(object sender, EventArgs e) {
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
+
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+        }
+
+        private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e) {
+            //Users did not like have to type quotes in order to get an exact match of entered terms rather than any word being matched
+            //https://www.devexpress.com/Support/Center/Example/Details/E3135/how-to-implement-an-event-allowing-you-to-customize-a-filter-string-produced-by-the-find
+            //Also requires the custom inherited version of the SearchLookupEdit in the Custom_SearchLookupEdit namespace
+            if (!string.IsNullOrEmpty(e.FilterText)) {
+                e.FilterText = '"' + e.FilterText + '"';
+            }
+        }
+
+        private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e) {
+            ColumnView view = sender as ColumnView;
+            view.ClearColumnErrors();
+            GridColumn colSupplier = view.Columns["Supplier_GUID"];
+            GridColumn colSupplierCode = view.Columns["Code"];
+            if (view.GetRowCellValue(e.RowHandle, colSupplier) == null) {
+                e.Valid = false;
+                view.SetColumnError(colSupplier, "Please select a Supplier from the dropdown for the Supplier Category record.");
+            }
+            if (string.IsNullOrEmpty(view.GetRowCellValue(e.RowHandle, colSupplierCode).ToString())) {
+                e.Valid = false;
+                view.SetColumnError(colSupplierCode, "Please enter a Code for the Supplier Category record.");
+            }
+        }
+
+        private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
+            e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box       
         }
     }
 }

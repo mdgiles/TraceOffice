@@ -955,7 +955,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("None", "N", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Default", "D", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Agency", "A", -1)});
-            this.ImageComboBoxEditUpdateInvt.Size = new System.Drawing.Size(167, 32);
+            this.ImageComboBoxEditUpdateInvt.Size = new System.Drawing.Size(167, 36);
             this.ImageComboBoxEditUpdateInvt.TabIndex = 14;
             this.ImageComboBoxEditUpdateInvt.Leave += new System.EventHandler(this.ImageComboBoxEditUpdateInvt_Leave);
             // 
@@ -982,7 +982,7 @@ namespace TraceForms
             this.CheckEditPrivateCar.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditPrivateCar.Properties.ValueChecked = "Y";
             this.CheckEditPrivateCar.Properties.ValueUnchecked = "N";
-            this.CheckEditPrivateCar.Size = new System.Drawing.Size(146, 34);
+            this.CheckEditPrivateCar.Size = new System.Drawing.Size(146, 36);
             this.CheckEditPrivateCar.TabIndex = 13;
             this.CheckEditPrivateCar.Visible = false;
             // 
@@ -1013,7 +1013,7 @@ namespace TraceForms
             "QUA",
             "OTH"});
             this.ComboBoxEditRoom.Properties.NullText = " ";
-            this.ComboBoxEditRoom.Size = new System.Drawing.Size(167, 32);
+            this.ComboBoxEditRoom.Size = new System.Drawing.Size(167, 36);
             this.ComboBoxEditRoom.TabIndex = 10;
             this.ComboBoxEditRoom.Visible = false;
             // 
@@ -1047,7 +1047,7 @@ namespace TraceForms
             this.CheckEditCheckOutTime.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditCheckOutTime.Properties.ValueChecked = "Y";
             this.CheckEditCheckOutTime.Properties.ValueUnchecked = "N";
-            this.CheckEditCheckOutTime.Size = new System.Drawing.Size(312, 34);
+            this.CheckEditCheckOutTime.Size = new System.Drawing.Size(312, 36);
             this.CheckEditCheckOutTime.TabIndex = 12;
             this.CheckEditCheckOutTime.Visible = false;
             // 
@@ -1076,7 +1076,7 @@ namespace TraceForms
             // SplitContainerControl
             // 
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 54);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 52);
             this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(5);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.AutoScroll = true;
@@ -1131,7 +1131,7 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditServiceTime);
             this.SplitContainerControl.Panel2.Controls.Add(this.GridLookupEditItemCategory);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(2104, 1259);
+            this.SplitContainerControl.Size = new System.Drawing.Size(2104, 1261);
             this.SplitContainerControl.SplitterPosition = 915;
             this.SplitContainerControl.TabIndex = 35;
             this.SplitContainerControl.Text = "SplitContainerControl";
@@ -1145,7 +1145,7 @@ namespace TraceForms
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(915, 1259);
+            this.GridControlLookup.Size = new System.Drawing.Size(915, 1261);
             this.GridControlLookup.TabIndex = 30;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1443,10 +1443,10 @@ namespace TraceForms
             this.GridLookupEditItemSpecialValue.Properties.MaxLength = 16;
             this.GridLookupEditItemSpecialValue.Properties.NullText = "";
             this.GridLookupEditItemSpecialValue.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.GridLookupEditItemSpecialValue.Properties.PopupView = this.gridView14;
             this.GridLookupEditItemSpecialValue.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.GridLookupEditItemSpecialValue.Properties.ValueMember = "Code";
-            this.GridLookupEditItemSpecialValue.Properties.View = this.gridView14;
-            this.GridLookupEditItemSpecialValue.Size = new System.Drawing.Size(518, 32);
+            this.GridLookupEditItemSpecialValue.Size = new System.Drawing.Size(518, 36);
             this.GridLookupEditItemSpecialValue.TabIndex = 285;
             this.GridLookupEditItemSpecialValue.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditItemSpecialValue_ProcessNewValue);
             this.GridLookupEditItemSpecialValue.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
@@ -1512,9 +1512,9 @@ namespace TraceForms
             this.SearchLookupEditSupplierProduct.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditSupplierProduct.Properties.NullText = "";
             this.SearchLookupEditSupplierProduct.Properties.PopupSizeable = false;
+            this.SearchLookupEditSupplierProduct.Properties.PopupView = gridView3;
             this.SearchLookupEditSupplierProduct.Properties.ValueMember = "ID";
-            this.SearchLookupEditSupplierProduct.Properties.View = gridView3;
-            this.SearchLookupEditSupplierProduct.Size = new System.Drawing.Size(768, 32);
+            this.SearchLookupEditSupplierProduct.Size = new System.Drawing.Size(768, 36);
             this.SearchLookupEditSupplierProduct.TabIndex = 282;
             this.SearchLookupEditSupplierProduct.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditSupplierProduct.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -1554,7 +1554,7 @@ namespace TraceForms
             this.SimpleButtonClone.AutoSize = true;
             this.SimpleButtonClone.Enabled = false;
             this.SimpleButtonClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonClone.ImageOptions.Image")));
-            this.SimpleButtonClone.Location = new System.Drawing.Point(978, 104);
+            this.SimpleButtonClone.Location = new System.Drawing.Point(978, 112);
             this.SimpleButtonClone.Name = "SimpleButtonClone";
             this.SimpleButtonClone.Size = new System.Drawing.Size(94, 42);
             this.SimpleButtonClone.TabIndex = 279;
@@ -1572,7 +1572,7 @@ namespace TraceForms
             this.CheckEditVoucherable.Properties.Caption = "Generate voucher";
             this.CheckEditVoucherable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditVoucherable.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.CheckEditVoucherable.Size = new System.Drawing.Size(208, 34);
+            this.CheckEditVoucherable.Size = new System.Drawing.Size(208, 36);
             this.CheckEditVoucherable.TabIndex = 278;
             // 
             // labelControl4
@@ -1606,7 +1606,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.TimeEditDepartureTime.Properties.Mask.EditMask = "h:mm tt";
             this.TimeEditDepartureTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
-            this.TimeEditDepartureTime.Size = new System.Drawing.Size(167, 32);
+            this.TimeEditDepartureTime.Size = new System.Drawing.Size(167, 36);
             this.TimeEditDepartureTime.TabIndex = 270;
             this.TimeEditDepartureTime.Leave += new System.EventHandler(this.TimeEditDepartureTime_Leave);
             // 
@@ -1671,7 +1671,7 @@ namespace TraceForms
             this.CheckEditPickupInfoProhibited.Name = "CheckEditPickupInfoProhibited";
             this.CheckEditPickupInfoProhibited.Properties.Caption = "Prevent user from entering pickup info";
             this.CheckEditPickupInfoProhibited.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditPickupInfoProhibited.Size = new System.Drawing.Size(394, 34);
+            this.CheckEditPickupInfoProhibited.Size = new System.Drawing.Size(394, 36);
             this.CheckEditPickupInfoProhibited.TabIndex = 280;
             this.CheckEditPickupInfoProhibited.CheckedChanged += new System.EventHandler(this.CheckEditPickupInfoProhibited_CheckedChanged);
             // 
@@ -1685,7 +1685,7 @@ namespace TraceForms
             this.CheckEditPickupInfoRequired.Name = "CheckEditPickupInfoRequired";
             this.CheckEditPickupInfoRequired.Properties.Caption = "Require user to enter pickup info";
             this.CheckEditPickupInfoRequired.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditPickupInfoRequired.Size = new System.Drawing.Size(344, 34);
+            this.CheckEditPickupInfoRequired.Size = new System.Drawing.Size(344, 36);
             this.CheckEditPickupInfoRequired.TabIndex = 279;
             this.CheckEditPickupInfoRequired.CheckedChanged += new System.EventHandler(this.CheckEditPickupInfoRequired_CheckedChanged);
             // 
@@ -1699,7 +1699,7 @@ namespace TraceForms
             this.CheckEditDropoffInfoProhibited.Name = "CheckEditDropoffInfoProhibited";
             this.CheckEditDropoffInfoProhibited.Properties.Caption = "Prevent user from entering dropoff info";
             this.CheckEditDropoffInfoProhibited.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditDropoffInfoProhibited.Size = new System.Drawing.Size(394, 34);
+            this.CheckEditDropoffInfoProhibited.Size = new System.Drawing.Size(394, 36);
             this.CheckEditDropoffInfoProhibited.TabIndex = 278;
             this.CheckEditDropoffInfoProhibited.CheckedChanged += new System.EventHandler(this.CheckEditDropoffInfoProhibited_CheckedChanged);
             // 
@@ -1713,7 +1713,7 @@ namespace TraceForms
             this.CheckEditDropoffInfoRequired.Name = "CheckEditDropoffInfoRequired";
             this.CheckEditDropoffInfoRequired.Properties.Caption = "Require user to enter dropoff info";
             this.CheckEditDropoffInfoRequired.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditDropoffInfoRequired.Size = new System.Drawing.Size(344, 34);
+            this.CheckEditDropoffInfoRequired.Size = new System.Drawing.Size(344, 36);
             this.CheckEditDropoffInfoRequired.TabIndex = 277;
             this.CheckEditDropoffInfoRequired.CheckedChanged += new System.EventHandler(this.CheckEditDropoffInfoRequired_CheckedChanged);
             // 
@@ -1731,9 +1731,9 @@ namespace TraceForms
             this.SearchLookupEditDropoffLocation.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditDropoffLocation.Properties.NullText = "";
             this.SearchLookupEditDropoffLocation.Properties.PopupSizeable = false;
+            this.SearchLookupEditDropoffLocation.Properties.PopupView = gridView8;
             this.SearchLookupEditDropoffLocation.Properties.ValueMember = "Code";
-            this.SearchLookupEditDropoffLocation.Properties.View = gridView8;
-            this.SearchLookupEditDropoffLocation.Size = new System.Drawing.Size(610, 32);
+            this.SearchLookupEditDropoffLocation.Size = new System.Drawing.Size(610, 36);
             this.SearchLookupEditDropoffLocation.TabIndex = 23;
             this.SearchLookupEditDropoffLocation.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditDropoffLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -1754,9 +1754,9 @@ namespace TraceForms
             this.SearchLookupEditPickupLocation.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditPickupLocation.Properties.NullText = "";
             this.SearchLookupEditPickupLocation.Properties.PopupSizeable = false;
+            this.SearchLookupEditPickupLocation.Properties.PopupView = gridView7;
             this.SearchLookupEditPickupLocation.Properties.ValueMember = "Code";
-            this.SearchLookupEditPickupLocation.Properties.View = gridView7;
-            this.SearchLookupEditPickupLocation.Size = new System.Drawing.Size(610, 32);
+            this.SearchLookupEditPickupLocation.Size = new System.Drawing.Size(610, 36);
             this.SearchLookupEditPickupLocation.TabIndex = 22;
             this.SearchLookupEditPickupLocation.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditPickupLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -1776,9 +1776,9 @@ namespace TraceForms
             this.SearchLookupEditCarOffice.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCarOffice.Properties.NullText = "";
             this.SearchLookupEditCarOffice.Properties.PopupSizeable = false;
+            this.SearchLookupEditCarOffice.Properties.PopupView = gridView4;
             this.SearchLookupEditCarOffice.Properties.ValueMember = "Code";
-            this.SearchLookupEditCarOffice.Properties.View = gridView4;
-            this.SearchLookupEditCarOffice.Size = new System.Drawing.Size(398, 32);
+            this.SearchLookupEditCarOffice.Size = new System.Drawing.Size(398, 36);
             this.SearchLookupEditCarOffice.TabIndex = 275;
             this.SearchLookupEditCarOffice.Visible = false;
             // 
@@ -1841,7 +1841,7 @@ namespace TraceForms
             "CRU",
             "TRN"});
             this.ComboBoxEditDropoffType.Properties.MaxLength = 3;
-            this.ComboBoxEditDropoffType.Size = new System.Drawing.Size(167, 32);
+            this.ComboBoxEditDropoffType.Size = new System.Drawing.Size(167, 36);
             this.ComboBoxEditDropoffType.TabIndex = 20;
             this.ComboBoxEditDropoffType.EditValueChanged += new System.EventHandler(this.ComboBoxEditDropoffType_EditValueChanged);
             this.ComboBoxEditDropoffType.Leave += new System.EventHandler(this.ComboBoxEditDropoffType_Leave);
@@ -1876,7 +1876,7 @@ namespace TraceForms
             "CRU",
             "TRN"});
             this.ComboBoxEditPickupType.Properties.MaxLength = 3;
-            this.ComboBoxEditPickupType.Size = new System.Drawing.Size(167, 32);
+            this.ComboBoxEditPickupType.Size = new System.Drawing.Size(167, 36);
             this.ComboBoxEditPickupType.TabIndex = 18;
             this.ComboBoxEditPickupType.EditValueChanged += new System.EventHandler(this.ComboBoxEditPickupType_EditValueChanged);
             this.ComboBoxEditPickupType.Leave += new System.EventHandler(this.ComboBoxEditPickupType_Leave);
@@ -1904,7 +1904,7 @@ namespace TraceForms
             this.ComboBoxEditItemType.Properties.Items.AddRange(new object[] {
             "OPT"});
             this.ComboBoxEditItemType.Properties.MaxLength = 3;
-            this.ComboBoxEditItemType.Size = new System.Drawing.Size(167, 32);
+            this.ComboBoxEditItemType.Size = new System.Drawing.Size(167, 36);
             this.ComboBoxEditItemType.TabIndex = 6;
             this.ComboBoxEditItemType.EditValueChanged += new System.EventHandler(this.ComboBoxEditItemType_EditValueChanged);
             this.ComboBoxEditItemType.Leave += new System.EventHandler(this.ComboBoxEditItemType_Leave);
@@ -1957,7 +1957,7 @@ namespace TraceForms
             this.TextEditArvFlight.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditArvFlight.Name = "TextEditArvFlight";
             this.TextEditArvFlight.Properties.MaxLength = 6;
-            this.TextEditArvFlight.Size = new System.Drawing.Size(102, 32);
+            this.TextEditArvFlight.Size = new System.Drawing.Size(102, 36);
             this.TextEditArvFlight.TabIndex = 106;
             this.TextEditArvFlight.Leave += new System.EventHandler(this.TextEditArvFlight_Leave);
             // 
@@ -2044,9 +2044,9 @@ namespace TraceForms
             this.SearchLookupEditArvArrivalCity.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditArvArrivalCity.Properties.NullText = "";
             this.SearchLookupEditArvArrivalCity.Properties.PopupSizeable = false;
+            this.SearchLookupEditArvArrivalCity.Properties.PopupView = gridView10;
             this.SearchLookupEditArvArrivalCity.Properties.ValueMember = "Code";
-            this.SearchLookupEditArvArrivalCity.Properties.View = gridView10;
-            this.SearchLookupEditArvArrivalCity.Size = new System.Drawing.Size(416, 32);
+            this.SearchLookupEditArvArrivalCity.Size = new System.Drawing.Size(416, 36);
             this.SearchLookupEditArvArrivalCity.TabIndex = 104;
             this.SearchLookupEditArvArrivalCity.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditArvArrivalCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2065,9 +2065,9 @@ namespace TraceForms
             this.SearchLookupEditArvDepartureCity.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditArvDepartureCity.Properties.NullText = "";
             this.SearchLookupEditArvDepartureCity.Properties.PopupSizeable = false;
+            this.SearchLookupEditArvDepartureCity.Properties.PopupView = gridView11;
             this.SearchLookupEditArvDepartureCity.Properties.ValueMember = "Code";
-            this.SearchLookupEditArvDepartureCity.Properties.View = gridView11;
-            this.SearchLookupEditArvDepartureCity.Size = new System.Drawing.Size(414, 32);
+            this.SearchLookupEditArvDepartureCity.Size = new System.Drawing.Size(414, 36);
             this.SearchLookupEditArvDepartureCity.TabIndex = 105;
             this.SearchLookupEditArvDepartureCity.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditArvDepartureCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2086,7 +2086,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("None", "N", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Seat In", "S", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Private", "P", -1)});
-            this.ComboBoxEditArvTransfer.Size = new System.Drawing.Size(173, 32);
+            this.ComboBoxEditArvTransfer.Size = new System.Drawing.Size(173, 36);
             this.ComboBoxEditArvTransfer.TabIndex = 107;
             this.ComboBoxEditArvTransfer.Leave += new System.EventHandler(this.ComboBoxEditArvTransfer_Leave);
             // 
@@ -2102,7 +2102,7 @@ namespace TraceForms
             this.TextEditArvDepartureTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.TextEditArvDepartureTime.Properties.Mask.EditMask = "";
             this.TextEditArvDepartureTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.TextEditArvDepartureTime.Size = new System.Drawing.Size(116, 32);
+            this.TextEditArvDepartureTime.Size = new System.Drawing.Size(116, 36);
             this.TextEditArvDepartureTime.TabIndex = 102;
             this.TextEditArvDepartureTime.Leave += new System.EventHandler(this.TextEditArvDepartureTime_Leave);
             // 
@@ -2118,7 +2118,7 @@ namespace TraceForms
             this.TextEditArvArrivalTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.TextEditArvArrivalTime.Properties.Mask.EditMask = "";
             this.TextEditArvArrivalTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.TextEditArvArrivalTime.Size = new System.Drawing.Size(116, 32);
+            this.TextEditArvArrivalTime.Size = new System.Drawing.Size(116, 36);
             this.TextEditArvArrivalTime.TabIndex = 103;
             this.TextEditArvArrivalTime.Leave += new System.EventHandler(this.TextEditArvArrivalTime_Leave);
             // 
@@ -2162,7 +2162,7 @@ namespace TraceForms
             0,
             0,
             0});
-            this.SpinEditNights.Size = new System.Drawing.Size(120, 32);
+            this.SpinEditNights.Size = new System.Drawing.Size(120, 36);
             this.SpinEditNights.TabIndex = 9;
             this.SpinEditNights.Leave += new System.EventHandler(this.SpinEditNights_Leave);
             // 
@@ -2210,7 +2210,7 @@ namespace TraceForms
             0,
             0,
             0});
-            this.SpinEditLine.Size = new System.Drawing.Size(80, 32);
+            this.SpinEditLine.Size = new System.Drawing.Size(80, 36);
             this.SpinEditLine.TabIndex = 5;
             this.SpinEditLine.Leave += new System.EventHandler(this.SpinEditLine_Leave);
             // 
@@ -2240,7 +2240,7 @@ namespace TraceForms
             0,
             0,
             0});
-            this.SpinEditDay.Size = new System.Drawing.Size(93, 32);
+            this.SpinEditDay.Size = new System.Drawing.Size(93, 36);
             this.SpinEditDay.TabIndex = 4;
             this.SpinEditDay.Leave += new System.EventHandler(this.SpinEditDay_Leave);
             // 
@@ -2274,7 +2274,7 @@ namespace TraceForms
             this.TextEditDepFlight.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditDepFlight.Name = "TextEditDepFlight";
             this.TextEditDepFlight.Properties.MaxLength = 6;
-            this.TextEditDepFlight.Size = new System.Drawing.Size(102, 32);
+            this.TextEditDepFlight.Size = new System.Drawing.Size(102, 36);
             this.TextEditDepFlight.TabIndex = 98;
             this.TextEditDepFlight.Leave += new System.EventHandler(this.TextEditDepFlight_Leave);
             // 
@@ -2361,9 +2361,9 @@ namespace TraceForms
             this.SearchLookupEditDepDepartureCity.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditDepDepartureCity.Properties.NullText = "";
             this.SearchLookupEditDepDepartureCity.Properties.PopupSizeable = false;
+            this.SearchLookupEditDepDepartureCity.Properties.PopupView = gridView12;
             this.SearchLookupEditDepDepartureCity.Properties.ValueMember = "Code";
-            this.SearchLookupEditDepDepartureCity.Properties.View = gridView12;
-            this.SearchLookupEditDepDepartureCity.Size = new System.Drawing.Size(416, 32);
+            this.SearchLookupEditDepDepartureCity.Size = new System.Drawing.Size(416, 36);
             this.SearchLookupEditDepDepartureCity.TabIndex = 96;
             this.SearchLookupEditDepDepartureCity.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditDepDepartureCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2382,9 +2382,9 @@ namespace TraceForms
             this.SearchLookupEditDepArrivalCity.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditDepArrivalCity.Properties.NullText = "";
             this.SearchLookupEditDepArrivalCity.Properties.PopupSizeable = false;
+            this.SearchLookupEditDepArrivalCity.Properties.PopupView = gridView13;
             this.SearchLookupEditDepArrivalCity.Properties.ValueMember = "Code";
-            this.SearchLookupEditDepArrivalCity.Properties.View = gridView13;
-            this.SearchLookupEditDepArrivalCity.Size = new System.Drawing.Size(414, 32);
+            this.SearchLookupEditDepArrivalCity.Size = new System.Drawing.Size(414, 36);
             this.SearchLookupEditDepArrivalCity.TabIndex = 97;
             this.SearchLookupEditDepArrivalCity.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditDepArrivalCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2403,7 +2403,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Seat In", "S", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("None", "N", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Private", "P", -1)});
-            this.ComboBoxEditDepTransfer.Size = new System.Drawing.Size(160, 32);
+            this.ComboBoxEditDepTransfer.Size = new System.Drawing.Size(160, 36);
             this.ComboBoxEditDepTransfer.TabIndex = 99;
             this.ComboBoxEditDepTransfer.Leave += new System.EventHandler(this.ComboBoxEditDepTransfer_Leave);
             // 
@@ -2419,7 +2419,7 @@ namespace TraceForms
             this.TextEditDepDepartureTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.TextEditDepDepartureTime.Properties.Mask.EditMask = "";
             this.TextEditDepDepartureTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.TextEditDepDepartureTime.Size = new System.Drawing.Size(116, 32);
+            this.TextEditDepDepartureTime.Size = new System.Drawing.Size(116, 36);
             this.TextEditDepDepartureTime.TabIndex = 21;
             this.TextEditDepDepartureTime.Leave += new System.EventHandler(this.TextEditDepDepartureTime_Leave);
             // 
@@ -2435,7 +2435,7 @@ namespace TraceForms
             this.TextEditDepArrivalTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.TextEditDepArrivalTime.Properties.Mask.EditMask = "";
             this.TextEditDepArrivalTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.TextEditDepArrivalTime.Size = new System.Drawing.Size(116, 32);
+            this.TextEditDepArrivalTime.Size = new System.Drawing.Size(116, 36);
             this.TextEditDepArrivalTime.TabIndex = 95;
             this.TextEditDepArrivalTime.Leave += new System.EventHandler(this.TextEditDepArrivalTime_Leave);
             // 
@@ -2452,9 +2452,9 @@ namespace TraceForms
             this.SearchLookupEditCode.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCode.Properties.NullText = "";
+            this.SearchLookupEditCode.Properties.PopupView = customSearchLookUpEdit1View;
             this.SearchLookupEditCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditCode.Properties.View = customSearchLookUpEdit1View;
-            this.SearchLookupEditCode.Size = new System.Drawing.Size(768, 32);
+            this.SearchLookupEditCode.Size = new System.Drawing.Size(768, 36);
             this.SearchLookupEditCode.TabIndex = 1;
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2475,9 +2475,9 @@ namespace TraceForms
             this.SearchLookupEditCategory.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCategory.Properties.NullText = "";
             this.SearchLookupEditCategory.Properties.PopupSizeable = false;
+            this.SearchLookupEditCategory.Properties.PopupView = gridView1;
             this.SearchLookupEditCategory.Properties.ValueMember = "Code";
-            this.SearchLookupEditCategory.Properties.View = gridView1;
-            this.SearchLookupEditCategory.Size = new System.Drawing.Size(768, 32);
+            this.SearchLookupEditCategory.Size = new System.Drawing.Size(768, 36);
             this.SearchLookupEditCategory.TabIndex = 2;
             this.SearchLookupEditCategory.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2497,9 +2497,9 @@ namespace TraceForms
             this.SearchLookupEditItemCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditItemCode.Properties.NullText = "";
             this.SearchLookupEditItemCode.Properties.PopupSizeable = false;
+            this.SearchLookupEditItemCode.Properties.PopupView = gridView2;
             this.SearchLookupEditItemCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditItemCode.Properties.View = gridView2;
-            this.SearchLookupEditItemCode.Size = new System.Drawing.Size(768, 32);
+            this.SearchLookupEditItemCode.Size = new System.Drawing.Size(768, 36);
             this.SearchLookupEditItemCode.TabIndex = 7;
             this.SearchLookupEditItemCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditItemCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2521,9 +2521,9 @@ namespace TraceForms
             this.SearchLookupEditMeal.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditMeal.Properties.NullText = "";
             this.SearchLookupEditMeal.Properties.PopupSizeable = false;
+            this.SearchLookupEditMeal.Properties.PopupView = gridView5;
             this.SearchLookupEditMeal.Properties.ValueMember = "Code";
-            this.SearchLookupEditMeal.Properties.View = gridView5;
-            this.SearchLookupEditMeal.Size = new System.Drawing.Size(518, 32);
+            this.SearchLookupEditMeal.Size = new System.Drawing.Size(518, 36);
             this.SearchLookupEditMeal.TabIndex = 15;
             this.SearchLookupEditMeal.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditMeal.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2542,9 +2542,9 @@ namespace TraceForms
             this.SearchLookupEditOperator.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditOperator.Properties.NullText = "";
             this.SearchLookupEditOperator.Properties.PopupSizeable = false;
+            this.SearchLookupEditOperator.Properties.PopupView = gridView6;
             this.SearchLookupEditOperator.Properties.ValueMember = "Code";
-            this.SearchLookupEditOperator.Properties.View = gridView6;
-            this.SearchLookupEditOperator.Size = new System.Drawing.Size(518, 32);
+            this.SearchLookupEditOperator.Size = new System.Drawing.Size(518, 36);
             this.SearchLookupEditOperator.TabIndex = 16;
             this.SearchLookupEditOperator.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditOperator.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2564,9 +2564,9 @@ namespace TraceForms
             this.SearchLookupEditSpecialValue.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditSpecialValue.Properties.NullText = "";
             this.SearchLookupEditSpecialValue.Properties.PopupSizeable = false;
+            this.SearchLookupEditSpecialValue.Properties.PopupView = gridView9;
             this.SearchLookupEditSpecialValue.Properties.ValueMember = "Code";
-            this.SearchLookupEditSpecialValue.Properties.View = gridView9;
-            this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(519, 32);
+            this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(519, 36);
             this.SearchLookupEditSpecialValue.TabIndex = 272;
             this.SearchLookupEditSpecialValue.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditSpecialValue.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -2583,7 +2583,7 @@ namespace TraceForms
             this.TimeEditServiceTime.Properties.Mask.EditMask = "hhmm";
             this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TimeEditServiceTime.Properties.MaxLength = 4;
-            this.TimeEditServiceTime.Size = new System.Drawing.Size(120, 32);
+            this.TimeEditServiceTime.Size = new System.Drawing.Size(120, 36);
             this.TimeEditServiceTime.TabIndex = 273;
             this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
             // 
@@ -2604,10 +2604,10 @@ namespace TraceForms
             this.GridLookupEditItemCategory.Properties.MaxLength = 16;
             this.GridLookupEditItemCategory.Properties.NullText = "";
             this.GridLookupEditItemCategory.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.GridLookupEditItemCategory.Properties.PopupView = this.gridLookUpEdit1View;
             this.GridLookupEditItemCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.GridLookupEditItemCategory.Properties.ValueMember = "Code";
-            this.GridLookupEditItemCategory.Properties.View = this.gridLookUpEdit1View;
-            this.GridLookupEditItemCategory.Size = new System.Drawing.Size(768, 32);
+            this.GridLookupEditItemCategory.Size = new System.Drawing.Size(768, 36);
             this.GridLookupEditItemCategory.TabIndex = 111;
             this.GridLookupEditItemCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditItemCategory_ProcessNewValue);
             this.GridLookupEditItemCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
@@ -2732,7 +2732,7 @@ namespace TraceForms
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(2104, 54);
+            this.barDockControlTop.Size = new System.Drawing.Size(2104, 52);
             // 
             // barDockControlBottom
             // 
@@ -2746,17 +2746,17 @@ namespace TraceForms
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 52);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1259);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1261);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2104, 54);
+            this.barDockControlRight.Location = new System.Drawing.Point(2104, 52);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1259);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1261);
             // 
             // PCompForm
             // 

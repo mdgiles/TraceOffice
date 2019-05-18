@@ -248,7 +248,7 @@
             this.TextEditName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextEditName.Name = "TextEditName";
             this.TextEditName.Properties.MaxLength = 20;
-            this.TextEditName.Size = new System.Drawing.Size(337, 32);
+            this.TextEditName.Size = new System.Drawing.Size(337, 36);
             this.TextEditName.TabIndex = 2;
             this.TextEditName.Leave += new System.EventHandler(this.TextEditName_Leave);
             // 
@@ -260,7 +260,7 @@
             this.TextEditCode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Properties.MaxLength = 12;
-            this.TextEditCode.Size = new System.Drawing.Size(168, 32);
+            this.TextEditCode.Size = new System.Drawing.Size(168, 36);
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
@@ -271,7 +271,7 @@
             // SplitContainerControl
             // 
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 54);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 52);
             this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.AutoScroll = true;
@@ -298,7 +298,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditState);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCountry);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(1785, 927);
+            this.SplitContainerControl.Size = new System.Drawing.Size(1785, 929);
             this.SplitContainerControl.SplitterPosition = 447;
             this.SplitContainerControl.TabIndex = 21;
             // 
@@ -311,7 +311,7 @@
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(447, 927);
+            this.GridControlLookup.Size = new System.Drawing.Size(447, 929);
             this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -400,9 +400,9 @@
             this.SearchLookupEditRegion.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditRegion.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditRegion.Properties.NullText = "";
+            this.SearchLookupEditRegion.Properties.PopupView = this.gridView2;
             this.SearchLookupEditRegion.Properties.ValueMember = "Code";
-            this.SearchLookupEditRegion.Properties.View = this.gridView2;
-            this.SearchLookupEditRegion.Size = new System.Drawing.Size(337, 32);
+            this.SearchLookupEditRegion.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditRegion.TabIndex = 274;
             this.SearchLookupEditRegion.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditRegion.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -473,7 +473,7 @@
             this.MapControl.Location = new System.Drawing.Point(581, 39);
             this.MapControl.Name = "MapControl";
             this.MapControl.ShowSearchPanel = false;
-            this.MapControl.Size = new System.Drawing.Size(697, 334);
+            this.MapControl.Size = new System.Drawing.Size(697, 336);
             this.MapControl.TabIndex = 270;
             this.MapControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseDown);
             this.MapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseMove);
@@ -497,7 +497,7 @@
             this.PanelControlMappings.Controls.Add(this.GridControlSupplierCity);
             this.PanelControlMappings.Controls.Add(this.ButtonDeleteMapping);
             this.PanelControlMappings.Controls.Add(this.ButtonAddMapping);
-            this.PanelControlMappings.Location = new System.Drawing.Point(57, 407);
+            this.PanelControlMappings.Location = new System.Drawing.Point(57, 409);
             this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.PanelControlMappings.Name = "PanelControlMappings";
             this.PanelControlMappings.Size = new System.Drawing.Size(1221, 433);
@@ -620,8 +620,10 @@
             this.RepositoryItemCustomSearchLookUpEditOperator.DisplayMember = "DisplayName";
             this.RepositoryItemCustomSearchLookUpEditOperator.Name = "RepositoryItemCustomSearchLookUpEditOperator";
             this.RepositoryItemCustomSearchLookUpEditOperator.NullText = "";
+            this.RepositoryItemCustomSearchLookUpEditOperator.PopupView = this.repositoryItemCustomSearchLookUpEdit1View;
             this.RepositoryItemCustomSearchLookUpEditOperator.ValueMember = "Code";
-            this.RepositoryItemCustomSearchLookUpEditOperator.View = this.repositoryItemCustomSearchLookUpEdit1View;
+            this.RepositoryItemCustomSearchLookUpEditOperator.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.RepositoryItemCustomSearchLookUpEditOperator.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // repositoryItemCustomSearchLookUpEdit1View
             // 
@@ -632,6 +634,7 @@
             this.repositoryItemCustomSearchLookUpEdit1View.Name = "repositoryItemCustomSearchLookUpEdit1View";
             this.repositoryItemCustomSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemCustomSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.repositoryItemCustomSearchLookUpEdit1View.OptionsView.ShowIndicator = false;
             // 
             // colCode1
             // 
@@ -684,9 +687,9 @@
             this.SearchLookupEditLinkCode.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditLinkCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditLinkCode.Properties.NullText = "";
+            this.SearchLookupEditLinkCode.Properties.PopupView = this.SearchLookUpEditViewSearchCity;
             this.SearchLookupEditLinkCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditLinkCode.Properties.View = this.SearchLookUpEditViewSearchCity;
-            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(337, 32);
+            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditLinkCode.TabIndex = 3;
             this.SearchLookupEditLinkCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditLinkCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -738,9 +741,9 @@
             this.SearchLookupEditState.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditState.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditState.Properties.NullText = "";
+            this.SearchLookupEditState.Properties.PopupView = this.customSearchLookUpEdit1View;
             this.SearchLookupEditState.Properties.ValueMember = "Code";
-            this.SearchLookupEditState.Properties.View = this.customSearchLookUpEdit1View;
-            this.SearchLookupEditState.Size = new System.Drawing.Size(337, 32);
+            this.SearchLookupEditState.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditState.TabIndex = 21;
             this.SearchLookupEditState.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditState.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -784,9 +787,9 @@
             this.SearchLookupEditCountry.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditCountry.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCountry.Properties.NullText = "";
+            this.SearchLookupEditCountry.Properties.PopupView = this.gridView1;
             this.SearchLookupEditCountry.Properties.ValueMember = "Code";
-            this.SearchLookupEditCountry.Properties.View = this.gridView1;
-            this.SearchLookupEditCountry.Size = new System.Drawing.Size(337, 32);
+            this.SearchLookupEditCountry.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditCountry.TabIndex = 23;
             this.SearchLookupEditCountry.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCountry.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -904,7 +907,7 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1785, 54);
+            this.barDockControlTop.Size = new System.Drawing.Size(1785, 52);
             // 
             // barDockControlBottom
             // 
@@ -919,19 +922,19 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 52);
             this.barDockControlLeft.Manager = this.BarManager;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 927);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 929);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1785, 54);
+            this.barDockControlRight.Location = new System.Drawing.Point(1785, 52);
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 927);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 929);
             this.bingMapDataProvider2.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
             this.bingMapDataProvider3.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
             // 
