@@ -157,90 +157,81 @@
             // LabelCode
             // 
             LabelCode.AutoSize = true;
-            LabelCode.Location = new System.Drawing.Point(64, 63);
-            LabelCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelCode.Location = new System.Drawing.Point(53, 58);
             LabelCode.Name = "LabelCode";
-            LabelCode.Size = new System.Drawing.Size(101, 25);
+            LabelCode.Size = new System.Drawing.Size(95, 24);
             LabelCode.TabIndex = 12;
             LabelCode.Text = "City Code";
             // 
             // LabelName
             // 
             LabelName.AutoSize = true;
-            LabelName.Location = new System.Drawing.Point(64, 115);
-            LabelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelName.Location = new System.Drawing.Point(53, 106);
             LabelName.Name = "LabelName";
-            LabelName.Size = new System.Drawing.Size(66, 25);
+            LabelName.Size = new System.Drawing.Size(62, 24);
             LabelName.TabIndex = 16;
             LabelName.Text = "Name";
             // 
             // LabelLinkCode
             // 
             LabelLinkCode.AutoSize = true;
-            LabelLinkCode.Location = new System.Drawing.Point(64, 160);
-            LabelLinkCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelLinkCode.Location = new System.Drawing.Point(53, 147);
             LabelLinkCode.Name = "LabelLinkCode";
-            LabelLinkCode.Size = new System.Drawing.Size(118, 25);
+            LabelLinkCode.Size = new System.Drawing.Size(110, 24);
             LabelLinkCode.TabIndex = 14;
             LabelLinkCode.Text = "Search City";
             // 
             // LabelLong
             // 
             LabelLong.AutoSize = true;
-            LabelLong.Location = new System.Drawing.Point(209, 379);
-            LabelLong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelLong.Location = new System.Drawing.Point(174, 349);
             LabelLong.Name = "LabelLong";
-            LabelLong.Size = new System.Drawing.Size(111, 25);
+            LabelLong.Size = new System.Drawing.Size(105, 24);
             LabelLong.TabIndex = 18;
             LabelLong.Text = "Longitude:";
             // 
             // LabelLat
             // 
             LabelLat.AutoSize = true;
-            LabelLat.Location = new System.Drawing.Point(209, 352);
-            LabelLat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelLat.Location = new System.Drawing.Point(174, 324);
             LabelLat.Name = "LabelLat";
-            LabelLat.Size = new System.Drawing.Size(94, 25);
+            LabelLat.Size = new System.Drawing.Size(90, 24);
             LabelLat.TabIndex = 19;
             LabelLat.Text = "Latitude:";
             // 
             // LabelState
             // 
             LabelState.AutoSize = true;
-            LabelState.Location = new System.Drawing.Point(64, 205);
-            LabelState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelState.Location = new System.Drawing.Point(53, 189);
             LabelState.Name = "LabelState";
-            LabelState.Size = new System.Drawing.Size(60, 25);
+            LabelState.Size = new System.Drawing.Size(57, 24);
             LabelState.TabIndex = 22;
             LabelState.Text = "State";
             // 
             // LabelCountry
             // 
             LabelCountry.AutoSize = true;
-            LabelCountry.Location = new System.Drawing.Point(64, 297);
-            LabelCountry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelCountry.Location = new System.Drawing.Point(53, 273);
             LabelCountry.Name = "LabelCountry";
-            LabelCountry.Size = new System.Drawing.Size(85, 25);
+            LabelCountry.Size = new System.Drawing.Size(79, 24);
             LabelCountry.TabIndex = 24;
             LabelCountry.Text = "Country";
             // 
             // LabelMappings
             // 
             LabelMappings.AutoSize = true;
-            LabelMappings.Location = new System.Drawing.Point(41, 22);
-            LabelMappings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelMappings.Location = new System.Drawing.Point(34, 20);
             LabelMappings.Name = "LabelMappings";
-            LabelMappings.Size = new System.Drawing.Size(192, 25);
+            LabelMappings.Size = new System.Drawing.Size(179, 24);
             LabelMappings.TabIndex = 85;
             LabelMappings.Text = "Supplier Mappings:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(64, 251);
-            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Location = new System.Drawing.Point(53, 231);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(76, 25);
+            label1.Size = new System.Drawing.Size(71, 24);
             label1.TabIndex = 275;
             label1.Text = "Region";
             // 
@@ -253,11 +244,11 @@
             // 
             this.TextEditName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "NAME", true));
             this.TextEditName.EnterMoveNextControl = true;
-            this.TextEditName.Location = new System.Drawing.Point(202, 110);
-            this.TextEditName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditName.Location = new System.Drawing.Point(168, 101);
+            this.TextEditName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextEditName.Name = "TextEditName";
             this.TextEditName.Properties.MaxLength = 20;
-            this.TextEditName.Size = new System.Drawing.Size(404, 40);
+            this.TextEditName.Size = new System.Drawing.Size(337, 36);
             this.TextEditName.TabIndex = 2;
             this.TextEditName.Leave += new System.EventHandler(this.TextEditName_Leave);
             // 
@@ -265,11 +256,11 @@
             // 
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
             this.TextEditCode.EnterMoveNextControl = true;
-            this.TextEditCode.Location = new System.Drawing.Point(202, 60);
-            this.TextEditCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditCode.Location = new System.Drawing.Point(168, 55);
+            this.TextEditCode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Properties.MaxLength = 12;
-            this.TextEditCode.Size = new System.Drawing.Size(202, 40);
+            this.TextEditCode.Size = new System.Drawing.Size(168, 36);
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
@@ -280,8 +271,8 @@
             // SplitContainerControl
             // 
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 60);
-            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 52);
+            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.AutoScroll = true;
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
@@ -307,20 +298,20 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditState);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCountry);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(1962, 1006);
-            this.SplitContainerControl.SplitterPosition = 536;
+            this.SplitContainerControl.Size = new System.Drawing.Size(1785, 929);
+            this.SplitContainerControl.SplitterPosition = 447;
             this.SplitContainerControl.TabIndex = 21;
             // 
             // GridControlLookup
             // 
             this.GridControlLookup.DataSource = this.EntityInstantFeedbackSource;
             this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
             this.GridControlLookup.MainView = this.GridViewLookup;
-            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(536, 1006);
+            this.GridControlLookup.Size = new System.Drawing.Size(447, 929);
             this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -342,7 +333,6 @@
             this.gridColumnLookupState,
             this.gridColumnLookupRegion,
             this.gridColumnLookupCountry});
-            this.GridViewLookup.DetailHeight = 380;
             this.GridViewLookup.GridControl = this.GridControlLookup;
             this.GridViewLookup.Name = "GridViewLookup";
             this.GridViewLookup.OptionsBehavior.Editable = false;
@@ -360,61 +350,49 @@
             // 
             this.gridColumnLookupCode.Caption = "Code";
             this.gridColumnLookupCode.FieldName = "CODE";
-            this.gridColumnLookupCode.MinWidth = 24;
             this.gridColumnLookupCode.Name = "gridColumnLookupCode";
             this.gridColumnLookupCode.Visible = true;
             this.gridColumnLookupCode.VisibleIndex = 0;
-            this.gridColumnLookupCode.Width = 90;
             // 
             // gridColumnLookupName
             // 
             this.gridColumnLookupName.Caption = "Name";
             this.gridColumnLookupName.FieldName = "NAME";
-            this.gridColumnLookupName.MinWidth = 24;
             this.gridColumnLookupName.Name = "gridColumnLookupName";
             this.gridColumnLookupName.Visible = true;
             this.gridColumnLookupName.VisibleIndex = 1;
-            this.gridColumnLookupName.Width = 90;
             // 
             // gridColumnLookupLinkCode
             // 
             this.gridColumnLookupLinkCode.Caption = "Search City";
             this.gridColumnLookupLinkCode.FieldName = "LINKCODE";
-            this.gridColumnLookupLinkCode.MinWidth = 24;
             this.gridColumnLookupLinkCode.Name = "gridColumnLookupLinkCode";
             this.gridColumnLookupLinkCode.Visible = true;
             this.gridColumnLookupLinkCode.VisibleIndex = 2;
-            this.gridColumnLookupLinkCode.Width = 90;
             // 
             // gridColumnLookupState
             // 
             this.gridColumnLookupState.Caption = "State";
             this.gridColumnLookupState.FieldName = "State.State_Code";
-            this.gridColumnLookupState.MinWidth = 24;
             this.gridColumnLookupState.Name = "gridColumnLookupState";
-            this.gridColumnLookupState.Width = 90;
             // 
             // gridColumnLookupRegion
             // 
             this.gridColumnLookupRegion.Caption = "Region";
             this.gridColumnLookupRegion.FieldName = "Region_Code";
-            this.gridColumnLookupRegion.MinWidth = 24;
             this.gridColumnLookupRegion.Name = "gridColumnLookupRegion";
-            this.gridColumnLookupRegion.Width = 90;
             // 
             // gridColumnLookupCountry
             // 
             this.gridColumnLookupCountry.Caption = "Country";
             this.gridColumnLookupCountry.FieldName = "Country_Code";
-            this.gridColumnLookupCountry.MinWidth = 24;
             this.gridColumnLookupCountry.Name = "gridColumnLookupCountry";
-            this.gridColumnLookupCountry.Width = 90;
             // 
             // SearchLookupEditRegion
             // 
             this.SearchLookupEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Region_Code", true));
-            this.SearchLookupEditRegion.Location = new System.Drawing.Point(202, 247);
-            this.SearchLookupEditRegion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchLookupEditRegion.Location = new System.Drawing.Point(168, 227);
+            this.SearchLookupEditRegion.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditRegion.Name = "SearchLookupEditRegion";
             this.SearchLookupEditRegion.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditRegion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -424,7 +402,7 @@
             this.SearchLookupEditRegion.Properties.NullText = "";
             this.SearchLookupEditRegion.Properties.PopupView = this.gridView2;
             this.SearchLookupEditRegion.Properties.ValueMember = "Code";
-            this.SearchLookupEditRegion.Size = new System.Drawing.Size(404, 40);
+            this.SearchLookupEditRegion.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditRegion.TabIndex = 274;
             this.SearchLookupEditRegion.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditRegion.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -461,27 +439,24 @@
             // 
             // LabelControlLon
             // 
-            this.LabelControlLon.Location = new System.Drawing.Point(342, 380);
-            this.LabelControlLon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.LabelControlLon.Location = new System.Drawing.Point(285, 350);
             this.LabelControlLon.Name = "LabelControlLon";
-            this.LabelControlLon.Size = new System.Drawing.Size(0, 25);
+            this.LabelControlLon.Size = new System.Drawing.Size(0, 23);
             this.LabelControlLon.TabIndex = 273;
             // 
             // LabelControlLat
             // 
-            this.LabelControlLat.Location = new System.Drawing.Point(342, 352);
-            this.LabelControlLat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.LabelControlLat.Location = new System.Drawing.Point(285, 324);
             this.LabelControlLat.Name = "LabelControlLat";
-            this.LabelControlLat.Size = new System.Drawing.Size(0, 25);
+            this.LabelControlLat.Size = new System.Drawing.Size(0, 23);
             this.LabelControlLat.TabIndex = 272;
             // 
             // SimpleButtonPlot
             // 
             this.SimpleButtonPlot.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPlot.ImageOptions.Image")));
-            this.SimpleButtonPlot.Location = new System.Drawing.Point(68, 352);
-            this.SimpleButtonPlot.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.SimpleButtonPlot.Location = new System.Drawing.Point(57, 324);
             this.SimpleButtonPlot.Name = "SimpleButtonPlot";
-            this.SimpleButtonPlot.Size = new System.Drawing.Size(133, 46);
+            this.SimpleButtonPlot.Size = new System.Drawing.Size(111, 42);
             this.SimpleButtonPlot.TabIndex = 271;
             this.SimpleButtonPlot.Text = "Plot";
             this.SimpleButtonPlot.Click += new System.EventHandler(this.SimpleButtonPlot_Click);
@@ -495,11 +470,10 @@
             this.MapControl.Layers.Add(this.ImageLayer);
             this.MapControl.Layers.Add(this.VectorItemsLayer);
             this.MapControl.Layers.Add(this.InformationLayer);
-            this.MapControl.Location = new System.Drawing.Point(697, 42);
-            this.MapControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MapControl.Location = new System.Drawing.Point(581, 39);
             this.MapControl.Name = "MapControl";
             this.MapControl.ShowSearchPanel = false;
-            this.MapControl.Size = new System.Drawing.Size(658, 361);
+            this.MapControl.Size = new System.Drawing.Size(697, 336);
             this.MapControl.TabIndex = 270;
             this.MapControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseDown);
             this.MapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseMove);
@@ -523,10 +497,10 @@
             this.PanelControlMappings.Controls.Add(this.GridControlSupplierCity);
             this.PanelControlMappings.Controls.Add(this.ButtonDeleteMapping);
             this.PanelControlMappings.Controls.Add(this.ButtonAddMapping);
-            this.PanelControlMappings.Location = new System.Drawing.Point(68, 441);
-            this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PanelControlMappings.Location = new System.Drawing.Point(57, 409);
+            this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.PanelControlMappings.Name = "PanelControlMappings";
-            this.PanelControlMappings.Size = new System.Drawing.Size(1287, 471);
+            this.PanelControlMappings.Size = new System.Drawing.Size(1221, 433);
             this.PanelControlMappings.TabIndex = 35;
             // 
             // GridControlSupplierCity
@@ -534,16 +508,16 @@
             this.GridControlSupplierCity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlSupplierCity.DataSource = this.BindingSourceSupplierCity;
-            this.GridControlSupplierCity.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlSupplierCity.Location = new System.Drawing.Point(46, 65);
+            this.GridControlSupplierCity.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.GridControlSupplierCity.Location = new System.Drawing.Point(38, 60);
             this.GridControlSupplierCity.MainView = this.GridViewSupplierCity;
-            this.GridControlSupplierCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlSupplierCity.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GridControlSupplierCity.Name = "GridControlSupplierCity";
             this.GridControlSupplierCity.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEdit12,
             this.RepositoryItemTextEdit50,
             this.RepositoryItemCustomSearchLookUpEditOperator});
-            this.GridControlSupplierCity.Size = new System.Drawing.Size(1114, 373);
+            this.GridControlSupplierCity.Size = new System.Drawing.Size(1077, 343);
             this.GridControlSupplierCity.TabIndex = 84;
             this.GridControlSupplierCity.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierCity});
@@ -563,42 +537,34 @@
             this.gridColumnCitycodCode,
             this.gridColumnInactive,
             this.gridColumnOperator});
-            this.GridViewSupplierCity.DetailHeight = 380;
             this.GridViewSupplierCity.GridControl = this.GridControlSupplierCity;
             this.GridViewSupplierCity.Name = "GridViewSupplierCity";
             this.GridViewSupplierCity.OptionsView.ShowGroupPanel = false;
-            this.GridViewSupplierCity.OptionsView.ShowIndicator = false;
             this.GridViewSupplierCity.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewSupplierCity_CustomRowCellEdit);
             // 
             // gridColumnSupplierCityId
             // 
             this.gridColumnSupplierCityId.FieldName = "ID";
-            this.gridColumnSupplierCityId.MinWidth = 24;
             this.gridColumnSupplierCityId.Name = "gridColumnSupplierCityId";
-            this.gridColumnSupplierCityId.Width = 90;
             // 
             // gridColumnSupplierGuid
             // 
             this.gridColumnSupplierGuid.Caption = "Supplier";
             this.gridColumnSupplierGuid.FieldName = "Supplier_GUID";
-            this.gridColumnSupplierGuid.MinWidth = 24;
             this.gridColumnSupplierGuid.Name = "gridColumnSupplierGuid";
             this.gridColumnSupplierGuid.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnSupplierGuid.Visible = true;
             this.gridColumnSupplierGuid.VisibleIndex = 0;
-            this.gridColumnSupplierGuid.Width = 90;
             // 
             // gridColumnCityCodeSupplier
             // 
             this.gridColumnCityCodeSupplier.Caption = "Supplier City Id";
             this.gridColumnCityCodeSupplier.ColumnEdit = this.RepositoryItemTextEdit12;
             this.gridColumnCityCodeSupplier.FieldName = "CityCodeSupplier";
-            this.gridColumnCityCodeSupplier.MinWidth = 24;
             this.gridColumnCityCodeSupplier.Name = "gridColumnCityCodeSupplier";
             this.gridColumnCityCodeSupplier.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnCityCodeSupplier.Visible = true;
             this.gridColumnCityCodeSupplier.VisibleIndex = 1;
-            this.gridColumnCityCodeSupplier.Width = 90;
             // 
             // RepositoryItemTextEdit12
             // 
@@ -611,11 +577,9 @@
             this.gridColumnCityNameSupplier.Caption = "Supplier City Name";
             this.gridColumnCityNameSupplier.ColumnEdit = this.RepositoryItemTextEdit50;
             this.gridColumnCityNameSupplier.FieldName = "CityNameSupplier";
-            this.gridColumnCityNameSupplier.MinWidth = 24;
             this.gridColumnCityNameSupplier.Name = "gridColumnCityNameSupplier";
             this.gridColumnCityNameSupplier.Visible = true;
             this.gridColumnCityNameSupplier.VisibleIndex = 2;
-            this.gridColumnCityNameSupplier.Width = 90;
             // 
             // RepositoryItemTextEdit50
             // 
@@ -627,30 +591,24 @@
             // 
             this.gridColumnCitycodCode.Caption = "gridColumn1";
             this.gridColumnCitycodCode.FieldName = "Citycod_Code";
-            this.gridColumnCitycodCode.MinWidth = 24;
             this.gridColumnCitycodCode.Name = "gridColumnCitycodCode";
-            this.gridColumnCitycodCode.Width = 90;
             // 
             // gridColumnInactive
             // 
             this.gridColumnInactive.Caption = "Inactive";
             this.gridColumnInactive.FieldName = "Inactive";
-            this.gridColumnInactive.MinWidth = 24;
             this.gridColumnInactive.Name = "gridColumnInactive";
             this.gridColumnInactive.Visible = true;
             this.gridColumnInactive.VisibleIndex = 3;
-            this.gridColumnInactive.Width = 90;
             // 
             // gridColumnOperator
             // 
             this.gridColumnOperator.Caption = "Operator";
             this.gridColumnOperator.ColumnEdit = this.RepositoryItemCustomSearchLookUpEditOperator;
             this.gridColumnOperator.FieldName = "Operator_Code";
-            this.gridColumnOperator.MinWidth = 24;
             this.gridColumnOperator.Name = "gridColumnOperator";
             this.gridColumnOperator.Visible = true;
             this.gridColumnOperator.VisibleIndex = 4;
-            this.gridColumnOperator.Width = 90;
             // 
             // RepositoryItemCustomSearchLookUpEditOperator
             // 
@@ -697,10 +655,10 @@
             this.ButtonDeleteMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDeleteMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteMapping.ImageOptions.Image")));
             this.ButtonDeleteMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteMapping.Location = new System.Drawing.Point(1183, 145);
-            this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonDeleteMapping.Location = new System.Drawing.Point(1134, 133);
+            this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ButtonDeleteMapping.Name = "ButtonDeleteMapping";
-            this.ButtonDeleteMapping.Size = new System.Drawing.Size(82, 70);
+            this.ButtonDeleteMapping.Size = new System.Drawing.Size(68, 64);
             this.ButtonDeleteMapping.TabIndex = 39;
             this.ButtonDeleteMapping.TabStop = false;
             this.ButtonDeleteMapping.Click += new System.EventHandler(this.ButtonDeleteMapping_Click);
@@ -710,18 +668,18 @@
             this.ButtonAddMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddMapping.ImageOptions.Image")));
             this.ButtonAddMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddMapping.Location = new System.Drawing.Point(1183, 65);
-            this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonAddMapping.Location = new System.Drawing.Point(1134, 60);
+            this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ButtonAddMapping.Name = "ButtonAddMapping";
-            this.ButtonAddMapping.Size = new System.Drawing.Size(82, 70);
+            this.ButtonAddMapping.Size = new System.Drawing.Size(68, 64);
             this.ButtonAddMapping.TabIndex = 34;
             this.ButtonAddMapping.Click += new System.EventHandler(this.ButtonAddMapping_Click);
             // 
             // SearchLookupEditLinkCode
             // 
             this.SearchLookupEditLinkCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LINKCODE", true));
-            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(202, 155);
-            this.SearchLookupEditLinkCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(168, 143);
+            this.SearchLookupEditLinkCode.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditLinkCode.Name = "SearchLookupEditLinkCode";
             this.SearchLookupEditLinkCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditLinkCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -731,7 +689,7 @@
             this.SearchLookupEditLinkCode.Properties.NullText = "";
             this.SearchLookupEditLinkCode.Properties.PopupView = this.SearchLookUpEditViewSearchCity;
             this.SearchLookupEditLinkCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(404, 40);
+            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditLinkCode.TabIndex = 3;
             this.SearchLookupEditLinkCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditLinkCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -774,8 +732,8 @@
             // SearchLookupEditState
             // 
             this.SearchLookupEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "State_Code", true));
-            this.SearchLookupEditState.Location = new System.Drawing.Point(202, 201);
-            this.SearchLookupEditState.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchLookupEditState.Location = new System.Drawing.Point(168, 185);
+            this.SearchLookupEditState.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditState.Name = "SearchLookupEditState";
             this.SearchLookupEditState.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -785,7 +743,7 @@
             this.SearchLookupEditState.Properties.NullText = "";
             this.SearchLookupEditState.Properties.PopupView = this.customSearchLookUpEdit1View;
             this.SearchLookupEditState.Properties.ValueMember = "Code";
-            this.SearchLookupEditState.Size = new System.Drawing.Size(404, 40);
+            this.SearchLookupEditState.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditState.TabIndex = 21;
             this.SearchLookupEditState.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditState.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -820,8 +778,8 @@
             // SearchLookupEditCountry
             // 
             this.SearchLookupEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Country_Code", true));
-            this.SearchLookupEditCountry.Location = new System.Drawing.Point(202, 292);
-            this.SearchLookupEditCountry.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SearchLookupEditCountry.Location = new System.Drawing.Point(168, 269);
+            this.SearchLookupEditCountry.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SearchLookupEditCountry.Name = "SearchLookupEditCountry";
             this.SearchLookupEditCountry.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditCountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -831,7 +789,7 @@
             this.SearchLookupEditCountry.Properties.NullText = "";
             this.SearchLookupEditCountry.Properties.PopupView = this.gridView1;
             this.SearchLookupEditCountry.Properties.ValueMember = "Code";
-            this.SearchLookupEditCountry.Size = new System.Drawing.Size(404, 40);
+            this.SearchLookupEditCountry.Size = new System.Drawing.Size(337, 36);
             this.SearchLookupEditCountry.TabIndex = 23;
             this.SearchLookupEditCountry.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCountry.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -868,19 +826,19 @@
             this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
             this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.PanelControlStatus.Controls.Add(this.LabelStatus);
-            this.PanelControlStatus.Location = new System.Drawing.Point(904, 4);
-            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PanelControlStatus.Location = new System.Drawing.Point(753, 4);
+            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.PanelControlStatus.Name = "PanelControlStatus";
-            this.PanelControlStatus.Size = new System.Drawing.Size(240, 45);
+            this.PanelControlStatus.Size = new System.Drawing.Size(200, 41);
             this.PanelControlStatus.TabIndex = 265;
             this.PanelControlStatus.Visible = false;
             // 
             // LabelStatus
             // 
-            this.LabelStatus.Location = new System.Drawing.Point(60, 10);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LabelStatus.Location = new System.Drawing.Point(50, 9);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 25);
+            this.LabelStatus.Size = new System.Drawing.Size(0, 23);
             this.LabelStatus.TabIndex = 5;
             // 
             // BarManager
@@ -948,43 +906,43 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1962, 60);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1785, 52);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1066);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 981);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1962, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1785, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 52);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1006);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 929);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1962, 60);
+            this.barDockControlRight.Location = new System.Drawing.Point(1785, 52);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1006);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 929);
             this.bingMapDataProvider2.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
             this.bingMapDataProvider3.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
             // 
             // CityCodeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1962, 1066);
+            this.ClientSize = new System.Drawing.Size(1785, 981);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -992,7 +950,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MinimizeBox = false;
             this.Name = "CityCodeForm";
             this.ShowInTaskbar = false;
