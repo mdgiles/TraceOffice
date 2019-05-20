@@ -51,7 +51,6 @@
             this.CheckEditNoShow = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditNtsPrior = new DevExpress.XtraEditors.SpinEdit();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
-            this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
             this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCODE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -117,7 +116,7 @@
             this.DateEditOnAfterDate = new DevExpress.XtraEditors.DateEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
             tYPELabel = new System.Windows.Forms.Label();
             LabelCxlDate = new System.Windows.Forms.Label();
             LabelNightsPrior = new System.Windows.Forms.Label();
@@ -166,7 +165,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateEditOnAfterDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // tYPELabel
@@ -342,7 +340,6 @@
             // 
             // CheckEditNoShow
             // 
-            this.CheckEditNoShow.Enabled = false;
             this.CheckEditNoShow.EnterMoveNextControl = true;
             this.CheckEditNoShow.Location = new System.Drawing.Point(476, 439);
             this.CheckEditNoShow.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -360,7 +357,6 @@
             0,
             0,
             0});
-            this.SpinEditNtsPrior.Enabled = false;
             this.SpinEditNtsPrior.EnterMoveNextControl = true;
             this.SpinEditNtsPrior.Location = new System.Drawing.Point(284, 440);
             this.SpinEditNtsPrior.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -386,7 +382,7 @@
             // 
             // GridControlLookup
             // 
-            this.GridControlLookup.DataSource = this.EntityInstantFeedbackSource;
+            this.GridControlLookup.DataSource = this.BindingSource;
             this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
@@ -398,13 +394,6 @@
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewLookup});
-            // 
-            // EntityInstantFeedbackSource
-            // 
-            this.EntityInstantFeedbackSource.DesignTimeElementType = typeof(FlexModel.CXLFEE);
-            this.EntityInstantFeedbackSource.KeyExpression = "ID";
-            this.EntityInstantFeedbackSource.GetQueryable += new System.EventHandler<DevExpress.Data.Linq.GetQueryableEventArgs>(this.EntityInstantFeedbackSource_GetQueryable);
-            this.EntityInstantFeedbackSource.DismissQueryable += new System.EventHandler<DevExpress.Data.Linq.GetQueryableEventArgs>(this.EntityInstantFeedbackSource_DismissQueryable);
             // 
             // GridViewLookup
             // 
@@ -431,8 +420,6 @@
             this.GridViewLookup.OptionsBehavior.Editable = false;
             this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
             this.GridViewLookup.OptionsView.ShowGroupPanel = false;
-            this.GridViewLookup.OptionsView.ShowIndicator = false;
-            this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
             this.GridViewLookup.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewLookup_InvalidRowException);
             this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
             // 
@@ -745,7 +732,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.SpinEditNbrNts.Size = new System.Drawing.Size(158, 34);
             this.SpinEditNbrNts.TabIndex = 3;
-            this.SpinEditNbrNts.Leave += new System.EventHandler(this.SpinEditNbrNts_Leave);
             // 
             // SpinEditFlatFee
             // 
@@ -764,7 +750,6 @@
             this.SpinEditFlatFee.Properties.Mask.EditMask = "c";
             this.SpinEditFlatFee.Size = new System.Drawing.Size(158, 34);
             this.SpinEditFlatFee.TabIndex = 7;
-            this.SpinEditFlatFee.Leave += new System.EventHandler(this.SpinEditFlatFee_Leave);
             // 
             // SpinEditPctAmt
             // 
@@ -788,7 +773,6 @@
             0});
             this.SpinEditPctAmt.Size = new System.Drawing.Size(158, 34);
             this.SpinEditPctAmt.TabIndex = 5;
-            this.SpinEditPctAmt.Leave += new System.EventHandler(this.SpinEditPctAmt_Leave);
             // 
             // SpinEditTimeAfter
             // 
@@ -798,7 +782,6 @@
             0,
             0,
             0});
-            this.SpinEditTimeAfter.Enabled = false;
             this.SpinEditTimeAfter.EnterMoveNextControl = true;
             this.SpinEditTimeAfter.Location = new System.Drawing.Point(851, 440);
             this.SpinEditTimeAfter.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -838,10 +821,9 @@
             this.ImageComboBoxEditTimeUnits.Name = "ImageComboBoxEditTimeUnits";
             this.ImageComboBoxEditTimeUnits.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditTimeUnits.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.ImageComboBoxEditTimeUnits.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Days", ((short)(0)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Hours", ((short)(3)), -1)});
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Days", "0", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Hours", "3", -1)});
             this.ImageComboBoxEditTimeUnits.Size = new System.Drawing.Size(222, 34);
             this.ImageComboBoxEditTimeUnits.TabIndex = 14;
             this.ImageComboBoxEditTimeUnits.Leave += new System.EventHandler(this.ImageComboBoxEditTimeUnits_Leave);
@@ -864,13 +846,11 @@
             this.ImageComboBoxEditTimeBasis.Name = "ImageComboBoxEditTimeBasis";
             this.ImageComboBoxEditTimeBasis.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditTimeBasis.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.ImageComboBoxEditTimeBasis.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Before Arrival", ((short)(0)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("After Booking", ((short)(1)), -1)});
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Before Arrival", "0", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("After Booking", "1", -1)});
             this.ImageComboBoxEditTimeBasis.Size = new System.Drawing.Size(328, 34);
             this.ImageComboBoxEditTimeBasis.TabIndex = 16;
-            this.ImageComboBoxEditTimeBasis.EditValueChanged += new System.EventHandler(this.ImageComboBoxEditTimeBasis_EditValueChanged);
             this.ImageComboBoxEditTimeBasis.Leave += new System.EventHandler(this.ImageComboBoxEditTimeBasis_Leave);
             // 
             // labelControl6
@@ -1020,6 +1000,7 @@
             this.SearchLookupEditCode.TabIndex = 3;
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCode.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.SearchLookupEditCode_QueryPopUp);
             this.SearchLookupEditCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             this.SearchLookupEditCode.Leave += new System.EventHandler(this.SearchLookupEditCode_Leave);
             // 
@@ -1154,6 +1135,11 @@
             this.LabelStatus.Size = new System.Drawing.Size(0, 25);
             this.LabelStatus.TabIndex = 5;
             // 
+            // EntityInstantFeedbackSource
+            // 
+            this.EntityInstantFeedbackSource.DesignTimeElementType = typeof(FlexModel.INVT);
+            this.EntityInstantFeedbackSource.KeyExpression = "ID";
+            // 
             // CxlFeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1172,7 +1158,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Cancellation Fee Information";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CxlFeeForm_FormClosing);
-            this.Shown += new System.EventHandler(this.CxlFeeForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditNoShow.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditNtsPrior.Properties)).EndInit();
@@ -1210,7 +1195,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1291,6 +1275,5 @@
         private DevExpress.XtraEditors.SpinEdit SpinEditFlatFee;
         private DevExpress.XtraEditors.SpinEdit SpinEditPctAmt;
         private DevExpress.Data.Linq.EntityInstantFeedbackSource EntityInstantFeedbackSource;
-        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }

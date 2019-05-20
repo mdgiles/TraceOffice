@@ -14,7 +14,6 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Win;
 using DevExpress.Data.Async.Helpers;
-using FlexInterfaces;
 
 namespace TraceForms
 {
@@ -222,7 +221,6 @@ namespace TraceForms
                     if (_selectedRecord.EntityState == EntityState.Detached) {
                         _context.CXLFEE.AddObject(_selectedRecord);
                     }
-                    SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
                     EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Saved");
@@ -257,8 +255,8 @@ namespace TraceForms
 			BindingSource.EndEdit();
 		}
 
-        void SetBindings()
-        {
+		void SetBindings()
+		{
             if (BindingSource.Current == null) {
                 ClearBindings();
             }
@@ -267,12 +265,11 @@ namespace TraceForms
                 SetReadOnly(false);
                 BarButtonItemDelete.Enabled = true;
                 BarButtonItemSave.Enabled = true;
-                //SetTimeFieldsState(_selectedRecord.TimeBasis);
             }
             ErrorProvider.Clear();
         }
 
-        private bool ValidateAll()
+		private bool ValidateAll()
 		{
 			if (!_selectedRecord.Validate())
 			{
@@ -393,12 +390,6 @@ namespace TraceForms
 			}
 		}
 
-        private void CxlFeeForm_Shown(object sender, EventArgs e)
-        {
-            GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
-            GridControlLookup.Focus();
-        }
-
         private void GridViewLookup_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
@@ -440,13 +431,13 @@ namespace TraceForms
 				SetErrorInfo(_selectedRecord.ValidateNbrNts, sender);
 		}
 
-        private void SpinEditPctAmt_Leave(object sender, EventArgs e)
+        private void TextEditPctAmt_Leave(object sender, EventArgs e)
         {
 			if (_selectedRecord != null)
 				SetErrorInfo(_selectedRecord.ValidatePctAmt, sender);
 		}
 
-        private void SpinEditFlatFee_Leave(object sender, EventArgs e)
+        private void TextEditFlatFee_Leave(object sender, EventArgs e)
         {
 			if (_selectedRecord != null)
 				SetErrorInfo(_selectedRecord.ValidateFlatFee, sender);
@@ -489,65 +480,19 @@ namespace TraceForms
 		private void ImageComboBoxEditTimeBasis_Leave(object sender, EventArgs e)
 		{
 			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateTimeBasis, sender);
-        }
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
+		}
 
-        private void SetTimeAfterState(bool enabled)
-        {
-            SpinEditTimeAfter.Enabled = enabled;
-            if (!enabled) {
-                SpinEditTimeAfter.EditValue = null;
-            }
-        }
-
-        private void SetTimePriorState(bool enabled)
-        {
-            SpinEditNtsPrior.Enabled = enabled;
-            CheckEditNoShow.Enabled = enabled;
-            if (!enabled) {
-                SpinEditNtsPrior.EditValue = null;
-                CheckEditNoShow.Checked = false;
-            }
-        }
-
-        private void SetTimeFieldsState()
-        {
-            if (ImageComboBoxEditTimeBasis.EditValue == null) {
-                SetTimeFieldsState(null);
-            }
-            else {
-                Enum.TryParse(ImageComboBoxEditTimeBasis.EditValue.ToString(), out Enumerations.FlexCancelFeeTimeBasis timeBasis);
-                SetTimeFieldsState(timeBasis);
-            }
-        }
-
-        private void SetTimeFieldsState(short? timeBasis)
-        {
-            if (timeBasis == null) {
-                SetTimeAfterState(false);
-                SetTimePriorState(false);
-            }
-            else {
-                SetTimeFieldsState((Enumerations.FlexCancelFeeTimeBasis)timeBasis);
-            }
-        }
-
-        private void SetTimeFieldsState(Enumerations.FlexCancelFeeTimeBasis timeBasis)
-        {
-            SetTimeAfterState(timeBasis == Enumerations.FlexCancelFeeTimeBasis.flxCancelFeeTimeBasisAfterBooking);
-            SetTimePriorState(timeBasis == Enumerations.FlexCancelFeeTimeBasis.flxCancelFeeTimeBasisBeforeArrival);
-        }
-
-        private void ImageComboBoxEditTimeUnits_Leave(object sender, EventArgs e)
+		private void ImageComboBoxEditTimeUnits_Leave(object sender, EventArgs e)
 		{
 			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateTimeUnits, sender);
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
 		}
 
 		private void SpinEditTimeAfter_Leave(object sender, EventArgs e)
 		{
 			if (_selectedRecord != null)
-				SetErrorInfo(_selectedRecord.ValidateTimeAfter, sender);
+				SetErrorInfo(_selectedRecord.ValidateCat, sender);
 		}
 
 		private void BindingSource_CurrentChanged(object sender, System.EventArgs e)
@@ -574,40 +519,31 @@ namespace TraceForms
 
         private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            if (!_ignoreLeaveRow) {
-                GridView view = (GridView)sender;
-                object row = view.GetRow(e.FocusedRowHandle);
-                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
-                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
-                    CXLFEE record = (CXLFEE)proxy.OriginalRow;
-                    BindingSource.DataSource = _context.CXLFEE.Where(c => c.ID == record.ID);
-                }
-                else {
-                    ClearBindings();
-                }
+            GridView view = (GridView)sender;
+            object row = view.GetRow(e.FocusedRowHandle);
+            if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                CXLFEE record = (CXLFEE)proxy.OriginalRow;
+                BindingSource.DataSource = _context.CXLFEE.Where(c => c.CODE == record.CODE);
+            }
+            else {
+                ClearBindings();
             }
         }
 
         private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-            _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
-            if (SaveRecord(true)) {
-                //For some reason when there is no existing record in the binding source the Add method does not
-                //trigger the CurrentChanged event, but AddNew does so use that instead
-                _selectedRecord = (CXLFEE)BindingSource.AddNew();
-                //With the instant feedback data source, the new row is not immediately added to the grid, so move
-                //the focused row to the filter row just so that no other existing row is visually highlighted
-                    GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
-                BarButtonItemDelete.Enabled = true;
-                BarButtonItemSave.Enabled = true;
-                SetReadOnly(false);
-                SetTimeFieldsState(_selectedRecord.TimeBasis);
-            }
-            ErrorProvider.Clear();
-            _ignoreLeaveRow = false;
-            BarButtonItemDelete.Enabled = true;
-            BarButtonItemSave.Enabled = true;
-        }
+			_ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
+			if (SaveRecord(true)) {
+				GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
+				BindingSource.AddNew();
+				//if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
+				GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
+				SetReadOnly(false);
+			}
+			ErrorProvider.Clear();
+			_ignoreLeaveRow = false;
+		}
 
 		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
@@ -623,14 +559,14 @@ namespace TraceForms
 		private void CheckEditNoShow_CheckedChanged(object sender, EventArgs e)
 		{
 			/*
-            ____ on an add or change - if there is an number in nights prior and the no-show checkbox is checked the number 
-            * of nights should change to -1 and on/after date is also greyed and blanked. 
+____ on an add or change - if there is an number in nights prior and the no-show checkbox is checked the number 
+* of nights should change to -1 and on/after date is also greyed and blanked. 
 
-            Here is the behavior of the Nights Prior field, NoShow checkbox and on/after date. 
-            If the checkbox is checked then nights prior is  filled with ‘-1’ and on/after date is also greyed and blanked. 
-            If the checkbox is unchecked, nights prior and on/after date are enabled for entry.  
+Here is the behavior of the Nights Prior field, NoShow checkbox and on/after date. 
+If the checkbox is checked then nights prior is  filled with ‘-1’ and on/after date is also greyed and blanked. 
+If the checkbox is unchecked, nights prior and on/after date are enabled for entry.  
 
-            */
+*/
 			//If changes aren't forced back into the context, then when the context PropertyChanged event fires
 			//when changing the value of the other checkbox, this checkbox will rebind to its prior value which
 			//is not yet in the context. 
@@ -654,9 +590,9 @@ namespace TraceForms
 			CheckEditNoShow.Checked = (SpinEditNtsPrior.Value == -1);
 		}
 
-        private void ImageComboBoxEditTimeBasis_EditValueChanged(object sender, EventArgs e)
+        private void SearchLookupEditCode_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            SetTimeFieldsState();
+
         }
 
         private void BarButtonItemExpandContractGrid_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

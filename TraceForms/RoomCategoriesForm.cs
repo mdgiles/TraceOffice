@@ -338,7 +338,7 @@ namespace TraceForms
             _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
                 GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
-                _selectedRecord = (ROOMCOD)BindingSource.AddNew();
+                BindingSource.AddNew();
                 //if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
                 GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
                 SetReadOnlyKeyFields(false);
