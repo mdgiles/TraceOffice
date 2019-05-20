@@ -13,6 +13,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using FlexModel;
 using Custom_SearchLookupEdit;
+using DevExpress.Data.Async.Helpers;
 
 namespace TraceForms
 {
@@ -24,13 +25,17 @@ namespace TraceForms
 		Timer _actionConfirmation;
 		bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 
-		public ServTypeForm(FlexInterfaces.Core.ICoreSys sys)
+        RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
+        RepositoryItemCustomSearchLookUpEdit _operatorSearch = new RepositoryItemCustomSearchLookUpEdit();
+
+        public ServTypeForm(FlexInterfaces.Core.ICoreSys sys)
         {
 			try
 			{
 				InitializeComponent();
 				Connect(sys);
-				SetReadOnly(true);
+                LoadLookups();
+                SetReadOnly(true);
 			}
 			catch (Exception ex)
 			{
@@ -44,7 +49,36 @@ namespace TraceForms
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
         }
 
-		void SetReadOnly(bool value)
+        private void LoadLookups()
+        {
+            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = null };
+
+            var lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+
+            _supplierCombo.Items.Add(loadBlank);
+            _supplierCombo.Items.AddRange(_context.Supplier
+                            .OrderBy(o => o.Name).AsEnumerable()
+                            .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
+                            .ToList());
+            GridControlSupplierServType.RepositoryItems.Add(_supplierCombo);        //per DX recommendation to avoid memory leaks
+
+            //var col = _operatorSearch.View.Columns.Add();
+            //col.FieldName = "Code";
+            //col = _operatorSearch.View.Columns.Add();
+            //col.FieldName = "Name";
+            //_operatorSearch.DisplayMember = "DisplayName";
+            //_operatorSearch.ValueMember = "Code";
+            //_operatorSearch.NullText = string.Empty;
+            //_operatorSearch.BestFitMode = BestFitMode.BestFitResizePopup;
+            //_operatorSearch.DataSource = lookup;
+            //_operatorSearch.View.BestFitColumns();
+            //_operatorSearch.Popup += new EventHandler(SearchLookupEdit_Popup);
+            //GridControlSupplierCity.RepositoryItems.Add(_operatorSearch);		//per DX recommendation to avoid memory leaks
+        }
+
+        void SetReadOnly(bool value)
 		{
 			foreach (Control control in SplitContainerControl.Panel2.Controls)
 			{
@@ -57,7 +91,19 @@ namespace TraceForms
 			TextEditCode.ReadOnly = value;
 		}
 
-		private void ShowActionConfirmation(string confirmation)
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.SERVTYPE;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void ShowActionConfirmation(string confirmation)
 		{
 			PanelControlStatus.Visible = true;
 			LabelStatus.Text = confirmation;
@@ -94,113 +140,167 @@ namespace TraceForms
 
 		private bool SaveRecord(bool prompt)
 		{
-			try
-			{
-				if (_selectedRecord == null)
-					return true;
+            try {
+                if (_selectedRecord == null)
+                    return true;
 
-				FinalizeBindings();
-				bool newRec = _selectedRecord.IsNew();
-				bool modified = newRec || IsModified(_selectedRecord);
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
 
-				if (modified)
-				{
-					if (prompt)
-					{
-						DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
-						if (result == DialogResult.No)
-						{
-							if (newRec)
-							{
-								RemoveRecord();
-							}
-							else
-							{
-								RefreshRecord();
-							}
-							return true;
-						}
-						else if (result == DialogResult.Cancel)
-						{
-							return false;
-						}
-					}
-					if (!ValidateAll())
-						return false;
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            if (newRec) {
+                                RemoveRecord();
+                            }
+                            else {
+                                RefreshRecord();
+                            }
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    if (!ValidateAll())
+                        return false;
 
-					if (_selectedRecord.EntityState == EntityState.Detached)
-					{
-						_context.SERVTYPE.AddObject(_selectedRecord);
-					}
-					_context.SaveChanges();
-					ShowActionConfirmation("Record Saved");
-				}
-				return true;
-			}
-			catch (Exception ex)
-			{
-				DisplayHelper.DisplayError(this, ex);
-				RefreshRecord();        //pull it back from db because that is its current state
-										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
-				SetBindings();
-				return false;
-			}
-		}
+                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                        _context.SERVTYPE.AddObject(_selectedRecord);
+                    }
+                    _context.SaveChanges();
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Saved");
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecord();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+                return false;
+            }
+        }
 
 		private void FinalizeBindings()
 		{
-			BindingSource.EndEdit();
-		}
+            BindingSource.EndEdit();
+            GridViewSupplierServType.CloseEditor();
+            GridViewSupplierServType.UpdateCurrentRow();
+            //Set the city code for each mapping just in case
+            for (int rowCtr = 0; rowCtr < GridViewSupplierServType.DataRowCount; rowCtr++) {
+                SupplierServiceType suppServType = (SupplierServiceType)GridViewSupplierServType.GetRow(rowCtr);
+                suppServType.ServType_Code = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceSupplierServType.EndEdit();
+        }
 
 		private bool IsModified(SERVTYPE record)
 		{
-			//Type-specific routine that takes into account relationships that should also be considered
-			//when deciding if there are unsaved changes.  The entity properties also return true if the
-			//record is new or deleted.
-			return record.IsModified(_context);
-		}
+            //Type-specific routine that takes into account relationships that should also be considered
+            //when deciding if there are unsaved changes.  The entity properties also return true if the
+            //record is new or deleted.
+            if (record == null)
+                return false;
+            return record.IsModified(_context)
+                || record.SupplierServiceType.IsModified(_context);
+        }
 
-		void SetBindings()
+        void SetBindings()
 		{
-			//If the route list is filtered, there will be rows in the binding source
-			//that are not visible, and they can become selected if the last visible row
-			//is deleted, so handle that by checking rowcount.
-			if (BindingSource.Current == null)
-			{
-				_selectedRecord = null;
-				SetReadOnly(true);
-			}
-			else
-			{
-				_selectedRecord = ((SERVTYPE)BindingSource.Current);
-				SetReadOnly(false);
-				SetReadOnlyKeyFields(true);
-			}
-			ErrorProvider.Clear();
-		}
+            //If the route list is filtered, there will be rows in the binding source
+            if (BindingSource.Current == null) {
+                ClearBindings();
+            }
+            else {
+                _selectedRecord = ((SERVTYPE)BindingSource.Current);
+                LoadAndBindSupplierServType();
+                SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
+            }
+            ErrorProvider.Clear();
+        }
+
+        void LoadAndBindSupplierServType()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.SupplierServiceType.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceSupplierServType.DataSource = _selectedRecord.SupplierServiceType;
+            BindSupplierServType();
+        }
+
+        void BindSupplierServType()
+        {
+            GridControlSupplierServType.DataSource = BindingSourceSupplierServType;
+            GridControlSupplierServType.RefreshDataSource();
+        }
 
 		private bool ValidateAll()
 		{
-			if (!_selectedRecord.Validate())
-			{
-				ShowMainControlErrors();
-				DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
-				return false;
-			}
-			else
-			{
-				ErrorProvider.Clear();
-				return true;
-			}
-		}
+            bool supplierInvalid = false;
+            if (BindingSourceSupplierServType.List.Count > 0) {
+                supplierInvalid = BindingSourceSupplierServType.List.Cast<SupplierServiceType>().Any(b => !b.Validate());
+            }
 
-		private void ShowMainControlErrors()
+            if (!_selectedRecord.Validate() || supplierInvalid) {
+                ShowMainControlErrors();
+                DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+                return false;
+            }
+            else {
+                ErrorProvider.Clear();
+                return true;
+            }
+        }
+
+        private void ButtonAddMapping_Click(object sender, EventArgs e)
+        {
+            SupplierServiceType suppServType = new SupplierServiceType {
+                ServType_Code = TextEditCode.Text ?? string.Empty
+            };
+            _selectedRecord.SupplierServiceType.Add(suppServType);
+            BindSupplierServType();
+            GridViewSupplierServType.FocusedRowHandle = BindingSourceSupplierServType.Count - 1;
+        }
+
+        private void ButtonDeleteMapping_Click(object sender, EventArgs e)
+        {
+            if (GridViewSupplierServType.FocusedRowHandle >= 0) {
+                SupplierServiceType suppServType = (SupplierServiceType)GridViewSupplierServType.GetFocusedRow();
+                //Removing from the collection just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (suppServType.IsNew()) {
+                    _selectedRecord.SupplierServiceType.Remove(suppServType);
+                }
+                else {
+                    _context.SupplierServiceType.DeleteObject(suppServType);
+                }
+                BindSupplierServType();
+            }
+        }
+
+        private void ShowMainControlErrors()
 		{
 			//The error indicators inside the grids are handled by binding, but errors on the main form must
 			//be set manually
 			SetErrorInfo(_selectedRecord.ValidateCode, TextEditCode);
 			SetErrorInfo(_selectedRecord.ValidateName, TextEditDesc);
-		}
+            SetErrorInfo(_selectedRecord.ValidateSupplierServTypes, GridControlSupplierServType);
+        }
 
 		private void SetErrorInfo(Func<String> validationMethod, object sender)
 		{
@@ -223,7 +323,35 @@ namespace TraceForms
 			}
 		}
 
-		private void ServTypeForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void GridViewLookup_ColumnFilterChanged(object sender, EventArgs e)
+        {
+            if (GridViewLookup.DataRowCount == 0) {
+                ClearBindings();
+            }
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                BindFocusedRow(view, e.FocusedRowHandle);
+            }
+        }
+
+        private void BindFocusedRow(GridView view, int focusedRowHandle)
+        {
+            object row = view.GetRow(focusedRowHandle);
+            if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(focusedRowHandle);
+                SERVTYPE record = (SERVTYPE)proxy.OriginalRow;
+                BindingSource.DataSource = _context.SERVTYPE.Where(c => c.TYPE == record.TYPE);
+            }
+            else {
+                ClearBindings();
+            }
+        }
+
+        private void ServTypeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 			if (IsModified(_selectedRecord))
 			{
@@ -251,91 +379,88 @@ namespace TraceForms
 				SetErrorInfo(_selectedRecord.ValidateCode, sender);
 		}
 
-		private void DeleteRecord()
-		{
-			if (_selectedRecord == null)
-				return;
+        private void GridControlSupplierServType_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSupplierServTypes, sender);
+        }
 
-			try
-			{
-				if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes)
-				{
-					_ignoreLeaveRow = true;
-					_ignorePositionChange = true;
-					RemoveRecord();
-					if (!_selectedRecord.IsNew())
-					{
-						//Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
-						//(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
-						//the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
-						//delete it manually.
-						if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
-							_context.SERVTYPE.DeleteObject(_selectedRecord);
-						_context.SaveChanges();
-					}
-					if (GridViewLookup.RowCount == 0)
-					{
-						ClearBindings();
-					}
-					_ignoreLeaveRow = false;
-					_ignorePositionChange = false;
-					SetBindings();
-					ShowActionConfirmation("Record Deleted");
-				}
-			}
-			catch (Exception ex)
-			{
-				DisplayHelper.DisplayError(this, ex);
-				RefreshRecord();        //pull it back from db because that is its current state
-										//We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
-				SetBindings();
-			}
-		}
+        private void GridViewSupplierServType_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column == gridColumnSupplierGuid) {
+                e.RepositoryItem = _supplierCombo;
+            }
+            //else if (e.Column == gridColumnOperator) {
+            //    e.RepositoryItem = _operatorSearch;
+            //}
+        }
 
-		void ClearBindings()
+        private bool DeleteRecord()
+        {
+            if (_selectedRecord == null)
+                return false;
+
+            try {
+                if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
+                    //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
+                    //We do not want these events to perform their usual code of checking whether there are changes in the active
+                    //record that should be saved before proceeding, because we know we have just deleted the active record.
+                    _ignoreLeaveRow = true;
+                    _ignorePositionChange = true;
+                    RemoveRecord();
+                    if (!_selectedRecord.IsNew()) {
+                        //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
+                        //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
+                        //the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
+                        //delete it manually.
+                        if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
+                            _context.SERVTYPE.DeleteObject(_selectedRecord);
+                        _context.SaveChanges();
+                    }
+                    if (GridViewLookup.DataRowCount == 0) {
+                        ClearBindings();
+                    }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
+                    EntityInstantFeedbackSource.Refresh();
+                    SetBindings();
+                    ShowActionConfirmation("Record Deleted");
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                _ignoreLeaveRow = false;
+                _ignorePositionChange = false;
+                RefreshRecord();        //pull it back from db because that is it's current state
+                //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+                return false;
+            }
+        }
+
+        void ClearBindings()
 		{
-			BindingSource.DataSource = typeof(SERVTYPE);
-		}
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            BindingSourceSupplierServType.Clear();
+            SetReadOnly(true);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
+            BindingSource.DataSource = typeof(SERVTYPE);
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
+        }
 
 		private void TextEditDesc_Leave(object sender, EventArgs e)
         {
 			if (_selectedRecord != null)
 				SetErrorInfo(_selectedRecord.ValidateName, sender);
-		}
-
-        private void ServTypeForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && GridViewLookup.IsFilterRow(GridViewLookup.FocusedRowHandle))
-            {
-                ExecuteQuery();
-            }
-        }
-
-		private void ExecuteQuery()
-		{
-			Cursor = Cursors.WaitCursor;
-			string query = "1=1";
-			foreach (DevExpress.XtraGrid.Columns.GridColumn col in GridViewLookup.VisibleColumns)
-			{
-				string value = GridViewLookup.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, col.FieldName);
-				if (!string.IsNullOrEmpty(value))
-				{
-					query += $" and it.[{col.FieldName}] like '%{value}%'";
-				}
-			}
-
-			var records = _context.SERVTYPE.Where(query);
-			if (records.Count() > 0)
-			{
-				BindingSource.DataSource = records;
-				GridViewLookup.ClearColumnsFilter();
-			}
-			else
-			{
-				ClearBindings();
-				DisplayHelper.DisplayInfo(this, "No matching records found.");
-			}
-			Cursor = Cursors.Default;
 		}
 
         private void ServTypeBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -367,8 +492,10 @@ namespace TraceForms
 
 		private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{
-			DeleteRecord();
-		}
+            if (DeleteRecord()) {
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+            }
+        }
 
 		private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
 		{

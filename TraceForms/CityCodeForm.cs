@@ -285,7 +285,7 @@ namespace TraceForms
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
         {
-            BindingSource.EndEdit();        //force changes back into context for validation
+            BindingSource.EndEdit();
             if (validationMethod != null) {
                 string error = validationMethod.Invoke();
                 ErrorProvider.SetError((Control)sender, error);
@@ -300,7 +300,7 @@ namespace TraceForms
             //Set the city code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierCity.DataRowCount; rowCtr++) {
                 SupplierCity suppCity = (SupplierCity)GridViewSupplierCity.GetRow(rowCtr);
-                suppCity.Citycod_Code = TextEditCode.Text;
+                suppCity.Citycod_Code = TextEditCode.Text ?? string.Empty;
             }
             BindingSourceSupplierCity.EndEdit();
         }
@@ -462,8 +462,9 @@ namespace TraceForms
 
         private void ButtonAddMapping_Click(object sender, EventArgs e)
         {
-            SupplierCity suppCity = new SupplierCity();
-            suppCity.Citycod_Code = TextEditCode.Text;
+            SupplierCity suppCity = new SupplierCity {
+                Citycod_Code = TextEditCode.Text ?? string.Empty
+            };
             _selectedRecord.SupplierCity.Add(suppCity);
             BindSupplierCities();
             GridViewSupplierCity.FocusedRowHandle = BindingSourceSupplierCity.Count - 1;
@@ -477,7 +478,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierCity.DeleteObject(suppCity);
+                if (!suppCity.IsNew()) {
+                    _context.SupplierCity.DeleteObject(suppCity);
+                }
                 BindSupplierCities();
             }
         }

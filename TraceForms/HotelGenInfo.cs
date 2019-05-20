@@ -512,8 +512,49 @@ namespace TraceForms
 
         private void hOTELBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            
-        }
+            _selectedRecord = (HOTEL)HotelBindingSource.Current;
+            ComboBoxEditSource.Text = string.Empty;
+            ImageComboBoxEditAgentComm.Text = string.Empty;
+            dateComm.Text = string.Empty;
+            gridControl5.DataSource = null;
+            gridControl6.DataSource = null;
+            if (_selectedRecord != null) {
+                GridControlAdditionalContacts.DataSource = (from contRec in context.CONTACT
+                                                            where contRec.LINK_VALUE == _selectedRecord.CODE && contRec.RECTYPE == "HTLCONTACT"
+                                                                && contRec.LINK_TABLE == "HOTEL"
+                                                            select contRec).Distinct();
+
+                //UpdateCommMarkupGrid(rec.CODE, null, "ALL");
+                GridControlDetail.DataSource = from c in context.DETAIL where c.LINK_VALUE.TrimEnd() == _selectedRecord.CODE.TrimEnd() select c;
+                GridControlCustom.DataSource = from c in context.USERFIELDS
+                                               where c.LINK_TABLE.Equals("HOTEL")
+                                               select c;
+
+                if (!String.IsNullOrEmpty(_selectedRecord.CODE)) { //new record
+                    _selectedRecord.SupplierProduct.Load(MergeOption.OverwriteChanges);
+                }
+                bindingSourceSupplierProduct.DataSource = _selectedRecord.SupplierProduct;
+
+                LoadRoomTypeLookup(_selectedRecord.CODE);
+                supplierHotelRoomTypeBindingSource.DataSource = from supRec in context.SupplierCategory
+                                                                where supRec.Product_Code == _selectedRecord.CODE && supRec.Product_Type == "HTL"
+                                                                select supRec;
+                supplierHotelRatePlanBindingSource.DataSource = from supRec in context.SupplierRatePlan
+                                                                where supRec.Product_Code == _selectedRecord.CODE && supRec.Product_Type == "HTL"
+                                                                select supRec;
+                GridControlSuppRoomType.RefreshDataSource();
+                GridControlSuppRatePlan.RefreshDataSource();
+
+                for (int i = 0; i < GridViewCustom.DataRowCount; i++)
+                    GridViewCustom.RefreshRow(i);
+
+                if ((_selectedRecord.CONTR_CDE == "C" || _selectedRecord.CONTR_CDE == "P") || (_selectedRecord.RSTR_CDE == "A"))
+                    ImageComboBoxEditAgency.Properties.ReadOnly = false;
+                else
+                    ImageComboBoxEditAgency.Properties.ReadOnly = true;
+
+            }
+       }
 
         private void simpleButton5_Click(object sender, EventArgs e)
         {
@@ -2019,7 +2060,7 @@ namespace TraceForms
                 }
             }           
             GridViewSuppRoomType.DeleteRow(handle);
-            ContactBindingSource.EndEdit();
+            supplierHotelRoomTypeBindingSource.EndEdit();
             context.SaveChanges();
             roomTypNewRec = false;
             Modified = false;
@@ -2046,7 +2087,7 @@ namespace TraceForms
         {
             int handle = GridViewSuppRatePlan.FocusedRowHandle;
             GridViewSuppRatePlan.DeleteRow(handle);
-            ContactBindingSource.EndEdit();
+            supplierHotelRatePlanBindingSource.EndEdit();
             context.SaveChanges();
             ratePlanNewRec = false;
             Modified = false;

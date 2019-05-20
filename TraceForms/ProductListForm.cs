@@ -286,7 +286,7 @@ namespace TraceForms
 
             for (int ctr = 0; ctr < mergeKeys.Length; ctr++) {
                 string key = mergeKeys[ctr];
-                mergeCols[ctr] = keys.FindIndex(k => k == key) + 1;
+                mergeCols[ctr] = Array.FindIndex(keys, k => k == key) + 1;
                 mergeVals[ctr] = ws.Cells[rowIndex, mergeCols[ctr]].Value.ToStringEmptyIfNull();
                 startRows[ctr] = rowIndex;
             }

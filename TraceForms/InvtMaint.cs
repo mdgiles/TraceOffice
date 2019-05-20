@@ -86,12 +86,6 @@ namespace TraceForms
 			SearchLookupEditAgency.Properties.DataSource = lookup;
 
 			lookup = new List<CodeName>();
-			lookup.AddRange(_context.AGY
-				.OrderBy(t => t.NO)
-				.Select(t => new CodeName() { Code = t.NO, Name = t.NAME }));
-			SearchLookupEditRelAgency.Properties.DataSource = lookup;
-
-			lookup = new List<CodeName>();
 			lookup.AddRange(_context.ROOMCOD
 				.OrderBy(t => t.CODE)
 				.Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
