@@ -347,6 +347,8 @@
             this.colCode6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDropoff_Time_Default = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSupplierProduct_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSupplierProduct_ServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.MappingDelButton = new DevExpress.XtraEditors.SimpleButton();
             this.MappingAddButton = new DevExpress.XtraEditors.SimpleButton();
@@ -3798,7 +3800,9 @@
             this.colPickup_Time_Default,
             this.colDropoff_LocationType_Default,
             this.colDropoff_Location_Default,
-            this.colDropoff_Time_Default});
+            this.colDropoff_Time_Default,
+            this.colSupplierProduct_Name,
+            this.colSupplierProduct_ServiceTime});
             this.gridViewSupplierProduct.DetailHeight = 322;
             this.gridViewSupplierProduct.GridControl = this.gridControlSupplierProduct;
             this.gridViewSupplierProduct.Name = "gridViewSupplierProduct";
@@ -3980,6 +3984,7 @@
             this.repositoryItemCustomSearchLookUpEditDefaultCat.Name = "repositoryItemCustomSearchLookUpEditDefaultCat";
             this.repositoryItemCustomSearchLookUpEditDefaultCat.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultCat.PopupView = this.repositoryItemCustomSearchLookUpEdit1View;
+            this.repositoryItemCustomSearchLookUpEditDefaultCat.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.repositoryItemCustomSearchLookUpEditDefaultCat.ValueMember = "Code";
             this.repositoryItemCustomSearchLookUpEditDefaultCat.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.repositoryItemCustomSearchLookUpEditDefaultCat.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -4021,7 +4026,7 @@
             this.colPickup_LocationType_Default.MinWidth = 35;
             this.colPickup_LocationType_Default.Name = "colPickup_LocationType_Default";
             this.colPickup_LocationType_Default.Visible = true;
-            this.colPickup_LocationType_Default.VisibleIndex = 12;
+            this.colPickup_LocationType_Default.VisibleIndex = 13;
             this.colPickup_LocationType_Default.Width = 140;
             // 
             // repositoryItemComboBoxDefaultPupLocType
@@ -4045,7 +4050,7 @@
             this.colPickup_Location_Default.MinWidth = 35;
             this.colPickup_Location_Default.Name = "colPickup_Location_Default";
             this.colPickup_Location_Default.Visible = true;
-            this.colPickup_Location_Default.VisibleIndex = 13;
+            this.colPickup_Location_Default.VisibleIndex = 14;
             this.colPickup_Location_Default.Width = 229;
             // 
             // repositoryItemCustomSearchLookUpEditDefaultPUpLoc
@@ -4059,8 +4064,10 @@
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Name = "repositoryItemCustomSearchLookUpEditDefaultPUpLoc";
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.PopupView = this.gridView1;
+            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.ValueMember = "Code";
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.SearchLookupEdit_QueryPopUp);
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView1
@@ -4096,7 +4103,7 @@
             this.colPickup_Time_Default.MinWidth = 35;
             this.colPickup_Time_Default.Name = "colPickup_Time_Default";
             this.colPickup_Time_Default.Visible = true;
-            this.colPickup_Time_Default.VisibleIndex = 14;
+            this.colPickup_Time_Default.VisibleIndex = 15;
             this.colPickup_Time_Default.Width = 131;
             // 
             // repositoryItemTimeEditDefault
@@ -4117,7 +4124,7 @@
             this.colDropoff_LocationType_Default.MinWidth = 35;
             this.colDropoff_LocationType_Default.Name = "colDropoff_LocationType_Default";
             this.colDropoff_LocationType_Default.Visible = true;
-            this.colDropoff_LocationType_Default.VisibleIndex = 15;
+            this.colDropoff_LocationType_Default.VisibleIndex = 16;
             this.colDropoff_LocationType_Default.Width = 152;
             // 
             // repositoryItemComboBoxDefaultDrpLocType
@@ -4141,7 +4148,7 @@
             this.colDropoff_Location_Default.MinWidth = 35;
             this.colDropoff_Location_Default.Name = "colDropoff_Location_Default";
             this.colDropoff_Location_Default.Visible = true;
-            this.colDropoff_Location_Default.VisibleIndex = 16;
+            this.colDropoff_Location_Default.VisibleIndex = 17;
             this.colDropoff_Location_Default.Width = 264;
             // 
             // repositoryItemCustomSearchLookUpEditDefaultDropLoc
@@ -4153,9 +4160,12 @@
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = this.BindingSourceCodeName;
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.DisplayMember = "DisplayName";
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Name = "repositoryItemCustomSearchLookUpEditDefaultDropLoc";
+            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.PopupView = this.gridView3;
+            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.ValueMember = "Code";
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
+            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.SearchLookupEdit_QueryPopUp);
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView3
@@ -4191,8 +4201,29 @@
             this.colDropoff_Time_Default.MinWidth = 35;
             this.colDropoff_Time_Default.Name = "colDropoff_Time_Default";
             this.colDropoff_Time_Default.Visible = true;
-            this.colDropoff_Time_Default.VisibleIndex = 17;
+            this.colDropoff_Time_Default.VisibleIndex = 18;
             this.colDropoff_Time_Default.Width = 131;
+            // 
+            // colSupplierProduct_Name
+            // 
+            this.colSupplierProduct_Name.Caption = "Supplier Name";
+            this.colSupplierProduct_Name.FieldName = "Name";
+            this.colSupplierProduct_Name.MinWidth = 35;
+            this.colSupplierProduct_Name.Name = "colSupplierProduct_Name";
+            this.colSupplierProduct_Name.Visible = true;
+            this.colSupplierProduct_Name.VisibleIndex = 19;
+            this.colSupplierProduct_Name.Width = 131;
+            // 
+            // colSupplierProduct_ServiceTime
+            // 
+            this.colSupplierProduct_ServiceTime.Caption = "Service Time";
+            this.colSupplierProduct_ServiceTime.ColumnEdit = this.repositoryItemTimeEditDefault;
+            this.colSupplierProduct_ServiceTime.FieldName = "ServiceTime";
+            this.colSupplierProduct_ServiceTime.MinWidth = 35;
+            this.colSupplierProduct_ServiceTime.Name = "colSupplierProduct_ServiceTime";
+            this.colSupplierProduct_ServiceTime.Visible = true;
+            this.colSupplierProduct_ServiceTime.VisibleIndex = 12;
+            this.colSupplierProduct_ServiceTime.Width = 131;
             // 
             // panelControl3
             // 
@@ -5942,5 +5973,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCode6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEditDefault;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupplierProduct_Name;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupplierProduct_ServiceTime;
     }
 }

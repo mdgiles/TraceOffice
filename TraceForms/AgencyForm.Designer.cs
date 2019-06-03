@@ -110,9 +110,9 @@ namespace TraceForms
             System.Windows.Forms.Label label32;
             System.Windows.Forms.Label label33;
             System.Windows.Forms.Label label35;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgencyForm));
             System.Windows.Forms.Label sRT3Label;
             System.Windows.Forms.Label sRT2Label;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgencyForm));
             this.LabelDate = new System.Windows.Forms.Label();
             this.LabelAgency = new System.Windows.Forms.Label();
             this.AgyBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
@@ -411,12 +411,7 @@ namespace TraceForms
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.TextEditCreditLimitRemPct = new DevExpress.XtraEditors.TextEdit();
             this.creditUnlimitedCheckEdit = new DevExpress.XtraEditors.CheckEdit();
-            this.TextEditCreditLimit = new DevExpress.XtraEditors.TextEdit();
             this.checkEdit9 = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditDaysSpace = new DevExpress.XtraEditors.SpinEdit();
             this.SpinEditPriorDays = new DevExpress.XtraEditors.SpinEdit();
@@ -511,6 +506,8 @@ namespace TraceForms
             this.SpinEditCxlNtsPrior3 = new DevExpress.XtraEditors.SpinEdit();
             this.xtraTabPage9 = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlMemberTab = new DevExpress.XtraEditors.PanelControl();
+            this.TextEditSrt3 = new DevExpress.XtraEditors.TextEdit();
+            this.TextEditSrt2 = new DevExpress.XtraEditors.TextEdit();
             this.SaveButtonMemberships = new DevExpress.XtraEditors.SimpleButton();
             this.DelButtonMemberships = new DevExpress.XtraEditors.SimpleButton();
             this.AddButtonMemberships = new DevExpress.XtraEditors.SimpleButton();
@@ -682,8 +679,11 @@ namespace TraceForms
             this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.chineseHosts_FlextourDataSet = new TraceForms.ChineseHosts_FlextourDataSet();
-            this.TextEditSrt3 = new DevExpress.XtraEditors.TextEdit();
-            this.TextEditSrt2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEditFundBalance = new DevExpress.XtraEditors.SpinEdit();
+            this.TextEditCreditLimit = new DevExpress.XtraEditors.SpinEdit();
+            this.TextEditCreditLimitRemPct = new DevExpress.XtraEditors.SpinEdit();
+            this.textEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.textEdit2 = new DevExpress.XtraEditors.SpinEdit();
             eMAILLabel = new System.Windows.Forms.Label();
             fAX_NUMLabel = new System.Windows.Forms.Label();
             pHONELabel = new System.Windows.Forms.Label();
@@ -859,12 +859,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridControlDeposits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourcePaymentTransaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewDeposits)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimitRemPct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditUnlimitedCheckEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditDaysSpace.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditPriorDays.Properties)).BeginInit();
@@ -912,6 +907,8 @@ namespace TraceForms
             this.xtraTabPage9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlMemberTab)).BeginInit();
             this.PanelControlMemberTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditParentAgy.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlMemberships)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetailBindingSource)).BeginInit();
@@ -986,8 +983,11 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditFundBalance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimitRemPct.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // eMAILLabel
@@ -1870,6 +1870,28 @@ namespace TraceForms
             label35.TabIndex = 76;
             label35.Text = "Deposit transactions";
             // 
+            // sRT3Label
+            // 
+            sRT3Label.AutoSize = true;
+            sRT3Label.BackColor = System.Drawing.Color.Transparent;
+            sRT3Label.Location = new System.Drawing.Point(535, 93);
+            sRT3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            sRT3Label.Name = "sRT3Label";
+            sRT3Label.Size = new System.Drawing.Size(101, 24);
+            sRT3Label.TabIndex = 87;
+            sRT3Label.Text = "Sub-group";
+            // 
+            // sRT2Label
+            // 
+            sRT2Label.AutoSize = true;
+            sRT2Label.BackColor = System.Drawing.Color.Transparent;
+            sRT2Label.Location = new System.Drawing.Point(60, 93);
+            sRT2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            sRT2Label.Name = "sRT2Label";
+            sRT2Label.Size = new System.Drawing.Size(63, 24);
+            sRT2Label.TabIndex = 88;
+            sRT2Label.Text = "Group";
+            // 
             // LabelDate
             // 
             this.LabelDate.AutoSize = true;
@@ -1959,6 +1981,7 @@ namespace TraceForms
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(81, 35);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -4550,18 +4573,13 @@ namespace TraceForms
             this.PanelControlAccountTab.Controls.Add(this.ButtonAddDeposit);
             this.PanelControlAccountTab.Controls.Add(label35);
             this.PanelControlAccountTab.Controls.Add(this.GridControlDeposits);
-            this.PanelControlAccountTab.Controls.Add(this.textEdit3);
             this.PanelControlAccountTab.Controls.Add(label33);
-            this.PanelControlAccountTab.Controls.Add(this.textEdit2);
             this.PanelControlAccountTab.Controls.Add(label32);
             this.PanelControlAccountTab.Controls.Add(label31);
-            this.PanelControlAccountTab.Controls.Add(this.textEdit1);
-            this.PanelControlAccountTab.Controls.Add(this.TextEditCreditLimitRemPct);
             this.PanelControlAccountTab.Controls.Add(creditUnlimitedLabel);
             this.PanelControlAccountTab.Controls.Add(this.creditUnlimitedCheckEdit);
             this.PanelControlAccountTab.Controls.Add(creditLimitRemainingWarningPctLabel);
             this.PanelControlAccountTab.Controls.Add(creditLimitLabel);
-            this.PanelControlAccountTab.Controls.Add(this.TextEditCreditLimit);
             this.PanelControlAccountTab.Controls.Add(this.checkEdit9);
             this.PanelControlAccountTab.Controls.Add(this.SpinEditDaysSpace);
             this.PanelControlAccountTab.Controls.Add(this.SpinEditPriorDays);
@@ -4580,6 +4598,11 @@ namespace TraceForms
             this.PanelControlAccountTab.Controls.Add(this.ComboBoxEditInvFmt);
             this.PanelControlAccountTab.Controls.Add(this.CheckEditImmedFlg);
             this.PanelControlAccountTab.Controls.Add(this.ButtonEditLastInvDate);
+            this.PanelControlAccountTab.Controls.Add(this.textEditFundBalance);
+            this.PanelControlAccountTab.Controls.Add(this.TextEditCreditLimit);
+            this.PanelControlAccountTab.Controls.Add(this.TextEditCreditLimitRemPct);
+            this.PanelControlAccountTab.Controls.Add(this.textEdit3);
+            this.PanelControlAccountTab.Controls.Add(this.textEdit2);
             this.PanelControlAccountTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAccountTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlAccountTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -4598,6 +4621,7 @@ namespace TraceForms
             this.ButtonDeleteDeposit.Size = new System.Drawing.Size(68, 64);
             this.ButtonDeleteDeposit.TabIndex = 78;
             this.ButtonDeleteDeposit.TabStop = false;
+            this.ButtonDeleteDeposit.Click += new System.EventHandler(this.ButtonDeleteDeposit_Click);
             // 
             // ButtonAddDeposit
             // 
@@ -4609,6 +4633,7 @@ namespace TraceForms
             this.ButtonAddDeposit.Name = "ButtonAddDeposit";
             this.ButtonAddDeposit.Size = new System.Drawing.Size(68, 64);
             this.ButtonAddDeposit.TabIndex = 77;
+            this.ButtonAddDeposit.Click += new System.EventHandler(this.ButtonAddDeposit_Click);
             // 
             // GridControlDeposits
             // 
@@ -4692,51 +4717,6 @@ namespace TraceForms
             this.colDescription.VisibleIndex = 2;
             this.colDescription.Width = 131;
             // 
-            // textEdit3
-            // 
-            this.textEdit3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimitRemainingWarningPct", true));
-            this.textEdit3.Location = new System.Drawing.Point(531, 160);
-            this.textEdit3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit3.Size = new System.Drawing.Size(167, 36);
-            this.textEdit3.TabIndex = 72;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
-            this.textEdit2.Enabled = false;
-            this.textEdit2.Location = new System.Drawing.Point(531, 248);
-            this.textEdit2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit2.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.textEdit2.Size = new System.Drawing.Size(167, 36);
-            this.textEdit2.TabIndex = 70;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
-            this.textEdit1.Location = new System.Drawing.Point(531, 202);
-            this.textEdit1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.textEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.textEdit1.Size = new System.Drawing.Size(167, 36);
-            this.textEdit1.TabIndex = 67;
-            // 
-            // TextEditCreditLimitRemPct
-            // 
-            this.TextEditCreditLimitRemPct.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimitRemainingWarningPct", true));
-            this.TextEditCreditLimitRemPct.Location = new System.Drawing.Point(531, 114);
-            this.TextEditCreditLimitRemPct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TextEditCreditLimitRemPct.Name = "TextEditCreditLimitRemPct";
-            this.TextEditCreditLimitRemPct.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.TextEditCreditLimitRemPct.Size = new System.Drawing.Size(167, 36);
-            this.TextEditCreditLimitRemPct.TabIndex = 66;
-            this.TextEditCreditLimitRemPct.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditCreditLimitRemPct.Leave += new System.EventHandler(this.TextEditCreditLimitRemPct_Leave);
-            // 
             // creditUnlimitedCheckEdit
             // 
             this.creditUnlimitedCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditUnlimited", true));
@@ -4747,19 +4727,6 @@ namespace TraceForms
             this.creditUnlimitedCheckEdit.Size = new System.Drawing.Size(37, 36);
             this.creditUnlimitedCheckEdit.TabIndex = 54;
             this.creditUnlimitedCheckEdit.Click += new System.EventHandler(this.creditUnlimitedCheckEdit_Click);
-            // 
-            // TextEditCreditLimit
-            // 
-            this.TextEditCreditLimit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
-            this.TextEditCreditLimit.Location = new System.Drawing.Point(531, 68);
-            this.TextEditCreditLimit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TextEditCreditLimit.Name = "TextEditCreditLimit";
-            this.TextEditCreditLimit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.TextEditCreditLimit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.TextEditCreditLimit.Size = new System.Drawing.Size(167, 36);
-            this.TextEditCreditLimit.TabIndex = 52;
-            this.TextEditCreditLimit.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditCreditLimit.Leave += new System.EventHandler(this.TextEditCreditLimit_Leave);
             // 
             // checkEdit9
             // 
@@ -5969,6 +5936,28 @@ namespace TraceForms
             this.PanelControlMemberTab.Size = new System.Drawing.Size(1690, 853);
             this.PanelControlMemberTab.TabIndex = 0;
             // 
+            // TextEditSrt3
+            // 
+            this.TextEditSrt3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "SRT3", true));
+            this.TextEditSrt3.EnterMoveNextControl = true;
+            this.TextEditSrt3.Location = new System.Drawing.Point(644, 87);
+            this.TextEditSrt3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditSrt3.Name = "TextEditSrt3";
+            this.TextEditSrt3.Properties.MaxLength = 10;
+            this.TextEditSrt3.Size = new System.Drawing.Size(294, 36);
+            this.TextEditSrt3.TabIndex = 90;
+            // 
+            // TextEditSrt2
+            // 
+            this.TextEditSrt2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "SRT2", true));
+            this.TextEditSrt2.EnterMoveNextControl = true;
+            this.TextEditSrt2.Location = new System.Drawing.Point(200, 88);
+            this.TextEditSrt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditSrt2.Name = "TextEditSrt2";
+            this.TextEditSrt2.Properties.MaxLength = 10;
+            this.TextEditSrt2.Size = new System.Drawing.Size(296, 36);
+            this.TextEditSrt2.TabIndex = 89;
+            // 
             // SaveButtonMemberships
             // 
             this.SaveButtonMemberships.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SaveButtonMemberships.ImageOptions.Image")));
@@ -7030,6 +7019,7 @@ namespace TraceForms
             // 
             this.toolStripTextBox1.AccessibleName = "Position";
             this.toolStripTextBox1.AutoSize = false;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(81, 35);
             this.toolStripTextBox1.Text = "0";
@@ -7596,49 +7586,82 @@ namespace TraceForms
             this.chineseHosts_FlextourDataSet.DataSetName = "ChineseHosts_FlextourDataSet";
             this.chineseHosts_FlextourDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // sRT3Label
+            // textEditFundBalance
             // 
-            sRT3Label.AutoSize = true;
-            sRT3Label.BackColor = System.Drawing.Color.Transparent;
-            sRT3Label.Location = new System.Drawing.Point(535, 93);
-            sRT3Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            sRT3Label.Name = "sRT3Label";
-            sRT3Label.Size = new System.Drawing.Size(101, 24);
-            sRT3Label.TabIndex = 87;
-            sRT3Label.Text = "Sub-group";
+            this.textEditFundBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
+            this.textEditFundBalance.Location = new System.Drawing.Point(531, 202);
+            this.textEditFundBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textEditFundBalance.Name = "textEditFundBalance";
+            this.textEditFundBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.textEditFundBalance.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.textEditFundBalance.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEditFundBalance.Size = new System.Drawing.Size(167, 36);
+            this.textEditFundBalance.TabIndex = 67;
             // 
-            // TextEditSrt3
+            // TextEditCreditLimit
             // 
-            this.TextEditSrt3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "SRT3", true));
-            this.TextEditSrt3.EnterMoveNextControl = true;
-            this.TextEditSrt3.Location = new System.Drawing.Point(644, 87);
-            this.TextEditSrt3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TextEditSrt3.Name = "TextEditSrt3";
-            this.TextEditSrt3.Properties.MaxLength = 10;
-            this.TextEditSrt3.Size = new System.Drawing.Size(294, 36);
-            this.TextEditSrt3.TabIndex = 90;
+            this.TextEditCreditLimit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
+            this.TextEditCreditLimit.Location = new System.Drawing.Point(531, 68);
+            this.TextEditCreditLimit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditCreditLimit.Name = "TextEditCreditLimit";
+            this.TextEditCreditLimit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.TextEditCreditLimit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.TextEditCreditLimit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.TextEditCreditLimit.Size = new System.Drawing.Size(167, 36);
+            this.TextEditCreditLimit.TabIndex = 52;
+            this.TextEditCreditLimit.Enter += new System.EventHandler(this.enterControl);
+            this.TextEditCreditLimit.Leave += new System.EventHandler(this.TextEditCreditLimit_Leave);
             // 
-            // sRT2Label
+            // TextEditCreditLimitRemPct
             // 
-            sRT2Label.AutoSize = true;
-            sRT2Label.BackColor = System.Drawing.Color.Transparent;
-            sRT2Label.Location = new System.Drawing.Point(60, 93);
-            sRT2Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            sRT2Label.Name = "sRT2Label";
-            sRT2Label.Size = new System.Drawing.Size(63, 24);
-            sRT2Label.TabIndex = 88;
-            sRT2Label.Text = "Group";
+            this.TextEditCreditLimitRemPct.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimitRemainingWarningPct", true));
+            this.TextEditCreditLimitRemPct.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.TextEditCreditLimitRemPct.Location = new System.Drawing.Point(531, 114);
+            this.TextEditCreditLimitRemPct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditCreditLimitRemPct.Name = "TextEditCreditLimitRemPct";
+            this.TextEditCreditLimitRemPct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.TextEditCreditLimitRemPct.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.TextEditCreditLimitRemPct.Properties.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.TextEditCreditLimitRemPct.Size = new System.Drawing.Size(167, 36);
+            this.TextEditCreditLimitRemPct.TabIndex = 66;
+            this.TextEditCreditLimitRemPct.Enter += new System.EventHandler(this.enterControl);
+            this.TextEditCreditLimitRemPct.Leave += new System.EventHandler(this.TextEditCreditLimitRemPct_Leave);
             // 
-            // TextEditSrt2
+            // textEdit3
             // 
-            this.TextEditSrt2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "SRT2", true));
-            this.TextEditSrt2.EnterMoveNextControl = true;
-            this.TextEditSrt2.Location = new System.Drawing.Point(200, 88);
-            this.TextEditSrt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TextEditSrt2.Name = "TextEditSrt2";
-            this.TextEditSrt2.Properties.MaxLength = 10;
-            this.TextEditSrt2.Size = new System.Drawing.Size(296, 36);
-            this.TextEditSrt2.TabIndex = 89;
+            this.textEdit3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimitRemainingWarningPct", true));
+            this.textEdit3.Location = new System.Drawing.Point(531, 160);
+            this.textEdit3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textEdit3.Name = "textEdit3";
+            this.textEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.textEdit3.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.textEdit3.Size = new System.Drawing.Size(167, 36);
+            this.textEdit3.TabIndex = 72;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AgyBindingSource, "CreditLimit", true));
+            this.textEdit2.Location = new System.Drawing.Point(531, 248);
+            this.textEdit2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.textEdit2.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.textEdit2.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit2.Size = new System.Drawing.Size(167, 36);
+            this.textEdit2.TabIndex = 70;
             // 
             // AgencyForm
             // 
@@ -7757,12 +7780,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridControlDeposits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourcePaymentTransaction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewDeposits)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimitRemPct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditUnlimitedCheckEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditDaysSpace.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditPriorDays.Properties)).EndInit();
@@ -7813,6 +7831,8 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlMemberTab)).EndInit();
             this.PanelControlMemberTab.ResumeLayout(false);
             this.PanelControlMemberTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditParentAgy.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlMemberships)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DetailBindingSource)).EndInit();
@@ -7893,8 +7913,11 @@ namespace TraceForms
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditSrt2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditFundBalance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditCreditLimitRemPct.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8291,7 +8314,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn grdColCountry;
         private DevExpress.XtraGrid.Columns.GridColumn grdColPhone;
         private DevExpress.XtraEditors.CheckEdit creditUnlimitedCheckEdit;
-        private DevExpress.XtraEditors.TextEdit TextEditCreditLimit;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage14;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.TextEdit TextEditPaymentProcessorCustProfileEmail;
@@ -8439,7 +8461,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colAgencyPaymentProfile;
         private DevExpress.XtraGrid.Columns.GridColumn colImagesRoot;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName1;
-        private DevExpress.XtraEditors.TextEdit TextEditCreditLimitRemPct;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
@@ -8457,9 +8478,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colAgentInactive;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.CheckEdit checkEditAllowElectronicPayment;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraGrid.GridControl GridControlDeposits;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewDeposits;
         private DevExpress.XtraEditors.SimpleButton ButtonAddDeposit;
@@ -8473,5 +8491,10 @@ namespace TraceForms
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteDeposit;
         private DevExpress.XtraEditors.TextEdit TextEditSrt3;
         private DevExpress.XtraEditors.TextEdit TextEditSrt2;
+        private DevExpress.XtraEditors.SpinEdit textEditFundBalance;
+        private DevExpress.XtraEditors.SpinEdit TextEditCreditLimit;
+        private DevExpress.XtraEditors.SpinEdit TextEditCreditLimitRemPct;
+        private DevExpress.XtraEditors.SpinEdit textEdit3;
+        private DevExpress.XtraEditors.SpinEdit textEdit2;
     }
 }

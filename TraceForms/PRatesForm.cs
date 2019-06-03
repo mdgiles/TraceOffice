@@ -69,7 +69,6 @@ namespace TraceForms
                 .OrderBy(t => t.CODE).ToList();
             lookup = new List<CodeName>();
             lookup.AddRange(_packages.Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
-            lookup.Insert(0, new CodeName());
             SearchLookupEditCode.Properties.DataSource = lookup;
 
             lookup = new List<CodeName>();
@@ -82,7 +81,6 @@ namespace TraceForms
             lookup.AddRange(_context.ROOMCOD
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
-            lookup.Insert(0, new CodeName());
             SearchLookupEditCategory.Properties.DataSource = lookup;
 
             var specialVals = _context.SpecialValue.Where(a => a.Type == "PKG").OrderBy(x => x.Code)
@@ -914,7 +912,6 @@ namespace TraceForms
         private void PopupForm_KeyUp(object sender, KeyEventArgs e)
         {
             bool gotMatch = false;
-            string keyValue;
             PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
             if (e.KeyData == Keys.Enter) {
                 string searchText = popupForm.Properties.View.FindFilterText;
@@ -923,17 +920,10 @@ namespace TraceForms
                     //If there is a match is on the ValueMember (Code) column, that should take precedence
                     //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
                     //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
-                    for (int rowHandle = 0; rowHandle < view.DataRowCount; rowHandle++) {
-                        //Handle where the control may be bound to different data types
-                        object row = view.GetRow(rowHandle);
-                        if (row.GetType() == typeof(PACK)) {
-                            keyValue = ((PACK)row).CODE;
-                        }
-                        else {
-                            keyValue = ((CodeName)row).Code;
-                        }
-                        if (searchText.Equals(keyValue, StringComparison.OrdinalIgnoreCase)) {
-                            view.FocusedRowHandle = rowHandle;
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
                             gotMatch = true;
                             break;
                         }
@@ -948,12 +938,9 @@ namespace TraceForms
 
         private void SearchLookupEditCode_EditValueChanged(object sender, EventArgs e)
         {
-            CodeName pkg = SearchLookupEditCode.EditValue as CodeName;
-            if (pkg != null) {
+            if (SearchLookupEditCode.EditValue is CodeName pkg) {
                 PACK package = _packages.First(p => p.CODE == pkg.Code);
-                TimeEditTime.Enabled = package.MultipleTimes;
-                if (!package.MultipleTimes)
-                    TimeEditTime.EditValue = null;
+                SetControlStateEnabled(TimeEditTime, package.MultipleTimes, null);
                 //Disable all the room rates except for single, and relabel the single as Adult
                 //The single rate will be interpreted as per person
                 foreach (BaseControl control in PanelControlRoomRates.Controls) {
@@ -962,6 +949,7 @@ namespace TraceForms
                 foreach (BaseControl control in PanelControlExtraNights.Controls) {
                     SetControlStateEnabled(control, !package.ServicesOnly, null);
                 }
+                SetControlStateEnabled(SearchLookupEditHotelCode, !package.ServicesOnly, null);
                 LabelControlSingleLabel.Text = package.ServicesOnly ? "Adult" : "Single";
             }
         }

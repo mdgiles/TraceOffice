@@ -149,7 +149,7 @@ namespace TraceForms
 
             _supplierCombo.Items.Add(loadBlank);
             _supplierCombo.Items.AddRange(_context.Supplier
-                            .Where(sp => sp.ProductType == "OPT")
+                            .Where(sp => (sp.ProductType ?? "OPT").Contains("OPT"))
                             .OrderBy(o => o.Name).AsEnumerable()
                             .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
                             .ToList());
@@ -1875,7 +1875,7 @@ namespace TraceForms
             if (!view.GetRowCellValue(e.RowHandle, colPickup_LocationType_Default).IsNullOrEmpty()) {
                 if (view.GetRowCellValue(e.RowHandle, colPickup_Location_Default).IsNullOrEmpty()) {
                     e.Valid = false;
-                    view.SetColumnError(colPickup_LocationType_Default, "Please enter a default pickup location for the Supplier Mapping record.");
+                    view.SetColumnError(colPickup_Location_Default, "Please enter a default pickup location for the Supplier Mapping record.");
                 }
                 if (view.GetRowCellValue(e.RowHandle, colPickup_Time_Default).IsNullOrEmpty()) {
                     e.Valid = false;
@@ -2126,6 +2126,13 @@ namespace TraceForms
             if (e.Column == colCatMappingSupplier) {
                 e.RepositoryItem = _supplierCombo;
             }
+        }
+
+        private void SearchLookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e) {
+            if ((sender as SearchLookUpEdit).Properties.DataSource == null)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
         }
 
         private void PopupForm_KeyUp(object sender, KeyEventArgs e) {

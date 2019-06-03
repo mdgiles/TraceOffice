@@ -3976,6 +3976,14 @@ namespace TraceForms
         {
             modified = true;
         }
+
+        private void ButtonAddDeposit_Click(object sender, EventArgs e) {
+
+        }
+
+        private void ButtonDeleteDeposit_Click(object sender, EventArgs e) {
+
+        }
     }
 
     public static class StringExtension

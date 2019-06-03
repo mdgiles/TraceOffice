@@ -120,7 +120,7 @@ namespace TraceForms
 
             _supplierCombo.Items.Add(loadBlank);
             _supplierCombo.Items.AddRange(_context.Supplier
-                            .Where(sp => sp.ProductType == "PKG")
+                            .Where(sp => (sp.ProductType ?? "PKG").Contains("PKG"))
                             .OrderBy(o => o.Name).AsEnumerable()
                             .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
                             .ToList());
