@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TraceForms</RootNamespace>
     <AssemblyName>TraceForms</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -69,108 +69,124 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedBin\AuthorizeNet.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Data.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Map.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v18.1.Export, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Mvvm.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.CodeView.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Core.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v15.1.Reporting.Extensions, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraMap.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.1.Reporting.Extensions, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v18.1.Core, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v18.1, Version=18.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2767b7a86b2c6482, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedBin\Dynamic.dll</HintPath>
+      <HintPath>..\..\..\SharedBin\Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>..\..\SharedBin\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FlexBObj">
-      <HintPath>..\FlexBObj\bin\Debug\FlexBObj.dll</HintPath>
+      <HintPath>..\..\FlexBObj\bin\$(Configuration)\FlexBObj.dll</HintPath>
     </Reference>
     <Reference Include="FlexCommissions">
-      <HintPath>..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>
+      <HintPath>..\..\FlexCommissions\bin\$(Configuration)\FlexCommissions.dll</HintPath>
     </Reference>
-    <Reference Include="FlexControls, Version=1.0.4234.15530, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FlexControls">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexControls\bin\FlexControls.dll</HintPath>
+      <HintPath>..\..\FlexControls\bin\$(Configuration)\FlexControls.dll</HintPath>
     </Reference>
     <Reference Include="FlexCore">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
+      <HintPath>..\..\FlexCore\bin\$(Configuration)\FlexCore.dll</HintPath>
     </Reference>
     <Reference Include="FlexEntities">
-      <HintPath>..\FlexEntities\bin\$(Configuration)\FlexEntities.dll</HintPath>
+      <HintPath>..\..\FlexEntities\bin\$(Configuration)\FlexEntities.dll</HintPath>
     </Reference>
     <Reference Include="FlexInterfaces">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
+      <HintPath>..\..\FlexInterfaces\bin\$(Configuration)\FlexInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="FlexModel">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
+      <HintPath>..\..\FlexModel\bin\$(Configuration)\FlexModel.dll</HintPath>
     </Reference>
     <Reference Include="MediaInfo">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
+      <HintPath>..\..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.mshtml" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
+      <HintPath>..\..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -181,17 +197,23 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UIAutomationClient" />
+    <Reference Include="WinFormHtmlEditor">
+      <HintPath>..\..\..\SharedBin\WinFormHtmlEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountingAPI.cs" />
@@ -297,6 +319,7 @@
     <Compile Include="CodeName.cs" />
     <Compile Include="Configurator.cs" />
     <Compile Include="DisplayHelper.cs" />
+    <Compile Include="EntityObjectExtensions.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="HotelProductionReportForm.cs">
       <SubType>Form</SubType>
@@ -304,6 +327,7 @@
     <Compile Include="HotelProductionReportForm.Designer.cs">
       <DependentUpon>HotelProductionReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IdName.cs" />
     <Compile Include="MealsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,18 +449,6 @@
     <Compile Include="ExtendedIndex.Designer.cs">
       <DependentUpon>ExtendedIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupCopyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GroupCopyForm.Designer.cs">
-      <DependentUpon>GroupCopyForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GroupForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GroupForm.Designer.cs">
-      <DependentUpon>GroupForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="gsLoad.cs" />
     <Compile Include="hRateCopyForm.cs">
       <SubType>Form</SubType>
@@ -468,11 +480,11 @@
     <Compile Include="InsuranForm.Designer.cs">
       <DependentUpon>InsuranForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InvMaint.cs">
+    <Compile Include="InvtMaint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InvMaint.designer.cs">
-      <DependentUpon>InvMaint.cs</DependentUpon>
+    <Compile Include="InvtMaint.designer.cs">
+      <DependentUpon>InvtMaint.cs</DependentUpon>
     </Compile>
     <Compile Include="InvtChgForm.cs">
       <SubType>Form</SubType>
@@ -557,6 +569,12 @@
     </Compile>
     <Compile Include="navigator.Designer.cs">
       <DependentUpon>navigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductListForm.designer.cs">
+      <DependentUpon>ProductListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OperationsServiceListForm.cs">
       <SubType>Form</SubType>
@@ -844,6 +862,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Trav_Prod.dbml</DependentUpon>
     </Compile>
+    <Compile Include="TypeCode.cs" />
     <Compile Include="UserFieldsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -851,18 +870,6 @@
       <DependentUpon>UserFieldsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="validCheck.cs" />
-    <Compile Include="VouchGenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VouchGenForm.Designer.cs">
-      <DependentUpon>VouchGenForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VouchUtilityForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VouchUtilityForm.designer.cs">
-      <DependentUpon>VouchUtilityForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="WaypointForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1005,12 +1012,6 @@
     <EmbeddedResource Include="ExtendedIndex.resx">
       <DependentUpon>ExtendedIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupCopyForm.resx">
-      <DependentUpon>GroupCopyForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GroupForm.resx">
-      <DependentUpon>GroupForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HotelGenInfo.resx">
       <DependentUpon>HotelGenInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1041,8 +1042,8 @@
     <EmbeddedResource Include="InsuranForm.resx">
       <DependentUpon>InsuranForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InvMaint.resx">
-      <DependentUpon>InvMaint.cs</DependentUpon>
+    <EmbeddedResource Include="InvtMaint.resx">
+      <DependentUpon>InvtMaint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvtChgForm.resx">
       <DependentUpon>InvtChgForm.cs</DependentUpon>
@@ -1089,6 +1090,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MGMRatesImportForm.resx">
       <DependentUpon>MGMRatesImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductListForm.resx">
+      <DependentUpon>ProductListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperationsServiceListForm.resx">
       <DependentUpon>OperationsServiceListForm.cs</DependentUpon>
@@ -1216,6 +1220,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BusAssignment.datasource" />
     <None Include="Properties\DataSources\CodeName.datasource" />
+    <None Include="Properties\DataSources\CodeName1.datasource" />
     <None Include="Properties\DataSources\FlexBObj.PaymentProfiles.datasource" />
     <None Include="Properties\DataSources\FlexModel.Address.datasource" />
     <None Include="Properties\DataSources\FlexModel.AddressType.datasource" />
@@ -1236,6 +1241,7 @@
     <None Include="Properties\DataSources\FlexModel.ExtranetPermission.datasource" />
     <None Include="Properties\DataSources\FlexModel.ExtranetUser.datasource" />
     <None Include="Properties\DataSources\FlexModel.ImportMapping.datasource" />
+    <None Include="Properties\DataSources\FlexModel.PaymentTransaction.datasource" />
     <None Include="Properties\DataSources\FlexModel.RelatedProduct.datasource" />
     <None Include="Properties\DataSources\FlexModel.RESOURCE.datasource" />
     <None Include="Properties\DataSources\FlexModel.RptContact.datasource" />
@@ -1247,21 +1253,18 @@
     <None Include="Properties\DataSources\FlexModel.SupplierHotelRatePlan.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierHotelRoomType.datasource" />
     <None Include="Properties\DataSources\FlexModel.SupplierProduct.datasource" />
+    <None Include="Properties\DataSources\IdName.datasource" />
     <None Include="Properties\DataSources\NameAssignment.datasource" />
     <None Include="Properties\DataSources\PassengerAssignment.datasource" />
     <None Include="Properties\DataSources\PassengerCounts.datasource" />
     <None Include="Properties\DataSources\Trav_ProdDataContext.datasource" />
+    <None Include="Properties\DataSources\TypeCode.datasource" />
+    <None Include="Properties\DataSources\TypeCodeName.datasource" />
     <None Include="Trav_Prod.dbml.layout">
       <DependentUpon>Trav_Prod.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="UserFieldsForm.resx">
       <DependentUpon>UserFieldsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VouchGenForm.resx">
-      <DependentUpon>VouchGenForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VouchUtilityForm.resx">
-      <DependentUpon>VouchUtilityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaypointForm.resx">
       <DependentUpon>WaypointForm.cs</DependentUpon>
@@ -1408,6 +1411,16 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomSearchLookupEdit\CustomPopupSearchLookUpEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomSearchLookupEdit\CustomSearchLookupEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomSearchLookupEdit\DisplayFilterEventArgs.cs" />
+    <Compile Include="CustomSearchLookupEdit\RepositoryItemCustomSearchLookupEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Content Include="FlexRes.ico" />
     <Content Include="Resources\Copy.png" />
     <None Include="Resources\arrow_down.png" />

@@ -24,6 +24,7 @@ namespace FlexOffice
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                DevExpress.XtraEditors.WindowsFormsSettings.FindPanelParserKind = DevExpress.Data.Filtering.FindPanelParserKind.Exact;
                 DevExpress.Skins.SkinManager.EnableFormSkins();
                 DevExpress.UserSkins.BonusSkins.Register();
                 UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");

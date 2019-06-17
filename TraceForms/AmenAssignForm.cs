@@ -149,8 +149,8 @@ namespace TraceForms
            
             if (sVC_TYPEComboBoxEdit.Text == "HTL")
             {
-
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "HTL" select c;
                 colITEM_DESC1.Caption = "HOTEL AMENITIES";
                 treeList1.BeginSort();
@@ -163,7 +163,8 @@ namespace TraceForms
             }
             if (sVC_TYPEComboBoxEdit.Text == "PKG")
             {
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "PKG" select c;
                 colITEM_DESC1.Caption = "PACKAGE AMENITIES";
                 treeList1.BeginSort();
@@ -173,21 +174,22 @@ namespace TraceForms
                 ImageComboBoxEditCode.Properties.Items.AddRange(pkgVals);
                 treeList1.MoveFirst();
             }
-            if (sVC_TYPEComboBoxEdit.Text == "CAR")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" select c;
-                colITEM_DESC1.Caption = "CAR AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(carVals);
-                treeList1.MoveFirst();
-            }
+            //if (sVC_TYPEComboBoxEdit.Text == "CAR")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" select c;
+            //    colITEM_DESC1.Caption = "CAR AMENITIES";
+            //    treeList1.BeginSort();
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    treeList1.EndSort();
+            //    treeList1.ExpandAll();
+            //    ImageComboBoxEditCode.Properties.Items.AddRange(carVals);
+            //    treeList1.MoveFirst();
+            //}
             if (sVC_TYPEComboBoxEdit.Text == "OPT")
             {
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "OPT" select c;
                 colITEM_DESC1.Caption = "OPTIONAL SERVICE AMENITIES";
                 treeList1.BeginSort();
@@ -197,30 +199,30 @@ namespace TraceForms
                 ImageComboBoxEditCode.Properties.Items.AddRange(compVals);
                 treeList1.MoveFirst();
             }
-            if (sVC_TYPEComboBoxEdit.Text == "CRU")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" select c;
-                colITEM_DESC1.Caption = "CRUISE AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(cruVals);
-                treeList1.MoveFirst();
-            }
-            if (sVC_TYPEComboBoxEdit.Text == "AIR")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" select c;
-                colITEM_DESC1.Caption = "AIR AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(airVals);
-                treeList1.MoveFirst();
-            }
+            //if (sVC_TYPEComboBoxEdit.Text == "CRU")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" select c;
+            //    colITEM_DESC1.Caption = "CRUISE AMENITIES";
+            //    treeList1.BeginSort();
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    treeList1.EndSort();
+            //    treeList1.ExpandAll();
+            //    ImageComboBoxEditCode.Properties.Items.AddRange(cruVals);
+            //    treeList1.MoveFirst();
+            //}
+            //if (sVC_TYPEComboBoxEdit.Text == "AIR")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" select c;
+            //    colITEM_DESC1.Caption = "AIR AMENITIES";
+            //    treeList1.BeginSort();
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    treeList1.EndSort();
+            //    treeList1.ExpandAll();
+            //    ImageComboBoxEditCode.Properties.Items.AddRange(airVals);
+            //    treeList1.MoveFirst();
+            //}
         }
 
         private void AmenAssignForm_Load(object sender, EventArgs e)
@@ -555,7 +557,8 @@ namespace TraceForms
 
         private void loadTreelist(string code, string cat)
         {
-            treeList2.FilterConditions.Clear();
+            treeList2.ResetAutoFilterConditions();
+            //treeList2.FilterConditions.Clear();
             treeList2.DataSource = from c in context.AMENITY
                                    from oa in context.AMENASSGN
                                    where oa.SVC_CODE == code && oa.SVC_CAT == cat && c.CODE == oa.CODE && c.SVC_TYPE == sVC_TYPEComboBoxEdit.Text &&  oa.SVC_TYPE == sVC_TYPEComboBoxEdit.Text
