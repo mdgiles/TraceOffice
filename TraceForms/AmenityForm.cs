@@ -110,7 +110,8 @@ namespace TraceForms
 
             if (sVCComboBoxEdit.Text == "HTL")
             {
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "HTL" orderby c.SORT_ORDER select c;
                 colITEM_DESC1.Caption = "HOTEL AMENITIES";
                 //  treeList1.BeginSort();
@@ -123,7 +124,8 @@ namespace TraceForms
             }
             if (sVCComboBoxEdit.Text == "PKG")
             {
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "PKG" orderby c.SORT_ORDER select c;
                 // treeList1.BeginSort();
                 treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
@@ -133,21 +135,22 @@ namespace TraceForms
                 sVCComboBoxEdit.Focus();
                 treeList1.MoveFirst();
             }
-            if (sVCComboBoxEdit.Text == "CAR")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" orderby c.SORT_ORDER select c;
-                //treeList1.BeginSort();
-                colITEM_DESC1.Caption = "CAR AMENITIES";
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                // treeList1.EndSort();
-                treeList1.ExpandAll();
-                sVCComboBoxEdit.Focus();
-                treeList1.MoveFirst();
-            }
+            //if (sVCComboBoxEdit.Text == "CAR")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" orderby c.SORT_ORDER select c;
+            //    //treeList1.BeginSort();
+            //    colITEM_DESC1.Caption = "CAR AMENITIES";
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    // treeList1.EndSort();
+            //    treeList1.ExpandAll();
+            //    sVCComboBoxEdit.Focus();
+            //    treeList1.MoveFirst();
+            //}
             if (sVCComboBoxEdit.Text == "OPT")
             {
-                treeList1.FilterConditions.Clear();
+                treeList1.ResetAutoFilterConditions();
+                //treeList1.FilterConditions.Clear();
                 AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "OPT" orderby c.SORT_ORDER select c;
                 //treeList1.BeginSort();
                 treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
@@ -157,30 +160,30 @@ namespace TraceForms
                 sVCComboBoxEdit.Focus();
                 treeList1.MoveFirst();
             }
-            if (sVCComboBoxEdit.Text == "CRU")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" orderby c.SORT_ORDER  select c;
-                //treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                //treeList1.EndSort();
-                colITEM_DESC1.Caption = "CRUISE AMENITIES";
-                treeList1.ExpandAll();
-                sVCComboBoxEdit.Focus();
-                treeList1.MoveFirst();
-            }
-            if (sVCComboBoxEdit.Text == "AIR")
-            {
-                treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" orderby c.SORT_ORDER select c;
-                //treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                //treeList1.EndSort();
-                treeList1.ExpandAll();
-                colITEM_DESC1.Caption = "AIR AMENITIES";
-                sVCComboBoxEdit.Focus();
-                treeList1.MoveFirst();
-            }
+            //if (sVCComboBoxEdit.Text == "CRU")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" orderby c.SORT_ORDER  select c;
+            //    //treeList1.BeginSort();
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    //treeList1.EndSort();
+            //    colITEM_DESC1.Caption = "CRUISE AMENITIES";
+            //    treeList1.ExpandAll();
+            //    sVCComboBoxEdit.Focus();
+            //    treeList1.MoveFirst();
+            //}
+            //if (sVCComboBoxEdit.Text == "AIR")
+            //{
+            //    treeList1.FilterConditions.Clear();
+            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" orderby c.SORT_ORDER select c;
+            //    //treeList1.BeginSort();
+            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            //    //treeList1.EndSort();
+            //    treeList1.ExpandAll();
+            //    colITEM_DESC1.Caption = "AIR AMENITIES";
+            //    sVCComboBoxEdit.Focus();
+            //    treeList1.MoveFirst();
+            //}
             sVCComboBoxEdit.Focus();
             modified = false;
             if (newRec)

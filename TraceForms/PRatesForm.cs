@@ -69,7 +69,6 @@ namespace TraceForms
                 .OrderBy(t => t.CODE).ToList();
             lookup = new List<CodeName>();
             lookup.AddRange(_packages.Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
-            lookup.Insert(0, new CodeName());
             SearchLookupEditCode.Properties.DataSource = lookup;
 
             lookup = new List<CodeName>();
@@ -82,7 +81,6 @@ namespace TraceForms
             lookup.AddRange(_context.ROOMCOD
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
-            lookup.Insert(0, new CodeName());
             SearchLookupEditCategory.Properties.DataSource = lookup;
 
             var specialVals = _context.SpecialValue.Where(a => a.Type == "PKG").OrderBy(x => x.Code)
@@ -680,57 +678,7 @@ namespace TraceForms
 
         private void overlappingRatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DateTime start = new DateTime();
-            DateTime end = new DateTime();
-            if (!string.IsNullOrWhiteSpace(DateEditStartDate.Text))
-                start = Convert.ToDateTime(DateEditStartDate.Text);
 
-            if (!string.IsNullOrWhiteSpace(DateEditEndDate.Text))
-                end = Convert.ToDateTime(DateEditEndDate.Text);
-            string code = SearchLookupEditCode.EditValue.ToString();
-            string agency = SearchLookupEditAgency.EditValue.ToString();
-            string cat = SearchLookupEditCategory.EditValue.ToString();
-            int id = (int)GridViewLookup.GetFocusedRowCellValue("ID");
-            bool inactive = (bool)CheckEditInactive.EditValue;
-            if (!inactive)
-            {
-                //The sql I want to determine date overlaps:
-                //start between c.START_DATE and c.END_DATE OR end between c.START_DATE and c.END_DATE OR
-                //c.START_DATE between start and end OR c.END_DATE between start and end
-                var load = from c in _context.PRATES
-                           where c.CODE == code && c.ID != id && c.AGENCY == agency && c.CAT == cat && c.Inactive == false
-                               && ((start >= c.START_DATE && start <= c.END_DATE) || (end >= c.START_DATE && end <= c.END_DATE)
-                               || (c.START_DATE >= start && c.START_DATE <= end) || (c.END_DATE >= start && c.END_DATE <= end))
-                           select c;
-                if (load.Count() == 0)
-                    MessageBox.Show("No overlapping rate sheets exist.");
-                else
-                {
-                    var overlaps = new List<PRATES>();
-                    foreach (var val in load)
-                    {
-                        DateTime? value1 = (DateTime?)GridViewLookup.GetFocusedRowCellValue("ResDate_Start");
-                        DateTime? value2 = (DateTime?)GridViewLookup.GetFocusedRowCellValue("ResDate_End");
-                        if ((val.ResDate_Start.HasValue && val.ResDate_End.HasValue && value1.HasValue && value2.HasValue)
-                            || (!val.ResDate_Start.HasValue && !val.ResDate_End.HasValue && !value1.HasValue && !value2.HasValue))
-                        {
-                            overlaps.Add(val);
-                        }
-                    }
-                    if (overlaps.Count() > 0)
-                    {
-                        GridControl2.DataSource = overlaps;
-                        PopupContainerControl1.Top = LabelCode.Top;
-                        PopupContainerControl1.Left = LabelCode.Left;
-                        PopupContainerControl1.BringToFront();
-                        PopupContainerControl1.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No overlapping rate sheets exist.");
-                    }
-                }
-            }
         }
 
         private void SearchLookupEditCode_Leave(object sender, System.EventArgs e)
@@ -914,7 +862,6 @@ namespace TraceForms
         private void PopupForm_KeyUp(object sender, KeyEventArgs e)
         {
             bool gotMatch = false;
-            string keyValue;
             PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
             if (e.KeyData == Keys.Enter) {
                 string searchText = popupForm.Properties.View.FindFilterText;
@@ -923,17 +870,10 @@ namespace TraceForms
                     //If there is a match is on the ValueMember (Code) column, that should take precedence
                     //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
                     //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
-                    for (int rowHandle = 0; rowHandle < view.DataRowCount; rowHandle++) {
-                        //Handle where the control may be bound to different data types
-                        object row = view.GetRow(rowHandle);
-                        if (row.GetType() == typeof(PACK)) {
-                            keyValue = ((PACK)row).CODE;
-                        }
-                        else {
-                            keyValue = ((CodeName)row).Code;
-                        }
-                        if (searchText.Equals(keyValue, StringComparison.OrdinalIgnoreCase)) {
-                            view.FocusedRowHandle = rowHandle;
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
                             gotMatch = true;
                             break;
                         }
@@ -948,12 +888,9 @@ namespace TraceForms
 
         private void SearchLookupEditCode_EditValueChanged(object sender, EventArgs e)
         {
-            CodeName pkg = SearchLookupEditCode.EditValue as CodeName;
-            if (pkg != null) {
-                PACK package = _packages.First(p => p.CODE == pkg.Code);
-                TimeEditTime.Enabled = package.MultipleTimes;
-                if (!package.MultipleTimes)
-                    TimeEditTime.EditValue = null;
+            PACK package = _packages.FirstOrDefault(p => p.CODE == SearchLookupEditCode.EditValue.ToStringEmptyIfNull());
+            if (package != null) {
+                SetControlStateEnabled(TimeEditTime, package.MultipleTimes, null);
                 //Disable all the room rates except for single, and relabel the single as Adult
                 //The single rate will be interpreted as per person
                 foreach (BaseControl control in PanelControlRoomRates.Controls) {
@@ -962,6 +899,7 @@ namespace TraceForms
                 foreach (BaseControl control in PanelControlExtraNights.Controls) {
                     SetControlStateEnabled(control, !package.ServicesOnly, null);
                 }
+                SetControlStateEnabled(SearchLookupEditHotelCode, !package.ServicesOnly, null);
                 LabelControlSingleLabel.Text = package.ServicesOnly ? "Adult" : "Single";
             }
         }

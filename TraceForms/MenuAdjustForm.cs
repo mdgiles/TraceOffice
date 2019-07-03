@@ -29,7 +29,8 @@ namespace TraceForms
 
             menuItemRestrictionBindingSource.DataSource = context.MenuItemSecurity;
 
-            treeList1.FilterConditions.Clear();
+            treeList1.ResetAutoFilterConditions();
+            //treeList1.FilterConditions.Clear();
             menuConfigParentBindingSource.DataSource = context.MenuItem;
             
             treeList1.KeyFieldName = "ID";
