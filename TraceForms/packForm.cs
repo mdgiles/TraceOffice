@@ -20,14 +20,12 @@ using FlexModel;
 using Custom_SearchLookupEdit;
 using DevExpress.Data.Async.Helpers;
 using FlexInterfaces.Core;
+using FlexCommissions;
 
 namespace TraceForms
 {
     public partial class packForm : DevExpress.XtraEditors.XtraForm
     {
-        public List<IComprod2> _myCommRecs;
-        public List<IComprod2> _myCommRecsAgy;
-        public List<ICommLevel> _myCommLvl;
         FlextourEntities _context;
         PACK _selectedRecord;
         Timer _actionConfirmation;
@@ -35,7 +33,6 @@ namespace TraceForms
         ICoreSys _sys;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
-        RepositoryItemCustomSearchLookUpEdit _operatorSearch = new RepositoryItemCustomSearchLookUpEdit();
 
         public packForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -386,6 +383,10 @@ namespace TraceForms
                 SupplierCategory suppCat = (SupplierCategory)GridViewSupplierCategory.GetRow(rowCtr);
                 suppCat.Product_Type = "PKG";
                 suppCat.Product_Code = TextEditCode.Text ?? string.Empty;
+                //Empty string represents no category mapping, but it needs to be null for the foreign key
+                if (string.IsNullOrWhiteSpace(suppCat.Roomcod_Code)) {
+                    suppCat.Roomcod_Code = null;
+                }
             }
             BindingSourceSupplierCategory.EndEdit();
 
@@ -416,12 +417,7 @@ namespace TraceForms
 
         private bool ValidateAll()
         {
-            bool suppProdsInvalid = false;
-            if (BindingSourceSupplierProduct.List.Count > 0) {
-                suppProdsInvalid = BindingSourceSupplierProduct.List.Cast<SupplierProduct>().Any(b => !b.Validate());
-            }
-
-            if (!_selectedRecord.Validate() || suppProdsInvalid) {
+            if (!_selectedRecord.Validate()) {
                 ShowMainControlErrors();
                 DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
                 return false;
@@ -626,7 +622,7 @@ namespace TraceForms
             }
         }
 
-        private void GridViewPackages_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
         {
             //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
             //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
@@ -644,14 +640,11 @@ namespace TraceForms
             //Thus we have a flag which is set in that case to ignore this event.
             if (!_ignorePositionChange)
                 SetBindings();
-
-            if (_selectedRecord != null)
-                UpdateCommMarkupGrid(_sys.Settings.DefaultAgency, null, "ALL");
         }
 
         private void gridViewUserFields_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
-            if (e.Column == GridColumnPackValue) {
+            if (e.Column == GridColumnCustomValue) {
                 string fieldName = GridViewUserFields.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
                 if (e.IsGetData) {
                     e.Value = _selectedRecord.GetPropertyValue(fieldName);
@@ -688,74 +681,44 @@ namespace TraceForms
             UpdateCommMarkupGrid(agency, date, source);//refactor to method
         }
 
-        private void ButtonEditDate_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(ButtonEditDate.Text))
-                ButtonEditDate.Text = validCheck.convertDate(ButtonEditDate.Text);
-        }
-
-        private void ButtonEditDate_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
         private void SearchLookupEditCity_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCity, sender);
         }
 
-        private void GridViewCommissions_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        private void UpdateCommMarkupGrid(string agency, DateTime? date, string source)
         {
-            if ((e.Column.FieldName == "ResStartDate" || e.Column.FieldName == "ResEndDate" || e.Column.FieldName == "SvcStartDate" || e.Column.FieldName == "SvcEndDate") && !string.IsNullOrWhiteSpace(e.DisplayText))
-                e.DisplayText = validCheck.convertDate(e.DisplayText);
-        }
+            List<IComprod2> commRecs;
+            List<IComprod2> commRecsAgy;
+            List<ICommLevel> commLevel;
 
-        private void GridViewMarkups_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
-        {
-            if ((e.Column.FieldName == "ResStartDate" || e.Column.FieldName == "ResEndDate" || e.Column.FieldName == "SvcStartDate" || e.Column.FieldName == "SvcEndDate") && !string.IsNullOrWhiteSpace(e.DisplayText))
-                e.DisplayText = validCheck.convertDate(e.DisplayText);
-        }
+            commRecs = (from rec in _context.COMPROD2
+                            where (rec.TYPE == "PKG") && (!(rec.Inactive ?? true)) && (((rec.START_DATE ?? DateTime.MinValue) <= (date ?? DateTime.MaxValue)) 
+                            && ((rec.END_DATE ?? DateTime.MaxValue) >= (date ?? DateTime.MinValue)))
+                            select rec).ToList<IComprod2>();
+            commRecsAgy = (from rec in _context.COMPROD2
+                                where (rec.TYPE == "AGY") && (!(rec.Inactive ?? true)) && (((rec.START_DATE ?? DateTime.MinValue) <= (date ?? DateTime.MaxValue))
+                            && ((rec.END_DATE ?? DateTime.MaxValue) >= (date ?? DateTime.MinValue)))
+                           select rec).ToList<IComprod2>();
+            commLevel = (from rec in _context.CommLevel select rec).ToList<ICommLevel>();
 
-        private void UpdateCommMarkupGrid(string Agency, DateTime? TheDate, string Source)
-        {
-            if (TheDate != null) {
-                _myCommRecs = (from rec in _context.COMPROD2
-                               where (rec.TYPE == "PKG") && (rec.Inactive == false) && ((rec.START_DATE <= TheDate) && (rec.END_DATE >= TheDate))
-                               select rec).ToList<IComprod2>();
-                _myCommRecsAgy = (from rec in _context.COMPROD2
-                                  where (rec.TYPE == "AGY") && (rec.Inactive == false) && ((rec.START_DATE <= TheDate) && (rec.END_DATE >= TheDate))
-                                  select rec).ToList<IComprod2>();
+            foreach (COMPROD2 rec in commRecs) {
+                rec.SetProductRulePosition(commLevel);
             }
-            else {
-                _myCommRecs = (from rec in _context.COMPROD2
-                               where (rec.TYPE == "PKG") && (rec.Inactive == false)
-                               select rec).ToList<IComprod2>();
-                _myCommRecsAgy = (from rec in _context.COMPROD2
-                                  where (rec.TYPE == "AGY") && (rec.Inactive == false)
-                                  select rec).ToList<IComprod2>();
-            }
-
-            _myCommLvl = (from rec in _context.CommLevel select rec).ToList<ICommLevel>();
-            foreach (COMPROD2 rec in _myCommRecs) {
-
-                rec.SetProductRulePosition(_myCommLvl);
-            }
-            foreach (COMPROD2 rec in _myCommRecsAgy) {
-                rec.SetProductRulePosition(_myCommLvl);
+            foreach (COMPROD2 rec in commRecsAgy) {
+                rec.SetProductRulePosition(commLevel);
             }
 
             using (FlextourEntities context2 = new FlextourEntities(Connection.EFConnectionString)) {
-                IList<FlexCommissions.Commission> commQuery1 = new List<FlexCommissions.Commission>();
-                IList<FlexCommissions.Commission> commQuery2 = new List<FlexCommissions.Commission>();
-                commQuery1 = FlexCommissions.Commissions.GetProductCommissions(context2, "C", TextEditCode.Text.TrimEnd(), "PKG", _myCommRecs, _myCommLvl, null, TheDate, null, null, Agency, Source);
-                commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "C", _myCommRecsAgy, _myCommLvl, Agency, TheDate, null, null, Source);
-                IList<FlexCommissions.Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
+                IList<Commission> commQuery1 = new List<Commission>();
+                IList<Commission> commQuery2 = new List<Commission>();
+                commQuery1 = Commissions.GetProductCommissions(context2, "C", TextEditCode.Text.TrimEnd(), "PKG", commRecs, commLevel, null, date, null, null, agency, source);
+                commQuery2 = Commissions.GetAgencyCommissions(context2, "C", commRecsAgy, commLevel, agency, date, null, null, source);
+                IList<Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
                 GridControlCommissions.DataSource = mergedList;
-                commQuery1 = FlexCommissions.Commissions.GetProductCommissions(context2, "M", TextEditCode.Text.TrimEnd(), "PKG", _myCommRecs, _myCommLvl, null, TheDate, null, null, Agency, Source);
-                commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "M", _myCommRecsAgy, _myCommLvl, Agency, TheDate, null, null, Source);
+                commQuery1 = Commissions.GetProductCommissions(context2, "M", TextEditCode.Text.TrimEnd(), "PKG", commRecs, commLevel, null, date, null, null, agency, source);
+                commQuery2 = Commissions.GetAgencyCommissions(context2, "M", commRecsAgy, commLevel, agency, date, null, null, source);
                 mergedList = (commQuery1.Union(commQuery2)).ToList();
                 GridControlMarkups.DataSource = mergedList;
             }
@@ -867,33 +830,6 @@ namespace TraceForms
             }
         }
 
-        private bool CheckMappings()
-        {
-            for (int row = 0; row < GridViewSupplierProduct.RowCount; row++) {
-                SupplierProduct product = (SupplierProduct)GridViewSupplierProduct.GetRow(row);
-                product.Product_Code_Internal = TextEditCode.Text ?? string.Empty;
-                product.Product_Type = "PKG";
-
-                if (!string.IsNullOrEmpty(product.Pickup_LocationType_Default) && string.IsNullOrEmpty(product.Pickup_Location_Default)) {
-                    MessageBox.Show("Please enter a default pickup location for the Supplier Mapping record.");
-                    return false;
-                }
-                if (!string.IsNullOrEmpty(product.Pickup_LocationType_Default) && product.Pickup_Time_Default == null) {
-                    MessageBox.Show("Please enter a default pickup time for the Supplier Mapping record.");
-                    return false;
-                }
-                if (!string.IsNullOrEmpty(product.Dropoff_LocationType_Default) && string.IsNullOrEmpty(product.Dropoff_Location_Default)) {
-                    MessageBox.Show("Please enter a default dropoff location for the Supplier Mapping record.");
-                    return false;
-                }
-                if (!string.IsNullOrEmpty(product.Dropoff_LocationType_Default) && product.Dropoff_Time_Default == null) {
-                    MessageBox.Show("Please enter a default dropoff time for the Supplier Mapping record.");
-                    return false;
-                }
-            }
-            return true;
-        }
-
         void LoadAndBindSupplierCategories()
         {
             //Load the related entities. DO NOT do another db query using context.whatever because they
@@ -940,50 +876,6 @@ namespace TraceForms
                 }
                 BindSupplierCategories();
             }
-        }
-
-        private bool CheckSupplierCategories()
-        {
-            GridViewSupplierCategory.UpdateCurrentRow();
-            for (int row = 0; row < GridViewSupplierCategory.DataRowCount; row++) {
-                var roomType = (SupplierCategory)GridViewSupplierCategory.GetRow(row);
-                if (roomType.Supplier_GUID == null) {
-                    SetGridError(xtraTabControl1, xtraTabPageSupplierCategories, GridControlSupplierCategory, GridViewSupplierCategory,
-                        row, "Supplier_GUID", "The Supplier is required.");
-                    return false;
-                }
-                if (string.IsNullOrEmpty(roomType.Code)) {
-                    SetGridError(xtraTabControl1, xtraTabPageSupplierCategories, GridControlSupplierCategory, GridViewSupplierCategory,
-                        row, "Code", "The Supplier category is required.");
-                    return false;
-                }
-            }
-
-            //Empty string represents no category mapping, but it needs to be null for the foreign key
-            foreach (SupplierCategory roomType in BindingSourceSupplierCategory) {
-                if (string.IsNullOrWhiteSpace(roomType.Roomcod_Code)) {
-                    roomType.Roomcod_Code = null;
-                }
-                roomType.Product_Code = TextEditCode.Text;
-                roomType.Product_Type = "PKG";
-            }
-
-            return true;
-        }
-
-        private void SetGridError(DevExpress.XtraTab.XtraTabControl tabControl, DevExpress.XtraTab.XtraTabPage tabPage,
-            GridControl gridControl, GridView gridView, int row, string field, string errorText)
-        {
-            tabControl.SelectedTabPage = tabPage;
-            gridControl.Focus();
-            gridView.FocusedRowHandle = row;
-            gridView.FocusedColumn = GridViewSupplierCategory.Columns[field];
-            gridView.ShowEditor();
-            if (gridView.ActiveEditor != null) {
-                gridView.ActiveEditor.ErrorText = errorText;
-                gridView.ActiveEditor.IsModified = true;
-            }
-            MessageBox.Show(errorText, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void GridViewSupplierCategory_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
@@ -1054,6 +946,18 @@ namespace TraceForms
         {
             GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
             GridControlLookup.Focus();
+        }
+
+        private void GridControlSupplierProduct_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSupplierProducts, sender);
+        }
+
+        private void GridControlSupplierCategory_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSupplierCategories, sender);
         }
 
         private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e)
