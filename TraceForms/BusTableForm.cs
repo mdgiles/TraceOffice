@@ -1,675 +1,583 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
-
+using FlexEntities.Entities;
+using DevExpress.XtraGrid.Views.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using DevExpress.XtraGrid.Columns;
-using System.Runtime.InteropServices;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views;
-using DevExpress.XtraEditors.Repository;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using DevExpress.UserSkins;
+using System.Windows.Forms;
+using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
+using FlexModel;
+using Custom_SearchLookupEdit;
+using DevExpress.Data.Async.Helpers;
+using FlexInterfaces.Core;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System.Drawing;
+using DevExpress.XtraMap;
+using DevExpress.Map;
+using FlexCommissions;
 
 namespace TraceForms
 {
      
     public partial class BusTableForm : DevExpress.XtraEditors.XtraForm
     {
-        public string currentVal;
-        public bool modified = false;
-        public bool newRec = false;
-        public bool temp = false;
-        public string username;
-          public FlextourEntities context;
-          public Timer rowStatusDelete;
-          public Timer rowStatusSave;
-          public ImageComboBoxItemCollection airports;
-          public ImageComboBoxItemCollection busstations;
-          public ImageComboBoxItemCollection seaports;
-          public ImageComboBoxItemCollection trains;
-          public ImageComboBoxItemCollection cars;
-          public ImageComboBoxItemCollection cities;
-          public ImageComboBoxItemCollection cruises;
-          public ImageComboBoxItemCollection hotels;
-          public ImageComboBoxItemCollection wayports;
-          public ImageComboBoxItemCollection opts;
-          public ImageComboBoxItemCollection pkgs;
-          public BusTableForm(FlexInterfaces.Core.ICoreSys sys)
+        BUSTABLE _selectedRecord;
+        ICoreSys _sys;
+        FlextourEntities _context;
+        Timer _actionConfirmation;
+        bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+        Dictionary<string, List<CodeName>> _locationLookups;
+        Dictionary<string, List<CodeName>> _typeLookups;
+
+        public BusTableForm(FlexInterfaces.Core.ICoreSys sys)
         {
-              //might need to set some fields as read only depending on test results
-            InitializeComponent();
-            Connect(sys);
-            LoadLookups();
-         
-          
-        }
-
-          private void Connect(FlexInterfaces.Core.ICoreSys sys)
-          {
-              Connection.EFConnectionString = sys.Settings.EFConnectionString;
-              context = new FlextourEntities(sys.Settings.EFConnectionString);
-              username = sys.User.Name;    
-          }
-
-          private void LoadLookups()
-          {
-              var airs = from airRec in context.Airport orderby airRec.Code ascending select new { airRec.Code, airRec.Name };
-              var buses = from busRec in context.BusStation orderby busRec.Code ascending select new { busRec.Code, busRec.Name };
-              var cty = from ctyRec in context.CITYCOD orderby ctyRec.CODE ascending select new { ctyRec.CODE, ctyRec.NAME };
-              var seas = from seaRec in context.SeaPort orderby seaRec.Code ascending select new { seaRec.Code, seaRec.Name };
-              var trns = from trnRec in context.TrainStation orderby trnRec.Code ascending select new { trnRec.Code, trnRec.Name };
-              var crs = from carRec in context.CARINFO orderby carRec.CODE ascending select new { carRec.CODE, carRec.NAME };
-              var htls = from htlRec in context.HOTEL orderby htlRec.CODE ascending select new { htlRec.CODE, htlRec.NAME };
-              var ways = from wayRec in context.WAYPOINT orderby wayRec.CODE ascending select new { wayRec.CODE, wayRec.DESC };
-              var crus = from cruRec in context.CRU orderby cruRec.CODE ascending select new { cruRec.CODE, cruRec.NAME };
-              var comps = from compRec in context.COMP orderby compRec.CODE ascending select new { compRec.CODE, compRec.NAME };
-              var packs = from packRec in context.PACK orderby packRec.CODE ascending select new { packRec.CODE, packRec.NAME };
-              ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
-              ImageComboBoxEditCode.Properties.Items.Add(loadBlank);
-              ImageComboBoxEditLocation.Properties.Items.Add(loadBlank);
-
-              foreach (var result in airs)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code.TrimEnd() + "  " + "(" + result.Name.TrimEnd() + ")", Value = result.Code.TrimEnd() };
-                  airports.Add(load);
-              }
-              foreach (var result in buses)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code.TrimEnd() + "  " + "(" + result.Name.TrimEnd() + ")", Value = result.Code.TrimEnd() };
-                  busstations.Add(load);
-
-              }
-              foreach (var result in cty)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  cities.Add(load);
-              }
-              foreach (var result in seas)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code.TrimEnd() + "  " + "(" + result.Name.TrimEnd() + ")", Value = result.Code.TrimEnd() };
-                  seaports.Add(load);
-              }
-              foreach (var result in trns)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.Code.TrimEnd() + "  " + "(" + result.Name.TrimEnd() + ")", Value = result.Code.TrimEnd() };
-                  trains.Add(load);
-              }
-              foreach (var result in crs)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  cars.Add(load);
-              }
-              foreach (var result in htls)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  hotels.Add(load);
-              }
-              foreach (var result in ways)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.DESC.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  wayports.Add(load);
-              }
-              foreach (var result in comps)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  opts.Add(load);
-              }
-              foreach (var result in packs)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  pkgs.Add(load);
-              }
-              foreach (var result in crus)
-              {
-                  ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                  cruises.Add(load);
-              }
-              enableNavigator(false);
-          }
-
-          void enableNavigator(bool value)
-          {
-              bindingNavigatorMoveNextItem.Enabled = value;
-              bindingNavigatorMoveLastItem.Enabled = value;
-              bindingNavigatorMoveFirstItem.Enabled = value;
-              bindingNavigatorMovePreviousItem.Enabled = value;
-          }
-
-        private void enterControl(object sender, EventArgs e)
-        {
-            currentVal = ((Control)sender).Text;
-        }
-
-        private bool move()
-        {
-            GridViewBusTable.CloseEditor();
-            ImageComboBoxEditCode.Focus();
-           // bindingNavigatorPositionItem.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( BUSTABLE)BusTableBindingSource.Current);              
-                newRec = false;
-                modified = false;
-                return true;
+            try {
+                InitializeComponent();
+                Connect(sys);
+                LoadLookups();
+                SetReadOnly(true);
             }
-            return false;
-        }  
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+            }
+        }
 
-    
-
-        private void BusTableForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void Connect(FlexInterfaces.Core.ICoreSys sys)
         {
-            if (modified || newRec)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", Name, MessageBoxButtons.YesNo);
-                if (select == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                    this.Dispose();
+            Connection.EFConnectionString = sys.Settings.EFConnectionString;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            _sys = sys;
+        }
+
+        private void LoadLookups()
+        {
+            CodeName loadBlank = new CodeName(string.Empty);
+
+            _locationLookups = new Dictionary<string, List<CodeName>>();
+            _typeLookups = new Dictionary<string, List<CodeName>>();
+
+            List<CodeName> lookup;
+            //EF will try to execute the entire projection on the sql side, which knows nothing about string.format so it will
+            //error. Putting AsEnumerable beforehand will tell EF to execute sql side up to there and return results, then the
+            //rest will be EF client side
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.HOTEL
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+            _locationLookups.Add("HTL", lookup);
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.WAYPOINT
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
+            _locationLookups.Add("WAY", lookup);
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.CITYCOD
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+            _locationLookups.Add("CTY", lookup);
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.COMP
+                .Where(c => c.TRSFR_TYP == "O" || c.TRSFR_TYP == "I")
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+            _typeLookups.Add("OPT", lookup);
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.PACK
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+            _typeLookups.Add("PKG", lookup);
+        }
+
+        void SetReadOnly(bool value)
+        {
+            foreach (Control control in SplitContainerControl.Panel2.Controls) {
+                control.Enabled = !value;
+            }
+        }
+
+        void SetReadOnlyKeyFields(bool value)
+        {
+            SearchLookupEditCode.ReadOnly = value;
+        }
+
+        private bool SaveRecord(bool prompt)
+        {
+            try {
+                if (_selectedRecord == null)
+                    return true;
+
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
+                bool nameChanged = _selectedRecord.IsModified(_context, "NAME");
+
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            if (newRec) {
+                                RemoveRecord();
+                            }
+                            else {
+                                RefreshRecord();
+                            }
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    if (!ValidateAll())
+                        return false;
+
+                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                        _context.BUSTABLE.AddObject(_selectedRecord);
+                    }
+                    SetUpdateFields(_selectedRecord);
+                    _context.SaveChanges();
+                    if (newRec || nameChanged) {
+                        AccountingAPI.InvokeForProduct(_sys.Settings.TourAccountingURL, "OPT", _selectedRecord.CODE);
+                    }
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Saved");
                 }
-                else if (select == DialogResult.No)
-                    e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = false;
-                this.Dispose();
-            }
-        }
-
-        private void setValues()
-        {
-            GridViewBusTable.SetFocusedRowCellValue("TYPE", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("CODE", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("PUP_DRP", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("LOCATION", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("TIME", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("In_Out", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("LocationType", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("CarOffice", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("EndTime", string.Empty);
-            GridViewBusTable.SetFocusedRowCellValue("Exclusion", string.Empty);        
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            GridViewBusTable.ClearColumnsFilter();
-            if (BusTableBindingSource.Current == null)
-            {
-                //fake query in order to create a link between the database table and the binding source
-                BusTableBindingSource.DataSource = from opt in context.BUSTABLE where opt.CODE == "KJM9" select opt;
-                BusTableBindingSource.AddNew();
-                if (GridViewBusTable.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewBusTable.FocusedRowHandle = GridViewBusTable.RowCount - 1;
-                setValues();
-                newRec = true;
-                return;
-            }
-            ImageComboBoxEditCode.Focus();
-           // bindingNavigatorPositionItem.Focus();  //trigger field leave event
-            GridViewBusTable.CloseEditor();
-            temp = newRec;
-            if (checkForms())
-            {
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( BUSTABLE)BusTableBindingSource.Current);
-                BusTableBindingSource.AddNew();
-                if (GridViewBusTable.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewBusTable.FocusedRowHandle = GridViewBusTable.RowCount - 1;
-                setValues();
-                newRec = true;
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {        
-            if (BusTableBindingSource.Current == null)
-                return;
-            GridViewBusTable.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                modified = false;
-                newRec = false;
-                BusTableBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-            }
-
-            currentVal = ImageComboBoxEditCode.EditValue.ToString();
-            modified = false;
-            newRec = false;
-        }
-
-        private void TimedEventDelete(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusDelete.Stop();
-        }
-
-        private bool checkForms()
-        {
-            if (!modified && !newRec)
                 return true;
-            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkAll, BusTableBindingSource);
-
-            if (validateMain)
-                return validCheck.saveRec(ref modified, true, ref newRec, context, BusTableBindingSource, Name, errorProvider1, Cursor);
-            else
-            {
-                validCheck.saveRec(ref modified, false, ref newRec, context, BusTableBindingSource, Name, errorProvider1, Cursor);
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecord();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
                 return false;
             }
         }
 
-        private void bUSTABLEBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        void SetBindings()
         {
-            if (BusTableBindingSource.Current == null)
-                return;
-
-            GridViewBusTable.CloseEditor();
-            ImageComboBoxEditCode.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            bool temp = newRec;
-            if (checkForms())
-            {
-                tYPEComboBoxEdit.Focus();
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
+            if (BindingSource.Current == null) {
+                ClearBindings();
             }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (BUSTABLE)BusTableBindingSource.Current);              
-           
-        }
-
-        private void TimedEventSave(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusSave.Stop();
-        }
-
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                BusTableBindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                BusTableBindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                BusTableBindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (move())
-                BusTableBindingSource.MoveLast();
-        }
-
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
-        {  
-            if (BusTableBindingSource.Current == null)
-            {
-                e.Allow = true;
-                return;
+            else {
+                _selectedRecord = ((BUSTABLE)BindingSource.Current);
+                SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
             }
-            temp = newRec;
-            bool temp2 = modified;
+            ErrorProvider.Clear();
+        }
 
-            if (checkForms())
-            {
-                e.Allow = true;
-                if ((!temp) && temp2)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (BUSTABLE)BusTableBindingSource.Current);
-            }
-            else
-            {
-                if (!temp && !modified)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (BUSTABLE)BusTableBindingSource.Current);  
-                e.Allow = false;
-              
+        void ClearBindings()
+        {
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            SetReadOnly(true);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
+            BindingSource.DataSource = typeof(BUSTABLE);
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
+        }
+
+        private void ShowActionConfirmation(string confirmation)
+        {
+            PanelControlStatus.Visible = true;
+            LabelStatus.Text = confirmation;
+            _actionConfirmation = new Timer {
+                Interval = 3000
+            };
+            _actionConfirmation.Start();
+            _actionConfirmation.Tick += TimedEvent;
+        }
+
+        private void TimedEvent(object sender, EventArgs e)
+        {
+            PanelControlStatus.Visible = false;
+            _actionConfirmation.Stop();
+        }
+
+        private void RefreshRecord()
+        {
+            //A Detached record has not yet been added to the context
+            //An Added record has been added but not yet saved, most likely because there was
+            //an error in SaveRecord, in which case we should not retrieve it from the db
+            if (_selectedRecord != null && _selectedRecord.EntityState != EntityState.Detached
+                && _selectedRecord.EntityState != EntityState.Added) {
+                _context.Refresh(RefreshMode.StoreWins, _selectedRecord);
+                SetReadOnlyKeyFields(true);
             }
         }
 
-        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void RemoveRecord()
         {
-            if (!GridViewBusTable.IsFilterRow(e.RowHandle))
-                modified = true;
-            labelControl1.Text = DateTime.Today.ToShortDateString();
-            labelControl2.Text = username;
+            BindingSource.RemoveCurrent();
         }
 
-        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private bool IsModified(BUSTABLE record)
         {
-            e.ExceptionMode = ExceptionMode.NoAction; 
+            //Type-specific routine that takes into account relationships that should also be considered
+            //when deciding if there are unsaved changes.  The entity properties also return true if the
+            //record is new or deleted.
+            if (record == null)
+                return false;
+            return record.IsModified(_context);
         }
 
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {   
-            temp = newRec;
-            if (!temp && checkForms())
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( BUSTABLE)BusTableBindingSource.Current);           
-        }
-    
-        
-        private void tYPEComboBoxEdit_Leave(object sender, EventArgs e)
+        private void FinalizeBindings()
         {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkType, BusTableBindingSource);
+            BindingSource.EndEdit();
+        }
+
+        private bool ValidateAll()
+        {
+            if (!_selectedRecord.Validate()) {
+                ShowMainControlErrors();
+                DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+                return false;
+            }
+            else {
+                ErrorProvider.Clear();
+                return true;
             }
         }
 
-        private void in_OutComboBoxEdit_Leave(object sender, EventArgs e)
+        private void ShowMainControlErrors()
         {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkInOut, BusTableBindingSource);
+            //The error indicators inside the grids are handled by binding, but errors on the main form must
+            //be set manually
+            SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditCode);
+            SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
+            SetErrorInfo(_selectedRecord.ValidateInOut, ImageComboBoxEditInOut);
+            SetErrorInfo(_selectedRecord.ValidatePupDrp, ImageComboBoxEditPupDrp);
+            SetErrorInfo(_selectedRecord.ValidateStart, DateEditStartDate);
+            SetErrorInfo(_selectedRecord.ValidateEnd, DateEditEndDate);
+            SetErrorInfo(_selectedRecord.ValidateLocType, ComboBoxEditLocationType);
+            SetErrorInfo(_selectedRecord.ValidateLocation, SearchLookupEditLocation);
+            SetErrorInfo(_selectedRecord.ValidateStartTime, TimeEditStartTime);
+            SetErrorInfo(_selectedRecord.ValidateEndTime, TimeEditEndTime);
+            SetErrorInfo(_selectedRecord.ValidateExclusion, CheckEditExclusion);
+        }
+
+        private void SetErrorInfo(Func<String> validationMethod, object sender)
+        {
+            BindingSource.EndEdit();
+            if (validationMethod != null) {
+                string error = validationMethod.Invoke();
+                ErrorProvider.SetError((Control)sender, error);
             }
         }
 
-        private void pUP_DRPComboBoxEdit_Leave(object sender, EventArgs e)
+        private void BusTableForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkPupDrp, BusTableBindingSource);
-            }
-        }
-
-        private void dATEDateEdit_Leave(object sender, EventArgs e)
-        {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkStart, BusTableBindingSource);
-            }
-        }
-
-        private void endDateDateEdit_Leave(object sender, EventArgs e)
-        {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkEnd, BusTableBindingSource);
-            }
-        }
-
-        private void locationTypeComboBoxEdit_Leave(object sender, EventArgs e)
-        {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkLocType, BusTableBindingSource);
-            }
-        }
-
-        private void tIMETimeEdit_Leave(object sender, EventArgs e)
-        {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkStTime, BusTableBindingSource);
-            }
-        }
-
-        private void endTimeTimeEdit_Leave(object sender, EventArgs e)
-        {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkEndTime, BusTableBindingSource);
-            }
-        }
-
-        private void tYPEComboBoxEdit_TextChanged(object sender, EventArgs e)
-        {
-            ImageComboBoxEditCode.Properties.Items.Clear();
-           
-
-            if (tYPEComboBoxEdit.Text == "OPT")
-            {
-                // //options 
-                ImageComboBoxEditCode.Properties.Items.AddRange(opts);
-            }
-            if (tYPEComboBoxEdit.Text == "PKG")
-            {
-                //// pack codes
-                ImageComboBoxEditCode.Properties.Items.AddRange(pkgs);
-            }
-        }
-
-        private void locationTypeComboBoxEdit_TextChanged(object sender, EventArgs e)
-        {
-            ImageComboBoxEditLocation.Properties.Items.Clear();
-          
-                if (locationTypeComboBoxEdit.Text == "AIR")
-                {
-                    //airport
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(airports);
-                }
-                if (locationTypeComboBoxEdit.Text == "BUS")
-                {
-                    // bus stations
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(busstations);
-                }
-                if (locationTypeComboBoxEdit.Text == "CRU")
-                {
-                    //sea ports
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(cruises);
-                }
-
-                if (locationTypeComboBoxEdit.Text == "TRN")
-                {
-                    // trn stations    
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(trains);
-                }
-            
-        
-                if (locationTypeComboBoxEdit.Text == "CAR")
-                {
-                    // cars
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(cars);
-                }
-
-                if (locationTypeComboBoxEdit.Text == "CTY")
-                {
-                    // city codes
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(cities);
-                }
-
-                if (locationTypeComboBoxEdit.Text == "HTL")
-                {
-                    // htl codes
-                    ImageComboBoxEditLocation.Properties.Items.AddRange(hotels);
-                }
-            
-
-            if (locationTypeComboBoxEdit.Text == "WAY")
-            {               
-                // way codes
-                ImageComboBoxEditLocation.Properties.Items.AddRange(wayports);
-            }            
-        }
-   
-
-        private void dATEDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void dATEDateEdit_TextChanged(object sender, EventArgs e)
-        {
-            dATEDateEdit.Text = validCheck.convertDate(dATEDateEdit.Text);
-        }
-
-        private void endDateDateEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };  
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void endDateDateEdit_TextChanged(object sender, EventArgs e)
-        {
-            endDateDateEdit.Text = validCheck.convertDate(endDateDateEdit.Text);
-        }
-
-        private void BusTableForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && GridViewBusTable.IsFilterRow(GridViewBusTable.FocusedRowHandle))
-            {
-                executeQuery();
-            }
-        }
-
-        private void executeQuery()
-        {
-            this.Cursor = Cursors.WaitCursor;
-            string colName = GridViewBusTable.FocusedColumn.FieldName;
-            string value = String.Empty;
-            if (!string.IsNullOrWhiteSpace(GridViewBusTable.GetFocusedDisplayText()))
-                value = GridViewBusTable.GetFocusedDisplayText();
-            if (!string.IsNullOrWhiteSpace(value))
-            {
-                string query = String.Format("it.TYPE like '{0}%'", GridViewBusTable.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "TYPE"));
-                var special = context.BUSTABLE.Where(query);
-              
-                if (!string.IsNullOrWhiteSpace(GridViewBusTable.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CODE")))
-                {
-                    query = String.Format("it.{0} like '{1}%'", "CODE", GridViewBusTable.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "CODE"));
-                    special = special.Where(query);
-                }
-               
-                int count = special.Count();
-                if (count > 0)
-                {
-                    BusTableBindingSource.DataSource = special;
-                    GridViewBusTable.ClearColumnsFilter();
+            if (IsModified(_selectedRecord)) {
+                DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
+                if (select == DialogResult.Yes) {
+                    e.Cancel = false;
+                    _context.Dispose();
+                    Dispose();
                 }
                 else
-                {
-                    MessageBox.Show("No records in database.");
-                    GridViewBusTable.ClearColumnsFilter();
-                }
+                    e.Cancel = true;
             }
-            this.Cursor = Cursors.Default;
+            else {
+                e.Cancel = false;
+                _context.Dispose();
+                Dispose();
+            }
+        }
+
+        private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        {
+            //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
+            //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
+            //that may need to be saved. 
+            if (!_ignoreLeaveRow && IsModified(_selectedRecord)) {
+                e.Allow = SaveRecord(true);
+            }
+        }
+        
+        private void ComboBoxEditType_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateType, sender);
+        }
+
+        private void ComboBoxEditInOut_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateInOut, sender);
+        }
+
+        private void ComboBoxEditPupDrp_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidatePupDrp, sender);
+        }
+
+        private void DateEditStartDate_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateStart, sender);
+        }
+
+        private void DateEditEndDate_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEnd, sender);
+        }
+
+        private void ComboBoxEditLocationType_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateLocType, sender);
+        }
+
+        private void TimeEditStartTime_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateStartTime, sender);
+        }
+
+        private void TimeEditEndTime_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEndTime, sender);
+        }
+
+        private void ComboBoxEditType_TextChanged(object sender, EventArgs e)
+        {
+            SearchLookupEditCode.Enabled = true;
+            string type = ComboBoxEditType.Text;
+            LoadCodeLookupValues(type, SearchLookupEditCode);
+        }
+
+        private void LoadCodeLookupValues(string type, SearchLookUpEdit editor)
+        {
+            if (_typeLookups.ContainsKey(type)) {
+                editor.Properties.DataSource = _typeLookups[type];
+            }
+            else {
+                editor.Properties.DataSource = null;
+            }
+        }
+
+        private void ComboBoxEditLocationType_TextChanged(object sender, EventArgs e)
+        {
+            SearchLookupEditLocation.Enabled = true;
+            string type = ComboBoxEditLocationType.Text;
+            LoadLocationLookupValues(type, SearchLookupEditLocation);
+        }
+
+        private void LoadLocationLookupValues(string type, SearchLookUpEdit editor)
+        {
+            if (_locationLookups.ContainsKey(type)) {
+                editor.Properties.DataSource = _locationLookups[type];
+            }
+            else {
+                editor.Properties.DataSource = null;
+            }
+        }
+
+        private void DateEditStartDate_TextChanged(object sender, EventArgs e)
+        {
+            DateEditStartDate.Text = validCheck.convertDate(DateEditStartDate.Text);
+        }
+
+        private void DateEditEndDate_TextChanged(object sender, EventArgs e)
+        {
+            DateEditEndDate.Text = validCheck.convertDate(DateEditEndDate.Text);
         }
 
         private void ImageComboBoxEditCode_Leave(object sender, System.EventArgs e)
         {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkCode, BusTableBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCode, sender);
         }
 
         private void ImageComboBoxEditLocation_Leave(object sender, System.EventArgs e)
         {
-            if (BusTableBindingSource.Current != null)
-            {
-                if (currentVal != ((Control)sender).Text)
-                {
-                    modified = true;
-                    labelControl1.Text = DateTime.Today.ToShortDateString();
-                    labelControl2.Text = username;
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateLocation, sender);
+        }
+
+        private void SetUpdateFields(BUSTABLE record)
+        {
+            record.LAST_UPD = DateTime.Now;
+            record.UPD_INIT = _sys.User.Name;
+        }
+
+        private void DeleteRecord()
+        {
+            if (_selectedRecord == null)
+                return;
+
+            try {
+                if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
+                    //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
+                    //We do not want these events to perform their usual code of checking whether there are changes in the active
+                    //record that should be saved before proceeding, because we know we have just deleted the active record.
+                    _ignoreLeaveRow = true;
+                    _ignorePositionChange = true;
+                    RemoveRecord();
+                    if (!_selectedRecord.IsNew()) {
+                        //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
+                        //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
+                        //the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
+                        //delete it manually.
+                        if (_selectedRecord != null && (_selectedRecord.EntityState & EntityState.Deleted) != EntityState.Deleted)
+                            _context.BUSTABLE.DeleteObject(_selectedRecord);
+                        _context.SaveChanges();
+                    }
+                    if (GridViewLookup.DataRowCount == 0) {
+                        ClearBindings();
+                    }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
+                    SetBindings();
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Deleted");
                 }
-                validCheck.check(sender, errorProvider1, ((BUSTABLE)BusTableBindingSource.Current).checkLocation, BusTableBindingSource);
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                _ignoreLeaveRow = false;
+                _ignorePositionChange = false;
+                RefreshRecord();        //pull it back from db because that is it's current state
+                //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
             }
         }
 
-        private void BusTableBindingSource_CurrentChanged(object sender, System.EventArgs e)
+        private void BindingSource_CurrentChanged(object sender, System.EventArgs e)
         {
-            if (BusTableBindingSource.Current != null)
-                enableNavigator(true);
-            else
-                enableNavigator(false);
+            //If the current record is changing as a result of removing a record to delete it, and it is the last
+            //record in the table, then SetBindings will clear the bindings, which will cause the delete
+            //to fail because the associated entities will become detached when their BindingSources are cleared.
+            //Thus we have a flag which is set in that case to ignore this event.
+            if (!_ignorePositionChange)
+                SetBindings();
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            bool gotMatch = false;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
+                    }
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
+                }
+            }
+        }
+
+        private void SearchLookupEdit_Popup(object sender, EventArgs e)
+        {
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
+
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+        }
+
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DeleteRecord();
+        }
+
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.BUSTABLE;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (SaveRecord(false))
+                RefreshRecord();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                object row = view.GetRow(e.FocusedRowHandle);
+                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                    BUSTABLE record = (BUSTABLE)proxy.OriginalRow;
+                    BindingSource.DataSource = _context.BUSTABLE.Where(c => c.CODE == record.CODE);
+                    SearchLookupEditCode.ReadOnly = false;
+                }
+                else {
+                    ClearBindings();
+                }
+            }
+        }
+
+        private void TimeEditStartTime_ParseEditValue(object sender, ConvertEditValueEventArgs e)
+        {
+            //e.Value
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
+            if (SaveRecord(true)) {
+                //For some reason when there is no existing record in the binding source the Add method does not
+                //trigger the CurrentChanged event, but AddNew does so use that instead
+                _selectedRecord = (BUSTABLE)BindingSource.AddNew();
+                //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                //the focused row to the filter row just so that no other existing row is visually highlighted
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                SetReadOnlyKeyFields(false);
+                ComboBoxEditType.Focus();
+                SetReadOnly(false);
+            }
+            ErrorProvider.Clear();
+            _ignoreLeaveRow = false;
         }
     }
 }

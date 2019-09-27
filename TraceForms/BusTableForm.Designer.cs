@@ -32,7 +32,6 @@
             System.Windows.Forms.Label tYPELabel;
             System.Windows.Forms.Label uPD_INITLabel;
             System.Windows.Forms.Label lAST_UPDLabel;
-            System.Windows.Forms.Label exclusionLabel;
             System.Windows.Forms.Label endTimeLabel;
             System.Windows.Forms.Label tIMELabel;
             System.Windows.Forms.Label lOCATIONLabel;
@@ -43,39 +42,18 @@
             System.Windows.Forms.Label in_OutLabel;
             System.Windows.Forms.Label cODELabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusTableForm));
-            this.pUP_DRPImageComboBoxEdit = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.BusTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.in_OutImageComboBoxEdit = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.ImageComboBoxEditPupDrp = new DevExpress.XtraEditors.ImageComboBoxEdit();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ImageComboBoxEditInOut = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.exclusionCheckEdit = new DevExpress.XtraEditors.CheckEdit();
-            this.endTimeTimeEdit = new DevExpress.XtraEditors.TimeEdit();
-            this.tIMETimeEdit = new DevExpress.XtraEditors.TimeEdit();
-            this.locationTypeComboBoxEdit = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.endDateDateEdit = new DevExpress.XtraEditors.ButtonEdit();
-            this.dATEDateEdit = new DevExpress.XtraEditors.ButtonEdit();
-            this.GridControlBusTable = new DevExpress.XtraGrid.GridControl();
-            this.GridViewBusTable = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tYPEComboBoxEdit = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.BusTableBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bUSTABLEBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ImageComboBoxEditCode = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.ImageComboBoxEditLocation = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
-            this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+            this.CheckEditExclusion = new DevExpress.XtraEditors.CheckEdit();
+            this.TimeEditEndTime = new DevExpress.XtraEditors.TimeEdit();
+            this.TimeEditStartTime = new DevExpress.XtraEditors.TimeEdit();
+            this.ComboBoxEditLocationType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
+            this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
+            this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTYPE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCODE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -92,10 +70,37 @@
             this.colEndTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colExclusion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ComboBoxEditType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+            this.SearchLookupEditCode = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditLocation = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
+            this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.bar5 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.DateEditStartDate = new DevExpress.XtraEditors.DateEdit();
+            this.DateEditEndDate = new DevExpress.XtraEditors.DateEdit();
             tYPELabel = new System.Windows.Forms.Label();
             uPD_INITLabel = new System.Windows.Forms.Label();
             lAST_UPDLabel = new System.Windows.Forms.Label();
-            exclusionLabel = new System.Windows.Forms.Label();
             endTimeLabel = new System.Windows.Forms.Label();
             tIMELabel = new System.Windows.Forms.Label();
             lOCATIONLabel = new System.Windows.Forms.Label();
@@ -105,311 +110,307 @@
             pUP_DRPLabel = new System.Windows.Forms.Label();
             in_OutLabel = new System.Windows.Forms.Label();
             cODELabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pUP_DRPImageComboBoxEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BusTableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.in_OutImageComboBoxEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exclusionCheckEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endTimeTimeEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tIMETimeEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationTypeComboBoxEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endDateDateEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dATEDateEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlBusTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewBusTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tYPEComboBoxEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BusTableBindingNavigator)).BeginInit();
-            this.BusTableBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
-            this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditLocation.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-            this.panelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditPupDrp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditInOut.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditExclusion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditLocationType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
+            this.SplitContainerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+            this.PanelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tYPELabel
             // 
             tYPELabel.AutoSize = true;
-            tYPELabel.Location = new System.Drawing.Point(64, 51);
+            tYPELabel.Location = new System.Drawing.Point(128, 98);
+            tYPELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             tYPELabel.Name = "tYPELabel";
-            tYPELabel.Size = new System.Drawing.Size(31, 13);
+            tYPELabel.Size = new System.Drawing.Size(57, 25);
             tYPELabel.TabIndex = 32;
             tYPELabel.Text = "Type";
             // 
             // uPD_INITLabel
             // 
             uPD_INITLabel.AutoSize = true;
-            uPD_INITLabel.Location = new System.Drawing.Point(599, 49);
+            uPD_INITLabel.Location = new System.Drawing.Point(1198, 94);
+            uPD_INITLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             uPD_INITLabel.Name = "uPD_INITLabel";
-            uPD_INITLabel.Size = new System.Drawing.Size(23, 13);
+            uPD_INITLabel.Size = new System.Drawing.Size(42, 25);
             uPD_INITLabel.TabIndex = 56;
             uPD_INITLabel.Text = "By:";
             // 
             // lAST_UPDLabel
             // 
             lAST_UPDLabel.AutoSize = true;
-            lAST_UPDLabel.Location = new System.Drawing.Point(395, 49);
+            lAST_UPDLabel.Location = new System.Drawing.Point(790, 94);
+            lAST_UPDLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             lAST_UPDLabel.Name = "lAST_UPDLabel";
-            lAST_UPDLabel.Size = new System.Drawing.Size(74, 13);
+            lAST_UPDLabel.Size = new System.Drawing.Size(140, 25);
             lAST_UPDLabel.TabIndex = 55;
             lAST_UPDLabel.Text = "Last updated:";
-            // 
-            // exclusionLabel
-            // 
-            exclusionLabel.AutoSize = true;
-            exclusionLabel.Location = new System.Drawing.Point(81, 426);
-            exclusionLabel.Name = "exclusionLabel";
-            exclusionLabel.Size = new System.Drawing.Size(55, 13);
-            exclusionLabel.TabIndex = 53;
-            exclusionLabel.Text = "Exclusion:";
             // 
             // endTimeLabel
             // 
             endTimeLabel.AutoSize = true;
-            endTimeLabel.Location = new System.Drawing.Point(64, 364);
+            endTimeLabel.Location = new System.Drawing.Point(128, 700);
+            endTimeLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             endTimeLabel.Name = "endTimeLabel";
-            endTimeLabel.Size = new System.Drawing.Size(50, 13);
+            endTimeLabel.Size = new System.Drawing.Size(101, 25);
             endTimeLabel.TabIndex = 51;
             endTimeLabel.Text = "End Time";
             // 
             // tIMELabel
             // 
             tIMELabel.AutoSize = true;
-            tIMELabel.Location = new System.Drawing.Point(64, 306);
+            tIMELabel.Location = new System.Drawing.Point(128, 588);
+            tIMELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             tIMELabel.Name = "tIMELabel";
-            tIMELabel.Size = new System.Drawing.Size(56, 13);
+            tIMELabel.Size = new System.Drawing.Size(110, 25);
             tIMELabel.TabIndex = 49;
             tIMELabel.Text = "Start Time";
             // 
             // lOCATIONLabel
             // 
             lOCATIONLabel.AutoSize = true;
-            lOCATIONLabel.Location = new System.Drawing.Point(295, 237);
+            lOCATIONLabel.Location = new System.Drawing.Point(590, 456);
+            lOCATIONLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             lOCATIONLabel.Name = "lOCATIONLabel";
-            lOCATIONLabel.Size = new System.Drawing.Size(47, 13);
+            lOCATIONLabel.Size = new System.Drawing.Size(89, 25);
             lOCATIONLabel.TabIndex = 47;
             lOCATIONLabel.Text = "Location";
             // 
             // locationTypeLabel
             // 
             locationTypeLabel.AutoSize = true;
-            locationTypeLabel.Location = new System.Drawing.Point(62, 234);
+            locationTypeLabel.Location = new System.Drawing.Point(124, 450);
+            locationTypeLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             locationTypeLabel.Name = "locationTypeLabel";
-            locationTypeLabel.Size = new System.Drawing.Size(74, 13);
+            locationTypeLabel.Size = new System.Drawing.Size(141, 25);
             locationTypeLabel.TabIndex = 45;
             locationTypeLabel.Text = "Location Type";
             // 
             // endDateLabel
             // 
             endDateLabel.AutoSize = true;
-            endDateLabel.Location = new System.Drawing.Point(295, 188);
+            endDateLabel.Location = new System.Drawing.Point(590, 362);
+            endDateLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             endDateLabel.Name = "endDateLabel";
-            endDateLabel.Size = new System.Drawing.Size(51, 13);
+            endDateLabel.Size = new System.Drawing.Size(98, 25);
             endDateLabel.TabIndex = 42;
             endDateLabel.Text = "End Date";
             // 
             // dATELabel
             // 
             dATELabel.AutoSize = true;
-            dATELabel.Location = new System.Drawing.Point(64, 185);
+            dATELabel.Location = new System.Drawing.Point(128, 356);
+            dATELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             dATELabel.Name = "dATELabel";
-            dATELabel.Size = new System.Drawing.Size(57, 13);
+            dATELabel.Size = new System.Drawing.Size(107, 25);
             dATELabel.TabIndex = 40;
             dATELabel.Text = "Start Date";
             // 
             // pUP_DRPLabel
             // 
             pUP_DRPLabel.AutoSize = true;
-            pUP_DRPLabel.Location = new System.Drawing.Point(295, 137);
+            pUP_DRPLabel.Location = new System.Drawing.Point(590, 263);
+            pUP_DRPLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             pUP_DRPLabel.Name = "pUP_DRPLabel";
-            pUP_DRPLabel.Size = new System.Drawing.Size(84, 13);
+            pUP_DRPLabel.Size = new System.Drawing.Size(165, 25);
             pUP_DRPLabel.TabIndex = 38;
             pUP_DRPLabel.Text = "Pickup / Dropoff";
             // 
             // in_OutLabel
             // 
             in_OutLabel.AutoSize = true;
-            in_OutLabel.Location = new System.Drawing.Point(64, 134);
+            in_OutLabel.Location = new System.Drawing.Point(128, 258);
+            in_OutLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             in_OutLabel.Name = "in_OutLabel";
-            in_OutLabel.Size = new System.Drawing.Size(75, 13);
+            in_OutLabel.Size = new System.Drawing.Size(147, 25);
             in_OutLabel.TabIndex = 36;
             in_OutLabel.Text = "Inbound / Out";
             // 
             // cODELabel
             // 
             cODELabel.AutoSize = true;
-            cODELabel.Location = new System.Drawing.Point(64, 88);
+            cODELabel.Location = new System.Drawing.Point(128, 169);
+            cODELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             cODELabel.Name = "cODELabel";
-            cODELabel.Size = new System.Drawing.Size(32, 13);
+            cODELabel.Size = new System.Drawing.Size(59, 25);
             cODELabel.TabIndex = 35;
             cODELabel.Text = "Code";
             // 
-            // pUP_DRPImageComboBoxEdit
+            // ImageComboBoxEditPupDrp
             // 
-            this.pUP_DRPImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "PUP_DRP", true));
-            this.pUP_DRPImageComboBoxEdit.EnterMoveNextControl = true;
-            this.pUP_DRPImageComboBoxEdit.Location = new System.Drawing.Point(385, 134);
-            this.pUP_DRPImageComboBoxEdit.Name = "pUP_DRPImageComboBoxEdit";
-            this.pUP_DRPImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ImageComboBoxEditPupDrp.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PUP_DRP", true));
+            this.ImageComboBoxEditPupDrp.EnterMoveNextControl = true;
+            this.ImageComboBoxEditPupDrp.Location = new System.Drawing.Point(770, 258);
+            this.ImageComboBoxEditPupDrp.Margin = new System.Windows.Forms.Padding(6);
+            this.ImageComboBoxEditPupDrp.Name = "ImageComboBoxEditPupDrp";
+            this.ImageComboBoxEditPupDrp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.pUP_DRPImageComboBoxEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            this.ImageComboBoxEditPupDrp.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Pickup", "P", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Dropoff", "D", -1)});
-            this.pUP_DRPImageComboBoxEdit.Size = new System.Drawing.Size(100, 20);
-            this.pUP_DRPImageComboBoxEdit.TabIndex = 4;
-            this.pUP_DRPImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
-            this.pUP_DRPImageComboBoxEdit.Leave += new System.EventHandler(this.pUP_DRPComboBoxEdit_Leave);
+            this.ImageComboBoxEditPupDrp.Size = new System.Drawing.Size(200, 40);
+            this.ImageComboBoxEditPupDrp.TabIndex = 4;
+            this.ImageComboBoxEditPupDrp.Leave += new System.EventHandler(this.ComboBoxEditPupDrp_Leave);
             // 
-            // BusTableBindingSource
+            // BindingSource
             // 
-            this.BusTableBindingSource.DataSource = typeof(FlexModel.BUSTABLE);
-            this.BusTableBindingSource.CurrentChanged += new System.EventHandler(this.BusTableBindingSource_CurrentChanged);
+            this.BindingSource.DataSource = typeof(FlexModel.BUSTABLE);
+            this.BindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
             // 
-            // in_OutImageComboBoxEdit
+            // ImageComboBoxEditInOut
             // 
-            this.in_OutImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "In_Out", true));
-            this.in_OutImageComboBoxEdit.EnterMoveNextControl = true;
-            this.in_OutImageComboBoxEdit.Location = new System.Drawing.Point(148, 131);
-            this.in_OutImageComboBoxEdit.Name = "in_OutImageComboBoxEdit";
-            this.in_OutImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ImageComboBoxEditInOut.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "In_Out", true));
+            this.ImageComboBoxEditInOut.EnterMoveNextControl = true;
+            this.ImageComboBoxEditInOut.Location = new System.Drawing.Point(296, 252);
+            this.ImageComboBoxEditInOut.Margin = new System.Windows.Forms.Padding(6);
+            this.ImageComboBoxEditInOut.Name = "ImageComboBoxEditInOut";
+            this.ImageComboBoxEditInOut.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.in_OutImageComboBoxEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            this.ImageComboBoxEditInOut.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Inbound", "I", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Outbound", "O", -1)});
-            this.in_OutImageComboBoxEdit.Size = new System.Drawing.Size(100, 20);
-            this.in_OutImageComboBoxEdit.TabIndex = 3;
-            this.in_OutImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
-            this.in_OutImageComboBoxEdit.Leave += new System.EventHandler(this.in_OutComboBoxEdit_Leave);
+            this.ImageComboBoxEditInOut.Size = new System.Drawing.Size(200, 40);
+            this.ImageComboBoxEditInOut.TabIndex = 3;
+            this.ImageComboBoxEditInOut.Leave += new System.EventHandler(this.ComboBoxEditInOut_Leave);
             // 
             // labelControl2
             // 
-            this.labelControl2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BusTableBindingSource, "UPD_INIT", true));
-            this.labelControl2.Location = new System.Drawing.Point(628, 49);
+            this.labelControl2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "UPD_INIT", true));
+            this.labelControl2.Location = new System.Drawing.Point(1256, 94);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(6);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(0, 13);
+            this.labelControl2.Size = new System.Drawing.Size(0, 25);
             this.labelControl2.TabIndex = 58;
             // 
             // labelControl1
             // 
-            this.labelControl1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BusTableBindingSource, "LAST_UPD", true));
-            this.labelControl1.Location = new System.Drawing.Point(475, 49);
+            this.labelControl1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingSource, "LAST_UPD", true));
+            this.labelControl1.Location = new System.Drawing.Point(950, 94);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(6);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(0, 13);
+            this.labelControl1.Size = new System.Drawing.Size(0, 25);
             this.labelControl1.TabIndex = 57;
             // 
-            // exclusionCheckEdit
+            // CheckEditExclusion
             // 
-            this.exclusionCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "Exclusion", true));
-            this.exclusionCheckEdit.EnterMoveNextControl = true;
-            this.exclusionCheckEdit.Location = new System.Drawing.Point(142, 423);
-            this.exclusionCheckEdit.Name = "exclusionCheckEdit";
-            this.exclusionCheckEdit.Properties.Caption = "";
-            this.exclusionCheckEdit.Properties.ValueChecked = ((short)(1));
-            this.exclusionCheckEdit.Properties.ValueUnchecked = ((short)(0));
-            this.exclusionCheckEdit.Size = new System.Drawing.Size(25, 19);
-            this.exclusionCheckEdit.TabIndex = 11;
+            this.CheckEditExclusion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Exclusion", true));
+            this.CheckEditExclusion.EnterMoveNextControl = true;
+            this.CheckEditExclusion.Location = new System.Drawing.Point(133, 813);
+            this.CheckEditExclusion.Margin = new System.Windows.Forms.Padding(6);
+            this.CheckEditExclusion.Name = "CheckEditExclusion";
+            this.CheckEditExclusion.Properties.Caption = "Exclusion";
+            this.CheckEditExclusion.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditExclusion.Properties.ValueChecked = ((short)(1));
+            this.CheckEditExclusion.Properties.ValueUnchecked = ((short)(0));
+            this.CheckEditExclusion.Size = new System.Drawing.Size(191, 38);
+            this.CheckEditExclusion.TabIndex = 11;
             // 
-            // endTimeTimeEdit
+            // TimeEditEndTime
             // 
-            this.endTimeTimeEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "EndTime", true));
-            this.endTimeTimeEdit.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
-            this.endTimeTimeEdit.EnterMoveNextControl = true;
-            this.endTimeTimeEdit.Location = new System.Drawing.Point(145, 361);
-            this.endTimeTimeEdit.Name = "endTimeTimeEdit";
-            this.endTimeTimeEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.TimeEditEndTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndTime", true));
+            this.TimeEditEndTime.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
+            this.TimeEditEndTime.EnterMoveNextControl = true;
+            this.TimeEditEndTime.Location = new System.Drawing.Point(290, 694);
+            this.TimeEditEndTime.Margin = new System.Windows.Forms.Padding(6);
+            this.TimeEditEndTime.Name = "TimeEditEndTime";
+            this.TimeEditEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.endTimeTimeEdit.Size = new System.Drawing.Size(100, 20);
-            this.endTimeTimeEdit.TabIndex = 10;
-            this.endTimeTimeEdit.Enter += new System.EventHandler(this.enterControl);
-            this.endTimeTimeEdit.Leave += new System.EventHandler(this.endTimeTimeEdit_Leave);
+            this.TimeEditEndTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
+            this.TimeEditEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.TimeEditEndTime.Properties.EditFormat.FormatString = "HHmm";
+            this.TimeEditEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.TimeEditEndTime.Properties.Mask.EditMask = "HHmm";
+            this.TimeEditEndTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.TimeEditEndTime.Size = new System.Drawing.Size(200, 40);
+            this.TimeEditEndTime.TabIndex = 10;
+            this.TimeEditEndTime.Leave += new System.EventHandler(this.TimeEditEndTime_Leave);
             // 
-            // tIMETimeEdit
+            // TimeEditStartTime
             // 
-            this.tIMETimeEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "TIME", true));
-            this.tIMETimeEdit.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
-            this.tIMETimeEdit.EnterMoveNextControl = true;
-            this.tIMETimeEdit.Location = new System.Drawing.Point(145, 303);
-            this.tIMETimeEdit.Name = "tIMETimeEdit";
-            this.tIMETimeEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.TimeEditStartTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TIME", true));
+            this.TimeEditStartTime.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
+            this.TimeEditStartTime.EnterMoveNextControl = true;
+            this.TimeEditStartTime.Location = new System.Drawing.Point(290, 583);
+            this.TimeEditStartTime.Margin = new System.Windows.Forms.Padding(6);
+            this.TimeEditStartTime.Name = "TimeEditStartTime";
+            this.TimeEditStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.tIMETimeEdit.Size = new System.Drawing.Size(100, 20);
-            this.tIMETimeEdit.TabIndex = 9;
-            this.tIMETimeEdit.Enter += new System.EventHandler(this.enterControl);
-            this.tIMETimeEdit.Leave += new System.EventHandler(this.tIMETimeEdit_Leave);
+            this.TimeEditStartTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
+            this.TimeEditStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.TimeEditStartTime.Properties.EditFormat.FormatString = "HHmm";
+            this.TimeEditStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.TimeEditStartTime.Properties.Mask.EditMask = "HHmm";
+            this.TimeEditStartTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.TimeEditStartTime.Size = new System.Drawing.Size(200, 40);
+            this.TimeEditStartTime.TabIndex = 9;
+            this.TimeEditStartTime.ParseEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.TimeEditStartTime_ParseEditValue);
+            this.TimeEditStartTime.Leave += new System.EventHandler(this.TimeEditStartTime_Leave);
             // 
-            // locationTypeComboBoxEdit
+            // ComboBoxEditLocationType
             // 
-            this.locationTypeComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "LocationType", true));
-            this.locationTypeComboBoxEdit.EnterMoveNextControl = true;
-            this.locationTypeComboBoxEdit.Location = new System.Drawing.Point(145, 231);
-            this.locationTypeComboBoxEdit.Name = "locationTypeComboBoxEdit";
-            this.locationTypeComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ComboBoxEditLocationType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LocationType", true));
+            this.ComboBoxEditLocationType.EnterMoveNextControl = true;
+            this.ComboBoxEditLocationType.Location = new System.Drawing.Point(290, 444);
+            this.ComboBoxEditLocationType.Margin = new System.Windows.Forms.Padding(6);
+            this.ComboBoxEditLocationType.Name = "ComboBoxEditLocationType";
+            this.ComboBoxEditLocationType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.locationTypeComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "AIR",
-            "BUS",
-            "CAR",
-            "CRU",
+            this.ComboBoxEditLocationType.Properties.Items.AddRange(new object[] {
             "CTY",
             "HTL",
-            "TRN",
             "WAY"});
-            this.locationTypeComboBoxEdit.Properties.MaxLength = 3;
-            this.locationTypeComboBoxEdit.Size = new System.Drawing.Size(100, 20);
-            this.locationTypeComboBoxEdit.TabIndex = 7;
-            this.locationTypeComboBoxEdit.TextChanged += new System.EventHandler(this.locationTypeComboBoxEdit_TextChanged);
-            this.locationTypeComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
-            this.locationTypeComboBoxEdit.Leave += new System.EventHandler(this.locationTypeComboBoxEdit_Leave);
+            this.ComboBoxEditLocationType.Properties.MaxLength = 3;
+            this.ComboBoxEditLocationType.Size = new System.Drawing.Size(200, 40);
+            this.ComboBoxEditLocationType.TabIndex = 7;
+            this.ComboBoxEditLocationType.TextChanged += new System.EventHandler(this.ComboBoxEditLocationType_TextChanged);
+            this.ComboBoxEditLocationType.Leave += new System.EventHandler(this.ComboBoxEditLocationType_Leave);
             // 
-            // endDateDateEdit
+            // GridControlLookup
             // 
-            this.endDateDateEdit.CausesValidation = false;
-            this.endDateDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "EndDate", true));
-            this.endDateDateEdit.EnterMoveNextControl = true;
-            this.endDateDateEdit.Location = new System.Drawing.Point(385, 185);
-            this.endDateDateEdit.Name = "endDateDateEdit";
-            this.endDateDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.endDateDateEdit.Size = new System.Drawing.Size(100, 20);
-            this.endDateDateEdit.TabIndex = 6;
-            this.endDateDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.endDateDateEdit_ButtonClick);
-            this.endDateDateEdit.TextChanged += new System.EventHandler(this.endDateDateEdit_TextChanged);
-            this.endDateDateEdit.Enter += new System.EventHandler(this.enterControl);
-            this.endDateDateEdit.Leave += new System.EventHandler(this.endDateDateEdit_Leave);
+            this.GridControlLookup.DataSource = this.EntityInstantFeedbackSource;
+            this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
+            this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
+            this.GridControlLookup.MainView = this.GridViewLookup;
+            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(6);
+            this.GridControlLookup.Name = "GridControlLookup";
+            this.GridControlLookup.Size = new System.Drawing.Size(510, 1685);
+            this.GridControlLookup.TabIndex = 34;
+            this.GridControlLookup.TabStop = false;
+            this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewLookup});
             // 
-            // dATEDateEdit
+            // EntityInstantFeedbackSource
             // 
-            this.dATEDateEdit.CausesValidation = false;
-            this.dATEDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "DATE", true));
-            this.dATEDateEdit.EnterMoveNextControl = true;
-            this.dATEDateEdit.Location = new System.Drawing.Point(145, 182);
-            this.dATEDateEdit.Name = "dATEDateEdit";
-            this.dATEDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dATEDateEdit.Size = new System.Drawing.Size(100, 20);
-            this.dATEDateEdit.TabIndex = 5;
-            this.dATEDateEdit.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dATEDateEdit_ButtonClick);
-            this.dATEDateEdit.TextChanged += new System.EventHandler(this.dATEDateEdit_TextChanged);
-            this.dATEDateEdit.Enter += new System.EventHandler(this.enterControl);
-            this.dATEDateEdit.Leave += new System.EventHandler(this.dATEDateEdit_Leave);
+            this.EntityInstantFeedbackSource.DesignTimeElementType = typeof(FlexModel.BUSTABLE);
+            this.EntityInstantFeedbackSource.KeyExpression = "CODE";
+            this.EntityInstantFeedbackSource.GetQueryable += new System.EventHandler<DevExpress.Data.Linq.GetQueryableEventArgs>(this.EntityInstantFeedbackSource_GetQueryable);
+            this.EntityInstantFeedbackSource.DismissQueryable += new System.EventHandler<DevExpress.Data.Linq.GetQueryableEventArgs>(this.EntityInstantFeedbackSource_DismissQueryable);
             // 
-            // GridControlBusTable
+            // GridViewLookup
             // 
-            this.GridControlBusTable.DataSource = this.BusTableBindingSource;
-            this.GridControlBusTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlBusTable.Location = new System.Drawing.Point(0, 0);
-            this.GridControlBusTable.MainView = this.GridViewBusTable;
-            this.GridControlBusTable.Name = "GridControlBusTable";
-            this.GridControlBusTable.Size = new System.Drawing.Size(255, 897);
-            this.GridControlBusTable.TabIndex = 34;
-            this.GridControlBusTable.TabStop = false;
-            this.GridControlBusTable.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewBusTable});
-            // 
-            // GridViewBusTable
-            // 
-            this.GridViewBusTable.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDisplayName,
             this.colTYPE,
             this.colCODE,
@@ -426,376 +427,525 @@
             this.colEndTime,
             this.colExclusion,
             this.colID});
-            this.GridViewBusTable.GridControl = this.GridControlBusTable;
-            this.GridViewBusTable.Name = "GridViewBusTable";
-            this.GridViewBusTable.OptionsView.ShowAutoFilterRow = true;
-            this.GridViewBusTable.OptionsView.ShowGroupPanel = false;
-            this.GridViewBusTable.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
-            this.GridViewBusTable.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
-            this.GridViewBusTable.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.gridView1_BeforeLeaveRow);
-            // 
-            // tYPEComboBoxEdit
-            // 
-            this.tYPEComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "TYPE", true));
-            this.tYPEComboBoxEdit.EnterMoveNextControl = true;
-            this.tYPEComboBoxEdit.Location = new System.Drawing.Point(148, 48);
-            this.tYPEComboBoxEdit.Name = "tYPEComboBoxEdit";
-            this.tYPEComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tYPEComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "PKG",
-            "OPT"});
-            this.tYPEComboBoxEdit.Properties.MaxLength = 3;
-            this.tYPEComboBoxEdit.Size = new System.Drawing.Size(100, 20);
-            this.tYPEComboBoxEdit.TabIndex = 1;
-            this.tYPEComboBoxEdit.TextChanged += new System.EventHandler(this.tYPEComboBoxEdit_TextChanged);
-            this.tYPEComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
-            this.tYPEComboBoxEdit.Leave += new System.EventHandler(this.tYPEComboBoxEdit_Leave);
-            // 
-            // BusTableBindingNavigator
-            // 
-            this.BusTableBindingNavigator.AddNewItem = null;
-            this.BusTableBindingNavigator.BindingSource = this.BusTableBindingSource;
-            this.BusTableBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.BusTableBindingNavigator.DeleteItem = null;
-            this.BusTableBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.bUSTABLEBindingNavigatorSaveItem});
-            this.BusTableBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.BusTableBindingNavigator.MoveFirstItem = null;
-            this.BusTableBindingNavigator.MoveLastItem = null;
-            this.BusTableBindingNavigator.MoveNextItem = null;
-            this.BusTableBindingNavigator.MovePreviousItem = null;
-            this.BusTableBindingNavigator.Name = "BusTableBindingNavigator";
-            this.BusTableBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.BusTableBindingNavigator.Size = new System.Drawing.Size(1264, 25);
-            this.BusTableBindingNavigator.TabIndex = 31;
-            this.BusTableBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // bUSTABLEBindingNavigatorSaveItem
-            // 
-            this.bUSTABLEBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bUSTABLEBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bUSTABLEBindingNavigatorSaveItem.Image")));
-            this.bUSTABLEBindingNavigatorSaveItem.Name = "bUSTABLEBindingNavigatorSaveItem";
-            this.bUSTABLEBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.bUSTABLEBindingNavigatorSaveItem.Text = "Save Data";
-            this.bUSTABLEBindingNavigatorSaveItem.Click += new System.EventHandler(this.bUSTABLEBindingNavigatorSaveItem_Click);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // splitContainerControl1
-            // 
-            this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.AutoScroll = true;
-            this.splitContainerControl1.Panel1.Controls.Add(this.GridControlBusTable);
-            this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.AutoScroll = true;
-            this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditCode);
-            this.splitContainerControl1.Panel2.Controls.Add(this.ImageComboBoxEditLocation);
-            this.splitContainerControl1.Panel2.Controls.Add(this.pUP_DRPImageComboBoxEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(tYPELabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.in_OutImageComboBoxEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(cODELabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
-            this.splitContainerControl1.Panel2.Controls.Add(in_OutLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.labelControl1);
-            this.splitContainerControl1.Panel2.Controls.Add(pUP_DRPLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.exclusionCheckEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(dATELabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.endTimeTimeEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(endDateLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.tIMETimeEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(locationTypeLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(lOCATIONLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.locationTypeComboBoxEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(tIMELabel);
-            this.splitContainerControl1.Panel2.Controls.Add(endTimeLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.endDateDateEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(exclusionLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.dATEDateEdit);
-            this.splitContainerControl1.Panel2.Controls.Add(lAST_UPDLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(uPD_INITLabel);
-            this.splitContainerControl1.Panel2.Controls.Add(this.tYPEComboBoxEdit);
-            this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1264, 897);
-            this.splitContainerControl1.SplitterPosition = 255;
-            this.splitContainerControl1.TabIndex = 60;
-            this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // ImageComboBoxEditCode
-            // 
-            this.ImageComboBoxEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "CODE", true));
-            this.ImageComboBoxEditCode.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCode.Location = new System.Drawing.Point(148, 85);
-            this.ImageComboBoxEditCode.Name = "ImageComboBoxEditCode";
-            this.ImageComboBoxEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCode.Size = new System.Drawing.Size(232, 20);
-            this.ImageComboBoxEditCode.TabIndex = 2;
-            this.ImageComboBoxEditCode.Enter += new System.EventHandler(this.enterControl);
-            this.ImageComboBoxEditCode.Leave += new System.EventHandler(this.ImageComboBoxEditCode_Leave);
-            // 
-            // ImageComboBoxEditLocation
-            // 
-            this.ImageComboBoxEditLocation.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BusTableBindingSource, "LOCATION", true));
-            this.ImageComboBoxEditLocation.EnterMoveNextControl = true;
-            this.ImageComboBoxEditLocation.Location = new System.Drawing.Point(385, 234);
-            this.ImageComboBoxEditLocation.Name = "ImageComboBoxEditLocation";
-            this.ImageComboBoxEditLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditLocation.Size = new System.Drawing.Size(260, 20);
-            this.ImageComboBoxEditLocation.TabIndex = 8;
-            this.ImageComboBoxEditLocation.Enter += new System.EventHandler(this.enterControl);
-            this.ImageComboBoxEditLocation.Leave += new System.EventHandler(this.ImageComboBoxEditLocation_Leave);
-            // 
-            // panelControlStatus
-            // 
-            this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-            this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-            this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(290, 2);
-            this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(120, 23);
-            this.panelControlStatus.TabIndex = 265;
-            this.panelControlStatus.Visible = false;
-            // 
-            // LabelStatus
-            // 
-            this.LabelStatus.Location = new System.Drawing.Point(30, 5);
-            this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 13);
-            this.LabelStatus.TabIndex = 5;
+            this.GridViewLookup.DetailHeight = 673;
+            this.GridViewLookup.FixedLineWidth = 4;
+            this.GridViewLookup.GridControl = this.GridControlLookup;
+            this.GridViewLookup.Name = "GridViewLookup";
+            this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
+            this.GridViewLookup.OptionsView.ShowGroupPanel = false;
+            this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
+            this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
             // 
             // colDisplayName
             // 
             this.colDisplayName.FieldName = "DisplayName";
+            this.colDisplayName.MinWidth = 40;
             this.colDisplayName.Name = "colDisplayName";
             this.colDisplayName.OptionsColumn.ReadOnly = true;
+            this.colDisplayName.Width = 150;
             // 
             // colTYPE
             // 
             this.colTYPE.FieldName = "TYPE";
+            this.colTYPE.MinWidth = 40;
             this.colTYPE.Name = "colTYPE";
             this.colTYPE.Visible = true;
             this.colTYPE.VisibleIndex = 0;
+            this.colTYPE.Width = 150;
             // 
             // colCODE
             // 
             this.colCODE.FieldName = "CODE";
+            this.colCODE.MinWidth = 40;
             this.colCODE.Name = "colCODE";
             this.colCODE.Visible = true;
             this.colCODE.VisibleIndex = 1;
+            this.colCODE.Width = 150;
             // 
             // colPUP_DRP
             // 
             this.colPUP_DRP.FieldName = "PUP_DRP";
+            this.colPUP_DRP.MinWidth = 40;
             this.colPUP_DRP.Name = "colPUP_DRP";
+            this.colPUP_DRP.Width = 150;
             // 
             // colDATE
             // 
             this.colDATE.FieldName = "DATE";
+            this.colDATE.MinWidth = 40;
             this.colDATE.Name = "colDATE";
+            this.colDATE.Width = 150;
             // 
             // colLOCATION
             // 
             this.colLOCATION.FieldName = "LOCATION";
+            this.colLOCATION.MinWidth = 40;
             this.colLOCATION.Name = "colLOCATION";
+            this.colLOCATION.Width = 150;
             // 
             // colTIME
             // 
             this.colTIME.FieldName = "TIME";
+            this.colTIME.MinWidth = 40;
             this.colTIME.Name = "colTIME";
+            this.colTIME.Width = 150;
             // 
             // colLAST_UPD
             // 
             this.colLAST_UPD.FieldName = "LAST_UPD";
+            this.colLAST_UPD.MinWidth = 40;
             this.colLAST_UPD.Name = "colLAST_UPD";
+            this.colLAST_UPD.Width = 150;
             // 
             // colUPD_INIT
             // 
             this.colUPD_INIT.FieldName = "UPD_INIT";
+            this.colUPD_INIT.MinWidth = 40;
             this.colUPD_INIT.Name = "colUPD_INIT";
+            this.colUPD_INIT.Width = 150;
             // 
             // colIn_Out
             // 
             this.colIn_Out.FieldName = "In_Out";
+            this.colIn_Out.MinWidth = 40;
             this.colIn_Out.Name = "colIn_Out";
+            this.colIn_Out.Width = 150;
             // 
             // colEndDate
             // 
             this.colEndDate.FieldName = "EndDate";
+            this.colEndDate.MinWidth = 40;
             this.colEndDate.Name = "colEndDate";
+            this.colEndDate.Width = 150;
             // 
             // colLocationType
             // 
             this.colLocationType.FieldName = "LocationType";
+            this.colLocationType.MinWidth = 40;
             this.colLocationType.Name = "colLocationType";
+            this.colLocationType.Width = 150;
             // 
             // colCarOffice
             // 
             this.colCarOffice.FieldName = "CarOffice";
+            this.colCarOffice.MinWidth = 40;
             this.colCarOffice.Name = "colCarOffice";
+            this.colCarOffice.Width = 150;
             // 
             // colEndTime
             // 
             this.colEndTime.FieldName = "EndTime";
+            this.colEndTime.MinWidth = 40;
             this.colEndTime.Name = "colEndTime";
+            this.colEndTime.Width = 150;
             // 
             // colExclusion
             // 
             this.colExclusion.FieldName = "Exclusion";
+            this.colExclusion.MinWidth = 40;
             this.colExclusion.Name = "colExclusion";
+            this.colExclusion.Width = 150;
             // 
             // colID
             // 
             this.colID.FieldName = "ID";
+            this.colID.MinWidth = 40;
             this.colID.Name = "colID";
+            this.colID.Width = 150;
+            // 
+            // ComboBoxEditType
+            // 
+            this.ComboBoxEditType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
+            this.ComboBoxEditType.EnterMoveNextControl = true;
+            this.ComboBoxEditType.Location = new System.Drawing.Point(296, 92);
+            this.ComboBoxEditType.Margin = new System.Windows.Forms.Padding(6);
+            this.ComboBoxEditType.Name = "ComboBoxEditType";
+            this.ComboBoxEditType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ComboBoxEditType.Properties.Items.AddRange(new object[] {
+            "PKG",
+            "OPT"});
+            this.ComboBoxEditType.Properties.MaxLength = 3;
+            this.ComboBoxEditType.Size = new System.Drawing.Size(200, 40);
+            this.ComboBoxEditType.TabIndex = 1;
+            this.ComboBoxEditType.TextChanged += new System.EventHandler(this.ComboBoxEditType_TextChanged);
+            this.ComboBoxEditType.Leave += new System.EventHandler(this.ComboBoxEditType_Leave);
+            // 
+            // ErrorProvider
+            // 
+            this.ErrorProvider.ContainerControl = this;
+            // 
+            // SplitContainerControl
+            // 
+            this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 60);
+            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(6);
+            this.SplitContainerControl.Name = "SplitContainerControl";
+            this.SplitContainerControl.Panel1.AutoScroll = true;
+            this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
+            this.SplitContainerControl.Panel1.Text = "Panel1";
+            this.SplitContainerControl.Panel2.AutoScroll = true;
+            this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditPupDrp);
+            this.SplitContainerControl.Panel2.Controls.Add(tYPELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditInOut);
+            this.SplitContainerControl.Panel2.Controls.Add(cODELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.labelControl2);
+            this.SplitContainerControl.Panel2.Controls.Add(in_OutLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.labelControl1);
+            this.SplitContainerControl.Panel2.Controls.Add(pUP_DRPLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditExclusion);
+            this.SplitContainerControl.Panel2.Controls.Add(dATELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditEndTime);
+            this.SplitContainerControl.Panel2.Controls.Add(endDateLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditStartTime);
+            this.SplitContainerControl.Panel2.Controls.Add(locationTypeLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(lOCATIONLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.ComboBoxEditLocationType);
+            this.SplitContainerControl.Panel2.Controls.Add(tIMELabel);
+            this.SplitContainerControl.Panel2.Controls.Add(endTimeLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(lAST_UPDLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(uPD_INITLabel);
+            this.SplitContainerControl.Panel2.Controls.Add(this.ComboBoxEditType);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCode);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditLocation);
+            this.SplitContainerControl.Panel2.Controls.Add(this.DateEditStartDate);
+            this.SplitContainerControl.Panel2.Controls.Add(this.DateEditEndDate);
+            this.SplitContainerControl.Panel2.Text = "Panel2";
+            this.SplitContainerControl.Size = new System.Drawing.Size(2528, 1685);
+            this.SplitContainerControl.SplitterPosition = 510;
+            this.SplitContainerControl.TabIndex = 60;
+            this.SplitContainerControl.Text = "splitContainerControl1";
+            // 
+            // SearchLookupEditCode
+            // 
+            this.SearchLookupEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
+            this.SearchLookupEditCode.Location = new System.Drawing.Point(296, 163);
+            this.SearchLookupEditCode.Margin = new System.Windows.Forms.Padding(6);
+            this.SearchLookupEditCode.Name = "SearchLookupEditCode";
+            this.SearchLookupEditCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditCode.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditCode.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditCode.Properties.NullText = "";
+            this.SearchLookupEditCode.Properties.PopupSizeable = false;
+            this.SearchLookupEditCode.Properties.PopupView = this.searchLookUpEdit1View;
+            this.SearchLookupEditCode.Properties.ValueMember = "Code";
+            this.SearchLookupEditCode.Size = new System.Drawing.Size(464, 40);
+            this.SearchLookupEditCode.TabIndex = 2;
+            this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
+            this.SearchLookupEditCode.Leave += new System.EventHandler(this.ImageComboBoxEditCode_Leave);
+            // 
+            // BindingSourceCodeName
+            // 
+            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode1,
+            this.colName});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // colCode1
+            // 
+            this.colCode1.FieldName = "Code";
+            this.colCode1.Name = "colCode1";
+            this.colCode1.Visible = true;
+            this.colCode1.VisibleIndex = 0;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
+            // 
+            // SearchLookupEditLocation
+            // 
+            this.SearchLookupEditLocation.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LOCATION", true));
+            this.SearchLookupEditLocation.EditValue = "4";
+            this.SearchLookupEditLocation.Location = new System.Drawing.Point(770, 450);
+            this.SearchLookupEditLocation.Margin = new System.Windows.Forms.Padding(6);
+            this.SearchLookupEditLocation.Name = "SearchLookupEditLocation";
+            this.SearchLookupEditLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditLocation.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditLocation.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditLocation.Properties.NullText = "";
+            this.SearchLookupEditLocation.Properties.PopupSizeable = false;
+            this.SearchLookupEditLocation.Properties.PopupView = this.gridView1;
+            this.SearchLookupEditLocation.Properties.ValueMember = "Code";
+            this.SearchLookupEditLocation.Size = new System.Drawing.Size(520, 40);
+            this.SearchLookupEditLocation.TabIndex = 8;
+            this.SearchLookupEditLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditLocation.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
+            this.SearchLookupEditLocation.Leave += new System.EventHandler(this.ImageComboBoxEditLocation_Leave);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode2,
+            this.colName1});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
+            // 
+            // colCode2
+            // 
+            this.colCode2.FieldName = "Code";
+            this.colCode2.Name = "colCode2";
+            this.colCode2.Visible = true;
+            this.colCode2.VisibleIndex = 0;
+            // 
+            // colName1
+            // 
+            this.colName1.FieldName = "Name";
+            this.colName1.Name = "colName1";
+            this.colName1.Visible = true;
+            this.colName1.VisibleIndex = 1;
+            // 
+            // PanelControlStatus
+            // 
+            this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+            this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+            this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PanelControlStatus.Controls.Add(this.LabelStatus);
+            this.PanelControlStatus.Location = new System.Drawing.Point(580, 4);
+            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.PanelControlStatus.Name = "PanelControlStatus";
+            this.PanelControlStatus.Size = new System.Drawing.Size(240, 44);
+            this.PanelControlStatus.TabIndex = 265;
+            this.PanelControlStatus.Visible = false;
+            // 
+            // LabelStatus
+            // 
+            this.LabelStatus.Location = new System.Drawing.Point(60, 10);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.LabelStatus.Name = "LabelStatus";
+            this.LabelStatus.Size = new System.Drawing.Size(0, 25);
+            this.LabelStatus.TabIndex = 5;
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Tools";
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Tools";
+            this.bar2.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Top;
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DrawDragBorder = false;
+            this.bar2.OptionsBar.UseWholeRow = true;
+            this.bar2.Text = "Tools";
+            // 
+            // BarManager
+            // 
+            this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar3,
+            this.bar5});
+            this.BarManager.DockControls.Add(this.barDockControlTop);
+            this.BarManager.DockControls.Add(this.barDockControlBottom);
+            this.BarManager.DockControls.Add(this.barDockControlLeft);
+            this.BarManager.DockControls.Add(this.barDockControlRight);
+            this.BarManager.Form = this;
+            this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+            this.BarManager.MaxItemId = 3;
+            this.BarManager.StatusBar = this.bar5;
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Tools";
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Tools";
+            // 
+            // BarButtonItemNew
+            // 
+            this.BarButtonItemNew.Caption = "new";
+            this.BarButtonItemNew.Id = 0;
+            this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.Image")));
+            this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.LargeImage")));
+            this.BarButtonItemNew.Name = "BarButtonItemNew";
+            this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+            // 
+            // BarButtonItemDelete
+            // 
+            this.BarButtonItemDelete.Caption = "Delete";
+            this.BarButtonItemDelete.Id = 1;
+            this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
+            this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
+            this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+            this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+            // 
+            // BarButtonItemSave
+            // 
+            this.BarButtonItemSave.Caption = "Save";
+            this.BarButtonItemSave.Id = 2;
+            this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.Image")));
+            this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
+            this.BarButtonItemSave.Name = "BarButtonItemSave";
+            this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+            // 
+            // bar5
+            // 
+            this.bar5.BarName = "Status bar";
+            this.bar5.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar5.DockCol = 0;
+            this.bar5.DockRow = 0;
+            this.bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar5.OptionsBar.AllowQuickCustomization = false;
+            this.bar5.OptionsBar.DrawDragBorder = false;
+            this.bar5.OptionsBar.UseWholeRow = true;
+            this.bar5.Text = "Status bar";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.BarManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(2528, 60);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1745);
+            this.barDockControlBottom.Manager = this.BarManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(2528, 28);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
+            this.barDockControlLeft.Manager = this.BarManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1685);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(2528, 60);
+            this.barDockControlRight.Manager = this.BarManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1685);
+            // 
+            // DateEditStartDate
+            // 
+            this.DateEditStartDate.CausesValidation = false;
+            this.DateEditStartDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
+            this.DateEditStartDate.EditValue = null;
+            this.DateEditStartDate.Location = new System.Drawing.Point(290, 350);
+            this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(6);
+            this.DateEditStartDate.Name = "DateEditStartDate";
+            this.DateEditStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditStartDate.Properties.DisplayFormat.FormatString = "";
+            this.DateEditStartDate.Properties.EditFormat.FormatString = "";
+            this.DateEditStartDate.Properties.Mask.EditMask = "";
+            this.DateEditStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.DateEditStartDate.Size = new System.Drawing.Size(200, 40);
+            this.DateEditStartDate.TabIndex = 5;
+            this.DateEditStartDate.TextChanged += new System.EventHandler(this.DateEditStartDate_TextChanged);
+            this.DateEditStartDate.Leave += new System.EventHandler(this.DateEditStartDate_Leave);
+            // 
+            // DateEditEndDate
+            // 
+            this.DateEditEndDate.CausesValidation = false;
+            this.DateEditEndDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndDate", true));
+            this.DateEditEndDate.EditValue = null;
+            this.DateEditEndDate.Location = new System.Drawing.Point(770, 356);
+            this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(6);
+            this.DateEditEndDate.Name = "DateEditEndDate";
+            this.DateEditEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditEndDate.Properties.DisplayFormat.FormatString = "";
+            this.DateEditEndDate.Properties.EditFormat.FormatString = "";
+            this.DateEditEndDate.Properties.Mask.EditMask = "";
+            this.DateEditEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.DateEditEndDate.Size = new System.Drawing.Size(200, 40);
+            this.DateEditEndDate.TabIndex = 6;
+            this.DateEditEndDate.TextChanged += new System.EventHandler(this.DateEditEndDate_TextChanged);
+            this.DateEditEndDate.Leave += new System.EventHandler(this.DateEditEndDate_Leave);
             // 
             // BusTableForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 922);
-            this.Controls.Add(this.panelControlStatus);
-            this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.BusTableBindingNavigator);
+            this.ClientSize = new System.Drawing.Size(2528, 1773);
+            this.Controls.Add(this.PanelControlStatus);
+            this.Controls.Add(this.SplitContainerControl);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimizeBox = false;
             this.Name = "BusTableForm";
             this.ShowInTaskbar = false;
             this.Text = "Bus Table Maintenance";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BusTableForm_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BusTableForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.pUP_DRPImageComboBoxEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BusTableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.in_OutImageComboBoxEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exclusionCheckEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endTimeTimeEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tIMETimeEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationTypeComboBoxEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.endDateDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dATEDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridControlBusTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewBusTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tYPEComboBoxEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BusTableBindingNavigator)).EndInit();
-            this.BusTableBindingNavigator.ResumeLayout(false);
-            this.BusTableBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
-            this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditLocation.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-            this.panelControlStatus.ResumeLayout(false);
-            this.panelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditPupDrp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditInOut.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditExclusion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditLocationType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
+            this.SplitContainerControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+            this.PanelControlStatus.ResumeLayout(false);
+            this.PanelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -804,38 +954,21 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.BindingSource BusTableBindingSource;
+        private System.Windows.Forms.BindingSource BindingSource;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.CheckEdit exclusionCheckEdit;
-        private DevExpress.XtraEditors.TimeEdit endTimeTimeEdit;
-        private DevExpress.XtraEditors.TimeEdit tIMETimeEdit;
-        private DevExpress.XtraEditors.ComboBoxEdit locationTypeComboBoxEdit;
-        private DevExpress.XtraEditors.ButtonEdit endDateDateEdit;
-        private DevExpress.XtraEditors.ButtonEdit dATEDateEdit;
-        private DevExpress.XtraGrid.GridControl GridControlBusTable;
-        private DevExpress.XtraGrid.Views.Grid.GridView GridViewBusTable;
-        private DevExpress.XtraEditors.ComboBoxEdit tYPEComboBoxEdit;
-        private System.Windows.Forms.BindingNavigator BusTableBindingNavigator;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bUSTABLEBindingNavigatorSaveItem;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private DevExpress.XtraEditors.ImageComboBoxEdit pUP_DRPImageComboBoxEdit;
-        private DevExpress.XtraEditors.ImageComboBoxEdit in_OutImageComboBoxEdit;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private DevExpress.XtraEditors.CheckEdit CheckEditExclusion;
+        private DevExpress.XtraEditors.TimeEdit TimeEditEndTime;
+        private DevExpress.XtraEditors.TimeEdit TimeEditStartTime;
+        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditLocationType;
+        private DevExpress.XtraGrid.GridControl GridControlLookup;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
+        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditType;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
+        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditPupDrp;
+        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditInOut;
+        private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
+        private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
-        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditCode;
-        private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditLocation;
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
         private DevExpress.XtraGrid.Columns.GridColumn colTYPE;
         private DevExpress.XtraGrid.Columns.GridColumn colCODE;
@@ -852,5 +985,29 @@
         private DevExpress.XtraGrid.Columns.GridColumn colEndTime;
         private DevExpress.XtraGrid.Columns.GridColumn colExclusion;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarManager BarManager;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+        private DevExpress.XtraBars.Bar bar5;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+        private DevExpress.Data.Linq.EntityInstantFeedbackSource EntityInstantFeedbackSource;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditCode;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private System.Windows.Forms.BindingSource BindingSourceCodeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode1;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditLocation;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode2;
+        private DevExpress.XtraGrid.Columns.GridColumn colName1;
+        private DevExpress.XtraEditors.DateEdit DateEditStartDate;
+        private DevExpress.XtraEditors.DateEdit DateEditEndDate;
     }
 }

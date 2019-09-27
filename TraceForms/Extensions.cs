@@ -10,7 +10,24 @@ namespace TraceForms
 {
 	public static class Extensions
 	{
-		public static IEnumerable<t> DistinctBy<t>(this IEnumerable<t> list, Func<t, object> propertySelector)
+        public static object GetPropertyValue(this object record, string propertyName)
+        {
+            if (record == null) {
+                return null;
+            }
+            else {
+                return record.GetType().GetProperty(propertyName)
+                   .GetValue(record, null);
+            }
+        }
+
+        public static void SetPropertyValue(this object record, string propertyName, object value)
+        {
+            record.GetType().GetProperty(propertyName)
+               .SetValue(record, value);
+        }
+
+        public static IEnumerable<t> DistinctBy<t>(this IEnumerable<t> list, Func<t, object> propertySelector)
 		{
 			return list.GroupBy(propertySelector).Select(x => x.First());
 		}

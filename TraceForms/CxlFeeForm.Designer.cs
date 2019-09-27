@@ -348,7 +348,7 @@
             this.CheckEditNoShow.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.CheckEditNoShow.Name = "CheckEditNoShow";
             this.CheckEditNoShow.Properties.Caption = "No Show";
-            this.CheckEditNoShow.Size = new System.Drawing.Size(150, 34);
+            this.CheckEditNoShow.Size = new System.Drawing.Size(150, 38);
             this.CheckEditNoShow.TabIndex = 19;
             this.CheckEditNoShow.CheckedChanged += new System.EventHandler(this.CheckEditNoShow_CheckedChanged);
             // 
@@ -379,7 +379,7 @@
             0,
             0,
             -2147483648});
-            this.SpinEditNtsPrior.Size = new System.Drawing.Size(144, 34);
+            this.SpinEditNtsPrior.Size = new System.Drawing.Size(144, 40);
             this.SpinEditNtsPrior.TabIndex = 18;
             this.SpinEditNtsPrior.EditValueChanged += new System.EventHandler(this.SpinEditNtsPrior_EditValueChanged);
             this.SpinEditNtsPrior.Leave += new System.EventHandler(this.SpinEditNtsPrior_Leave);
@@ -609,7 +609,7 @@
             this.CheckEditNonRefundable.Name = "CheckEditNonRefundable";
             this.CheckEditNonRefundable.Properties.Caption = "Non-refundable";
             this.CheckEditNonRefundable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditNonRefundable.Size = new System.Drawing.Size(292, 34);
+            this.CheckEditNonRefundable.Size = new System.Drawing.Size(292, 38);
             this.CheckEditNonRefundable.TabIndex = 1;
             // 
             // BarManager
@@ -743,7 +743,7 @@
             this.SpinEditNbrNts.Name = "SpinEditNbrNts";
             this.SpinEditNbrNts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.SpinEditNbrNts.Size = new System.Drawing.Size(158, 34);
+            this.SpinEditNbrNts.Size = new System.Drawing.Size(158, 40);
             this.SpinEditNbrNts.TabIndex = 3;
             this.SpinEditNbrNts.Leave += new System.EventHandler(this.SpinEditNbrNts_Leave);
             // 
@@ -762,7 +762,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.SpinEditFlatFee.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.SpinEditFlatFee.Properties.Mask.EditMask = "c";
-            this.SpinEditFlatFee.Size = new System.Drawing.Size(158, 34);
+            this.SpinEditFlatFee.Size = new System.Drawing.Size(158, 40);
             this.SpinEditFlatFee.TabIndex = 7;
             this.SpinEditFlatFee.Leave += new System.EventHandler(this.SpinEditFlatFee_Leave);
             // 
@@ -786,7 +786,7 @@
             0,
             0,
             0});
-            this.SpinEditPctAmt.Size = new System.Drawing.Size(158, 34);
+            this.SpinEditPctAmt.Size = new System.Drawing.Size(158, 40);
             this.SpinEditPctAmt.TabIndex = 5;
             this.SpinEditPctAmt.Leave += new System.EventHandler(this.SpinEditPctAmt_Leave);
             // 
@@ -816,7 +816,7 @@
             0,
             0,
             -2147483648});
-            this.SpinEditTimeAfter.Size = new System.Drawing.Size(200, 34);
+            this.SpinEditTimeAfter.Size = new System.Drawing.Size(200, 40);
             this.SpinEditTimeAfter.TabIndex = 21;
             this.SpinEditTimeAfter.Leave += new System.EventHandler(this.SpinEditTimeAfter_Leave);
             // 
@@ -842,7 +842,7 @@
             this.ImageComboBoxEditTimeUnits.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Days", ((short)(0)), -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Hours", ((short)(3)), -1)});
-            this.ImageComboBoxEditTimeUnits.Size = new System.Drawing.Size(222, 34);
+            this.ImageComboBoxEditTimeUnits.Size = new System.Drawing.Size(222, 40);
             this.ImageComboBoxEditTimeUnits.TabIndex = 14;
             this.ImageComboBoxEditTimeUnits.Leave += new System.EventHandler(this.ImageComboBoxEditTimeUnits_Leave);
             // 
@@ -868,7 +868,7 @@
             this.ImageComboBoxEditTimeBasis.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Before Arrival", ((short)(0)), -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("After Booking", ((short)(1)), -1)});
-            this.ImageComboBoxEditTimeBasis.Size = new System.Drawing.Size(328, 34);
+            this.ImageComboBoxEditTimeBasis.Size = new System.Drawing.Size(328, 40);
             this.ImageComboBoxEditTimeBasis.TabIndex = 16;
             this.ImageComboBoxEditTimeBasis.EditValueChanged += new System.EventHandler(this.ImageComboBoxEditTimeBasis_EditValueChanged);
             this.ImageComboBoxEditTimeBasis.Leave += new System.EventHandler(this.ImageComboBoxEditTimeBasis_Leave);
@@ -889,7 +889,7 @@
             this.TextEditDescription.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.TextEditDescription.MenuManager = this.BarManager;
             this.TextEditDescription.Name = "TextEditDescription";
-            this.TextEditDescription.Size = new System.Drawing.Size(766, 34);
+            this.TextEditDescription.Size = new System.Drawing.Size(766, 40);
             this.TextEditDescription.TabIndex = 26;
             // 
             // SearchLookupEditAgency
@@ -905,9 +905,9 @@
             this.SearchLookupEditAgency.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditAgency.Properties.NullText = "";
             this.SearchLookupEditAgency.Properties.PopupSizeable = false;
+            this.SearchLookupEditAgency.Properties.PopupView = this.GridViewLookup1;
             this.SearchLookupEditAgency.Properties.ValueMember = "Code";
-            this.SearchLookupEditAgency.Properties.View = this.GridViewLookup1;
-            this.SearchLookupEditAgency.Size = new System.Drawing.Size(767, 34);
+            this.SearchLookupEditAgency.Size = new System.Drawing.Size(767, 40);
             this.SearchLookupEditAgency.TabIndex = 7;
             this.SearchLookupEditAgency.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditAgency.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -962,9 +962,9 @@
             this.SearchLookupEditCategory.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCategory.Properties.NullText = "";
             this.SearchLookupEditCategory.Properties.PopupSizeable = false;
+            this.SearchLookupEditCategory.Properties.PopupView = this.GridViewLookup2;
             this.SearchLookupEditCategory.Properties.ValueMember = "Code";
-            this.SearchLookupEditCategory.Properties.View = this.GridViewLookup2;
-            this.SearchLookupEditCategory.Size = new System.Drawing.Size(767, 34);
+            this.SearchLookupEditCategory.Size = new System.Drawing.Size(767, 40);
             this.SearchLookupEditCategory.TabIndex = 5;
             this.SearchLookupEditCategory.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -1014,9 +1014,9 @@
             this.SearchLookupEditCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCode.Properties.NullText = "";
             this.SearchLookupEditCode.Properties.PopupSizeable = false;
+            this.SearchLookupEditCode.Properties.PopupView = this.GridViewLookup3;
             this.SearchLookupEditCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditCode.Properties.View = this.GridViewLookup3;
-            this.SearchLookupEditCode.Size = new System.Drawing.Size(767, 34);
+            this.SearchLookupEditCode.Size = new System.Drawing.Size(767, 40);
             this.SearchLookupEditCode.TabIndex = 3;
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -1068,7 +1068,7 @@
             "PKG"});
             this.ComboBoxEditType.Properties.MaxLength = 3;
             this.ComboBoxEditType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.ComboBoxEditType.Size = new System.Drawing.Size(200, 34);
+            this.ComboBoxEditType.Size = new System.Drawing.Size(200, 40);
             this.ComboBoxEditType.TabIndex = 1;
             this.ComboBoxEditType.TextChanged += new System.EventHandler(this.ComboBoxEditType_TextChanged);
             this.ComboBoxEditType.Leave += new System.EventHandler(this.ComboBoxEditType_Leave);
@@ -1089,7 +1089,7 @@
             this.DateEditStartDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditStartDate.Properties.Mask.EditMask = "";
             this.DateEditStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditStartDate.Size = new System.Drawing.Size(222, 34);
+            this.DateEditStartDate.Size = new System.Drawing.Size(222, 40);
             this.DateEditStartDate.TabIndex = 10;
             this.DateEditStartDate.Leave += new System.EventHandler(this.DateEditStartDate_Leave);
             // 
@@ -1109,7 +1109,7 @@
             this.DateEditEndDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditEndDate.Properties.Mask.EditMask = "";
             this.DateEditEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditEndDate.Size = new System.Drawing.Size(222, 34);
+            this.DateEditEndDate.Size = new System.Drawing.Size(222, 40);
             this.DateEditEndDate.TabIndex = 12;
             this.DateEditEndDate.Leave += new System.EventHandler(this.DateEditEndDate_Leave);
             // 
@@ -1129,7 +1129,7 @@
             this.DateEditOnAfterDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditOnAfterDate.Properties.Mask.EditMask = "";
             this.DateEditOnAfterDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditOnAfterDate.Size = new System.Drawing.Size(222, 34);
+            this.DateEditOnAfterDate.Size = new System.Drawing.Size(222, 40);
             this.DateEditOnAfterDate.TabIndex = 23;
             this.DateEditOnAfterDate.Leave += new System.EventHandler(this.DateEditCxlDate_Leave);
             // 

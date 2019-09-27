@@ -200,7 +200,7 @@ namespace FlexOffice
                 case "Other Service Rate Maintenance":
                     button2.ItemClick += barButtonOtherServMaint_ItemClick;
                     break;
-                case "Pickups/Dropoffs":
+                case "Pickup / Dropoff Times":
                     button2.ItemClick += barButtonBusTable_ItemClick;
                     break;
                 case "Booking Combinations":

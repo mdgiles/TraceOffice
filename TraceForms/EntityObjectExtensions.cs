@@ -51,6 +51,21 @@ namespace TraceForms
             return false;
         }
 
+        public static bool IsModified(this EntityObject entity, ObjectContext context, string field)
+        {
+            if (entity == null)
+                return false;
+
+            //Can't get the object state for an added or detached object, so just return true
+            // since any new object is by definition a modification
+            if (entity.IsNew())
+                return true;
+
+            //Check the actual field value to see if something changed
+            ObjectStateEntry entry = context.ObjectStateManager.GetObjectStateEntry(((IEntityWithKey)entity).EntityKey);
+            return (!entry.CurrentValues[field].Equals(entry.OriginalValues[field]));
+        }
+
         //https://stackoverflow.com/a/43667414/3610417
         //For me this doesn't work, _entityWrapper field returns null every time.  Nice idea if it would work...
         private static ObjectContext GetObjectContextFromEntity(this object entity)
