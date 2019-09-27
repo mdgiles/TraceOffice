@@ -264,7 +264,7 @@ namespace TraceForms
             setAgcyLogReadOnly(true);
             enableAgcyLogNavigator(false);
             enableNavigator(false);
-            DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
+            //DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
 
         }
 

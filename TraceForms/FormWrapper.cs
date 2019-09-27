@@ -277,5 +277,15 @@ namespace TraceForms
             xform1.ShowDialog();
         }
     }
+
+    [ClassInterface(ClassInterfaceType.None)]
+    public class OTAReferenceListWrapper : FlexInterfaces.Office.IFlexForm
+    {
+        public void Show(FlexInterfaces.Core.ICoreSys sys)
+        {
+            OTAReferenceListForm xform1 = new OTAReferenceListForm(sys);
+            xform1.ShowDialog();
+        }
+    }
 }
 

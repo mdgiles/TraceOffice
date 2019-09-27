@@ -434,10 +434,14 @@ namespace FlexOffice
                 case "Product List":
                     button2.ItemClick += ProductListForm_ItemClick;
                     break;
+                case "OTA Reference List":
+                    button2.ItemClick += OTAReferenceListForm_ItemClick;
+                    break;
 
             }
             //
         }
+
         private void barButtonVouchUtil_ItemClick(object sender, ItemClickEventArgs e)
         {
             //VouchUtilityForm xform1 = new VouchUtilityForm(_FlexSys) { MdiParent = this };
@@ -1075,6 +1079,17 @@ namespace FlexOffice
             }
             catch (Exception ex)
             {
+                DisplayError(ex);
+            }
+        }
+
+        private void OTAReferenceListForm_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try {
+                OTAReferenceListForm xform1 = new OTAReferenceListForm(_FlexSys) { MdiParent = this };
+                xform1.Show();
+            }
+            catch (Exception ex) {
                 DisplayError(ex);
             }
         }

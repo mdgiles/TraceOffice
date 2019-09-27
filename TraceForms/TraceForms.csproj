@@ -570,6 +570,12 @@
     <Compile Include="navigator.Designer.cs">
       <DependentUpon>navigator.cs</DependentUpon>
     </Compile>
+    <Compile Include="OTAReferenceListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OTAReferenceListForm.designer.cs">
+      <DependentUpon>OTAReferenceListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1072,6 +1078,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mediaInfoMaint.resx">
       <DependentUpon>mediaInfoMaint.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MediaInfoMatchForm.resx">
       <DependentUpon>MediaInfoMatchForm.cs</DependentUpon>
@@ -1090,6 +1097,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MGMRatesImportForm.resx">
       <DependentUpon>MGMRatesImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OTAReferenceListForm.resx">
+      <DependentUpon>OTAReferenceListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductListForm.resx">
       <DependentUpon>ProductListForm.cs</DependentUpon>

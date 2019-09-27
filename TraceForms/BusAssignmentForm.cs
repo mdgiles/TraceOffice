@@ -119,7 +119,7 @@ namespace TraceForms
 			_resItems = _context.RESITM.
 						Include(r => r.PSGRROOM.Select(p => p.PSGRLIST)).
 						Include(r => r.COMP).
-						Include(r => r.RESHDR).
+                        Include(r => r.RESHDR).
 						Include(r => r.ResRoom).
 						Where(r => _sys.Settings.BusTourServiceType.Contains(r.COMP.SERV_TYPE)
                             && r.STRT_DATE == _selectedDate && r.Inactive == false && r.Status == "R"
@@ -176,15 +176,15 @@ namespace TraceForms
 					BusDepartureID = x.BusDeparture.ID,
 					BusRouteName = x.BusRoute.Name,
 					BusDepartureTime = x.BusDeparture.Time,
-					ResNo = x.ResNo,
-					Item = x.Item
+                    x.ResNo,
+                    x.Item
 				}).
 				Select(g => new BusAssignment() {
 					DepartureTime = g.Key.BusDepartureTime,
 					RouteName = g.Key.BusRouteName,
 					DepartureID = g.Key.BusDepartureID,
 					RouteID = g.Key.BusRouteID,
-					Count = g.Select(f => new { ResNo = f.ResNo, Item = f.Item, ClientNo = f.PsgrList_ClientNo }).Distinct().Count(),
+					Count = g.Select(f => new { f.ResNo, f.Item, ClientNo = f.PsgrList_ClientNo }).Distinct().Count(),
 				}).ToList();
 
 			foreach (var busAssgn in busAssgns) {
@@ -886,10 +886,12 @@ namespace TraceForms
 			IList<BusAssignment> services = busAssignmentBindingSource.List.Cast<BusAssignment>().ToList();
 			var grouped = services.GroupBy(x => new {
 				x.Code,
-				x.ServiceTime24
+				x.ServiceTime24,
+                x.PackageCode
 			}).Select(g => new BusAssignment() {
 				Code = g.Key.Code,
-				ServiceTime24 = g.Key.ServiceTime24
+				ServiceTime24 = g.Key.ServiceTime24,
+                PackageCode = g.Key.PackageCode
 			}).ToList();
 
 			foreach (BusAssignment groupItem in grouped) {
@@ -913,8 +915,19 @@ namespace TraceForms
 					OrderBy(x => x.DESC).
 					ToList();
 
-				//Cells array is 1 based, using the same Row number as Excel displays
-				ws.Cells[2, 1].Value = "Bus Manifest";
+                var pkgCats = _context.PRATES.Include(x => x.ROOMCOD).
+                    Where(x => x.Inactive == false && x.CODE == groupItem.PackageCode
+                    && x.START_DATE <= _selectedDate && x.END_DATE >= _selectedDate).
+                    Select(x => new {
+                        x.CAT,
+                        x.ROOMCOD.DESC
+                    }).
+                    Distinct().
+                    OrderBy(x => x.DESC).
+                    ToList();
+
+                //Cells array is 1 based, using the same Row number as Excel displays
+                ws.Cells[2, 1].Value = "Bus Manifest";
 				ws.Cells[2, 1].Style.Font.Size = 16;
 				ws.Cells[2, 1].Style.Font.Bold = true;
 				ws.Cells[3, 1].Value = "Service:";
@@ -1213,7 +1226,8 @@ namespace TraceForms
 
 		public string Code { get; set; }
 		public string Description { get; set; }
-		public string ServiceTime24 { get; set; }
+        public string PackageCode { get; set; }
+        public string ServiceTime24 { get; set; }
 		public DateTime? ServiceTime { get; set; }
 		public int? DepartureID { get; set; }
 		public int RouteID { get; set; }
