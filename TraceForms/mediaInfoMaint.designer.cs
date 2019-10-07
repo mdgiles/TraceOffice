@@ -626,7 +626,7 @@ namespace TraceForms
             this.HtmlEditor.BtnAlignCenter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnAlignCenter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnAlignCenter.Name = "_factoryBtnAlignCenter";
-            this.HtmlEditor.BtnAlignCenter.Size = new System.Drawing.Size(26, 37);
+            this.HtmlEditor.BtnAlignCenter.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnAlignCenter.Text = "Align Centre";
             // 
             // HtmlEditor.BtnAlignLeft
@@ -636,7 +636,7 @@ namespace TraceForms
             this.HtmlEditor.BtnAlignLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnAlignLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnAlignLeft.Name = "_factoryBtnAlignLeft";
-            this.HtmlEditor.BtnAlignLeft.Size = new System.Drawing.Size(26, 37);
+            this.HtmlEditor.BtnAlignLeft.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnAlignLeft.Text = "Align Left";
             // 
             // HtmlEditor.BtnAlignRight
@@ -646,7 +646,7 @@ namespace TraceForms
             this.HtmlEditor.BtnAlignRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnAlignRight.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnAlignRight.Name = "_factoryBtnAlignRight";
-            this.HtmlEditor.BtnAlignRight.Size = new System.Drawing.Size(26, 37);
+            this.HtmlEditor.BtnAlignRight.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnAlignRight.Text = "Align Right";
             // 
             // HtmlEditor.BtnBodyStyle
@@ -656,7 +656,7 @@ namespace TraceForms
             this.HtmlEditor.BtnBodyStyle.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnBodyStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnBodyStyle.Name = "_factoryBtnBodyStyle";
-            this.HtmlEditor.BtnBodyStyle.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnBodyStyle.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnBodyStyle.Text = "Document Style ";
             // 
             // HtmlEditor.BtnBold
@@ -666,7 +666,7 @@ namespace TraceForms
             this.HtmlEditor.BtnBold.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnBold.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnBold.Name = "_factoryBtnBold";
-            this.HtmlEditor.BtnBold.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnBold.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnBold.Text = "Bold";
             // 
             // HtmlEditor.BtnCopy
@@ -676,7 +676,7 @@ namespace TraceForms
             this.HtmlEditor.BtnCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnCopy.Name = "_factoryBtnCopy";
-            this.HtmlEditor.BtnCopy.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnCopy.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnCopy.Text = "Copy";
             // 
             // HtmlEditor.BtnCut
@@ -686,7 +686,7 @@ namespace TraceForms
             this.HtmlEditor.BtnCut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnCut.Name = "_factoryBtnCut";
-            this.HtmlEditor.BtnCut.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnCut.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnCut.Text = "Cut";
             // 
             // HtmlEditor.BtnFontColor
@@ -696,7 +696,7 @@ namespace TraceForms
             this.HtmlEditor.BtnFontColor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnFontColor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnFontColor.Name = "_factoryBtnFontColor";
-            this.HtmlEditor.BtnFontColor.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnFontColor.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnFontColor.Text = "Apply Font Color";
             // 
             // HtmlEditor.BtnFormatRedo
@@ -705,7 +705,7 @@ namespace TraceForms
             this.HtmlEditor.BtnFormatRedo.Image = ((System.Drawing.Image)(resources.GetObject("HtmlEditor.BtnFormatRedo.Image")));
             this.HtmlEditor.BtnFormatRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnFormatRedo.Name = "_factoryBtnRedo";
-            this.HtmlEditor.BtnFormatRedo.Size = new System.Drawing.Size(32, 37);
+            this.HtmlEditor.BtnFormatRedo.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnFormatRedo.Text = "Redo";
             // 
             // HtmlEditor.BtnFormatReset
@@ -715,7 +715,7 @@ namespace TraceForms
             this.HtmlEditor.BtnFormatReset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnFormatReset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnFormatReset.Name = "_factoryBtnFormatReset";
-            this.HtmlEditor.BtnFormatReset.Size = new System.Drawing.Size(34, 37);
+            this.HtmlEditor.BtnFormatReset.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnFormatReset.Text = "Remove Format";
             // 
             // HtmlEditor.BtnFormatUndo
@@ -724,7 +724,7 @@ namespace TraceForms
             this.HtmlEditor.BtnFormatUndo.Image = ((System.Drawing.Image)(resources.GetObject("HtmlEditor.BtnFormatUndo.Image")));
             this.HtmlEditor.BtnFormatUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnFormatUndo.Name = "_factoryBtnUndo";
-            this.HtmlEditor.BtnFormatUndo.Size = new System.Drawing.Size(32, 37);
+            this.HtmlEditor.BtnFormatUndo.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnFormatUndo.Text = "Undo";
             // 
             // HtmlEditor.BtnHighlightColor
@@ -734,7 +734,7 @@ namespace TraceForms
             this.HtmlEditor.BtnHighlightColor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnHighlightColor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnHighlightColor.Name = "_factoryBtnHighlightColor";
-            this.HtmlEditor.BtnHighlightColor.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnHighlightColor.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnHighlightColor.Text = "Apply Highlight Color";
             // 
             // HtmlEditor.BtnHorizontalRule
@@ -744,7 +744,7 @@ namespace TraceForms
             this.HtmlEditor.BtnHorizontalRule.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnHorizontalRule.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnHorizontalRule.Name = "_factoryBtnHorizontalRule";
-            this.HtmlEditor.BtnHorizontalRule.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnHorizontalRule.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnHorizontalRule.Text = "Insert Horizontal Rule";
             // 
             // HtmlEditor.BtnHyperlink
@@ -754,7 +754,7 @@ namespace TraceForms
             this.HtmlEditor.BtnHyperlink.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnHyperlink.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnHyperlink.Name = "_factoryBtnHyperlink";
-            this.HtmlEditor.BtnHyperlink.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnHyperlink.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnHyperlink.Text = "Hyperlink";
             // 
             // HtmlEditor.BtnImage
@@ -764,7 +764,7 @@ namespace TraceForms
             this.HtmlEditor.BtnImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnImage.Name = "_factoryBtnImage";
-            this.HtmlEditor.BtnImage.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnImage.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnImage.Text = "Image";
             // 
             // HtmlEditor.BtnIndent
@@ -774,7 +774,7 @@ namespace TraceForms
             this.HtmlEditor.BtnIndent.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnIndent.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnIndent.Name = "_factoryBtnIndent";
-            this.HtmlEditor.BtnIndent.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnIndent.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnIndent.Text = "Indent";
             // 
             // HtmlEditor.BtnInsertYouTubeVideo
@@ -784,7 +784,7 @@ namespace TraceForms
             this.HtmlEditor.BtnInsertYouTubeVideo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnInsertYouTubeVideo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnInsertYouTubeVideo.Name = "_factoryBtnInsertYouTubeVideo";
-            this.HtmlEditor.BtnInsertYouTubeVideo.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnInsertYouTubeVideo.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnInsertYouTubeVideo.Text = "Insert YouTube Video";
             // 
             // HtmlEditor.BtnItalic
@@ -794,7 +794,7 @@ namespace TraceForms
             this.HtmlEditor.BtnItalic.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnItalic.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnItalic.Name = "_factoryBtnItalic";
-            this.HtmlEditor.BtnItalic.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnItalic.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnItalic.Text = "Italic";
             // 
             // HtmlEditor.BtnNew
@@ -804,7 +804,7 @@ namespace TraceForms
             this.HtmlEditor.BtnNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnNew.Name = "_factoryBtnNew";
-            this.HtmlEditor.BtnNew.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnNew.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnNew.Text = "New";
             // 
             // HtmlEditor.BtnOpen
@@ -814,7 +814,7 @@ namespace TraceForms
             this.HtmlEditor.BtnOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnOpen.Name = "_factoryBtnOpen";
-            this.HtmlEditor.BtnOpen.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnOpen.Size = new System.Drawing.Size(46, 34);
             this.HtmlEditor.BtnOpen.Text = "Open";
             this.HtmlEditor.BtnOpen.Visible = false;
             // 
@@ -825,7 +825,7 @@ namespace TraceForms
             this.HtmlEditor.BtnOrderedList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnOrderedList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnOrderedList.Name = "_factoryBtnOrderedList";
-            this.HtmlEditor.BtnOrderedList.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnOrderedList.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnOrderedList.Text = "Numbered List";
             // 
             // HtmlEditor.BtnOutdent
@@ -835,7 +835,7 @@ namespace TraceForms
             this.HtmlEditor.BtnOutdent.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnOutdent.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnOutdent.Name = "_factoryBtnOutdent";
-            this.HtmlEditor.BtnOutdent.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnOutdent.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnOutdent.Text = "Outdent";
             // 
             // HtmlEditor.BtnPaste
@@ -845,7 +845,7 @@ namespace TraceForms
             this.HtmlEditor.BtnPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnPaste.Name = "_factoryBtnPaste";
-            this.HtmlEditor.BtnPaste.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnPaste.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnPaste.Text = "Paste";
             // 
             // HtmlEditor.BtnPasteFromMSWord
@@ -855,7 +855,7 @@ namespace TraceForms
             this.HtmlEditor.BtnPasteFromMSWord.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnPasteFromMSWord.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnPasteFromMSWord.Name = "_factoryBtnPasteFromMSWord";
-            this.HtmlEditor.BtnPasteFromMSWord.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnPasteFromMSWord.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnPasteFromMSWord.Text = "Paste the Content that you Copied from MS Word";
             // 
             // HtmlEditor.BtnPrint
@@ -865,7 +865,7 @@ namespace TraceForms
             this.HtmlEditor.BtnPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnPrint.Name = "_factoryBtnPrint";
-            this.HtmlEditor.BtnPrint.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnPrint.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnPrint.Text = "Print";
             // 
             // HtmlEditor.BtnSave
@@ -875,7 +875,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSave.Name = "_factoryBtnSave";
-            this.HtmlEditor.BtnSave.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnSave.Size = new System.Drawing.Size(46, 34);
             this.HtmlEditor.BtnSave.Text = "Save";
             this.HtmlEditor.BtnSave.Visible = false;
             // 
@@ -886,7 +886,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSearch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSearch.Name = "_factoryBtnSearch";
-            this.HtmlEditor.BtnSearch.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnSearch.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnSearch.Text = "Search";
             // 
             // HtmlEditor.BtnSpellCheck
@@ -896,7 +896,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSpellCheck.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSpellCheck.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSpellCheck.Name = "_factoryBtnSpellCheck";
-            this.HtmlEditor.BtnSpellCheck.Size = new System.Drawing.Size(26, 37);
+            this.HtmlEditor.BtnSpellCheck.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnSpellCheck.Text = "Check Spelling";
             // 
             // HtmlEditor.BtnStrikeThrough
@@ -906,7 +906,7 @@ namespace TraceForms
             this.HtmlEditor.BtnStrikeThrough.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnStrikeThrough.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnStrikeThrough.Name = "_factoryBtnStrikeThrough";
-            this.HtmlEditor.BtnStrikeThrough.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnStrikeThrough.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnStrikeThrough.Text = "Strike Thru";
             // 
             // HtmlEditor.BtnSubscript
@@ -916,7 +916,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSubscript.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSubscript.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSubscript.Name = "_factoryBtnSubscript";
-            this.HtmlEditor.BtnSubscript.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnSubscript.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnSubscript.Text = "Subscript";
             // 
             // HtmlEditor.BtnSuperScript
@@ -926,7 +926,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSuperScript.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSuperScript.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSuperScript.Name = "_factoryBtnSuperScript";
-            this.HtmlEditor.BtnSuperScript.Size = new System.Drawing.Size(27, 37);
+            this.HtmlEditor.BtnSuperScript.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnSuperScript.Text = "Superscript";
             // 
             // HtmlEditor.BtnSymbol
@@ -936,7 +936,7 @@ namespace TraceForms
             this.HtmlEditor.BtnSymbol.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnSymbol.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnSymbol.Name = "_factoryBtnSymbol";
-            this.HtmlEditor.BtnSymbol.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnSymbol.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnSymbol.Text = "Insert Symbols";
             // 
             // HtmlEditor.BtnTable
@@ -946,7 +946,7 @@ namespace TraceForms
             this.HtmlEditor.BtnTable.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnTable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnTable.Name = "_factoryBtnTable";
-            this.HtmlEditor.BtnTable.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnTable.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnTable.Text = "Table";
             // 
             // HtmlEditor.BtnUnderline
@@ -956,7 +956,7 @@ namespace TraceForms
             this.HtmlEditor.BtnUnderline.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnUnderline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnUnderline.Name = "_factoryBtnUnderline";
-            this.HtmlEditor.BtnUnderline.Size = new System.Drawing.Size(23, 37);
+            this.HtmlEditor.BtnUnderline.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnUnderline.Text = "Underline";
             // 
             // HtmlEditor.BtnUnOrderedList
@@ -966,7 +966,7 @@ namespace TraceForms
             this.HtmlEditor.BtnUnOrderedList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.HtmlEditor.BtnUnOrderedList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HtmlEditor.BtnUnOrderedList.Name = "_factoryBtnUnOrderedList";
-            this.HtmlEditor.BtnUnOrderedList.Size = new System.Drawing.Size(24, 37);
+            this.HtmlEditor.BtnUnOrderedList.Size = new System.Drawing.Size(46, 44);
             this.HtmlEditor.BtnUnOrderedList.Text = "Bullet List";
             // 
             // HtmlEditor.CmbFontName
@@ -976,19 +976,19 @@ namespace TraceForms
             this.HtmlEditor.CmbFontName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.HtmlEditor.CmbFontName.MaxDropDownItems = 17;
             this.HtmlEditor.CmbFontName.Name = "_factoryCmbFontName";
-            this.HtmlEditor.CmbFontName.Size = new System.Drawing.Size(114, 40);
+            this.HtmlEditor.CmbFontName.Size = new System.Drawing.Size(114, 50);
             this.HtmlEditor.CmbFontName.Text = "Arial";
             // 
             // HtmlEditor.CmbFontSize
             // 
             this.HtmlEditor.CmbFontSize.Name = "_factoryCmbFontSize";
-            this.HtmlEditor.CmbFontSize.Size = new System.Drawing.Size(114, 40);
+            this.HtmlEditor.CmbFontSize.Size = new System.Drawing.Size(114, 50);
             this.HtmlEditor.CmbFontSize.Text = "12pt";
             // 
             // HtmlEditor.CmbTitleInsert
             // 
             this.HtmlEditor.CmbTitleInsert.Name = "_factoryCmbTitleInsert";
-            this.HtmlEditor.CmbTitleInsert.Size = new System.Drawing.Size(151, 40);
+            this.HtmlEditor.CmbTitleInsert.Size = new System.Drawing.Size(151, 50);
             this.HtmlEditor.DefaultFontFamily = "Arial";
             this.HtmlEditor.DocumentHtml = resources.GetString("HtmlEditor.DocumentHtml");
             this.HtmlEditor.EditorContextMenuStrip = null;
@@ -1024,47 +1024,47 @@ namespace TraceForms
             // HtmlEditor.TlstrpSeparator1
             // 
             this.HtmlEditor.TlstrpSeparator1.Name = "_toolStripSeparator1";
-            this.HtmlEditor.TlstrpSeparator1.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator1.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator2
             // 
             this.HtmlEditor.TlstrpSeparator2.Name = "_toolStripSeparator2";
-            this.HtmlEditor.TlstrpSeparator2.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator2.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator3
             // 
             this.HtmlEditor.TlstrpSeparator3.Name = "_toolStripSeparator3";
-            this.HtmlEditor.TlstrpSeparator3.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator3.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator4
             // 
             this.HtmlEditor.TlstrpSeparator4.Name = "_toolStripSeparator4";
-            this.HtmlEditor.TlstrpSeparator4.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator4.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator5
             // 
             this.HtmlEditor.TlstrpSeparator5.Name = "_toolStripSeparator5";
-            this.HtmlEditor.TlstrpSeparator5.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator5.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator6
             // 
             this.HtmlEditor.TlstrpSeparator6.Name = "_toolStripSeparator6";
-            this.HtmlEditor.TlstrpSeparator6.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator6.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator7
             // 
             this.HtmlEditor.TlstrpSeparator7.Name = "_toolStripSeparator7";
-            this.HtmlEditor.TlstrpSeparator7.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator7.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator8
             // 
             this.HtmlEditor.TlstrpSeparator8.Name = "_toolStripSeparator8";
-            this.HtmlEditor.TlstrpSeparator8.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator8.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.TlstrpSeparator9
             // 
             this.HtmlEditor.TlstrpSeparator9.Name = "_toolStripSeparator9";
-            this.HtmlEditor.TlstrpSeparator9.Size = new System.Drawing.Size(6, 40);
+            this.HtmlEditor.TlstrpSeparator9.Size = new System.Drawing.Size(6, 50);
             // 
             // HtmlEditor.WinFormHtmlEditor_Toolbar1
             // 
@@ -1095,8 +1095,8 @@ namespace TraceForms
             this.HtmlEditor.BtnSearch});
             this.HtmlEditor.Toolbar1.Location = new System.Drawing.Point(0, 0);
             this.HtmlEditor.Toolbar1.Name = "WinFormHtmlEditor_Toolbar1";
-            this.HtmlEditor.Toolbar1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.HtmlEditor.Toolbar1.Size = new System.Drawing.Size(1200, 40);
+            this.HtmlEditor.Toolbar1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.HtmlEditor.Toolbar1.Size = new System.Drawing.Size(1200, 50);
             this.HtmlEditor.Toolbar1.TabIndex = 0;
             // 
             // HtmlEditor.WinFormHtmlEditor_Toolbar2
@@ -1129,10 +1129,10 @@ namespace TraceForms
             this.HtmlEditor.BtnSuperScript,
             this.HtmlEditor.BtnSubscript,
             this.HtmlEditor.BtnBodyStyle});
-            this.HtmlEditor.Toolbar2.Location = new System.Drawing.Point(0, 40);
+            this.HtmlEditor.Toolbar2.Location = new System.Drawing.Point(0, 50);
             this.HtmlEditor.Toolbar2.Name = "WinFormHtmlEditor_Toolbar2";
-            this.HtmlEditor.Toolbar2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.HtmlEditor.Toolbar2.Size = new System.Drawing.Size(1200, 40);
+            this.HtmlEditor.Toolbar2.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.HtmlEditor.Toolbar2.Size = new System.Drawing.Size(1200, 50);
             this.HtmlEditor.Toolbar2.TabIndex = 0;
             this.HtmlEditor.ToolbarContextMenuStrip = null;
             // 
@@ -1140,10 +1140,10 @@ namespace TraceForms
             // 
             this.HtmlEditor.ToolbarFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.HtmlEditor.ToolbarFooter.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.HtmlEditor.ToolbarFooter.Location = new System.Drawing.Point(0, 440);
+            this.HtmlEditor.ToolbarFooter.Location = new System.Drawing.Point(0, 425);
             this.HtmlEditor.ToolbarFooter.Name = "WinFormHtmlEditor_ToolbarFooter";
-            this.HtmlEditor.ToolbarFooter.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.HtmlEditor.ToolbarFooter.Size = new System.Drawing.Size(1200, 35);
+            this.HtmlEditor.ToolbarFooter.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.HtmlEditor.ToolbarFooter.Size = new System.Drawing.Size(1200, 50);
             this.HtmlEditor.ToolbarFooter.TabIndex = 7;
             this.HtmlEditor.VerticalScroll = null;
             this.HtmlEditor.z__ignore = true;

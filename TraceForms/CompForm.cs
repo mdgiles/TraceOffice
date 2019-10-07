@@ -102,6 +102,8 @@ namespace TraceForms
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
+            repositoryItemImageComboboxLocation.DataSource = cities;
+
 
             var languages = new List<CodeName> {
                 new CodeName(null)
@@ -158,6 +160,32 @@ namespace TraceForms
                 .OrderBy(o => o.TYPE)
                 .Select(s => new CodeName() { Code = s.TYPE, Name = s.DESCRIP }).ToList());
             SearchLookupEditServiceType.Properties.DataSource = servicetypes;
+
+            var hotels = new List<CodeName> {
+                new CodeName(null)
+            };
+            hotels.AddRange(_context.HOTEL
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            repositoryItemImageComboboxLocation.DataSource = hotels;
+
+            var waypoints = new List<CodeName> {
+                new CodeName(null)
+            };
+            waypoints.AddRange(_context.WAYPOINT
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            repositoryItemImageComboboxLocation.DataSource = waypoints;
+
+            var components = new List<CodeName> {
+                new CodeName(null)
+            };
+            components.AddRange(_context.COMP
+                .Where(c => c.IsSupplement)
+                .Where(c => c.IsSupplement)
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            RepositoryItemSearchLookUpEditCompCode.DataSource = components;
 
             _supplierCombo.Items.Add(loadBlank);
             _supplierCombo.Items.AddRange(_context.Supplier
@@ -249,6 +277,7 @@ namespace TraceForms
                 LoadAndBindMemberships();
                 LoadAndBindTransferPoints();
                 LoadAndBindBusRoutes();
+                LoadAndBindSupplements();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -1799,6 +1828,80 @@ namespace TraceForms
         {
             GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
             GridControlLookup.Focus();
+        }
+
+        private void ImageComboBoxEditConfirmationType_EditValueChanged(object sender, EventArgs e)
+        {
+            int.TryParse(ImageComboBoxEditConfirmationType.EditValue.ToStringEmptyIfNull(), out int result);
+            if (result == 2) {
+                SpinEditOnRequestPeriod.Enabled = true;
+            } else {
+                SpinEditOnRequestPeriod.Enabled = false;
+            }
+        }
+
+        private void CheckEditIsSupplement_EditValueChanged(object sender, EventArgs e)
+        {
+            GridControlSupplements.Enabled = !CheckEditIsSupplement.Checked;
+            SetCheckBoxState(CheckEditSupplementIsBoard, CheckEditIsSupplement.Checked, false);
+            SetCheckBoxState(CheckEditSupplementPaySupplier, CheckEditIsSupplement.Checked, false);
+            SetCheckBoxState(CheckEditSupplementQtySelectable, CheckEditIsSupplement.Checked, false);
+        }
+
+        private void SetCheckBoxState(CheckEdit checkBox, bool enabled, bool? disabledValue)
+        {
+            checkBox.Enabled = enabled;
+            if (disabledValue != null) {
+                checkBox.Checked = (bool)disabledValue;
+            }
+        }
+
+        void LoadAndBindSupplements()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.ProductSupplement.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceSupplements.DataSource = _selectedRecord.ProductSupplement;
+            BindSupplements();
+        }
+
+        void BindSupplements()
+        {
+            GridControlSupplements.DataSource = BindingSourceSupplements;
+            GridControlSupplements.RefreshDataSource();
+        }
+
+        private void SimpleButtonAddSupplement_Click(object sender, EventArgs e)
+        {
+            ProductSupplement sup = new ProductSupplement {
+                Product_Code = TextEditCode.Text,
+                Product_Type = "OPT"
+            };
+            _selectedRecord.ProductSupplement.Add(sup);
+            BindSupplements();
+            GridViewSupplement.FocusedRowHandle = BindingSourceSupplements.Count - 1;
+        }
+
+        private void SimpleButtonDeleteSupplement_Click(object sender, EventArgs e)
+        {
+            if (GridViewSupplement.FocusedRowHandle >= 0) {
+                ProductSupplement sup = (ProductSupplement)GridViewSupplement.GetFocusedRow();
+                BindingSourceSupplements.Remove(sup);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (!sup.IsNew()) {
+                    _context.ProductSupplement.DeleteObject(sup);
+                }
+                BindSupplements();
+            }
         }
 
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {

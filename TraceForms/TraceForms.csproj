@@ -310,6 +310,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ChineseHosts_TourTraceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChineseHosts_TourTraceDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CommissionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1216,6 +1221,17 @@
     <None Include="ChineseHosts_FlextourDataSet.xss">
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ChineseHosts_TourTraceDataSet.xsc">
+      <DependentUpon>ChineseHosts_TourTraceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ChineseHosts_TourTraceDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChineseHosts_TourTraceDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ChineseHosts_TourTraceDataSet.xss">
+      <DependentUpon>ChineseHosts_TourTraceDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BusAssignment.datasource" />
@@ -1242,6 +1258,7 @@
     <None Include="Properties\DataSources\FlexModel.ExtranetUser.datasource" />
     <None Include="Properties\DataSources\FlexModel.ImportMapping.datasource" />
     <None Include="Properties\DataSources\FlexModel.PaymentTransaction.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ProductSupplement.datasource" />
     <None Include="Properties\DataSources\FlexModel.RelatedProduct.datasource" />
     <None Include="Properties\DataSources\FlexModel.RESOURCE.datasource" />
     <None Include="Properties\DataSources\FlexModel.RptContact.datasource" />

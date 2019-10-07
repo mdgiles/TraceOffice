@@ -82,6 +82,8 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DateEditStartDate = new DevExpress.XtraEditors.DateEdit();
+            this.DateEditEndDate = new DevExpress.XtraEditors.DateEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -96,8 +98,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.DateEditStartDate = new DevExpress.XtraEditors.DateEdit();
-            this.DateEditEndDate = new DevExpress.XtraEditors.DateEdit();
             tYPELabel = new System.Windows.Forms.Label();
             uPD_INITLabel = new System.Windows.Forms.Label();
             lAST_UPDLabel = new System.Windows.Forms.Label();
@@ -128,13 +128,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
-            this.PanelControlStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+            this.PanelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // tYPELabel
@@ -395,7 +395,7 @@
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Margin = new System.Windows.Forms.Padding(6);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(510, 1685);
+            this.GridControlLookup.Size = new System.Drawing.Size(510, 1534);
             this.GridControlLookup.TabIndex = 34;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -611,7 +611,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.DateEditStartDate);
             this.SplitContainerControl.Panel2.Controls.Add(this.DateEditEndDate);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(2528, 1685);
+            this.SplitContainerControl.Size = new System.Drawing.Size(2508, 1534);
             this.SplitContainerControl.SplitterPosition = 510;
             this.SplitContainerControl.TabIndex = 60;
             this.SplitContainerControl.Text = "splitContainerControl1";
@@ -711,6 +711,52 @@
             this.colName1.Name = "colName1";
             this.colName1.Visible = true;
             this.colName1.VisibleIndex = 1;
+            // 
+            // DateEditStartDate
+            // 
+            this.DateEditStartDate.CausesValidation = false;
+            this.DateEditStartDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
+            this.DateEditStartDate.EditValue = null;
+            this.DateEditStartDate.Location = new System.Drawing.Point(290, 350);
+            this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(6);
+            this.DateEditStartDate.Name = "DateEditStartDate";
+            this.DateEditStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditStartDate.Properties.DisplayFormat.FormatString = "";
+            this.DateEditStartDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.DateEditStartDate.Properties.EditFormat.FormatString = "";
+            this.DateEditStartDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.DateEditStartDate.Properties.Mask.EditMask = "";
+            this.DateEditStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.DateEditStartDate.Size = new System.Drawing.Size(200, 40);
+            this.DateEditStartDate.TabIndex = 5;
+            this.DateEditStartDate.TextChanged += new System.EventHandler(this.DateEditStartDate_TextChanged);
+            this.DateEditStartDate.Leave += new System.EventHandler(this.DateEditStartDate_Leave);
+            // 
+            // DateEditEndDate
+            // 
+            this.DateEditEndDate.CausesValidation = false;
+            this.DateEditEndDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndDate", true));
+            this.DateEditEndDate.EditValue = null;
+            this.DateEditEndDate.Location = new System.Drawing.Point(770, 356);
+            this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(6);
+            this.DateEditEndDate.Name = "DateEditEndDate";
+            this.DateEditEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.DateEditEndDate.Properties.DisplayFormat.FormatString = "";
+            this.DateEditEndDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.DateEditEndDate.Properties.EditFormat.FormatString = "";
+            this.DateEditEndDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.DateEditEndDate.Properties.Mask.EditMask = "";
+            this.DateEditEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.DateEditEndDate.Size = new System.Drawing.Size(200, 40);
+            this.DateEditEndDate.TabIndex = 6;
+            this.DateEditEndDate.TextChanged += new System.EventHandler(this.DateEditEndDate_TextChanged);
+            this.DateEditEndDate.Leave += new System.EventHandler(this.DateEditEndDate_Leave);
             // 
             // PanelControlStatus
             // 
@@ -834,15 +880,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(2528, 60);
+            this.barDockControlTop.Size = new System.Drawing.Size(2508, 60);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1745);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1654);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(2528, 28);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2508, 28);
             // 
             // barDockControlLeft
             // 
@@ -850,63 +896,21 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1685);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1534);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2528, 60);
+            this.barDockControlRight.Location = new System.Drawing.Point(2508, 120);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1685);
-            // 
-            // DateEditStartDate
-            // 
-            this.DateEditStartDate.CausesValidation = false;
-            this.DateEditStartDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
-            this.DateEditStartDate.EditValue = null;
-            this.DateEditStartDate.Location = new System.Drawing.Point(290, 350);
-            this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(6);
-            this.DateEditStartDate.Name = "DateEditStartDate";
-            this.DateEditStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateEditStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateEditStartDate.Properties.DisplayFormat.FormatString = "";
-            this.DateEditStartDate.Properties.EditFormat.FormatString = "";
-            this.DateEditStartDate.Properties.Mask.EditMask = "";
-            this.DateEditStartDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditStartDate.Size = new System.Drawing.Size(200, 40);
-            this.DateEditStartDate.TabIndex = 5;
-            this.DateEditStartDate.TextChanged += new System.EventHandler(this.DateEditStartDate_TextChanged);
-            this.DateEditStartDate.Leave += new System.EventHandler(this.DateEditStartDate_Leave);
-            // 
-            // DateEditEndDate
-            // 
-            this.DateEditEndDate.CausesValidation = false;
-            this.DateEditEndDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndDate", true));
-            this.DateEditEndDate.EditValue = null;
-            this.DateEditEndDate.Location = new System.Drawing.Point(770, 356);
-            this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(6);
-            this.DateEditEndDate.Name = "DateEditEndDate";
-            this.DateEditEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateEditEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.DateEditEndDate.Properties.DisplayFormat.FormatString = "";
-            this.DateEditEndDate.Properties.EditFormat.FormatString = "";
-            this.DateEditEndDate.Properties.Mask.EditMask = "";
-            this.DateEditEndDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditEndDate.Size = new System.Drawing.Size(200, 40);
-            this.DateEditEndDate.TabIndex = 6;
-            this.DateEditEndDate.TextChanged += new System.EventHandler(this.DateEditEndDate_TextChanged);
-            this.DateEditEndDate.Leave += new System.EventHandler(this.DateEditEndDate_Leave);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1534);
             // 
             // BusTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2528, 1773);
+            this.ClientSize = new System.Drawing.Size(1254, 855);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -938,14 +942,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
-            this.PanelControlStatus.ResumeLayout(false);
-            this.PanelControlStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+            this.PanelControlStatus.ResumeLayout(false);
+            this.PanelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
