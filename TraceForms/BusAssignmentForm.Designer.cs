@@ -142,7 +142,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditDepartureDate.Properties.DisplayFormat.FormatString = "dd-MMM-yyyy";
             this.dateEditDepartureDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEditDepartureDate.Size = new System.Drawing.Size(160, 26);
+            this.dateEditDepartureDate.Size = new System.Drawing.Size(160, 28);
             this.dateEditDepartureDate.TabIndex = 1;
             this.dateEditDepartureDate.EditValueChanged += new System.EventHandler(this.dateEditServiceStart_EditValueChanged);
             this.dateEditDepartureDate.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.dateEditDepartureDate_EditValueChanging);
@@ -434,8 +434,8 @@
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonSave.Image = global::TraceForms.Properties.Resources.save;
-            this.buttonSave.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.buttonSave.ImageOptions.Image = global::TraceForms.Properties.Resources.save;
+            this.buttonSave.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.buttonSave.Location = new System.Drawing.Point(30, 749);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
@@ -469,8 +469,8 @@
             // buttonSendManifest
             // 
             this.buttonSendManifest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonSendManifest.Image = ((System.Drawing.Image)(resources.GetObject("buttonSendManifest.Image")));
-            this.buttonSendManifest.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.buttonSendManifest.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("buttonSendManifest.ImageOptions.Image")));
+            this.buttonSendManifest.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.buttonSendManifest.Location = new System.Drawing.Point(792, 749);
             this.buttonSendManifest.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSendManifest.Name = "buttonSendManifest";
@@ -484,7 +484,7 @@
             this.textEmailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textEmailAddress.Location = new System.Drawing.Point(365, 764);
             this.textEmailAddress.Name = "textEmailAddress";
-            this.textEmailAddress.Size = new System.Drawing.Size(420, 26);
+            this.textEmailAddress.Size = new System.Drawing.Size(420, 28);
             this.textEmailAddress.TabIndex = 9;
             // 
             // labelControl4
@@ -646,7 +646,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlServices.DataSource = this.busAssignmentBindingSource;
             this.gridControlServices.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlServices.Location = new System.Drawing.Point(86, 98);
+            this.gridControlServices.Location = new System.Drawing.Point(75, 98);
             this.gridControlServices.MainView = this.gridViewServices;
             this.gridControlServices.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlServices.Name = "gridControlServices";

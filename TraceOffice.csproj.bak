@@ -263,13 +263,13 @@
     <None Include="Properties\DataSources\FlexModel.VOUCHER.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TraceOffice.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="TraceForms\TraceForms.csproj">
-      <Project>{1e150ba5-61a1-4c22-94f7-1b144050d46d}</Project>
+      <Project>{1E150BA5-61A1-4C22-94F7-1B144050D46D}</Project>
       <Name>TraceForms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TraceOffice.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

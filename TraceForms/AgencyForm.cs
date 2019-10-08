@@ -264,7 +264,7 @@ namespace TraceForms
             setAgcyLogReadOnly(true);
             enableAgcyLogNavigator(false);
             enableNavigator(false);
-            DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
+            //DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
 
         }
 
@@ -3975,6 +3975,14 @@ namespace TraceForms
         private void checkEditAgentInactive_Click(object sender, EventArgs e)
         {
             modified = true;
+        }
+
+        private void ButtonAddDeposit_Click(object sender, EventArgs e) {
+
+        }
+
+        private void ButtonDeleteDeposit_Click(object sender, EventArgs e) {
+
         }
     }
 

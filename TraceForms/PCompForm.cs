@@ -754,25 +754,25 @@ namespace TraceForms
                 string type = comboType.EditValue.ToString();
                 switch (type) {
                     case "HTL":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _hotels;
+                        location.Properties.DataSource = _hotels;
                         break;
                     case "OPT":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _services;
+                        location.Properties.DataSource = _services;
                         break;
                     case "WAY":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _waypoints;
+                        location.Properties.DataSource = _waypoints;
                         break;
                     case "BUS":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _busstations;
+                        location.Properties.DataSource = _busstations;
                         break;
                     case "TRN":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _trainstations;
+                        location.Properties.DataSource = _trainstations;
                         break;
                     case "CRU":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _seaports;
+                        location.Properties.DataSource = _seaports;
                         break;
                     case "AIR":
-                        SearchLookupEditPickupLocation.Properties.DataSource = _airports;
+                        location.Properties.DataSource = _airports;
                         break;
                 }
             }

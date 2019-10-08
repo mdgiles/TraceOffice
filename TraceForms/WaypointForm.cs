@@ -16,6 +16,7 @@ using DevExpress.Map;
 using DevExpress.XtraMap;
 using DevExpress.Data.Async.Helpers;
 using DevExpress.XtraEditors.Repository;
+using System.Reflection;
 
 namespace TraceForms
 {
@@ -163,6 +164,10 @@ namespace TraceForms
                 return true;
             }
             catch (Exception ex) {
+                var objectStateManager = _context.ObjectStateManager;
+                var fieldInfo = objectStateManager.GetType().GetField("_entriesWithConceptualNulls", BindingFlags.Instance | BindingFlags.NonPublic);
+                var conceptualNulls = fieldInfo.GetValue(objectStateManager);
+
                 DisplayHelper.DisplayError(this, ex);
                 RefreshRecord();        //pull it back from db because that is its current state
                                         //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that

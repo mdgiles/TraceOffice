@@ -80,7 +80,7 @@ namespace TraceForms
                 return "Hotel Production Report sent succesfully";
             }
             catch (Exception ex) {
-                NLog.LogManager.GetCurrentClassLogger().ErrorException("HotelProductionReport - error sending email", ex);
+                NLog.LogManager.GetCurrentClassLogger().Error(ex, "HotelProductionReport - error sending email");
                 return ex.Message;
             }
 
