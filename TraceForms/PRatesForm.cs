@@ -1020,6 +1020,13 @@ namespace TraceForms
             PopupContainerControl1.Hide();
         }
 
+        private void PRatesForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter) {
+
+            }
+        }
+
         private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (SaveRecord(false))
