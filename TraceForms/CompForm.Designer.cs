@@ -4149,7 +4149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlUserfields.DataSource = this.BindingSourceUserFields;
             this.GridControlUserfields.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.GridControlUserfields.Location = new System.Drawing.Point(50, 92);
+            this.GridControlUserfields.Location = new System.Drawing.Point(36, 62);
             this.GridControlUserfields.MainView = this.GridViewUserFields;
             this.GridControlUserfields.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.GridControlUserfields.Name = "GridControlUserfields";
@@ -4799,7 +4799,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlSupplierProduct.DataSource = this.BindingSourceSupplierProduct;
             this.GridControlSupplierProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.GridControlSupplierProduct.Location = new System.Drawing.Point(58, 62);
+            this.GridControlSupplierProduct.Location = new System.Drawing.Point(43, 62);
             this.GridControlSupplierProduct.MainView = this.GridViewSupplierProduct;
             this.GridControlSupplierProduct.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.GridControlSupplierProduct.Name = "GridControlSupplierProduct";
@@ -4811,7 +4811,7 @@
             this.repositoryItemComboBoxDefaultDrpLocType,
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc,
             this.repositoryItemTimeEditDefault});
-            this.GridControlSupplierProduct.Size = new System.Drawing.Size(1680, 607);
+            this.GridControlSupplierProduct.Size = new System.Drawing.Size(1670, 617);
             this.GridControlSupplierProduct.TabIndex = 100;
             this.GridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierProduct});
@@ -5528,6 +5528,7 @@
             this.GridControlSupplements.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplement,
             this.gridView20});
+            this.GridControlSupplements.Leave += new System.EventHandler(this.GridControlSupplements_Leave);
             // 
             // BindingSourceSupplements
             // 
@@ -5601,6 +5602,8 @@
             this.RepositoryItemSearchLookUpEditCompCode.DisplayMember = "DisplayName";
             this.RepositoryItemSearchLookUpEditCompCode.Name = "RepositoryItemSearchLookUpEditCompCode";
             this.RepositoryItemSearchLookUpEditCompCode.NullText = "";
+            this.RepositoryItemSearchLookUpEditCompCode.PopupFormMinSize = new System.Drawing.Size(600, 600);
+            this.RepositoryItemSearchLookUpEditCompCode.PopupFormSize = new System.Drawing.Size(600, 600);
             this.RepositoryItemSearchLookUpEditCompCode.PopupView = this.repositoryItemSearchLookUpEdit3View;
             this.RepositoryItemSearchLookUpEditCompCode.ValueMember = "Code";
             this.RepositoryItemSearchLookUpEditCompCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -5672,12 +5675,12 @@
             this.RepositoryItemImageComboBoxSupplementType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.RepositoryItemImageComboBoxSupplementType.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room", "Per Room", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Night", "Per Night", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person", "Per Person", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person Per Night", "Per Person Per Night", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Booking", "Per Booking", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room Per Night", "Per Room Per Night", -1)});
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room", "PerRoom", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Night", "PerNight", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person", "PerPerson", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person Per Night", "PerPersonPerNight", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Booking", "PerBooking", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room Per Night", "PerRoomPerNight", -1)});
             this.RepositoryItemImageComboBoxSupplementType.Name = "RepositoryItemImageComboBoxSupplementType";
             // 
             // gridView20

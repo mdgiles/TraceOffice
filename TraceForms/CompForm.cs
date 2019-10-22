@@ -34,7 +34,7 @@ namespace TraceForms
         COMP _selectedRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
-        string _PupDrp = "";
+        string _pupDrp = "";
         ICoreSys _sys;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
@@ -177,11 +177,8 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             repositoryItemImageComboboxLocation.DataSource = waypoints;
 
-            var components = new List<CodeName> {
-                new CodeName(null)
-            };
+            var components = new List<CodeName>();
             components.AddRange(_context.COMP
-                .Where(c => c.IsSupplement)
                 .Where(c => c.IsSupplement)
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
@@ -270,7 +267,7 @@ namespace TraceForms
             }
             else {
                 _selectedRecord = ((COMP)BindingSource.Current);
-                _PupDrp = _selectedRecord.PUDRP_REQ;
+                _pupDrp = _selectedRecord.PUDRP_REQ;
                 SetPupDrpCheckboxes();
                 LoadAndBindSupplierProducts();
                 LoadAndBindSupplierCategories();
@@ -298,6 +295,8 @@ namespace TraceForms
             GridViewSupplierProduct.UpdateCurrentRow();
             GridViewSupplierCategory.CloseEditor();
             GridViewSupplierCategory.UpdateCurrentRow();
+            GridViewSupplement.CloseEditor();
+            GridViewSupplement.UpdateCurrentRow();
             GridViewDetail.CloseEditor();
             GridViewDetail.UpdateCurrentRow();
             GridViewUserFields.CloseEditor();
@@ -306,7 +305,7 @@ namespace TraceForms
             GridViewRoutes.UpdateCurrentRow();
             GridViewTransferPoints.CloseEditor();
             GridViewTransferPoints.UpdateCurrentRow();
-            _selectedRecord.PUDRP_REQ = _PupDrp;
+            _selectedRecord.PUDRP_REQ = _pupDrp;
             //Set the  code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierCategory.DataRowCount; rowCtr++) {
                 SupplierCategory suppCat = (SupplierCategory)GridViewSupplierCategory.GetRow(rowCtr);
@@ -572,6 +571,7 @@ namespace TraceForms
             return record.IsModified(_context)
                 || record.SupplierProduct.IsModified(_context)
                 || record.SupplierCategory.IsModified(_context)
+                || record.ProductSupplement.IsModified(_context)
                 || record.BUSTABLE.IsModified(_context)
                 || record.CompBusRoute.IsModified(_context)
                 || record.DETAIL.IsModified(_context)
@@ -632,12 +632,14 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateVendorCode, TextEditVendorCode);
             SetErrorInfo(_selectedRecord.ValidateDifficulty, SearchLookupEditDifficulty);
             SetErrorInfo(_selectedRecord.ValidateOperator, SearchLookupEditOperator);
+            SetErrorInfo(_selectedRecord.ValidateVoucherType, ImageComboBoxEditVoucherTypes);
             SetErrorInfo(_selectedRecord.ValidateRateBasis, ImageComboBoxEditRateBasis);
             SetErrorInfo(_selectedRecord.ValidateRestricCode, ImageComboBoxEditRestrictionsCode);
             SetErrorInfo(_selectedRecord.ValidateTransferType, GridControlTransferPoints);
             SetErrorInfo(_selectedRecord.ValidateTransfers, GridControlTransferPoints);
             SetErrorInfo(_selectedRecord.ValidateServType, SearchLookupEditServiceType);
             SetErrorInfo(_selectedRecord.ValidateVouch, SpinEditDayPrior);
+            SetErrorInfo(_selectedRecord.ValidateDistance, SpinEditDistance);
             SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditCity);
             SetErrorInfo(_selectedRecord.ValidateState, SearchLookupEditState);
             SetErrorInfo(_selectedRecord.ValidateAddress1, TextEditAddr1);
@@ -655,10 +657,10 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateInclude5, TextEditIncl5);
             SetErrorInfo(_selectedRecord.ValidateInclude6, TextEditIncl6);
             SetErrorInfo(_selectedRecord.ValidateDuration, SpinEditDuration);
-            SetErrorInfo(_selectedRecord.ValidateDistance, SpinEditDistance);
             //SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
             SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
             SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
+            SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -962,7 +964,7 @@ namespace TraceForms
             }
 
             if(CheckEditPickup.Checked == true || CheckEditDropoff.Checked == true) {
-                busTable.PUP_DRP = _PupDrp;
+                busTable.PUP_DRP = _pupDrp;
             }
             _selectedRecord.BUSTABLE.Add(busTable);
             BindTransferPoints();
@@ -1024,22 +1026,22 @@ namespace TraceForms
 
         private void SetPupDrpCheckboxes()
         {
-            if (_PupDrp == "B")
+            if (_pupDrp == "B")
             {
                 CheckEditPickup.Checked = true;
                 CheckEditDropoff.Checked = true;
             }
-            if (_PupDrp == "P")
+            if (_pupDrp == "P")
             {
                 CheckEditPickup.Checked = true;
                 CheckEditDropoff.Checked = false;
             }
-            if (_PupDrp == "D")
+            if (_pupDrp == "D")
             {
                 CheckEditPickup.Checked = false;
                 CheckEditDropoff.Checked = true;
             }
-            if (string.IsNullOrWhiteSpace(_PupDrp))
+            if (string.IsNullOrWhiteSpace(_pupDrp))
             {
                 CheckEditPickup.Checked = false;
                 CheckEditDropoff.Checked = false;                
@@ -1796,13 +1798,13 @@ namespace TraceForms
         public void SetPupDrp()
         {
             if (CheckEditPickup.Checked && CheckEditDropoff.Checked) {
-                _PupDrp = "B";
+                _pupDrp = "B";
             } else if (CheckEditDropoff.Checked == true && CheckEditPickup.Checked == false) {
-                _PupDrp = "D";
+                _pupDrp = "D";
             } else if (CheckEditPickup.Checked == true && CheckEditDropoff.Checked == false) {
-                _PupDrp = "P";
+                _pupDrp = "P";
             } else {
-                _PupDrp = "";
+                _pupDrp = "";
             }
         }
 
@@ -1843,6 +1845,8 @@ namespace TraceForms
         private void CheckEditIsSupplement_EditValueChanged(object sender, EventArgs e)
         {
             GridControlSupplements.Enabled = !CheckEditIsSupplement.Checked;
+            SimpleButtonAddSupplement.Enabled = !CheckEditIsSupplement.Checked;
+            SimpleButtonDeleteSupplement.Enabled = !CheckEditIsSupplement.Checked;
             SetCheckBoxState(CheckEditSupplementIsBoard, CheckEditIsSupplement.Checked, false);
             SetCheckBoxState(CheckEditSupplementPaySupplier, CheckEditIsSupplement.Checked, false);
             SetCheckBoxState(CheckEditSupplementQtySelectable, CheckEditIsSupplement.Checked, false);
@@ -1902,6 +1906,12 @@ namespace TraceForms
                 }
                 BindSupplements();
             }
+        }
+
+        private void GridControlSupplements_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSupplements, sender);
         }
 
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
