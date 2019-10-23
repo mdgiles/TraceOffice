@@ -5678,9 +5678,9 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room", "PerRoom", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Night", "PerNight", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person", "PerPerson", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person Per Night", "PerPersonPerNight", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Person Per Night", "PerPersonNight", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Booking", "PerBooking", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room Per Night", "PerRoomPerNight", -1)});
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Per Room Per Night", "PerRoomNight", -1)});
             this.RepositoryItemImageComboBoxSupplementType.Name = "RepositoryItemImageComboBoxSupplementType";
             // 
             // gridView20

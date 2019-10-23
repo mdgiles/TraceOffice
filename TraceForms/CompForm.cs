@@ -25,6 +25,7 @@ using System.Drawing;
 using DevExpress.XtraMap;
 using DevExpress.Map;
 using FlexCommissions;
+using System.Data.Entity.Validation;
 
 namespace TraceForms
 {
@@ -490,6 +491,12 @@ namespace TraceForms
                     ShowActionConfirmation("Record Saved");
                 }
                 return true;
+            }
+            catch (DbEntityValidationException ex) {
+                string details = string.Join(Environment.NewLine, ex.EntityValidationErrors.Select(e =>
+                string.Join(Environment.NewLine, e.ValidationErrors.Select(v =>
+                string.Format("{0} - {1}", v.PropertyName, v.ErrorMessage)))));
+                return false;
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);
