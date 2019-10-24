@@ -574,7 +574,7 @@ namespace TraceForms
             this.xtraTabControlMediaInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xtraTabControlMediaInfo.Location = new System.Drawing.Point(23, 402);
+            this.xtraTabControlMediaInfo.Location = new System.Drawing.Point(22, 402);
             this.xtraTabControlMediaInfo.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlMediaInfo.Name = "xtraTabControlMediaInfo";
             this.xtraTabControlMediaInfo.SelectedTabPage = this.xtraTabPageText;

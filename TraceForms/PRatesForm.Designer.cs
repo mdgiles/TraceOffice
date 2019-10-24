@@ -343,6 +343,7 @@
             this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemClone = new DevExpress.XtraBars.BarButtonItem();
             this.BarToggleSwitchItemGrid = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.BarButtonItemShowOverlapping = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -3498,8 +3499,9 @@
             this.BarButtonItemSave,
             this.barButtonItem1,
             this.BarToggleSwitchItemGrid,
-            this.BarButtonItemShowOverlapping});
-            this.BarManager.MaxItemId = 6;
+            this.BarButtonItemShowOverlapping,
+            this.BarButtonItemClone});
+            this.BarManager.MaxItemId = 7;
             // 
             // bar1
             // 
@@ -3512,6 +3514,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemClone),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarToggleSwitchItemGrid),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemShowOverlapping)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
@@ -3545,6 +3548,15 @@
             this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
             this.BarButtonItemSave.Name = "BarButtonItemSave";
             this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+            // 
+            // BarButtonItemClone
+            // 
+            this.BarButtonItemClone.Caption = "Clone";
+            this.BarButtonItemClone.Id = 6;
+            this.BarButtonItemClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.Image")));
+            this.BarButtonItemClone.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.LargeImage")));
+            this.BarButtonItemClone.Name = "BarButtonItemClone";
+            this.BarButtonItemClone.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemClone_ItemClick);
             // 
             // BarToggleSwitchItemGrid
             // 
@@ -4033,5 +4045,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemClone;
     }
 }
