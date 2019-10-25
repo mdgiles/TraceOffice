@@ -1372,6 +1372,32 @@ namespace TraceForms
             }
         }
 
+        private void BarButtonItemClone_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (_selectedRecord != null) {
+                if (SaveRecord(true)) {
+                    var entity = _context.CPRATES
+                        .AsNoTracking()
+                        .FirstOrDefault(x => x.ID == _selectedRecord.ID);
+                    if (entity != null) {
+                        //clear flags so we don't get save warnings displaying the new record
+                        _ignoreLeaveRow = true;
+                        entity.EntityKey = null;
+                        BindingSource.Add(entity);
+                        BindingSource.Position = BindingSource.Count;
+                        //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                        //the focused row to the filter row just so that no other existing row is visually highlighted
+                        GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                        //set flags so the user will get save warnings when leaving or discarding the new record
+                        SetFieldAndButtonStates(isExistingRecord: false);
+                        SearchLookupEditCode.Focus();
+                        ShowActionConfirmation("Record Cloned");
+                        _ignoreLeaveRow = false;
+                    }
+                }
+            }
+        }
+
         private void ImageComboBoxEditAgency_EditValueChanged(object sender, EventArgs e)
         {
             string agency = SearchLookupEditAgency.EditValue.ToString();

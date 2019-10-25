@@ -384,6 +384,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemClone = new DevExpress.XtraBars.BarButtonItem();
             jR_GRATELabel = new System.Windows.Forms.Label();
             cHD_GRATELabel = new System.Windows.Forms.Label();
             vendor_Code_ChdLabel = new System.Windows.Forms.Label();
@@ -946,7 +947,7 @@
             this.CheckEditCommFlg.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditCommFlg.Properties.ValueChecked = "Y";
             this.CheckEditCommFlg.Properties.ValueUnchecked = "N";
-            this.CheckEditCommFlg.Size = new System.Drawing.Size(209, 34);
+            this.CheckEditCommFlg.Size = new System.Drawing.Size(209, 38);
             this.CheckEditCommFlg.TabIndex = 38;
             this.CheckEditCommFlg.EditValueChanged += new System.EventHandler(this.CheckEditCommFlg_EditValueChanged);
             // 
@@ -1441,7 +1442,7 @@
             this.TimeEditTime.Margin = new System.Windows.Forms.Padding(5);
             this.TimeEditTime.Name = "TimeEditTime";
             this.TimeEditTime.Properties.Mask.EditMask = "n";
-            this.TimeEditTime.Size = new System.Drawing.Size(200, 34);
+            this.TimeEditTime.Size = new System.Drawing.Size(200, 40);
             this.TimeEditTime.TabIndex = 11;
             this.TimeEditTime.Leave += new System.EventHandler(this.TimeEditTime_Leave);
             // 
@@ -1456,7 +1457,7 @@
             this.CheckEditUnitRate.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditUnitRate.Properties.ValueChecked = "1";
             this.CheckEditUnitRate.Properties.ValueUnchecked = "0";
-            this.CheckEditUnitRate.Size = new System.Drawing.Size(152, 34);
+            this.CheckEditUnitRate.Size = new System.Drawing.Size(152, 38);
             this.CheckEditUnitRate.TabIndex = 25;
             // 
             // ComboBoxEditTransportType
@@ -1473,7 +1474,7 @@
             "S",
             "O",
             "P"});
-            this.ComboBoxEditTransportType.Size = new System.Drawing.Size(200, 34);
+            this.ComboBoxEditTransportType.Size = new System.Drawing.Size(200, 40);
             this.ComboBoxEditTransportType.TabIndex = 37;
             this.ComboBoxEditTransportType.Leave += new System.EventHandler(this.ComboBoxEditTransportType_Leave);
             // 
@@ -1485,7 +1486,7 @@
             this.TextEditChildVendorCode.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditChildVendorCode.Name = "TextEditChildVendorCode";
             this.TextEditChildVendorCode.Properties.MaxLength = 12;
-            this.TextEditChildVendorCode.Size = new System.Drawing.Size(132, 34);
+            this.TextEditChildVendorCode.Size = new System.Drawing.Size(132, 40);
             this.TextEditChildVendorCode.TabIndex = 51;
             this.TextEditChildVendorCode.Leave += new System.EventHandler(this.TextEditVendorCodeChd_Leave);
             // 
@@ -1497,7 +1498,7 @@
             this.TextEditJrVendorCode.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditJrVendorCode.Name = "TextEditJrVendorCode";
             this.TextEditJrVendorCode.Properties.MaxLength = 12;
-            this.TextEditJrVendorCode.Size = new System.Drawing.Size(131, 34);
+            this.TextEditJrVendorCode.Size = new System.Drawing.Size(131, 40);
             this.TextEditJrVendorCode.TabIndex = 53;
             this.TextEditJrVendorCode.Leave += new System.EventHandler(this.TextEditVendorCodeJr_Leave);
             // 
@@ -1518,7 +1519,7 @@
             this.TextEditSrVendorCode.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditSrVendorCode.Name = "TextEditSrVendorCode";
             this.TextEditSrVendorCode.Properties.MaxLength = 12;
-            this.TextEditSrVendorCode.Size = new System.Drawing.Size(131, 34);
+            this.TextEditSrVendorCode.Size = new System.Drawing.Size(131, 40);
             this.TextEditSrVendorCode.TabIndex = 55;
             this.TextEditSrVendorCode.Leave += new System.EventHandler(this.TextEditVendor_Leave);
             // 
@@ -1577,7 +1578,7 @@
             this.CheckEditInactive.Name = "CheckEditInactive";
             this.CheckEditInactive.Properties.Caption = "Inactive rate";
             this.CheckEditInactive.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditInactive.Size = new System.Drawing.Size(207, 34);
+            this.CheckEditInactive.Size = new System.Drawing.Size(207, 38);
             this.CheckEditInactive.TabIndex = 23;
             // 
             // CheckEditInhouse
@@ -1589,7 +1590,7 @@
             this.CheckEditInhouse.Name = "CheckEditInhouse";
             this.CheckEditInhouse.Properties.Caption = "Inhouse rate";
             this.CheckEditInhouse.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditInhouse.Size = new System.Drawing.Size(187, 34);
+            this.CheckEditInhouse.Size = new System.Drawing.Size(187, 38);
             this.CheckEditInhouse.TabIndex = 24;
             // 
             // TextEditDesc
@@ -1600,7 +1601,7 @@
             this.TextEditDesc.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditDesc.Name = "TextEditDesc";
             this.TextEditDesc.Properties.MaxLength = 60;
-            this.TextEditDesc.Size = new System.Drawing.Size(640, 34);
+            this.TextEditDesc.Size = new System.Drawing.Size(640, 40);
             this.TextEditDesc.TabIndex = 35;
             this.TextEditDesc.Leave += new System.EventHandler(this.TextEditDesc_Leave);
             // 
@@ -1615,7 +1616,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ComboBoxEditYear.Properties.Items.AddRange(new object[] {
             ""});
-            this.ComboBoxEditYear.Size = new System.Drawing.Size(101, 34);
+            this.ComboBoxEditYear.Size = new System.Drawing.Size(101, 40);
             this.ComboBoxEditYear.TabIndex = 33;
             this.ComboBoxEditYear.Leave += new System.EventHandler(this.ComboBoxEditYear_Leave);
             // 
@@ -1627,7 +1628,7 @@
             this.TextEditSeason.Margin = new System.Windows.Forms.Padding(5);
             this.TextEditSeason.Name = "TextEditSeason";
             this.TextEditSeason.Properties.MaxLength = 1;
-            this.TextEditSeason.Size = new System.Drawing.Size(69, 34);
+            this.TextEditSeason.Size = new System.Drawing.Size(69, 40);
             this.TextEditSeason.TabIndex = 31;
             this.TextEditSeason.Leave += new System.EventHandler(this.TextEditHL_Leave);
             // 
@@ -2203,9 +2204,9 @@
             this.SearchLookupEditSpecialValue.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditSpecialValue.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditSpecialValue.Properties.NullText = "";
+            this.SearchLookupEditSpecialValue.Properties.PopupView = gridView6;
             this.SearchLookupEditSpecialValue.Properties.ValueMember = "Code";
-            this.SearchLookupEditSpecialValue.Properties.View = gridView6;
-            this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(345, 34);
+            this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(345, 40);
             this.SearchLookupEditSpecialValue.TabIndex = 18;
             this.SearchLookupEditSpecialValue.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditSpecialValue.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
@@ -2231,7 +2232,7 @@
             this.SpinEditSrLimit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.SpinEditSrLimit.Properties.NullText = "0";
-            this.SpinEditSrLimit.Size = new System.Drawing.Size(131, 34);
+            this.SpinEditSrLimit.Size = new System.Drawing.Size(131, 40);
             this.SpinEditSrLimit.TabIndex = 48;
             this.SpinEditSrLimit.Leave += new System.EventHandler(this.SpinEditSeniorAge_Leave);
             // 
@@ -2340,7 +2341,7 @@
             this.xtraTabPageDefaultRates.Controls.Add(this.SpinEditPp9);
             this.xtraTabPageDefaultRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageDefaultRates.Name = "xtraTabPageDefaultRates";
-            this.xtraTabPageDefaultRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageDefaultRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageDefaultRates.Text = "Default Rates";
             // 
             // SpinEditNpp8
@@ -2361,7 +2362,7 @@
             this.SpinEditNpp8.Properties.Mask.EditMask = "f";
             this.SpinEditNpp8.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp8.Properties.NullText = "0";
-            this.SpinEditNpp8.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp8.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp8.TabIndex = 33;
             this.SpinEditNpp8.Leave += new System.EventHandler(this.TextEditNpp8_Leave);
             // 
@@ -2383,7 +2384,7 @@
             this.SpinEditRetailSenior.Properties.Mask.EditMask = "f";
             this.SpinEditRetailSenior.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetailSenior.Properties.NullText = "0";
-            this.SpinEditRetailSenior.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetailSenior.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetailSenior.TabIndex = 55;
             this.SpinEditRetailSenior.Leave += new System.EventHandler(this.SpinEditRetailSenior_Leave);
             // 
@@ -2405,7 +2406,7 @@
             this.SpinEditNpp9.Properties.Mask.EditMask = "f";
             this.SpinEditNpp9.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp9.Properties.NullText = "0";
-            this.SpinEditNpp9.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp9.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp9.TabIndex = 37;
             this.SpinEditNpp9.Leave += new System.EventHandler(this.TextEditNpp9_Leave);
             // 
@@ -2427,7 +2428,7 @@
             this.SpinEditRetailJunior.Properties.Mask.EditMask = "f";
             this.SpinEditRetailJunior.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetailJunior.Properties.NullText = "0";
-            this.SpinEditRetailJunior.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetailJunior.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetailJunior.TabIndex = 51;
             this.SpinEditRetailJunior.Leave += new System.EventHandler(this.SpinEditRetailJunior_Leave);
             // 
@@ -2449,7 +2450,7 @@
             this.SpinEditNpp7.Properties.Mask.EditMask = "f";
             this.SpinEditNpp7.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp7.Properties.NullText = "0";
-            this.SpinEditNpp7.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp7.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp7.TabIndex = 29;
             this.SpinEditNpp7.Leave += new System.EventHandler(this.TextEditNpp7_Leave);
             // 
@@ -2471,7 +2472,7 @@
             this.SpinEditRetailChild.Properties.Mask.EditMask = "f";
             this.SpinEditRetailChild.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetailChild.Properties.NullText = "0";
-            this.SpinEditRetailChild.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetailChild.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetailChild.TabIndex = 47;
             this.SpinEditRetailChild.Leave += new System.EventHandler(this.SpinEditRetailChild_Leave);
             // 
@@ -2493,7 +2494,7 @@
             this.SpinEditNpp10.Properties.Mask.EditMask = "f";
             this.SpinEditNpp10.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp10.Properties.NullText = "0";
-            this.SpinEditNpp10.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp10.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp10.TabIndex = 41;
             this.SpinEditNpp10.Leave += new System.EventHandler(this.TextEditNpp10_Leave);
             // 
@@ -2515,7 +2516,7 @@
             this.SpinEditGrossSenior.Properties.Mask.EditMask = "f";
             this.SpinEditGrossSenior.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGrossSenior.Properties.NullText = "0";
-            this.SpinEditGrossSenior.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGrossSenior.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGrossSenior.TabIndex = 54;
             this.SpinEditGrossSenior.Leave += new System.EventHandler(this.SpinEditGrossSenior_Leave);
             // 
@@ -2537,7 +2538,7 @@
             this.SpinEditNpp6.Properties.Mask.EditMask = "f";
             this.SpinEditNpp6.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp6.Properties.NullText = "0";
-            this.SpinEditNpp6.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp6.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp6.TabIndex = 25;
             this.SpinEditNpp6.Leave += new System.EventHandler(this.TextEditNpp6_Leave);
             // 
@@ -2559,7 +2560,7 @@
             this.SpinEditNpp5.Properties.Mask.EditMask = "f";
             this.SpinEditNpp5.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp5.Properties.NullText = "0";
-            this.SpinEditNpp5.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp5.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp5.TabIndex = 21;
             this.SpinEditNpp5.Leave += new System.EventHandler(this.TextEditNpp5_Leave);
             // 
@@ -2581,7 +2582,7 @@
             this.SpinEditCostSenior.Properties.Mask.EditMask = "f";
             this.SpinEditCostSenior.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditCostSenior.Properties.NullText = "0";
-            this.SpinEditCostSenior.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditCostSenior.Size = new System.Drawing.Size(136, 40);
             this.SpinEditCostSenior.TabIndex = 53;
             this.SpinEditCostSenior.Leave += new System.EventHandler(this.SpinEditCostSenior_Leave);
             // 
@@ -2603,7 +2604,7 @@
             this.SpinEditNpp4.Properties.Mask.EditMask = "f";
             this.SpinEditNpp4.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp4.Properties.NullText = "0";
-            this.SpinEditNpp4.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp4.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp4.TabIndex = 17;
             this.SpinEditNpp4.Leave += new System.EventHandler(this.TextEditNpp4_Leave);
             // 
@@ -2625,7 +2626,7 @@
             this.SpinEditNpp3.Properties.Mask.EditMask = "f";
             this.SpinEditNpp3.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp3.Properties.NullText = "0";
-            this.SpinEditNpp3.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp3.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp3.TabIndex = 13;
             this.SpinEditNpp3.Leave += new System.EventHandler(this.TextEditNpp3_Leave);
             // 
@@ -2650,7 +2651,7 @@
             this.SpinEditPp1.Properties.Mask.EditMask = "N00";
             this.SpinEditPp1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp1.Properties.NullText = "0";
-            this.SpinEditPp1.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp1.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp1.TabIndex = 4;
             this.SpinEditPp1.Leave += new System.EventHandler(this.TextEditPp1_Leave);
             // 
@@ -2672,7 +2673,7 @@
             this.SpinEditNpp2.Properties.Mask.EditMask = "f";
             this.SpinEditNpp2.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp2.Properties.NullText = "0";
-            this.SpinEditNpp2.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp2.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp2.TabIndex = 9;
             this.SpinEditNpp2.Leave += new System.EventHandler(this.TextEditNpp2_Leave);
             // 
@@ -2697,7 +2698,7 @@
             this.SpinEditPp2.Properties.Mask.EditMask = "N00";
             this.SpinEditPp2.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp2.Properties.NullText = "0";
-            this.SpinEditPp2.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp2.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp2.TabIndex = 8;
             this.SpinEditPp2.Leave += new System.EventHandler(this.TextEditPp2_Leave);
             // 
@@ -2719,7 +2720,7 @@
             this.SpinEditNpp1.Properties.Mask.EditMask = "f";
             this.SpinEditNpp1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditNpp1.Properties.NullText = "0";
-            this.SpinEditNpp1.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditNpp1.Size = new System.Drawing.Size(136, 40);
             this.SpinEditNpp1.TabIndex = 5;
             this.SpinEditNpp1.Leave += new System.EventHandler(this.TextEditNpp1_Leave);
             // 
@@ -2741,7 +2742,7 @@
             this.SpinEditRetail10.Properties.Mask.EditMask = "f";
             this.SpinEditRetail10.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail10.Properties.NullText = "0";
-            this.SpinEditRetail10.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail10.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail10.TabIndex = 43;
             this.SpinEditRetail10.Leave += new System.EventHandler(this.SpinEditRetail10_Leave);
             // 
@@ -2766,7 +2767,7 @@
             this.SpinEditPp3.Properties.Mask.EditMask = "N00";
             this.SpinEditPp3.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp3.Properties.NullText = "0";
-            this.SpinEditPp3.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp3.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp3.TabIndex = 12;
             this.SpinEditPp3.Leave += new System.EventHandler(this.TextEditPp3_Leave);
             // 
@@ -2788,7 +2789,7 @@
             this.SpinEditGpp10.Properties.Mask.EditMask = "f";
             this.SpinEditGpp10.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp10.Properties.NullText = "0";
-            this.SpinEditGpp10.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp10.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp10.TabIndex = 42;
             this.SpinEditGpp10.Leave += new System.EventHandler(this.TextEditGpp10_Leave);
             // 
@@ -2810,7 +2811,7 @@
             this.SpinEditRetail9.Properties.Mask.EditMask = "f";
             this.SpinEditRetail9.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail9.Properties.NullText = "0";
-            this.SpinEditRetail9.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail9.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail9.TabIndex = 39;
             this.SpinEditRetail9.Leave += new System.EventHandler(this.SpinEditRetail9_Leave);
             // 
@@ -2832,7 +2833,7 @@
             this.SpinEditGpp9.Properties.Mask.EditMask = "f";
             this.SpinEditGpp9.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp9.Properties.NullText = "0";
-            this.SpinEditGpp9.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp9.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp9.TabIndex = 38;
             this.SpinEditGpp9.Leave += new System.EventHandler(this.TextEditGpp9_Leave);
             // 
@@ -2857,7 +2858,7 @@
             this.SpinEditPp4.Properties.Mask.EditMask = "N00";
             this.SpinEditPp4.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp4.Properties.NullText = "0";
-            this.SpinEditPp4.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp4.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp4.TabIndex = 16;
             this.SpinEditPp4.Leave += new System.EventHandler(this.TextEditPp4_Leave);
             // 
@@ -2879,7 +2880,7 @@
             this.SpinEditGpp8.Properties.Mask.EditMask = "f";
             this.SpinEditGpp8.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp8.Properties.NullText = "0";
-            this.SpinEditGpp8.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp8.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp8.TabIndex = 34;
             this.SpinEditGpp8.Leave += new System.EventHandler(this.TextEditGpp8_Leave);
             // 
@@ -2901,7 +2902,7 @@
             this.SpinEditRetail8.Properties.Mask.EditMask = "f";
             this.SpinEditRetail8.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail8.Properties.NullText = "0";
-            this.SpinEditRetail8.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail8.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail8.TabIndex = 35;
             this.SpinEditRetail8.Leave += new System.EventHandler(this.SpinEditRetail8_Leave);
             // 
@@ -2923,7 +2924,7 @@
             this.SpinEditGpp7.Properties.Mask.EditMask = "f";
             this.SpinEditGpp7.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp7.Properties.NullText = "0";
-            this.SpinEditGpp7.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp7.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp7.TabIndex = 30;
             this.SpinEditGpp7.Leave += new System.EventHandler(this.TextEditGpp7_Leave);
             // 
@@ -2948,7 +2949,7 @@
             this.SpinEditPp5.Properties.Mask.EditMask = "N00";
             this.SpinEditPp5.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp5.Properties.NullText = "0";
-            this.SpinEditPp5.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp5.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp5.TabIndex = 20;
             this.SpinEditPp5.Leave += new System.EventHandler(this.TextEditPp5_Leave);
             // 
@@ -2970,7 +2971,7 @@
             this.SpinEditGpp6.Properties.Mask.EditMask = "f";
             this.SpinEditGpp6.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp6.Properties.NullText = "0";
-            this.SpinEditGpp6.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp6.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp6.TabIndex = 26;
             this.SpinEditGpp6.Leave += new System.EventHandler(this.TextEditGpp6_Leave);
             // 
@@ -2992,7 +2993,7 @@
             this.SpinEditRetail7.Properties.Mask.EditMask = "f";
             this.SpinEditRetail7.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail7.Properties.NullText = "0";
-            this.SpinEditRetail7.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail7.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail7.TabIndex = 31;
             this.SpinEditRetail7.Leave += new System.EventHandler(this.SpinEditRetail7_Leave);
             // 
@@ -3014,7 +3015,7 @@
             this.SpinEditGpp5.Properties.Mask.EditMask = "f";
             this.SpinEditGpp5.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp5.Properties.NullText = "0";
-            this.SpinEditGpp5.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp5.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp5.TabIndex = 22;
             this.SpinEditGpp5.Leave += new System.EventHandler(this.TextEditGpp5_Leave);
             // 
@@ -3039,7 +3040,7 @@
             this.SpinEditPp6.Properties.Mask.EditMask = "N00";
             this.SpinEditPp6.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp6.Properties.NullText = "0";
-            this.SpinEditPp6.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp6.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp6.TabIndex = 24;
             this.SpinEditPp6.Leave += new System.EventHandler(this.TextEditPp6_Leave);
             // 
@@ -3061,7 +3062,7 @@
             this.SpinEditGpp4.Properties.Mask.EditMask = "f";
             this.SpinEditGpp4.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp4.Properties.NullText = "0";
-            this.SpinEditGpp4.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp4.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp4.TabIndex = 18;
             this.SpinEditGpp4.Leave += new System.EventHandler(this.TextEditGpp4_Leave);
             // 
@@ -3083,7 +3084,7 @@
             this.SpinEditRetail6.Properties.Mask.EditMask = "f";
             this.SpinEditRetail6.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail6.Properties.NullText = "0";
-            this.SpinEditRetail6.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail6.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail6.TabIndex = 27;
             this.SpinEditRetail6.Leave += new System.EventHandler(this.SpinEditRetail6_Leave);
             // 
@@ -3105,7 +3106,7 @@
             this.SpinEditGpp3.Properties.Mask.EditMask = "f";
             this.SpinEditGpp3.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp3.Properties.NullText = "0";
-            this.SpinEditGpp3.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp3.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp3.TabIndex = 14;
             this.SpinEditGpp3.Leave += new System.EventHandler(this.TextEditGpp3_Leave);
             // 
@@ -3127,7 +3128,7 @@
             this.SpinEditCostJr.Properties.Mask.EditMask = "f";
             this.SpinEditCostJr.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditCostJr.Properties.NullText = "0";
-            this.SpinEditCostJr.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditCostJr.Size = new System.Drawing.Size(136, 40);
             this.SpinEditCostJr.TabIndex = 49;
             this.SpinEditCostJr.Leave += new System.EventHandler(this.TextEditJrNRate_Leave);
             // 
@@ -3152,7 +3153,7 @@
             this.SpinEditPp7.Properties.Mask.EditMask = "N00";
             this.SpinEditPp7.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp7.Properties.NullText = "0";
-            this.SpinEditPp7.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp7.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp7.TabIndex = 28;
             this.SpinEditPp7.Leave += new System.EventHandler(this.TextEditPp7_Leave);
             // 
@@ -3174,7 +3175,7 @@
             this.SpinEditGpp2.Properties.Mask.EditMask = "f";
             this.SpinEditGpp2.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp2.Properties.NullText = "0";
-            this.SpinEditGpp2.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp2.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp2.TabIndex = 10;
             this.SpinEditGpp2.Leave += new System.EventHandler(this.TextEditGpp2_Leave);
             // 
@@ -3196,7 +3197,7 @@
             this.SpinEditGrossJr.Properties.Mask.EditMask = "f";
             this.SpinEditGrossJr.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGrossJr.Properties.NullText = "0";
-            this.SpinEditGrossJr.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGrossJr.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGrossJr.TabIndex = 50;
             this.SpinEditGrossJr.Leave += new System.EventHandler(this.TextEditJrGRate_Leave);
             // 
@@ -3218,7 +3219,7 @@
             this.SpinEditRetail1.Properties.Mask.EditMask = "f";
             this.SpinEditRetail1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail1.Properties.NullText = "0";
-            this.SpinEditRetail1.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail1.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail1.TabIndex = 7;
             this.SpinEditRetail1.Leave += new System.EventHandler(this.SpinEditRetail1_Leave);
             // 
@@ -3240,7 +3241,7 @@
             this.SpinEditRetail5.Properties.Mask.EditMask = "f";
             this.SpinEditRetail5.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail5.Properties.NullText = "0";
-            this.SpinEditRetail5.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail5.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail5.TabIndex = 23;
             this.SpinEditRetail5.Leave += new System.EventHandler(this.SpinEditRetail5_Leave);
             // 
@@ -3262,7 +3263,7 @@
             this.SpinEditGpp1.Properties.Mask.EditMask = "f";
             this.SpinEditGpp1.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGpp1.Properties.NullText = "0";
-            this.SpinEditGpp1.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGpp1.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGpp1.TabIndex = 6;
             this.SpinEditGpp1.Leave += new System.EventHandler(this.TextEditGpp1_Leave);
             // 
@@ -3284,7 +3285,7 @@
             this.SpinEditCostChild.Properties.Mask.EditMask = "f";
             this.SpinEditCostChild.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditCostChild.Properties.NullText = "0";
-            this.SpinEditCostChild.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditCostChild.Size = new System.Drawing.Size(136, 40);
             this.SpinEditCostChild.TabIndex = 45;
             this.SpinEditCostChild.Leave += new System.EventHandler(this.TextEditChdNRate_Leave);
             // 
@@ -3306,7 +3307,7 @@
             this.SpinEditRetail2.Properties.Mask.EditMask = "f";
             this.SpinEditRetail2.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail2.Properties.NullText = "0";
-            this.SpinEditRetail2.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail2.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail2.TabIndex = 11;
             this.SpinEditRetail2.Leave += new System.EventHandler(this.SpinEditRetail2_Leave);
             // 
@@ -3331,7 +3332,7 @@
             this.SpinEditPp8.Properties.Mask.EditMask = "N00";
             this.SpinEditPp8.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp8.Properties.NullText = "0";
-            this.SpinEditPp8.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp8.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp8.TabIndex = 32;
             this.SpinEditPp8.Leave += new System.EventHandler(this.TextEditPp8_Leave);
             // 
@@ -3356,7 +3357,7 @@
             this.SpinEditPp10.Properties.Mask.EditMask = "N00";
             this.SpinEditPp10.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp10.Properties.NullText = "0";
-            this.SpinEditPp10.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp10.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp10.TabIndex = 40;
             this.SpinEditPp10.Leave += new System.EventHandler(this.TextEditPp10_Leave);
             // 
@@ -3378,7 +3379,7 @@
             this.SpinEditGrossChild.Properties.Mask.EditMask = "f";
             this.SpinEditGrossChild.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditGrossChild.Properties.NullText = "0";
-            this.SpinEditGrossChild.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditGrossChild.Size = new System.Drawing.Size(136, 40);
             this.SpinEditGrossChild.TabIndex = 46;
             this.SpinEditGrossChild.Leave += new System.EventHandler(this.TextEditChdGRate_Leave);
             // 
@@ -3400,7 +3401,7 @@
             this.SpinEditRetail3.Properties.Mask.EditMask = "f";
             this.SpinEditRetail3.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail3.Properties.NullText = "0";
-            this.SpinEditRetail3.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail3.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail3.TabIndex = 15;
             this.SpinEditRetail3.Leave += new System.EventHandler(this.SpinEditRetail3_Leave);
             // 
@@ -3422,7 +3423,7 @@
             this.SpinEditRetail4.Properties.Mask.EditMask = "f";
             this.SpinEditRetail4.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditRetail4.Properties.NullText = "0";
-            this.SpinEditRetail4.Size = new System.Drawing.Size(136, 34);
+            this.SpinEditRetail4.Size = new System.Drawing.Size(136, 40);
             this.SpinEditRetail4.TabIndex = 19;
             this.SpinEditRetail4.Leave += new System.EventHandler(this.SpinEditRetail4_Leave);
             // 
@@ -3447,7 +3448,7 @@
             this.SpinEditPp9.Properties.Mask.EditMask = "N00";
             this.SpinEditPp9.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.SpinEditPp9.Properties.NullText = "0";
-            this.SpinEditPp9.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditPp9.Size = new System.Drawing.Size(109, 40);
             this.SpinEditPp9.TabIndex = 36;
             this.SpinEditPp9.Leave += new System.EventHandler(this.TextEditPp9_Leave);
             // 
@@ -3513,7 +3514,7 @@
             this.xtraTabPageMonRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageMonRates.Name = "xtraTabPageMonRates";
             this.xtraTabPageMonRates.PageVisible = false;
-            this.xtraTabPageMonRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageMonRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageMonRates.Text = "Monday";
             // 
             // checkEdit1
@@ -3525,7 +3526,7 @@
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "Active";
             this.checkEdit1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEdit1.Size = new System.Drawing.Size(120, 34);
+            this.checkEdit1.Size = new System.Drawing.Size(120, 38);
             this.checkEdit1.TabIndex = 185;
             // 
             // spinEdit16
@@ -3543,7 +3544,7 @@
             this.spinEdit16.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit16.Properties.NullText = "0";
-            this.spinEdit16.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit16.Size = new System.Drawing.Size(109, 40);
             this.spinEdit16.TabIndex = 155;
             // 
             // spinEdit17
@@ -3561,7 +3562,7 @@
             this.spinEdit17.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit17.Properties.NullText = "0";
-            this.spinEdit17.Size = new System.Drawing.Size(111, 34);
+            this.spinEdit17.Size = new System.Drawing.Size(111, 40);
             this.spinEdit17.TabIndex = 184;
             // 
             // spinEdit18
@@ -3579,7 +3580,7 @@
             this.spinEdit18.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit18.Properties.NullText = "0";
-            this.spinEdit18.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit18.Size = new System.Drawing.Size(109, 40);
             this.spinEdit18.TabIndex = 158;
             // 
             // spinEdit19
@@ -3597,7 +3598,7 @@
             this.spinEdit19.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit19.Properties.NullText = "0";
-            this.spinEdit19.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit19.Size = new System.Drawing.Size(109, 40);
             this.spinEdit19.TabIndex = 183;
             // 
             // spinEdit20
@@ -3615,7 +3616,7 @@
             this.spinEdit20.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit20.Properties.NullText = "0";
-            this.spinEdit20.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit20.Size = new System.Drawing.Size(109, 40);
             this.spinEdit20.TabIndex = 152;
             // 
             // spinEdit21
@@ -3633,7 +3634,7 @@
             this.spinEdit21.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit21.Properties.NullText = "0";
-            this.spinEdit21.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit21.Size = new System.Drawing.Size(109, 40);
             this.spinEdit21.TabIndex = 182;
             // 
             // spinEdit22
@@ -3651,7 +3652,7 @@
             this.spinEdit22.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit22.Properties.NullText = "0";
-            this.spinEdit22.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit22.Size = new System.Drawing.Size(109, 40);
             this.spinEdit22.TabIndex = 161;
             // 
             // spinEdit23
@@ -3669,7 +3670,7 @@
             this.spinEdit23.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit23.Properties.NullText = "0";
-            this.spinEdit23.Size = new System.Drawing.Size(111, 34);
+            this.spinEdit23.Size = new System.Drawing.Size(111, 40);
             this.spinEdit23.TabIndex = 181;
             // 
             // spinEdit24
@@ -3687,7 +3688,7 @@
             this.spinEdit24.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit24.Properties.NullText = "0";
-            this.spinEdit24.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit24.Size = new System.Drawing.Size(109, 40);
             this.spinEdit24.TabIndex = 149;
             // 
             // spinEdit25
@@ -3705,7 +3706,7 @@
             this.spinEdit25.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit25.Properties.NullText = "0";
-            this.spinEdit25.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit25.Size = new System.Drawing.Size(109, 40);
             this.spinEdit25.TabIndex = 146;
             // 
             // spinEdit26
@@ -3723,7 +3724,7 @@
             this.spinEdit26.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit26.Properties.NullText = "0";
-            this.spinEdit26.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit26.Size = new System.Drawing.Size(109, 40);
             this.spinEdit26.TabIndex = 180;
             // 
             // spinEdit27
@@ -3741,7 +3742,7 @@
             this.spinEdit27.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit27.Properties.NullText = "0";
-            this.spinEdit27.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit27.Size = new System.Drawing.Size(109, 40);
             this.spinEdit27.TabIndex = 143;
             // 
             // spinEdit28
@@ -3759,7 +3760,7 @@
             this.spinEdit28.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit28.Properties.NullText = "0";
-            this.spinEdit28.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit28.Size = new System.Drawing.Size(109, 40);
             this.spinEdit28.TabIndex = 140;
             // 
             // spinEdit29
@@ -3777,7 +3778,7 @@
             this.spinEdit29.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit29.Properties.NullText = "0";
-            this.spinEdit29.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit29.Size = new System.Drawing.Size(109, 40);
             this.spinEdit29.TabIndex = 132;
             // 
             // spinEdit30
@@ -3795,7 +3796,7 @@
             this.spinEdit30.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit30.Properties.NullText = "0";
-            this.spinEdit30.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit30.Size = new System.Drawing.Size(109, 40);
             this.spinEdit30.TabIndex = 137;
             // 
             // spinEdit31
@@ -3813,7 +3814,7 @@
             this.spinEdit31.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit31.Properties.NullText = "0";
-            this.spinEdit31.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit31.Size = new System.Drawing.Size(109, 40);
             this.spinEdit31.TabIndex = 135;
             // 
             // spinEdit32
@@ -3831,7 +3832,7 @@
             this.spinEdit32.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit32.Properties.NullText = "0";
-            this.spinEdit32.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit32.Size = new System.Drawing.Size(109, 40);
             this.spinEdit32.TabIndex = 134;
             // 
             // spinEdit33
@@ -3849,7 +3850,7 @@
             this.spinEdit33.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit33.Properties.NullText = "0";
-            this.spinEdit33.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit33.Size = new System.Drawing.Size(109, 40);
             this.spinEdit33.TabIndex = 178;
             // 
             // spinEdit34
@@ -3867,7 +3868,7 @@
             this.spinEdit34.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit34.Properties.NullText = "0";
-            this.spinEdit34.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit34.Size = new System.Drawing.Size(109, 40);
             this.spinEdit34.TabIndex = 138;
             // 
             // spinEdit35
@@ -3885,7 +3886,7 @@
             this.spinEdit35.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit35.Properties.NullText = "0";
-            this.spinEdit35.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit35.Size = new System.Drawing.Size(109, 40);
             this.spinEdit35.TabIndex = 160;
             // 
             // spinEdit36
@@ -3903,7 +3904,7 @@
             this.spinEdit36.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit36.Properties.NullText = "0";
-            this.spinEdit36.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit36.Size = new System.Drawing.Size(109, 40);
             this.spinEdit36.TabIndex = 177;
             // 
             // spinEdit37
@@ -3921,7 +3922,7 @@
             this.spinEdit37.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit37.Properties.NullText = "0";
-            this.spinEdit37.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit37.Size = new System.Drawing.Size(109, 40);
             this.spinEdit37.TabIndex = 157;
             // 
             // spinEdit38
@@ -3939,7 +3940,7 @@
             this.spinEdit38.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit38.Properties.NullText = "0";
-            this.spinEdit38.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit38.Size = new System.Drawing.Size(109, 40);
             this.spinEdit38.TabIndex = 141;
             // 
             // spinEdit39
@@ -3957,7 +3958,7 @@
             this.spinEdit39.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit39.Properties.NullText = "0";
-            this.spinEdit39.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit39.Size = new System.Drawing.Size(109, 40);
             this.spinEdit39.TabIndex = 154;
             // 
             // spinEdit40
@@ -3975,7 +3976,7 @@
             this.spinEdit40.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit40.Properties.NullText = "0";
-            this.spinEdit40.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit40.Size = new System.Drawing.Size(109, 40);
             this.spinEdit40.TabIndex = 176;
             // 
             // spinEdit41
@@ -3993,7 +3994,7 @@
             this.spinEdit41.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit41.Properties.NullText = "0";
-            this.spinEdit41.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit41.Size = new System.Drawing.Size(109, 40);
             this.spinEdit41.TabIndex = 151;
             // 
             // spinEdit42
@@ -4011,7 +4012,7 @@
             this.spinEdit42.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit42.Properties.NullText = "0";
-            this.spinEdit42.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit42.Size = new System.Drawing.Size(109, 40);
             this.spinEdit42.TabIndex = 144;
             // 
             // spinEdit43
@@ -4029,7 +4030,7 @@
             this.spinEdit43.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit43.Properties.NullText = "0";
-            this.spinEdit43.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit43.Size = new System.Drawing.Size(109, 40);
             this.spinEdit43.TabIndex = 148;
             // 
             // spinEdit44
@@ -4047,7 +4048,7 @@
             this.spinEdit44.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit44.Properties.NullText = "0";
-            this.spinEdit44.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit44.Size = new System.Drawing.Size(109, 40);
             this.spinEdit44.TabIndex = 175;
             // 
             // spinEdit45
@@ -4065,7 +4066,7 @@
             this.spinEdit45.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit45.Properties.NullText = "0";
-            this.spinEdit45.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit45.Size = new System.Drawing.Size(109, 40);
             this.spinEdit45.TabIndex = 145;
             // 
             // spinEdit46
@@ -4083,7 +4084,7 @@
             this.spinEdit46.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit46.Properties.NullText = "0";
-            this.spinEdit46.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit46.Size = new System.Drawing.Size(109, 40);
             this.spinEdit46.TabIndex = 147;
             // 
             // spinEdit47
@@ -4101,7 +4102,7 @@
             this.spinEdit47.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit47.Properties.NullText = "0";
-            this.spinEdit47.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit47.Size = new System.Drawing.Size(109, 40);
             this.spinEdit47.TabIndex = 142;
             // 
             // spinEdit48
@@ -4119,7 +4120,7 @@
             this.spinEdit48.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit48.Properties.NullText = "0";
-            this.spinEdit48.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit48.Size = new System.Drawing.Size(109, 40);
             this.spinEdit48.TabIndex = 174;
             // 
             // spinEdit49
@@ -4137,7 +4138,7 @@
             this.spinEdit49.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit49.Properties.NullText = "0";
-            this.spinEdit49.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit49.Size = new System.Drawing.Size(109, 40);
             this.spinEdit49.TabIndex = 139;
             // 
             // spinEdit50
@@ -4155,7 +4156,7 @@
             this.spinEdit50.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit50.Properties.NullText = "0";
-            this.spinEdit50.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit50.Size = new System.Drawing.Size(109, 40);
             this.spinEdit50.TabIndex = 167;
             // 
             // spinEdit51
@@ -4173,7 +4174,7 @@
             this.spinEdit51.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit51.Properties.NullText = "0";
-            this.spinEdit51.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit51.Size = new System.Drawing.Size(109, 40);
             this.spinEdit51.TabIndex = 150;
             // 
             // spinEdit52
@@ -4191,7 +4192,7 @@
             this.spinEdit52.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit52.Properties.NullText = "0";
-            this.spinEdit52.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit52.Size = new System.Drawing.Size(109, 40);
             this.spinEdit52.TabIndex = 136;
             // 
             // spinEdit53
@@ -4209,7 +4210,7 @@
             this.spinEdit53.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit53.Properties.NullText = "0";
-            this.spinEdit53.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit53.Size = new System.Drawing.Size(109, 40);
             this.spinEdit53.TabIndex = 166;
             // 
             // spinEdit54
@@ -4227,7 +4228,7 @@
             this.spinEdit54.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit54.Properties.NullText = "0";
-            this.spinEdit54.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit54.Size = new System.Drawing.Size(109, 40);
             this.spinEdit54.TabIndex = 169;
             // 
             // spinEdit55
@@ -4245,7 +4246,7 @@
             this.spinEdit55.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit55.Properties.NullText = "0";
-            this.spinEdit55.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit55.Size = new System.Drawing.Size(109, 40);
             this.spinEdit55.TabIndex = 173;
             // 
             // spinEdit56
@@ -4263,7 +4264,7 @@
             this.spinEdit56.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit56.Properties.NullText = "0";
-            this.spinEdit56.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit56.Size = new System.Drawing.Size(109, 40);
             this.spinEdit56.TabIndex = 133;
             // 
             // spinEdit57
@@ -4281,7 +4282,7 @@
             this.spinEdit57.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit57.Properties.NullText = "0";
-            this.spinEdit57.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit57.Size = new System.Drawing.Size(109, 40);
             this.spinEdit57.TabIndex = 164;
             // 
             // spinEdit58
@@ -4299,7 +4300,7 @@
             this.spinEdit58.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit58.Properties.NullText = "0";
-            this.spinEdit58.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit58.Size = new System.Drawing.Size(109, 40);
             this.spinEdit58.TabIndex = 170;
             // 
             // spinEdit59
@@ -4317,7 +4318,7 @@
             this.spinEdit59.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit59.Properties.NullText = "0";
-            this.spinEdit59.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit59.Size = new System.Drawing.Size(109, 40);
             this.spinEdit59.TabIndex = 153;
             // 
             // spinEdit60
@@ -4335,7 +4336,7 @@
             this.spinEdit60.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit60.Properties.NullText = "0";
-            this.spinEdit60.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit60.Size = new System.Drawing.Size(109, 40);
             this.spinEdit60.TabIndex = 159;
             // 
             // spinEdit61
@@ -4353,7 +4354,7 @@
             this.spinEdit61.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit61.Properties.NullText = "0";
-            this.spinEdit61.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit61.Size = new System.Drawing.Size(109, 40);
             this.spinEdit61.TabIndex = 163;
             // 
             // spinEdit62
@@ -4371,7 +4372,7 @@
             this.spinEdit62.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit62.Properties.NullText = "0";
-            this.spinEdit62.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit62.Size = new System.Drawing.Size(109, 40);
             this.spinEdit62.TabIndex = 171;
             // 
             // spinEdit63
@@ -4389,7 +4390,7 @@
             this.spinEdit63.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit63.Properties.NullText = "0";
-            this.spinEdit63.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit63.Size = new System.Drawing.Size(109, 40);
             this.spinEdit63.TabIndex = 172;
             // 
             // spinEdit64
@@ -4407,7 +4408,7 @@
             this.spinEdit64.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit64.Properties.NullText = "0";
-            this.spinEdit64.Size = new System.Drawing.Size(109, 34);
+            this.spinEdit64.Size = new System.Drawing.Size(109, 40);
             this.spinEdit64.TabIndex = 156;
             // 
             // xtraTabPageTueRates
@@ -4415,7 +4416,7 @@
             this.xtraTabPageTueRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageTueRates.Name = "xtraTabPageTueRates";
             this.xtraTabPageTueRates.PageVisible = false;
-            this.xtraTabPageTueRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageTueRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageTueRates.Text = "Tuesday";
             // 
             // xtraTabPageWedRates
@@ -4423,7 +4424,7 @@
             this.xtraTabPageWedRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageWedRates.Name = "xtraTabPageWedRates";
             this.xtraTabPageWedRates.PageVisible = false;
-            this.xtraTabPageWedRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageWedRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageWedRates.Text = "Wednesday";
             // 
             // xtraTabPageThuRates
@@ -4431,7 +4432,7 @@
             this.xtraTabPageThuRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageThuRates.Name = "xtraTabPageThuRates";
             this.xtraTabPageThuRates.PageVisible = false;
-            this.xtraTabPageThuRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageThuRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageThuRates.Text = "Thursday";
             // 
             // xtraTabPageFriRates
@@ -4439,7 +4440,7 @@
             this.xtraTabPageFriRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageFriRates.Name = "xtraTabPageFriRates";
             this.xtraTabPageFriRates.PageVisible = false;
-            this.xtraTabPageFriRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageFriRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageFriRates.Text = "Friday";
             // 
             // xtraTabPageSatRates
@@ -4447,7 +4448,7 @@
             this.xtraTabPageSatRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageSatRates.Name = "xtraTabPageSatRates";
             this.xtraTabPageSatRates.PageVisible = false;
-            this.xtraTabPageSatRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageSatRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageSatRates.Text = "Saturday";
             // 
             // xtraTabPageSunRates
@@ -4455,7 +4456,7 @@
             this.xtraTabPageSunRates.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageSunRates.Name = "xtraTabPageSunRates";
             this.xtraTabPageSunRates.PageVisible = false;
-            this.xtraTabPageSunRates.Size = new System.Drawing.Size(1244, 698);
+            this.xtraTabPageSunRates.Size = new System.Drawing.Size(1244, 696);
             this.xtraTabPageSunRates.Text = "Sunday";
             // 
             // SpinEditRouteDays
@@ -4481,7 +4482,7 @@
             0,
             0});
             this.SpinEditRouteDays.Properties.NullText = "0";
-            this.SpinEditRouteDays.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditRouteDays.Size = new System.Drawing.Size(109, 40);
             this.SpinEditRouteDays.TabIndex = 29;
             this.SpinEditRouteDays.Leave += new System.EventHandler(this.SpinEditRouteDays_Leave);
             // 
@@ -4508,7 +4509,7 @@
             0,
             0});
             this.SpinEditRouteStops.Properties.NullText = "0";
-            this.SpinEditRouteStops.Size = new System.Drawing.Size(109, 34);
+            this.SpinEditRouteStops.Size = new System.Drawing.Size(109, 40);
             this.SpinEditRouteStops.TabIndex = 27;
             // 
             // SpinEditCommPct
@@ -4527,7 +4528,7 @@
             this.SpinEditCommPct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.SpinEditCommPct.Properties.NullText = "0";
-            this.SpinEditCommPct.Size = new System.Drawing.Size(128, 34);
+            this.SpinEditCommPct.Size = new System.Drawing.Size(128, 40);
             this.SpinEditCommPct.TabIndex = 40;
             this.SpinEditCommPct.Leave += new System.EventHandler(this.TextEditCommPct_Leave);
             // 
@@ -4545,7 +4546,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.DateEditStart.Properties.Mask.EditMask = "";
             this.DateEditStart.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditStart.Size = new System.Drawing.Size(200, 34);
+            this.DateEditStart.Size = new System.Drawing.Size(200, 40);
             this.DateEditStart.TabIndex = 13;
             this.DateEditStart.CustomDisplayText += new DevExpress.XtraEditors.Controls.CustomDisplayTextEventHandler(this.DateEditStart_CustomDisplayText);
             this.DateEditStart.Leave += new System.EventHandler(this.DateEditStart_Leave);
@@ -4566,7 +4567,7 @@
             this.DateEditResStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditResStart.Properties.Mask.EditMask = "";
             this.DateEditResStart.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditResStart.Size = new System.Drawing.Size(200, 34);
+            this.DateEditResStart.Size = new System.Drawing.Size(200, 40);
             this.DateEditResStart.TabIndex = 15;
             this.DateEditResStart.Leave += new System.EventHandler(this.DateEditResStart_Leave);
             // 
@@ -4586,7 +4587,7 @@
             this.DateEditEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditEnd.Properties.Mask.EditMask = "";
             this.DateEditEnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditEnd.Size = new System.Drawing.Size(200, 34);
+            this.DateEditEnd.Size = new System.Drawing.Size(200, 40);
             this.DateEditEnd.TabIndex = 20;
             this.DateEditEnd.Leave += new System.EventHandler(this.DateEditEnd_Leave);
             // 
@@ -4606,7 +4607,7 @@
             this.DateEditResEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditResEnd.Properties.Mask.EditMask = "";
             this.DateEditResEnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
-            this.DateEditResEnd.Size = new System.Drawing.Size(200, 34);
+            this.DateEditResEnd.Size = new System.Drawing.Size(200, 40);
             this.DateEditResEnd.TabIndex = 22;
             this.DateEditResEnd.Leave += new System.EventHandler(this.DateEditResEnd_Leave);
             // 
@@ -4627,7 +4628,7 @@
             this.TextEditChildLimit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditChildLimit.Properties.MaxLength = 15;
             this.TextEditChildLimit.Properties.NullText = "0";
-            this.TextEditChildLimit.Size = new System.Drawing.Size(132, 34);
+            this.TextEditChildLimit.Size = new System.Drawing.Size(132, 40);
             this.TextEditChildLimit.TabIndex = 44;
             this.TextEditChildLimit.Leave += new System.EventHandler(this.TextEditChdLimit_Leave);
             // 
@@ -4648,7 +4649,7 @@
             this.TextEditJrLimit.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditJrLimit.Properties.MaxLength = 15;
             this.TextEditJrLimit.Properties.NullText = "0";
-            this.TextEditJrLimit.Size = new System.Drawing.Size(131, 34);
+            this.TextEditJrLimit.Size = new System.Drawing.Size(131, 40);
             this.TextEditJrLimit.TabIndex = 46;
             this.TextEditJrLimit.Leave += new System.EventHandler(this.TextEditJrLimit_Leave);
             // 
@@ -4664,9 +4665,9 @@
             this.SearchLookupEditCode.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCode.Properties.NullText = "";
+            this.SearchLookupEditCode.Properties.PopupView = this.customSearchLookUpEdit1View;
             this.SearchLookupEditCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditCode.Properties.View = this.customSearchLookUpEdit1View;
-            this.SearchLookupEditCode.Size = new System.Drawing.Size(669, 34);
+            this.SearchLookupEditCode.Size = new System.Drawing.Size(669, 40);
             this.SearchLookupEditCode.TabIndex = 1;
             this.SearchLookupEditCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -4717,9 +4718,9 @@
             this.SearchLookupEditAgency.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditAgency.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditAgency.Properties.NullText = "";
+            this.SearchLookupEditAgency.Properties.PopupView = this.gridView3;
             this.SearchLookupEditAgency.Properties.ValueMember = "Code";
-            this.SearchLookupEditAgency.Properties.View = this.gridView3;
-            this.SearchLookupEditAgency.Size = new System.Drawing.Size(669, 34);
+            this.SearchLookupEditAgency.Size = new System.Drawing.Size(669, 40);
             this.SearchLookupEditAgency.TabIndex = 7;
             this.SearchLookupEditAgency.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditAgency.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -4771,9 +4772,9 @@
             this.SearchLookupEditCategory.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditCategory.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditCategory.Properties.NullText = "";
+            this.SearchLookupEditCategory.Properties.PopupView = this.gridView4;
             this.SearchLookupEditCategory.Properties.ValueMember = "Code";
-            this.SearchLookupEditCategory.Properties.View = this.gridView4;
-            this.SearchLookupEditCategory.Size = new System.Drawing.Size(520, 34);
+            this.SearchLookupEditCategory.Size = new System.Drawing.Size(520, 40);
             this.SearchLookupEditCategory.TabIndex = 9;
             this.SearchLookupEditCategory.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
@@ -4849,8 +4850,9 @@
             this.BarToggleSwitchItemGrid,
             this.barStaticItem1,
             this.BarButtonItemOverlapping,
-            this.barButtonItem2});
-            this.BarManager.MaxItemId = 7;
+            this.barButtonItem2,
+            this.BarButtonItemClone});
+            this.BarManager.MaxItemId = 8;
             // 
             // bar1
             // 
@@ -4863,6 +4865,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemClone),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarToggleSwitchItemGrid),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemOverlapping)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
@@ -4956,6 +4959,15 @@
             // 
             this.barButtonItem2.Id = 6;
             this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // BarButtonItemClone
+            // 
+            this.BarButtonItemClone.Caption = "Clone";
+            this.BarButtonItemClone.Id = 7;
+            this.BarButtonItemClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.Image")));
+            this.BarButtonItemClone.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.LargeImage")));
+            this.BarButtonItemClone.Name = "BarButtonItemClone";
+            this.BarButtonItemClone.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemClone_ItemClick);
             // 
             // CpRatesForm
             // 
@@ -5454,5 +5466,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnTime;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemClone;
     }
 }
