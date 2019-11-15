@@ -176,7 +176,7 @@
             this.VectorItemsLayer = new DevExpress.XtraMap.VectorItemsLayer();
             this.InformationLayer = new DevExpress.XtraMap.InformationLayer();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.checkEditProximitySearch = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditProximitySearch = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditDistance = new DevExpress.XtraEditors.SpinEdit();
             this.TextEditCityMilesTo = new DevExpress.XtraEditors.TextEdit();
             this.LabelCityCode = new DevExpress.XtraEditors.LabelControl();
@@ -209,6 +209,7 @@
             this.gridView11 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPagePolicies = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlPoliciesTab = new DevExpress.XtraEditors.PanelControl();
+            this.CheckEditAdmin = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditOnRequestPeriod = new DevExpress.XtraEditors.SpinEdit();
             this.ImageComboBoxEditConfirmationType = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.SpinEditMaxPax = new DevExpress.XtraEditors.SpinEdit();
@@ -240,9 +241,8 @@
             this.checkEditPickupInfoRequired = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditPassengerWeightRequired = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditAccountingServiceItem = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditVendorPrepayReqd = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditVendorPrepayReqd = new DevExpress.XtraEditors.CheckEdit();
             this.unit_RateCheckEdit = new DevExpress.XtraEditors.CheckEdit();
-            this.adminCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.mealsIncludedCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditMultTimes = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditAllowFree = new DevExpress.XtraEditors.CheckEdit();
@@ -301,7 +301,7 @@
             this.ColumnStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEditDate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ColumnLocation = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemImageComboboxLocation = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.RepositoryItemSearchLookupEditLocation = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemImageComboboxLocationView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColumnDepartureTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnLastUpd = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -506,6 +506,37 @@
             this.CheckEditSupplementIsBoard = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditSupplementPaySupplier = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditIsSupplement = new DevExpress.XtraEditors.CheckEdit();
+            this.xtraTabPageRelatedProducts = new DevExpress.XtraTab.XtraTabPage();
+            this.panelControl9 = new DevExpress.XtraEditors.PanelControl();
+            this.SimpleButtonDeletePassProduct = new DevExpress.XtraEditors.SimpleButton();
+            this.SimpleButtonAddPass = new DevExpress.XtraEditors.SimpleButton();
+            this.GridControlRelatedProducts = new DevExpress.XtraGrid.GridControl();
+            this.BindingSourceRelatedProduct = new System.Windows.Forms.BindingSource(this.components);
+            this.GridViewRelatedProducts = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colID5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRelatedType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemComboBoxType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.colRelatedCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSearchLookUpEditRelatedProductCode = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView17 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colExcluded = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colServiceStart = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemDateEditSvcStart = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.colServiceEnd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBookingStart = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBookingEnd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInactive2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDiscountPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDiscountFlat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colReciprocal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsRoundTrip = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsReturn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colForUpSell = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colForPackaging = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView18 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.default_TimeTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.SearchLookupEditOperator = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -600,7 +631,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlLocationTab)).BeginInit();
             this.PanelControlLocationTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditProximitySearch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditProximitySearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditDistance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCityMilesTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAirportMiles.Properties)).BeginInit();
@@ -620,6 +651,7 @@
             this.xtraTabPagePolicies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPoliciesTab)).BeginInit();
             this.PanelControlPoliciesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAdmin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditOnRequestPeriod.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditConfirmationType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditMaxPax.Properties)).BeginInit();
@@ -646,9 +678,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPickupInfoRequired.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPassengerWeightRequired.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAccountingServiceItem.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditVendorPrepayReqd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditVendorPrepayReqd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unit_RateCheckEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adminCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mealsIncludedCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultTimes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowFree.Properties)).BeginInit();
@@ -688,7 +719,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewTransferPoints)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxPickDrop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookupEditLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocationView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).BeginInit();
@@ -760,6 +791,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplementIsBoard.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplementPaySupplier.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditIsSupplement.Properties)).BeginInit();
+            this.xtraTabPageRelatedProducts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).BeginInit();
+            this.panelControl9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlRelatedProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceRelatedProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewRelatedProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemComboBoxType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditRelatedProductCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemDateEditSvcStart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemDateEditSvcStart.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.default_TimeTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -1901,7 +1944,8 @@
             this.xtraTabPageCommissions,
             this.xtraTabPageSupplierMapping,
             this.xtraTabPageSupplierCategories,
-            this.xtraTabPage1});
+            this.xtraTabPage1,
+            this.xtraTabPageRelatedProducts});
             this.xtraTabControl1.TabStop = false;
             // 
             // xtraTabPageLocation
@@ -1921,7 +1965,7 @@
             this.PanelControlLocationTab.Controls.Add(LabelLong);
             this.PanelControlLocationTab.Controls.Add(this.MapControl);
             this.PanelControlLocationTab.Controls.Add(this.labelControl1);
-            this.PanelControlLocationTab.Controls.Add(this.checkEditProximitySearch);
+            this.PanelControlLocationTab.Controls.Add(this.CheckEditProximitySearch);
             this.PanelControlLocationTab.Controls.Add(this.SpinEditDistance);
             this.PanelControlLocationTab.Controls.Add(this.TextEditCityMilesTo);
             this.PanelControlLocationTab.Controls.Add(this.LabelCityCode);
@@ -2013,17 +2057,17 @@
             this.labelControl1.TabIndex = 102;
             this.labelControl1.Text = "Distance to search from this item (km)";
             // 
-            // checkEditProximitySearch
+            // CheckEditProximitySearch
             // 
-            this.checkEditProximitySearch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ProximitySearch", true));
-            this.checkEditProximitySearch.Location = new System.Drawing.Point(144, 579);
-            this.checkEditProximitySearch.Margin = new System.Windows.Forms.Padding(4);
-            this.checkEditProximitySearch.Name = "checkEditProximitySearch";
-            this.checkEditProximitySearch.Properties.Caption = "Enable proximity search for this item on a map";
-            this.checkEditProximitySearch.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditProximitySearch.Size = new System.Drawing.Size(540, 38);
-            this.checkEditProximitySearch.TabIndex = 101;
-            this.checkEditProximitySearch.CheckedChanged += new System.EventHandler(this.CheckEditProximitySearch_CheckedChanged);
+            this.CheckEditProximitySearch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ProximitySearch", true));
+            this.CheckEditProximitySearch.Location = new System.Drawing.Point(144, 579);
+            this.CheckEditProximitySearch.Margin = new System.Windows.Forms.Padding(4);
+            this.CheckEditProximitySearch.Name = "CheckEditProximitySearch";
+            this.CheckEditProximitySearch.Properties.Caption = "Enable proximity search for this item on a map";
+            this.CheckEditProximitySearch.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditProximitySearch.Size = new System.Drawing.Size(540, 38);
+            this.CheckEditProximitySearch.TabIndex = 101;
+            this.CheckEditProximitySearch.CheckedChanged += new System.EventHandler(this.CheckEditProximitySearch_CheckedChanged);
             // 
             // SpinEditDistance
             // 
@@ -2364,6 +2408,7 @@
             // 
             // PanelControlPoliciesTab
             // 
+            this.PanelControlPoliciesTab.Controls.Add(this.CheckEditAdmin);
             this.PanelControlPoliciesTab.Controls.Add(LabelOnRequestPeriod);
             this.PanelControlPoliciesTab.Controls.Add(this.SpinEditOnRequestPeriod);
             this.PanelControlPoliciesTab.Controls.Add(this.ImageComboBoxEditConfirmationType);
@@ -2407,11 +2452,10 @@
             this.PanelControlPoliciesTab.Controls.Add(this.checkEditPassengerWeightRequired);
             this.PanelControlPoliciesTab.Controls.Add(this.TextEditVendorCode);
             this.PanelControlPoliciesTab.Controls.Add(this.checkEditAccountingServiceItem);
-            this.PanelControlPoliciesTab.Controls.Add(this.checkEditVendorPrepayReqd);
+            this.PanelControlPoliciesTab.Controls.Add(this.CheckEditVendorPrepayReqd);
             this.PanelControlPoliciesTab.Controls.Add(LabelMinDuration);
             this.PanelControlPoliciesTab.Controls.Add(this.unit_RateCheckEdit);
             this.PanelControlPoliciesTab.Controls.Add(LabelRateBasis);
-            this.PanelControlPoliciesTab.Controls.Add(this.adminCheckEdit);
             this.PanelControlPoliciesTab.Controls.Add(this.mealsIncludedCheckEdit);
             this.PanelControlPoliciesTab.Controls.Add(this.CheckEditMultTimes);
             this.PanelControlPoliciesTab.Controls.Add(LabelVendorCode);
@@ -2436,6 +2480,18 @@
             this.PanelControlPoliciesTab.Name = "PanelControlPoliciesTab";
             this.PanelControlPoliciesTab.Size = new System.Drawing.Size(1902, 818);
             this.PanelControlPoliciesTab.TabIndex = 0;
+            // 
+            // CheckEditAdmin
+            // 
+            this.CheckEditAdmin.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Admin", true));
+            this.CheckEditAdmin.EnterMoveNextControl = true;
+            this.CheckEditAdmin.Location = new System.Drawing.Point(1450, 340);
+            this.CheckEditAdmin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CheckEditAdmin.Name = "CheckEditAdmin";
+            this.CheckEditAdmin.Properties.Caption = "Administrative product";
+            this.CheckEditAdmin.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditAdmin.Size = new System.Drawing.Size(270, 38);
+            this.CheckEditAdmin.TabIndex = 30;
             // 
             // SpinEditOnRequestPeriod
             // 
@@ -2910,17 +2966,17 @@
             this.checkEditAccountingServiceItem.Size = new System.Drawing.Size(286, 38);
             this.checkEditAccountingServiceItem.TabIndex = 103;
             // 
-            // checkEditVendorPrepayReqd
+            // CheckEditVendorPrepayReqd
             // 
-            this.checkEditVendorPrepayReqd.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VendorPrepayReqd", true));
-            this.checkEditVendorPrepayReqd.Location = new System.Drawing.Point(916, 242);
-            this.checkEditVendorPrepayReqd.Margin = new System.Windows.Forms.Padding(4);
-            this.checkEditVendorPrepayReqd.Name = "checkEditVendorPrepayReqd";
-            this.checkEditVendorPrepayReqd.Properties.Caption = "Vendor prepayment required";
-            this.checkEditVendorPrepayReqd.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditVendorPrepayReqd.Properties.ValueGrayed = false;
-            this.checkEditVendorPrepayReqd.Size = new System.Drawing.Size(320, 38);
-            this.checkEditVendorPrepayReqd.TabIndex = 102;
+            this.CheckEditVendorPrepayReqd.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VendorPrepayReqd", true));
+            this.CheckEditVendorPrepayReqd.Location = new System.Drawing.Point(916, 242);
+            this.CheckEditVendorPrepayReqd.Margin = new System.Windows.Forms.Padding(4);
+            this.CheckEditVendorPrepayReqd.Name = "CheckEditVendorPrepayReqd";
+            this.CheckEditVendorPrepayReqd.Properties.Caption = "Vendor prepayment required";
+            this.CheckEditVendorPrepayReqd.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditVendorPrepayReqd.Properties.ValueGrayed = false;
+            this.CheckEditVendorPrepayReqd.Size = new System.Drawing.Size(320, 38);
+            this.CheckEditVendorPrepayReqd.TabIndex = 102;
             // 
             // unit_RateCheckEdit
             // 
@@ -2933,18 +2989,6 @@
             this.unit_RateCheckEdit.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.unit_RateCheckEdit.Size = new System.Drawing.Size(144, 38);
             this.unit_RateCheckEdit.TabIndex = 37;
-            // 
-            // adminCheckEdit
-            // 
-            this.adminCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Admin", true));
-            this.adminCheckEdit.EnterMoveNextControl = true;
-            this.adminCheckEdit.Location = new System.Drawing.Point(1220, 288);
-            this.adminCheckEdit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.adminCheckEdit.Name = "adminCheckEdit";
-            this.adminCheckEdit.Properties.Caption = "Administrative product";
-            this.adminCheckEdit.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.adminCheckEdit.Size = new System.Drawing.Size(270, 38);
-            this.adminCheckEdit.TabIndex = 30;
             // 
             // mealsIncludedCheckEdit
             // 
@@ -3585,7 +3629,7 @@
             this.GridControlTransferPoints.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemImageComboBoxPickDrop,
             this.repositoryItemButtonEditDate,
-            this.repositoryItemImageComboboxLocation,
+            this.RepositoryItemSearchLookupEditLocation,
             this.repositoryItemImageComboBoxRoutes,
             this.repositoryItemTimeEdit,
             this.repositoryItemSearchLookUpEditCat,
@@ -3693,25 +3737,25 @@
             // ColumnLocation
             // 
             this.ColumnLocation.Caption = "Location";
-            this.ColumnLocation.ColumnEdit = this.repositoryItemImageComboboxLocation;
+            this.ColumnLocation.ColumnEdit = this.RepositoryItemSearchLookupEditLocation;
             this.ColumnLocation.FieldName = "LOCATION";
             this.ColumnLocation.Name = "ColumnLocation";
             this.ColumnLocation.Visible = true;
             this.ColumnLocation.VisibleIndex = 4;
             this.ColumnLocation.Width = 282;
             // 
-            // repositoryItemImageComboboxLocation
+            // RepositoryItemSearchLookupEditLocation
             // 
-            this.repositoryItemImageComboboxLocation.AutoHeight = false;
-            this.repositoryItemImageComboboxLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemSearchLookupEditLocation.AutoHeight = false;
+            this.RepositoryItemSearchLookupEditLocation.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageComboboxLocation.DataSource = this.BindingSourceCodeName;
-            this.repositoryItemImageComboboxLocation.DisplayMember = "DisplayName";
-            this.repositoryItemImageComboboxLocation.HideSelection = false;
-            this.repositoryItemImageComboboxLocation.Name = "repositoryItemImageComboboxLocation";
-            this.repositoryItemImageComboboxLocation.NullText = "";
-            this.repositoryItemImageComboboxLocation.PopupView = this.repositoryItemImageComboboxLocationView;
-            this.repositoryItemImageComboboxLocation.ValueMember = "Code";
+            this.RepositoryItemSearchLookupEditLocation.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookupEditLocation.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookupEditLocation.HideSelection = false;
+            this.RepositoryItemSearchLookupEditLocation.Name = "RepositoryItemSearchLookupEditLocation";
+            this.RepositoryItemSearchLookupEditLocation.NullText = "";
+            this.RepositoryItemSearchLookupEditLocation.PopupView = this.repositoryItemImageComboboxLocationView;
+            this.RepositoryItemSearchLookupEditLocation.ValueMember = "Code";
             // 
             // repositoryItemImageComboboxLocationView
             // 
@@ -5342,7 +5386,6 @@
             this.GridViewSupplierCategory.PreviewIndent = 0;
             this.GridViewSupplierCategory.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewSupplierCategory_CustomRowCellEdit);
             this.GridViewSupplierCategory.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewSupplierCategory_InvalidRowException);
-            this.GridViewSupplierCategory.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewSupplierCategory_ValidateRow);
             // 
             // colId3
             // 
@@ -5746,6 +5789,315 @@
             this.CheckEditIsSupplement.TabIndex = 38;
             this.CheckEditIsSupplement.EditValueChanged += new System.EventHandler(this.CheckEditIsSupplement_EditValueChanged);
             // 
+            // xtraTabPageRelatedProducts
+            // 
+            this.xtraTabPageRelatedProducts.Controls.Add(this.panelControl9);
+            this.xtraTabPageRelatedProducts.Name = "xtraTabPageRelatedProducts";
+            this.xtraTabPageRelatedProducts.Size = new System.Drawing.Size(1902, 818);
+            this.xtraTabPageRelatedProducts.Text = "Related Products";
+            // 
+            // panelControl9
+            // 
+            this.panelControl9.Controls.Add(this.SimpleButtonDeletePassProduct);
+            this.panelControl9.Controls.Add(this.SimpleButtonAddPass);
+            this.panelControl9.Controls.Add(this.GridControlRelatedProducts);
+            this.panelControl9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl9.Location = new System.Drawing.Point(0, 0);
+            this.panelControl9.Margin = new System.Windows.Forms.Padding(4);
+            this.panelControl9.Name = "panelControl9";
+            this.panelControl9.Size = new System.Drawing.Size(1902, 818);
+            this.panelControl9.TabIndex = 1;
+            // 
+            // SimpleButtonDeletePassProduct
+            // 
+            this.SimpleButtonDeletePassProduct.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDeletePassProduct.ImageOptions.Image")));
+            this.SimpleButtonDeletePassProduct.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonDeletePassProduct.Location = new System.Drawing.Point(1752, 198);
+            this.SimpleButtonDeletePassProduct.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.SimpleButtonDeletePassProduct.Name = "SimpleButtonDeletePassProduct";
+            this.SimpleButtonDeletePassProduct.Size = new System.Drawing.Size(72, 85);
+            this.SimpleButtonDeletePassProduct.TabIndex = 109;
+            this.SimpleButtonDeletePassProduct.TabStop = false;
+            this.SimpleButtonDeletePassProduct.Text = "Delete Pass Product";
+            this.SimpleButtonDeletePassProduct.Click += new System.EventHandler(this.SimpleButtonDeleteRelatedProduct_Click);
+            // 
+            // SimpleButtonAddPass
+            // 
+            this.SimpleButtonAddPass.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonAddPass.ImageOptions.Image")));
+            this.SimpleButtonAddPass.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonAddPass.Location = new System.Drawing.Point(1752, 106);
+            this.SimpleButtonAddPass.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.SimpleButtonAddPass.Name = "SimpleButtonAddPass";
+            this.SimpleButtonAddPass.Size = new System.Drawing.Size(72, 85);
+            this.SimpleButtonAddPass.TabIndex = 108;
+            this.SimpleButtonAddPass.TabStop = false;
+            this.SimpleButtonAddPass.Text = "Add Pass Product";
+            this.SimpleButtonAddPass.Click += new System.EventHandler(this.SimpleButtonAddRelatedProduct_Click);
+            // 
+            // GridControlRelatedProducts
+            // 
+            this.GridControlRelatedProducts.CausesValidation = false;
+            this.GridControlRelatedProducts.DataSource = this.BindingSourceRelatedProduct;
+            this.GridControlRelatedProducts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.GridControlRelatedProducts.Location = new System.Drawing.Point(57, 58);
+            this.GridControlRelatedProducts.MainView = this.GridViewRelatedProducts;
+            this.GridControlRelatedProducts.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.GridControlRelatedProducts.Name = "GridControlRelatedProducts";
+            this.GridControlRelatedProducts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.RepositoryItemDateEditSvcStart,
+            this.RepositoryItemComboBoxType,
+            this.RepositoryItemSearchLookUpEditRelatedProductCode});
+            this.GridControlRelatedProducts.Size = new System.Drawing.Size(1668, 608);
+            this.GridControlRelatedProducts.TabIndex = 42;
+            this.GridControlRelatedProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewRelatedProducts,
+            this.gridView18});
+            // 
+            // BindingSourceRelatedProduct
+            // 
+            this.BindingSourceRelatedProduct.AllowNew = false;
+            this.BindingSourceRelatedProduct.DataSource = typeof(FlexModel.RelatedProduct);
+            // 
+            // GridViewRelatedProducts
+            // 
+            this.GridViewRelatedProducts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colID5,
+            this.colRelatedType,
+            this.colRelatedCode,
+            this.colExcluded,
+            this.colServiceStart,
+            this.colServiceEnd,
+            this.colBookingStart,
+            this.colBookingEnd,
+            this.colInactive2,
+            this.colPosition,
+            this.colDiscountPct,
+            this.colDiscountFlat,
+            this.colReciprocal,
+            this.colIsRoundTrip,
+            this.colIsReturn,
+            this.colForUpSell,
+            this.colForPackaging});
+            this.GridViewRelatedProducts.GridControl = this.GridControlRelatedProducts;
+            this.GridViewRelatedProducts.LevelIndent = 0;
+            this.GridViewRelatedProducts.Name = "GridViewRelatedProducts";
+            this.GridViewRelatedProducts.OptionsView.ShowGroupPanel = false;
+            this.GridViewRelatedProducts.OptionsView.ShowIndicator = false;
+            this.GridViewRelatedProducts.PreviewIndent = 0;
+            this.GridViewRelatedProducts.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewRelatedProducts_CustomRowCellEdit);
+            // 
+            // colID5
+            // 
+            this.colID5.FieldName = "ID";
+            this.colID5.MinWidth = 40;
+            this.colID5.Name = "colID5";
+            this.colID5.Width = 150;
+            // 
+            // colRelatedType
+            // 
+            this.colRelatedType.ColumnEdit = this.RepositoryItemComboBoxType;
+            this.colRelatedType.FieldName = "Type";
+            this.colRelatedType.MinWidth = 40;
+            this.colRelatedType.Name = "colRelatedType";
+            this.colRelatedType.Visible = true;
+            this.colRelatedType.VisibleIndex = 0;
+            this.colRelatedType.Width = 150;
+            // 
+            // RepositoryItemComboBoxType
+            // 
+            this.RepositoryItemComboBoxType.AutoHeight = false;
+            this.RepositoryItemComboBoxType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemComboBoxType.Items.AddRange(new object[] {
+            "OPT",
+            "PKG"});
+            this.RepositoryItemComboBoxType.Name = "RepositoryItemComboBoxType";
+            // 
+            // colRelatedCode
+            // 
+            this.colRelatedCode.ColumnEdit = this.RepositoryItemSearchLookUpEditRelatedProductCode;
+            this.colRelatedCode.FieldName = "Code";
+            this.colRelatedCode.MinWidth = 40;
+            this.colRelatedCode.Name = "colRelatedCode";
+            this.colRelatedCode.Visible = true;
+            this.colRelatedCode.VisibleIndex = 1;
+            this.colRelatedCode.Width = 150;
+            // 
+            // RepositoryItemSearchLookUpEditRelatedProductCode
+            // 
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.Name = "RepositoryItemSearchLookUpEditRelatedProductCode";
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.NullText = "";
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.PopupView = this.gridView17;
+            this.RepositoryItemSearchLookUpEditRelatedProductCode.ValueMember = "Code";
+            // 
+            // gridView17
+            // 
+            this.gridView17.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode15,
+            this.colName10});
+            this.gridView17.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView17.Name = "gridView17";
+            this.gridView17.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView17.OptionsView.ShowGroupPanel = false;
+            this.gridView17.OptionsView.ShowIndicator = false;
+            // 
+            // colCode15
+            // 
+            this.colCode15.FieldName = "Code";
+            this.colCode15.Name = "colCode15";
+            this.colCode15.Visible = true;
+            this.colCode15.VisibleIndex = 0;
+            // 
+            // colName10
+            // 
+            this.colName10.FieldName = "Name";
+            this.colName10.Name = "colName10";
+            this.colName10.Visible = true;
+            this.colName10.VisibleIndex = 1;
+            // 
+            // colExcluded
+            // 
+            this.colExcluded.FieldName = "Excluded";
+            this.colExcluded.MinWidth = 40;
+            this.colExcluded.Name = "colExcluded";
+            this.colExcluded.Width = 150;
+            // 
+            // colServiceStart
+            // 
+            this.colServiceStart.ColumnEdit = this.RepositoryItemDateEditSvcStart;
+            this.colServiceStart.FieldName = "ServiceStart";
+            this.colServiceStart.MinWidth = 40;
+            this.colServiceStart.Name = "colServiceStart";
+            this.colServiceStart.Visible = true;
+            this.colServiceStart.VisibleIndex = 2;
+            this.colServiceStart.Width = 150;
+            // 
+            // RepositoryItemDateEditSvcStart
+            // 
+            this.RepositoryItemDateEditSvcStart.AutoHeight = false;
+            this.RepositoryItemDateEditSvcStart.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemDateEditSvcStart.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemDateEditSvcStart.Name = "RepositoryItemDateEditSvcStart";
+            // 
+            // colServiceEnd
+            // 
+            this.colServiceEnd.FieldName = "ServiceEnd";
+            this.colServiceEnd.MinWidth = 40;
+            this.colServiceEnd.Name = "colServiceEnd";
+            this.colServiceEnd.Visible = true;
+            this.colServiceEnd.VisibleIndex = 3;
+            this.colServiceEnd.Width = 150;
+            // 
+            // colBookingStart
+            // 
+            this.colBookingStart.FieldName = "BookingStart";
+            this.colBookingStart.MinWidth = 40;
+            this.colBookingStart.Name = "colBookingStart";
+            this.colBookingStart.Visible = true;
+            this.colBookingStart.VisibleIndex = 4;
+            this.colBookingStart.Width = 150;
+            // 
+            // colBookingEnd
+            // 
+            this.colBookingEnd.FieldName = "BookingEnd";
+            this.colBookingEnd.MinWidth = 40;
+            this.colBookingEnd.Name = "colBookingEnd";
+            this.colBookingEnd.Visible = true;
+            this.colBookingEnd.VisibleIndex = 5;
+            this.colBookingEnd.Width = 150;
+            // 
+            // colInactive2
+            // 
+            this.colInactive2.FieldName = "Inactive";
+            this.colInactive2.MinWidth = 40;
+            this.colInactive2.Name = "colInactive2";
+            this.colInactive2.Visible = true;
+            this.colInactive2.VisibleIndex = 6;
+            this.colInactive2.Width = 150;
+            // 
+            // colPosition
+            // 
+            this.colPosition.FieldName = "Position";
+            this.colPosition.MinWidth = 40;
+            this.colPosition.Name = "colPosition";
+            this.colPosition.Width = 150;
+            // 
+            // colDiscountPct
+            // 
+            this.colDiscountPct.FieldName = "DiscountPct";
+            this.colDiscountPct.MinWidth = 40;
+            this.colDiscountPct.Name = "colDiscountPct";
+            this.colDiscountPct.Width = 150;
+            // 
+            // colDiscountFlat
+            // 
+            this.colDiscountFlat.FieldName = "DiscountFlat";
+            this.colDiscountFlat.MinWidth = 40;
+            this.colDiscountFlat.Name = "colDiscountFlat";
+            this.colDiscountFlat.Width = 150;
+            // 
+            // colReciprocal
+            // 
+            this.colReciprocal.FieldName = "Reciprocal";
+            this.colReciprocal.MinWidth = 40;
+            this.colReciprocal.Name = "colReciprocal";
+            this.colReciprocal.Width = 150;
+            // 
+            // colIsRoundTrip
+            // 
+            this.colIsRoundTrip.Caption = "Round Trip";
+            this.colIsRoundTrip.FieldName = "IsRoundTrip";
+            this.colIsRoundTrip.MinWidth = 40;
+            this.colIsRoundTrip.Name = "colIsRoundTrip";
+            this.colIsRoundTrip.Visible = true;
+            this.colIsRoundTrip.VisibleIndex = 7;
+            this.colIsRoundTrip.Width = 150;
+            // 
+            // colIsReturn
+            // 
+            this.colIsReturn.Caption = "Return";
+            this.colIsReturn.FieldName = "IsReturn";
+            this.colIsReturn.MinWidth = 40;
+            this.colIsReturn.Name = "colIsReturn";
+            this.colIsReturn.Visible = true;
+            this.colIsReturn.VisibleIndex = 8;
+            this.colIsReturn.Width = 150;
+            // 
+            // colForUpSell
+            // 
+            this.colForUpSell.Caption = "Upsell";
+            this.colForUpSell.FieldName = "ForUpSell";
+            this.colForUpSell.MinWidth = 40;
+            this.colForUpSell.Name = "colForUpSell";
+            this.colForUpSell.Visible = true;
+            this.colForUpSell.VisibleIndex = 9;
+            this.colForUpSell.Width = 150;
+            // 
+            // colForPackaging
+            // 
+            this.colForPackaging.Caption = "For Packaging";
+            this.colForPackaging.FieldName = "ForPackaging";
+            this.colForPackaging.MinWidth = 40;
+            this.colForPackaging.Name = "colForPackaging";
+            this.colForPackaging.Visible = true;
+            this.colForPackaging.VisibleIndex = 10;
+            this.colForPackaging.Width = 150;
+            // 
+            // gridView18
+            // 
+            this.gridView18.GridControl = this.GridControlRelatedProducts;
+            this.gridView18.LevelIndent = 0;
+            this.gridView18.Name = "gridView18";
+            this.gridView18.PreviewIndent = 0;
+            // 
             // default_TimeTextEdit
             // 
             this.default_TimeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Default_Time", true));
@@ -6113,7 +6465,7 @@
             this.PanelControlLocationTab.ResumeLayout(false);
             this.PanelControlLocationTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditProximitySearch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditProximitySearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditDistance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCityMilesTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAirportMiles.Properties)).EndInit();
@@ -6134,6 +6486,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPoliciesTab)).EndInit();
             this.PanelControlPoliciesTab.ResumeLayout(false);
             this.PanelControlPoliciesTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAdmin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditOnRequestPeriod.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditConfirmationType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditMaxPax.Properties)).EndInit();
@@ -6160,9 +6513,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPickupInfoRequired.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditPassengerWeightRequired.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditAccountingServiceItem.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditVendorPrepayReqd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditVendorPrepayReqd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unit_RateCheckEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.adminCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mealsIncludedCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultTimes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowFree.Properties)).EndInit();
@@ -6202,7 +6554,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewTransferPoints)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxPickDrop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookupEditLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocationView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).EndInit();
@@ -6277,6 +6629,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplementIsBoard.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplementPaySupplier.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditIsSupplement.Properties)).EndInit();
+            this.xtraTabPageRelatedProducts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl9)).EndInit();
+            this.panelControl9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlRelatedProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceRelatedProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewRelatedProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemComboBoxType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditRelatedProductCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemDateEditSvcStart.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemDateEditSvcStart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.default_TimeTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -6433,7 +6797,7 @@
         private DevExpress.XtraMap.VectorItemsLayer VectorItemsLayer;
         private DevExpress.XtraMap.InformationLayer InformationLayer;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.CheckEdit checkEditProximitySearch;
+        private DevExpress.XtraEditors.CheckEdit CheckEditProximitySearch;
         private DevExpress.XtraEditors.SpinEdit SpinEditDistance;
         private DevExpress.XtraEditors.TextEdit TextEditCityMilesTo;
         private DevExpress.XtraEditors.LabelControl LabelCityCode;
@@ -6467,9 +6831,9 @@
         private DevExpress.XtraEditors.CheckEdit checkEditPickupInfoRequired;
         private DevExpress.XtraEditors.CheckEdit checkEditPassengerWeightRequired;
         private DevExpress.XtraEditors.CheckEdit checkEditAccountingServiceItem;
-        private DevExpress.XtraEditors.CheckEdit checkEditVendorPrepayReqd;
+        private DevExpress.XtraEditors.CheckEdit CheckEditVendorPrepayReqd;
         private DevExpress.XtraEditors.CheckEdit unit_RateCheckEdit;
-        private DevExpress.XtraEditors.CheckEdit adminCheckEdit;
+        private DevExpress.XtraEditors.CheckEdit CheckEditAdmin;
         private DevExpress.XtraEditors.CheckEdit mealsIncludedCheckEdit;
         private DevExpress.XtraEditors.CheckEdit CheckEditMultTimes;
         private DevExpress.XtraEditors.CheckEdit CheckEditAllowFree;
@@ -6528,7 +6892,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColumnStartDate;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDate;
         private DevExpress.XtraGrid.Columns.GridColumn ColumnLocation;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemImageComboboxLocation;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookupEditLocation;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemImageComboboxLocationView;
         private DevExpress.XtraGrid.Columns.GridColumn ColumnDepartureTime;
         private DevExpress.XtraGrid.Columns.GridColumn ColumnLastUpd;
@@ -6775,5 +7139,36 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox RepositoryItemImageComboBoxSupplementType;
         private DevExpress.XtraEditors.SimpleButton SimpleButtonDeleteSupplement;
         private DevExpress.XtraEditors.SimpleButton SimpleButtonAddSupplement;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageRelatedProducts;
+        private DevExpress.XtraEditors.PanelControl panelControl9;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonDeletePassProduct;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonAddPass;
+        private DevExpress.XtraGrid.GridControl GridControlRelatedProducts;
+        private System.Windows.Forms.BindingSource BindingSourceRelatedProduct;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewRelatedProducts;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView18;
+        private DevExpress.XtraGrid.Columns.GridColumn colID5;
+        private DevExpress.XtraGrid.Columns.GridColumn colRelatedType;
+        private DevExpress.XtraGrid.Columns.GridColumn colRelatedCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colExcluded;
+        private DevExpress.XtraGrid.Columns.GridColumn colServiceStart;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit RepositoryItemDateEditSvcStart;
+        private DevExpress.XtraGrid.Columns.GridColumn colServiceEnd;
+        private DevExpress.XtraGrid.Columns.GridColumn colBookingStart;
+        private DevExpress.XtraGrid.Columns.GridColumn colBookingEnd;
+        private DevExpress.XtraGrid.Columns.GridColumn colInactive2;
+        private DevExpress.XtraGrid.Columns.GridColumn colPosition;
+        private DevExpress.XtraGrid.Columns.GridColumn colDiscountPct;
+        private DevExpress.XtraGrid.Columns.GridColumn colDiscountFlat;
+        private DevExpress.XtraGrid.Columns.GridColumn colReciprocal;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox RepositoryItemComboBoxType;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView17;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsRoundTrip;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsReturn;
+        private DevExpress.XtraGrid.Columns.GridColumn colForUpSell;
+        private DevExpress.XtraGrid.Columns.GridColumn colForPackaging;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditRelatedProductCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode15;
+        private DevExpress.XtraGrid.Columns.GridColumn colName10;
     }
 }

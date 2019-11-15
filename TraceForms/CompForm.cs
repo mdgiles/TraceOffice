@@ -40,7 +40,9 @@ namespace TraceForms
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
         Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
+        Dictionary<String, List<CodeName>> _passLookups = new Dictionary<String, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
+        bool _isPass = false;
 
         public CompForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -49,6 +51,7 @@ namespace TraceForms
                 Connect(sys);
                 LoadLookups();
                 SetReadOnly(true);
+                xtraTabPageRoutes.PageEnabled = false;
                 SetMapProperties();         //Mapping
             }
             catch (Exception ex) {
@@ -103,7 +106,8 @@ namespace TraceForms
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
-            repositoryItemImageComboboxLocation.DataSource = cities;
+            _locationLookups.Add("CTY", cities);
+            //repositoryItemImageComboboxLocation.DataSource = cities;
 
 
             var languages = new List<CodeName> {
@@ -168,7 +172,8 @@ namespace TraceForms
             hotels.AddRange(_context.HOTEL
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
-            repositoryItemImageComboboxLocation.DataSource = hotels;
+            _locationLookups.Add("HTL", hotels);
+            //repositoryItemImageComboboxLocation.DataSource = hotels;
 
             var waypoints = new List<CodeName> {
                 new CodeName(null)
@@ -176,7 +181,8 @@ namespace TraceForms
             waypoints.AddRange(_context.WAYPOINT
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
-            repositoryItemImageComboboxLocation.DataSource = waypoints;
+            _locationLookups.Add("WAY", waypoints);
+            //repositoryItemImageComboboxLocation.DataSource = waypoints;
 
             var components = new List<CodeName>();
             components.AddRange(_context.COMP
@@ -184,6 +190,19 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             RepositoryItemSearchLookUpEditCompCode.DataSource = components;
+
+            var products = new List<CodeName>();
+            products.AddRange(_context.COMP
+                .Where(c => !c.IsSupplement && c.Inactive != "Y")
+                .OrderBy(o => o.CODE) 
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _passLookups.Add("OPT", products);
+
+            products = new List<CodeName>();
+            products.AddRange(_context.PACK
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _passLookups.Add("PKG", products);
 
             _supplierCombo.Items.Add(loadBlank);
             _supplierCombo.Items.AddRange(_context.Supplier
@@ -276,6 +295,7 @@ namespace TraceForms
                 LoadAndBindTransferPoints();
                 LoadAndBindBusRoutes();
                 LoadAndBindSupplements();
+                LoadAndBindRelatedProducts();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -306,6 +326,8 @@ namespace TraceForms
             GridViewRoutes.UpdateCurrentRow();
             GridViewTransferPoints.CloseEditor();
             GridViewTransferPoints.UpdateCurrentRow();
+            GridViewRelatedProducts.CloseEditor();
+            GridViewRelatedProducts.UpdateCurrentRow();
             _selectedRecord.PUDRP_REQ = _pupDrp;
             //Set the  code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierCategory.DataRowCount; rowCtr++) {
@@ -318,6 +340,13 @@ namespace TraceForms
                 }
             }
             BindingSourceSupplierCategory.EndEdit();
+
+            for (int rowCtr = 0; rowCtr < GridViewRelatedProducts.DataRowCount; rowCtr++) {
+                RelatedProduct relProduct = (RelatedProduct)GridViewRelatedProducts.GetRow(rowCtr);
+                relProduct.Product_Type = "OPT";
+                relProduct.Product_Code = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceRelatedProduct.EndEdit();
 
             //Set the code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierProduct.DataRowCount; rowCtr++) {
@@ -582,6 +611,7 @@ namespace TraceForms
                 || record.BUSTABLE.IsModified(_context)
                 || record.CompBusRoute.IsModified(_context)
                 || record.DETAIL.IsModified(_context)
+                || record.RelatedProduct1.IsModified(_context)
                 || record.GeoCode.IsModified(_context);     //Mapping
         }
 
@@ -668,6 +698,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
             SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
             SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
+            //SetErrorInfo(_selectedRecord.ValidateRelatedProducts, GridControlRelatedProducts);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -1196,10 +1227,10 @@ namespace TraceForms
             {
                 string type = GridViewTransferPoints.GetRowCellDisplayText(e.RowHandle, "LocationType");
                 if (_locationLookups.ContainsKey(type)) {
-                    repositoryItemImageComboboxLocation.DataSource = _locationLookups[type];
+                    RepositoryItemSearchLookupEditLocation.DataSource = _locationLookups[type];
                 }
                 else {
-                    repositoryItemImageComboboxLocation.DataSource = null;
+                    RepositoryItemSearchLookupEditLocation.DataSource = null;
                 }
             }
 			if (e.Column.FieldName == "CompBusRoute_ID") {
@@ -1416,8 +1447,8 @@ namespace TraceForms
 
 		private void CheckEditProximitySearch_CheckedChanged(object sender, EventArgs e)
 		{
-			SpinEditDistance.Enabled = (checkEditProximitySearch.Checked);
-			if (!checkEditProximitySearch.Checked)
+			SpinEditDistance.Enabled = (CheckEditProximitySearch.Checked);
+			if (!CheckEditProximitySearch.Checked)
 				SpinEditDistance.Value = 0;
 		}
 
@@ -1736,21 +1767,6 @@ namespace TraceForms
             }
         }
 
-        private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e) {
-            ColumnView view = sender as ColumnView;
-            view.ClearColumnErrors();
-            GridColumn colSupplier = view.Columns["Supplier_GUID"];
-            GridColumn colSupplierCode = view.Columns["Code"];
-            if (view.GetRowCellValue(e.RowHandle, colSupplier) == null) {
-                e.Valid = false;
-                view.SetColumnError(colSupplier, "Please select a Supplier from the dropdown for the Supplier Category record.");
-            }
-            if (string.IsNullOrEmpty(view.GetRowCellValue(e.RowHandle, colSupplierCode).ToString())) {
-                e.Valid = false;
-                view.SetColumnError(colSupplierCode, "Please enter a Code for the Supplier Category record.");
-            }
-        }
-
         private void ImageComboBoxEditOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(SearchLookupEditOperator.Text)) {
@@ -1831,6 +1847,12 @@ namespace TraceForms
             bool isHopper = _sys.Settings.HopTourServiceType.Contains(serviceType);
             xtraTabPageRoutes.PageEnabled = isHopper;
             GridViewTransferPoints.Columns["CompBusRoute_ID"].Visible = isHopper;
+            _isPass = ("PASS" == serviceType);
+            xtraTabPageRelatedProducts.Text = _isPass ? "Pass Products" : "Related Products";
+            GridViewRelatedProducts.Columns["IsRoundTrip"].Visible = !_isPass;
+            GridViewRelatedProducts.Columns["IsReturn"].Visible = !_isPass;
+            GridViewRelatedProducts.Columns["ForUpSell"].Visible = !_isPass;
+            GridViewRelatedProducts.Columns["ForPackaging"].Visible = !_isPass;
         }
 
         private void CompForm_Shown(object sender, EventArgs e)
@@ -1919,6 +1941,68 @@ namespace TraceForms
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateSupplements, sender);
+        }
+
+        void LoadAndBindRelatedProducts()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.RelatedProduct1.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceRelatedProduct.DataSource = _selectedRecord.RelatedProduct1;
+            BindRelatedProducts();
+        }
+
+        void BindRelatedProducts()
+        {
+            GridControlRelatedProducts.DataSource = BindingSourceRelatedProduct;
+            GridControlRelatedProducts.RefreshDataSource();
+        }
+
+        private void SimpleButtonAddRelatedProduct_Click(object sender, EventArgs e)
+        {
+            RelatedProduct rel = new RelatedProduct {
+                Product_Code = TextEditCode.Text,
+                Product_Type = "OPT",
+                IsPassComponent = _isPass
+            };
+            _selectedRecord.RelatedProduct1.Add(rel);
+            BindRelatedProducts();
+            GridViewRelatedProducts.FocusedRowHandle = BindingSourceRelatedProduct.Count - 1;
+        }
+
+        private void SimpleButtonDeleteRelatedProduct_Click(object sender, EventArgs e)
+        {
+            if (GridViewRelatedProducts.FocusedRowHandle >= 0) {
+                RelatedProduct rel = (RelatedProduct)GridViewRelatedProducts.GetFocusedRow();
+                BindingSourceRelatedProduct.Remove(rel);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (!rel.IsNew()) {
+                    _context.RelatedProduct.DeleteObject(rel);
+                }
+                BindRelatedProducts();
+            }
+        }
+
+        private void GridViewRelatedProducts_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column == colRelatedCode) {
+                string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
+                if (_passLookups.ContainsKey(type)) {
+                    RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = _passLookups[type];
+                }
+                else {
+                    RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = null;
+                }
+            }
         }
 
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
