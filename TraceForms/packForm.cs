@@ -436,6 +436,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
             SetErrorInfo(_selectedRecord.ValidateLang, ImageComboBoxEditLanguage);
             SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditCity);
+            SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditDepCity);
             SetErrorInfo(_selectedRecord.ValidateRegion, SearchLookupEditRegion);
             SetErrorInfo(_selectedRecord.ValidateOper, SearchLookupEditOperator);
             SetErrorInfo(_selectedRecord.ValidateNts, SpinEditNights);
@@ -958,6 +959,12 @@ namespace TraceForms
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateSupplierCategories, sender);
+        }
+
+        private void SearchLookUpEditDepCity_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDepartureCity, sender);
         }
 
         private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e)

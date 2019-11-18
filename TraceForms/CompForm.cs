@@ -106,6 +106,7 @@ namespace TraceForms
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
+            SearchLookUpEditDepCity.Properties.DataSource = cities;
             _locationLookups.Add("CTY", cities);
             //repositoryItemImageComboboxLocation.DataSource = cities;
 
@@ -694,11 +695,12 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateInclude5, TextEditIncl5);
             SetErrorInfo(_selectedRecord.ValidateInclude6, TextEditIncl6);
             SetErrorInfo(_selectedRecord.ValidateDuration, SpinEditDuration);
-            //SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
+            SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
             SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
             SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
             SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
-            //SetErrorInfo(_selectedRecord.ValidateRelatedProducts, GridControlRelatedProducts);
+            SetErrorInfo(_selectedRecord.ValidateRelatedProducts, GridControlRelatedProducts);
+            SetErrorInfo(_selectedRecord.ValidateDepartureCity, SearchLookupEditCity);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -2003,6 +2005,12 @@ namespace TraceForms
                     RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = null;
                 }
             }
+        }
+
+        private void SearchLookUpEditDepCity_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDepartureCity, sender);
         }
 
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {

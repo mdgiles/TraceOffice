@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label LabelInactive;
             System.Windows.Forms.Label LabelDate;
             System.Windows.Forms.Label LabelAgency;
+            System.Windows.Forms.Label LabelRanking;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(packForm));
             this.repositoryItemCheckEditExclusionComm = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEditInactiveComm = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -131,7 +131,15 @@
             this.ColumnRegion1Pkg = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnSvcRestr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SpinEditRanking = new DevExpress.XtraEditors.SpinEdit();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.CheckEditMultipleTimes = new DevExpress.XtraEditors.CheckEdit();
+            this.SearchLookupEditDepCity = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView19 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CheckEditServicesOnly = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
@@ -142,7 +150,6 @@
             this.LabelAlternate2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.SearchLookupEditAltern1 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -382,9 +389,9 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            LabelInactive = new System.Windows.Forms.Label();
             LabelDate = new System.Windows.Forms.Label();
             LabelAgency = new System.Windows.Forms.Label();
+            LabelRanking = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditExclusionComm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditInactiveComm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
@@ -392,7 +399,12 @@
             this.SplitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditRanking.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDepCity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditServicesOnly.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -401,7 +413,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlAlternatePkgs)).BeginInit();
             this.panelControlAlternatePkgs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAltern1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAltern2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
@@ -498,16 +509,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
-            // LabelInactive
-            // 
-            LabelInactive.AutoSize = true;
-            LabelInactive.Location = new System.Drawing.Point(883, 299);
-            LabelInactive.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            LabelInactive.Name = "LabelInactive";
-            LabelInactive.Size = new System.Drawing.Size(93, 25);
-            LabelInactive.TabIndex = 0;
-            LabelInactive.Text = "Inactive:";
-            // 
             // LabelDate
             // 
             LabelDate.AutoSize = true;
@@ -527,6 +528,16 @@
             LabelAgency.Size = new System.Drawing.Size(80, 25);
             LabelAgency.TabIndex = 44;
             LabelAgency.Text = "Agency";
+            // 
+            // LabelRanking
+            // 
+            LabelRanking.AutoSize = true;
+            LabelRanking.Location = new System.Drawing.Point(628, 152);
+            LabelRanking.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelRanking.Name = "LabelRanking";
+            LabelRanking.Size = new System.Drawing.Size(87, 25);
+            LabelRanking.TabIndex = 285;
+            LabelRanking.Text = "Ranking";
             // 
             // repositoryItemCheckEditExclusionComm
             // 
@@ -788,7 +799,12 @@
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.AutoScroll = true;
+            this.SplitContainerControl.Panel2.Controls.Add(LabelRanking);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SpinEditRanking);
+            this.SplitContainerControl.Panel2.Controls.Add(this.checkEdit1);
+            this.SplitContainerControl.Panel2.Controls.Add(this.labelControl4);
             this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditMultipleTimes);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditDepCity);
             this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditServicesOnly);
             this.SplitContainerControl.Panel2.Controls.Add(this.labelControl1);
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditCode);
@@ -796,7 +812,6 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditRestricCode);
             this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditRateBasis);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelCode);
-            this.SplitContainerControl.Panel2.Controls.Add(LabelInactive);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelName);
             this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditInactive);
             this.SplitContainerControl.Panel2.Controls.Add(this.labelControl3);
@@ -1263,6 +1278,56 @@
             this.ColumnDisplayName.OptionsColumn.ReadOnly = true;
             this.ColumnDisplayName.Width = 74;
             // 
+            // SpinEditRanking
+            // 
+            this.SpinEditRanking.CausesValidation = false;
+            this.SpinEditRanking.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Ranking", true));
+            this.SpinEditRanking.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SpinEditRanking.Location = new System.Drawing.Point(723, 145);
+            this.SpinEditRanking.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.SpinEditRanking.Name = "SpinEditRanking";
+            this.SpinEditRanking.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.SpinEditRanking.Properties.Mask.EditMask = "0.0000";
+            this.SpinEditRanking.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.SpinEditRanking.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.SpinEditRanking.Size = new System.Drawing.Size(166, 40);
+            this.SpinEditRanking.TabIndex = 286;
+            // 
+            // checkEdit1
+            // 
+            this.checkEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "AllowCalculatedRates", true));
+            this.checkEdit1.EditValue = "N";
+            this.checkEdit1.EnterMoveNextControl = true;
+            this.checkEdit1.Location = new System.Drawing.Point(1054, 293);
+            this.checkEdit1.Margin = new System.Windows.Forms.Padding(5);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "Allow Calculated Rates:";
+            this.checkEdit1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.checkEdit1.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.checkEdit1.Properties.ValueChecked = "Y";
+            this.checkEdit1.Properties.ValueGrayed = "N";
+            this.checkEdit1.Properties.ValueUnchecked = "N";
+            this.checkEdit1.Size = new System.Drawing.Size(267, 38);
+            this.checkEdit1.TabIndex = 284;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(633, 202);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(143, 25);
+            this.labelControl4.TabIndex = 281;
+            this.labelControl4.Text = "Departure City:";
+            // 
             // CheckEditMultipleTimes
             // 
             this.CheckEditMultipleTimes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MultipleTimes", true));
@@ -1274,10 +1339,57 @@
             this.CheckEditMultipleTimes.Size = new System.Drawing.Size(310, 38);
             this.CheckEditMultipleTimes.TabIndex = 23;
             // 
+            // SearchLookupEditDepCity
+            // 
+            this.SearchLookupEditDepCity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Citycod_Code_Origin", true));
+            this.SearchLookupEditDepCity.Location = new System.Drawing.Point(801, 195);
+            this.SearchLookupEditDepCity.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.SearchLookupEditDepCity.Name = "SearchLookupEditDepCity";
+            this.SearchLookupEditDepCity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditDepCity.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditDepCity.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditDepCity.Properties.NullText = "";
+            this.SearchLookupEditDepCity.Properties.PopupSizeable = false;
+            this.SearchLookupEditDepCity.Properties.PopupView = this.gridView19;
+            this.SearchLookupEditDepCity.Properties.ValueMember = "Code";
+            this.SearchLookupEditDepCity.Size = new System.Drawing.Size(468, 40);
+            this.SearchLookupEditDepCity.TabIndex = 282;
+            this.SearchLookupEditDepCity.Leave += new System.EventHandler(this.SearchLookUpEditDepCity_Leave);
+            // 
+            // BindingSourceCodeName
+            // 
+            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
+            // 
+            // gridView19
+            // 
+            this.gridView19.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn14,
+            this.gridColumn15});
+            this.gridView19.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView19.Name = "gridView19";
+            this.gridView19.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView19.OptionsView.ShowGroupPanel = false;
+            this.gridView19.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn14
+            // 
+            this.gridColumn14.FieldName = "Code";
+            this.gridColumn14.Name = "gridColumn14";
+            this.gridColumn14.Visible = true;
+            this.gridColumn14.VisibleIndex = 0;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.FieldName = "Name";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 1;
+            // 
             // CheckEditServicesOnly
             // 
             this.CheckEditServicesOnly.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ServicesOnly", true));
-            this.CheckEditServicesOnly.Location = new System.Drawing.Point(413, 293);
+            this.CheckEditServicesOnly.Location = new System.Drawing.Point(387, 293);
             this.CheckEditServicesOnly.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CheckEditServicesOnly.Name = "CheckEditServicesOnly";
             this.CheckEditServicesOnly.Properties.Caption = "Services only (no accommodations)";
@@ -1397,10 +1509,6 @@
             this.SearchLookupEditAltern1.Size = new System.Drawing.Size(410, 40);
             this.SearchLookupEditAltern1.TabIndex = 9;
             this.SearchLookupEditAltern1.Leave += new System.EventHandler(this.SearchLookupEditAltern1_Leave);
-            // 
-            // BindingSourceCodeName
-            // 
-            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
             // gridView4
             // 
@@ -3479,15 +3587,16 @@
             this.CheckEditInactive.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Inactive", true));
             this.CheckEditInactive.EditValue = "N";
             this.CheckEditInactive.EnterMoveNextControl = true;
-            this.CheckEditInactive.Location = new System.Drawing.Point(1016, 293);
+            this.CheckEditInactive.Location = new System.Drawing.Point(851, 293);
             this.CheckEditInactive.Margin = new System.Windows.Forms.Padding(5);
             this.CheckEditInactive.Name = "CheckEditInactive";
-            this.CheckEditInactive.Properties.Caption = "";
+            this.CheckEditInactive.Properties.Caption = "Inactive:";
+            this.CheckEditInactive.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditInactive.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.CheckEditInactive.Properties.ValueChecked = "Y";
             this.CheckEditInactive.Properties.ValueGrayed = "N";
             this.CheckEditInactive.Properties.ValueUnchecked = "N";
-            this.CheckEditInactive.Size = new System.Drawing.Size(50, 38);
+            this.CheckEditInactive.Size = new System.Drawing.Size(140, 38);
             this.CheckEditInactive.TabIndex = 8;
             // 
             // labelControl3
@@ -3946,7 +4055,12 @@
             this.SplitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditRanking.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditMultipleTimes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDepCity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditServicesOnly.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -3956,7 +4070,6 @@
             this.panelControlAlternatePkgs.ResumeLayout(false);
             this.panelControlAlternatePkgs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAltern1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAltern2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
@@ -4412,5 +4525,12 @@
         private DevExpress.XtraEditors.DateEdit ButtonEditDate;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditExclusionComm;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditInactiveComm;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditDepCity;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView19;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.SpinEdit SpinEditRanking;
     }
 }
