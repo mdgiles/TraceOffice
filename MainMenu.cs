@@ -89,8 +89,10 @@ namespace FlexOffice
 
         void createRibPageGroup(FlexModel.MenuItem el)
         {
-            group1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup(el.Caption);
+            //group1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup(el.Caption);
+            group1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             group1.ShowCaptionButton = false;
+            group1.State = RibbonPageGroupState.Expanded;
             foreach (var item in _menus.Where(m => m.ParentID == el.ID)) {
                 if (!_security.Any(s => s.MenuItem_ID == item.ID)) {
                     createDropDownButton(item);

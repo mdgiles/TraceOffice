@@ -262,6 +262,7 @@
             this.ribbonControl.Images = this.ribbonImageCollection;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
+            this.ribbonControl.SearchEditItem,
             this.iNew,
             this.iSaveAs,
             this.iExit,
@@ -384,8 +385,8 @@
             this.BarButtonItemInvBuild});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl.MaxItemId = 260;
+            this.ribbonControl.Margin = new System.Windows.Forms.Padding(5);
+            this.ribbonControl.MaxItemId = 3;
             this.ribbonControl.MiniToolbars.Add(this.ribbonMiniToolbar1);
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageHeaderItemLinks.Add(this.iAbout);
@@ -393,12 +394,12 @@
             this.homeRibbonPage,
             this.ribbonPageGallery,
             this.ribbonPage1});
+            this.ribbonControl.QuickToolbarItemLinks.Add(this.iNew);
+            this.ribbonControl.QuickToolbarItemLinks.Add(this.iSaveAs);
+            this.ribbonControl.QuickToolbarItemLinks.Add(this.iHelp);
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl.Size = new System.Drawing.Size(1539, 219);
+            this.ribbonControl.Size = new System.Drawing.Size(2335, 281);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
-            this.ribbonControl.Toolbar.ItemLinks.Add(this.iNew);
-            this.ribbonControl.Toolbar.ItemLinks.Add(this.iSaveAs);
-            this.ribbonControl.Toolbar.ItemLinks.Add(this.iHelp);
             this.ribbonControl.Visible = false;
             // 
             // ribbonImageCollection
@@ -426,9 +427,10 @@
             this.iNew.Description = "Creates a new, blank file.";
             this.iNew.Hint = "Creates a new, blank file";
             this.iNew.Id = 1;
-            this.iNew.ImageIndex = 0;
-            this.iNew.LargeImageIndex = 0;
+            this.iNew.ImageOptions.ImageIndex = 0;
+            this.iNew.ImageOptions.LargeImageIndex = 0;
             this.iNew.Name = "iNew";
+            this.iNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // iSaveAs
             // 
@@ -436,8 +438,8 @@
             this.iSaveAs.Description = "Saves the active document in a different location.";
             this.iSaveAs.Hint = "Saves the active document in a different location";
             this.iSaveAs.Id = 17;
-            this.iSaveAs.ImageIndex = 5;
-            this.iSaveAs.LargeImageIndex = 5;
+            this.iSaveAs.ImageOptions.ImageIndex = 5;
+            this.iSaveAs.ImageOptions.LargeImageIndex = 5;
             this.iSaveAs.Name = "iSaveAs";
             // 
             // iExit
@@ -446,8 +448,8 @@
             this.iExit.Description = "Closes this program after prompting you to save unsaved data.";
             this.iExit.Hint = "Closes this program after prompting you to save unsaved data";
             this.iExit.Id = 20;
-            this.iExit.ImageIndex = 6;
-            this.iExit.LargeImageIndex = 6;
+            this.iExit.ImageOptions.ImageIndex = 6;
+            this.iExit.ImageOptions.LargeImageIndex = 6;
             this.iExit.Name = "iExit";
             this.iExit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.iExit_ItemClick);
             // 
@@ -457,8 +459,8 @@
             this.iHelp.Description = "Start the program help system.";
             this.iHelp.Hint = "Start the program help system";
             this.iHelp.Id = 22;
-            this.iHelp.ImageIndex = 7;
-            this.iHelp.LargeImageIndex = 7;
+            this.iHelp.ImageOptions.ImageIndex = 7;
+            this.iHelp.ImageOptions.LargeImageIndex = 7;
             this.iHelp.Name = "iHelp";
             // 
             // iAbout
@@ -467,21 +469,19 @@
             this.iAbout.Description = "Displays general program information.";
             this.iAbout.Hint = "Displays general program information";
             this.iAbout.Id = 24;
-            this.iAbout.ImageIndex = 8;
-            this.iAbout.LargeImageIndex = 8;
+            this.iAbout.ImageOptions.ImageIndex = 8;
+            this.iAbout.ImageOptions.LargeImageIndex = 8;
             this.iAbout.Name = "iAbout";
             // 
             // siStatus
             // 
             this.siStatus.Id = 31;
             this.siStatus.Name = "siStatus";
-            this.siStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // siInfo
             // 
             this.siInfo.Id = 32;
             this.siInfo.Name = "siInfo";
-            this.siInfo.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // alignButtonGroup
             // 
@@ -496,21 +496,21 @@
             // 
             this.iBoldFontStyle.Caption = "Bold";
             this.iBoldFontStyle.Id = 53;
-            this.iBoldFontStyle.ImageIndex = 9;
+            this.iBoldFontStyle.ImageOptions.ImageIndex = 9;
             this.iBoldFontStyle.Name = "iBoldFontStyle";
             // 
             // iItalicFontStyle
             // 
             this.iItalicFontStyle.Caption = "Italic";
             this.iItalicFontStyle.Id = 54;
-            this.iItalicFontStyle.ImageIndex = 10;
+            this.iItalicFontStyle.ImageOptions.ImageIndex = 10;
             this.iItalicFontStyle.Name = "iItalicFontStyle";
             // 
             // iUnderlinedFontStyle
             // 
             this.iUnderlinedFontStyle.Caption = "Underlined";
             this.iUnderlinedFontStyle.Id = 55;
-            this.iUnderlinedFontStyle.ImageIndex = 11;
+            this.iUnderlinedFontStyle.ImageOptions.ImageIndex = 11;
             this.iUnderlinedFontStyle.Name = "iUnderlinedFontStyle";
             // 
             // fontStyleButtonGroup
@@ -526,21 +526,21 @@
             // 
             this.iLeftTextAlign.Caption = "Left";
             this.iLeftTextAlign.Id = 57;
-            this.iLeftTextAlign.ImageIndex = 12;
+            this.iLeftTextAlign.ImageOptions.ImageIndex = 12;
             this.iLeftTextAlign.Name = "iLeftTextAlign";
             // 
             // iCenterTextAlign
             // 
             this.iCenterTextAlign.Caption = "Center";
             this.iCenterTextAlign.Id = 58;
-            this.iCenterTextAlign.ImageIndex = 13;
+            this.iCenterTextAlign.ImageOptions.ImageIndex = 13;
             this.iCenterTextAlign.Name = "iCenterTextAlign";
             // 
             // iRightTextAlign
             // 
             this.iRightTextAlign.Caption = "Right";
             this.iRightTextAlign.Id = 59;
-            this.iRightTextAlign.ImageIndex = 14;
+            this.iRightTextAlign.ImageOptions.ImageIndex = 14;
             this.iRightTextAlign.Name = "iRightTextAlign";
             // 
             // rgbiSkins
@@ -1509,6 +1509,7 @@
             this.hotelRibbonPageGroup.ItemLinks.Add(this.barButtonHotelDrop);
             this.hotelRibbonPageGroup.Name = "hotelRibbonPageGroup";
             this.hotelRibbonPageGroup.ShowCaptionButton = false;
+            this.hotelRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.hotelRibbonPageGroup.Text = "Hotels";
             // 
             // pkgRibbonPageGroup
@@ -1516,13 +1517,15 @@
             this.pkgRibbonPageGroup.ItemLinks.Add(this.barButtonPkgDrop);
             this.pkgRibbonPageGroup.Name = "pkgRibbonPageGroup";
             this.pkgRibbonPageGroup.ShowCaptionButton = false;
-            this.pkgRibbonPageGroup.Text = "Package";
+            this.pkgRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
+            this.pkgRibbonPageGroup.Text = "Packages";
             // 
             // otherServRibbonPageGroup
             // 
             this.otherServRibbonPageGroup.ItemLinks.Add(this.barButtonServDrop);
             this.otherServRibbonPageGroup.Name = "otherServRibbonPageGroup";
             this.otherServRibbonPageGroup.ShowCaptionButton = false;
+            this.otherServRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.otherServRibbonPageGroup.Text = "Other Services";
             // 
             // carRibbonPageGroup
@@ -1530,6 +1533,7 @@
             this.carRibbonPageGroup.ItemLinks.Add(this.barButtonCarDrop);
             this.carRibbonPageGroup.Name = "carRibbonPageGroup";
             this.carRibbonPageGroup.ShowCaptionButton = false;
+            this.carRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.carRibbonPageGroup.Text = "Car";
             // 
             // airRibbonPageGroup
@@ -1537,6 +1541,7 @@
             this.airRibbonPageGroup.ItemLinks.Add(this.barButtonAirDrop);
             this.airRibbonPageGroup.Name = "airRibbonPageGroup";
             this.airRibbonPageGroup.ShowCaptionButton = false;
+            this.airRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.airRibbonPageGroup.Text = "Air";
             // 
             // cruRibbonPageGroup
@@ -1544,6 +1549,7 @@
             this.cruRibbonPageGroup.ItemLinks.Add(this.barButtonCruiseDrop);
             this.cruRibbonPageGroup.Name = "cruRibbonPageGroup";
             this.cruRibbonPageGroup.ShowCaptionButton = false;
+            this.cruRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.cruRibbonPageGroup.Text = "Cruise";
             // 
             // insuranRibbonPageGroup
@@ -1551,6 +1557,7 @@
             this.insuranRibbonPageGroup.ItemLinks.Add(this.barButtonInsuranDrop);
             this.insuranRibbonPageGroup.Name = "insuranRibbonPageGroup";
             this.insuranRibbonPageGroup.ShowCaptionButton = false;
+            this.insuranRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.insuranRibbonPageGroup.Text = "Insurance";
             // 
             // agyRibbonPageGroup
@@ -1558,6 +1565,7 @@
             this.agyRibbonPageGroup.ItemLinks.Add(this.barButtonAgencyDrop);
             this.agyRibbonPageGroup.Name = "agyRibbonPageGroup";
             this.agyRibbonPageGroup.ShowCaptionButton = false;
+            this.agyRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.agyRibbonPageGroup.Text = "Agency";
             // 
             // invenRibbonPageGroup
@@ -1565,6 +1573,7 @@
             this.invenRibbonPageGroup.ItemLinks.Add(this.barButtonInventoryDrop);
             this.invenRibbonPageGroup.Name = "invenRibbonPageGroup";
             this.invenRibbonPageGroup.ShowCaptionButton = false;
+            this.invenRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.invenRibbonPageGroup.Text = "Inventory";
             // 
             // locRibbonPageGroup
@@ -1572,6 +1581,7 @@
             this.locRibbonPageGroup.ItemLinks.Add(this.barButtonLocDrop);
             this.locRibbonPageGroup.Name = "locRibbonPageGroup";
             this.locRibbonPageGroup.ShowCaptionButton = false;
+            this.locRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.locRibbonPageGroup.Text = "Location";
             // 
             // genRibbonPageGroup
@@ -1579,6 +1589,7 @@
             this.genRibbonPageGroup.ItemLinks.Add(this.barButtonGeneralDrop);
             this.genRibbonPageGroup.Name = "genRibbonPageGroup";
             this.genRibbonPageGroup.ShowCaptionButton = false;
+            this.genRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.genRibbonPageGroup.Text = "General";
             // 
             // vouchRibbonPageGroup
@@ -1586,6 +1597,7 @@
             this.vouchRibbonPageGroup.ItemLinks.Add(this.barButtonVouchDrop);
             this.vouchRibbonPageGroup.Name = "vouchRibbonPageGroup";
             this.vouchRibbonPageGroup.ShowCaptionButton = false;
+            this.vouchRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.vouchRibbonPageGroup.Text = "Voucher";
             // 
             // custRibbonPageGroup
@@ -1593,6 +1605,7 @@
             this.custRibbonPageGroup.ItemLinks.Add(this.barButtonCustomDrop);
             this.custRibbonPageGroup.Name = "custRibbonPageGroup";
             this.custRibbonPageGroup.ShowCaptionButton = false;
+            this.custRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.custRibbonPageGroup.Text = "Custom";
             // 
             // repRibbonPageGroup
@@ -1600,6 +1613,7 @@
             this.repRibbonPageGroup.ItemLinks.Add(this.barButtonReportsDrop);
             this.repRibbonPageGroup.Name = "repRibbonPageGroup";
             this.repRibbonPageGroup.ShowCaptionButton = false;
+            this.repRibbonPageGroup.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.repRibbonPageGroup.Text = "Repository";
             // 
             // ribbonPageGroup20
@@ -1608,6 +1622,7 @@
             this.ribbonPageGroup20.ItemLinks.Add(this.barButtonMenuAdjust);
             this.ribbonPageGroup20.Name = "ribbonPageGroup20";
             this.ribbonPageGroup20.ShowCaptionButton = false;
+            this.ribbonPageGroup20.State = DevExpress.XtraBars.Ribbon.RibbonPageGroupState.Expanded;
             this.ribbonPageGroup20.Text = "ribbonPageGroup20";
             // 
             // ribbonPageGallery
@@ -1642,11 +1657,11 @@
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.siStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.siInfo);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1085);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1429);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(5);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1539, 48);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(2335, 62);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -1723,58 +1738,58 @@
             // 
             this.mailGroup.Caption = "Mail";
             this.mailGroup.Expanded = true;
+            this.mailGroup.ImageOptions.LargeImageIndex = 0;
             this.mailGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.inboxItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.outboxItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.draftsItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.trashItem)});
-            this.mailGroup.LargeImageIndex = 0;
             this.mailGroup.Name = "mailGroup";
             // 
             // inboxItem
             // 
             this.inboxItem.Caption = "Inbox";
+            this.inboxItem.ImageOptions.SmallImageIndex = 0;
             this.inboxItem.Name = "inboxItem";
-            this.inboxItem.SmallImageIndex = 0;
             // 
             // outboxItem
             // 
             this.outboxItem.Caption = "Outbox";
+            this.outboxItem.ImageOptions.SmallImageIndex = 1;
             this.outboxItem.Name = "outboxItem";
-            this.outboxItem.SmallImageIndex = 1;
             // 
             // draftsItem
             // 
             this.draftsItem.Caption = "Drafts";
+            this.draftsItem.ImageOptions.SmallImageIndex = 2;
             this.draftsItem.Name = "draftsItem";
-            this.draftsItem.SmallImageIndex = 2;
             // 
             // trashItem
             // 
             this.trashItem.Caption = "Trash";
+            this.trashItem.ImageOptions.SmallImageIndex = 3;
             this.trashItem.Name = "trashItem";
-            this.trashItem.SmallImageIndex = 3;
             // 
             // organizerGroup
             // 
             this.organizerGroup.Caption = "Organizer";
+            this.organizerGroup.ImageOptions.LargeImageIndex = 1;
             this.organizerGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.calendarItem),
             new DevExpress.XtraNavBar.NavBarItemLink(this.tasksItem)});
-            this.organizerGroup.LargeImageIndex = 1;
             this.organizerGroup.Name = "organizerGroup";
             // 
             // calendarItem
             // 
             this.calendarItem.Caption = "Calendar";
+            this.calendarItem.ImageOptions.SmallImageIndex = 4;
             this.calendarItem.Name = "calendarItem";
-            this.calendarItem.SmallImageIndex = 4;
             // 
             // tasksItem
             // 
             this.tasksItem.Caption = "Tasks";
+            this.tasksItem.ImageOptions.SmallImageIndex = 5;
             this.tasksItem.Name = "tasksItem";
-            this.tasksItem.SmallImageIndex = 5;
             // 
             // ribbonPageGroup6
             // 
@@ -1801,14 +1816,14 @@
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1539, 1133);
+            this.ClientSize = new System.Drawing.Size(2335, 1491);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MainMenu";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;

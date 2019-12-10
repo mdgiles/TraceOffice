@@ -101,6 +101,14 @@ namespace TraceForms
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
             _typeLookups.Add("PKG", lookup);
+
+            var categories = new List<CodeName> {
+                new CodeName(null)
+            };
+            categories.AddRange(_context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            SearchLookUpEditCategory.Properties.DataSource = categories;
         }
 
         void SetReadOnly(bool value)
@@ -557,9 +565,16 @@ namespace TraceForms
             }
         }
 
-        private void TimeEditStartTime_ParseEditValue(object sender, ConvertEditValueEventArgs e)
+        private void TimeEditServiceTime_Leave(object sender, EventArgs e)
         {
-            //e.Value
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateServiceTime, sender);
+        }
+
+        private void SearchLookUpEditCategory_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCategory, sender);
         }
 
         private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

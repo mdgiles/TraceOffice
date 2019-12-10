@@ -65,6 +65,14 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
 
+            var depcities = new List<CodeName> {
+                new CodeName(null)
+            };
+            depcities.AddRange(_context.CITYCOD
+                .OrderBy(o => o.NAME)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            SearchLookupEditDepCity.Properties.DataSource = depcities;
+
             var pkgtypes = new List<CodeName> {
                 new CodeName(null)
             };

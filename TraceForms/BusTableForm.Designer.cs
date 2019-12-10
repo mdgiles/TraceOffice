@@ -41,6 +41,8 @@
             System.Windows.Forms.Label pUP_DRPLabel;
             System.Windows.Forms.Label in_OutLabel;
             System.Windows.Forms.Label cODELabel;
+            System.Windows.Forms.Label labelServiceTime;
+            System.Windows.Forms.Label labelCat;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BusTableForm));
             this.ImageComboBoxEditPupDrp = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -48,8 +50,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.CheckEditExclusion = new DevExpress.XtraEditors.CheckEdit();
-            this.TimeEditEndTime = new DevExpress.XtraEditors.TimeEdit();
-            this.TimeEditStartTime = new DevExpress.XtraEditors.TimeEdit();
             this.ComboBoxEditLocationType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
             this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
@@ -73,8 +73,12 @@
             this.ComboBoxEditType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
-            this.SearchLookupEditCode = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.SearchLookUpEditCategory = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -84,6 +88,9 @@
             this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DateEditStartDate = new DevExpress.XtraEditors.DateEdit();
             this.DateEditEndDate = new DevExpress.XtraEditors.DateEdit();
+            this.TimeEditStartTime = new DevExpress.XtraEditors.TextEdit();
+            this.TimeEditEndTime = new DevExpress.XtraEditors.TextEdit();
+            this.TimeEditServiceTime = new DevExpress.XtraEditors.TimeEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -110,12 +117,12 @@
             pUP_DRPLabel = new System.Windows.Forms.Label();
             in_OutLabel = new System.Windows.Forms.Label();
             cODELabel = new System.Windows.Forms.Label();
+            labelServiceTime = new System.Windows.Forms.Label();
+            labelCat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditPupDrp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditInOut.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditExclusion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditLocationType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
@@ -123,8 +130,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
             this.SplitContainerControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookUpEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -132,6 +141,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
@@ -170,7 +182,7 @@
             // endTimeLabel
             // 
             endTimeLabel.AutoSize = true;
-            endTimeLabel.Location = new System.Drawing.Point(128, 700);
+            endTimeLabel.Location = new System.Drawing.Point(128, 763);
             endTimeLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             endTimeLabel.Name = "endTimeLabel";
             endTimeLabel.Size = new System.Drawing.Size(101, 25);
@@ -180,7 +192,7 @@
             // tIMELabel
             // 
             tIMELabel.AutoSize = true;
-            tIMELabel.Location = new System.Drawing.Point(128, 588);
+            tIMELabel.Location = new System.Drawing.Point(128, 651);
             tIMELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             tIMELabel.Name = "tIMELabel";
             tIMELabel.Size = new System.Drawing.Size(110, 25);
@@ -190,7 +202,7 @@
             // lOCATIONLabel
             // 
             lOCATIONLabel.AutoSize = true;
-            lOCATIONLabel.Location = new System.Drawing.Point(590, 456);
+            lOCATIONLabel.Location = new System.Drawing.Point(590, 519);
             lOCATIONLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             lOCATIONLabel.Name = "lOCATIONLabel";
             lOCATIONLabel.Size = new System.Drawing.Size(89, 25);
@@ -200,7 +212,7 @@
             // locationTypeLabel
             // 
             locationTypeLabel.AutoSize = true;
-            locationTypeLabel.Location = new System.Drawing.Point(124, 450);
+            locationTypeLabel.Location = new System.Drawing.Point(128, 519);
             locationTypeLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             locationTypeLabel.Name = "locationTypeLabel";
             locationTypeLabel.Size = new System.Drawing.Size(141, 25);
@@ -210,7 +222,7 @@
             // endDateLabel
             // 
             endDateLabel.AutoSize = true;
-            endDateLabel.Location = new System.Drawing.Point(590, 362);
+            endDateLabel.Location = new System.Drawing.Point(590, 425);
             endDateLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             endDateLabel.Name = "endDateLabel";
             endDateLabel.Size = new System.Drawing.Size(98, 25);
@@ -220,7 +232,7 @@
             // dATELabel
             // 
             dATELabel.AutoSize = true;
-            dATELabel.Location = new System.Drawing.Point(128, 356);
+            dATELabel.Location = new System.Drawing.Point(128, 419);
             dATELabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             dATELabel.Name = "dATELabel";
             dATELabel.Size = new System.Drawing.Size(107, 25);
@@ -230,7 +242,7 @@
             // pUP_DRPLabel
             // 
             pUP_DRPLabel.AutoSize = true;
-            pUP_DRPLabel.Location = new System.Drawing.Point(590, 263);
+            pUP_DRPLabel.Location = new System.Drawing.Point(590, 326);
             pUP_DRPLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             pUP_DRPLabel.Name = "pUP_DRPLabel";
             pUP_DRPLabel.Size = new System.Drawing.Size(165, 25);
@@ -240,7 +252,7 @@
             // in_OutLabel
             // 
             in_OutLabel.AutoSize = true;
-            in_OutLabel.Location = new System.Drawing.Point(128, 258);
+            in_OutLabel.Location = new System.Drawing.Point(128, 321);
             in_OutLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             in_OutLabel.Name = "in_OutLabel";
             in_OutLabel.Size = new System.Drawing.Size(147, 25);
@@ -257,11 +269,31 @@
             cODELabel.TabIndex = 35;
             cODELabel.Text = "Code";
             // 
+            // labelServiceTime
+            // 
+            labelServiceTime.AutoSize = true;
+            labelServiceTime.Location = new System.Drawing.Point(590, 653);
+            labelServiceTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            labelServiceTime.Name = "labelServiceTime";
+            labelServiceTime.Size = new System.Drawing.Size(132, 25);
+            labelServiceTime.TabIndex = 60;
+            labelServiceTime.Text = "Service Time";
+            // 
+            // labelCat
+            // 
+            labelCat.AutoSize = true;
+            labelCat.Location = new System.Drawing.Point(128, 245);
+            labelCat.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            labelCat.Name = "labelCat";
+            labelCat.Size = new System.Drawing.Size(95, 25);
+            labelCat.TabIndex = 62;
+            labelCat.Text = "Category";
+            // 
             // ImageComboBoxEditPupDrp
             // 
             this.ImageComboBoxEditPupDrp.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PUP_DRP", true));
             this.ImageComboBoxEditPupDrp.EnterMoveNextControl = true;
-            this.ImageComboBoxEditPupDrp.Location = new System.Drawing.Point(770, 258);
+            this.ImageComboBoxEditPupDrp.Location = new System.Drawing.Point(770, 321);
             this.ImageComboBoxEditPupDrp.Margin = new System.Windows.Forms.Padding(6);
             this.ImageComboBoxEditPupDrp.Name = "ImageComboBoxEditPupDrp";
             this.ImageComboBoxEditPupDrp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -282,7 +314,7 @@
             // 
             this.ImageComboBoxEditInOut.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "In_Out", true));
             this.ImageComboBoxEditInOut.EnterMoveNextControl = true;
-            this.ImageComboBoxEditInOut.Location = new System.Drawing.Point(296, 252);
+            this.ImageComboBoxEditInOut.Location = new System.Drawing.Point(296, 315);
             this.ImageComboBoxEditInOut.Margin = new System.Windows.Forms.Padding(6);
             this.ImageComboBoxEditInOut.Name = "ImageComboBoxEditInOut";
             this.ImageComboBoxEditInOut.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -316,7 +348,7 @@
             // 
             this.CheckEditExclusion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Exclusion", true));
             this.CheckEditExclusion.EnterMoveNextControl = true;
-            this.CheckEditExclusion.Location = new System.Drawing.Point(133, 813);
+            this.CheckEditExclusion.Location = new System.Drawing.Point(129, 870);
             this.CheckEditExclusion.Margin = new System.Windows.Forms.Padding(6);
             this.CheckEditExclusion.Name = "CheckEditExclusion";
             this.CheckEditExclusion.Properties.Caption = "Exclusion";
@@ -326,52 +358,11 @@
             this.CheckEditExclusion.Size = new System.Drawing.Size(191, 38);
             this.CheckEditExclusion.TabIndex = 11;
             // 
-            // TimeEditEndTime
-            // 
-            this.TimeEditEndTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndTime", true));
-            this.TimeEditEndTime.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
-            this.TimeEditEndTime.EnterMoveNextControl = true;
-            this.TimeEditEndTime.Location = new System.Drawing.Point(290, 694);
-            this.TimeEditEndTime.Margin = new System.Windows.Forms.Padding(6);
-            this.TimeEditEndTime.Name = "TimeEditEndTime";
-            this.TimeEditEndTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.TimeEditEndTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
-            this.TimeEditEndTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.TimeEditEndTime.Properties.EditFormat.FormatString = "HHmm";
-            this.TimeEditEndTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.TimeEditEndTime.Properties.Mask.EditMask = "HHmm";
-            this.TimeEditEndTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
-            this.TimeEditEndTime.Size = new System.Drawing.Size(200, 40);
-            this.TimeEditEndTime.TabIndex = 10;
-            this.TimeEditEndTime.Leave += new System.EventHandler(this.TimeEditEndTime_Leave);
-            // 
-            // TimeEditStartTime
-            // 
-            this.TimeEditStartTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TIME", true));
-            this.TimeEditStartTime.EditValue = new System.DateTime(2011, 6, 22, 0, 0, 0, 0);
-            this.TimeEditStartTime.EnterMoveNextControl = true;
-            this.TimeEditStartTime.Location = new System.Drawing.Point(290, 583);
-            this.TimeEditStartTime.Margin = new System.Windows.Forms.Padding(6);
-            this.TimeEditStartTime.Name = "TimeEditStartTime";
-            this.TimeEditStartTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.TimeEditStartTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
-            this.TimeEditStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.TimeEditStartTime.Properties.EditFormat.FormatString = "HHmm";
-            this.TimeEditStartTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.TimeEditStartTime.Properties.Mask.EditMask = "HHmm";
-            this.TimeEditStartTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
-            this.TimeEditStartTime.Size = new System.Drawing.Size(200, 40);
-            this.TimeEditStartTime.TabIndex = 9;
-            this.TimeEditStartTime.ParseEditValue += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.TimeEditStartTime_ParseEditValue);
-            this.TimeEditStartTime.Leave += new System.EventHandler(this.TimeEditStartTime_Leave);
-            // 
             // ComboBoxEditLocationType
             // 
             this.ComboBoxEditLocationType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LocationType", true));
             this.ComboBoxEditLocationType.EnterMoveNextControl = true;
-            this.ComboBoxEditLocationType.Location = new System.Drawing.Point(290, 444);
+            this.ComboBoxEditLocationType.Location = new System.Drawing.Point(290, 507);
             this.ComboBoxEditLocationType.Margin = new System.Windows.Forms.Padding(6);
             this.ComboBoxEditLocationType.Name = "ComboBoxEditLocationType";
             this.ComboBoxEditLocationType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -395,7 +386,7 @@
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Margin = new System.Windows.Forms.Padding(6);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(510, 1534);
+            this.GridControlLookup.Size = new System.Drawing.Size(510, 1181);
             this.GridControlLookup.TabIndex = 34;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -585,6 +576,9 @@
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.AutoScroll = true;
+            this.SplitContainerControl.Panel2.Controls.Add(labelCat);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookUpEditCategory);
+            this.SplitContainerControl.Panel2.Controls.Add(labelServiceTime);
             this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditPupDrp);
             this.SplitContainerControl.Panel2.Controls.Add(tYPELabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditInOut);
@@ -595,9 +589,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(pUP_DRPLabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditExclusion);
             this.SplitContainerControl.Panel2.Controls.Add(dATELabel);
-            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditEndTime);
             this.SplitContainerControl.Panel2.Controls.Add(endDateLabel);
-            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditStartTime);
             this.SplitContainerControl.Panel2.Controls.Add(locationTypeLabel);
             this.SplitContainerControl.Panel2.Controls.Add(lOCATIONLabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.ComboBoxEditLocationType);
@@ -610,11 +602,64 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditLocation);
             this.SplitContainerControl.Panel2.Controls.Add(this.DateEditStartDate);
             this.SplitContainerControl.Panel2.Controls.Add(this.DateEditEndDate);
+            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditStartTime);
+            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditEndTime);
+            this.SplitContainerControl.Panel2.Controls.Add(this.TimeEditServiceTime);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(2508, 1534);
+            this.SplitContainerControl.Size = new System.Drawing.Size(2055, 1181);
             this.SplitContainerControl.SplitterPosition = 510;
             this.SplitContainerControl.TabIndex = 60;
             this.SplitContainerControl.Text = "splitContainerControl1";
+            // 
+            // SearchLookUpEditCategory
+            // 
+            this.SearchLookUpEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
+            this.SearchLookUpEditCategory.Location = new System.Drawing.Point(296, 238);
+            this.SearchLookUpEditCategory.Margin = new System.Windows.Forms.Padding(6);
+            this.SearchLookUpEditCategory.Name = "SearchLookUpEditCategory";
+            this.SearchLookUpEditCategory.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookUpEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookUpEditCategory.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookUpEditCategory.Properties.DisplayMember = "DisplayName";
+            this.SearchLookUpEditCategory.Properties.NullText = "";
+            this.SearchLookUpEditCategory.Properties.PopupSizeable = false;
+            this.SearchLookUpEditCategory.Properties.PopupView = this.gridView2;
+            this.SearchLookUpEditCategory.Properties.ValueMember = "Code";
+            this.SearchLookUpEditCategory.Size = new System.Drawing.Size(464, 40);
+            this.SearchLookUpEditCategory.TabIndex = 61;
+            this.SearchLookUpEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookUpEditCategory.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
+            this.SearchLookUpEditCategory.Leave += new System.EventHandler(this.SearchLookUpEditCategory_Leave);
+            // 
+            // BindingSourceCodeName
+            // 
+            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
             // 
             // SearchLookupEditCode
             // 
@@ -636,10 +681,6 @@
             this.SearchLookupEditCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             this.SearchLookupEditCode.Leave += new System.EventHandler(this.ImageComboBoxEditCode_Leave);
-            // 
-            // BindingSourceCodeName
-            // 
-            this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
             // searchLookUpEdit1View
             // 
@@ -670,7 +711,7 @@
             // 
             this.SearchLookupEditLocation.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LOCATION", true));
             this.SearchLookupEditLocation.EditValue = "4";
-            this.SearchLookupEditLocation.Location = new System.Drawing.Point(770, 450);
+            this.SearchLookupEditLocation.Location = new System.Drawing.Point(770, 513);
             this.SearchLookupEditLocation.Margin = new System.Windows.Forms.Padding(6);
             this.SearchLookupEditLocation.Name = "SearchLookupEditLocation";
             this.SearchLookupEditLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -717,7 +758,7 @@
             this.DateEditStartDate.CausesValidation = false;
             this.DateEditStartDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DATE", true));
             this.DateEditStartDate.EditValue = null;
-            this.DateEditStartDate.Location = new System.Drawing.Point(290, 350);
+            this.DateEditStartDate.Location = new System.Drawing.Point(290, 413);
             this.DateEditStartDate.Margin = new System.Windows.Forms.Padding(6);
             this.DateEditStartDate.Name = "DateEditStartDate";
             this.DateEditStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -740,7 +781,7 @@
             this.DateEditEndDate.CausesValidation = false;
             this.DateEditEndDate.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndDate", true));
             this.DateEditEndDate.EditValue = null;
-            this.DateEditEndDate.Location = new System.Drawing.Point(770, 356);
+            this.DateEditEndDate.Location = new System.Drawing.Point(770, 419);
             this.DateEditEndDate.Margin = new System.Windows.Forms.Padding(6);
             this.DateEditEndDate.Name = "DateEditEndDate";
             this.DateEditEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -757,6 +798,50 @@
             this.DateEditEndDate.TabIndex = 6;
             this.DateEditEndDate.TextChanged += new System.EventHandler(this.DateEditEndDate_TextChanged);
             this.DateEditEndDate.Leave += new System.EventHandler(this.DateEditEndDate_Leave);
+            // 
+            // TimeEditStartTime
+            // 
+            this.TimeEditStartTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TIME", true));
+            this.TimeEditStartTime.Location = new System.Drawing.Point(290, 646);
+            this.TimeEditStartTime.Margin = new System.Windows.Forms.Padding(6);
+            this.TimeEditStartTime.Name = "TimeEditStartTime";
+            this.TimeEditStartTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
+            this.TimeEditStartTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.TimeEditStartTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.TimeEditStartTime.Properties.MaxLength = 4;
+            this.TimeEditStartTime.Size = new System.Drawing.Size(200, 40);
+            this.TimeEditStartTime.TabIndex = 9;
+            this.TimeEditStartTime.Leave += new System.EventHandler(this.TimeEditStartTime_Leave);
+            // 
+            // TimeEditEndTime
+            // 
+            this.TimeEditEndTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "EndTime", true));
+            this.TimeEditEndTime.Location = new System.Drawing.Point(290, 757);
+            this.TimeEditEndTime.Margin = new System.Windows.Forms.Padding(6);
+            this.TimeEditEndTime.Name = "TimeEditEndTime";
+            this.TimeEditEndTime.Properties.MaxLength = 4;
+            this.TimeEditEndTime.Size = new System.Drawing.Size(200, 40);
+            this.TimeEditEndTime.TabIndex = 10;
+            this.TimeEditEndTime.Leave += new System.EventHandler(this.TimeEditEndTime_Leave);
+            // 
+            // TimeEditServiceTime
+            // 
+            this.TimeEditServiceTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ServiceTime", true));
+            this.TimeEditServiceTime.EditValue = null;
+            this.TimeEditServiceTime.Location = new System.Drawing.Point(770, 646);
+            this.TimeEditServiceTime.Margin = new System.Windows.Forms.Padding(6);
+            this.TimeEditServiceTime.Name = "TimeEditServiceTime";
+            this.TimeEditServiceTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.TimeEditServiceTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
+            this.TimeEditServiceTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.TimeEditServiceTime.Properties.EditFormat.FormatString = "hh:mm tt";
+            this.TimeEditServiceTime.Properties.Mask.EditMask = "";
+            this.TimeEditServiceTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.TimeEditServiceTime.Properties.MaxLength = 4;
+            this.TimeEditServiceTime.Size = new System.Drawing.Size(200, 40);
+            this.TimeEditServiceTime.TabIndex = 59;
+            this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
             // 
             // PanelControlStatus
             // 
@@ -880,15 +965,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(2508, 60);
+            this.barDockControlTop.Size = new System.Drawing.Size(2055, 60);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1654);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1241);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(2508, 28);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2055, 28);
             // 
             // barDockControlLeft
             // 
@@ -896,21 +981,21 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1534);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1181);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2508, 120);
+            this.barDockControlRight.Location = new System.Drawing.Point(2055, 60);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1534);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1181);
             // 
             // BusTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1254, 855);
+            this.ClientSize = new System.Drawing.Size(2055, 1269);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -928,8 +1013,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditInOut.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditExclusion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditLocationType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
@@ -937,8 +1020,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
             this.SplitContainerControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookUpEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -946,6 +1031,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DateEditStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditEndDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditStartTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditEndTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
@@ -961,8 +1049,6 @@
         private System.Windows.Forms.BindingSource BindingSource;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.CheckEdit CheckEditExclusion;
-        private DevExpress.XtraEditors.TimeEdit TimeEditEndTime;
-        private DevExpress.XtraEditors.TimeEdit TimeEditStartTime;
         private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditLocationType;
         private DevExpress.XtraGrid.GridControl GridControlLookup;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
@@ -1013,5 +1099,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName1;
         private DevExpress.XtraEditors.DateEdit DateEditStartDate;
         private DevExpress.XtraEditors.DateEdit DateEditEndDate;
+        private DevExpress.XtraEditors.TextEdit TimeEditStartTime;
+        private DevExpress.XtraEditors.TextEdit TimeEditEndTime;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookUpEditCategory;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.TimeEdit TimeEditServiceTime;
     }
 }

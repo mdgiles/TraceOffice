@@ -317,6 +317,18 @@
             this.colCode6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDropoff_Time_Default = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditMarkupPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colSupplierCommPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditSupplierCommPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colRetailMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditRetailMarkupPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colMarkupFlat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditMarkupFlat = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colSupplierCommFlat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditSuppCommPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colRetailMarkupFlat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditRetailMarkupFlat = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.xtraTabPageSupplierCategories = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -485,6 +497,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupFlat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSuppCommPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupFlat)).BeginInit();
             this.xtraTabPageSupplierCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -827,7 +845,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCity);
             this.SplitContainerControl.Panel2.Controls.Add(this.ImageComboBoxEditLanguage);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(1895, 944);
+            this.SplitContainerControl.Size = new System.Drawing.Size(1895, 1013);
             this.SplitContainerControl.SplitterPosition = 391;
             this.SplitContainerControl.TabIndex = 0;
             this.SplitContainerControl.Text = "splitContainerControl1";
@@ -841,7 +859,7 @@
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(391, 944);
+            this.GridControlLookup.Size = new System.Drawing.Size(391, 1013);
             this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1428,7 +1446,7 @@
             this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPageAltPkgs;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1383, 589);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1383, 658);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageAltPkgs,
@@ -1446,7 +1464,7 @@
             this.xtraTabPageAltPkgs.Controls.Add(this.panelControlAlternatePkgs);
             this.xtraTabPageAltPkgs.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabPageAltPkgs.Name = "xtraTabPageAltPkgs";
-            this.xtraTabPageAltPkgs.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageAltPkgs.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageAltPkgs.Text = "Alternate Packages";
             // 
             // panelControlAlternatePkgs
@@ -1462,7 +1480,7 @@
             this.panelControlAlternatePkgs.Location = new System.Drawing.Point(0, 0);
             this.panelControlAlternatePkgs.Margin = new System.Windows.Forms.Padding(5);
             this.panelControlAlternatePkgs.Name = "panelControlAlternatePkgs";
-            this.panelControlAlternatePkgs.Size = new System.Drawing.Size(1371, 534);
+            this.panelControlAlternatePkgs.Size = new System.Drawing.Size(1371, 603);
             this.panelControlAlternatePkgs.TabIndex = 0;
             // 
             // labelControl9
@@ -2918,7 +2936,13 @@
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc,
             this.repositoryItemComboBoxDefaultDrpLocType,
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc,
-            this.repositoryItemTimeEditDefault});
+            this.repositoryItemTimeEditDefault,
+            this.RepositoryItemSpinEditMarkupPct,
+            this.RepositoryItemSpinEditSupplierCommPct,
+            this.RepositoryItemSpinEditRetailMarkupPct,
+            this.RepositoryItemSpinEditMarkupFlat,
+            this.RepositoryItemSpinEditSuppCommPct,
+            this.RepositoryItemSpinEditRetailMarkupFlat});
             this.GridControlSupplierProduct.Size = new System.Drawing.Size(1195, 475);
             this.GridControlSupplierProduct.TabIndex = 103;
             this.GridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2953,7 +2977,13 @@
             this.colPickup_Time_Default,
             this.colDropoff_LocationType_Default,
             this.colDropoff_Location_Default,
-            this.colDropoff_Time_Default});
+            this.colDropoff_Time_Default,
+            this.colMarkupPct,
+            this.colSupplierCommPct,
+            this.colRetailMarkupPct,
+            this.colMarkupFlat,
+            this.colSupplierCommFlat,
+            this.colRetailMarkupFlat});
             this.GridViewSupplierProduct.GridControl = this.GridControlSupplierProduct;
             this.GridViewSupplierProduct.Name = "GridViewSupplierProduct";
             this.GridViewSupplierProduct.OptionsView.ColumnAutoWidth = false;
@@ -3325,6 +3355,114 @@
             this.colDropoff_Time_Default.Visible = true;
             this.colDropoff_Time_Default.VisibleIndex = 17;
             this.colDropoff_Time_Default.Width = 157;
+            // 
+            // colMarkupPct
+            // 
+            this.colMarkupPct.Caption = "Markup Pct";
+            this.colMarkupPct.ColumnEdit = this.RepositoryItemSpinEditMarkupPct;
+            this.colMarkupPct.FieldName = "MarkupPct";
+            this.colMarkupPct.MinWidth = 40;
+            this.colMarkupPct.Name = "colMarkupPct";
+            this.colMarkupPct.Visible = true;
+            this.colMarkupPct.VisibleIndex = 18;
+            this.colMarkupPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditMarkupPct
+            // 
+            this.RepositoryItemSpinEditMarkupPct.AutoHeight = false;
+            this.RepositoryItemSpinEditMarkupPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditMarkupPct.Name = "RepositoryItemSpinEditMarkupPct";
+            // 
+            // colSupplierCommPct
+            // 
+            this.colSupplierCommPct.Caption = "Supplier Commission Pct";
+            this.colSupplierCommPct.ColumnEdit = this.RepositoryItemSpinEditSupplierCommPct;
+            this.colSupplierCommPct.FieldName = "SupplierCommPct";
+            this.colSupplierCommPct.MinWidth = 40;
+            this.colSupplierCommPct.Name = "colSupplierCommPct";
+            this.colSupplierCommPct.Visible = true;
+            this.colSupplierCommPct.VisibleIndex = 19;
+            this.colSupplierCommPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditSupplierCommPct
+            // 
+            this.RepositoryItemSpinEditSupplierCommPct.AutoHeight = false;
+            this.RepositoryItemSpinEditSupplierCommPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditSupplierCommPct.Name = "RepositoryItemSpinEditSupplierCommPct";
+            // 
+            // colRetailMarkupPct
+            // 
+            this.colRetailMarkupPct.Caption = "Retail Markup Pct";
+            this.colRetailMarkupPct.ColumnEdit = this.RepositoryItemSpinEditRetailMarkupPct;
+            this.colRetailMarkupPct.FieldName = "RetailMarkupPct";
+            this.colRetailMarkupPct.MinWidth = 40;
+            this.colRetailMarkupPct.Name = "colRetailMarkupPct";
+            this.colRetailMarkupPct.Visible = true;
+            this.colRetailMarkupPct.VisibleIndex = 20;
+            this.colRetailMarkupPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditRetailMarkupPct
+            // 
+            this.RepositoryItemSpinEditRetailMarkupPct.AutoHeight = false;
+            this.RepositoryItemSpinEditRetailMarkupPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditRetailMarkupPct.Name = "RepositoryItemSpinEditRetailMarkupPct";
+            // 
+            // colMarkupFlat
+            // 
+            this.colMarkupFlat.Caption = "Markup Pct";
+            this.colMarkupFlat.ColumnEdit = this.RepositoryItemSpinEditMarkupFlat;
+            this.colMarkupFlat.FieldName = "MarkupFlat";
+            this.colMarkupFlat.MinWidth = 40;
+            this.colMarkupFlat.Name = "colMarkupFlat";
+            this.colMarkupFlat.Visible = true;
+            this.colMarkupFlat.VisibleIndex = 21;
+            this.colMarkupFlat.Width = 150;
+            // 
+            // RepositoryItemSpinEditMarkupFlat
+            // 
+            this.RepositoryItemSpinEditMarkupFlat.AutoHeight = false;
+            this.RepositoryItemSpinEditMarkupFlat.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditMarkupFlat.Name = "RepositoryItemSpinEditMarkupFlat";
+            // 
+            // colSupplierCommFlat
+            // 
+            this.colSupplierCommFlat.Caption = "Supplier Commission Pct";
+            this.colSupplierCommFlat.ColumnEdit = this.RepositoryItemSpinEditSuppCommPct;
+            this.colSupplierCommFlat.FieldName = "SupplierCommFlat";
+            this.colSupplierCommFlat.MinWidth = 40;
+            this.colSupplierCommFlat.Name = "colSupplierCommFlat";
+            this.colSupplierCommFlat.Visible = true;
+            this.colSupplierCommFlat.VisibleIndex = 22;
+            this.colSupplierCommFlat.Width = 150;
+            // 
+            // RepositoryItemSpinEditSuppCommPct
+            // 
+            this.RepositoryItemSpinEditSuppCommPct.AutoHeight = false;
+            this.RepositoryItemSpinEditSuppCommPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditSuppCommPct.Name = "RepositoryItemSpinEditSuppCommPct";
+            // 
+            // colRetailMarkupFlat
+            // 
+            this.colRetailMarkupFlat.Caption = "Retail Markup Pct";
+            this.colRetailMarkupFlat.ColumnEdit = this.RepositoryItemSpinEditRetailMarkupFlat;
+            this.colRetailMarkupFlat.FieldName = "RetailMarkupFlat";
+            this.colRetailMarkupFlat.MinWidth = 40;
+            this.colRetailMarkupFlat.Name = "colRetailMarkupFlat";
+            this.colRetailMarkupFlat.Visible = true;
+            this.colRetailMarkupFlat.VisibleIndex = 23;
+            this.colRetailMarkupFlat.Width = 150;
+            // 
+            // RepositoryItemSpinEditRetailMarkupFlat
+            // 
+            this.RepositoryItemSpinEditRetailMarkupFlat.AutoHeight = false;
+            this.RepositoryItemSpinEditRetailMarkupFlat.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditRetailMarkupFlat.Name = "RepositoryItemSpinEditRetailMarkupFlat";
             // 
             // xtraTabPageSupplierCategories
             // 
@@ -4005,7 +4143,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1004);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1073);
             this.barDockControlBottom.Manager = this.BarManager;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.barDockControlBottom.Size = new System.Drawing.Size(1895, 0);
@@ -4017,7 +4155,7 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
             this.barDockControlLeft.Manager = this.BarManager;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 944);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1013);
             // 
             // barDockControlRight
             // 
@@ -4026,14 +4164,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(1895, 60);
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 944);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1013);
             // 
             // packForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1895, 1004);
+            this.ClientSize = new System.Drawing.Size(1895, 1073);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -4144,6 +4282,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupFlat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSuppCommPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupFlat)).EndInit();
             this.xtraTabPageSupplierCategories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -4532,5 +4676,17 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.SpinEdit SpinEditRanking;
+        private DevExpress.XtraGrid.Columns.GridColumn colMarkupPct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditMarkupPct;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupplierCommPct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditSupplierCommPct;
+        private DevExpress.XtraGrid.Columns.GridColumn colRetailMarkupPct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditRetailMarkupPct;
+        private DevExpress.XtraGrid.Columns.GridColumn colMarkupFlat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditMarkupFlat;
+        private DevExpress.XtraGrid.Columns.GridColumn colSupplierCommFlat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditSuppCommPct;
+        private DevExpress.XtraGrid.Columns.GridColumn colRetailMarkupFlat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditRetailMarkupFlat;
     }
 }

@@ -106,7 +106,7 @@ namespace TraceForms
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
-            SearchLookUpEditDepCity.Properties.DataSource = cities;
+            SearchLookupEditDepCity.Properties.DataSource = cities;
             _locationLookups.Add("CTY", cities);
             //repositoryItemImageComboboxLocation.DataSource = cities;
 
@@ -134,6 +134,14 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditOperator.Properties.DataSource = operators;
+
+            var categories = new List<CodeName> {
+                new CodeName(null)
+            };
+            categories.AddRange(_context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            RepositoryItemSearchLookUpEditCat.DataSource = categories;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -226,6 +234,14 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             repositoryItemSearchLookUpEditClass.DataSource = memberships;
+
+            var Categories = new List<CodeName> {
+                new CodeName(null)
+            };
+            Categories.AddRange(_context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            RepositoryItemCustomSearchLookUpEditMappingCat.DataSource = Categories;
 
             BindingSourceUserFields.DataSource = _context.USERFIELDS
                 .Where(u => (u.VISIBLE ?? false) && u.LINK_TABLE == "COMP")
@@ -695,12 +711,11 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateInclude5, TextEditIncl5);
             SetErrorInfo(_selectedRecord.ValidateInclude6, TextEditIncl6);
             SetErrorInfo(_selectedRecord.ValidateDuration, SpinEditDuration);
-            SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
             SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
             SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
             SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
             SetErrorInfo(_selectedRecord.ValidateRelatedProducts, GridControlRelatedProducts);
-            SetErrorInfo(_selectedRecord.ValidateDepartureCity, SearchLookupEditCity);
+            SetErrorInfo(_selectedRecord.ValidateDepartureCity, SearchLookupEditDepCity);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -1568,7 +1583,7 @@ namespace TraceForms
             }
         }
 
-        private void MappingAddButton_Click(object sender, EventArgs e)
+        private void SimpleButtonAddSuppMapping_Click(object sender, EventArgs e)
         {
             SupplierProduct suppProduct = new SupplierProduct {
                 Product_Code_Internal = TextEditCode.Text ?? string.Empty,
@@ -1579,7 +1594,7 @@ namespace TraceForms
             GridViewSupplierProduct.FocusedRowHandle = BindingSourceSupplierProduct.Count - 1;
         }
 
-        private void MappingDelButton_Click(object sender, EventArgs e)
+        private void SimpleButtonDelSuppMapping_Click(object sender, EventArgs e)
         {
             if (GridViewSupplierProduct.FocusedRowHandle >= 0) {
                 SupplierProduct suppProduct = (SupplierProduct)GridViewSupplierProduct.GetFocusedRow();
