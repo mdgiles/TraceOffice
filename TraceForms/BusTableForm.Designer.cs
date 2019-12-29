@@ -836,9 +836,10 @@
             this.TimeEditServiceTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
             this.TimeEditServiceTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.TimeEditServiceTime.Properties.EditFormat.FormatString = "hh:mm tt";
-            this.TimeEditServiceTime.Properties.Mask.EditMask = "";
-            this.TimeEditServiceTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.TimeEditServiceTime.Properties.Mask.EditMask = "hh:mm tt";
+            this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TimeEditServiceTime.Properties.MaxLength = 4;
+            this.TimeEditServiceTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.TimeEditServiceTime.Size = new System.Drawing.Size(200, 40);
             this.TimeEditServiceTime.TabIndex = 59;
             this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);

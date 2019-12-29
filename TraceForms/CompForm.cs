@@ -289,6 +289,7 @@ namespace TraceForms
             BindingSourceSupplierProduct.Clear();
             SetReadOnly(true);
             BarButtonItemDelete.Enabled = false;
+            BarButtonItemUpdateWebsite.Enabled = false;
             BarButtonItemSave.Enabled = false;
             BindingSource.DataSource = typeof(COMP);
             ClearMapData();                 //Mapping
@@ -316,6 +317,7 @@ namespace TraceForms
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
+                BarButtonItemUpdateWebsite.Enabled = true;
                 BarButtonItemSave.Enabled = true;
                 ShowMapData(_selectedRecord);           //Mapping
                 GridViewUserFields.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to display the custom fields
@@ -1249,6 +1251,7 @@ namespace TraceForms
                 else {
                     RepositoryItemSearchLookupEditLocation.DataSource = null;
                 }
+                repositoryItemCheckEditLocationExclusion.ReadOnly = (type != "HTL");
             }
 			if (e.Column.FieldName == "CompBusRoute_ID") {
                 RepositoryItemImageComboBox editor = new RepositoryItemImageComboBox();
@@ -2028,8 +2031,24 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateDepartureCity, sender);
         }
 
+        private void BarButtonItemUpdateWebsite_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
+            _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
+                _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
+        }
+
+        private void ImageComboBoxEditTransType_EditValueChanged(object sender, EventArgs e)
+        {
+            if (ImageComboBoxEditTransType.EditValue.IsNullOrEmpty()) {
+                xtraTabPageTransferPoints.PageEnabled = false;
+            } else {
+                xtraTabPageTransferPoints.PageEnabled = "IO".Contains(ImageComboBoxEditTransType.EditValue.ToString());
+            }
+        }
+
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
-            e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box       
+            e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
     }
 }

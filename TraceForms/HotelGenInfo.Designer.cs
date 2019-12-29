@@ -566,6 +566,12 @@
             this.RepositoryItemSpinEditSuppCommFlat = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.colRetailMarkupFlat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemSpinEditRetailMarkupFlat = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditRetailPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colSupplierCommPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditSupplierCommPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colRetailMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditRetailMarkupPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.xtraTabPageSupplierRoomTypes = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl11 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -617,12 +623,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.colMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RepositoryItemSpinEditRetailPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.colSupplierCommPct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RepositoryItemSpinEditSupplierCommPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.colRetailMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RepositoryItemSpinEditRetailMarkupPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.BarButtonItemUpdateWebsite = new DevExpress.XtraBars.BarButtonItem();
             cODELabel = new DevExpress.XtraEditors.LabelControl();
             lAST_UPDLabel = new DevExpress.XtraEditors.LabelControl();
             nAMELabel = new DevExpress.XtraEditors.LabelControl();
@@ -861,6 +862,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupFlat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSuppCommFlat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupFlat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).BeginInit();
             this.xtraTabPageSupplierRoomTypes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl11)).BeginInit();
             this.panelControl11.SuspendLayout();
@@ -880,9 +884,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailPct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).BeginInit();
             this.SuspendLayout();
             // 
             // cODELabel
@@ -6199,6 +6200,60 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.RepositoryItemSpinEditRetailMarkupFlat.Name = "RepositoryItemSpinEditRetailMarkupFlat";
             // 
+            // colMarkupPct
+            // 
+            this.colMarkupPct.Caption = "Markup Pct";
+            this.colMarkupPct.ColumnEdit = this.RepositoryItemSpinEditRetailPct;
+            this.colMarkupPct.FieldName = "MarkupPct";
+            this.colMarkupPct.MinWidth = 40;
+            this.colMarkupPct.Name = "colMarkupPct";
+            this.colMarkupPct.Visible = true;
+            this.colMarkupPct.VisibleIndex = 10;
+            this.colMarkupPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditRetailPct
+            // 
+            this.RepositoryItemSpinEditRetailPct.AutoHeight = false;
+            this.RepositoryItemSpinEditRetailPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditRetailPct.Name = "RepositoryItemSpinEditRetailPct";
+            // 
+            // colSupplierCommPct
+            // 
+            this.colSupplierCommPct.Caption = "Supplier Commission Pct";
+            this.colSupplierCommPct.ColumnEdit = this.RepositoryItemSpinEditSupplierCommPct;
+            this.colSupplierCommPct.FieldName = "SupplierCommPct";
+            this.colSupplierCommPct.MinWidth = 40;
+            this.colSupplierCommPct.Name = "colSupplierCommPct";
+            this.colSupplierCommPct.Visible = true;
+            this.colSupplierCommPct.VisibleIndex = 11;
+            this.colSupplierCommPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditSupplierCommPct
+            // 
+            this.RepositoryItemSpinEditSupplierCommPct.AutoHeight = false;
+            this.RepositoryItemSpinEditSupplierCommPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditSupplierCommPct.Name = "RepositoryItemSpinEditSupplierCommPct";
+            // 
+            // colRetailMarkupPct
+            // 
+            this.colRetailMarkupPct.Caption = "Retail Markup Pct";
+            this.colRetailMarkupPct.ColumnEdit = this.RepositoryItemSpinEditRetailMarkupPct;
+            this.colRetailMarkupPct.FieldName = "RetailMarkupPct";
+            this.colRetailMarkupPct.MinWidth = 40;
+            this.colRetailMarkupPct.Name = "colRetailMarkupPct";
+            this.colRetailMarkupPct.Visible = true;
+            this.colRetailMarkupPct.VisibleIndex = 12;
+            this.colRetailMarkupPct.Width = 150;
+            // 
+            // RepositoryItemSpinEditRetailMarkupPct
+            // 
+            this.RepositoryItemSpinEditRetailMarkupPct.AutoHeight = false;
+            this.RepositoryItemSpinEditRetailMarkupPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditRetailMarkupPct.Name = "RepositoryItemSpinEditRetailMarkupPct";
+            // 
             // xtraTabPageSupplierRoomTypes
             // 
             this.xtraTabPageSupplierRoomTypes.Controls.Add(this.panelControl11);
@@ -6627,8 +6682,9 @@
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.BarButtonItemNew,
             this.BarButtonItemDelete,
-            this.BarButtonItemSave});
-            this.BarManager.MaxItemId = 3;
+            this.BarButtonItemSave,
+            this.BarButtonItemUpdateWebsite});
+            this.BarManager.MaxItemId = 4;
             // 
             // bar1
             // 
@@ -6640,7 +6696,8 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemUpdateWebsite)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.OptionsBar.UseWholeRow = true;
@@ -6709,59 +6766,14 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1148);
             // 
-            // colMarkupPct
+            // BarButtonItemUpdateWebsite
             // 
-            this.colMarkupPct.Caption = "Markup Pct";
-            this.colMarkupPct.ColumnEdit = this.RepositoryItemSpinEditRetailPct;
-            this.colMarkupPct.FieldName = "MarkupPct";
-            this.colMarkupPct.MinWidth = 40;
-            this.colMarkupPct.Name = "colMarkupPct";
-            this.colMarkupPct.Visible = true;
-            this.colMarkupPct.VisibleIndex = 10;
-            this.colMarkupPct.Width = 150;
-            // 
-            // RepositoryItemSpinEditRetailPct
-            // 
-            this.RepositoryItemSpinEditRetailPct.AutoHeight = false;
-            this.RepositoryItemSpinEditRetailPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemSpinEditRetailPct.Name = "RepositoryItemSpinEditRetailPct";
-            // 
-            // colSupplierCommPct
-            // 
-            this.colSupplierCommPct.Caption = "Supplier Commission Pct";
-            this.colSupplierCommPct.ColumnEdit = this.RepositoryItemSpinEditSupplierCommPct;
-            this.colSupplierCommPct.FieldName = "SupplierCommPct";
-            this.colSupplierCommPct.MinWidth = 40;
-            this.colSupplierCommPct.Name = "colSupplierCommPct";
-            this.colSupplierCommPct.Visible = true;
-            this.colSupplierCommPct.VisibleIndex = 11;
-            this.colSupplierCommPct.Width = 150;
-            // 
-            // RepositoryItemSpinEditSupplierCommPct
-            // 
-            this.RepositoryItemSpinEditSupplierCommPct.AutoHeight = false;
-            this.RepositoryItemSpinEditSupplierCommPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemSpinEditSupplierCommPct.Name = "RepositoryItemSpinEditSupplierCommPct";
-            // 
-            // colRetailMarkupPct
-            // 
-            this.colRetailMarkupPct.Caption = "Retail Markup Pct";
-            this.colRetailMarkupPct.ColumnEdit = this.RepositoryItemSpinEditRetailMarkupPct;
-            this.colRetailMarkupPct.FieldName = "RetailMarkupPct";
-            this.colRetailMarkupPct.MinWidth = 40;
-            this.colRetailMarkupPct.Name = "colRetailMarkupPct";
-            this.colRetailMarkupPct.Visible = true;
-            this.colRetailMarkupPct.VisibleIndex = 12;
-            this.colRetailMarkupPct.Width = 150;
-            // 
-            // RepositoryItemSpinEditRetailMarkupPct
-            // 
-            this.RepositoryItemSpinEditRetailMarkupPct.AutoHeight = false;
-            this.RepositoryItemSpinEditRetailMarkupPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemSpinEditRetailMarkupPct.Name = "RepositoryItemSpinEditRetailMarkupPct";
+            this.BarButtonItemUpdateWebsite.Caption = "Update Website";
+            this.BarButtonItemUpdateWebsite.Id = 3;
+            this.BarButtonItemUpdateWebsite.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemUpdateWebsite.ImageOptions.Image")));
+            this.BarButtonItemUpdateWebsite.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemUpdateWebsite.ImageOptions.LargeImage")));
+            this.BarButtonItemUpdateWebsite.Name = "BarButtonItemUpdateWebsite";
+            this.BarButtonItemUpdateWebsite.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUpdateWebsite_ItemClick);
             // 
             // HotelGenInfo
             // 
@@ -6959,6 +6971,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupFlat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSuppCommFlat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupFlat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).EndInit();
             this.xtraTabPageSupplierRoomTypes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl11)).EndInit();
             this.panelControl11.ResumeLayout(false);
@@ -6980,9 +6995,6 @@
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailPct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditRetailMarkupPct)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7510,5 +7522,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditSupplierCommPct;
         private DevExpress.XtraGrid.Columns.GridColumn colRetailMarkupPct;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditRetailMarkupPct;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemUpdateWebsite;
     }
 }

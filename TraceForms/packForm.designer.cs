@@ -401,6 +401,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.BarButtonItemUpdateWebsite = new DevExpress.XtraBars.BarButtonItem();
             LabelDate = new System.Windows.Forms.Label();
             LabelAgency = new System.Windows.Forms.Label();
             LabelRanking = new System.Windows.Forms.Label();
@@ -1645,7 +1646,7 @@
             this.xtraTabPagePolicies.Controls.Add(this.panelControlPolicies);
             this.xtraTabPagePolicies.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabPagePolicies.Name = "xtraTabPagePolicies";
-            this.xtraTabPagePolicies.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPagePolicies.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPagePolicies.Text = "Policies";
             // 
             // panelControlPolicies
@@ -1685,7 +1686,7 @@
             this.panelControlPolicies.Location = new System.Drawing.Point(0, 0);
             this.panelControlPolicies.Margin = new System.Windows.Forms.Padding(5);
             this.panelControlPolicies.Name = "panelControlPolicies";
-            this.panelControlPolicies.Size = new System.Drawing.Size(1371, 534);
+            this.panelControlPolicies.Size = new System.Drawing.Size(1371, 603);
             this.panelControlPolicies.TabIndex = 0;
             // 
             // checkEditAccountingServiceItem
@@ -2152,7 +2153,7 @@
             this.xtraTabPageSvcsIncluded.Controls.Add(this.panelControlSvcsIncluded);
             this.xtraTabPageSvcsIncluded.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabPageSvcsIncluded.Name = "xtraTabPageSvcsIncluded";
-            this.xtraTabPageSvcsIncluded.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageSvcsIncluded.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageSvcsIncluded.Text = "Services Included";
             // 
             // panelControlSvcsIncluded
@@ -2167,7 +2168,7 @@
             this.panelControlSvcsIncluded.Location = new System.Drawing.Point(0, 0);
             this.panelControlSvcsIncluded.Margin = new System.Windows.Forms.Padding(5);
             this.panelControlSvcsIncluded.Name = "panelControlSvcsIncluded";
-            this.panelControlSvcsIncluded.Size = new System.Drawing.Size(1371, 534);
+            this.panelControlSvcsIncluded.Size = new System.Drawing.Size(1371, 603);
             this.panelControlSvcsIncluded.TabIndex = 0;
             // 
             // TextEditInclude6
@@ -2247,7 +2248,7 @@
             this.xtraTabPageCustom.Controls.Add(this.panelControlCustom);
             this.xtraTabPageCustom.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabPageCustom.Name = "xtraTabPageCustom";
-            this.xtraTabPageCustom.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageCustom.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageCustom.Text = "Custom";
             // 
             // panelControlCustom
@@ -2257,7 +2258,7 @@
             this.panelControlCustom.Location = new System.Drawing.Point(0, 0);
             this.panelControlCustom.Margin = new System.Windows.Forms.Padding(5);
             this.panelControlCustom.Name = "panelControlCustom";
-            this.panelControlCustom.Size = new System.Drawing.Size(1371, 534);
+            this.panelControlCustom.Size = new System.Drawing.Size(1371, 603);
             this.panelControlCustom.TabIndex = 0;
             // 
             // GridControlUserfields
@@ -2271,7 +2272,7 @@
             this.GridControlUserfields.MainView = this.GridViewUserFields;
             this.GridControlUserfields.Margin = new System.Windows.Forms.Padding(5);
             this.GridControlUserfields.Name = "GridControlUserfields";
-            this.GridControlUserfields.Size = new System.Drawing.Size(927, 258);
+            this.GridControlUserfields.Size = new System.Drawing.Size(927, 327);
             this.GridControlUserfields.TabIndex = 1;
             this.GridControlUserfields.TabStop = false;
             this.GridControlUserfields.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2423,7 +2424,7 @@
             this.xtraTabPageCommissions.Controls.Add(this.panelControlComms);
             this.xtraTabPageCommissions.Margin = new System.Windows.Forms.Padding(5);
             this.xtraTabPageCommissions.Name = "xtraTabPageCommissions";
-            this.xtraTabPageCommissions.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageCommissions.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageCommissions.Text = "Commissions";
             // 
             // panelControlComms
@@ -2443,7 +2444,7 @@
             this.panelControlComms.Location = new System.Drawing.Point(0, 0);
             this.panelControlComms.Margin = new System.Windows.Forms.Padding(5);
             this.panelControlComms.Name = "panelControlComms";
-            this.panelControlComms.Size = new System.Drawing.Size(1371, 534);
+            this.panelControlComms.Size = new System.Drawing.Size(1371, 603);
             this.panelControlComms.TabIndex = 0;
             // 
             // LabelSource
@@ -2501,7 +2502,7 @@
             this.GridControlMarkups.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEditExclusionMU,
             this.repositoryItemCheckEditInactiveMU});
-            this.GridControlMarkups.Size = new System.Drawing.Size(1310, 185);
+            this.GridControlMarkups.Size = new System.Drawing.Size(1310, 254);
             this.GridControlMarkups.TabIndex = 49;
             this.GridControlMarkups.TabStop = false;
             this.GridControlMarkups.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2875,7 +2876,7 @@
             this.xtraTabPageSupplierMappings.Controls.Add(this.panelControl1);
             this.xtraTabPageSupplierMappings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xtraTabPageSupplierMappings.Name = "xtraTabPageSupplierMappings";
-            this.xtraTabPageSupplierMappings.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageSupplierMappings.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageSupplierMappings.Text = "Supplier Mappings";
             // 
             // panelControl1
@@ -2887,7 +2888,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1371, 534);
+            this.panelControl1.Size = new System.Drawing.Size(1371, 603);
             this.panelControl1.TabIndex = 0;
             // 
             // MappingDelButton
@@ -2895,7 +2896,7 @@
             this.MappingDelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MappingDelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingDelButton.ImageOptions.Image")));
             this.MappingDelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingDelButton.Location = new System.Drawing.Point(1268, 426);
+            this.MappingDelButton.Location = new System.Drawing.Point(1268, 495);
             this.MappingDelButton.Margin = new System.Windows.Forms.Padding(5);
             this.MappingDelButton.Name = "MappingDelButton";
             this.MappingDelButton.Size = new System.Drawing.Size(72, 84);
@@ -2909,7 +2910,7 @@
             this.MappingAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MappingAddButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingAddButton.ImageOptions.Image")));
             this.MappingAddButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingAddButton.Location = new System.Drawing.Point(1268, 326);
+            this.MappingAddButton.Location = new System.Drawing.Point(1268, 395);
             this.MappingAddButton.Margin = new System.Windows.Forms.Padding(5);
             this.MappingAddButton.Name = "MappingAddButton";
             this.MappingAddButton.Size = new System.Drawing.Size(72, 90);
@@ -2943,7 +2944,7 @@
             this.RepositoryItemSpinEditMarkupFlat,
             this.RepositoryItemSpinEditSuppCommPct,
             this.RepositoryItemSpinEditRetailMarkupFlat});
-            this.GridControlSupplierProduct.Size = new System.Drawing.Size(1195, 475);
+            this.GridControlSupplierProduct.Size = new System.Drawing.Size(1195, 544);
             this.GridControlSupplierProduct.TabIndex = 103;
             this.GridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierProduct});
@@ -3469,7 +3470,7 @@
             this.xtraTabPageSupplierCategories.Controls.Add(this.panelControl2);
             this.xtraTabPageSupplierCategories.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.xtraTabPageSupplierCategories.Name = "xtraTabPageSupplierCategories";
-            this.xtraTabPageSupplierCategories.Size = new System.Drawing.Size(1371, 534);
+            this.xtraTabPageSupplierCategories.Size = new System.Drawing.Size(1371, 603);
             this.xtraTabPageSupplierCategories.Text = "Supplier Categories";
             // 
             // panelControl2
@@ -3482,7 +3483,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1371, 534);
+            this.panelControl2.Size = new System.Drawing.Size(1371, 603);
             this.panelControl2.TabIndex = 0;
             // 
             // labelControl2
@@ -3499,7 +3500,7 @@
             this.SimpleButtonDelSuppCat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SimpleButtonDelSuppCat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDelSuppCat.ImageOptions.Image")));
             this.SimpleButtonDelSuppCat.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.SimpleButtonDelSuppCat.Location = new System.Drawing.Point(1254, 426);
+            this.SimpleButtonDelSuppCat.Location = new System.Drawing.Point(1254, 495);
             this.SimpleButtonDelSuppCat.Margin = new System.Windows.Forms.Padding(5);
             this.SimpleButtonDelSuppCat.Name = "SimpleButtonDelSuppCat";
             this.SimpleButtonDelSuppCat.Size = new System.Drawing.Size(68, 84);
@@ -3513,7 +3514,7 @@
             this.SimpleButtonAddSuppCat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SimpleButtonAddSuppCat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonAddSuppCat.ImageOptions.Image")));
             this.SimpleButtonAddSuppCat.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.SimpleButtonAddSuppCat.Location = new System.Drawing.Point(1254, 332);
+            this.SimpleButtonAddSuppCat.Location = new System.Drawing.Point(1254, 401);
             this.SimpleButtonAddSuppCat.Margin = new System.Windows.Forms.Padding(5);
             this.SimpleButtonAddSuppCat.Name = "SimpleButtonAddSuppCat";
             this.SimpleButtonAddSuppCat.Size = new System.Drawing.Size(68, 84);
@@ -3535,7 +3536,7 @@
             this.GridControlSupplierCategory.Name = "GridControlSupplierCategory";
             this.GridControlSupplierCategory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCustomSearchLookUpEditMappingCat});
-            this.GridControlSupplierCategory.Size = new System.Drawing.Size(1188, 447);
+            this.GridControlSupplierCategory.Size = new System.Drawing.Size(1188, 516);
             this.GridControlSupplierCategory.TabIndex = 110;
             this.GridControlSupplierCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierCategory});
@@ -4084,8 +4085,9 @@
             this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.BarButtonItemNew,
             this.BarButtonItemDelete,
-            this.BarButtonItemSave});
-            this.BarManager.MaxItemId = 3;
+            this.BarButtonItemSave,
+            this.BarButtonItemUpdateWebsite});
+            this.BarManager.MaxItemId = 4;
             // 
             // bar1
             // 
@@ -4097,7 +4099,8 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemUpdateWebsite)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.OptionsBar.UseWholeRow = true;
@@ -4165,6 +4168,15 @@
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1013);
+            // 
+            // BarButtonItemUpdateWebsite
+            // 
+            this.BarButtonItemUpdateWebsite.Caption = "Update Website";
+            this.BarButtonItemUpdateWebsite.Id = 3;
+            this.BarButtonItemUpdateWebsite.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.Image")));
+            this.BarButtonItemUpdateWebsite.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.LargeImage")));
+            this.BarButtonItemUpdateWebsite.Name = "BarButtonItemUpdateWebsite";
+            this.BarButtonItemUpdateWebsite.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUpdateWebsite_ItemClick);
             // 
             // packForm
             // 
@@ -4688,5 +4700,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditSuppCommPct;
         private DevExpress.XtraGrid.Columns.GridColumn colRetailMarkupFlat;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditRetailMarkupFlat;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemUpdateWebsite;
     }
 }

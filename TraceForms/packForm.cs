@@ -352,6 +352,7 @@ namespace TraceForms
             BindingSourceSupplierProduct.Clear();
             SetReadOnly(true);
             BarButtonItemDelete.Enabled = false;
+            BarButtonItemUpdateWebsite.Enabled = false;
             BarButtonItemSave.Enabled = false;
             BindingSource.DataSource = typeof(PACK);
             GridViewUserFields.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to clear the custom fields
@@ -371,6 +372,7 @@ namespace TraceForms
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
+                BarButtonItemUpdateWebsite.Enabled = false;
                 BarButtonItemSave.Enabled = true;
                 GridViewUserFields.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to display the custom fields
             }
@@ -973,6 +975,13 @@ namespace TraceForms
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateDepartureCity, sender);
+        }
+
+        private void BarButtonItemUpdateWebsite_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
+            _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
+                _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
         }
 
         private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e)

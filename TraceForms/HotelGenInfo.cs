@@ -26,6 +26,7 @@ using System.Data.OleDb;
 using DevExpress.XtraGrid.Views.Card;
 using FlexEntities.Entities;
 using System.Data.Entity.Core.Objects;
+using FlexInterfaces.Core;
 
 namespace TraceForms
 {
@@ -63,6 +64,8 @@ namespace TraceForms
         RepositoryItemImageComboBox _catCombo = new RepositoryItemImageComboBox();
         HOTEL _selectedRecord;
         List<CodeName> _hotelLookup;
+        ICoreSys _sys;
+        FlextourEntities _context;
 
         public HotelGenInfo(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -77,6 +80,8 @@ namespace TraceForms
             context = new FlextourEntities(sys.Settings.EFConnectionString);
             username = sys.User.Name;
             _accountingURL = sys.Settings.TourAccountingURL;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            _sys = sys;
         }
 
         private void LoadLookups()
@@ -2385,6 +2390,13 @@ namespace TraceForms
 
             if (!temp && !_modified)
                 context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (HOTEL)HotelBindingSource.Current);
+        }
+
+        private void BarButtonItemUpdateWebsite_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
+            _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
+                _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
         }
     }
 }
