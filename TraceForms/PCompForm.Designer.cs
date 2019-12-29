@@ -235,6 +235,7 @@ namespace TraceForms
             this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn35 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TimeEditServiceTime = new DevExpress.XtraEditors.TextEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -246,7 +247,6 @@ namespace TraceForms
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.TimeEditServiceTime = new DevExpress.XtraEditors.TextEdit();
             label18 = new DevExpress.XtraEditors.LabelControl();
             label1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
@@ -319,10 +319,10 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label18
@@ -1059,6 +1059,7 @@ namespace TraceForms
             this.TimeEditDepartureTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.TimeEditDepartureTime.Properties.Mask.EditMask = "h:mm tt";
+            this.TimeEditDepartureTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TimeEditDepartureTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.TimeEditDepartureTime.Size = new System.Drawing.Size(150, 28);
             this.TimeEditDepartureTime.TabIndex = 270;
@@ -2628,6 +2629,21 @@ namespace TraceForms
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.OptionsColumn.ReadOnly = true;
             // 
+            // TimeEditServiceTime
+            // 
+            this.TimeEditServiceTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TOUR_TIME", true));
+            this.TimeEditServiceTime.EditValue = "";
+            this.TimeEditServiceTime.Location = new System.Drawing.Point(766, 366);
+            this.TimeEditServiceTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TimeEditServiceTime.Name = "TimeEditServiceTime";
+            this.TimeEditServiceTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.TimeEditServiceTime.Properties.Mask.EditMask = "hhmm";
+            this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.TimeEditServiceTime.Properties.MaxLength = 4;
+            this.TimeEditServiceTime.Size = new System.Drawing.Size(108, 28);
+            this.TimeEditServiceTime.TabIndex = 273;
+            this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
+            // 
             // PanelControlStatus
             // 
             this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
@@ -2745,21 +2761,6 @@ namespace TraceForms
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1040);
             // 
-            // TimeEditServiceTime
-            // 
-            this.TimeEditServiceTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TOUR_TIME", true));
-            this.TimeEditServiceTime.EditValue = "";
-            this.TimeEditServiceTime.Location = new System.Drawing.Point(766, 366);
-            this.TimeEditServiceTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TimeEditServiceTime.Name = "TimeEditServiceTime";
-            this.TimeEditServiceTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.TimeEditServiceTime.Properties.Mask.EditMask = "hhmm";
-            this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.TimeEditServiceTime.Properties.MaxLength = 4;
-            this.TimeEditServiceTime.Size = new System.Drawing.Size(108, 28);
-            this.TimeEditServiceTime.TabIndex = 273;
-            this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
-            // 
             // PCompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -2852,11 +2853,11 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeEditServiceTime.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

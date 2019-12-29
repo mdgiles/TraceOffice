@@ -559,6 +559,7 @@
             this.gridColumnMappingCustom1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingCustom2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSupplierProduct_Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPageSupplierRoomTypes = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl11 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -610,7 +611,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.colSupplierProduct_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnMarkupPct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEditPct = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             cODELabel = new DevExpress.XtraEditors.LabelControl();
             lAST_UPDLabel = new DevExpress.XtraEditors.LabelControl();
             nAMELabel = new DevExpress.XtraEditors.LabelControl();
@@ -865,681 +867,682 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
             this.panelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPct)).BeginInit();
             this.SuspendLayout();
             // 
             // cODELabel
             // 
-            cODELabel.Location = new System.Drawing.Point(27, 39);
-            cODELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cODELabel.Location = new System.Drawing.Point(24, 32);
+            cODELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cODELabel.Name = "cODELabel";
-            cODELabel.Size = new System.Drawing.Size(43, 23);
+            cODELabel.Size = new System.Drawing.Size(37, 19);
             cODELabel.TabIndex = 2;
             cODELabel.Text = "Hotel";
             // 
             // lAST_UPDLabel
             // 
-            lAST_UPDLabel.Location = new System.Drawing.Point(423, 36);
-            lAST_UPDLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lAST_UPDLabel.Location = new System.Drawing.Point(381, 30);
+            lAST_UPDLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             lAST_UPDLabel.Name = "lAST_UPDLabel";
-            lAST_UPDLabel.Size = new System.Drawing.Size(116, 23);
+            lAST_UPDLabel.Size = new System.Drawing.Size(96, 19);
             lAST_UPDLabel.TabIndex = 4;
             lAST_UPDLabel.Text = "Last updated:";
             // 
             // nAMELabel
             // 
-            nAMELabel.Location = new System.Drawing.Point(27, 77);
-            nAMELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            nAMELabel.Location = new System.Drawing.Point(24, 64);
+            nAMELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             nAMELabel.Name = "nAMELabel";
-            nAMELabel.Size = new System.Drawing.Size(49, 23);
+            nAMELabel.Size = new System.Drawing.Size(41, 19);
             nAMELabel.TabIndex = 6;
             nAMELabel.Text = "Name";
             // 
             // aRLabel
             // 
-            aRLabel.Location = new System.Drawing.Point(50, 165);
-            aRLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aRLabel.Location = new System.Drawing.Point(45, 136);
+            aRLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aRLabel.Name = "aRLabel";
-            aRLabel.Size = new System.Drawing.Size(104, 23);
+            aRLabel.Size = new System.Drawing.Size(89, 19);
             aRLabel.TabIndex = 29;
             aRLabel.Text = "A/R Number";
             // 
             // aPLabel
             // 
-            aPLabel.Location = new System.Drawing.Point(50, 212);
-            aPLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aPLabel.Location = new System.Drawing.Point(45, 175);
+            aPLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aPLabel.Name = "aPLabel";
-            aPLabel.Size = new System.Drawing.Size(102, 23);
+            aPLabel.Size = new System.Drawing.Size(88, 19);
             aPLabel.TabIndex = 31;
             aPLabel.Text = "A/P Number";
             // 
             // bILLACCTLabel
             // 
-            bILLACCTLabel.Location = new System.Drawing.Point(50, 260);
-            bILLACCTLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            bILLACCTLabel.Location = new System.Drawing.Point(45, 215);
+            bILLACCTLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             bILLACCTLabel.Name = "bILLACCTLabel";
-            bILLACCTLabel.Size = new System.Drawing.Size(155, 23);
+            bILLACCTLabel.Size = new System.Drawing.Size(133, 19);
             bILLACCTLabel.TabIndex = 33;
             bILLACCTLabel.Text = "Billing / Account #";
             // 
             // aP_MGRLabel
             // 
-            aP_MGRLabel.Location = new System.Drawing.Point(83, 442);
-            aP_MGRLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aP_MGRLabel.Location = new System.Drawing.Point(75, 365);
+            aP_MGRLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aP_MGRLabel.Name = "aP_MGRLabel";
-            aP_MGRLabel.Size = new System.Drawing.Size(108, 23);
+            aP_MGRLabel.Size = new System.Drawing.Size(91, 19);
             aP_MGRLabel.TabIndex = 32;
             aP_MGRLabel.Text = "A/P Manager";
             // 
             // aP_EMAILLabel
             // 
-            aP_EMAILLabel.Location = new System.Drawing.Point(83, 490);
-            aP_EMAILLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aP_EMAILLabel.Location = new System.Drawing.Point(75, 405);
+            aP_EMAILLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aP_EMAILLabel.Name = "aP_EMAILLabel";
-            aP_EMAILLabel.Size = new System.Drawing.Size(79, 23);
+            aP_EMAILLabel.Size = new System.Drawing.Size(70, 19);
             aP_EMAILLabel.TabIndex = 34;
             aP_EMAILLabel.Text = "A/P Email";
             // 
             // tAXRATELabel
             // 
-            tAXRATELabel.Location = new System.Drawing.Point(776, 165);
-            tAXRATELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tAXRATELabel.Location = new System.Drawing.Point(698, 136);
+            tAXRATELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             tAXRATELabel.Name = "tAXRATELabel";
-            tAXRATELabel.Size = new System.Drawing.Size(94, 23);
+            tAXRATELabel.Size = new System.Drawing.Size(79, 19);
             tAXRATELabel.TabIndex = 39;
             tAXRATELabel.Text = "Tax rate %";
             // 
             // rOOMTAXLabel
             // 
-            rOOMTAXLabel.Location = new System.Drawing.Point(776, 211);
-            rOOMTAXLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rOOMTAXLabel.Location = new System.Drawing.Point(698, 174);
+            rOOMTAXLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rOOMTAXLabel.Name = "rOOMTAXLabel";
-            rOOMTAXLabel.Size = new System.Drawing.Size(100, 23);
+            rOOMTAXLabel.Size = new System.Drawing.Size(87, 19);
             rOOMTAXLabel.TabIndex = 40;
             rOOMTAXLabel.Text = "Room Tax $";
             // 
             // pERSONTAXLabel
             // 
-            pERSONTAXLabel.Location = new System.Drawing.Point(776, 260);
-            pERSONTAXLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            pERSONTAXLabel.Location = new System.Drawing.Point(698, 215);
+            pERSONTAXLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             pERSONTAXLabel.Name = "pERSONTAXLabel";
-            pERSONTAXLabel.Size = new System.Drawing.Size(103, 23);
+            pERSONTAXLabel.Size = new System.Drawing.Size(88, 19);
             pERSONTAXLabel.TabIndex = 41;
             pERSONTAXLabel.Text = "Person tax $";
             // 
             // due_DaysLabel
             // 
             due_DaysLabel.AutoSize = true;
-            due_DaysLabel.Location = new System.Drawing.Point(797, 449);
+            due_DaysLabel.Location = new System.Drawing.Point(717, 371);
             due_DaysLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             due_DaysLabel.Name = "due_DaysLabel";
-            due_DaysLabel.Size = new System.Drawing.Size(125, 24);
+            due_DaysLabel.Size = new System.Drawing.Size(101, 19);
             due_DaysLabel.TabIndex = 41;
             due_DaysLabel.Text = "AP Due Days";
             // 
             // nO_RMSLabel
             // 
-            nO_RMSLabel.Location = new System.Drawing.Point(43, 119);
-            nO_RMSLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            nO_RMSLabel.Location = new System.Drawing.Point(39, 98);
+            nO_RMSLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             nO_RMSLabel.Name = "nO_RMSLabel";
-            nO_RMSLabel.Size = new System.Drawing.Size(147, 23);
+            nO_RMSLabel.Size = new System.Drawing.Size(126, 19);
             nO_RMSLabel.TabIndex = 29;
             nO_RMSLabel.Text = "Number of rooms";
             // 
             // nO_RESTLabel
             // 
-            nO_RESTLabel.Location = new System.Drawing.Point(43, 172);
-            nO_RESTLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            nO_RESTLabel.Location = new System.Drawing.Point(39, 142);
+            nO_RESTLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             nO_RESTLabel.Name = "nO_RESTLabel";
-            nO_RESTLabel.Size = new System.Drawing.Size(190, 23);
+            nO_RESTLabel.Size = new System.Drawing.Size(159, 19);
             nO_RESTLabel.TabIndex = 30;
             nO_RESTLabel.Text = "Number of restaurants";
             // 
             // nO_LOUNGESLabel
             // 
-            nO_LOUNGESLabel.Location = new System.Drawing.Point(43, 222);
-            nO_LOUNGESLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            nO_LOUNGESLabel.Location = new System.Drawing.Point(39, 183);
+            nO_LOUNGESLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             nO_LOUNGESLabel.Name = "nO_LOUNGESLabel";
-            nO_LOUNGESLabel.Size = new System.Drawing.Size(161, 23);
+            nO_LOUNGESLabel.Size = new System.Drawing.Size(136, 19);
             nO_LOUNGESLabel.TabIndex = 31;
             nO_LOUNGESLabel.Text = "Number of lounges";
             // 
             // rOOM_DESCLabel
             // 
-            rOOM_DESCLabel.Location = new System.Drawing.Point(43, 275);
-            rOOM_DESCLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rOOM_DESCLabel.Location = new System.Drawing.Point(39, 227);
+            rOOM_DESCLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rOOM_DESCLabel.Name = "rOOM_DESCLabel";
-            rOOM_DESCLabel.Size = new System.Drawing.Size(155, 23);
+            rOOM_DESCLabel.Size = new System.Drawing.Size(133, 19);
             rOOM_DESCLabel.TabIndex = 32;
             rOOM_DESCLabel.Text = "Room Descriptions";
             // 
             // cOMMENT1Label
             // 
-            cOMMENT1Label.Location = new System.Drawing.Point(43, 334);
-            cOMMENT1Label.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cOMMENT1Label.Location = new System.Drawing.Point(39, 276);
+            cOMMENT1Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cOMMENT1Label.Name = "cOMMENT1Label";
-            cOMMENT1Label.Size = new System.Drawing.Size(80, 23);
+            cOMMENT1Label.Size = new System.Drawing.Size(69, 19);
             cOMMENT1Label.TabIndex = 34;
             cOMMENT1Label.Text = "Comment";
             // 
             // aDV_PMTLabel
             // 
-            aDV_PMTLabel.Location = new System.Drawing.Point(33, 88);
-            aDV_PMTLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aDV_PMTLabel.Location = new System.Drawing.Point(30, 73);
+            aDV_PMTLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aDV_PMTLabel.Name = "aDV_PMTLabel";
-            aDV_PMTLabel.Size = new System.Drawing.Size(231, 23);
+            aDV_PMTLabel.Size = new System.Drawing.Size(194, 19);
             aDV_PMTLabel.TabIndex = 46;
             aDV_PMTLabel.Text = "Advance Payment Required";
             // 
             // dEP_RQLabel
             // 
-            dEP_RQLabel.Location = new System.Drawing.Point(33, 149);
-            dEP_RQLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dEP_RQLabel.Location = new System.Drawing.Point(30, 123);
+            dEP_RQLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             dEP_RQLabel.Name = "dEP_RQLabel";
-            dEP_RQLabel.Size = new System.Drawing.Size(144, 23);
+            dEP_RQLabel.Size = new System.Drawing.Size(121, 19);
             dEP_RQLabel.TabIndex = 50;
             dEP_RQLabel.Text = "Deposit Required";
             // 
             // cANC_PERLabel
             // 
-            cANC_PERLabel.Location = new System.Drawing.Point(33, 189);
-            cANC_PERLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cANC_PERLabel.Location = new System.Drawing.Point(30, 156);
+            cANC_PERLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cANC_PERLabel.Name = "cANC_PERLabel";
-            cANC_PERLabel.Size = new System.Drawing.Size(158, 23);
+            cANC_PERLabel.Size = new System.Drawing.Size(134, 19);
             cANC_PERLabel.TabIndex = 51;
             cANC_PERLabel.Text = "Cancellation Notice";
             // 
             // dFLT_CATLabel
             // 
-            dFLT_CATLabel.Location = new System.Drawing.Point(33, 234);
-            dFLT_CATLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dFLT_CATLabel.Location = new System.Drawing.Point(30, 193);
+            dFLT_CATLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             dFLT_CATLabel.Name = "dFLT_CATLabel";
-            dFLT_CATLabel.Size = new System.Drawing.Size(140, 23);
+            dFLT_CATLabel.Size = new System.Drawing.Size(118, 19);
             dFLT_CATLabel.TabIndex = 52;
             dFLT_CATLabel.Text = "Default Category";
             // 
             // dEF_ROOMLabel
             // 
-            dEF_ROOMLabel.Location = new System.Drawing.Point(33, 280);
-            dEF_ROOMLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dEF_ROOMLabel.Location = new System.Drawing.Point(30, 231);
+            dEF_ROOMLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             dEF_ROOMLabel.Name = "dEF_ROOMLabel";
-            dEF_ROOMLabel.Size = new System.Drawing.Size(121, 23);
+            dEF_ROOMLabel.Size = new System.Drawing.Size(103, 19);
             dEF_ROOMLabel.TabIndex = 53;
             dEF_ROOMLabel.Text = "Default Room:";
             // 
             // rATE_BASISLabel
             // 
-            rATE_BASISLabel.Location = new System.Drawing.Point(610, 142);
-            rATE_BASISLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rATE_BASISLabel.Location = new System.Drawing.Point(549, 117);
+            rATE_BASISLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rATE_BASISLabel.Name = "rATE_BASISLabel";
-            rATE_BASISLabel.Size = new System.Drawing.Size(92, 23);
+            rATE_BASISLabel.Size = new System.Drawing.Size(77, 19);
             rATE_BASISLabel.TabIndex = 55;
             rATE_BASISLabel.Text = "Rate basis:";
             // 
             // cHECK_INLabel
             // 
-            cHECK_INLabel.Location = new System.Drawing.Point(589, 189);
-            cHECK_INLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cHECK_INLabel.Location = new System.Drawing.Point(530, 156);
+            cHECK_INLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cHECK_INLabel.Name = "cHECK_INLabel";
-            cHECK_INLabel.Size = new System.Drawing.Size(120, 23);
+            cHECK_INLabel.Size = new System.Drawing.Size(102, 19);
             cHECK_INLabel.TabIndex = 56;
             cHECK_INLabel.Text = "Check in time:";
             // 
             // cHILD_DESCLabel
             // 
-            cHILD_DESCLabel.Location = new System.Drawing.Point(623, 237);
-            cHILD_DESCLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cHILD_DESCLabel.Location = new System.Drawing.Point(561, 196);
+            cHILD_DESCLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cHILD_DESCLabel.Name = "cHILD_DESCLabel";
-            cHILD_DESCLabel.Size = new System.Drawing.Size(76, 23);
+            cHILD_DESCLabel.Size = new System.Drawing.Size(65, 19);
             cHILD_DESCLabel.TabIndex = 58;
             cHILD_DESCLabel.Text = "Children:";
             // 
             // cRED_CARDSLabel
             // 
-            cRED_CARDSLabel.Location = new System.Drawing.Point(589, 284);
-            cRED_CARDSLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cRED_CARDSLabel.Location = new System.Drawing.Point(530, 235);
+            cRED_CARDSLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cRED_CARDSLabel.Name = "cRED_CARDSLabel";
-            cRED_CARDSLabel.Size = new System.Drawing.Size(109, 23);
+            cRED_CARDSLabel.Size = new System.Drawing.Size(93, 19);
             cRED_CARDSLabel.TabIndex = 60;
             cRED_CARDSLabel.Text = "Credit Cards:";
             // 
             // mAX_SGLLabel
             // 
-            mAX_SGLLabel.Location = new System.Drawing.Point(307, 364);
-            mAX_SGLLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAX_SGLLabel.Location = new System.Drawing.Point(276, 301);
+            mAX_SGLLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAX_SGLLabel.Name = "mAX_SGLLabel";
-            mAX_SGLLabel.Size = new System.Drawing.Size(40, 23);
+            mAX_SGLLabel.Size = new System.Drawing.Size(34, 19);
             mAX_SGLLabel.TabIndex = 63;
             mAX_SGLLabel.Text = "SGL:";
             // 
             // mAX_DBLLabel
             // 
-            mAX_DBLLabel.Location = new System.Drawing.Point(476, 364);
-            mAX_DBLLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAX_DBLLabel.Location = new System.Drawing.Point(428, 301);
+            mAX_DBLLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAX_DBLLabel.Name = "mAX_DBLLabel";
-            mAX_DBLLabel.Size = new System.Drawing.Size(40, 23);
+            mAX_DBLLabel.Size = new System.Drawing.Size(34, 19);
             mAX_DBLLabel.TabIndex = 64;
             mAX_DBLLabel.Text = "DBL:";
             // 
             // mAX_TPLLabel
             // 
-            mAX_TPLLabel.Location = new System.Drawing.Point(642, 364);
-            mAX_TPLLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAX_TPLLabel.Location = new System.Drawing.Point(578, 301);
+            mAX_TPLLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAX_TPLLabel.Name = "mAX_TPLLabel";
-            mAX_TPLLabel.Size = new System.Drawing.Size(37, 23);
+            mAX_TPLLabel.Size = new System.Drawing.Size(33, 19);
             mAX_TPLLabel.TabIndex = 65;
             mAX_TPLLabel.Text = "TPL:";
             // 
             // mAX_QUALabel
             // 
-            mAX_QUALabel.Location = new System.Drawing.Point(810, 364);
-            mAX_QUALabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAX_QUALabel.Location = new System.Drawing.Point(729, 301);
+            mAX_QUALabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAX_QUALabel.Name = "mAX_QUALabel";
-            mAX_QUALabel.Size = new System.Drawing.Size(43, 23);
+            mAX_QUALabel.Size = new System.Drawing.Size(40, 19);
             mAX_QUALabel.TabIndex = 66;
             mAX_QUALabel.Text = "QUA:";
             // 
             // mAX_OTHLabel
             // 
-            mAX_OTHLabel.Location = new System.Drawing.Point(989, 357);
-            mAX_OTHLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAX_OTHLabel.Location = new System.Drawing.Point(890, 295);
+            mAX_OTHLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAX_OTHLabel.Name = "mAX_OTHLabel";
-            mAX_OTHLabel.Size = new System.Drawing.Size(44, 23);
+            mAX_OTHLabel.Size = new System.Drawing.Size(39, 19);
             mAX_OTHLabel.TabIndex = 67;
             mAX_OTHLabel.Text = "OTH:";
             // 
             // vOUCH_DAYS_PRIORLabel
             // 
-            vOUCH_DAYS_PRIORLabel.Location = new System.Drawing.Point(256, 438);
-            vOUCH_DAYS_PRIORLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            vOUCH_DAYS_PRIORLabel.Location = new System.Drawing.Point(230, 362);
+            vOUCH_DAYS_PRIORLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             vOUCH_DAYS_PRIORLabel.Name = "vOUCH_DAYS_PRIORLabel";
-            vOUCH_DAYS_PRIORLabel.Size = new System.Drawing.Size(92, 23);
+            vOUCH_DAYS_PRIORLabel.Size = new System.Drawing.Size(79, 19);
             vOUCH_DAYS_PRIORLabel.TabIndex = 69;
             vOUCH_DAYS_PRIORLabel.Text = "Days prior:";
             // 
             // gEN_MGRLabel
             // 
-            gEN_MGRLabel.Location = new System.Drawing.Point(30, 93);
-            gEN_MGRLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            gEN_MGRLabel.Location = new System.Drawing.Point(27, 77);
+            gEN_MGRLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             gEN_MGRLabel.Name = "gEN_MGRLabel";
-            gEN_MGRLabel.Size = new System.Drawing.Size(49, 23);
+            gEN_MGRLabel.Size = new System.Drawing.Size(41, 19);
             gEN_MGRLabel.TabIndex = 26;
             gEN_MGRLabel.Text = "Name";
             // 
             // tELEXLabel1
             // 
-            tELEXLabel1.Location = new System.Drawing.Point(30, 218);
-            tELEXLabel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tELEXLabel1.Location = new System.Drawing.Point(27, 180);
+            tELEXLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             tELEXLabel1.Name = "tELEXLabel1";
-            tELEXLabel1.Size = new System.Drawing.Size(29, 23);
+            tELEXLabel1.Size = new System.Drawing.Size(24, 19);
             tELEXLabel1.TabIndex = 28;
             tELEXLabel1.Text = "Fax";
             // 
             // pHONELabel
             // 
-            pHONELabel.Location = new System.Drawing.Point(522, 99);
-            pHONELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            pHONELabel.Location = new System.Drawing.Point(470, 82);
+            pHONELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             pHONELabel.Name = "pHONELabel";
-            pHONELabel.Size = new System.Drawing.Size(52, 23);
+            pHONELabel.Size = new System.Drawing.Size(44, 19);
             pHONELabel.TabIndex = 30;
             pHONELabel.Text = "Phone";
             // 
             // rES_EMAILLabel
             // 
-            rES_EMAILLabel.Location = new System.Drawing.Point(522, 218);
-            rES_EMAILLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rES_EMAILLabel.Location = new System.Drawing.Point(470, 180);
+            rES_EMAILLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rES_EMAILLabel.Name = "rES_EMAILLabel";
-            rES_EMAILLabel.Size = new System.Drawing.Size(116, 23);
+            rES_EMAILLabel.Size = new System.Drawing.Size(98, 19);
             rES_EMAILLabel.TabIndex = 32;
             rES_EMAILLabel.Text = "Email address";
             // 
             // mAILFAXLabel
             // 
-            mAILFAXLabel.Location = new System.Drawing.Point(30, 154);
-            mAILFAXLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mAILFAXLabel.Location = new System.Drawing.Point(27, 127);
+            mAILFAXLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mAILFAXLabel.Name = "mAILFAXLabel";
-            mAILFAXLabel.Size = new System.Drawing.Size(167, 23);
+            mAILFAXLabel.Size = new System.Drawing.Size(139, 19);
             mAILFAXLabel.TabIndex = 34;
             mAILFAXLabel.Text = "Send documents by";
             // 
             // aDDR1Label
             // 
-            aDDR1Label.Location = new System.Drawing.Point(42, 160);
-            aDDR1Label.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aDDR1Label.Location = new System.Drawing.Point(38, 132);
+            aDDR1Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aDDR1Label.Name = "aDDR1Label";
-            aDDR1Label.Size = new System.Drawing.Size(50, 23);
+            aDDR1Label.Size = new System.Drawing.Size(41, 19);
             aDDR1Label.TabIndex = 75;
             aDDR1Label.Text = "Street";
             // 
             // cITYLabel
             // 
-            cITYLabel.Location = new System.Drawing.Point(42, 298);
-            cITYLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cITYLabel.Location = new System.Drawing.Point(38, 246);
+            cITYLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cITYLabel.Name = "cITYLabel";
-            cITYLabel.Size = new System.Drawing.Size(30, 23);
+            cITYLabel.Size = new System.Drawing.Size(27, 19);
             cITYLabel.TabIndex = 81;
             cITYLabel.Text = "City";
             // 
             // sTATELabel
             // 
-            sTATELabel.Location = new System.Drawing.Point(42, 345);
-            sTATELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            sTATELabel.Location = new System.Drawing.Point(38, 285);
+            sTATELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             sTATELabel.Name = "sTATELabel";
-            sTATELabel.Size = new System.Drawing.Size(43, 23);
+            sTATELabel.Size = new System.Drawing.Size(35, 19);
             sTATELabel.TabIndex = 82;
             sTATELabel.Text = "State";
             // 
             // zIPLabel
             // 
-            zIPLabel.Location = new System.Drawing.Point(42, 398);
-            zIPLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            zIPLabel.Location = new System.Drawing.Point(38, 329);
+            zIPLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             zIPLabel.Name = "zIPLabel";
-            zIPLabel.Size = new System.Drawing.Size(26, 23);
+            zIPLabel.Size = new System.Drawing.Size(22, 19);
             zIPLabel.TabIndex = 84;
             zIPLabel.Text = "Zip";
             // 
             // rEGIONLabel
             // 
-            rEGIONLabel.Location = new System.Drawing.Point(42, 445);
-            rEGIONLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rEGIONLabel.Location = new System.Drawing.Point(38, 368);
+            rEGIONLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rEGIONLabel.Name = "rEGIONLabel";
-            rEGIONLabel.Size = new System.Drawing.Size(58, 23);
+            rEGIONLabel.Size = new System.Drawing.Size(49, 19);
             rEGIONLabel.TabIndex = 87;
             rEGIONLabel.Text = "Region";
             // 
             // lOCAL_PHONELabel
             // 
-            lOCAL_PHONELabel.Location = new System.Drawing.Point(40, 494);
-            lOCAL_PHONELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lOCAL_PHONELabel.Location = new System.Drawing.Point(36, 408);
+            lOCAL_PHONELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             lOCAL_PHONELabel.Name = "lOCAL_PHONELabel";
-            lOCAL_PHONELabel.Size = new System.Drawing.Size(52, 23);
+            lOCAL_PHONELabel.Size = new System.Drawing.Size(44, 19);
             lOCAL_PHONELabel.TabIndex = 88;
             lOCAL_PHONELabel.Text = "Phone";
             // 
             // tELEXLabel
             // 
-            tELEXLabel.Location = new System.Drawing.Point(431, 494);
-            tELEXLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            tELEXLabel.Location = new System.Drawing.Point(388, 408);
+            tELEXLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             tELEXLabel.Name = "tELEXLabel";
-            tELEXLabel.Size = new System.Drawing.Size(29, 23);
+            tELEXLabel.Size = new System.Drawing.Size(24, 19);
             tELEXLabel.TabIndex = 90;
             tELEXLabel.Text = "Fax";
             // 
             // cOUNTRY_CODELabel
             // 
-            cOUNTRY_CODELabel.Location = new System.Drawing.Point(417, 445);
-            cOUNTRY_CODELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cOUNTRY_CODELabel.Location = new System.Drawing.Point(375, 368);
+            cOUNTRY_CODELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cOUNTRY_CODELabel.Name = "cOUNTRY_CODELabel";
-            cOUNTRY_CODELabel.Size = new System.Drawing.Size(65, 23);
+            cOUNTRY_CODELabel.Size = new System.Drawing.Size(56, 19);
             cOUNTRY_CODELabel.TabIndex = 92;
             cOUNTRY_CODELabel.Text = "Country";
             // 
             // aIRPORTLabel1
             // 
-            aIRPORTLabel1.Location = new System.Drawing.Point(871, 162);
-            aIRPORTLabel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aIRPORTLabel1.Location = new System.Drawing.Point(784, 134);
+            aIRPORTLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aIRPORTLabel1.Name = "aIRPORTLabel1";
-            aIRPORTLabel1.Size = new System.Drawing.Size(42, 23);
+            aIRPORTLabel1.Size = new System.Drawing.Size(36, 19);
             aIRPORTLabel1.TabIndex = 79;
             aIRPORTLabel1.Text = "Code";
             // 
             // aIR_MILabel
             // 
-            aIR_MILabel.Location = new System.Drawing.Point(1370, 160);
-            aIR_MILabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aIR_MILabel.Location = new System.Drawing.Point(1233, 132);
+            aIR_MILabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aIR_MILabel.Name = "aIR_MILabel";
-            aIR_MILabel.Size = new System.Drawing.Size(63, 23);
+            aIR_MILabel.Size = new System.Drawing.Size(54, 19);
             aIR_MILabel.TabIndex = 80;
             aIR_MILabel.Text = "Miles to";
             // 
             // aCT_CITYLabel
             // 
-            aCT_CITYLabel.Location = new System.Drawing.Point(871, 318);
-            aCT_CITYLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aCT_CITYLabel.Location = new System.Drawing.Point(784, 263);
+            aCT_CITYLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aCT_CITYLabel.Name = "aCT_CITYLabel";
-            aCT_CITYLabel.Size = new System.Drawing.Size(42, 23);
+            aCT_CITYLabel.Size = new System.Drawing.Size(36, 19);
             aCT_CITYLabel.TabIndex = 79;
             aCT_CITYLabel.Text = "Code";
             // 
             // labelControl6
             // 
-            labelControl6.Location = new System.Drawing.Point(1370, 318);
-            labelControl6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            labelControl6.Location = new System.Drawing.Point(1233, 263);
+            labelControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             labelControl6.Name = "labelControl6";
-            labelControl6.Size = new System.Drawing.Size(63, 23);
+            labelControl6.Size = new System.Drawing.Size(54, 19);
             labelControl6.TabIndex = 83;
             labelControl6.Text = "Miles to";
             // 
             // lATITUDELabel
             // 
-            lATITUDELabel.Location = new System.Drawing.Point(942, 475);
-            lATITUDELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lATITUDELabel.Location = new System.Drawing.Point(848, 392);
+            lATITUDELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             lATITUDELabel.Name = "lATITUDELabel";
-            lATITUDELabel.Size = new System.Drawing.Size(67, 23);
+            lATITUDELabel.Size = new System.Drawing.Size(56, 19);
             lATITUDELabel.TabIndex = 74;
             lATITUDELabel.Text = "Latitude";
             // 
             // lONGITUDELabel
             // 
-            lONGITUDELabel.Location = new System.Drawing.Point(942, 529);
-            lONGITUDELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lONGITUDELabel.Location = new System.Drawing.Point(848, 437);
+            lONGITUDELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             lONGITUDELabel.Name = "lONGITUDELabel";
-            lONGITUDELabel.Size = new System.Drawing.Size(83, 23);
+            lONGITUDELabel.Size = new System.Drawing.Size(70, 19);
             lONGITUDELabel.TabIndex = 76;
             lONGITUDELabel.Text = "Longitude";
             // 
             // cONTR_CDELabel
             // 
-            cONTR_CDELabel.Location = new System.Drawing.Point(60, 123);
-            cONTR_CDELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cONTR_CDELabel.Location = new System.Drawing.Point(54, 102);
+            cONTR_CDELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cONTR_CDELabel.Name = "cONTR_CDELabel";
-            cONTR_CDELabel.Size = new System.Drawing.Size(41, 23);
+            cONTR_CDELabel.Size = new System.Drawing.Size(35, 19);
             cONTR_CDELabel.TabIndex = 14;
             cONTR_CDELabel.Text = "Type";
             // 
             // cONTR_AGYLabel
             // 
-            cONTR_AGYLabel.Location = new System.Drawing.Point(413, 123);
-            cONTR_AGYLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cONTR_AGYLabel.Location = new System.Drawing.Point(372, 102);
+            cONTR_AGYLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cONTR_AGYLabel.Name = "cONTR_AGYLabel";
-            cONTR_AGYLabel.Size = new System.Drawing.Size(61, 23);
+            cONTR_AGYLabel.Size = new System.Drawing.Size(52, 19);
             cONTR_AGYLabel.TabIndex = 15;
             cONTR_AGYLabel.Text = "Agency";
             // 
             // rSTR_CDELabel
             // 
-            rSTR_CDELabel.Location = new System.Drawing.Point(60, 189);
-            rSTR_CDELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rSTR_CDELabel.Location = new System.Drawing.Point(54, 156);
+            rSTR_CDELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rSTR_CDELabel.Name = "rSTR_CDELabel";
-            rSTR_CDELabel.Size = new System.Drawing.Size(110, 23);
+            rSTR_CDELabel.Size = new System.Drawing.Size(93, 19);
             rSTR_CDELabel.TabIndex = 16;
             rSTR_CDELabel.Text = "Restricted To";
             // 
             // rESTRICTCODELabel
             // 
-            rESTRICTCODELabel.Location = new System.Drawing.Point(311, 380);
-            rESTRICTCODELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rESTRICTCODELabel.Location = new System.Drawing.Point(280, 314);
+            rESTRICTCODELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rESTRICTCODELabel.Name = "rESTRICTCODELabel";
-            rESTRICTCODELabel.Size = new System.Drawing.Size(42, 23);
+            rESTRICTCODELabel.Size = new System.Drawing.Size(36, 19);
             rESTRICTCODELabel.TabIndex = 23;
             rESTRICTCODELabel.Text = "Code";
             // 
             // rESTRICTDESCLabel
             // 
-            rESTRICTDESCLabel.Location = new System.Drawing.Point(316, 429);
-            rESTRICTDESCLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rESTRICTDESCLabel.Location = new System.Drawing.Point(284, 354);
+            rESTRICTDESCLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rESTRICTDESCLabel.Name = "rESTRICTDESCLabel";
-            rESTRICTDESCLabel.Size = new System.Drawing.Size(93, 23);
+            rESTRICTDESCLabel.Size = new System.Drawing.Size(79, 19);
             rESTRICTDESCLabel.TabIndex = 25;
             rESTRICTDESCLabel.Text = "Description";
             // 
             // aDMINCLOSEDLabel
             // 
-            aDMINCLOSEDLabel.Location = new System.Drawing.Point(117, 85);
-            aDMINCLOSEDLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aDMINCLOSEDLabel.Location = new System.Drawing.Point(105, 70);
+            aDMINCLOSEDLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aDMINCLOSEDLabel.Name = "aDMINCLOSEDLabel";
-            aDMINCLOSEDLabel.Size = new System.Drawing.Size(120, 23);
+            aDMINCLOSEDLabel.Size = new System.Drawing.Size(105, 19);
             aDMINCLOSEDLabel.TabIndex = 25;
             aDMINCLOSEDLabel.Text = "Admin Closed:";
             // 
             // iNACTIVELabel
             // 
-            iNACTIVELabel.Location = new System.Drawing.Point(160, 138);
-            iNACTIVELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            iNACTIVELabel.Location = new System.Drawing.Point(144, 114);
+            iNACTIVELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             iNACTIVELabel.Name = "iNACTIVELabel";
-            iNACTIVELabel.Size = new System.Drawing.Size(73, 23);
+            iNACTIVELabel.Size = new System.Drawing.Size(61, 19);
             iNACTIVELabel.TabIndex = 27;
             iNACTIVELabel.Text = "Inactive:";
             // 
             // pFRD_FLGLabel
             // 
-            pFRD_FLGLabel.Location = new System.Drawing.Point(110, 191);
-            pFRD_FLGLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            pFRD_FLGLabel.Location = new System.Drawing.Point(99, 158);
+            pFRD_FLGLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             pFRD_FLGLabel.Name = "pFRD_FLGLabel";
-            pFRD_FLGLabel.Size = new System.Drawing.Size(134, 23);
+            pFRD_FLGLabel.Size = new System.Drawing.Size(113, 19);
             pFRD_FLGLabel.TabIndex = 29;
             pFRD_FLGLabel.Text = "Preferred Hotel:";
             // 
             // rATELabel
             // 
-            rATELabel.Location = new System.Drawing.Point(196, 241);
-            rATELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            rATELabel.Location = new System.Drawing.Point(176, 199);
+            rATELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             rATELabel.Name = "rATELabel";
-            rATELabel.Size = new System.Drawing.Size(61, 23);
+            rATELabel.Size = new System.Drawing.Size(51, 19);
             rATELabel.TabIndex = 31;
             rATELabel.Text = "Rating:";
             // 
             // typeLabel
             // 
-            typeLabel.Location = new System.Drawing.Point(197, 288);
-            typeLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            typeLabel.Location = new System.Drawing.Point(177, 238);
+            typeLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             typeLabel.Name = "typeLabel";
-            typeLabel.Size = new System.Drawing.Size(48, 23);
+            typeLabel.Size = new System.Drawing.Size(41, 19);
             typeLabel.TabIndex = 32;
             typeLabel.Text = "Type:";
             // 
             // cITY_CODELabel
             // 
-            cITY_CODELabel.Location = new System.Drawing.Point(196, 337);
-            cITY_CODELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cITY_CODELabel.Location = new System.Drawing.Point(176, 278);
+            cITY_CODELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cITY_CODELabel.Name = "cITY_CODELabel";
-            cITY_CODELabel.Size = new System.Drawing.Size(45, 23);
+            cITY_CODELabel.Size = new System.Drawing.Size(39, 19);
             cITY_CODELabel.TabIndex = 36;
             cITY_CODELabel.Text = "Area:";
             // 
             // aLTERN_1Label
             // 
-            aLTERN_1Label.Location = new System.Drawing.Point(90, 384);
-            aLTERN_1Label.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aLTERN_1Label.Location = new System.Drawing.Point(81, 317);
+            aLTERN_1Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aLTERN_1Label.Name = "aLTERN_1Label";
-            aLTERN_1Label.Size = new System.Drawing.Size(159, 23);
+            aLTERN_1Label.Size = new System.Drawing.Size(137, 19);
             aLTERN_1Label.TabIndex = 37;
             aLTERN_1Label.Text = "Primary Alternates:";
             // 
             // aLTERN_2Label
             // 
-            aLTERN_2Label.Location = new System.Drawing.Point(160, 432);
-            aLTERN_2Label.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aLTERN_2Label.Location = new System.Drawing.Point(144, 357);
+            aLTERN_2Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aLTERN_2Label.Name = "aLTERN_2Label";
-            aLTERN_2Label.Size = new System.Drawing.Size(0, 23);
+            aLTERN_2Label.Size = new System.Drawing.Size(0, 19);
             aLTERN_2Label.TabIndex = 38;
             // 
             // aLTERN_3Label
             // 
-            aLTERN_3Label.Location = new System.Drawing.Point(160, 479);
-            aLTERN_3Label.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            aLTERN_3Label.Location = new System.Drawing.Point(144, 396);
+            aLTERN_3Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             aLTERN_3Label.Name = "aLTERN_3Label";
-            aLTERN_3Label.Size = new System.Drawing.Size(0, 23);
+            aLTERN_3Label.Size = new System.Drawing.Size(0, 19);
             aLTERN_3Label.TabIndex = 39;
             // 
             // cLOSEUPDDATELabel
             // 
-            cLOSEUPDDATELabel.Location = new System.Drawing.Point(402, 92);
-            cLOSEUPDDATELabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cLOSEUPDDATELabel.Location = new System.Drawing.Point(362, 76);
+            cLOSEUPDDATELabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cLOSEUPDDATELabel.Name = "cLOSEUPDDATELabel";
-            cLOSEUPDDATELabel.Size = new System.Drawing.Size(109, 23);
+            cLOSEUPDDATELabel.Size = new System.Drawing.Size(91, 19);
             cLOSEUPDDATELabel.TabIndex = 40;
             cLOSEUPDDATELabel.Text = "Changed on:";
             // 
             // cLOSEUPDBYLabel
             // 
-            cLOSEUPDBYLabel.Location = new System.Drawing.Point(782, 91);
-            cLOSEUPDBYLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cLOSEUPDBYLabel.Location = new System.Drawing.Point(704, 75);
+            cLOSEUPDBYLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cLOSEUPDBYLabel.Name = "cLOSEUPDBYLabel";
-            cLOSEUPDBYLabel.Size = new System.Drawing.Size(27, 23);
+            cLOSEUPDBYLabel.Size = new System.Drawing.Size(23, 19);
             cLOSEUPDBYLabel.TabIndex = 42;
             cLOSEUPDBYLabel.Text = "By:";
             // 
             // tourfaxEmailFormatLabel
             // 
             tourfaxEmailFormatLabel.AutoSize = true;
-            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(517, 160);
+            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(465, 132);
             tourfaxEmailFormatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             tourfaxEmailFormatLabel.Name = "tourfaxEmailFormatLabel";
-            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(202, 24);
+            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(163, 19);
             tourfaxEmailFormatLabel.TabIndex = 91;
             tourfaxEmailFormatLabel.Text = "Tourfax Email Format";
             // 
             // cHAINLabel
             // 
-            cHAINLabel.Location = new System.Drawing.Point(137, 70);
-            cHAINLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cHAINLabel.Location = new System.Drawing.Point(123, 58);
+            cHAINLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             cHAINLabel.Name = "cHAINLabel";
-            cHAINLabel.Size = new System.Drawing.Size(47, 23);
+            cHAINLabel.Size = new System.Drawing.Size(40, 19);
             cHAINLabel.TabIndex = 11;
             cHAINLabel.Text = "Chain";
             // 
             // bRANDLabel
             // 
-            bRANDLabel.Location = new System.Drawing.Point(700, 70);
-            bRANDLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            bRANDLabel.Location = new System.Drawing.Point(630, 58);
+            bRANDLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             bRANDLabel.Name = "bRANDLabel";
-            bRANDLabel.Size = new System.Drawing.Size(50, 23);
+            bRANDLabel.Size = new System.Drawing.Size(41, 19);
             bRANDLabel.TabIndex = 12;
             bRANDLabel.Text = "Brand";
             // 
             // oPERLabel
             // 
-            oPERLabel.Location = new System.Drawing.Point(137, 145);
-            oPERLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            oPERLabel.Location = new System.Drawing.Point(123, 120);
+            oPERLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             oPERLabel.Name = "oPERLabel";
-            oPERLabel.Size = new System.Drawing.Size(74, 23);
+            oPERLabel.Size = new System.Drawing.Size(63, 19);
             oPERLabel.TabIndex = 13;
             oPERLabel.Text = "Operator";
             // 
             // mGMT_COLabel
             // 
-            mGMT_COLabel.Location = new System.Drawing.Point(700, 145);
-            mGMT_COLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mGMT_COLabel.Location = new System.Drawing.Point(630, 120);
+            mGMT_COLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             mGMT_COLabel.Name = "mGMT_COLabel";
-            mGMT_COLabel.Size = new System.Drawing.Size(81, 23);
+            mGMT_COLabel.Size = new System.Drawing.Size(69, 19);
             mGMT_COLabel.TabIndex = 14;
             mGMT_COLabel.Text = "Mgmt Co.";
             // 
             // requestableLabel
             // 
             requestableLabel.AutoSize = true;
-            requestableLabel.Location = new System.Drawing.Point(730, 85);
+            requestableLabel.Location = new System.Drawing.Point(657, 70);
             requestableLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             requestableLabel.Name = "requestableLabel";
-            requestableLabel.Size = new System.Drawing.Size(127, 24);
+            requestableLabel.Size = new System.Drawing.Size(100, 19);
             requestableLabel.TabIndex = 100;
             requestableLabel.Text = "Requestable:";
             // 
             // nAMECHGLabel
             // 
-            this.nAMECHGLabel.Location = new System.Drawing.Point(357, 85);
-            this.nAMECHGLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nAMECHGLabel.Location = new System.Drawing.Point(321, 70);
+            this.nAMECHGLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nAMECHGLabel.Name = "nAMECHGLabel";
-            this.nAMECHGLabel.Size = new System.Drawing.Size(168, 23);
+            this.nAMECHGLabel.Size = new System.Drawing.Size(144, 19);
             this.nAMECHGLabel.TabIndex = 48;
             this.nAMECHGLabel.Text = "Allow Name Change";
             // 
             // uSE_CLIENT_LOGOLabel
             // 
-            this.uSE_CLIENT_LOGOLabel.Location = new System.Drawing.Point(497, 438);
-            this.uSE_CLIENT_LOGOLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uSE_CLIENT_LOGOLabel.Location = new System.Drawing.Point(447, 362);
+            this.uSE_CLIENT_LOGOLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uSE_CLIENT_LOGOLabel.Name = "uSE_CLIENT_LOGOLabel";
-            this.uSE_CLIENT_LOGOLabel.Size = new System.Drawing.Size(148, 23);
+            this.uSE_CLIENT_LOGOLabel.Size = new System.Drawing.Size(131, 19);
             this.uSE_CLIENT_LOGOLabel.TabIndex = 70;
             this.uSE_CLIENT_LOGOLabel.Text = "Allow Client Logo:";
             // 
@@ -1552,11 +1555,11 @@
             // 
             this.TextEditName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "NAME", true));
             this.TextEditName.EnterMoveNextControl = true;
-            this.TextEditName.Location = new System.Drawing.Point(117, 74);
-            this.TextEditName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditName.Location = new System.Drawing.Point(105, 61);
+            this.TextEditName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextEditName.Name = "TextEditName";
             this.TextEditName.Properties.MaxLength = 60;
-            this.TextEditName.Size = new System.Drawing.Size(687, 36);
+            this.TextEditName.Size = new System.Drawing.Size(618, 28);
             this.TextEditName.TabIndex = 2;
             this.TextEditName.Enter += new System.EventHandler(this.enterControl);
             this.TextEditName.Leave += new System.EventHandler(this.nAMETextBox_Leave);
@@ -1565,12 +1568,12 @@
             // 
             this.GridControlHotels.DataSource = this.HotelBindingSource;
             this.GridControlHotels.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlHotels.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlHotels.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlHotels.Location = new System.Drawing.Point(0, 0);
             this.GridControlHotels.MainView = this.GridViewHotels;
-            this.GridControlHotels.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlHotels.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlHotels.Name = "GridControlHotels";
-            this.GridControlHotels.Size = new System.Drawing.Size(300, 1059);
+            this.GridControlHotels.Size = new System.Drawing.Size(270, 873);
             this.GridControlHotels.TabIndex = 8;
             this.GridControlHotels.TabStop = false;
             this.GridControlHotels.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1701,7 +1704,7 @@
             this.colSVCRESTR,
             this.colhrates3,
             this.colSupplierHotelRoomType1});
-            this.GridViewHotels.DetailHeight = 322;
+            this.GridViewHotels.DetailHeight = 266;
             this.GridViewHotels.GridControl = this.GridControlHotels;
             this.GridViewHotels.Name = "GridViewHotels";
             this.GridViewHotels.OptionsBehavior.Editable = false;
@@ -1714,861 +1717,861 @@
             // colDisplayName1
             // 
             this.colDisplayName1.FieldName = "DisplayName";
-            this.colDisplayName1.MinWidth = 17;
+            this.colDisplayName1.MinWidth = 15;
             this.colDisplayName1.Name = "colDisplayName1";
             this.colDisplayName1.OptionsColumn.ReadOnly = true;
-            this.colDisplayName1.Width = 62;
+            this.colDisplayName1.Width = 56;
             // 
             // colCODE
             // 
             this.colCODE.FieldName = "CODE";
-            this.colCODE.MinWidth = 17;
+            this.colCODE.MinWidth = 15;
             this.colCODE.Name = "colCODE";
             this.colCODE.Visible = true;
             this.colCODE.VisibleIndex = 0;
-            this.colCODE.Width = 62;
+            this.colCODE.Width = 56;
             // 
             // colNAME
             // 
             this.colNAME.FieldName = "NAME";
-            this.colNAME.MinWidth = 17;
+            this.colNAME.MinWidth = 15;
             this.colNAME.Name = "colNAME";
             this.colNAME.Visible = true;
             this.colNAME.VisibleIndex = 1;
-            this.colNAME.Width = 62;
+            this.colNAME.Width = 56;
             // 
             // colLAST_UPD
             // 
             this.colLAST_UPD.FieldName = "LAST_UPD";
-            this.colLAST_UPD.MinWidth = 17;
+            this.colLAST_UPD.MinWidth = 15;
             this.colLAST_UPD.Name = "colLAST_UPD";
-            this.colLAST_UPD.Width = 62;
+            this.colLAST_UPD.Width = 56;
             // 
             // colUPD_INIT
             // 
             this.colUPD_INIT.FieldName = "UPD_INIT";
-            this.colUPD_INIT.MinWidth = 17;
+            this.colUPD_INIT.MinWidth = 15;
             this.colUPD_INIT.Name = "colUPD_INIT";
-            this.colUPD_INIT.Width = 62;
+            this.colUPD_INIT.Width = 56;
             // 
             // colRATE
             // 
             this.colRATE.FieldName = "RATE";
-            this.colRATE.MinWidth = 17;
+            this.colRATE.MinWidth = 15;
             this.colRATE.Name = "colRATE";
-            this.colRATE.Width = 62;
+            this.colRATE.Width = 56;
             // 
             // colAP
             // 
             this.colAP.FieldName = "AP";
-            this.colAP.MinWidth = 17;
+            this.colAP.MinWidth = 15;
             this.colAP.Name = "colAP";
-            this.colAP.Width = 62;
+            this.colAP.Width = 56;
             // 
             // colAR
             // 
             this.colAR.FieldName = "AR";
-            this.colAR.MinWidth = 17;
+            this.colAR.MinWidth = 15;
             this.colAR.Name = "colAR";
-            this.colAR.Width = 62;
+            this.colAR.Width = 56;
             // 
             // colADDR1
             // 
             this.colADDR1.FieldName = "ADDR1";
-            this.colADDR1.MinWidth = 17;
+            this.colADDR1.MinWidth = 15;
             this.colADDR1.Name = "colADDR1";
-            this.colADDR1.Width = 62;
+            this.colADDR1.Width = 56;
             // 
             // colADDR2
             // 
             this.colADDR2.FieldName = "ADDR2";
-            this.colADDR2.MinWidth = 17;
+            this.colADDR2.MinWidth = 15;
             this.colADDR2.Name = "colADDR2";
-            this.colADDR2.Width = 62;
+            this.colADDR2.Width = 56;
             // 
             // colADDR3
             // 
             this.colADDR3.FieldName = "ADDR3";
-            this.colADDR3.MinWidth = 17;
+            this.colADDR3.MinWidth = 15;
             this.colADDR3.Name = "colADDR3";
-            this.colADDR3.Width = 62;
+            this.colADDR3.Width = 56;
             // 
             // colPHONE
             // 
             this.colPHONE.FieldName = "PHONE";
-            this.colPHONE.MinWidth = 17;
+            this.colPHONE.MinWidth = 15;
             this.colPHONE.Name = "colPHONE";
-            this.colPHONE.Width = 62;
+            this.colPHONE.Width = 56;
             // 
             // colTELEX
             // 
             this.colTELEX.FieldName = "TELEX";
-            this.colTELEX.MinWidth = 17;
+            this.colTELEX.MinWidth = 15;
             this.colTELEX.Name = "colTELEX";
-            this.colTELEX.Width = 62;
+            this.colTELEX.Width = 56;
             // 
             // colGEN_MGR
             // 
             this.colGEN_MGR.FieldName = "GEN_MGR";
-            this.colGEN_MGR.MinWidth = 17;
+            this.colGEN_MGR.MinWidth = 15;
             this.colGEN_MGR.Name = "colGEN_MGR";
-            this.colGEN_MGR.Width = 62;
+            this.colGEN_MGR.Width = 56;
             // 
             // colAP_MGR
             // 
             this.colAP_MGR.FieldName = "AP_MGR";
-            this.colAP_MGR.MinWidth = 17;
+            this.colAP_MGR.MinWidth = 15;
             this.colAP_MGR.Name = "colAP_MGR";
-            this.colAP_MGR.Width = 62;
+            this.colAP_MGR.Width = 56;
             // 
             // colLOCAL_NAME
             // 
             this.colLOCAL_NAME.FieldName = "LOCAL_NAME";
-            this.colLOCAL_NAME.MinWidth = 17;
+            this.colLOCAL_NAME.MinWidth = 15;
             this.colLOCAL_NAME.Name = "colLOCAL_NAME";
-            this.colLOCAL_NAME.Width = 62;
+            this.colLOCAL_NAME.Width = 56;
             // 
             // colLOCAL_PHONE
             // 
             this.colLOCAL_PHONE.FieldName = "LOCAL_PHONE";
-            this.colLOCAL_PHONE.MinWidth = 17;
+            this.colLOCAL_PHONE.MinWidth = 15;
             this.colLOCAL_PHONE.Name = "colLOCAL_PHONE";
-            this.colLOCAL_PHONE.Width = 62;
+            this.colLOCAL_PHONE.Width = 56;
             // 
             // colAIRPORT
             // 
             this.colAIRPORT.FieldName = "AIRPORT";
-            this.colAIRPORT.MinWidth = 17;
+            this.colAIRPORT.MinWidth = 15;
             this.colAIRPORT.Name = "colAIRPORT";
-            this.colAIRPORT.Width = 62;
+            this.colAIRPORT.Width = 56;
             // 
             // colAIR_MI
             // 
             this.colAIR_MI.FieldName = "AIR_MI";
-            this.colAIR_MI.MinWidth = 17;
+            this.colAIR_MI.MinWidth = 15;
             this.colAIR_MI.Name = "colAIR_MI";
-            this.colAIR_MI.Width = 62;
+            this.colAIR_MI.Width = 56;
             // 
             // colCOUNTRY_CODE
             // 
             this.colCOUNTRY_CODE.FieldName = "COUNTRY_CODE";
-            this.colCOUNTRY_CODE.MinWidth = 17;
+            this.colCOUNTRY_CODE.MinWidth = 15;
             this.colCOUNTRY_CODE.Name = "colCOUNTRY_CODE";
-            this.colCOUNTRY_CODE.Width = 62;
+            this.colCOUNTRY_CODE.Width = 56;
             // 
             // colCITY_CODE
             // 
             this.colCITY_CODE.FieldName = "CITY_CODE";
-            this.colCITY_CODE.MinWidth = 17;
+            this.colCITY_CODE.MinWidth = 15;
             this.colCITY_CODE.Name = "colCITY_CODE";
-            this.colCITY_CODE.Width = 62;
+            this.colCITY_CODE.Width = 56;
             // 
             // colCITY_MI
             // 
             this.colCITY_MI.FieldName = "CITY_MI";
-            this.colCITY_MI.MinWidth = 17;
+            this.colCITY_MI.MinWidth = 15;
             this.colCITY_MI.Name = "colCITY_MI";
-            this.colCITY_MI.Width = 62;
+            this.colCITY_MI.Width = 56;
             // 
             // colDEP_RQ
             // 
             this.colDEP_RQ.FieldName = "DEP_RQ";
-            this.colDEP_RQ.MinWidth = 17;
+            this.colDEP_RQ.MinWidth = 15;
             this.colDEP_RQ.Name = "colDEP_RQ";
-            this.colDEP_RQ.Width = 62;
+            this.colDEP_RQ.Width = 56;
             // 
             // colCANC_PER
             // 
             this.colCANC_PER.FieldName = "CANC_PER";
-            this.colCANC_PER.MinWidth = 17;
+            this.colCANC_PER.MinWidth = 15;
             this.colCANC_PER.Name = "colCANC_PER";
-            this.colCANC_PER.Width = 62;
+            this.colCANC_PER.Width = 56;
             // 
             // colCHECK_IN
             // 
             this.colCHECK_IN.FieldName = "CHECK_IN";
-            this.colCHECK_IN.MinWidth = 17;
+            this.colCHECK_IN.MinWidth = 15;
             this.colCHECK_IN.Name = "colCHECK_IN";
-            this.colCHECK_IN.Width = 62;
+            this.colCHECK_IN.Width = 56;
             // 
             // colCRED_CARDS
             // 
             this.colCRED_CARDS.FieldName = "CRED_CARDS";
-            this.colCRED_CARDS.MinWidth = 17;
+            this.colCRED_CARDS.MinWidth = 15;
             this.colCRED_CARDS.Name = "colCRED_CARDS";
-            this.colCRED_CARDS.Width = 62;
+            this.colCRED_CARDS.Width = 56;
             // 
             // colNO_RMS
             // 
             this.colNO_RMS.FieldName = "NO_RMS";
-            this.colNO_RMS.MinWidth = 17;
+            this.colNO_RMS.MinWidth = 15;
             this.colNO_RMS.Name = "colNO_RMS";
-            this.colNO_RMS.Width = 62;
+            this.colNO_RMS.Width = 56;
             // 
             // colNO_REST
             // 
             this.colNO_REST.FieldName = "NO_REST";
-            this.colNO_REST.MinWidth = 17;
+            this.colNO_REST.MinWidth = 15;
             this.colNO_REST.Name = "colNO_REST";
-            this.colNO_REST.Width = 62;
+            this.colNO_REST.Width = 56;
             // 
             // colNO_LOUNGES
             // 
             this.colNO_LOUNGES.FieldName = "NO_LOUNGES";
-            this.colNO_LOUNGES.MinWidth = 17;
+            this.colNO_LOUNGES.MinWidth = 15;
             this.colNO_LOUNGES.Name = "colNO_LOUNGES";
-            this.colNO_LOUNGES.Width = 62;
+            this.colNO_LOUNGES.Width = 56;
             // 
             // colROOM_DESC
             // 
             this.colROOM_DESC.FieldName = "ROOM_DESC";
-            this.colROOM_DESC.MinWidth = 17;
+            this.colROOM_DESC.MinWidth = 15;
             this.colROOM_DESC.Name = "colROOM_DESC";
-            this.colROOM_DESC.Width = 62;
+            this.colROOM_DESC.Width = 56;
             // 
             // colCHILD_DESC
             // 
             this.colCHILD_DESC.FieldName = "CHILD_DESC";
-            this.colCHILD_DESC.MinWidth = 17;
+            this.colCHILD_DESC.MinWidth = 15;
             this.colCHILD_DESC.Name = "colCHILD_DESC";
-            this.colCHILD_DESC.Width = 62;
+            this.colCHILD_DESC.Width = 56;
             // 
             // colCOMMENT1
             // 
             this.colCOMMENT1.FieldName = "COMMENT1";
-            this.colCOMMENT1.MinWidth = 17;
+            this.colCOMMENT1.MinWidth = 15;
             this.colCOMMENT1.Name = "colCOMMENT1";
-            this.colCOMMENT1.Width = 62;
+            this.colCOMMENT1.Width = 56;
             // 
             // colCOMMENT2
             // 
             this.colCOMMENT2.FieldName = "COMMENT2";
-            this.colCOMMENT2.MinWidth = 17;
+            this.colCOMMENT2.MinWidth = 15;
             this.colCOMMENT2.Name = "colCOMMENT2";
-            this.colCOMMENT2.Width = 62;
+            this.colCOMMENT2.Width = 56;
             // 
             // colOPER
             // 
             this.colOPER.FieldName = "OPER";
-            this.colOPER.MinWidth = 17;
+            this.colOPER.MinWidth = 15;
             this.colOPER.Name = "colOPER";
-            this.colOPER.Width = 62;
+            this.colOPER.Width = 56;
             // 
             // colRATE_BASIS
             // 
             this.colRATE_BASIS.FieldName = "RATE_BASIS";
-            this.colRATE_BASIS.MinWidth = 17;
+            this.colRATE_BASIS.MinWidth = 15;
             this.colRATE_BASIS.Name = "colRATE_BASIS";
-            this.colRATE_BASIS.Width = 62;
+            this.colRATE_BASIS.Width = 56;
             // 
             // colDEF_ROOM
             // 
             this.colDEF_ROOM.FieldName = "DEF_ROOM";
-            this.colDEF_ROOM.MinWidth = 17;
+            this.colDEF_ROOM.MinWidth = 15;
             this.colDEF_ROOM.Name = "colDEF_ROOM";
-            this.colDEF_ROOM.Width = 62;
+            this.colDEF_ROOM.Width = 56;
             // 
             // colCONTR_CDE
             // 
             this.colCONTR_CDE.FieldName = "CONTR_CDE";
-            this.colCONTR_CDE.MinWidth = 17;
+            this.colCONTR_CDE.MinWidth = 15;
             this.colCONTR_CDE.Name = "colCONTR_CDE";
-            this.colCONTR_CDE.Width = 62;
+            this.colCONTR_CDE.Width = 56;
             // 
             // colCONTR_AGY
             // 
             this.colCONTR_AGY.FieldName = "CONTR_AGY";
-            this.colCONTR_AGY.MinWidth = 17;
+            this.colCONTR_AGY.MinWidth = 15;
             this.colCONTR_AGY.Name = "colCONTR_AGY";
-            this.colCONTR_AGY.Width = 62;
+            this.colCONTR_AGY.Width = 56;
             // 
             // colRSTR_CDE
             // 
             this.colRSTR_CDE.FieldName = "RSTR_CDE";
-            this.colRSTR_CDE.MinWidth = 17;
+            this.colRSTR_CDE.MinWidth = 15;
             this.colRSTR_CDE.Name = "colRSTR_CDE";
-            this.colRSTR_CDE.Width = 62;
+            this.colRSTR_CDE.Width = 56;
             // 
             // colALTERN_1
             // 
             this.colALTERN_1.FieldName = "ALTERN_1";
-            this.colALTERN_1.MinWidth = 17;
+            this.colALTERN_1.MinWidth = 15;
             this.colALTERN_1.Name = "colALTERN_1";
-            this.colALTERN_1.Width = 62;
+            this.colALTERN_1.Width = 56;
             // 
             // colALTERN_2
             // 
             this.colALTERN_2.FieldName = "ALTERN_2";
-            this.colALTERN_2.MinWidth = 17;
+            this.colALTERN_2.MinWidth = 15;
             this.colALTERN_2.Name = "colALTERN_2";
-            this.colALTERN_2.Width = 62;
+            this.colALTERN_2.Width = 56;
             // 
             // colALTERN_3
             // 
             this.colALTERN_3.FieldName = "ALTERN_3";
-            this.colALTERN_3.MinWidth = 17;
+            this.colALTERN_3.MinWidth = 15;
             this.colALTERN_3.Name = "colALTERN_3";
-            this.colALTERN_3.Width = 62;
+            this.colALTERN_3.Width = 56;
             // 
             // colLOCATION
             // 
             this.colLOCATION.FieldName = "LOCATION";
-            this.colLOCATION.MinWidth = 17;
+            this.colLOCATION.MinWidth = 15;
             this.colLOCATION.Name = "colLOCATION";
-            this.colLOCATION.Width = 62;
+            this.colLOCATION.Width = 56;
             // 
             // colREGION
             // 
             this.colREGION.FieldName = "REGION";
-            this.colREGION.MinWidth = 17;
+            this.colREGION.MinWidth = 15;
             this.colREGION.Name = "colREGION";
-            this.colREGION.Width = 62;
+            this.colREGION.Width = 56;
             // 
             // colACT_CITY
             // 
             this.colACT_CITY.FieldName = "ACT_CITY";
-            this.colACT_CITY.MinWidth = 17;
+            this.colACT_CITY.MinWidth = 15;
             this.colACT_CITY.Name = "colACT_CITY";
-            this.colACT_CITY.Width = 62;
+            this.colACT_CITY.Width = 56;
             // 
             // colADV_PMT
             // 
             this.colADV_PMT.FieldName = "ADV_PMT";
-            this.colADV_PMT.MinWidth = 17;
+            this.colADV_PMT.MinWidth = 15;
             this.colADV_PMT.Name = "colADV_PMT";
-            this.colADV_PMT.Width = 62;
+            this.colADV_PMT.Width = 56;
             // 
             // colPFRD_FLG
             // 
             this.colPFRD_FLG.FieldName = "PFRD_FLG";
-            this.colPFRD_FLG.MinWidth = 17;
+            this.colPFRD_FLG.MinWidth = 15;
             this.colPFRD_FLG.Name = "colPFRD_FLG";
-            this.colPFRD_FLG.Width = 62;
+            this.colPFRD_FLG.Width = 56;
             // 
             // colDFLT_CAT
             // 
             this.colDFLT_CAT.FieldName = "DFLT_CAT";
-            this.colDFLT_CAT.MinWidth = 17;
+            this.colDFLT_CAT.MinWidth = 15;
             this.colDFLT_CAT.Name = "colDFLT_CAT";
-            this.colDFLT_CAT.Width = 62;
+            this.colDFLT_CAT.Width = 56;
             // 
             // colRES_EMAIL
             // 
             this.colRES_EMAIL.FieldName = "RES_EMAIL";
-            this.colRES_EMAIL.MinWidth = 17;
+            this.colRES_EMAIL.MinWidth = 15;
             this.colRES_EMAIL.Name = "colRES_EMAIL";
-            this.colRES_EMAIL.Width = 62;
+            this.colRES_EMAIL.Width = 56;
             // 
             // colAP_EMAIL
             // 
             this.colAP_EMAIL.FieldName = "AP_EMAIL";
-            this.colAP_EMAIL.MinWidth = 17;
+            this.colAP_EMAIL.MinWidth = 15;
             this.colAP_EMAIL.Name = "colAP_EMAIL";
-            this.colAP_EMAIL.Width = 62;
+            this.colAP_EMAIL.Width = 56;
             // 
             // colMAILFAX
             // 
             this.colMAILFAX.FieldName = "MAILFAX";
-            this.colMAILFAX.MinWidth = 17;
+            this.colMAILFAX.MinWidth = 15;
             this.colMAILFAX.Name = "colMAILFAX";
-            this.colMAILFAX.Width = 62;
+            this.colMAILFAX.Width = 56;
             // 
             // colMAX_SGL
             // 
             this.colMAX_SGL.FieldName = "MAX_SGL";
-            this.colMAX_SGL.MinWidth = 17;
+            this.colMAX_SGL.MinWidth = 15;
             this.colMAX_SGL.Name = "colMAX_SGL";
-            this.colMAX_SGL.Width = 62;
+            this.colMAX_SGL.Width = 56;
             // 
             // colMAX_DBL
             // 
             this.colMAX_DBL.FieldName = "MAX_DBL";
-            this.colMAX_DBL.MinWidth = 17;
+            this.colMAX_DBL.MinWidth = 15;
             this.colMAX_DBL.Name = "colMAX_DBL";
-            this.colMAX_DBL.Width = 62;
+            this.colMAX_DBL.Width = 56;
             // 
             // colMAX_TPL
             // 
             this.colMAX_TPL.FieldName = "MAX_TPL";
-            this.colMAX_TPL.MinWidth = 17;
+            this.colMAX_TPL.MinWidth = 15;
             this.colMAX_TPL.Name = "colMAX_TPL";
-            this.colMAX_TPL.Width = 62;
+            this.colMAX_TPL.Width = 56;
             // 
             // colMAX_QUA
             // 
             this.colMAX_QUA.FieldName = "MAX_QUA";
-            this.colMAX_QUA.MinWidth = 17;
+            this.colMAX_QUA.MinWidth = 15;
             this.colMAX_QUA.Name = "colMAX_QUA";
-            this.colMAX_QUA.Width = 62;
+            this.colMAX_QUA.Width = 56;
             // 
             // colMAX_OTH
             // 
             this.colMAX_OTH.FieldName = "MAX_OTH";
-            this.colMAX_OTH.MinWidth = 17;
+            this.colMAX_OTH.MinWidth = 15;
             this.colMAX_OTH.Name = "colMAX_OTH";
-            this.colMAX_OTH.Width = 62;
+            this.colMAX_OTH.Width = 56;
             // 
             // colRESTRICTCODE
             // 
             this.colRESTRICTCODE.FieldName = "RESTRICTCODE";
-            this.colRESTRICTCODE.MinWidth = 17;
+            this.colRESTRICTCODE.MinWidth = 15;
             this.colRESTRICTCODE.Name = "colRESTRICTCODE";
-            this.colRESTRICTCODE.Width = 62;
+            this.colRESTRICTCODE.Width = 56;
             // 
             // colRESTRICTDESC
             // 
             this.colRESTRICTDESC.FieldName = "RESTRICTDESC";
-            this.colRESTRICTDESC.MinWidth = 17;
+            this.colRESTRICTDESC.MinWidth = 15;
             this.colRESTRICTDESC.Name = "colRESTRICTDESC";
-            this.colRESTRICTDESC.Width = 62;
+            this.colRESTRICTDESC.Width = 56;
             // 
             // colADMINCLOSED
             // 
             this.colADMINCLOSED.FieldName = "ADMINCLOSED";
-            this.colADMINCLOSED.MinWidth = 17;
+            this.colADMINCLOSED.MinWidth = 15;
             this.colADMINCLOSED.Name = "colADMINCLOSED";
-            this.colADMINCLOSED.Width = 62;
+            this.colADMINCLOSED.Width = 56;
             // 
             // colCLOSEUPDDATE
             // 
             this.colCLOSEUPDDATE.FieldName = "CLOSEUPDDATE";
-            this.colCLOSEUPDDATE.MinWidth = 17;
+            this.colCLOSEUPDDATE.MinWidth = 15;
             this.colCLOSEUPDDATE.Name = "colCLOSEUPDDATE";
-            this.colCLOSEUPDDATE.Width = 62;
+            this.colCLOSEUPDDATE.Width = 56;
             // 
             // colCLOSEUPDBY
             // 
             this.colCLOSEUPDBY.FieldName = "CLOSEUPDBY";
-            this.colCLOSEUPDBY.MinWidth = 17;
+            this.colCLOSEUPDBY.MinWidth = 15;
             this.colCLOSEUPDBY.Name = "colCLOSEUPDBY";
-            this.colCLOSEUPDBY.Width = 62;
+            this.colCLOSEUPDBY.Width = 56;
             // 
             // colINACTIVE
             // 
             this.colINACTIVE.FieldName = "INACTIVE";
-            this.colINACTIVE.MinWidth = 17;
+            this.colINACTIVE.MinWidth = 15;
             this.colINACTIVE.Name = "colINACTIVE";
-            this.colINACTIVE.Width = 62;
+            this.colINACTIVE.Width = 56;
             // 
             // colCITY
             // 
             this.colCITY.FieldName = "CITY";
-            this.colCITY.MinWidth = 17;
+            this.colCITY.MinWidth = 15;
             this.colCITY.Name = "colCITY";
-            this.colCITY.Width = 62;
+            this.colCITY.Width = 56;
             // 
             // colSTATE
             // 
             this.colSTATE.FieldName = "STATE";
-            this.colSTATE.MinWidth = 17;
+            this.colSTATE.MinWidth = 15;
             this.colSTATE.Name = "colSTATE";
-            this.colSTATE.Width = 62;
+            this.colSTATE.Width = 56;
             // 
             // colZIP
             // 
             this.colZIP.FieldName = "ZIP";
-            this.colZIP.MinWidth = 17;
+            this.colZIP.MinWidth = 15;
             this.colZIP.Name = "colZIP";
-            this.colZIP.Width = 62;
+            this.colZIP.Width = 56;
             // 
             // colNAMECHG
             // 
             this.colNAMECHG.FieldName = "NAMECHG";
-            this.colNAMECHG.MinWidth = 17;
+            this.colNAMECHG.MinWidth = 15;
             this.colNAMECHG.Name = "colNAMECHG";
-            this.colNAMECHG.Width = 62;
+            this.colNAMECHG.Width = 56;
             // 
             // colTAXRATE
             // 
             this.colTAXRATE.FieldName = "TAXRATE";
-            this.colTAXRATE.MinWidth = 17;
+            this.colTAXRATE.MinWidth = 15;
             this.colTAXRATE.Name = "colTAXRATE";
-            this.colTAXRATE.Width = 62;
+            this.colTAXRATE.Width = 56;
             // 
             // colROOMTAX
             // 
             this.colROOMTAX.FieldName = "ROOMTAX";
-            this.colROOMTAX.MinWidth = 17;
+            this.colROOMTAX.MinWidth = 15;
             this.colROOMTAX.Name = "colROOMTAX";
-            this.colROOMTAX.Width = 62;
+            this.colROOMTAX.Width = 56;
             // 
             // colPERSONTAX
             // 
             this.colPERSONTAX.FieldName = "PERSONTAX";
-            this.colPERSONTAX.MinWidth = 17;
+            this.colPERSONTAX.MinWidth = 15;
             this.colPERSONTAX.Name = "colPERSONTAX";
-            this.colPERSONTAX.Width = 62;
+            this.colPERSONTAX.Width = 56;
             // 
             // colBILLACCT
             // 
             this.colBILLACCT.FieldName = "BILLACCT";
-            this.colBILLACCT.MinWidth = 17;
+            this.colBILLACCT.MinWidth = 15;
             this.colBILLACCT.Name = "colBILLACCT";
-            this.colBILLACCT.Width = 62;
+            this.colBILLACCT.Width = 56;
             // 
             // colGMACCTNO
             // 
             this.colGMACCTNO.FieldName = "GMACCTNO";
-            this.colGMACCTNO.MinWidth = 17;
+            this.colGMACCTNO.MinWidth = 15;
             this.colGMACCTNO.Name = "colGMACCTNO";
-            this.colGMACCTNO.Width = 62;
+            this.colGMACCTNO.Width = 56;
             // 
             // colLATITUDE
             // 
             this.colLATITUDE.FieldName = "LATITUDE";
-            this.colLATITUDE.MinWidth = 17;
+            this.colLATITUDE.MinWidth = 15;
             this.colLATITUDE.Name = "colLATITUDE";
-            this.colLATITUDE.Width = 62;
+            this.colLATITUDE.Width = 56;
             // 
             // colLONGITUDE
             // 
             this.colLONGITUDE.FieldName = "LONGITUDE";
-            this.colLONGITUDE.MinWidth = 17;
+            this.colLONGITUDE.MinWidth = 15;
             this.colLONGITUDE.Name = "colLONGITUDE";
-            this.colLONGITUDE.Width = 62;
+            this.colLONGITUDE.Width = 56;
             // 
             // colUSE_CLIENT_LOGO
             // 
             this.colUSE_CLIENT_LOGO.FieldName = "USE_CLIENT_LOGO";
-            this.colUSE_CLIENT_LOGO.MinWidth = 17;
+            this.colUSE_CLIENT_LOGO.MinWidth = 15;
             this.colUSE_CLIENT_LOGO.Name = "colUSE_CLIENT_LOGO";
-            this.colUSE_CLIENT_LOGO.Width = 62;
+            this.colUSE_CLIENT_LOGO.Width = 56;
             // 
             // colCHAIN
             // 
             this.colCHAIN.FieldName = "CHAIN";
-            this.colCHAIN.MinWidth = 17;
+            this.colCHAIN.MinWidth = 15;
             this.colCHAIN.Name = "colCHAIN";
-            this.colCHAIN.Width = 62;
+            this.colCHAIN.Width = 56;
             // 
             // colBRAND
             // 
             this.colBRAND.FieldName = "BRAND";
-            this.colBRAND.MinWidth = 17;
+            this.colBRAND.MinWidth = 15;
             this.colBRAND.Name = "colBRAND";
-            this.colBRAND.Width = 62;
+            this.colBRAND.Width = 56;
             // 
             // colMGMT_CO
             // 
             this.colMGMT_CO.FieldName = "MGMT_CO";
-            this.colMGMT_CO.MinWidth = 17;
+            this.colMGMT_CO.MinWidth = 15;
             this.colMGMT_CO.Name = "colMGMT_CO";
-            this.colMGMT_CO.Width = 62;
+            this.colMGMT_CO.Width = 56;
             // 
             // colVOUCH_DAYS_PRIOR
             // 
             this.colVOUCH_DAYS_PRIOR.FieldName = "VOUCH_DAYS_PRIOR";
-            this.colVOUCH_DAYS_PRIOR.MinWidth = 17;
+            this.colVOUCH_DAYS_PRIOR.MinWidth = 15;
             this.colVOUCH_DAYS_PRIOR.Name = "colVOUCH_DAYS_PRIOR";
-            this.colVOUCH_DAYS_PRIOR.Width = 62;
+            this.colVOUCH_DAYS_PRIOR.Width = 56;
             // 
             // colUSER_DEC1
             // 
             this.colUSER_DEC1.FieldName = "USER_DEC1";
-            this.colUSER_DEC1.MinWidth = 17;
+            this.colUSER_DEC1.MinWidth = 15;
             this.colUSER_DEC1.Name = "colUSER_DEC1";
-            this.colUSER_DEC1.Width = 62;
+            this.colUSER_DEC1.Width = 56;
             // 
             // colUSER_DEC2
             // 
             this.colUSER_DEC2.FieldName = "USER_DEC2";
-            this.colUSER_DEC2.MinWidth = 17;
+            this.colUSER_DEC2.MinWidth = 15;
             this.colUSER_DEC2.Name = "colUSER_DEC2";
-            this.colUSER_DEC2.Width = 62;
+            this.colUSER_DEC2.Width = 56;
             // 
             // colUSER_INT1
             // 
             this.colUSER_INT1.FieldName = "USER_INT1";
-            this.colUSER_INT1.MinWidth = 17;
+            this.colUSER_INT1.MinWidth = 15;
             this.colUSER_INT1.Name = "colUSER_INT1";
-            this.colUSER_INT1.Width = 62;
+            this.colUSER_INT1.Width = 56;
             // 
             // colUSER_INT2
             // 
             this.colUSER_INT2.FieldName = "USER_INT2";
-            this.colUSER_INT2.MinWidth = 17;
+            this.colUSER_INT2.MinWidth = 15;
             this.colUSER_INT2.Name = "colUSER_INT2";
-            this.colUSER_INT2.Width = 62;
+            this.colUSER_INT2.Width = 56;
             // 
             // colUSER_TXT1
             // 
             this.colUSER_TXT1.FieldName = "USER_TXT1";
-            this.colUSER_TXT1.MinWidth = 17;
+            this.colUSER_TXT1.MinWidth = 15;
             this.colUSER_TXT1.Name = "colUSER_TXT1";
-            this.colUSER_TXT1.Width = 62;
+            this.colUSER_TXT1.Width = 56;
             // 
             // colUSER_TXT2
             // 
             this.colUSER_TXT2.FieldName = "USER_TXT2";
-            this.colUSER_TXT2.MinWidth = 17;
+            this.colUSER_TXT2.MinWidth = 15;
             this.colUSER_TXT2.Name = "colUSER_TXT2";
-            this.colUSER_TXT2.Width = 62;
+            this.colUSER_TXT2.Width = 56;
             // 
             // colUSER_TXT3
             // 
             this.colUSER_TXT3.FieldName = "USER_TXT3";
-            this.colUSER_TXT3.MinWidth = 17;
+            this.colUSER_TXT3.MinWidth = 15;
             this.colUSER_TXT3.Name = "colUSER_TXT3";
-            this.colUSER_TXT3.Width = 62;
+            this.colUSER_TXT3.Width = 56;
             // 
             // colUSER_TXT4
             // 
             this.colUSER_TXT4.FieldName = "USER_TXT4";
-            this.colUSER_TXT4.MinWidth = 17;
+            this.colUSER_TXT4.MinWidth = 15;
             this.colUSER_TXT4.Name = "colUSER_TXT4";
-            this.colUSER_TXT4.Width = 62;
+            this.colUSER_TXT4.Width = 56;
             // 
             // colUSER_DTE1
             // 
             this.colUSER_DTE1.FieldName = "USER_DTE1";
-            this.colUSER_DTE1.MinWidth = 17;
+            this.colUSER_DTE1.MinWidth = 15;
             this.colUSER_DTE1.Name = "colUSER_DTE1";
-            this.colUSER_DTE1.Width = 62;
+            this.colUSER_DTE1.Width = 56;
             // 
             // colUSER_DTE2
             // 
             this.colUSER_DTE2.FieldName = "USER_DTE2";
-            this.colUSER_DTE2.MinWidth = 17;
+            this.colUSER_DTE2.MinWidth = 15;
             this.colUSER_DTE2.Name = "colUSER_DTE2";
-            this.colUSER_DTE2.Width = 62;
+            this.colUSER_DTE2.Width = 56;
             // 
             // colDue_Days
             // 
             this.colDue_Days.FieldName = "Due_Days";
-            this.colDue_Days.MinWidth = 17;
+            this.colDue_Days.MinWidth = 15;
             this.colDue_Days.Name = "colDue_Days";
-            this.colDue_Days.Width = 62;
+            this.colDue_Days.Width = 56;
             // 
             // colRequestable
             // 
             this.colRequestable.FieldName = "Requestable";
-            this.colRequestable.MinWidth = 17;
+            this.colRequestable.MinWidth = 15;
             this.colRequestable.Name = "colRequestable";
-            this.colRequestable.Width = 62;
+            this.colRequestable.Width = 56;
             // 
             // colType
             // 
             this.colType.FieldName = "Type";
-            this.colType.MinWidth = 17;
+            this.colType.MinWidth = 15;
             this.colType.Name = "colType";
-            this.colType.Width = 62;
+            this.colType.Width = 56;
             // 
             // colTourfaxEmailFormat
             // 
             this.colTourfaxEmailFormat.FieldName = "TourfaxEmailFormat";
-            this.colTourfaxEmailFormat.MinWidth = 17;
+            this.colTourfaxEmailFormat.MinWidth = 15;
             this.colTourfaxEmailFormat.Name = "colTourfaxEmailFormat";
-            this.colTourfaxEmailFormat.Width = 62;
+            this.colTourfaxEmailFormat.Width = 56;
             // 
             // colGeoCode_ID
             // 
             this.colGeoCode_ID.FieldName = "GeoCode_ID";
-            this.colGeoCode_ID.MinWidth = 17;
+            this.colGeoCode_ID.MinWidth = 15;
             this.colGeoCode_ID.Name = "colGeoCode_ID";
-            this.colGeoCode_ID.Width = 62;
+            this.colGeoCode_ID.Width = 56;
             // 
             // colAGY
             // 
             this.colAGY.FieldName = "AGY";
-            this.colAGY.MinWidth = 17;
+            this.colAGY.MinWidth = 15;
             this.colAGY.Name = "colAGY";
-            this.colAGY.Width = 62;
+            this.colAGY.Width = 56;
             // 
             // colAirport1
             // 
             this.colAirport1.FieldName = "Airport1";
-            this.colAirport1.MinWidth = 17;
+            this.colAirport1.MinWidth = 15;
             this.colAirport1.Name = "colAirport1";
-            this.colAirport1.Width = 62;
+            this.colAirport1.Width = 56;
             // 
             // colCITYCOD
             // 
             this.colCITYCOD.FieldName = "CITYCOD";
-            this.colCITYCOD.MinWidth = 17;
+            this.colCITYCOD.MinWidth = 15;
             this.colCITYCOD.Name = "colCITYCOD";
-            this.colCITYCOD.Width = 62;
+            this.colCITYCOD.Width = 56;
             // 
             // colCITYCOD1
             // 
             this.colCITYCOD1.FieldName = "CITYCOD1";
-            this.colCITYCOD1.MinWidth = 17;
+            this.colCITYCOD1.MinWidth = 15;
             this.colCITYCOD1.Name = "colCITYCOD1";
-            this.colCITYCOD1.Width = 62;
+            this.colCITYCOD1.Width = 56;
             // 
             // colCOMPANY
             // 
             this.colCOMPANY.FieldName = "COMPANY";
-            this.colCOMPANY.MinWidth = 17;
+            this.colCOMPANY.MinWidth = 15;
             this.colCOMPANY.Name = "colCOMPANY";
-            this.colCOMPANY.Width = 62;
+            this.colCOMPANY.Width = 56;
             // 
             // colCOMPROD
             // 
             this.colCOMPROD.FieldName = "COMPROD";
-            this.colCOMPROD.MinWidth = 17;
+            this.colCOMPROD.MinWidth = 15;
             this.colCOMPROD.Name = "colCOMPROD";
-            this.colCOMPROD.Width = 62;
+            this.colCOMPROD.Width = 56;
             // 
             // colCOMPROD2
             // 
             this.colCOMPROD2.FieldName = "COMPROD2";
-            this.colCOMPROD2.MinWidth = 17;
+            this.colCOMPROD2.MinWidth = 15;
             this.colCOMPROD2.Name = "colCOMPROD2";
-            this.colCOMPROD2.Width = 62;
+            this.colCOMPROD2.Width = 56;
             // 
             // colCOMPROD21
             // 
             this.colCOMPROD21.FieldName = "COMPROD21";
-            this.colCOMPROD21.MinWidth = 17;
+            this.colCOMPROD21.MinWidth = 15;
             this.colCOMPROD21.Name = "colCOMPROD21";
-            this.colCOMPROD21.Width = 62;
+            this.colCOMPROD21.Width = 56;
             // 
             // colCOUNTRY
             // 
             this.colCOUNTRY.FieldName = "COUNTRY";
-            this.colCOUNTRY.MinWidth = 17;
+            this.colCOUNTRY.MinWidth = 15;
             this.colCOUNTRY.Name = "colCOUNTRY";
-            this.colCOUNTRY.Width = 62;
+            this.colCOUNTRY.Width = 56;
             // 
             // colCXLFEE
             // 
             this.colCXLFEE.FieldName = "CXLFEE";
-            this.colCXLFEE.MinWidth = 17;
+            this.colCXLFEE.MinWidth = 15;
             this.colCXLFEE.Name = "colCXLFEE";
-            this.colCXLFEE.Width = 62;
+            this.colCXLFEE.Width = 56;
             // 
             // colHOTEL1
             // 
             this.colHOTEL1.FieldName = "HOTEL1";
-            this.colHOTEL1.MinWidth = 17;
+            this.colHOTEL1.MinWidth = 15;
             this.colHOTEL1.Name = "colHOTEL1";
-            this.colHOTEL1.Width = 62;
+            this.colHOTEL1.Width = 56;
             // 
             // colHOTEL2
             // 
             this.colHOTEL2.FieldName = "HOTEL2";
-            this.colHOTEL2.MinWidth = 17;
+            this.colHOTEL2.MinWidth = 15;
             this.colHOTEL2.Name = "colHOTEL2";
-            this.colHOTEL2.Width = 62;
+            this.colHOTEL2.Width = 56;
             // 
             // colHOTEL11
             // 
             this.colHOTEL11.FieldName = "HOTEL11";
-            this.colHOTEL11.MinWidth = 17;
+            this.colHOTEL11.MinWidth = 15;
             this.colHOTEL11.Name = "colHOTEL11";
-            this.colHOTEL11.Width = 62;
+            this.colHOTEL11.Width = 56;
             // 
             // colHOTEL3
             // 
             this.colHOTEL3.FieldName = "HOTEL3";
-            this.colHOTEL3.MinWidth = 17;
+            this.colHOTEL3.MinWidth = 15;
             this.colHOTEL3.Name = "colHOTEL3";
-            this.colHOTEL3.Width = 62;
+            this.colHOTEL3.Width = 56;
             // 
             // colHOTEL12
             // 
             this.colHOTEL12.FieldName = "HOTEL12";
-            this.colHOTEL12.MinWidth = 17;
+            this.colHOTEL12.MinWidth = 15;
             this.colHOTEL12.Name = "colHOTEL12";
-            this.colHOTEL12.Width = 62;
+            this.colHOTEL12.Width = 56;
             // 
             // colHOTEL4
             // 
             this.colHOTEL4.FieldName = "HOTEL4";
-            this.colHOTEL4.MinWidth = 17;
+            this.colHOTEL4.MinWidth = 15;
             this.colHOTEL4.Name = "colHOTEL4";
-            this.colHOTEL4.Width = 62;
+            this.colHOTEL4.Width = 56;
             // 
             // colHTLBRAND
             // 
             this.colHTLBRAND.FieldName = "HTLBRAND";
-            this.colHTLBRAND.MinWidth = 17;
+            this.colHTLBRAND.MinWidth = 15;
             this.colHTLBRAND.Name = "colHTLBRAND";
-            this.colHTLBRAND.Width = 62;
+            this.colHTLBRAND.Width = 56;
             // 
             // colHTLCHAIN
             // 
             this.colHTLCHAIN.FieldName = "HTLCHAIN";
-            this.colHTLCHAIN.MinWidth = 17;
+            this.colHTLCHAIN.MinWidth = 15;
             this.colHTLCHAIN.Name = "colHTLCHAIN";
-            this.colHTLCHAIN.Width = 62;
+            this.colHTLCHAIN.Width = 56;
             // 
             // colHTLRATNG
             // 
             this.colHTLRATNG.FieldName = "HTLRATNG";
-            this.colHTLRATNG.MinWidth = 17;
+            this.colHTLRATNG.MinWidth = 15;
             this.colHTLRATNG.Name = "colHTLRATNG";
-            this.colHTLRATNG.Width = 62;
+            this.colHTLRATNG.Width = 56;
             // 
             // colHTLTYPE
             // 
             this.colHTLTYPE.FieldName = "HTLTYPE";
-            this.colHTLTYPE.MinWidth = 17;
+            this.colHTLTYPE.MinWidth = 15;
             this.colHTLTYPE.Name = "colHTLTYPE";
-            this.colHTLTYPE.Width = 62;
+            this.colHTLTYPE.Width = 56;
             // 
             // colOPERATOR
             // 
             this.colOPERATOR.FieldName = "OPERATOR";
-            this.colOPERATOR.MinWidth = 17;
+            this.colOPERATOR.MinWidth = 15;
             this.colOPERATOR.Name = "colOPERATOR";
-            this.colOPERATOR.Width = 62;
+            this.colOPERATOR.Width = 56;
             // 
             // colREGION1
             // 
             this.colREGION1.FieldName = "REGION1";
-            this.colREGION1.MinWidth = 17;
+            this.colREGION1.MinWidth = 15;
             this.colREGION1.Name = "colREGION1";
-            this.colREGION1.Width = 62;
+            this.colREGION1.Width = 56;
             // 
             // colROOMCOD
             // 
             this.colROOMCOD.FieldName = "ROOMCOD";
-            this.colROOMCOD.MinWidth = 17;
+            this.colROOMCOD.MinWidth = 15;
             this.colROOMCOD.Name = "colROOMCOD";
-            this.colROOMCOD.Width = 62;
+            this.colROOMCOD.Width = 56;
             // 
             // colHRATES
             // 
             this.colHRATES.FieldName = "HRATES";
-            this.colHRATES.MinWidth = 17;
+            this.colHRATES.MinWidth = 15;
             this.colHRATES.Name = "colHRATES";
-            this.colHRATES.Width = 62;
+            this.colHRATES.Width = 56;
             // 
             // colINVT
             // 
             this.colINVT.FieldName = "INVT";
-            this.colINVT.MinWidth = 17;
+            this.colINVT.MinWidth = 15;
             this.colINVT.Name = "colINVT";
-            this.colINVT.Width = 62;
+            this.colINVT.Width = 56;
             // 
             // colPRATES
             // 
             this.colPRATES.FieldName = "PRATES";
-            this.colPRATES.MinWidth = 17;
+            this.colPRATES.MinWidth = 15;
             this.colPRATES.Name = "colPRATES";
-            this.colPRATES.Width = 62;
+            this.colPRATES.Width = 56;
             // 
             // colSVCRESTR
             // 
             this.colSVCRESTR.FieldName = "SVCRESTR";
-            this.colSVCRESTR.MinWidth = 17;
+            this.colSVCRESTR.MinWidth = 15;
             this.colSVCRESTR.Name = "colSVCRESTR";
-            this.colSVCRESTR.Width = 62;
+            this.colSVCRESTR.Width = 56;
             // 
             // colhrates3
             // 
             this.colhrates3.FieldName = "hrates3";
-            this.colhrates3.MinWidth = 17;
+            this.colhrates3.MinWidth = 15;
             this.colhrates3.Name = "colhrates3";
-            this.colhrates3.Width = 62;
+            this.colhrates3.Width = 56;
             // 
             // colSupplierHotelRoomType1
             // 
             this.colSupplierHotelRoomType1.FieldName = "SupplierHotelRoomType";
-            this.colSupplierHotelRoomType1.MinWidth = 17;
+            this.colSupplierHotelRoomType1.MinWidth = 15;
             this.colSupplierHotelRoomType1.Name = "colSupplierHotelRoomType1";
-            this.colSupplierHotelRoomType1.Width = 62;
+            this.colSupplierHotelRoomType1.Width = 56;
             // 
             // HtlChainBindingSource
             // 
@@ -2577,36 +2580,36 @@
             // labelControl1
             // 
             this.labelControl1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "LAST_UPD", true));
-            this.labelControl1.Location = new System.Drawing.Point(547, 36);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl1.Location = new System.Drawing.Point(492, 30);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(0, 23);
+            this.labelControl1.Size = new System.Drawing.Size(0, 19);
             this.labelControl1.TabIndex = 10;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(752, 36);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl2.Location = new System.Drawing.Point(677, 30);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(27, 23);
+            this.labelControl2.Size = new System.Drawing.Size(23, 19);
             this.labelControl2.TabIndex = 11;
             this.labelControl2.Text = "By:";
             // 
             // labelControl3
             // 
             this.labelControl3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "UPD_INIT", true));
-            this.labelControl3.Location = new System.Drawing.Point(789, 35);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl3.Location = new System.Drawing.Point(710, 29);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(0, 23);
+            this.labelControl3.Size = new System.Drawing.Size(0, 19);
             this.labelControl3.TabIndex = 12;
             // 
             // xtraTabPage10
             // 
             this.xtraTabPage10.Controls.Add(this.panelControl20);
-            this.xtraTabPage10.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage10.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage10.Name = "xtraTabPage10";
-            this.xtraTabPage10.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage10.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage10.Text = "Commissions";
             // 
             // panelControl20
@@ -2624,51 +2627,51 @@
             this.panelControl20.Controls.Add(this.simpleButton2);
             this.panelControl20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl20.Location = new System.Drawing.Point(0, 0);
-            this.panelControl20.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl20.Name = "panelControl20";
-            this.panelControl20.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl20.Size = new System.Drawing.Size(1405, 690);
             this.panelControl20.TabIndex = 0;
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(20, 468);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl14.Location = new System.Drawing.Point(18, 387);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(71, 23);
+            this.labelControl14.Size = new System.Drawing.Size(59, 19);
             this.labelControl14.TabIndex = 84;
             this.labelControl14.Text = "Markups";
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(20, 100);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl13.Location = new System.Drawing.Point(18, 83);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(106, 23);
+            this.labelControl13.Size = new System.Drawing.Size(94, 19);
             this.labelControl13.TabIndex = 83;
             this.labelControl13.Text = "Commissions";
             // 
             // ImageComboBoxEditAgentComm
             // 
             this.ImageComboBoxEditAgentComm.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAgentComm.Location = new System.Drawing.Point(296, 38);
-            this.ImageComboBoxEditAgentComm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditAgentComm.Location = new System.Drawing.Point(266, 31);
+            this.ImageComboBoxEditAgentComm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditAgentComm.Name = "ImageComboBoxEditAgentComm";
             this.ImageComboBoxEditAgentComm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAgentComm.Size = new System.Drawing.Size(311, 36);
+            this.ImageComboBoxEditAgentComm.Size = new System.Drawing.Size(280, 28);
             this.ImageComboBoxEditAgentComm.TabIndex = 81;
             // 
             // gridControl5
             // 
-            this.gridControl5.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControl5.Location = new System.Drawing.Point(16, 507);
+            this.gridControl5.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl5.Location = new System.Drawing.Point(14, 419);
             this.gridControl5.MainView = this.gridView6;
-            this.gridControl5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControl5.Name = "gridControl5";
             this.gridControl5.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit4,
             this.repositoryItemCheckEdit1});
-            this.gridControl5.Size = new System.Drawing.Size(1517, 284);
+            this.gridControl5.Size = new System.Drawing.Size(1365, 235);
             this.gridControl5.TabIndex = 44;
             this.gridControl5.TabStop = false;
             this.gridControl5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2689,7 +2692,7 @@
             this.gridColumn31,
             this.gridColumn32,
             this.gridColumn33});
-            this.gridView6.DetailHeight = 322;
+            this.gridView6.DetailHeight = 266;
             this.gridView6.GridControl = this.gridControl5;
             this.gridView6.Name = "gridView6";
             this.gridView6.OptionsBehavior.Editable = false;
@@ -2699,52 +2702,52 @@
             // 
             this.gridColumn22.Caption = "Service End";
             this.gridColumn22.FieldName = "SvcEndDate";
-            this.gridColumn22.MinWidth = 17;
+            this.gridColumn22.MinWidth = 15;
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 2;
-            this.gridColumn22.Width = 71;
+            this.gridColumn22.Width = 64;
             // 
             // gridColumn23
             // 
             this.gridColumn23.Caption = "Book Start";
             this.gridColumn23.FieldName = "ResStartDate";
-            this.gridColumn23.MinWidth = 17;
+            this.gridColumn23.MinWidth = 15;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 3;
-            this.gridColumn23.Width = 71;
+            this.gridColumn23.Width = 64;
             // 
             // gridColumn24
             // 
             this.gridColumn24.Caption = "Book End";
             this.gridColumn24.FieldName = "ResEndDate";
-            this.gridColumn24.MinWidth = 17;
+            this.gridColumn24.MinWidth = 15;
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 4;
-            this.gridColumn24.Width = 78;
+            this.gridColumn24.Width = 70;
             // 
             // gridColumn25
             // 
             this.gridColumn25.Caption = "Comm Pct";
             this.gridColumn25.FieldName = "Percentage";
-            this.gridColumn25.MinWidth = 17;
+            this.gridColumn25.MinWidth = 15;
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.Visible = true;
             this.gridColumn25.VisibleIndex = 7;
-            this.gridColumn25.Width = 50;
+            this.gridColumn25.Width = 45;
             // 
             // gridColumn26
             // 
             this.gridColumn26.Caption = "Inactive";
             this.gridColumn26.ColumnEdit = this.repositoryItemCheckEdit1;
             this.gridColumn26.FieldName = "Inactive";
-            this.gridColumn26.MinWidth = 17;
+            this.gridColumn26.MinWidth = 15;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 8;
-            this.gridColumn26.Width = 38;
+            this.gridColumn26.Width = 34;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -2756,70 +2759,70 @@
             // 
             this.gridColumn27.Caption = "Service Start";
             this.gridColumn27.FieldName = "SvcStartDate";
-            this.gridColumn27.MinWidth = 17;
+            this.gridColumn27.MinWidth = 15;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 1;
-            this.gridColumn27.Width = 71;
+            this.gridColumn27.Width = 64;
             // 
             // gridColumn28
             // 
             this.gridColumn28.Caption = "Agency Rule";
             this.gridColumn28.FieldName = "AgencyRuleDescription";
-            this.gridColumn28.MinWidth = 17;
+            this.gridColumn28.MinWidth = 15;
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
             this.gridColumn28.VisibleIndex = 6;
-            this.gridColumn28.Width = 112;
+            this.gridColumn28.Width = 101;
             // 
             // gridColumn29
             // 
             this.gridColumn29.Caption = "Position";
             this.gridColumn29.FieldName = "Position";
-            this.gridColumn29.MinWidth = 17;
+            this.gridColumn29.MinWidth = 15;
             this.gridColumn29.Name = "gridColumn29";
             this.gridColumn29.Visible = true;
             this.gridColumn29.VisibleIndex = 10;
-            this.gridColumn29.Width = 37;
+            this.gridColumn29.Width = 33;
             // 
             // gridColumn30
             // 
             this.gridColumn30.Caption = "Product Rule";
             this.gridColumn30.FieldName = "ProductRuleDescription";
-            this.gridColumn30.MinWidth = 17;
+            this.gridColumn30.MinWidth = 15;
             this.gridColumn30.Name = "gridColumn30";
             this.gridColumn30.Visible = true;
             this.gridColumn30.VisibleIndex = 5;
-            this.gridColumn30.Width = 119;
+            this.gridColumn30.Width = 107;
             // 
             // gridColumn31
             // 
             this.gridColumn31.Caption = "Comm/Markup";
             this.gridColumn31.FieldName = "RecType";
-            this.gridColumn31.MinWidth = 17;
+            this.gridColumn31.MinWidth = 15;
             this.gridColumn31.Name = "gridColumn31";
-            this.gridColumn31.Width = 64;
+            this.gridColumn31.Width = 58;
             // 
             // gridColumn32
             // 
             this.gridColumn32.Caption = "Source";
             this.gridColumn32.FieldName = "Source";
-            this.gridColumn32.MinWidth = 17;
+            this.gridColumn32.MinWidth = 15;
             this.gridColumn32.Name = "gridColumn32";
             this.gridColumn32.Visible = true;
             this.gridColumn32.VisibleIndex = 0;
-            this.gridColumn32.Width = 52;
+            this.gridColumn32.Width = 47;
             // 
             // gridColumn33
             // 
             this.gridColumn33.Caption = "Exclusion";
             this.gridColumn33.ColumnEdit = this.repositoryItemCheckEdit4;
             this.gridColumn33.FieldName = "Exclusion";
-            this.gridColumn33.MinWidth = 17;
+            this.gridColumn33.MinWidth = 15;
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.Visible = true;
             this.gridColumn33.VisibleIndex = 9;
-            this.gridColumn33.Width = 44;
+            this.gridColumn33.Width = 40;
             // 
             // repositoryItemCheckEdit4
             // 
@@ -2829,15 +2832,15 @@
             // 
             // gridControl6
             // 
-            this.gridControl6.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControl6.Location = new System.Drawing.Point(16, 134);
+            this.gridControl6.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl6.Location = new System.Drawing.Point(14, 111);
             this.gridControl6.MainView = this.gridView5;
-            this.gridControl6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControl6.Name = "gridControl6";
             this.gridControl6.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2,
             this.repositoryItemCheckEdit3});
-            this.gridControl6.Size = new System.Drawing.Size(1517, 284);
+            this.gridControl6.Size = new System.Drawing.Size(1365, 235);
             this.gridControl6.TabIndex = 43;
             this.gridControl6.TabStop = false;
             this.gridControl6.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2858,7 +2861,7 @@
             this.gridColumn5,
             this.colSource,
             this.colExclusion1});
-            this.gridView5.DetailHeight = 322;
+            this.gridView5.DetailHeight = 266;
             this.gridView5.GridControl = this.gridControl6;
             this.gridView5.Name = "gridView5";
             this.gridView5.OptionsBehavior.Editable = false;
@@ -2868,52 +2871,52 @@
             // 
             this.colEND_DATE.Caption = "Service End";
             this.colEND_DATE.FieldName = "SvcEndDate";
-            this.colEND_DATE.MinWidth = 17;
+            this.colEND_DATE.MinWidth = 15;
             this.colEND_DATE.Name = "colEND_DATE";
             this.colEND_DATE.Visible = true;
             this.colEND_DATE.VisibleIndex = 2;
-            this.colEND_DATE.Width = 71;
+            this.colEND_DATE.Width = 64;
             // 
             // colResDate_Start
             // 
             this.colResDate_Start.Caption = "Book Start";
             this.colResDate_Start.FieldName = "ResStartDate";
-            this.colResDate_Start.MinWidth = 17;
+            this.colResDate_Start.MinWidth = 15;
             this.colResDate_Start.Name = "colResDate_Start";
             this.colResDate_Start.Visible = true;
             this.colResDate_Start.VisibleIndex = 3;
-            this.colResDate_Start.Width = 71;
+            this.colResDate_Start.Width = 64;
             // 
             // colResDate_End
             // 
             this.colResDate_End.Caption = "Book End";
             this.colResDate_End.FieldName = "ResEndDate";
-            this.colResDate_End.MinWidth = 17;
+            this.colResDate_End.MinWidth = 15;
             this.colResDate_End.Name = "colResDate_End";
             this.colResDate_End.Visible = true;
             this.colResDate_End.VisibleIndex = 4;
-            this.colResDate_End.Width = 78;
+            this.colResDate_End.Width = 70;
             // 
             // colCOMM_PCT
             // 
             this.colCOMM_PCT.Caption = "Comm Pct";
             this.colCOMM_PCT.FieldName = "Percentage";
-            this.colCOMM_PCT.MinWidth = 17;
+            this.colCOMM_PCT.MinWidth = 15;
             this.colCOMM_PCT.Name = "colCOMM_PCT";
             this.colCOMM_PCT.Visible = true;
             this.colCOMM_PCT.VisibleIndex = 7;
-            this.colCOMM_PCT.Width = 50;
+            this.colCOMM_PCT.Width = 45;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Inactive";
             this.gridColumn3.ColumnEdit = this.repositoryItemCheckEdit3;
             this.gridColumn3.FieldName = "Inactive";
-            this.gridColumn3.MinWidth = 17;
+            this.gridColumn3.MinWidth = 15;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 8;
-            this.gridColumn3.Width = 38;
+            this.gridColumn3.Width = 34;
             // 
             // repositoryItemCheckEdit3
             // 
@@ -2925,70 +2928,70 @@
             // 
             this.colSTART_DATE.Caption = "Service Start";
             this.colSTART_DATE.FieldName = "SvcStartDate";
-            this.colSTART_DATE.MinWidth = 17;
+            this.colSTART_DATE.MinWidth = 15;
             this.colSTART_DATE.Name = "colSTART_DATE";
             this.colSTART_DATE.Visible = true;
             this.colSTART_DATE.VisibleIndex = 1;
-            this.colSTART_DATE.Width = 71;
+            this.colSTART_DATE.Width = 64;
             // 
             // colDescription
             // 
             this.colDescription.Caption = "Agency Rule";
             this.colDescription.FieldName = "AgencyRuleDescription";
-            this.colDescription.MinWidth = 17;
+            this.colDescription.MinWidth = 15;
             this.colDescription.Name = "colDescription";
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 6;
-            this.colDescription.Width = 112;
+            this.colDescription.Width = 101;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Position";
             this.gridColumn4.FieldName = "Position";
-            this.gridColumn4.MinWidth = 17;
+            this.gridColumn4.MinWidth = 15;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 10;
-            this.gridColumn4.Width = 37;
+            this.gridColumn4.Width = 33;
             // 
             // colProdDesc
             // 
             this.colProdDesc.Caption = "Product Rule";
             this.colProdDesc.FieldName = "ProductRuleDescription";
-            this.colProdDesc.MinWidth = 17;
+            this.colProdDesc.MinWidth = 15;
             this.colProdDesc.Name = "colProdDesc";
             this.colProdDesc.Visible = true;
             this.colProdDesc.VisibleIndex = 5;
-            this.colProdDesc.Width = 119;
+            this.colProdDesc.Width = 107;
             // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Comm/Markup";
             this.gridColumn5.FieldName = "RecType";
-            this.gridColumn5.MinWidth = 17;
+            this.gridColumn5.MinWidth = 15;
             this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Width = 64;
+            this.gridColumn5.Width = 58;
             // 
             // colSource
             // 
             this.colSource.Caption = "Source";
             this.colSource.FieldName = "Source";
-            this.colSource.MinWidth = 17;
+            this.colSource.MinWidth = 15;
             this.colSource.Name = "colSource";
             this.colSource.Visible = true;
             this.colSource.VisibleIndex = 0;
-            this.colSource.Width = 52;
+            this.colSource.Width = 47;
             // 
             // colExclusion1
             // 
             this.colExclusion1.Caption = "Exclusion";
             this.colExclusion1.ColumnEdit = this.repositoryItemCheckEdit2;
             this.colExclusion1.FieldName = "Exclusion";
-            this.colExclusion1.MinWidth = 17;
+            this.colExclusion1.MinWidth = 15;
             this.colExclusion1.Name = "colExclusion1";
             this.colExclusion1.Visible = true;
             this.colExclusion1.VisibleIndex = 9;
-            this.colExclusion1.Width = 44;
+            this.colExclusion1.Width = 40;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -2998,18 +3001,18 @@
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(23, 42);
-            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl12.Location = new System.Drawing.Point(21, 35);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(58, 23);
+            this.labelControl12.Size = new System.Drawing.Size(48, 19);
             this.labelControl12.TabIndex = 39;
             this.labelControl12.Text = "Source";
             // 
             // ComboBoxEditSource
             // 
             this.ComboBoxEditSource.EnterMoveNextControl = true;
-            this.ComboBoxEditSource.Location = new System.Drawing.Point(91, 35);
-            this.ComboBoxEditSource.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ComboBoxEditSource.Location = new System.Drawing.Point(82, 29);
+            this.ComboBoxEditSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ComboBoxEditSource.Name = "ComboBoxEditSource";
             this.ComboBoxEditSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -3018,15 +3021,15 @@
             "REMOTE",
             "H2H",
             "WEB"});
-            this.ComboBoxEditSource.Size = new System.Drawing.Size(117, 36);
+            this.ComboBoxEditSource.Size = new System.Drawing.Size(105, 28);
             this.ComboBoxEditSource.TabIndex = 80;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(636, 42);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl11.Location = new System.Drawing.Point(572, 35);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(85, 23);
+            this.labelControl11.Size = new System.Drawing.Size(70, 19);
             this.labelControl11.TabIndex = 0;
             this.labelControl11.Text = "Start Date";
             // 
@@ -3034,31 +3037,31 @@
             // 
             this.dateComm.CausesValidation = false;
             this.dateComm.EnterMoveNextControl = true;
-            this.dateComm.Location = new System.Drawing.Point(731, 35);
-            this.dateComm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateComm.Location = new System.Drawing.Point(658, 29);
+            this.dateComm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateComm.Name = "dateComm";
             this.dateComm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateComm.Size = new System.Drawing.Size(251, 36);
+            this.dateComm.Size = new System.Drawing.Size(226, 28);
             this.dateComm.TabIndex = 82;
             this.dateComm.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.dateComm_ButtonClick);
             this.dateComm.TextChanged += new System.EventHandler(this.dateComm_TextChanged);
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(222, 42);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl10.Location = new System.Drawing.Point(200, 35);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(61, 23);
+            this.labelControl10.Size = new System.Drawing.Size(52, 19);
             this.labelControl10.TabIndex = 0;
             this.labelControl10.Text = "Agency";
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(997, 35);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButton2.Location = new System.Drawing.Point(897, 29);
+            this.simpleButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(91, 38);
+            this.simpleButton2.Size = new System.Drawing.Size(82, 31);
             this.simpleButton2.TabIndex = 3;
             this.simpleButton2.Text = "Search";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
@@ -3066,9 +3069,9 @@
             // xtraTabPage9
             // 
             this.xtraTabPage9.Controls.Add(this.panelControl9);
-            this.xtraTabPage9.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage9.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage9.Name = "xtraTabPage9";
-            this.xtraTabPage9.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage9.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage9.Text = "Custom";
             // 
             // panelControl9
@@ -3077,20 +3080,20 @@
             this.panelControl9.Controls.Add(this.labelControl8);
             this.panelControl9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl9.Location = new System.Drawing.Point(0, 0);
-            this.panelControl9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl9.Name = "panelControl9";
-            this.panelControl9.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl9.Size = new System.Drawing.Size(1405, 690);
             this.panelControl9.TabIndex = 0;
             // 
             // GridControlCustom
             // 
             this.GridControlCustom.DataSource = this.UserfieldBindingSource;
-            this.GridControlCustom.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlCustom.Location = new System.Drawing.Point(40, 115);
+            this.GridControlCustom.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlCustom.Location = new System.Drawing.Point(36, 95);
             this.GridControlCustom.MainView = this.GridViewCustom;
-            this.GridControlCustom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlCustom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlCustom.Name = "GridControlCustom";
-            this.GridControlCustom.Size = new System.Drawing.Size(1276, 536);
+            this.GridControlCustom.Size = new System.Drawing.Size(1148, 443);
             this.GridControlCustom.TabIndex = 1;
             this.GridControlCustom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewCustom});
@@ -3118,7 +3121,7 @@
             this.colPRECISION,
             this.colREQUIRED,
             this.colPOSITION});
-            this.GridViewCustom.DetailHeight = 322;
+            this.GridViewCustom.DetailHeight = 266;
             this.GridViewCustom.GridControl = this.GridControlCustom;
             this.GridViewCustom.Name = "GridViewCustom";
             this.GridViewCustom.OptionsView.ShowGroupPanel = false;
@@ -3127,126 +3130,126 @@
             // colLINK_TABLE
             // 
             this.colLINK_TABLE.FieldName = "LINK_TABLE";
-            this.colLINK_TABLE.MinWidth = 17;
+            this.colLINK_TABLE.MinWidth = 15;
             this.colLINK_TABLE.Name = "colLINK_TABLE";
-            this.colLINK_TABLE.Width = 62;
+            this.colLINK_TABLE.Width = 56;
             // 
             // colLINK_COLUMN
             // 
             this.colLINK_COLUMN.FieldName = "LINK_COLUMN";
-            this.colLINK_COLUMN.MinWidth = 17;
+            this.colLINK_COLUMN.MinWidth = 15;
             this.colLINK_COLUMN.Name = "colLINK_COLUMN";
-            this.colLINK_COLUMN.Width = 62;
+            this.colLINK_COLUMN.Width = 56;
             // 
             // colRECTYPE
             // 
             this.colRECTYPE.FieldName = "RECTYPE";
-            this.colRECTYPE.MinWidth = 17;
+            this.colRECTYPE.MinWidth = 15;
             this.colRECTYPE.Name = "colRECTYPE";
-            this.colRECTYPE.Width = 62;
+            this.colRECTYPE.Width = 56;
             // 
             // colLABEL
             // 
             this.colLABEL.Caption = "Label";
             this.colLABEL.FieldName = "LABEL";
-            this.colLABEL.MinWidth = 17;
+            this.colLABEL.MinWidth = 15;
             this.colLABEL.Name = "colLABEL";
             this.colLABEL.OptionsColumn.AllowEdit = false;
             this.colLABEL.OptionsColumn.TabStop = false;
             this.colLABEL.Visible = true;
             this.colLABEL.VisibleIndex = 0;
-            this.colLABEL.Width = 62;
+            this.colLABEL.Width = 56;
             // 
             // colDESC
             // 
             this.colDESC.FieldName = "DESC";
-            this.colDESC.MinWidth = 17;
+            this.colDESC.MinWidth = 15;
             this.colDESC.Name = "colDESC";
-            this.colDESC.Width = 62;
+            this.colDESC.Width = 56;
             // 
             // colVISIBLE
             // 
             this.colVISIBLE.FieldName = "VISIBLE";
-            this.colVISIBLE.MinWidth = 17;
+            this.colVISIBLE.MinWidth = 15;
             this.colVISIBLE.Name = "colVISIBLE";
-            this.colVISIBLE.Width = 62;
+            this.colVISIBLE.Width = 56;
             // 
             // colLKUP_CODE_COLUMN
             // 
             this.colLKUP_CODE_COLUMN.FieldName = "LKUP_CODE_COLUMN";
-            this.colLKUP_CODE_COLUMN.MinWidth = 17;
+            this.colLKUP_CODE_COLUMN.MinWidth = 15;
             this.colLKUP_CODE_COLUMN.Name = "colLKUP_CODE_COLUMN";
-            this.colLKUP_CODE_COLUMN.Width = 62;
+            this.colLKUP_CODE_COLUMN.Width = 56;
             // 
             // colLKUP_DESC_COLUMN
             // 
             this.colLKUP_DESC_COLUMN.FieldName = "LKUP_DESC_COLUMN";
-            this.colLKUP_DESC_COLUMN.MinWidth = 17;
+            this.colLKUP_DESC_COLUMN.MinWidth = 15;
             this.colLKUP_DESC_COLUMN.Name = "colLKUP_DESC_COLUMN";
-            this.colLKUP_DESC_COLUMN.Width = 62;
+            this.colLKUP_DESC_COLUMN.Width = 56;
             // 
             // colLKUP_TABLE
             // 
             this.colLKUP_TABLE.FieldName = "LKUP_TABLE";
-            this.colLKUP_TABLE.MinWidth = 17;
+            this.colLKUP_TABLE.MinWidth = 15;
             this.colLKUP_TABLE.Name = "colLKUP_TABLE";
-            this.colLKUP_TABLE.Width = 62;
+            this.colLKUP_TABLE.Width = 56;
             // 
             // colSIZE
             // 
             this.colSIZE.FieldName = "SIZE";
-            this.colSIZE.MinWidth = 17;
+            this.colSIZE.MinWidth = 15;
             this.colSIZE.Name = "colSIZE";
-            this.colSIZE.Width = 62;
+            this.colSIZE.Width = 56;
             // 
             // colMIN
             // 
             this.colMIN.FieldName = "MIN";
-            this.colMIN.MinWidth = 17;
+            this.colMIN.MinWidth = 15;
             this.colMIN.Name = "colMIN";
-            this.colMIN.Width = 62;
+            this.colMIN.Width = 56;
             // 
             // colMAX
             // 
             this.colMAX.FieldName = "MAX";
-            this.colMAX.MinWidth = 17;
+            this.colMAX.MinWidth = 15;
             this.colMAX.Name = "colMAX";
-            this.colMAX.Width = 62;
+            this.colMAX.Width = 56;
             // 
             // colRESTRICT_TO_LKUP
             // 
             this.colRESTRICT_TO_LKUP.FieldName = "RESTRICT_TO_LKUP";
-            this.colRESTRICT_TO_LKUP.MinWidth = 17;
+            this.colRESTRICT_TO_LKUP.MinWidth = 15;
             this.colRESTRICT_TO_LKUP.Name = "colRESTRICT_TO_LKUP";
-            this.colRESTRICT_TO_LKUP.Width = 62;
+            this.colRESTRICT_TO_LKUP.Width = 56;
             // 
             // colPRECISION
             // 
             this.colPRECISION.FieldName = "PRECISION";
-            this.colPRECISION.MinWidth = 17;
+            this.colPRECISION.MinWidth = 15;
             this.colPRECISION.Name = "colPRECISION";
-            this.colPRECISION.Width = 62;
+            this.colPRECISION.Width = 56;
             // 
             // colREQUIRED
             // 
             this.colREQUIRED.FieldName = "REQUIRED";
-            this.colREQUIRED.MinWidth = 17;
+            this.colREQUIRED.MinWidth = 15;
             this.colREQUIRED.Name = "colREQUIRED";
-            this.colREQUIRED.Width = 62;
+            this.colREQUIRED.Width = 56;
             // 
             // colPOSITION
             // 
             this.colPOSITION.FieldName = "POSITION";
-            this.colPOSITION.MinWidth = 17;
+            this.colPOSITION.MinWidth = 15;
             this.colPOSITION.Name = "colPOSITION";
-            this.colPOSITION.Width = 62;
+            this.colPOSITION.Width = 56;
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(42, 46);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl8.Location = new System.Drawing.Point(38, 38);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(163, 23);
+            this.labelControl8.Size = new System.Drawing.Size(138, 19);
             this.labelControl8.TabIndex = 0;
             this.labelControl8.Text = "User-defined fields:";
             // 
@@ -3254,10 +3257,10 @@
             // 
             this.ButtonSaveChanges.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonSaveChanges.ImageOptions.Image")));
             this.ButtonSaveChanges.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonSaveChanges.Location = new System.Drawing.Point(217, 706);
-            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonSaveChanges.Location = new System.Drawing.Point(195, 583);
+            this.ButtonSaveChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSaveChanges.Name = "ButtonSaveChanges";
-            this.ButtonSaveChanges.Size = new System.Drawing.Size(64, 64);
+            this.ButtonSaveChanges.Size = new System.Drawing.Size(58, 53);
             this.ButtonSaveChanges.TabIndex = 3;
             this.ButtonSaveChanges.TabStop = false;
             this.ButtonSaveChanges.Text = "simpleButton3";
@@ -3267,10 +3270,10 @@
             // 
             this.DelRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DelRow.ImageOptions.Image")));
             this.DelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.DelRow.Location = new System.Drawing.Point(137, 706);
-            this.DelRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DelRow.Location = new System.Drawing.Point(123, 583);
+            this.DelRow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DelRow.Name = "DelRow";
-            this.DelRow.Size = new System.Drawing.Size(57, 64);
+            this.DelRow.Size = new System.Drawing.Size(51, 53);
             this.DelRow.TabIndex = 4;
             this.DelRow.TabStop = false;
             this.DelRow.Text = "simpleButton4";
@@ -3280,10 +3283,10 @@
             // 
             this.ButtonAddRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRow.ImageOptions.Image")));
             this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(50, 706);
-            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonAddRow.Location = new System.Drawing.Point(45, 583);
+            this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAddRow.Name = "ButtonAddRow";
-            this.ButtonAddRow.Size = new System.Drawing.Size(60, 64);
+            this.ButtonAddRow.Size = new System.Drawing.Size(54, 53);
             this.ButtonAddRow.TabIndex = 5;
             this.ButtonAddRow.TabStop = false;
             this.ButtonAddRow.Text = "simpleButton3";
@@ -3292,9 +3295,9 @@
             // xtraTabPage8
             // 
             this.xtraTabPage8.Controls.Add(this.panelControl8);
-            this.xtraTabPage8.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage8.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage8.Name = "xtraTabPage8";
-            this.xtraTabPage8.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage8.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage8.Text = "Memberships";
             // 
             // panelControl8
@@ -3314,23 +3317,23 @@
             this.panelControl8.Controls.Add(cHAINLabel);
             this.panelControl8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl8.Location = new System.Drawing.Point(0, 0);
-            this.panelControl8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl8.Name = "panelControl8";
-            this.panelControl8.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl8.Size = new System.Drawing.Size(1405, 690);
             this.panelControl8.TabIndex = 0;
             // 
             // GridControlDetail
             // 
             this.GridControlDetail.DataSource = this.DetailBindingSource;
-            this.GridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlDetail.Location = new System.Drawing.Point(50, 231);
+            this.GridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlDetail.Location = new System.Drawing.Point(45, 191);
             this.GridControlDetail.MainView = this.GridViewDetail;
-            this.GridControlDetail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlDetail.Name = "GridControlDetail";
             this.GridControlDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2,
             this.repositoryItemPopupContainerEdit1});
-            this.GridControlDetail.Size = new System.Drawing.Size(1257, 430);
+            this.GridControlDetail.Size = new System.Drawing.Size(1131, 355);
             this.GridControlDetail.TabIndex = 20;
             this.GridControlDetail.TabStop = false;
             this.GridControlDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -3359,7 +3362,7 @@
             this.colUSER_TXT41,
             this.colUSER_DTE11,
             this.colUSER_DTE21});
-            this.GridViewDetail.DetailHeight = 322;
+            this.GridViewDetail.DetailHeight = 266;
             this.GridViewDetail.GridControl = this.GridControlDetail;
             this.GridViewDetail.Name = "GridViewDetail";
             this.GridViewDetail.OptionsView.ShowGroupPanel = false;
@@ -3368,41 +3371,41 @@
             // colID1
             // 
             this.colID1.FieldName = "ID";
-            this.colID1.MinWidth = 17;
+            this.colID1.MinWidth = 15;
             this.colID1.Name = "colID1";
-            this.colID1.Width = 62;
+            this.colID1.Width = 56;
             // 
             // colLINK_TABLE1
             // 
             this.colLINK_TABLE1.FieldName = "LINK_TABLE";
-            this.colLINK_TABLE1.MinWidth = 17;
+            this.colLINK_TABLE1.MinWidth = 15;
             this.colLINK_TABLE1.Name = "colLINK_TABLE1";
-            this.colLINK_TABLE1.Width = 62;
+            this.colLINK_TABLE1.Width = 56;
             // 
             // colRECTYPE1
             // 
             this.colRECTYPE1.FieldName = "RECTYPE";
-            this.colRECTYPE1.MinWidth = 17;
+            this.colRECTYPE1.MinWidth = 15;
             this.colRECTYPE1.Name = "colRECTYPE1";
-            this.colRECTYPE1.Width = 62;
+            this.colRECTYPE1.Width = 56;
             // 
             // colLINK_VALUE1
             // 
             this.colLINK_VALUE1.FieldName = "LINK_VALUE";
-            this.colLINK_VALUE1.MinWidth = 17;
+            this.colLINK_VALUE1.MinWidth = 15;
             this.colLINK_VALUE1.Name = "colLINK_VALUE1";
-            this.colLINK_VALUE1.Width = 62;
+            this.colLINK_VALUE1.Width = 56;
             // 
             // colCODE1
             // 
             this.colCODE1.Caption = "Classification";
             this.colCODE1.ColumnEdit = this.repositoryItemPopupContainerEdit1;
             this.colCODE1.FieldName = "CODE";
-            this.colCODE1.MinWidth = 17;
+            this.colCODE1.MinWidth = 15;
             this.colCODE1.Name = "colCODE1";
             this.colCODE1.Visible = true;
             this.colCODE1.VisibleIndex = 0;
-            this.colCODE1.Width = 62;
+            this.colCODE1.Width = 56;
             // 
             // repositoryItemPopupContainerEdit1
             // 
@@ -3418,28 +3421,28 @@
             this.popupContainerControlLookup.Controls.Add(this.LookupButtonCancel);
             this.popupContainerControlLookup.Controls.Add(this.LookupButtonOk);
             this.popupContainerControlLookup.Controls.Add(this.GridControlLookup);
-            this.popupContainerControlLookup.Location = new System.Drawing.Point(117, 1013);
-            this.popupContainerControlLookup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.popupContainerControlLookup.Location = new System.Drawing.Point(105, 837);
+            this.popupContainerControlLookup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.popupContainerControlLookup.Name = "popupContainerControlLookup";
-            this.popupContainerControlLookup.Size = new System.Drawing.Size(662, 695);
+            this.popupContainerControlLookup.Size = new System.Drawing.Size(596, 574);
             this.popupContainerControlLookup.TabIndex = 18;
             // 
             // LookupButtonCancel
             // 
-            this.LookupButtonCancel.Location = new System.Drawing.Point(357, 530);
-            this.LookupButtonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LookupButtonCancel.Location = new System.Drawing.Point(321, 438);
+            this.LookupButtonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LookupButtonCancel.Name = "LookupButtonCancel";
-            this.LookupButtonCancel.Size = new System.Drawing.Size(124, 41);
+            this.LookupButtonCancel.Size = new System.Drawing.Size(112, 34);
             this.LookupButtonCancel.TabIndex = 2;
             this.LookupButtonCancel.Text = "Cancel";
             this.LookupButtonCancel.Click += new System.EventHandler(this.LookupButtonCancel_Click);
             // 
             // LookupButtonOk
             // 
-            this.LookupButtonOk.Location = new System.Drawing.Point(167, 530);
-            this.LookupButtonOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LookupButtonOk.Location = new System.Drawing.Point(150, 438);
+            this.LookupButtonOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LookupButtonOk.Name = "LookupButtonOk";
-            this.LookupButtonOk.Size = new System.Drawing.Size(124, 41);
+            this.LookupButtonOk.Size = new System.Drawing.Size(112, 34);
             this.LookupButtonOk.TabIndex = 1;
             this.LookupButtonOk.Text = "OK";
             this.LookupButtonOk.Click += new System.EventHandler(this.LookupButtonOk_Click);
@@ -3447,12 +3450,12 @@
             // GridControlLookup
             // 
             this.GridControlLookup.DataSource = this.lOOKUPBindingSource;
-            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlLookup.Location = new System.Drawing.Point(44, 39);
+            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlLookup.Location = new System.Drawing.Point(40, 32);
             this.GridControlLookup.MainView = this.GridViewLookup;
-            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(547, 460);
+            this.GridControlLookup.Size = new System.Drawing.Size(492, 380);
             this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -3471,7 +3474,7 @@
             this.colCODE5,
             this.colDESC2,
             this.colID5});
-            this.GridViewLookup.DetailHeight = 322;
+            this.GridViewLookup.DetailHeight = 266;
             this.GridViewLookup.GridControl = this.GridControlLookup;
             this.GridViewLookup.Name = "GridViewLookup";
             this.GridViewLookup.OptionsBehavior.Editable = false;
@@ -3482,130 +3485,130 @@
             // colLINK_TABLE2
             // 
             this.colLINK_TABLE2.FieldName = "LINK_TABLE";
-            this.colLINK_TABLE2.MinWidth = 17;
+            this.colLINK_TABLE2.MinWidth = 15;
             this.colLINK_TABLE2.Name = "colLINK_TABLE2";
-            this.colLINK_TABLE2.Width = 62;
+            this.colLINK_TABLE2.Width = 56;
             // 
             // colLINK_COLUMN1
             // 
             this.colLINK_COLUMN1.FieldName = "LINK_COLUMN";
-            this.colLINK_COLUMN1.MinWidth = 17;
+            this.colLINK_COLUMN1.MinWidth = 15;
             this.colLINK_COLUMN1.Name = "colLINK_COLUMN1";
-            this.colLINK_COLUMN1.Width = 62;
+            this.colLINK_COLUMN1.Width = 56;
             // 
             // colRECTYPE2
             // 
             this.colRECTYPE2.FieldName = "RECTYPE";
-            this.colRECTYPE2.MinWidth = 17;
+            this.colRECTYPE2.MinWidth = 15;
             this.colRECTYPE2.Name = "colRECTYPE2";
-            this.colRECTYPE2.Width = 62;
+            this.colRECTYPE2.Width = 56;
             // 
             // colCODE5
             // 
             this.colCODE5.Caption = "Code";
             this.colCODE5.FieldName = "CODE";
-            this.colCODE5.MinWidth = 17;
+            this.colCODE5.MinWidth = 15;
             this.colCODE5.Name = "colCODE5";
             this.colCODE5.Visible = true;
             this.colCODE5.VisibleIndex = 0;
-            this.colCODE5.Width = 62;
+            this.colCODE5.Width = 56;
             // 
             // colDESC2
             // 
             this.colDESC2.Caption = "Description";
             this.colDESC2.FieldName = "DESC";
-            this.colDESC2.MinWidth = 17;
+            this.colDESC2.MinWidth = 15;
             this.colDESC2.Name = "colDESC2";
             this.colDESC2.Visible = true;
             this.colDESC2.VisibleIndex = 1;
-            this.colDESC2.Width = 62;
+            this.colDESC2.Width = 56;
             // 
             // colID5
             // 
             this.colID5.FieldName = "ID";
-            this.colID5.MinWidth = 17;
+            this.colID5.MinWidth = 15;
             this.colID5.Name = "colID5";
-            this.colID5.Width = 62;
+            this.colID5.Width = 56;
             // 
             // colNOTE
             // 
             this.colNOTE.Caption = "Note";
             this.colNOTE.FieldName = "NOTE";
-            this.colNOTE.MinWidth = 17;
+            this.colNOTE.MinWidth = 15;
             this.colNOTE.Name = "colNOTE";
             this.colNOTE.Visible = true;
             this.colNOTE.VisibleIndex = 1;
-            this.colNOTE.Width = 62;
+            this.colNOTE.Width = 56;
             // 
             // colUSER_DEC11
             // 
             this.colUSER_DEC11.FieldName = "USER_DEC1";
-            this.colUSER_DEC11.MinWidth = 17;
+            this.colUSER_DEC11.MinWidth = 15;
             this.colUSER_DEC11.Name = "colUSER_DEC11";
-            this.colUSER_DEC11.Width = 62;
+            this.colUSER_DEC11.Width = 56;
             // 
             // colUSER_DEC21
             // 
             this.colUSER_DEC21.FieldName = "USER_DEC2";
-            this.colUSER_DEC21.MinWidth = 17;
+            this.colUSER_DEC21.MinWidth = 15;
             this.colUSER_DEC21.Name = "colUSER_DEC21";
-            this.colUSER_DEC21.Width = 62;
+            this.colUSER_DEC21.Width = 56;
             // 
             // colUSER_INT11
             // 
             this.colUSER_INT11.FieldName = "USER_INT1";
-            this.colUSER_INT11.MinWidth = 17;
+            this.colUSER_INT11.MinWidth = 15;
             this.colUSER_INT11.Name = "colUSER_INT11";
-            this.colUSER_INT11.Width = 62;
+            this.colUSER_INT11.Width = 56;
             // 
             // colUSER_INT21
             // 
             this.colUSER_INT21.FieldName = "USER_INT2";
-            this.colUSER_INT21.MinWidth = 17;
+            this.colUSER_INT21.MinWidth = 15;
             this.colUSER_INT21.Name = "colUSER_INT21";
-            this.colUSER_INT21.Width = 62;
+            this.colUSER_INT21.Width = 56;
             // 
             // colUSER_TXT11
             // 
             this.colUSER_TXT11.FieldName = "USER_TXT1";
-            this.colUSER_TXT11.MinWidth = 17;
+            this.colUSER_TXT11.MinWidth = 15;
             this.colUSER_TXT11.Name = "colUSER_TXT11";
-            this.colUSER_TXT11.Width = 62;
+            this.colUSER_TXT11.Width = 56;
             // 
             // colUSER_TXT21
             // 
             this.colUSER_TXT21.FieldName = "USER_TXT2";
-            this.colUSER_TXT21.MinWidth = 17;
+            this.colUSER_TXT21.MinWidth = 15;
             this.colUSER_TXT21.Name = "colUSER_TXT21";
-            this.colUSER_TXT21.Width = 62;
+            this.colUSER_TXT21.Width = 56;
             // 
             // colUSER_TXT31
             // 
             this.colUSER_TXT31.FieldName = "USER_TXT3";
-            this.colUSER_TXT31.MinWidth = 17;
+            this.colUSER_TXT31.MinWidth = 15;
             this.colUSER_TXT31.Name = "colUSER_TXT31";
-            this.colUSER_TXT31.Width = 62;
+            this.colUSER_TXT31.Width = 56;
             // 
             // colUSER_TXT41
             // 
             this.colUSER_TXT41.FieldName = "USER_TXT4";
-            this.colUSER_TXT41.MinWidth = 17;
+            this.colUSER_TXT41.MinWidth = 15;
             this.colUSER_TXT41.Name = "colUSER_TXT41";
-            this.colUSER_TXT41.Width = 62;
+            this.colUSER_TXT41.Width = 56;
             // 
             // colUSER_DTE11
             // 
             this.colUSER_DTE11.FieldName = "USER_DTE1";
-            this.colUSER_DTE11.MinWidth = 17;
+            this.colUSER_DTE11.MinWidth = 15;
             this.colUSER_DTE11.Name = "colUSER_DTE11";
-            this.colUSER_DTE11.Width = 62;
+            this.colUSER_DTE11.Width = 56;
             // 
             // colUSER_DTE21
             // 
             this.colUSER_DTE21.FieldName = "USER_DTE2";
-            this.colUSER_DTE21.MinWidth = 17;
+            this.colUSER_DTE21.MinWidth = 15;
             this.colUSER_DTE21.Name = "colUSER_DTE21";
-            this.colUSER_DTE21.Width = 62;
+            this.colUSER_DTE21.Width = 56;
             // 
             // repositoryItemButtonEdit2
             // 
@@ -3618,12 +3621,12 @@
             // 
             this.ImageComboBoxEditMgmt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "MGMT_CO", true));
             this.ImageComboBoxEditMgmt.EnterMoveNextControl = true;
-            this.ImageComboBoxEditMgmt.Location = new System.Drawing.Point(783, 139);
-            this.ImageComboBoxEditMgmt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditMgmt.Location = new System.Drawing.Point(705, 115);
+            this.ImageComboBoxEditMgmt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditMgmt.Name = "ImageComboBoxEditMgmt";
             this.ImageComboBoxEditMgmt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditMgmt.Size = new System.Drawing.Size(377, 36);
+            this.ImageComboBoxEditMgmt.Size = new System.Drawing.Size(339, 28);
             this.ImageComboBoxEditMgmt.TabIndex = 75;
             this.ImageComboBoxEditMgmt.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditMgmt.Leave += new System.EventHandler(this.ImageComboBoxEditMgmt_Leave);
@@ -3632,12 +3635,12 @@
             // 
             this.ImageComboBoxEditOper.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "OPER", true));
             this.ImageComboBoxEditOper.EnterMoveNextControl = true;
-            this.ImageComboBoxEditOper.Location = new System.Drawing.Point(231, 139);
-            this.ImageComboBoxEditOper.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditOper.Location = new System.Drawing.Point(208, 115);
+            this.ImageComboBoxEditOper.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditOper.Name = "ImageComboBoxEditOper";
             this.ImageComboBoxEditOper.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditOper.Size = new System.Drawing.Size(410, 36);
+            this.ImageComboBoxEditOper.Size = new System.Drawing.Size(369, 28);
             this.ImageComboBoxEditOper.TabIndex = 74;
             this.ImageComboBoxEditOper.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditOper.Leave += new System.EventHandler(this.ImageComboBoxEditOper_Leave);
@@ -3646,12 +3649,12 @@
             // 
             this.ImageComboBoxEditBrand.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "BRAND", true));
             this.ImageComboBoxEditBrand.EnterMoveNextControl = true;
-            this.ImageComboBoxEditBrand.Location = new System.Drawing.Point(783, 65);
-            this.ImageComboBoxEditBrand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditBrand.Location = new System.Drawing.Point(705, 54);
+            this.ImageComboBoxEditBrand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditBrand.Name = "ImageComboBoxEditBrand";
             this.ImageComboBoxEditBrand.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditBrand.Size = new System.Drawing.Size(377, 36);
+            this.ImageComboBoxEditBrand.Size = new System.Drawing.Size(339, 28);
             this.ImageComboBoxEditBrand.TabIndex = 73;
             this.ImageComboBoxEditBrand.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditBrand.Leave += new System.EventHandler(this.ImageComboBoxEditBrand_Leave);
@@ -3660,22 +3663,22 @@
             // 
             this.ImageComboBoxEditChain.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CHAIN", true));
             this.ImageComboBoxEditChain.EnterMoveNextControl = true;
-            this.ImageComboBoxEditChain.Location = new System.Drawing.Point(230, 65);
-            this.ImageComboBoxEditChain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditChain.Location = new System.Drawing.Point(207, 54);
+            this.ImageComboBoxEditChain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditChain.Name = "ImageComboBoxEditChain";
             this.ImageComboBoxEditChain.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditChain.Size = new System.Drawing.Size(410, 36);
+            this.ImageComboBoxEditChain.Size = new System.Drawing.Size(369, 28);
             this.ImageComboBoxEditChain.TabIndex = 72;
             this.ImageComboBoxEditChain.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditChain.Leave += new System.EventHandler(this.ImageComboBoxEditChain_Leave);
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(44, 196);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl7.Location = new System.Drawing.Point(40, 162);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(120, 23);
+            this.labelControl7.Size = new System.Drawing.Size(104, 19);
             this.labelControl7.TabIndex = 19;
             this.labelControl7.Text = "Classifications:";
             // 
@@ -3683,9 +3686,9 @@
             // 
             this.xtraTabPage7.AutoScroll = true;
             this.xtraTabPage7.Controls.Add(this.panelControl7);
-            this.xtraTabPage7.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage7.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage7.Text = "Accounting";
             // 
             // panelControl7
@@ -3713,9 +3716,9 @@
             this.panelControl7.Controls.Add(this.shapeContainer6);
             this.panelControl7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl7.Location = new System.Drawing.Point(0, 0);
-            this.panelControl7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl7.Name = "panelControl7";
-            this.panelControl7.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl7.Size = new System.Drawing.Size(1405, 690);
             this.panelControl7.TabIndex = 0;
             // 
             // pERSONTAXSpinEdit
@@ -3727,12 +3730,12 @@
             0,
             0});
             this.pERSONTAXSpinEdit.EnterMoveNextControl = true;
-            this.pERSONTAXSpinEdit.Location = new System.Drawing.Point(967, 254);
-            this.pERSONTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pERSONTAXSpinEdit.Location = new System.Drawing.Point(870, 210);
+            this.pERSONTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pERSONTAXSpinEdit.Name = "pERSONTAXSpinEdit";
             this.pERSONTAXSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.pERSONTAXSpinEdit.Size = new System.Drawing.Size(96, 36);
+            this.pERSONTAXSpinEdit.Size = new System.Drawing.Size(86, 28);
             this.pERSONTAXSpinEdit.TabIndex = 68;
             this.pERSONTAXSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.pERSONTAXSpinEdit.Leave += new System.EventHandler(this.pERSONTAXSpinEdit_Leave);
@@ -3741,10 +3744,10 @@
             // 
             this.label11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Appearance.Options.UseFont = true;
-            this.label11.Location = new System.Drawing.Point(769, 96);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label11.Location = new System.Drawing.Point(692, 79);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 23);
+            this.label11.Size = new System.Drawing.Size(44, 21);
             this.label11.TabIndex = 42;
             this.label11.Text = "Taxes";
             // 
@@ -3757,12 +3760,12 @@
             0,
             0});
             this.rOOMTAXSpinEdit.EnterMoveNextControl = true;
-            this.rOOMTAXSpinEdit.Location = new System.Drawing.Point(967, 206);
-            this.rOOMTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rOOMTAXSpinEdit.Location = new System.Drawing.Point(870, 170);
+            this.rOOMTAXSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rOOMTAXSpinEdit.Name = "rOOMTAXSpinEdit";
             this.rOOMTAXSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.rOOMTAXSpinEdit.Size = new System.Drawing.Size(96, 36);
+            this.rOOMTAXSpinEdit.Size = new System.Drawing.Size(86, 28);
             this.rOOMTAXSpinEdit.TabIndex = 67;
             this.rOOMTAXSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.rOOMTAXSpinEdit.Leave += new System.EventHandler(this.rOOMTAXSpinEdit_Leave);
@@ -3771,11 +3774,11 @@
             // 
             this.aP_MGRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP_MGR", true));
             this.aP_MGRTextBox.EnterMoveNextControl = true;
-            this.aP_MGRTextBox.Location = new System.Drawing.Point(211, 437);
-            this.aP_MGRTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aP_MGRTextBox.Location = new System.Drawing.Point(190, 361);
+            this.aP_MGRTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aP_MGRTextBox.Name = "aP_MGRTextBox";
             this.aP_MGRTextBox.Properties.MaxLength = 20;
-            this.aP_MGRTextBox.Size = new System.Drawing.Size(416, 36);
+            this.aP_MGRTextBox.Size = new System.Drawing.Size(374, 28);
             this.aP_MGRTextBox.TabIndex = 69;
             this.aP_MGRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aP_MGRTextBox.Leave += new System.EventHandler(this.aP_MGRTextBox_Leave);
@@ -3784,11 +3787,11 @@
             // 
             this.aP_EMAILTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP_EMAIL", true));
             this.aP_EMAILTextBox.EnterMoveNextControl = true;
-            this.aP_EMAILTextBox.Location = new System.Drawing.Point(211, 484);
-            this.aP_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aP_EMAILTextBox.Location = new System.Drawing.Point(190, 400);
+            this.aP_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aP_EMAILTextBox.Name = "aP_EMAILTextBox";
             this.aP_EMAILTextBox.Properties.MaxLength = 50;
-            this.aP_EMAILTextBox.Size = new System.Drawing.Size(416, 36);
+            this.aP_EMAILTextBox.Size = new System.Drawing.Size(374, 28);
             this.aP_EMAILTextBox.TabIndex = 70;
             this.aP_EMAILTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aP_EMAILTextBox.Leave += new System.EventHandler(this.aP_EMAILTextBox_Leave);
@@ -3802,22 +3805,22 @@
             0,
             0});
             this.tAXRATESpinEdit.EnterMoveNextControl = true;
-            this.tAXRATESpinEdit.Location = new System.Drawing.Point(967, 160);
-            this.tAXRATESpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tAXRATESpinEdit.Location = new System.Drawing.Point(870, 132);
+            this.tAXRATESpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tAXRATESpinEdit.Name = "tAXRATESpinEdit";
             this.tAXRATESpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.tAXRATESpinEdit.Size = new System.Drawing.Size(96, 36);
+            this.tAXRATESpinEdit.Size = new System.Drawing.Size(86, 28);
             this.tAXRATESpinEdit.TabIndex = 66;
             this.tAXRATESpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.tAXRATESpinEdit.Leave += new System.EventHandler(this.tAXRATESpinEdit_Leave);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(44, 96);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label10.Location = new System.Drawing.Point(40, 79);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(149, 23);
+            this.label10.Size = new System.Drawing.Size(126, 19);
             this.label10.TabIndex = 28;
             this.label10.Text = "Account Numbers";
             // 
@@ -3825,10 +3828,10 @@
             // 
             this.due_DaysTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Due_Days", true));
             this.due_DaysTextEdit.EnterMoveNextControl = true;
-            this.due_DaysTextEdit.Location = new System.Drawing.Point(920, 444);
-            this.due_DaysTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.due_DaysTextEdit.Location = new System.Drawing.Point(828, 367);
+            this.due_DaysTextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.due_DaysTextEdit.Name = "due_DaysTextEdit";
-            this.due_DaysTextEdit.Size = new System.Drawing.Size(167, 36);
+            this.due_DaysTextEdit.Size = new System.Drawing.Size(150, 28);
             this.due_DaysTextEdit.TabIndex = 71;
             this.due_DaysTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.due_DaysTextEdit.Leave += new System.EventHandler(this.due_DaysTextEdit_Leave);
@@ -3837,11 +3840,11 @@
             // 
             this.bILLACCTTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "BILLACCT", true));
             this.bILLACCTTextBox.EnterMoveNextControl = true;
-            this.bILLACCTTextBox.Location = new System.Drawing.Point(211, 254);
-            this.bILLACCTTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bILLACCTTextBox.Location = new System.Drawing.Point(190, 210);
+            this.bILLACCTTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bILLACCTTextBox.Name = "bILLACCTTextBox";
             this.bILLACCTTextBox.Properties.MaxLength = 30;
-            this.bILLACCTTextBox.Size = new System.Drawing.Size(416, 36);
+            this.bILLACCTTextBox.Size = new System.Drawing.Size(374, 28);
             this.bILLACCTTextBox.TabIndex = 65;
             this.bILLACCTTextBox.Enter += new System.EventHandler(this.enterControl);
             this.bILLACCTTextBox.Leave += new System.EventHandler(this.bILLACCTTextBox_Leave);
@@ -3850,11 +3853,11 @@
             // 
             this.aRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AR", true));
             this.aRTextBox.EnterMoveNextControl = true;
-            this.aRTextBox.Location = new System.Drawing.Point(211, 160);
-            this.aRTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aRTextBox.Location = new System.Drawing.Point(190, 132);
+            this.aRTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aRTextBox.Name = "aRTextBox";
             this.aRTextBox.Properties.MaxLength = 12;
-            this.aRTextBox.Size = new System.Drawing.Size(270, 36);
+            this.aRTextBox.Size = new System.Drawing.Size(243, 28);
             this.aRTextBox.TabIndex = 63;
             this.aRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aRTextBox.Leave += new System.EventHandler(this.aRTextBox_Leave);
@@ -3863,25 +3866,25 @@
             // 
             this.aPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "AP", true));
             this.aPTextBox.EnterMoveNextControl = true;
-            this.aPTextBox.Location = new System.Drawing.Point(211, 207);
-            this.aPTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aPTextBox.Location = new System.Drawing.Point(190, 171);
+            this.aPTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aPTextBox.Name = "aPTextBox";
             this.aPTextBox.Properties.MaxLength = 6;
-            this.aPTextBox.Size = new System.Drawing.Size(270, 36);
+            this.aPTextBox.Size = new System.Drawing.Size(243, 28);
             this.aPTextBox.TabIndex = 64;
             this.aPTextBox.Enter += new System.EventHandler(this.enterControl);
             this.aPTextBox.Leave += new System.EventHandler(this.aPTextBox_Leave);
             // 
             // shapeContainer6
             // 
-            this.shapeContainer6.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer6.Location = new System.Drawing.Point(2, 2);
             this.shapeContainer6.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer6.Name = "shapeContainer6";
             this.shapeContainer6.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape10,
             this.rectangleShape9,
             this.rectangleShape8});
-            this.shapeContainer6.Size = new System.Drawing.Size(1553, 826);
+            this.shapeContainer6.Size = new System.Drawing.Size(1401, 686);
             this.shapeContainer6.TabIndex = 43;
             this.shapeContainer6.TabStop = false;
             // 
@@ -3913,9 +3916,9 @@
             // 
             this.xtraTabPage6.AutoScroll = true;
             this.xtraTabPage6.Controls.Add(this.panelControl6);
-            this.xtraTabPage6.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage6.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage6.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage6.Text = "Description";
             // 
             // panelControl6
@@ -3934,9 +3937,9 @@
             this.panelControl6.Controls.Add(this.shapeContainer5);
             this.panelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl6.Location = new System.Drawing.Point(0, 0);
-            this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl6.Name = "panelControl6";
-            this.panelControl6.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl6.Size = new System.Drawing.Size(1405, 690);
             this.panelControl6.TabIndex = 0;
             // 
             // nO_LOUNGESSpinEdit
@@ -3948,12 +3951,12 @@
             0,
             0});
             this.nO_LOUNGESSpinEdit.EnterMoveNextControl = true;
-            this.nO_LOUNGESSpinEdit.Location = new System.Drawing.Point(244, 215);
-            this.nO_LOUNGESSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nO_LOUNGESSpinEdit.Location = new System.Drawing.Point(220, 178);
+            this.nO_LOUNGESSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nO_LOUNGESSpinEdit.Name = "nO_LOUNGESSpinEdit";
             this.nO_LOUNGESSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_LOUNGESSpinEdit.Size = new System.Drawing.Size(97, 36);
+            this.nO_LOUNGESSpinEdit.Size = new System.Drawing.Size(87, 28);
             this.nO_LOUNGESSpinEdit.TabIndex = 59;
             this.nO_LOUNGESSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_LOUNGESSpinEdit.Leave += new System.EventHandler(this.nO_LOUNGESSpinEdit_Leave);
@@ -3962,11 +3965,11 @@
             // 
             this.cOMMENT1TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "COMMENT1", true));
             this.cOMMENT1TextBox.EnterMoveNextControl = true;
-            this.cOMMENT1TextBox.Location = new System.Drawing.Point(244, 337);
-            this.cOMMENT1TextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cOMMENT1TextBox.Location = new System.Drawing.Point(220, 278);
+            this.cOMMENT1TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cOMMENT1TextBox.Name = "cOMMENT1TextBox";
             this.cOMMENT1TextBox.Properties.MaxLength = 50;
-            this.cOMMENT1TextBox.Size = new System.Drawing.Size(900, 36);
+            this.cOMMENT1TextBox.Size = new System.Drawing.Size(810, 28);
             this.cOMMENT1TextBox.TabIndex = 61;
             this.cOMMENT1TextBox.Enter += new System.EventHandler(this.enterControl);
             this.cOMMENT1TextBox.Leave += new System.EventHandler(this.cOMMENT1TextBox_Leave);
@@ -3980,12 +3983,12 @@
             0,
             0});
             this.nO_RESTSpinEdit.EnterMoveNextControl = true;
-            this.nO_RESTSpinEdit.Location = new System.Drawing.Point(244, 166);
-            this.nO_RESTSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nO_RESTSpinEdit.Location = new System.Drawing.Point(220, 137);
+            this.nO_RESTSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nO_RESTSpinEdit.Name = "nO_RESTSpinEdit";
             this.nO_RESTSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_RESTSpinEdit.Size = new System.Drawing.Size(97, 36);
+            this.nO_RESTSpinEdit.Size = new System.Drawing.Size(87, 28);
             this.nO_RESTSpinEdit.TabIndex = 58;
             this.nO_RESTSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_RESTSpinEdit.Leave += new System.EventHandler(this.nO_RESTSpinEdit_Leave);
@@ -3999,12 +4002,12 @@
             0,
             0});
             this.nO_RMSSpinEdit.EnterMoveNextControl = true;
-            this.nO_RMSSpinEdit.Location = new System.Drawing.Point(244, 114);
-            this.nO_RMSSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nO_RMSSpinEdit.Location = new System.Drawing.Point(220, 94);
+            this.nO_RMSSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nO_RMSSpinEdit.Name = "nO_RMSSpinEdit";
             this.nO_RMSSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.nO_RMSSpinEdit.Size = new System.Drawing.Size(97, 36);
+            this.nO_RMSSpinEdit.Size = new System.Drawing.Size(87, 28);
             this.nO_RMSSpinEdit.TabIndex = 57;
             this.nO_RMSSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.nO_RMSSpinEdit.Leave += new System.EventHandler(this.nO_RMSSpinEdit_Leave);
@@ -4013,11 +4016,11 @@
             // 
             this.rOOM_DESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ROOM_DESC", true));
             this.rOOM_DESCTextBox.EnterMoveNextControl = true;
-            this.rOOM_DESCTextBox.Location = new System.Drawing.Point(244, 269);
-            this.rOOM_DESCTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rOOM_DESCTextBox.Location = new System.Drawing.Point(220, 222);
+            this.rOOM_DESCTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rOOM_DESCTextBox.Name = "rOOM_DESCTextBox";
             this.rOOM_DESCTextBox.Properties.MaxLength = 40;
-            this.rOOM_DESCTextBox.Size = new System.Drawing.Size(900, 36);
+            this.rOOM_DESCTextBox.Size = new System.Drawing.Size(810, 28);
             this.rOOM_DESCTextBox.TabIndex = 60;
             this.rOOM_DESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rOOM_DESCTextBox.Leave += new System.EventHandler(this.rOOM_DESCTextBox_Leave);
@@ -4026,23 +4029,23 @@
             // 
             this.cOMMENT2TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "COMMENT2", true));
             this.cOMMENT2TextBox.EnterMoveNextControl = true;
-            this.cOMMENT2TextBox.Location = new System.Drawing.Point(244, 391);
-            this.cOMMENT2TextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cOMMENT2TextBox.Location = new System.Drawing.Point(220, 323);
+            this.cOMMENT2TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cOMMENT2TextBox.Name = "cOMMENT2TextBox";
             this.cOMMENT2TextBox.Properties.MaxLength = 50;
-            this.cOMMENT2TextBox.Size = new System.Drawing.Size(900, 36);
+            this.cOMMENT2TextBox.Size = new System.Drawing.Size(810, 28);
             this.cOMMENT2TextBox.TabIndex = 62;
             this.cOMMENT2TextBox.Enter += new System.EventHandler(this.enterControl);
             this.cOMMENT2TextBox.Leave += new System.EventHandler(this.cOMMENT2TextBox_Leave);
             // 
             // shapeContainer5
             // 
-            this.shapeContainer5.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer5.Location = new System.Drawing.Point(2, 2);
             this.shapeContainer5.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer5.Name = "shapeContainer5";
             this.shapeContainer5.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape7});
-            this.shapeContainer5.Size = new System.Drawing.Size(1553, 826);
+            this.shapeContainer5.Size = new System.Drawing.Size(1401, 686);
             this.shapeContainer5.TabIndex = 40;
             this.shapeContainer5.TabStop = false;
             // 
@@ -4058,9 +4061,9 @@
             // 
             this.xtraTabPage5.AutoScroll = true;
             this.xtraTabPage5.Controls.Add(this.panelControl5);
-            this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage5.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage5.Text = "Policies";
             // 
             // panelControl5
@@ -4108,47 +4111,44 @@
             this.panelControl5.Controls.Add(aDV_PMTLabel);
             this.panelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl5.Location = new System.Drawing.Point(0, 0);
-            this.panelControl5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl5.Size = new System.Drawing.Size(1405, 690);
             this.panelControl5.TabIndex = 0;
             // 
             // checkEditAccountingServiceItem
             // 
             this.checkEditAccountingServiceItem.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AccountingServiceItem", true));
-            this.checkEditAccountingServiceItem.Location = new System.Drawing.Point(1040, 433);
-            this.checkEditAccountingServiceItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkEditAccountingServiceItem.Location = new System.Drawing.Point(936, 358);
             this.checkEditAccountingServiceItem.Name = "checkEditAccountingServiceItem";
             this.checkEditAccountingServiceItem.Properties.Caption = "Accounting service item";
             this.checkEditAccountingServiceItem.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditAccountingServiceItem.Properties.ValueGrayed = false;
-            this.checkEditAccountingServiceItem.Size = new System.Drawing.Size(237, 36);
+            this.checkEditAccountingServiceItem.Size = new System.Drawing.Size(213, 25);
             this.checkEditAccountingServiceItem.TabIndex = 104;
             this.checkEditAccountingServiceItem.Click += new System.EventHandler(this.checkEditAccountingServiceItem_Click);
             // 
             // checkEditPreTaxRatesOnAdvice
             // 
             this.checkEditPreTaxRatesOnAdvice.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "PreTaxRatesOnAdvice", true));
-            this.checkEditPreTaxRatesOnAdvice.Location = new System.Drawing.Point(33, 503);
-            this.checkEditPreTaxRatesOnAdvice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkEditPreTaxRatesOnAdvice.Location = new System.Drawing.Point(30, 416);
             this.checkEditPreTaxRatesOnAdvice.Name = "checkEditPreTaxRatesOnAdvice";
             this.checkEditPreTaxRatesOnAdvice.Properties.Caption = "Use pre-tax rates on hotel advice";
             this.checkEditPreTaxRatesOnAdvice.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditPreTaxRatesOnAdvice.Properties.ValueGrayed = false;
-            this.checkEditPreTaxRatesOnAdvice.Size = new System.Drawing.Size(310, 36);
+            this.checkEditPreTaxRatesOnAdvice.Size = new System.Drawing.Size(279, 25);
             this.checkEditPreTaxRatesOnAdvice.TabIndex = 102;
             this.checkEditPreTaxRatesOnAdvice.Click += new System.EventHandler(this.checkEditPreTaxRatesOnAdvice_Click);
             // 
             // checkEditVendorPrepayReqd
             // 
             this.checkEditVendorPrepayReqd.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "VendorPrepayReqd", true));
-            this.checkEditVendorPrepayReqd.Location = new System.Drawing.Point(736, 433);
-            this.checkEditVendorPrepayReqd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkEditVendorPrepayReqd.Location = new System.Drawing.Point(662, 358);
             this.checkEditVendorPrepayReqd.Name = "checkEditVendorPrepayReqd";
             this.checkEditVendorPrepayReqd.Properties.Caption = "Vendor prepayment required";
             this.checkEditVendorPrepayReqd.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.checkEditVendorPrepayReqd.Properties.ValueGrayed = false;
-            this.checkEditVendorPrepayReqd.Size = new System.Drawing.Size(267, 36);
+            this.checkEditVendorPrepayReqd.Size = new System.Drawing.Size(240, 25);
             this.checkEditVendorPrepayReqd.TabIndex = 101;
             this.checkEditVendorPrepayReqd.Click += new System.EventHandler(this.checkEditVendorPrepayReqd_Click);
             // 
@@ -4156,11 +4156,11 @@
             // 
             this.requestableCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Requestable", true));
             this.requestableCheckEdit.EnterMoveNextControl = true;
-            this.requestableCheckEdit.Location = new System.Drawing.Point(857, 80);
-            this.requestableCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.requestableCheckEdit.Location = new System.Drawing.Point(771, 66);
+            this.requestableCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.requestableCheckEdit.Name = "requestableCheckEdit";
             this.requestableCheckEdit.Properties.Caption = "";
-            this.requestableCheckEdit.Size = new System.Drawing.Size(43, 36);
+            this.requestableCheckEdit.Size = new System.Drawing.Size(39, 21);
             this.requestableCheckEdit.TabIndex = 41;
             this.requestableCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4168,12 +4168,12 @@
             // 
             this.ImageComboBoxEditDefCat.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "DFLT_CAT", true));
             this.ImageComboBoxEditDefCat.EnterMoveNextControl = true;
-            this.ImageComboBoxEditDefCat.Location = new System.Drawing.Point(271, 229);
-            this.ImageComboBoxEditDefCat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditDefCat.Location = new System.Drawing.Point(244, 189);
+            this.ImageComboBoxEditDefCat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditDefCat.Name = "ImageComboBoxEditDefCat";
             this.ImageComboBoxEditDefCat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditDefCat.Size = new System.Drawing.Size(291, 36);
+            this.ImageComboBoxEditDefCat.Size = new System.Drawing.Size(262, 28);
             this.ImageComboBoxEditDefCat.TabIndex = 46;
             this.ImageComboBoxEditDefCat.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditDefCat.Leave += new System.EventHandler(this.ImageComboBoxEditDefCat_Leave);
@@ -4182,13 +4182,13 @@
             // 
             this.uSE_CLIENT_LOGOCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "USE_CLIENT_LOGO", true));
             this.uSE_CLIENT_LOGOCheckEdit.EnterMoveNextControl = true;
-            this.uSE_CLIENT_LOGOCheckEdit.Location = new System.Drawing.Point(650, 436);
-            this.uSE_CLIENT_LOGOCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uSE_CLIENT_LOGOCheckEdit.Location = new System.Drawing.Point(585, 360);
+            this.uSE_CLIENT_LOGOCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uSE_CLIENT_LOGOCheckEdit.Name = "uSE_CLIENT_LOGOCheckEdit";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.Caption = "";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.ValueChecked = "Y";
             this.uSE_CLIENT_LOGOCheckEdit.Properties.ValueUnchecked = "N";
-            this.uSE_CLIENT_LOGOCheckEdit.Size = new System.Drawing.Size(37, 36);
+            this.uSE_CLIENT_LOGOCheckEdit.Size = new System.Drawing.Size(33, 21);
             this.uSE_CLIENT_LOGOCheckEdit.TabIndex = 56;
             this.uSE_CLIENT_LOGOCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4196,13 +4196,13 @@
             // 
             this.nAMECHGCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "NAMECHG", true));
             this.nAMECHGCheckEdit.EnterMoveNextControl = true;
-            this.nAMECHGCheckEdit.Location = new System.Drawing.Point(530, 81);
-            this.nAMECHGCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.nAMECHGCheckEdit.Location = new System.Drawing.Point(477, 67);
+            this.nAMECHGCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nAMECHGCheckEdit.Name = "nAMECHGCheckEdit";
             this.nAMECHGCheckEdit.Properties.Caption = "";
             this.nAMECHGCheckEdit.Properties.ValueChecked = "Y";
             this.nAMECHGCheckEdit.Properties.ValueUnchecked = "N";
-            this.nAMECHGCheckEdit.Size = new System.Drawing.Size(33, 36);
+            this.nAMECHGCheckEdit.Size = new System.Drawing.Size(30, 21);
             this.nAMECHGCheckEdit.TabIndex = 40;
             this.nAMECHGCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4210,13 +4210,13 @@
             // 
             this.aDV_PMTCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ADV_PMT", true));
             this.aDV_PMTCheckEdit.EnterMoveNextControl = true;
-            this.aDV_PMTCheckEdit.Location = new System.Drawing.Point(269, 84);
-            this.aDV_PMTCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aDV_PMTCheckEdit.Location = new System.Drawing.Point(242, 69);
+            this.aDV_PMTCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aDV_PMTCheckEdit.Name = "aDV_PMTCheckEdit";
             this.aDV_PMTCheckEdit.Properties.Caption = "";
             this.aDV_PMTCheckEdit.Properties.ValueChecked = "Y";
             this.aDV_PMTCheckEdit.Properties.ValueUnchecked = "N";
-            this.aDV_PMTCheckEdit.Size = new System.Drawing.Size(31, 36);
+            this.aDV_PMTCheckEdit.Size = new System.Drawing.Size(28, 21);
             this.aDV_PMTCheckEdit.TabIndex = 39;
             this.aDV_PMTCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -4224,15 +4224,15 @@
             // 
             this.rATE_BASISImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RATE_BASIS", true));
             this.rATE_BASISImageComboBoxEdit.EnterMoveNextControl = true;
-            this.rATE_BASISImageComboBoxEdit.Location = new System.Drawing.Point(736, 137);
-            this.rATE_BASISImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rATE_BASISImageComboBoxEdit.Location = new System.Drawing.Point(662, 113);
+            this.rATE_BASISImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rATE_BASISImageComboBoxEdit.Name = "rATE_BASISImageComboBoxEdit";
             this.rATE_BASISImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.rATE_BASISImageComboBoxEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Arrival", "A", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Daily", "D", -1)});
-            this.rATE_BASISImageComboBoxEdit.Size = new System.Drawing.Size(167, 36);
+            this.rATE_BASISImageComboBoxEdit.Size = new System.Drawing.Size(150, 28);
             this.rATE_BASISImageComboBoxEdit.TabIndex = 43;
             this.rATE_BASISImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.rATE_BASISImageComboBoxEdit.Leave += new System.EventHandler(this.rATE_BASISImageComboBoxEdit_Leave);
@@ -4246,12 +4246,12 @@
             0,
             0});
             this.vOUCH_DAYS_PRIORSpinEdit.EnterMoveNextControl = true;
-            this.vOUCH_DAYS_PRIORSpinEdit.Location = new System.Drawing.Point(353, 437);
-            this.vOUCH_DAYS_PRIORSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.vOUCH_DAYS_PRIORSpinEdit.Location = new System.Drawing.Point(318, 361);
+            this.vOUCH_DAYS_PRIORSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.vOUCH_DAYS_PRIORSpinEdit.Name = "vOUCH_DAYS_PRIORSpinEdit";
             this.vOUCH_DAYS_PRIORSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.vOUCH_DAYS_PRIORSpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.vOUCH_DAYS_PRIORSpinEdit.Size = new System.Drawing.Size(68, 28);
             this.vOUCH_DAYS_PRIORSpinEdit.TabIndex = 55;
             this.vOUCH_DAYS_PRIORSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.vOUCH_DAYS_PRIORSpinEdit.Leave += new System.EventHandler(this.vOUCH_DAYS_PRIORSpinEdit_Leave);
@@ -4265,8 +4265,8 @@
             0,
             0});
             this.mAX_OTHSpinEdit.EnterMoveNextControl = true;
-            this.mAX_OTHSpinEdit.Location = new System.Drawing.Point(1040, 360);
-            this.mAX_OTHSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_OTHSpinEdit.Location = new System.Drawing.Point(936, 297);
+            this.mAX_OTHSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAX_OTHSpinEdit.Name = "mAX_OTHSpinEdit";
             this.mAX_OTHSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4275,7 +4275,7 @@
             0,
             0,
             0});
-            this.mAX_OTHSpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.mAX_OTHSpinEdit.Size = new System.Drawing.Size(68, 28);
             this.mAX_OTHSpinEdit.TabIndex = 54;
             this.mAX_OTHSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_OTHSpinEdit.Leave += new System.EventHandler(this.mAX_OTHSpinEdit_Leave);
@@ -4289,8 +4289,8 @@
             0,
             0});
             this.mAX_QUASpinEdit.EnterMoveNextControl = true;
-            this.mAX_QUASpinEdit.Location = new System.Drawing.Point(863, 360);
-            this.mAX_QUASpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_QUASpinEdit.Location = new System.Drawing.Point(777, 297);
+            this.mAX_QUASpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAX_QUASpinEdit.Name = "mAX_QUASpinEdit";
             this.mAX_QUASpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4299,7 +4299,7 @@
             0,
             0,
             0});
-            this.mAX_QUASpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.mAX_QUASpinEdit.Size = new System.Drawing.Size(68, 28);
             this.mAX_QUASpinEdit.TabIndex = 53;
             this.mAX_QUASpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_QUASpinEdit.Leave += new System.EventHandler(this.mAX_QUASpinEdit_Leave);
@@ -4313,8 +4313,8 @@
             0,
             0});
             this.mAX_TPLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_TPLSpinEdit.Location = new System.Drawing.Point(687, 360);
-            this.mAX_TPLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_TPLSpinEdit.Location = new System.Drawing.Point(618, 297);
+            this.mAX_TPLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAX_TPLSpinEdit.Name = "mAX_TPLSpinEdit";
             this.mAX_TPLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4323,7 +4323,7 @@
             0,
             0,
             0});
-            this.mAX_TPLSpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.mAX_TPLSpinEdit.Size = new System.Drawing.Size(68, 28);
             this.mAX_TPLSpinEdit.TabIndex = 52;
             this.mAX_TPLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_TPLSpinEdit.Leave += new System.EventHandler(this.mAX_TPLSpinEdit_Leave);
@@ -4337,8 +4337,8 @@
             0,
             0});
             this.mAX_DBLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_DBLSpinEdit.Location = new System.Drawing.Point(533, 360);
-            this.mAX_DBLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_DBLSpinEdit.Location = new System.Drawing.Point(480, 297);
+            this.mAX_DBLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAX_DBLSpinEdit.Name = "mAX_DBLSpinEdit";
             this.mAX_DBLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4347,7 +4347,7 @@
             0,
             0,
             0});
-            this.mAX_DBLSpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.mAX_DBLSpinEdit.Size = new System.Drawing.Size(68, 28);
             this.mAX_DBLSpinEdit.TabIndex = 51;
             this.mAX_DBLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_DBLSpinEdit.Leave += new System.EventHandler(this.mAX_DBLSpinEdit_Leave);
@@ -4361,8 +4361,8 @@
             0,
             0});
             this.mAX_SGLSpinEdit.EnterMoveNextControl = true;
-            this.mAX_SGLSpinEdit.Location = new System.Drawing.Point(353, 360);
-            this.mAX_SGLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAX_SGLSpinEdit.Location = new System.Drawing.Point(318, 297);
+            this.mAX_SGLSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAX_SGLSpinEdit.Name = "mAX_SGLSpinEdit";
             this.mAX_SGLSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4371,7 +4371,7 @@
             0,
             0,
             0});
-            this.mAX_SGLSpinEdit.Size = new System.Drawing.Size(76, 36);
+            this.mAX_SGLSpinEdit.Size = new System.Drawing.Size(68, 28);
             this.mAX_SGLSpinEdit.TabIndex = 50;
             this.mAX_SGLSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAX_SGLSpinEdit.Leave += new System.EventHandler(this.mAX_SGLSpinEdit_Leave);
@@ -4385,12 +4385,12 @@
             0,
             0});
             this.cANC_PERSpinEdit.EnterMoveNextControl = true;
-            this.cANC_PERSpinEdit.Location = new System.Drawing.Point(271, 184);
-            this.cANC_PERSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cANC_PERSpinEdit.Location = new System.Drawing.Point(244, 152);
+            this.cANC_PERSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cANC_PERSpinEdit.Name = "cANC_PERSpinEdit";
             this.cANC_PERSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.cANC_PERSpinEdit.Size = new System.Drawing.Size(91, 36);
+            this.cANC_PERSpinEdit.Size = new System.Drawing.Size(82, 28);
             this.cANC_PERSpinEdit.TabIndex = 44;
             this.cANC_PERSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.cANC_PERSpinEdit.Leave += new System.EventHandler(this.cANC_PERSpinEdit_Leave);
@@ -4404,12 +4404,12 @@
             0,
             0});
             this.dEP_RQSpinEdit.EnterMoveNextControl = true;
-            this.dEP_RQSpinEdit.Location = new System.Drawing.Point(271, 138);
-            this.dEP_RQSpinEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dEP_RQSpinEdit.Location = new System.Drawing.Point(244, 114);
+            this.dEP_RQSpinEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dEP_RQSpinEdit.Name = "dEP_RQSpinEdit";
             this.dEP_RQSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dEP_RQSpinEdit.Size = new System.Drawing.Size(91, 36);
+            this.dEP_RQSpinEdit.Size = new System.Drawing.Size(82, 28);
             this.dEP_RQSpinEdit.TabIndex = 42;
             this.dEP_RQSpinEdit.Enter += new System.EventHandler(this.enterControl);
             this.dEP_RQSpinEdit.Leave += new System.EventHandler(this.dEP_RQSpinEdit_Leave);
@@ -4418,8 +4418,8 @@
             // 
             this.dEF_ROOMComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "DEF_ROOM", true));
             this.dEF_ROOMComboBoxEdit.EnterMoveNextControl = true;
-            this.dEF_ROOMComboBoxEdit.Location = new System.Drawing.Point(271, 275);
-            this.dEF_ROOMComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dEF_ROOMComboBoxEdit.Location = new System.Drawing.Point(244, 227);
+            this.dEF_ROOMComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dEF_ROOMComboBoxEdit.Name = "dEF_ROOMComboBoxEdit";
             this.dEF_ROOMComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -4428,26 +4428,26 @@
             "SGL",
             "TPL",
             "QUA"});
-            this.dEF_ROOMComboBoxEdit.Size = new System.Drawing.Size(291, 36);
+            this.dEF_ROOMComboBoxEdit.Size = new System.Drawing.Size(262, 28);
             this.dEF_ROOMComboBoxEdit.TabIndex = 48;
             this.dEF_ROOMComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.dEF_ROOMComboBoxEdit.Leave += new System.EventHandler(this.dEF_ROOMComboBoxEdit_Leave);
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(111, 438);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label9.Location = new System.Drawing.Point(100, 362);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 23);
+            this.label9.Size = new System.Drawing.Size(86, 19);
             this.label9.TabIndex = 68;
             this.label9.Text = "Vouchering:";
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(33, 357);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label8.Location = new System.Drawing.Point(30, 295);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(186, 23);
+            this.label8.Size = new System.Drawing.Size(156, 19);
             this.label8.TabIndex = 62;
             this.label8.Text = "Maximum Occupancy:";
             // 
@@ -4455,11 +4455,11 @@
             // 
             this.cRED_CARDSTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CRED_CARDS", true));
             this.cRED_CARDSTextBox.EnterMoveNextControl = true;
-            this.cRED_CARDSTextBox.Location = new System.Drawing.Point(736, 280);
-            this.cRED_CARDSTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cRED_CARDSTextBox.Location = new System.Drawing.Point(662, 231);
+            this.cRED_CARDSTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cRED_CARDSTextBox.Name = "cRED_CARDSTextBox";
             this.cRED_CARDSTextBox.Properties.MaxLength = 15;
-            this.cRED_CARDSTextBox.Size = new System.Drawing.Size(437, 36);
+            this.cRED_CARDSTextBox.Size = new System.Drawing.Size(393, 28);
             this.cRED_CARDSTextBox.TabIndex = 49;
             this.cRED_CARDSTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cRED_CARDSTextBox.Leave += new System.EventHandler(this.cRED_CARDSTextBox_Leave);
@@ -4468,11 +4468,11 @@
             // 
             this.cHILD_DESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CHILD_DESC", true));
             this.cHILD_DESCTextBox.EnterMoveNextControl = true;
-            this.cHILD_DESCTextBox.Location = new System.Drawing.Point(736, 231);
-            this.cHILD_DESCTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cHILD_DESCTextBox.Location = new System.Drawing.Point(662, 191);
+            this.cHILD_DESCTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cHILD_DESCTextBox.Name = "cHILD_DESCTextBox";
             this.cHILD_DESCTextBox.Properties.MaxLength = 20;
-            this.cHILD_DESCTextBox.Size = new System.Drawing.Size(437, 36);
+            this.cHILD_DESCTextBox.Size = new System.Drawing.Size(393, 28);
             this.cHILD_DESCTextBox.TabIndex = 47;
             this.cHILD_DESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cHILD_DESCTextBox.Leave += new System.EventHandler(this.cHILD_DESCTextBox_Leave);
@@ -4481,11 +4481,11 @@
             // 
             this.cHECK_INTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CHECK_IN", true));
             this.cHECK_INTextBox.EnterMoveNextControl = true;
-            this.cHECK_INTextBox.Location = new System.Drawing.Point(736, 184);
-            this.cHECK_INTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cHECK_INTextBox.Location = new System.Drawing.Point(662, 152);
+            this.cHECK_INTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cHECK_INTextBox.Name = "cHECK_INTextBox";
             this.cHECK_INTextBox.Properties.MaxLength = 6;
-            this.cHECK_INTextBox.Size = new System.Drawing.Size(167, 36);
+            this.cHECK_INTextBox.Size = new System.Drawing.Size(150, 28);
             this.cHECK_INTextBox.TabIndex = 45;
             this.cHECK_INTextBox.Enter += new System.EventHandler(this.enterControl);
             this.cHECK_INTextBox.Leave += new System.EventHandler(this.cHECK_INTextBox_Leave);
@@ -4493,9 +4493,9 @@
             // xtraTabPage4
             // 
             this.xtraTabPage4.Controls.Add(this.panelControl4);
-            this.xtraTabPage4.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage4.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage4.Text = "Contacts";
             // 
             // panelControl4
@@ -4521,9 +4521,9 @@
             this.panelControl4.Controls.Add(this.rES_EMAILTextBox);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
-            this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl4.Size = new System.Drawing.Size(1405, 690);
             this.panelControl4.TabIndex = 13;
             // 
             // tourfaxEmailFormatComboBox
@@ -4534,10 +4534,10 @@
             "htm",
             "pdf",
             "txt"});
-            this.tourfaxEmailFormatComboBox.Location = new System.Drawing.Point(717, 149);
-            this.tourfaxEmailFormatComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tourfaxEmailFormatComboBox.Location = new System.Drawing.Point(645, 123);
+            this.tourfaxEmailFormatComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tourfaxEmailFormatComboBox.Name = "tourfaxEmailFormatComboBox";
-            this.tourfaxEmailFormatComboBox.Size = new System.Drawing.Size(224, 31);
+            this.tourfaxEmailFormatComboBox.Size = new System.Drawing.Size(202, 27);
             this.tourfaxEmailFormatComboBox.TabIndex = 96;
             this.tourfaxEmailFormatComboBox.Enter += new System.EventHandler(this.enterControl);
             this.tourfaxEmailFormatComboBox.Leave += new System.EventHandler(this.tourfaxEmailFormatComboBoxEdit_Leave);
@@ -4546,10 +4546,10 @@
             // 
             this.ButtonContactSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonContactSave.ImageOptions.Image")));
             this.ButtonContactSave.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonContactSave.Location = new System.Drawing.Point(197, 717);
-            this.ButtonContactSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonContactSave.Location = new System.Drawing.Point(177, 592);
+            this.ButtonContactSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonContactSave.Name = "ButtonContactSave";
-            this.ButtonContactSave.Size = new System.Drawing.Size(64, 64);
+            this.ButtonContactSave.Size = new System.Drawing.Size(58, 53);
             this.ButtonContactSave.TabIndex = 93;
             this.ButtonContactSave.TabStop = false;
             this.ButtonContactSave.Text = "simpleButton3";
@@ -4559,10 +4559,10 @@
             // 
             this.ButtonDelRowContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelRowContact.ImageOptions.Image")));
             this.ButtonDelRowContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRowContact.Location = new System.Drawing.Point(117, 717);
-            this.ButtonDelRowContact.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonDelRowContact.Location = new System.Drawing.Point(105, 592);
+            this.ButtonDelRowContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonDelRowContact.Name = "ButtonDelRowContact";
-            this.ButtonDelRowContact.Size = new System.Drawing.Size(57, 64);
+            this.ButtonDelRowContact.Size = new System.Drawing.Size(51, 53);
             this.ButtonDelRowContact.TabIndex = 94;
             this.ButtonDelRowContact.TabStop = false;
             this.ButtonDelRowContact.Text = "simpleButton4";
@@ -4572,10 +4572,10 @@
             // 
             this.ButtonAddRowContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRowContact.ImageOptions.Image")));
             this.ButtonAddRowContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRowContact.Location = new System.Drawing.Point(30, 717);
-            this.ButtonAddRowContact.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonAddRowContact.Location = new System.Drawing.Point(27, 592);
+            this.ButtonAddRowContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAddRowContact.Name = "ButtonAddRowContact";
-            this.ButtonAddRowContact.Size = new System.Drawing.Size(60, 64);
+            this.ButtonAddRowContact.Size = new System.Drawing.Size(54, 53);
             this.ButtonAddRowContact.TabIndex = 95;
             this.ButtonAddRowContact.TabStop = false;
             this.ButtonAddRowContact.Text = "simpleButton3";
@@ -4591,16 +4591,16 @@
             this.gridSearchControl1.FilterOn = false;
             this.gridSearchControl1.GridVisible = false;
             this.gridSearchControl1.LastError = "";
-            this.gridSearchControl1.Location = new System.Drawing.Point(83, -545);
+            this.gridSearchControl1.Location = new System.Drawing.Point(75, -450);
             this.gridSearchControl1.LookupName = "value";
-            this.gridSearchControl1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.gridSearchControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.gridSearchControl1.MaxWidth = 500;
             this.gridSearchControl1.MinWidth = 250;
             this.gridSearchControl1.Name = "gridSearchControl1";
             this.gridSearchControl1.PromptOnChange = false;
             this.gridSearchControl1.PromptText = "";
             this.gridSearchControl1.ShowPopupNumberOfChars = 3;
-            this.gridSearchControl1.Size = new System.Drawing.Size(182, 46);
+            this.gridSearchControl1.Size = new System.Drawing.Size(164, 38);
             this.gridSearchControl1.TabIndex = 9;
             this.gridSearchControl1.ValidateOnEnter = false;
             this.gridSearchControl1.ValidateOnSelection = false;
@@ -4611,11 +4611,11 @@
             // 
             this.tELEXTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "TELEX", true));
             this.tELEXTextBox.EnterMoveNextControl = true;
-            this.tELEXTextBox.Location = new System.Drawing.Point(207, 212);
-            this.tELEXTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tELEXTextBox.Location = new System.Drawing.Point(186, 175);
+            this.tELEXTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tELEXTextBox.Name = "tELEXTextBox";
             this.tELEXTextBox.Properties.MaxLength = 15;
-            this.tELEXTextBox.Size = new System.Drawing.Size(280, 36);
+            this.tELEXTextBox.Size = new System.Drawing.Size(252, 28);
             this.tELEXTextBox.TabIndex = 37;
             this.tELEXTextBox.Enter += new System.EventHandler(this.enterControl);
             this.tELEXTextBox.Leave += new System.EventHandler(this.tELEXTextBox_Leave);
@@ -4624,8 +4624,8 @@
             // 
             this.mAILFAXImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "MAILFAX", true));
             this.mAILFAXImageComboBoxEdit.EnterMoveNextControl = true;
-            this.mAILFAXImageComboBoxEdit.Location = new System.Drawing.Point(209, 150);
-            this.mAILFAXImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mAILFAXImageComboBoxEdit.Location = new System.Drawing.Point(188, 124);
+            this.mAILFAXImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAILFAXImageComboBoxEdit.Name = "mAILFAXImageComboBoxEdit";
             this.mAILFAXImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -4633,7 +4633,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Email", "E", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Fax", "F", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", "", -1)});
-            this.mAILFAXImageComboBoxEdit.Size = new System.Drawing.Size(277, 36);
+            this.mAILFAXImageComboBoxEdit.Size = new System.Drawing.Size(249, 28);
             this.mAILFAXImageComboBoxEdit.TabIndex = 35;
             this.mAILFAXImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
             this.mAILFAXImageComboBoxEdit.Leave += new System.EventHandler(this.mAILFAXImageComboBoxEdit_Leave);
@@ -4642,11 +4642,11 @@
             // 
             this.gEN_MGRTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "GEN_MGR", true));
             this.gEN_MGRTextBox.EnterMoveNextControl = true;
-            this.gEN_MGRTextBox.Location = new System.Drawing.Point(207, 88);
-            this.gEN_MGRTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gEN_MGRTextBox.Location = new System.Drawing.Point(186, 73);
+            this.gEN_MGRTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gEN_MGRTextBox.Name = "gEN_MGRTextBox";
             this.gEN_MGRTextBox.Properties.MaxLength = 20;
-            this.gEN_MGRTextBox.Size = new System.Drawing.Size(280, 36);
+            this.gEN_MGRTextBox.Size = new System.Drawing.Size(252, 28);
             this.gEN_MGRTextBox.TabIndex = 33;
             this.gEN_MGRTextBox.Enter += new System.EventHandler(this.enterControl);
             this.gEN_MGRTextBox.Leave += new System.EventHandler(this.gEN_MGRTextBox_Leave);
@@ -4655,27 +4655,27 @@
             // 
             this.label7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Appearance.Options.UseFont = true;
-            this.label7.Location = new System.Drawing.Point(30, 41);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label7.Location = new System.Drawing.Point(27, 34);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(132, 23);
+            this.label7.Size = new System.Drawing.Size(118, 21);
             this.label7.TabIndex = 35;
             this.label7.Text = "Primary Contact";
             // 
             // GridControlAdditionalContacts
             // 
             this.GridControlAdditionalContacts.DataSource = this.ContactBindingSource;
-            this.GridControlAdditionalContacts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlAdditionalContacts.Location = new System.Drawing.Point(17, 346);
+            this.GridControlAdditionalContacts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlAdditionalContacts.Location = new System.Drawing.Point(15, 286);
             this.GridControlAdditionalContacts.MainView = this.GridViewAdditionalContacts;
-            this.GridControlAdditionalContacts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlAdditionalContacts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlAdditionalContacts.Name = "GridControlAdditionalContacts";
             this.GridControlAdditionalContacts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBoxCommPref,
             this.repositoryItemTextEdit1,
             this.repositoryItemPopupContainerEditRptType,
             this.repositoryItemComboBoxDept});
-            this.GridControlAdditionalContacts.Size = new System.Drawing.Size(1520, 360);
+            this.GridControlAdditionalContacts.Size = new System.Drawing.Size(1368, 297);
             this.GridControlAdditionalContacts.TabIndex = 25;
             this.GridControlAdditionalContacts.TabStop = false;
             this.GridControlAdditionalContacts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -4727,7 +4727,7 @@
             this.colFAX,
             this.colEMAIL,
             this.gridColumnRptType});
-            this.GridViewAdditionalContacts.DetailHeight = 322;
+            this.GridViewAdditionalContacts.DetailHeight = 266;
             this.GridViewAdditionalContacts.GridControl = this.GridControlAdditionalContacts;
             this.GridViewAdditionalContacts.Name = "GridViewAdditionalContacts";
             this.GridViewAdditionalContacts.OptionsView.ShowGroupPanel = false;
@@ -4739,38 +4739,38 @@
             // gridColumn1
             // 
             this.gridColumn1.FieldName = "LINK_TABLE";
-            this.gridColumn1.MinWidth = 17;
+            this.gridColumn1.MinWidth = 15;
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Width = 62;
+            this.gridColumn1.Width = 56;
             // 
             // colLINK_VALUE
             // 
             this.colLINK_VALUE.FieldName = "LINK_VALUE";
-            this.colLINK_VALUE.MinWidth = 17;
+            this.colLINK_VALUE.MinWidth = 15;
             this.colLINK_VALUE.Name = "colLINK_VALUE";
-            this.colLINK_VALUE.Width = 62;
+            this.colLINK_VALUE.Width = 56;
             // 
             // colNAME1
             // 
             this.colNAME1.Caption = "Name";
             this.colNAME1.FieldName = "NAME";
-            this.colNAME1.MinWidth = 17;
+            this.colNAME1.MinWidth = 15;
             this.colNAME1.Name = "colNAME1";
             this.colNAME1.Visible = true;
             this.colNAME1.VisibleIndex = 1;
-            this.colNAME1.Width = 62;
+            this.colNAME1.Width = 56;
             // 
             // colDEPT
             // 
             this.colDEPT.Caption = "Department";
             this.colDEPT.ColumnEdit = this.repositoryItemComboBoxDept;
             this.colDEPT.FieldName = "DEPT";
-            this.colDEPT.MaxWidth = 100;
-            this.colDEPT.MinWidth = 100;
+            this.colDEPT.MaxWidth = 90;
+            this.colDEPT.MinWidth = 90;
             this.colDEPT.Name = "colDEPT";
             this.colDEPT.Visible = true;
             this.colDEPT.VisibleIndex = 2;
-            this.colDEPT.Width = 100;
+            this.colDEPT.Width = 90;
             // 
             // repositoryItemComboBoxDept
             // 
@@ -4782,73 +4782,73 @@
             // colADDRESS1
             // 
             this.colADDRESS1.FieldName = "ADDRESS1";
-            this.colADDRESS1.MinWidth = 17;
+            this.colADDRESS1.MinWidth = 15;
             this.colADDRESS1.Name = "colADDRESS1";
-            this.colADDRESS1.Width = 62;
+            this.colADDRESS1.Width = 56;
             // 
             // colADDRESS2
             // 
             this.colADDRESS2.FieldName = "ADDRESS2";
-            this.colADDRESS2.MinWidth = 17;
+            this.colADDRESS2.MinWidth = 15;
             this.colADDRESS2.Name = "colADDRESS2";
-            this.colADDRESS2.Width = 62;
+            this.colADDRESS2.Width = 56;
             // 
             // colADDRESS3
             // 
             this.colADDRESS3.FieldName = "ADDRESS3";
-            this.colADDRESS3.MinWidth = 17;
+            this.colADDRESS3.MinWidth = 15;
             this.colADDRESS3.Name = "colADDRESS3";
-            this.colADDRESS3.Width = 62;
+            this.colADDRESS3.Width = 56;
             // 
             // gridColumn2
             // 
             this.gridColumn2.FieldName = "CITY";
-            this.gridColumn2.MinWidth = 17;
+            this.gridColumn2.MinWidth = 15;
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Width = 62;
+            this.gridColumn2.Width = 56;
             // 
             // gridColumn6
             // 
             this.gridColumn6.FieldName = "STATE";
-            this.gridColumn6.MinWidth = 17;
+            this.gridColumn6.MinWidth = 15;
             this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Width = 62;
+            this.gridColumn6.Width = 56;
             // 
             // gridColumn7
             // 
             this.gridColumn7.FieldName = "ZIP";
-            this.gridColumn7.MinWidth = 17;
+            this.gridColumn7.MinWidth = 15;
             this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Width = 62;
+            this.gridColumn7.Width = 56;
             // 
             // gridColumn8
             // 
             this.gridColumn8.FieldName = "GMACCTNO";
-            this.gridColumn8.MinWidth = 17;
+            this.gridColumn8.MinWidth = 15;
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Width = 62;
+            this.gridColumn8.Width = 56;
             // 
             // colGMRECID
             // 
             this.colGMRECID.FieldName = "GMRECID";
-            this.colGMRECID.MinWidth = 17;
+            this.colGMRECID.MinWidth = 15;
             this.colGMRECID.Name = "colGMRECID";
-            this.colGMRECID.Width = 62;
+            this.colGMRECID.Width = 56;
             // 
             // colDEPT_HEAD
             // 
             this.colDEPT_HEAD.FieldName = "DEPT_HEAD";
-            this.colDEPT_HEAD.MinWidth = 17;
+            this.colDEPT_HEAD.MinWidth = 15;
             this.colDEPT_HEAD.Name = "colDEPT_HEAD";
-            this.colDEPT_HEAD.Width = 62;
+            this.colDEPT_HEAD.Width = 56;
             // 
             // colID
             // 
             this.colID.ColumnEdit = this.repositoryItemTextEdit1;
             this.colID.FieldName = "ID";
-            this.colID.MinWidth = 17;
+            this.colID.MinWidth = 15;
             this.colID.Name = "colID";
-            this.colID.Width = 62;
+            this.colID.Width = 56;
             // 
             // repositoryItemTextEdit1
             // 
@@ -4861,23 +4861,23 @@
             // 
             this.colACTIVE.Caption = "Active";
             this.colACTIVE.FieldName = "ACTIVE";
-            this.colACTIVE.MinWidth = 17;
+            this.colACTIVE.MinWidth = 15;
             this.colACTIVE.Name = "colACTIVE";
             this.colACTIVE.Visible = true;
             this.colACTIVE.VisibleIndex = 0;
-            this.colACTIVE.Width = 33;
+            this.colACTIVE.Width = 30;
             // 
             // colCOMM_PREF
             // 
             this.colCOMM_PREF.Caption = "Send Docs By";
             this.colCOMM_PREF.ColumnEdit = this.repositoryItemImageComboBoxCommPref;
             this.colCOMM_PREF.FieldName = "COMM_PREF";
-            this.colCOMM_PREF.MaxWidth = 62;
-            this.colCOMM_PREF.MinWidth = 62;
+            this.colCOMM_PREF.MaxWidth = 56;
+            this.colCOMM_PREF.MinWidth = 56;
             this.colCOMM_PREF.Name = "colCOMM_PREF";
             this.colCOMM_PREF.Visible = true;
             this.colCOMM_PREF.VisibleIndex = 4;
-            this.colCOMM_PREF.Width = 62;
+            this.colCOMM_PREF.Width = 56;
             // 
             // repositoryItemImageComboBoxCommPref
             // 
@@ -4894,180 +4894,180 @@
             // gridColumn9
             // 
             this.gridColumn9.FieldName = "COUNTRY";
-            this.gridColumn9.MinWidth = 17;
+            this.gridColumn9.MinWidth = 15;
             this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Width = 62;
+            this.gridColumn9.Width = 56;
             // 
             // gridColumn10
             // 
             this.gridColumn10.FieldName = "USER_DEC1";
-            this.gridColumn10.MinWidth = 17;
+            this.gridColumn10.MinWidth = 15;
             this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Width = 62;
+            this.gridColumn10.Width = 56;
             // 
             // gridColumn11
             // 
             this.gridColumn11.FieldName = "USER_DEC2";
-            this.gridColumn11.MinWidth = 17;
+            this.gridColumn11.MinWidth = 15;
             this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Width = 62;
+            this.gridColumn11.Width = 56;
             // 
             // gridColumn12
             // 
             this.gridColumn12.FieldName = "USER_INT1";
-            this.gridColumn12.MinWidth = 17;
+            this.gridColumn12.MinWidth = 15;
             this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Width = 62;
+            this.gridColumn12.Width = 56;
             // 
             // gridColumn13
             // 
             this.gridColumn13.FieldName = "USER_INT2";
-            this.gridColumn13.MinWidth = 17;
+            this.gridColumn13.MinWidth = 15;
             this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Width = 62;
+            this.gridColumn13.Width = 56;
             // 
             // gridColumn14
             // 
             this.gridColumn14.FieldName = "USER_TXT1";
-            this.gridColumn14.MinWidth = 17;
+            this.gridColumn14.MinWidth = 15;
             this.gridColumn14.Name = "gridColumn14";
-            this.gridColumn14.Width = 62;
+            this.gridColumn14.Width = 56;
             // 
             // gridColumn15
             // 
             this.gridColumn15.FieldName = "USER_TXT2";
-            this.gridColumn15.MinWidth = 17;
+            this.gridColumn15.MinWidth = 15;
             this.gridColumn15.Name = "gridColumn15";
-            this.gridColumn15.Width = 62;
+            this.gridColumn15.Width = 56;
             // 
             // gridColumn16
             // 
             this.gridColumn16.FieldName = "USER_TXT3";
-            this.gridColumn16.MinWidth = 17;
+            this.gridColumn16.MinWidth = 15;
             this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Width = 62;
+            this.gridColumn16.Width = 56;
             // 
             // gridColumn17
             // 
             this.gridColumn17.FieldName = "USER_TXT4";
-            this.gridColumn17.MinWidth = 17;
+            this.gridColumn17.MinWidth = 15;
             this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Width = 62;
+            this.gridColumn17.Width = 56;
             // 
             // gridColumn18
             // 
             this.gridColumn18.FieldName = "USER_DTE1";
-            this.gridColumn18.MinWidth = 17;
+            this.gridColumn18.MinWidth = 15;
             this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Width = 62;
+            this.gridColumn18.Width = 56;
             // 
             // gridColumn19
             // 
             this.gridColumn19.FieldName = "USER_DTE2";
-            this.gridColumn19.MinWidth = 17;
+            this.gridColumn19.MinWidth = 15;
             this.gridColumn19.Name = "gridColumn19";
-            this.gridColumn19.Width = 62;
+            this.gridColumn19.Width = 56;
             // 
             // colLOGIN_NAME
             // 
             this.colLOGIN_NAME.FieldName = "LOGIN_NAME";
-            this.colLOGIN_NAME.MinWidth = 17;
+            this.colLOGIN_NAME.MinWidth = 15;
             this.colLOGIN_NAME.Name = "colLOGIN_NAME";
-            this.colLOGIN_NAME.Width = 62;
+            this.colLOGIN_NAME.Width = 56;
             // 
             // colPASSWORD
             // 
             this.colPASSWORD.FieldName = "PASSWORD";
-            this.colPASSWORD.MinWidth = 17;
+            this.colPASSWORD.MinWidth = 15;
             this.colPASSWORD.Name = "colPASSWORD";
-            this.colPASSWORD.Width = 62;
+            this.colPASSWORD.Width = 56;
             // 
             // colLOGIN_ROLE
             // 
             this.colLOGIN_ROLE.FieldName = "LOGIN_ROLE";
-            this.colLOGIN_ROLE.MinWidth = 17;
+            this.colLOGIN_ROLE.MinWidth = 15;
             this.colLOGIN_ROLE.Name = "colLOGIN_ROLE";
-            this.colLOGIN_ROLE.Width = 62;
+            this.colLOGIN_ROLE.Width = 56;
             // 
             // colLOGIN_ACTIVE
             // 
             this.colLOGIN_ACTIVE.FieldName = "LOGIN_ACTIVE";
-            this.colLOGIN_ACTIVE.MinWidth = 17;
+            this.colLOGIN_ACTIVE.MinWidth = 15;
             this.colLOGIN_ACTIVE.Name = "colLOGIN_ACTIVE";
-            this.colLOGIN_ACTIVE.Width = 62;
+            this.colLOGIN_ACTIVE.Width = 56;
             // 
             // gridColumn20
             // 
             this.gridColumn20.FieldName = "RECTYPE";
-            this.gridColumn20.MinWidth = 17;
+            this.gridColumn20.MinWidth = 15;
             this.gridColumn20.Name = "gridColumn20";
-            this.gridColumn20.Width = 62;
+            this.gridColumn20.Width = 56;
             // 
             // colPARENT_ID
             // 
             this.colPARENT_ID.FieldName = "PARENT_ID";
-            this.colPARENT_ID.MinWidth = 17;
+            this.colPARENT_ID.MinWidth = 15;
             this.colPARENT_ID.Name = "colPARENT_ID";
-            this.colPARENT_ID.Width = 62;
+            this.colPARENT_ID.Width = 56;
             // 
             // colTITLE
             // 
             this.colTITLE.FieldName = "TITLE";
-            this.colTITLE.MinWidth = 17;
+            this.colTITLE.MinWidth = 15;
             this.colTITLE.Name = "colTITLE";
-            this.colTITLE.Width = 62;
+            this.colTITLE.Width = 56;
             // 
             // colDEAR
             // 
             this.colDEAR.FieldName = "DEAR";
-            this.colDEAR.MinWidth = 17;
+            this.colDEAR.MinWidth = 15;
             this.colDEAR.Name = "colDEAR";
-            this.colDEAR.Width = 62;
+            this.colDEAR.Width = 56;
             // 
             // gridColumn21
             // 
             this.gridColumn21.Caption = "Phone";
             this.gridColumn21.FieldName = "PHONE";
-            this.gridColumn21.MaxWidth = 62;
-            this.gridColumn21.MinWidth = 62;
+            this.gridColumn21.MaxWidth = 56;
+            this.gridColumn21.MinWidth = 56;
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 7;
-            this.gridColumn21.Width = 62;
+            this.gridColumn21.Width = 56;
             // 
             // colFAX
             // 
             this.colFAX.Caption = "Fax";
             this.colFAX.FieldName = "FAX";
-            this.colFAX.MaxWidth = 62;
-            this.colFAX.MinWidth = 62;
+            this.colFAX.MaxWidth = 56;
+            this.colFAX.MinWidth = 56;
             this.colFAX.Name = "colFAX";
             this.colFAX.Visible = true;
             this.colFAX.VisibleIndex = 6;
-            this.colFAX.Width = 62;
+            this.colFAX.Width = 56;
             // 
             // colEMAIL
             // 
             this.colEMAIL.Caption = "Email";
             this.colEMAIL.FieldName = "EMAIL";
-            this.colEMAIL.MinWidth = 17;
+            this.colEMAIL.MinWidth = 15;
             this.colEMAIL.Name = "colEMAIL";
             this.colEMAIL.Visible = true;
             this.colEMAIL.VisibleIndex = 5;
-            this.colEMAIL.Width = 62;
+            this.colEMAIL.Width = 56;
             // 
             // gridColumnRptType
             // 
             this.gridColumnRptType.Caption = "Rpt Type";
             this.gridColumnRptType.ColumnEdit = this.repositoryItemPopupContainerEditRptType;
             this.gridColumnRptType.FieldName = "RptContact";
-            this.gridColumnRptType.MaxWidth = 167;
-            this.gridColumnRptType.MinWidth = 167;
+            this.gridColumnRptType.MaxWidth = 150;
+            this.gridColumnRptType.MinWidth = 150;
             this.gridColumnRptType.Name = "gridColumnRptType";
             this.gridColumnRptType.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnRptType.Visible = true;
             this.gridColumnRptType.VisibleIndex = 3;
-            this.gridColumnRptType.Width = 167;
+            this.gridColumnRptType.Width = 150;
             // 
             // repositoryItemPopupContainerEditRptType
             // 
@@ -5086,28 +5086,28 @@
             this.popupContainerControl1.Controls.Add(this.CancelButton);
             this.popupContainerControl1.Controls.Add(this.OkButton);
             this.popupContainerControl1.Controls.Add(this.gridControlPopup);
-            this.popupContainerControl1.Location = new System.Drawing.Point(870, 1013);
-            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.popupContainerControl1.Location = new System.Drawing.Point(783, 837);
+            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(662, 695);
+            this.popupContainerControl1.Size = new System.Drawing.Size(596, 574);
             this.popupContainerControl1.TabIndex = 17;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(357, 530);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CancelButton.Location = new System.Drawing.Point(321, 438);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(124, 41);
+            this.CancelButton.Size = new System.Drawing.Size(112, 34);
             this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(167, 530);
-            this.OkButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OkButton.Location = new System.Drawing.Point(150, 438);
+            this.OkButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(124, 41);
+            this.OkButton.Size = new System.Drawing.Size(112, 34);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "OK";
             this.OkButton.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -5115,12 +5115,12 @@
             // gridControlPopup
             // 
             this.gridControlPopup.DataSource = this.rPTTYPEBindingSource;
-            this.gridControlPopup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControlPopup.Location = new System.Drawing.Point(44, 39);
+            this.gridControlPopup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlPopup.Location = new System.Drawing.Point(40, 32);
             this.gridControlPopup.MainView = this.gridViewPopup;
-            this.gridControlPopup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControlPopup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControlPopup.Name = "gridControlPopup";
-            this.gridControlPopup.Size = new System.Drawing.Size(547, 460);
+            this.gridControlPopup.Size = new System.Drawing.Size(492, 380);
             this.gridControlPopup.TabIndex = 0;
             this.gridControlPopup.TabStop = false;
             this.gridControlPopup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -5144,7 +5144,7 @@
             this.colReplyToEmail,
             this.colReplyToMessage,
             this.colDisplayName});
-            this.gridViewPopup.DetailHeight = 322;
+            this.gridViewPopup.DetailHeight = 266;
             this.gridViewPopup.GridControl = this.gridControlPopup;
             this.gridViewPopup.Name = "gridViewPopup";
             this.gridViewPopup.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
@@ -5155,94 +5155,94 @@
             // 
             this.colCODE2.Caption = "Code";
             this.colCODE2.FieldName = "CODE";
-            this.colCODE2.MinWidth = 17;
+            this.colCODE2.MinWidth = 15;
             this.colCODE2.Name = "colCODE2";
             this.colCODE2.Visible = true;
             this.colCODE2.VisibleIndex = 0;
-            this.colCODE2.Width = 62;
+            this.colCODE2.Width = 56;
             // 
             // colDESC1
             // 
             this.colDESC1.FieldName = "DESC";
-            this.colDESC1.MinWidth = 17;
+            this.colDESC1.MinWidth = 15;
             this.colDESC1.Name = "colDESC1";
-            this.colDESC1.Width = 62;
+            this.colDESC1.Width = 56;
             // 
             // colIMG_RES
             // 
             this.colIMG_RES.FieldName = "IMG_RES";
-            this.colIMG_RES.MinWidth = 17;
+            this.colIMG_RES.MinWidth = 15;
             this.colIMG_RES.Name = "colIMG_RES";
-            this.colIMG_RES.Width = 62;
+            this.colIMG_RES.Width = 56;
             // 
             // colRPT_FILE
             // 
             this.colRPT_FILE.FieldName = "RPT_FILE";
-            this.colRPT_FILE.MinWidth = 17;
+            this.colRPT_FILE.MinWidth = 15;
             this.colRPT_FILE.Name = "colRPT_FILE";
-            this.colRPT_FILE.Width = 62;
+            this.colRPT_FILE.Width = 56;
             // 
             // colTOURFAX
             // 
             this.colTOURFAX.FieldName = "TOURFAX";
-            this.colTOURFAX.MinWidth = 17;
+            this.colTOURFAX.MinWidth = 15;
             this.colTOURFAX.Name = "colTOURFAX";
-            this.colTOURFAX.Width = 62;
+            this.colTOURFAX.Width = 56;
             // 
             // colEDITABLE
             // 
             this.colEDITABLE.FieldName = "EDITABLE";
-            this.colEDITABLE.MinWidth = 17;
+            this.colEDITABLE.MinWidth = 15;
             this.colEDITABLE.Name = "colEDITABLE";
-            this.colEDITABLE.Width = 62;
+            this.colEDITABLE.Width = 56;
             // 
             // colMEDIA_RPT
             // 
             this.colMEDIA_RPT.FieldName = "MEDIA_RPT";
-            this.colMEDIA_RPT.MinWidth = 17;
+            this.colMEDIA_RPT.MinWidth = 15;
             this.colMEDIA_RPT.Name = "colMEDIA_RPT";
-            this.colMEDIA_RPT.Width = 62;
+            this.colMEDIA_RPT.Width = 56;
             // 
             // colRecipientType
             // 
             this.colRecipientType.FieldName = "RecipientType";
-            this.colRecipientType.MinWidth = 17;
+            this.colRecipientType.MinWidth = 15;
             this.colRecipientType.Name = "colRecipientType";
-            this.colRecipientType.Width = 62;
+            this.colRecipientType.Width = 56;
             // 
             // colReplyToEmail
             // 
             this.colReplyToEmail.FieldName = "ReplyToEmail";
-            this.colReplyToEmail.MinWidth = 17;
+            this.colReplyToEmail.MinWidth = 15;
             this.colReplyToEmail.Name = "colReplyToEmail";
-            this.colReplyToEmail.Width = 62;
+            this.colReplyToEmail.Width = 56;
             // 
             // colReplyToMessage
             // 
             this.colReplyToMessage.FieldName = "ReplyToMessage";
-            this.colReplyToMessage.MinWidth = 17;
+            this.colReplyToMessage.MinWidth = 15;
             this.colReplyToMessage.Name = "colReplyToMessage";
-            this.colReplyToMessage.Width = 62;
+            this.colReplyToMessage.Width = 56;
             // 
             // colDisplayName
             // 
             this.colDisplayName.Caption = "Display Name";
             this.colDisplayName.FieldName = "DisplayName";
-            this.colDisplayName.MinWidth = 17;
+            this.colDisplayName.MinWidth = 15;
             this.colDisplayName.Name = "colDisplayName";
             this.colDisplayName.OptionsColumn.ReadOnly = true;
             this.colDisplayName.Visible = true;
             this.colDisplayName.VisibleIndex = 1;
-            this.colDisplayName.Width = 62;
+            this.colDisplayName.Width = 56;
             // 
             // label6
             // 
             this.label6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Appearance.Options.UseFont = true;
-            this.label6.Location = new System.Drawing.Point(17, 314);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label6.Location = new System.Drawing.Point(15, 259);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(157, 23);
+            this.label6.Size = new System.Drawing.Size(142, 21);
             this.label6.TabIndex = 23;
             this.label6.Text = "Additional contacts";
             // 
@@ -5250,11 +5250,11 @@
             // 
             this.pHONETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "PHONE", true));
             this.pHONETextBox.EnterMoveNextControl = true;
-            this.pHONETextBox.Location = new System.Drawing.Point(717, 93);
-            this.pHONETextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pHONETextBox.Location = new System.Drawing.Point(645, 77);
+            this.pHONETextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pHONETextBox.Name = "pHONETextBox";
             this.pHONETextBox.Properties.MaxLength = 15;
-            this.pHONETextBox.Size = new System.Drawing.Size(227, 36);
+            this.pHONETextBox.Size = new System.Drawing.Size(204, 28);
             this.pHONETextBox.TabIndex = 34;
             this.pHONETextBox.Enter += new System.EventHandler(this.enterControl);
             this.pHONETextBox.Leave += new System.EventHandler(this.pHONETextBox_Leave);
@@ -5263,11 +5263,11 @@
             // 
             this.rES_EMAILTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RES_EMAIL", true));
             this.rES_EMAILTextBox.EnterMoveNextControl = true;
-            this.rES_EMAILTextBox.Location = new System.Drawing.Point(717, 212);
-            this.rES_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rES_EMAILTextBox.Location = new System.Drawing.Point(645, 175);
+            this.rES_EMAILTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rES_EMAILTextBox.Name = "rES_EMAILTextBox";
             this.rES_EMAILTextBox.Properties.MaxLength = 50;
-            this.rES_EMAILTextBox.Size = new System.Drawing.Size(570, 36);
+            this.rES_EMAILTextBox.Size = new System.Drawing.Size(513, 28);
             this.rES_EMAILTextBox.TabIndex = 38;
             this.rES_EMAILTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rES_EMAILTextBox.Leave += new System.EventHandler(this.rES_EMAILTextBox_Leave);
@@ -5276,9 +5276,9 @@
             // 
             this.xtraTabPage3.AutoScroll = true;
             this.xtraTabPage3.Controls.Add(this.panelControl3);
-            this.xtraTabPage3.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage3.Text = "Location";
             // 
             // panelControl3
@@ -5325,29 +5325,27 @@
             this.panelControl3.Controls.Add(this.shapeContainer3);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
-            this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl3.Size = new System.Drawing.Size(1405, 690);
             this.panelControl3.TabIndex = 0;
             // 
             // labelControl17
             // 
-            this.labelControl17.Location = new System.Drawing.Point(43, 588);
-            this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl17.Location = new System.Drawing.Point(39, 486);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(321, 23);
+            this.labelControl17.Size = new System.Drawing.Size(272, 19);
             this.labelControl17.TabIndex = 99;
             this.labelControl17.Text = "Distance to search from this item (km)";
             // 
             // checkEditProximitySearch
             // 
             this.checkEditProximitySearch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ProximitySearch", true));
-            this.checkEditProximitySearch.Location = new System.Drawing.Point(41, 541);
-            this.checkEditProximitySearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkEditProximitySearch.Location = new System.Drawing.Point(37, 447);
             this.checkEditProximitySearch.Name = "checkEditProximitySearch";
             this.checkEditProximitySearch.Properties.Caption = "Enable proximity search for this item on a map";
             this.checkEditProximitySearch.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.checkEditProximitySearch.Size = new System.Drawing.Size(409, 36);
+            this.checkEditProximitySearch.Size = new System.Drawing.Size(368, 25);
             this.checkEditProximitySearch.TabIndex = 98;
             this.checkEditProximitySearch.CheckedChanged += new System.EventHandler(this.checkEditProximitySearch_CheckedChanged);
             this.checkEditProximitySearch.Click += new System.EventHandler(this.checkEditProximitySearch_Click);
@@ -5363,8 +5361,7 @@
             0,
             0});
             this.spinEditDistance.Enabled = false;
-            this.spinEditDistance.Location = new System.Drawing.Point(364, 585);
-            this.spinEditDistance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.spinEditDistance.Location = new System.Drawing.Point(328, 483);
             this.spinEditDistance.Name = "spinEditDistance";
             this.spinEditDistance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5373,7 +5370,7 @@
             0,
             0,
             0});
-            this.spinEditDistance.Size = new System.Drawing.Size(111, 36);
+            this.spinEditDistance.Size = new System.Drawing.Size(100, 28);
             this.spinEditDistance.TabIndex = 100;
             this.spinEditDistance.Enter += new System.EventHandler(this.enterControl);
             this.spinEditDistance.Leave += new System.EventHandler(this.spinEditDistance_Leave);
@@ -5382,12 +5379,12 @@
             // 
             this.ImageComboBoxEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "COUNTRY_CODE", true));
             this.ImageComboBoxEditCountry.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCountry.Location = new System.Drawing.Point(490, 441);
-            this.ImageComboBoxEditCountry.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditCountry.Location = new System.Drawing.Point(441, 364);
+            this.ImageComboBoxEditCountry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditCountry.Name = "ImageComboBoxEditCountry";
             this.ImageComboBoxEditCountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCountry.Size = new System.Drawing.Size(337, 36);
+            this.ImageComboBoxEditCountry.Size = new System.Drawing.Size(303, 28);
             this.ImageComboBoxEditCountry.TabIndex = 24;
             this.ImageComboBoxEditCountry.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditCountry.Leave += new System.EventHandler(this.ImageComboBoxEditCountry_Leave);
@@ -5396,12 +5393,12 @@
             // 
             this.ImageComboBoxEditCityCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ACT_CITY", true));
             this.ImageComboBoxEditCityCode.EnterMoveNextControl = true;
-            this.ImageComboBoxEditCityCode.Location = new System.Drawing.Point(923, 311);
-            this.ImageComboBoxEditCityCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditCityCode.Location = new System.Drawing.Point(831, 257);
+            this.ImageComboBoxEditCityCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditCityCode.Name = "ImageComboBoxEditCityCode";
             this.ImageComboBoxEditCityCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditCityCode.Size = new System.Drawing.Size(437, 36);
+            this.ImageComboBoxEditCityCode.Size = new System.Drawing.Size(393, 28);
             this.ImageComboBoxEditCityCode.TabIndex = 29;
             this.ImageComboBoxEditCityCode.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditCityCode.Leave += new System.EventHandler(this.ImageComboBoxEditCityCode_Leave);
@@ -5410,12 +5407,12 @@
             // 
             this.ImageComboBoxEditAirport.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AIRPORT", true));
             this.ImageComboBoxEditAirport.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAirport.Location = new System.Drawing.Point(923, 156);
-            this.ImageComboBoxEditAirport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditAirport.Location = new System.Drawing.Point(831, 129);
+            this.ImageComboBoxEditAirport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditAirport.Name = "ImageComboBoxEditAirport";
             this.ImageComboBoxEditAirport.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAirport.Size = new System.Drawing.Size(437, 36);
+            this.ImageComboBoxEditAirport.Size = new System.Drawing.Size(393, 28);
             this.ImageComboBoxEditAirport.TabIndex = 27;
             this.ImageComboBoxEditAirport.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditAirport.Leave += new System.EventHandler(this.ImageComboBoxEditAirport_Leave);
@@ -5424,12 +5421,12 @@
             // 
             this.ImageComboBoxEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "REGION", true));
             this.ImageComboBoxEditRegion.EnterMoveNextControl = true;
-            this.ImageComboBoxEditRegion.Location = new System.Drawing.Point(127, 442);
-            this.ImageComboBoxEditRegion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditRegion.Location = new System.Drawing.Point(114, 365);
+            this.ImageComboBoxEditRegion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditRegion.Name = "ImageComboBoxEditRegion";
             this.ImageComboBoxEditRegion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditRegion.Size = new System.Drawing.Size(277, 36);
+            this.ImageComboBoxEditRegion.Size = new System.Drawing.Size(249, 28);
             this.ImageComboBoxEditRegion.TabIndex = 23;
             this.ImageComboBoxEditRegion.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditRegion.Leave += new System.EventHandler(this.ImageComboBoxEditRegion_Leave);
@@ -5438,12 +5435,12 @@
             // 
             this.ImageComboBoxEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "STATE", true));
             this.ImageComboBoxEditState.EnterMoveNextControl = true;
-            this.ImageComboBoxEditState.Location = new System.Drawing.Point(127, 340);
-            this.ImageComboBoxEditState.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditState.Location = new System.Drawing.Point(114, 281);
+            this.ImageComboBoxEditState.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditState.Name = "ImageComboBoxEditState";
             this.ImageComboBoxEditState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditState.Size = new System.Drawing.Size(277, 36);
+            this.ImageComboBoxEditState.Size = new System.Drawing.Size(249, 28);
             this.ImageComboBoxEditState.TabIndex = 21;
             this.ImageComboBoxEditState.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditState.Leave += new System.EventHandler(this.ImageComboBoxEditState_Leave);
@@ -5452,21 +5449,21 @@
             // 
             this.lOCAL_NAMETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "LOCAL_NAME", true));
             this.lOCAL_NAMETextEdit.EnterMoveNextControl = true;
-            this.lOCAL_NAMETextEdit.Location = new System.Drawing.Point(490, 488);
-            this.lOCAL_NAMETextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lOCAL_NAMETextEdit.Location = new System.Drawing.Point(441, 403);
+            this.lOCAL_NAMETextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lOCAL_NAMETextEdit.Name = "lOCAL_NAMETextEdit";
             this.lOCAL_NAMETextEdit.Properties.MaxLength = 20;
-            this.lOCAL_NAMETextEdit.Size = new System.Drawing.Size(167, 36);
+            this.lOCAL_NAMETextEdit.Size = new System.Drawing.Size(150, 28);
             this.lOCAL_NAMETextEdit.TabIndex = 26;
             this.lOCAL_NAMETextEdit.Enter += new System.EventHandler(this.enterControl);
             this.lOCAL_NAMETextEdit.Leave += new System.EventHandler(this.lOCAL_NAMETextEdit_Leave);
             // 
             // simpleButton6
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(1153, 571);
-            this.simpleButton6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButton6.Location = new System.Drawing.Point(1038, 472);
+            this.simpleButton6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(60, 41);
+            this.simpleButton6.Size = new System.Drawing.Size(54, 34);
             this.simpleButton6.TabIndex = 97;
             this.simpleButton6.Text = "Map";
             this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
@@ -5475,19 +5472,19 @@
             // 
             this.label3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Appearance.Options.UseFont = true;
-            this.label3.Location = new System.Drawing.Point(870, 100);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label3.Location = new System.Drawing.Point(783, 83);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 23);
+            this.label3.Size = new System.Drawing.Size(51, 21);
             this.label3.TabIndex = 78;
             this.label3.Text = "Airport";
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(869, 422);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label5.Location = new System.Drawing.Point(782, 349);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 23);
+            this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 73;
             this.label5.Text = "Geocode";
             // 
@@ -5495,10 +5492,10 @@
             // 
             this.lATITUDETextBox.Enabled = false;
             this.lATITUDETextBox.EnterMoveNextControl = true;
-            this.lATITUDETextBox.Location = new System.Drawing.Point(1047, 461);
-            this.lATITUDETextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lATITUDETextBox.Location = new System.Drawing.Point(942, 381);
+            this.lATITUDETextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lATITUDETextBox.Name = "lATITUDETextBox";
-            this.lATITUDETextBox.Size = new System.Drawing.Size(193, 36);
+            this.lATITUDETextBox.Size = new System.Drawing.Size(174, 28);
             this.lATITUDETextBox.TabIndex = 31;
             this.lATITUDETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lATITUDETextBox.Leave += new System.EventHandler(this.lATITUDETextBox_Leave);
@@ -5507,10 +5504,10 @@
             // 
             this.lONGITUDETextBox.Enabled = false;
             this.lONGITUDETextBox.EnterMoveNextControl = true;
-            this.lONGITUDETextBox.Location = new System.Drawing.Point(1047, 525);
-            this.lONGITUDETextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lONGITUDETextBox.Location = new System.Drawing.Point(942, 434);
+            this.lONGITUDETextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lONGITUDETextBox.Name = "lONGITUDETextBox";
-            this.lONGITUDETextBox.Size = new System.Drawing.Size(193, 36);
+            this.lONGITUDETextBox.Size = new System.Drawing.Size(174, 28);
             this.lONGITUDETextBox.TabIndex = 32;
             this.lONGITUDETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lONGITUDETextBox.Leave += new System.EventHandler(this.lONGITUDETextBox_Leave);
@@ -5519,10 +5516,10 @@
             // 
             this.aIR_MITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "AIR_MI", true));
             this.aIR_MITextEdit.EnterMoveNextControl = true;
-            this.aIR_MITextEdit.Location = new System.Drawing.Point(1436, 154);
-            this.aIR_MITextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aIR_MITextEdit.Location = new System.Drawing.Point(1292, 127);
+            this.aIR_MITextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aIR_MITextEdit.Name = "aIR_MITextEdit";
-            this.aIR_MITextEdit.Size = new System.Drawing.Size(62, 36);
+            this.aIR_MITextEdit.Size = new System.Drawing.Size(56, 28);
             this.aIR_MITextEdit.TabIndex = 28;
             this.aIR_MITextEdit.Enter += new System.EventHandler(this.enterControl);
             this.aIR_MITextEdit.Leave += new System.EventHandler(this.aIR_MITextEdit_Leave);
@@ -5531,10 +5528,10 @@
             // 
             this.label4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Appearance.Options.UseFont = true;
-            this.label4.Location = new System.Drawing.Point(869, 271);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label4.Location = new System.Drawing.Point(782, 224);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 23);
+            this.label4.Size = new System.Drawing.Size(28, 21);
             this.label4.TabIndex = 78;
             this.label4.Text = "City";
             // 
@@ -5542,20 +5539,20 @@
             // 
             this.cITY_MITextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY_MI", true));
             this.cITY_MITextEdit.EnterMoveNextControl = true;
-            this.cITY_MITextEdit.Location = new System.Drawing.Point(1436, 314);
-            this.cITY_MITextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cITY_MITextEdit.Location = new System.Drawing.Point(1292, 259);
+            this.cITY_MITextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cITY_MITextEdit.Name = "cITY_MITextEdit";
-            this.cITY_MITextEdit.Size = new System.Drawing.Size(62, 36);
+            this.cITY_MITextEdit.Size = new System.Drawing.Size(56, 28);
             this.cITY_MITextEdit.TabIndex = 30;
             this.cITY_MITextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cITY_MITextEdit.Leave += new System.EventHandler(this.cITY_MITextEdit_Leave);
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(767, 484);
-            this.simpleButton5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButton5.Location = new System.Drawing.Point(690, 400);
+            this.simpleButton5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(60, 41);
+            this.simpleButton5.Size = new System.Drawing.Size(54, 34);
             this.simpleButton5.TabIndex = 96;
             this.simpleButton5.Text = "Map";
             this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
@@ -5564,10 +5561,10 @@
             // 
             this.label2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Appearance.Options.UseFont = true;
-            this.label2.Location = new System.Drawing.Point(31, 110);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label2.Location = new System.Drawing.Point(28, 91);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 23);
+            this.label2.Size = new System.Drawing.Size(60, 21);
             this.label2.TabIndex = 93;
             this.label2.Text = "Address";
             // 
@@ -5575,11 +5572,11 @@
             // 
             this.cITYTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY", true));
             this.cITYTextEdit.EnterMoveNextControl = true;
-            this.cITYTextEdit.Location = new System.Drawing.Point(127, 292);
-            this.cITYTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cITYTextEdit.Location = new System.Drawing.Point(114, 241);
+            this.cITYTextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cITYTextEdit.Name = "cITYTextEdit";
             this.cITYTextEdit.Properties.MaxLength = 30;
-            this.cITYTextEdit.Size = new System.Drawing.Size(503, 36);
+            this.cITYTextEdit.Size = new System.Drawing.Size(453, 28);
             this.cITYTextEdit.TabIndex = 20;
             this.cITYTextEdit.Enter += new System.EventHandler(this.enterControl);
             this.cITYTextEdit.Leave += new System.EventHandler(this.cITYTextEdit_Leave);
@@ -5588,11 +5585,11 @@
             // 
             this.aDDR1TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR1", true));
             this.aDDR1TextBox.EnterMoveNextControl = true;
-            this.aDDR1TextBox.Location = new System.Drawing.Point(127, 154);
-            this.aDDR1TextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aDDR1TextBox.Location = new System.Drawing.Point(114, 127);
+            this.aDDR1TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aDDR1TextBox.Name = "aDDR1TextBox";
             this.aDDR1TextBox.Properties.MaxLength = 30;
-            this.aDDR1TextBox.Size = new System.Drawing.Size(503, 36);
+            this.aDDR1TextBox.Size = new System.Drawing.Size(453, 28);
             this.aDDR1TextBox.TabIndex = 17;
             this.aDDR1TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR1TextBox.Leave += new System.EventHandler(this.aDDR1TextBox_Leave);
@@ -5601,11 +5598,11 @@
             // 
             this.lOCAL_PHONETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "LOCAL_PHONE", true));
             this.lOCAL_PHONETextBox.EnterMoveNextControl = true;
-            this.lOCAL_PHONETextBox.Location = new System.Drawing.Point(127, 488);
-            this.lOCAL_PHONETextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lOCAL_PHONETextBox.Location = new System.Drawing.Point(114, 403);
+            this.lOCAL_PHONETextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lOCAL_PHONETextBox.Name = "lOCAL_PHONETextBox";
             this.lOCAL_PHONETextBox.Properties.MaxLength = 15;
-            this.lOCAL_PHONETextBox.Size = new System.Drawing.Size(277, 36);
+            this.lOCAL_PHONETextBox.Size = new System.Drawing.Size(249, 28);
             this.lOCAL_PHONETextBox.TabIndex = 25;
             this.lOCAL_PHONETextBox.Enter += new System.EventHandler(this.enterControl);
             this.lOCAL_PHONETextBox.Leave += new System.EventHandler(this.lOCAL_PHONETextBox_Leave);
@@ -5614,11 +5611,11 @@
             // 
             this.aDDR2TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR2", true));
             this.aDDR2TextBox.EnterMoveNextControl = true;
-            this.aDDR2TextBox.Location = new System.Drawing.Point(127, 202);
-            this.aDDR2TextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aDDR2TextBox.Location = new System.Drawing.Point(114, 167);
+            this.aDDR2TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aDDR2TextBox.Name = "aDDR2TextBox";
             this.aDDR2TextBox.Properties.MaxLength = 30;
-            this.aDDR2TextBox.Size = new System.Drawing.Size(503, 36);
+            this.aDDR2TextBox.Size = new System.Drawing.Size(453, 28);
             this.aDDR2TextBox.TabIndex = 18;
             this.aDDR2TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR2TextBox.Leave += new System.EventHandler(this.aDDR2TextBox_Leave);
@@ -5627,11 +5624,11 @@
             // 
             this.aDDR3TextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ADDR3", true));
             this.aDDR3TextBox.EnterMoveNextControl = true;
-            this.aDDR3TextBox.Location = new System.Drawing.Point(127, 249);
-            this.aDDR3TextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aDDR3TextBox.Location = new System.Drawing.Point(114, 206);
+            this.aDDR3TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aDDR3TextBox.Name = "aDDR3TextBox";
             this.aDDR3TextBox.Properties.MaxLength = 30;
-            this.aDDR3TextBox.Size = new System.Drawing.Size(503, 36);
+            this.aDDR3TextBox.Size = new System.Drawing.Size(453, 28);
             this.aDDR3TextBox.TabIndex = 19;
             this.aDDR3TextBox.Enter += new System.EventHandler(this.enterControl);
             this.aDDR3TextBox.Leave += new System.EventHandler(this.aDDR3TextBox_Leave);
@@ -5640,18 +5637,18 @@
             // 
             this.zIPTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "ZIP", true));
             this.zIPTextBox.EnterMoveNextControl = true;
-            this.zIPTextBox.Location = new System.Drawing.Point(127, 392);
-            this.zIPTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.zIPTextBox.Location = new System.Drawing.Point(114, 324);
+            this.zIPTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.zIPTextBox.Name = "zIPTextBox";
             this.zIPTextBox.Properties.MaxLength = 10;
-            this.zIPTextBox.Size = new System.Drawing.Size(277, 36);
+            this.zIPTextBox.Size = new System.Drawing.Size(249, 28);
             this.zIPTextBox.TabIndex = 22;
             this.zIPTextBox.Enter += new System.EventHandler(this.enterControl);
             this.zIPTextBox.Leave += new System.EventHandler(this.zIPTextBox_Leave);
             // 
             // shapeContainer3
             // 
-            this.shapeContainer3.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer3.Location = new System.Drawing.Point(2, 2);
             this.shapeContainer3.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer3.Name = "shapeContainer3";
             this.shapeContainer3.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
@@ -5659,7 +5656,7 @@
             this.rectangleShape4,
             this.rectangleShape3,
             this.rectangleShape2});
-            this.shapeContainer3.Size = new System.Drawing.Size(1553, 826);
+            this.shapeContainer3.Size = new System.Drawing.Size(1401, 686);
             this.shapeContainer3.TabIndex = 97;
             this.shapeContainer3.TabStop = false;
             // 
@@ -5698,9 +5695,9 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.PanelControlRestrictionsTab);
-            this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage2.Text = "Restrictions";
             // 
             // PanelControlRestrictionsTab
@@ -5719,21 +5716,21 @@
             this.PanelControlRestrictionsTab.Controls.Add(this.shapeContainer2);
             this.PanelControlRestrictionsTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlRestrictionsTab.Location = new System.Drawing.Point(0, 0);
-            this.PanelControlRestrictionsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PanelControlRestrictionsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PanelControlRestrictionsTab.Name = "PanelControlRestrictionsTab";
-            this.PanelControlRestrictionsTab.Size = new System.Drawing.Size(1559, 832);
+            this.PanelControlRestrictionsTab.Size = new System.Drawing.Size(1405, 690);
             this.PanelControlRestrictionsTab.TabIndex = 0;
             // 
             // ImageComboBoxEditAgency
             // 
             this.ImageComboBoxEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CONTR_AGY", true));
             this.ImageComboBoxEditAgency.EnterMoveNextControl = true;
-            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(513, 119);
-            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditAgency.Location = new System.Drawing.Point(462, 98);
+            this.ImageComboBoxEditAgency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditAgency.Name = "ImageComboBoxEditAgency";
             this.ImageComboBoxEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(311, 36);
+            this.ImageComboBoxEditAgency.Size = new System.Drawing.Size(280, 28);
             this.ImageComboBoxEditAgency.TabIndex = 13;
             this.ImageComboBoxEditAgency.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditAgency.Leave += new System.EventHandler(this.ImageComboBoxEditAgency_Leave);
@@ -5742,8 +5739,8 @@
             // 
             this.rSTR_CDEImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RSTR_CDE", true));
             this.rSTR_CDEImageComboBoxEdit.EnterMoveNextControl = true;
-            this.rSTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(196, 184);
-            this.rSTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rSTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(176, 152);
+            this.rSTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rSTR_CDEImageComboBoxEdit.Name = "rSTR_CDEImageComboBoxEdit";
             this.rSTR_CDEImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5751,7 +5748,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Open", "O", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("House", "H", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Agency", "A", -1)});
-            this.rSTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(167, 36);
+            this.rSTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(150, 28);
             this.rSTR_CDEImageComboBoxEdit.TabIndex = 14;
             this.rSTR_CDEImageComboBoxEdit.SelectedValueChanged += new System.EventHandler(this.rSTR_CDEImageComboBoxEdit_SelectedValueChanged);
             this.rSTR_CDEImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
@@ -5761,8 +5758,8 @@
             // 
             this.cONTR_CDEImageComboBoxEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CONTR_CDE", true));
             this.cONTR_CDEImageComboBoxEdit.EnterMoveNextControl = true;
-            this.cONTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(196, 119);
-            this.cONTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cONTR_CDEImageComboBoxEdit.Location = new System.Drawing.Point(176, 98);
+            this.cONTR_CDEImageComboBoxEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cONTR_CDEImageComboBoxEdit.Name = "cONTR_CDEImageComboBoxEdit";
             this.cONTR_CDEImageComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5770,7 +5767,7 @@
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Contract", "C", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Prepay", "P", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", "", -1)});
-            this.cONTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(167, 36);
+            this.cONTR_CDEImageComboBoxEdit.Size = new System.Drawing.Size(150, 28);
             this.cONTR_CDEImageComboBoxEdit.TabIndex = 12;
             this.cONTR_CDEImageComboBoxEdit.SelectedValueChanged += new System.EventHandler(this.cONTR_CDEImageComboBoxEdit_SelectedValueChanged);
             this.cONTR_CDEImageComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
@@ -5780,11 +5777,11 @@
             // 
             this.rESTRICTCODETextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RESTRICTCODE", true));
             this.rESTRICTCODETextBox.EnterMoveNextControl = true;
-            this.rESTRICTCODETextBox.Location = new System.Drawing.Point(469, 375);
-            this.rESTRICTCODETextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rESTRICTCODETextBox.Location = new System.Drawing.Point(422, 310);
+            this.rESTRICTCODETextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rESTRICTCODETextBox.Name = "rESTRICTCODETextBox";
             this.rESTRICTCODETextBox.Properties.MaxLength = 4;
-            this.rESTRICTCODETextBox.Size = new System.Drawing.Size(167, 36);
+            this.rESTRICTCODETextBox.Size = new System.Drawing.Size(150, 28);
             this.rESTRICTCODETextBox.TabIndex = 15;
             this.rESTRICTCODETextBox.Enter += new System.EventHandler(this.enterControl);
             this.rESTRICTCODETextBox.Leave += new System.EventHandler(this.rESTRICTCODETextBox_Leave);
@@ -5793,10 +5790,10 @@
             // 
             this.label1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Appearance.Options.UseFont = true;
-            this.label1.Location = new System.Drawing.Point(291, 275);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.label1.Location = new System.Drawing.Point(262, 227);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 28);
+            this.label1.Size = new System.Drawing.Size(105, 24);
             this.label1.TabIndex = 22;
             this.label1.Text = "Host 2 Host";
             // 
@@ -5804,23 +5801,23 @@
             // 
             this.rESTRICTDESCTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "RESTRICTDESC", true));
             this.rESTRICTDESCTextBox.EnterMoveNextControl = true;
-            this.rESTRICTDESCTextBox.Location = new System.Drawing.Point(469, 422);
-            this.rESTRICTDESCTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rESTRICTDESCTextBox.Location = new System.Drawing.Point(422, 349);
+            this.rESTRICTDESCTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rESTRICTDESCTextBox.Name = "rESTRICTDESCTextBox";
             this.rESTRICTDESCTextBox.Properties.MaxLength = 30;
-            this.rESTRICTDESCTextBox.Size = new System.Drawing.Size(167, 36);
+            this.rESTRICTDESCTextBox.Size = new System.Drawing.Size(150, 28);
             this.rESTRICTDESCTextBox.TabIndex = 16;
             this.rESTRICTDESCTextBox.Enter += new System.EventHandler(this.enterControl);
             this.rESTRICTDESCTextBox.Leave += new System.EventHandler(this.rESTRICTDESCTextBox_Leave);
             // 
             // shapeContainer2
             // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 3);
+            this.shapeContainer2.Location = new System.Drawing.Point(2, 2);
             this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer2.Name = "shapeContainer2";
             this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(1553, 826);
+            this.shapeContainer2.Size = new System.Drawing.Size(1401, 686);
             this.shapeContainer2.TabIndex = 25;
             this.shapeContainer2.TabStop = false;
             // 
@@ -5836,9 +5833,9 @@
             // 
             this.xtraTabPage1.AutoScroll = true;
             this.xtraTabPage1.Controls.Add(this.PanelControlAvailabilityTab);
-            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPage1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPage1.Text = "Availability";
             // 
             // PanelControlAvailabilityTab
@@ -5867,16 +5864,15 @@
             this.PanelControlAvailabilityTab.Controls.Add(aDMINCLOSEDLabel);
             this.PanelControlAvailabilityTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAvailabilityTab.Location = new System.Drawing.Point(0, 0);
-            this.PanelControlAvailabilityTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PanelControlAvailabilityTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PanelControlAvailabilityTab.Name = "PanelControlAvailabilityTab";
-            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(1559, 832);
+            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(1405, 690);
             this.PanelControlAvailabilityTab.TabIndex = 0;
             // 
             // gridLookUpEditAlternates3
             // 
             this.gridLookUpEditAlternates3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_3", true));
-            this.gridLookUpEditAlternates3.Location = new System.Drawing.Point(277, 457);
-            this.gridLookUpEditAlternates3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridLookUpEditAlternates3.Location = new System.Drawing.Point(249, 378);
             this.gridLookUpEditAlternates3.Name = "gridLookUpEditAlternates3";
             this.gridLookUpEditAlternates3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5888,7 +5884,7 @@
             this.gridLookUpEditAlternates3.Properties.PopupView = this.gridView2;
             this.gridLookUpEditAlternates3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates3.Properties.ValueMember = "Code";
-            this.gridLookUpEditAlternates3.Size = new System.Drawing.Size(413, 36);
+            this.gridLookUpEditAlternates3.Size = new System.Drawing.Size(372, 28);
             this.gridLookUpEditAlternates3.TabIndex = 51;
             this.gridLookUpEditAlternates3.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates3.Leave += new System.EventHandler(this.imageComboBoxEditAlternates3_Leave);
@@ -5934,8 +5930,7 @@
             // gridLookUpEditAlternates2
             // 
             this.gridLookUpEditAlternates2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_2", true));
-            this.gridLookUpEditAlternates2.Location = new System.Drawing.Point(277, 419);
-            this.gridLookUpEditAlternates2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridLookUpEditAlternates2.Location = new System.Drawing.Point(249, 346);
             this.gridLookUpEditAlternates2.Name = "gridLookUpEditAlternates2";
             this.gridLookUpEditAlternates2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -5947,7 +5942,7 @@
             this.gridLookUpEditAlternates2.Properties.PopupView = this.gridView1;
             this.gridLookUpEditAlternates2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates2.Properties.ValueMember = "Code";
-            this.gridLookUpEditAlternates2.Size = new System.Drawing.Size(413, 36);
+            this.gridLookUpEditAlternates2.Size = new System.Drawing.Size(372, 28);
             this.gridLookUpEditAlternates2.TabIndex = 50;
             this.gridLookUpEditAlternates2.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates2.Leave += new System.EventHandler(this.imageComboBoxEditAlternates2_Leave);
@@ -5989,8 +5984,7 @@
             // gridLookUpEditAlternates1
             // 
             this.gridLookUpEditAlternates1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ALTERN_1", true));
-            this.gridLookUpEditAlternates1.Location = new System.Drawing.Point(277, 380);
-            this.gridLookUpEditAlternates1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridLookUpEditAlternates1.Location = new System.Drawing.Point(249, 314);
             this.gridLookUpEditAlternates1.Name = "gridLookUpEditAlternates1";
             this.gridLookUpEditAlternates1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -6002,7 +5996,7 @@
             this.gridLookUpEditAlternates1.Properties.PopupView = this.gridLookUpEditProductView;
             this.gridLookUpEditAlternates1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gridLookUpEditAlternates1.Properties.ValueMember = "Code";
-            this.gridLookUpEditAlternates1.Size = new System.Drawing.Size(413, 36);
+            this.gridLookUpEditAlternates1.Size = new System.Drawing.Size(372, 28);
             this.gridLookUpEditAlternates1.TabIndex = 49;
             this.gridLookUpEditAlternates1.Enter += new System.EventHandler(this.enterControl);
             this.gridLookUpEditAlternates1.Leave += new System.EventHandler(this.imageComboBoxEditAlternates1_Leave);
@@ -6045,12 +6039,12 @@
             // 
             this.ImageComboBoxEditArea.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CITY_CODE", true));
             this.ImageComboBoxEditArea.EnterMoveNextControl = true;
-            this.ImageComboBoxEditArea.Location = new System.Drawing.Point(277, 330);
-            this.ImageComboBoxEditArea.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditArea.Location = new System.Drawing.Point(249, 273);
+            this.ImageComboBoxEditArea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditArea.Name = "ImageComboBoxEditArea";
             this.ImageComboBoxEditArea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditArea.Size = new System.Drawing.Size(397, 36);
+            this.ImageComboBoxEditArea.Size = new System.Drawing.Size(357, 28);
             this.ImageComboBoxEditArea.TabIndex = 8;
             this.ImageComboBoxEditArea.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditArea.Leave += new System.EventHandler(this.imageComboBoxEditArea_Leave);
@@ -6059,12 +6053,12 @@
             // 
             this.ImageComboBoxEditType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "LOCATION", true));
             this.ImageComboBoxEditType.EnterMoveNextControl = true;
-            this.ImageComboBoxEditType.Location = new System.Drawing.Point(276, 283);
-            this.ImageComboBoxEditType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditType.Location = new System.Drawing.Point(248, 234);
+            this.ImageComboBoxEditType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditType.Name = "ImageComboBoxEditType";
             this.ImageComboBoxEditType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditType.Size = new System.Drawing.Size(400, 36);
+            this.ImageComboBoxEditType.Size = new System.Drawing.Size(360, 28);
             this.ImageComboBoxEditType.TabIndex = 7;
             this.ImageComboBoxEditType.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditType.Leave += new System.EventHandler(this.ImageComboBoxEditType_Leave);
@@ -6073,12 +6067,12 @@
             // 
             this.ImageComboBoxEditRating.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "RATE", true));
             this.ImageComboBoxEditRating.EnterMoveNextControl = true;
-            this.ImageComboBoxEditRating.Location = new System.Drawing.Point(277, 235);
-            this.ImageComboBoxEditRating.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ImageComboBoxEditRating.Location = new System.Drawing.Point(249, 194);
+            this.ImageComboBoxEditRating.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ImageComboBoxEditRating.Name = "ImageComboBoxEditRating";
             this.ImageComboBoxEditRating.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditRating.Size = new System.Drawing.Size(397, 36);
+            this.ImageComboBoxEditRating.Size = new System.Drawing.Size(357, 28);
             this.ImageComboBoxEditRating.TabIndex = 6;
             this.ImageComboBoxEditRating.Enter += new System.EventHandler(this.enterControl);
             this.ImageComboBoxEditRating.Leave += new System.EventHandler(this.ImageComboBoxEditRating_Leave);
@@ -6087,13 +6081,13 @@
             // 
             this.pFRD_FLGCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "PFRD_FLG", true));
             this.pFRD_FLGCheckEdit.EnterMoveNextControl = true;
-            this.pFRD_FLGCheckEdit.Location = new System.Drawing.Point(273, 191);
-            this.pFRD_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pFRD_FLGCheckEdit.Location = new System.Drawing.Point(246, 158);
+            this.pFRD_FLGCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pFRD_FLGCheckEdit.Name = "pFRD_FLGCheckEdit";
             this.pFRD_FLGCheckEdit.Properties.Caption = "";
             this.pFRD_FLGCheckEdit.Properties.ValueChecked = "Y";
             this.pFRD_FLGCheckEdit.Properties.ValueUnchecked = "N";
-            this.pFRD_FLGCheckEdit.Size = new System.Drawing.Size(33, 36);
+            this.pFRD_FLGCheckEdit.Size = new System.Drawing.Size(30, 21);
             this.pFRD_FLGCheckEdit.TabIndex = 5;
             this.pFRD_FLGCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -6101,13 +6095,13 @@
             // 
             this.iNACTIVECheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "INACTIVE", true));
             this.iNACTIVECheckEdit.EnterMoveNextControl = true;
-            this.iNACTIVECheckEdit.Location = new System.Drawing.Point(271, 142);
-            this.iNACTIVECheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.iNACTIVECheckEdit.Location = new System.Drawing.Point(244, 117);
+            this.iNACTIVECheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iNACTIVECheckEdit.Name = "iNACTIVECheckEdit";
             this.iNACTIVECheckEdit.Properties.Caption = "";
             this.iNACTIVECheckEdit.Properties.ValueChecked = "Y";
             this.iNACTIVECheckEdit.Properties.ValueUnchecked = "N";
-            this.iNACTIVECheckEdit.Size = new System.Drawing.Size(37, 36);
+            this.iNACTIVECheckEdit.Size = new System.Drawing.Size(33, 21);
             this.iNACTIVECheckEdit.TabIndex = 4;
             this.iNACTIVECheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
             // 
@@ -6115,13 +6109,13 @@
             // 
             this.aDMINCLOSEDCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "ADMINCLOSED", true));
             this.aDMINCLOSEDCheckEdit.EnterMoveNextControl = true;
-            this.aDMINCLOSEDCheckEdit.Location = new System.Drawing.Point(271, 85);
-            this.aDMINCLOSEDCheckEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.aDMINCLOSEDCheckEdit.Location = new System.Drawing.Point(244, 70);
+            this.aDMINCLOSEDCheckEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.aDMINCLOSEDCheckEdit.Name = "aDMINCLOSEDCheckEdit";
             this.aDMINCLOSEDCheckEdit.Properties.Caption = "";
             this.aDMINCLOSEDCheckEdit.Properties.ValueChecked = "Y";
             this.aDMINCLOSEDCheckEdit.Properties.ValueUnchecked = "N";
-            this.aDMINCLOSEDCheckEdit.Size = new System.Drawing.Size(37, 36);
+            this.aDMINCLOSEDCheckEdit.Size = new System.Drawing.Size(33, 21);
             this.aDMINCLOSEDCheckEdit.TabIndex = 3;
             this.aDMINCLOSEDCheckEdit.Modified += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Modified);
             this.aDMINCLOSEDCheckEdit.Click += new System.EventHandler(this.aDMINCLOSEDCheckEdit_Click);
@@ -6129,19 +6123,19 @@
             // labelControl5
             // 
             this.labelControl5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CLOSEUPDBY", true));
-            this.labelControl5.Location = new System.Drawing.Point(817, 92);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl5.Location = new System.Drawing.Point(735, 76);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(0, 23);
+            this.labelControl5.Size = new System.Drawing.Size(0, 19);
             this.labelControl5.TabIndex = 48;
             // 
             // labelControl4
             // 
             this.labelControl4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.HotelBindingSource, "CLOSEUPDDATE", true));
-            this.labelControl4.Location = new System.Drawing.Point(516, 91);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl4.Location = new System.Drawing.Point(464, 75);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(0, 23);
+            this.labelControl4.Size = new System.Drawing.Size(0, 19);
             this.labelControl4.TabIndex = 47;
             // 
             // BusStationBindingSource
@@ -6150,11 +6144,11 @@
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(27, 128);
-            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.xtraTabControl1.Location = new System.Drawing.Point(24, 106);
+            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1570, 882);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1413, 729);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -6174,9 +6168,9 @@
             // xtraTabPageSupplierHotels
             // 
             this.xtraTabPageSupplierHotels.Controls.Add(this.panelControl10);
-            this.xtraTabPageSupplierHotels.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPageSupplierHotels.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPageSupplierHotels.Name = "xtraTabPageSupplierHotels";
-            this.xtraTabPageSupplierHotels.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPageSupplierHotels.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPageSupplierHotels.Text = "Supplier Mapping";
             // 
             // panelControl10
@@ -6186,19 +6180,19 @@
             this.panelControl10.Controls.Add(this.gridControlSupplierProduct);
             this.panelControl10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl10.Location = new System.Drawing.Point(0, 0);
-            this.panelControl10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl10.Name = "panelControl10";
-            this.panelControl10.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl10.Size = new System.Drawing.Size(1405, 690);
             this.panelControl10.TabIndex = 0;
             // 
             // MappingDelButton
             // 
             this.MappingDelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingDelButton.ImageOptions.Image")));
             this.MappingDelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingDelButton.Location = new System.Drawing.Point(1439, 283);
-            this.MappingDelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MappingDelButton.Location = new System.Drawing.Point(1295, 234);
+            this.MappingDelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MappingDelButton.Name = "MappingDelButton";
-            this.MappingDelButton.Size = new System.Drawing.Size(60, 77);
+            this.MappingDelButton.Size = new System.Drawing.Size(54, 64);
             this.MappingDelButton.TabIndex = 99;
             this.MappingDelButton.TabStop = false;
             this.MappingDelButton.Text = "simpleButton4";
@@ -6208,10 +6202,10 @@
             // 
             this.MappingAddButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("MappingAddButton.ImageOptions.Image")));
             this.MappingAddButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.MappingAddButton.Location = new System.Drawing.Point(1439, 196);
-            this.MappingAddButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MappingAddButton.Location = new System.Drawing.Point(1295, 162);
+            this.MappingAddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MappingAddButton.Name = "MappingAddButton";
-            this.MappingAddButton.Size = new System.Drawing.Size(60, 77);
+            this.MappingAddButton.Size = new System.Drawing.Size(54, 64);
             this.MappingAddButton.TabIndex = 98;
             this.MappingAddButton.TabStop = false;
             this.MappingAddButton.Text = "simpleButton3";
@@ -6220,14 +6214,15 @@
             // gridControlSupplierProduct
             // 
             this.gridControlSupplierProduct.DataSource = this.bindingSourceSupplierProduct;
-            this.gridControlSupplierProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gridControlSupplierProduct.Location = new System.Drawing.Point(77, 54);
+            this.gridControlSupplierProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlSupplierProduct.Location = new System.Drawing.Point(69, 45);
             this.gridControlSupplierProduct.MainView = this.gridViewSupplierProduct;
-            this.gridControlSupplierProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gridControlSupplierProduct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControlSupplierProduct.Name = "gridControlSupplierProduct";
             this.gridControlSupplierProduct.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEditMax50});
-            this.gridControlSupplierProduct.Size = new System.Drawing.Size(1353, 529);
+            this.repositoryItemTextEditMax50,
+            this.repositoryItemSpinEditPct});
+            this.gridControlSupplierProduct.Size = new System.Drawing.Size(1218, 437);
             this.gridControlSupplierProduct.TabIndex = 83;
             this.gridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewSupplierProduct});
@@ -6248,8 +6243,9 @@
             this.gridColumnMappingCustom1,
             this.gridColumnMappingCustom2,
             this.gridColumnMappingOperator,
-            this.colSupplierProduct_Name});
-            this.gridViewSupplierProduct.DetailHeight = 322;
+            this.colSupplierProduct_Name,
+            this.gridColumnMarkupPct});
+            this.gridViewSupplierProduct.DetailHeight = 266;
             this.gridViewSupplierProduct.GridControl = this.gridControlSupplierProduct;
             this.gridViewSupplierProduct.Name = "gridViewSupplierProduct";
             this.gridViewSupplierProduct.OptionsView.ShowGroupPanel = false;
@@ -6261,47 +6257,47 @@
             // gridColumnSupplierProductId
             // 
             this.gridColumnSupplierProductId.FieldName = "ID";
-            this.gridColumnSupplierProductId.MinWidth = 17;
+            this.gridColumnSupplierProductId.MinWidth = 15;
             this.gridColumnSupplierProductId.Name = "gridColumnSupplierProductId";
-            this.gridColumnSupplierProductId.Width = 62;
+            this.gridColumnSupplierProductId.Width = 56;
             // 
             // gridColumnProductType
             // 
             this.gridColumnProductType.Caption = "gridColumn34";
             this.gridColumnProductType.FieldName = "Product_Type";
-            this.gridColumnProductType.MinWidth = 17;
+            this.gridColumnProductType.MinWidth = 15;
             this.gridColumnProductType.Name = "gridColumnProductType";
-            this.gridColumnProductType.Width = 62;
+            this.gridColumnProductType.Width = 56;
             // 
             // gridColumnProductCode
             // 
             this.gridColumnProductCode.FieldName = "Product_Code_Internal";
-            this.gridColumnProductCode.MinWidth = 17;
+            this.gridColumnProductCode.MinWidth = 15;
             this.gridColumnProductCode.Name = "gridColumnProductCode";
-            this.gridColumnProductCode.Width = 62;
+            this.gridColumnProductCode.Width = 56;
             // 
             // gridColumnSupplierGuid
             // 
             this.gridColumnSupplierGuid.Caption = "Supplier";
             this.gridColumnSupplierGuid.FieldName = "Supplier_GUID";
-            this.gridColumnSupplierGuid.MinWidth = 17;
+            this.gridColumnSupplierGuid.MinWidth = 15;
             this.gridColumnSupplierGuid.Name = "gridColumnSupplierGuid";
             this.gridColumnSupplierGuid.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnSupplierGuid.Visible = true;
             this.gridColumnSupplierGuid.VisibleIndex = 0;
-            this.gridColumnSupplierGuid.Width = 470;
+            this.gridColumnSupplierGuid.Width = 397;
             // 
             // gridColumnProductCodeSupplier
             // 
             this.gridColumnProductCodeSupplier.Caption = "Supplier Hotel Code";
             this.gridColumnProductCodeSupplier.ColumnEdit = this.repositoryItemTextEditMax50;
             this.gridColumnProductCodeSupplier.FieldName = "ProductCodeSupplier";
-            this.gridColumnProductCodeSupplier.MinWidth = 17;
+            this.gridColumnProductCodeSupplier.MinWidth = 15;
             this.gridColumnProductCodeSupplier.Name = "gridColumnProductCodeSupplier";
             this.gridColumnProductCodeSupplier.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnProductCodeSupplier.Visible = true;
             this.gridColumnProductCodeSupplier.VisibleIndex = 1;
-            this.gridColumnProductCodeSupplier.Width = 299;
+            this.gridColumnProductCodeSupplier.Width = 252;
             // 
             // repositoryItemTextEditMax50
             // 
@@ -6313,51 +6309,61 @@
             // 
             this.gridColumnMappingInactive.Caption = "Inactive";
             this.gridColumnMappingInactive.FieldName = "Inactive";
-            this.gridColumnMappingInactive.MinWidth = 17;
+            this.gridColumnMappingInactive.MinWidth = 15;
             this.gridColumnMappingInactive.Name = "gridColumnMappingInactive";
             this.gridColumnMappingInactive.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.gridColumnMappingInactive.Visible = true;
             this.gridColumnMappingInactive.VisibleIndex = 2;
-            this.gridColumnMappingInactive.Width = 130;
+            this.gridColumnMappingInactive.Width = 110;
             // 
             // gridColumnMappingCustom1
             // 
             this.gridColumnMappingCustom1.Caption = "Custom 1";
             this.gridColumnMappingCustom1.ColumnEdit = this.repositoryItemTextEditMax50;
             this.gridColumnMappingCustom1.FieldName = "Custom1";
-            this.gridColumnMappingCustom1.MinWidth = 17;
+            this.gridColumnMappingCustom1.MinWidth = 15;
             this.gridColumnMappingCustom1.Name = "gridColumnMappingCustom1";
             this.gridColumnMappingCustom1.Visible = true;
             this.gridColumnMappingCustom1.VisibleIndex = 3;
-            this.gridColumnMappingCustom1.Width = 307;
+            this.gridColumnMappingCustom1.Width = 196;
             // 
             // gridColumnMappingCustom2
             // 
             this.gridColumnMappingCustom2.Caption = "Custom 2";
             this.gridColumnMappingCustom2.ColumnEdit = this.repositoryItemTextEditMax50;
             this.gridColumnMappingCustom2.FieldName = "Custom2";
-            this.gridColumnMappingCustom2.MinWidth = 17;
+            this.gridColumnMappingCustom2.MinWidth = 15;
             this.gridColumnMappingCustom2.Name = "gridColumnMappingCustom2";
             this.gridColumnMappingCustom2.Visible = true;
             this.gridColumnMappingCustom2.VisibleIndex = 4;
-            this.gridColumnMappingCustom2.Width = 320;
+            this.gridColumnMappingCustom2.Width = 198;
             // 
             // gridColumnMappingOperator
             // 
             this.gridColumnMappingOperator.Caption = "Operator";
             this.gridColumnMappingOperator.FieldName = "Operator_Code";
-            this.gridColumnMappingOperator.MinWidth = 17;
+            this.gridColumnMappingOperator.MinWidth = 15;
             this.gridColumnMappingOperator.Name = "gridColumnMappingOperator";
             this.gridColumnMappingOperator.Visible = true;
             this.gridColumnMappingOperator.VisibleIndex = 5;
-            this.gridColumnMappingOperator.Width = 62;
+            this.gridColumnMappingOperator.Width = 136;
+            // 
+            // colSupplierProduct_Name
+            // 
+            this.colSupplierProduct_Name.Caption = "Supplier Name";
+            this.colSupplierProduct_Name.FieldName = "Name";
+            this.colSupplierProduct_Name.MinWidth = 31;
+            this.colSupplierProduct_Name.Name = "colSupplierProduct_Name";
+            this.colSupplierProduct_Name.Visible = true;
+            this.colSupplierProduct_Name.VisibleIndex = 6;
+            this.colSupplierProduct_Name.Width = 136;
             // 
             // xtraTabPageSupplierRoomTypes
             // 
             this.xtraTabPageSupplierRoomTypes.Controls.Add(this.panelControl11);
-            this.xtraTabPageSupplierRoomTypes.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.xtraTabPageSupplierRoomTypes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.xtraTabPageSupplierRoomTypes.Name = "xtraTabPageSupplierRoomTypes";
-            this.xtraTabPageSupplierRoomTypes.Size = new System.Drawing.Size(1559, 832);
+            this.xtraTabPageSupplierRoomTypes.Size = new System.Drawing.Size(1405, 690);
             this.xtraTabPageSupplierRoomTypes.Text = "Supplier Room Type";
             // 
             // panelControl11
@@ -6372,26 +6378,26 @@
             this.panelControl11.Controls.Add(this.GridControlSuppRoomType);
             this.panelControl11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl11.Location = new System.Drawing.Point(0, 0);
-            this.panelControl11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControl11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl11.Name = "panelControl11";
-            this.panelControl11.Size = new System.Drawing.Size(1559, 832);
+            this.panelControl11.Size = new System.Drawing.Size(1405, 690);
             this.panelControl11.TabIndex = 0;
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(47, 46);
-            this.labelControl16.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl16.Location = new System.Drawing.Point(42, 38);
+            this.labelControl16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(170, 23);
+            this.labelControl16.Size = new System.Drawing.Size(145, 19);
             this.labelControl16.TabIndex = 105;
             this.labelControl16.Text = "Supplier Room Type";
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(47, 436);
-            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl15.Location = new System.Drawing.Point(42, 360);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(154, 23);
+            this.labelControl15.Size = new System.Drawing.Size(129, 19);
             this.labelControl15.TabIndex = 104;
             this.labelControl15.Text = "Supplier Rate Plan";
             // 
@@ -6399,10 +6405,10 @@
             // 
             this.simpleButtonRatePlanDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRatePlanDel.ImageOptions.Image")));
             this.simpleButtonRatePlanDel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRatePlanDel.Location = new System.Drawing.Point(1471, 570);
-            this.simpleButtonRatePlanDel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButtonRatePlanDel.Location = new System.Drawing.Point(1324, 471);
+            this.simpleButtonRatePlanDel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButtonRatePlanDel.Name = "simpleButtonRatePlanDel";
-            this.simpleButtonRatePlanDel.Size = new System.Drawing.Size(57, 77);
+            this.simpleButtonRatePlanDel.Size = new System.Drawing.Size(51, 64);
             this.simpleButtonRatePlanDel.TabIndex = 103;
             this.simpleButtonRatePlanDel.TabStop = false;
             this.simpleButtonRatePlanDel.Text = "simpleButton4";
@@ -6412,10 +6418,10 @@
             // 
             this.simpleButtonRatePlanAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRatePlanAdd.ImageOptions.Image")));
             this.simpleButtonRatePlanAdd.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRatePlanAdd.Location = new System.Drawing.Point(1471, 482);
-            this.simpleButtonRatePlanAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButtonRatePlanAdd.Location = new System.Drawing.Point(1324, 398);
+            this.simpleButtonRatePlanAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButtonRatePlanAdd.Name = "simpleButtonRatePlanAdd";
-            this.simpleButtonRatePlanAdd.Size = new System.Drawing.Size(60, 77);
+            this.simpleButtonRatePlanAdd.Size = new System.Drawing.Size(54, 64);
             this.simpleButtonRatePlanAdd.TabIndex = 102;
             this.simpleButtonRatePlanAdd.TabStop = false;
             this.simpleButtonRatePlanAdd.Text = "simpleButton3";
@@ -6425,10 +6431,10 @@
             // 
             this.simpleButtonRoomTypeDel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRoomTypeDel.ImageOptions.Image")));
             this.simpleButtonRoomTypeDel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRoomTypeDel.Location = new System.Drawing.Point(1471, 179);
-            this.simpleButtonRoomTypeDel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButtonRoomTypeDel.Location = new System.Drawing.Point(1324, 148);
+            this.simpleButtonRoomTypeDel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButtonRoomTypeDel.Name = "simpleButtonRoomTypeDel";
-            this.simpleButtonRoomTypeDel.Size = new System.Drawing.Size(57, 77);
+            this.simpleButtonRoomTypeDel.Size = new System.Drawing.Size(51, 64);
             this.simpleButtonRoomTypeDel.TabIndex = 101;
             this.simpleButtonRoomTypeDel.TabStop = false;
             this.simpleButtonRoomTypeDel.Text = "simpleButton4";
@@ -6437,14 +6443,14 @@
             // GridControlSuppRatePlan
             // 
             this.GridControlSuppRatePlan.DataSource = this.supplierHotelRatePlanBindingSource;
-            this.GridControlSuppRatePlan.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlSuppRatePlan.Location = new System.Drawing.Point(37, 478);
+            this.GridControlSuppRatePlan.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlSuppRatePlan.Location = new System.Drawing.Point(33, 395);
             this.GridControlSuppRatePlan.MainView = this.GridViewSuppRatePlan;
-            this.GridControlSuppRatePlan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlSuppRatePlan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlSuppRatePlan.Name = "GridControlSuppRatePlan";
             this.GridControlSuppRatePlan.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditRoomType});
-            this.GridControlSuppRatePlan.Size = new System.Drawing.Size(1404, 311);
+            this.GridControlSuppRatePlan.Size = new System.Drawing.Size(1264, 257);
             this.GridControlSuppRatePlan.TabIndex = 1;
             this.GridControlSuppRatePlan.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSuppRatePlan});
@@ -6464,7 +6470,7 @@
             this.colSupplierHotelRoomType,
             this.colHotel_Code1,
             this.gridColumn36});
-            this.GridViewSuppRatePlan.DetailHeight = 322;
+            this.GridViewSuppRatePlan.DetailHeight = 266;
             this.GridViewSuppRatePlan.GridControl = this.GridControlSuppRatePlan;
             this.GridViewSuppRatePlan.Name = "GridViewSuppRatePlan";
             this.GridViewSuppRatePlan.OptionsNavigation.AutoFocusNewRow = true;
@@ -6475,20 +6481,20 @@
             // colId4
             // 
             this.colId4.FieldName = "Id";
-            this.colId4.MinWidth = 17;
+            this.colId4.MinWidth = 15;
             this.colId4.Name = "colId4";
-            this.colId4.Width = 62;
+            this.colId4.Width = 56;
             // 
             // colSupplierHotelRoomType_Id
             // 
             this.colSupplierHotelRoomType_Id.Caption = "Room Type";
             this.colSupplierHotelRoomType_Id.ColumnEdit = this.repositoryItemLookUpEditRoomType;
             this.colSupplierHotelRoomType_Id.FieldName = "SupplierCategory_Id";
-            this.colSupplierHotelRoomType_Id.MinWidth = 17;
+            this.colSupplierHotelRoomType_Id.MinWidth = 15;
             this.colSupplierHotelRoomType_Id.Name = "colSupplierHotelRoomType_Id";
             this.colSupplierHotelRoomType_Id.Visible = true;
             this.colSupplierHotelRoomType_Id.VisibleIndex = 0;
-            this.colSupplierHotelRoomType_Id.Width = 293;
+            this.colSupplierHotelRoomType_Id.Width = 264;
             // 
             // repositoryItemLookUpEditRoomType
             // 
@@ -6508,61 +6514,61 @@
             // 
             this.colCode4.Caption = "Supplier Rate Plan Code";
             this.colCode4.FieldName = "Code";
-            this.colCode4.MinWidth = 17;
+            this.colCode4.MinWidth = 15;
             this.colCode4.Name = "colCode4";
             this.colCode4.Visible = true;
             this.colCode4.VisibleIndex = 1;
-            this.colCode4.Width = 250;
+            this.colCode4.Width = 225;
             // 
             // colSpecialValue_Code
             // 
             this.colSpecialValue_Code.Caption = "Special Value";
             this.colSpecialValue_Code.FieldName = "SpecialValue_Code";
-            this.colSpecialValue_Code.MinWidth = 17;
+            this.colSpecialValue_Code.MinWidth = 15;
             this.colSpecialValue_Code.Name = "colSpecialValue_Code";
             this.colSpecialValue_Code.Visible = true;
             this.colSpecialValue_Code.VisibleIndex = 2;
-            this.colSpecialValue_Code.Width = 273;
+            this.colSpecialValue_Code.Width = 246;
             // 
             // colInactive2
             // 
             this.colInactive2.FieldName = "Inactive";
-            this.colInactive2.MinWidth = 17;
+            this.colInactive2.MinWidth = 15;
             this.colInactive2.Name = "colInactive2";
             this.colInactive2.Visible = true;
             this.colInactive2.VisibleIndex = 3;
-            this.colInactive2.Width = 164;
+            this.colInactive2.Width = 148;
             // 
             // colSupplierHotelRoomType
             // 
             this.colSupplierHotelRoomType.FieldName = "SupplierCategory";
-            this.colSupplierHotelRoomType.MinWidth = 17;
+            this.colSupplierHotelRoomType.MinWidth = 15;
             this.colSupplierHotelRoomType.Name = "colSupplierHotelRoomType";
-            this.colSupplierHotelRoomType.Width = 62;
+            this.colSupplierHotelRoomType.Width = 56;
             // 
             // colHotel_Code1
             // 
             this.colHotel_Code1.FieldName = "Product_Code";
-            this.colHotel_Code1.MinWidth = 17;
+            this.colHotel_Code1.MinWidth = 15;
             this.colHotel_Code1.Name = "colHotel_Code1";
-            this.colHotel_Code1.Width = 62;
+            this.colHotel_Code1.Width = 56;
             // 
             // gridColumn36
             // 
             this.gridColumn36.Caption = "gridColumn36";
             this.gridColumn36.FieldName = "Product_Type";
-            this.gridColumn36.MinWidth = 17;
+            this.gridColumn36.MinWidth = 15;
             this.gridColumn36.Name = "gridColumn36";
-            this.gridColumn36.Width = 62;
+            this.gridColumn36.Width = 56;
             // 
             // simpleButtonRoomTypeAdd
             // 
             this.simpleButtonRoomTypeAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRoomTypeAdd.ImageOptions.Image")));
             this.simpleButtonRoomTypeAdd.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRoomTypeAdd.Location = new System.Drawing.Point(1471, 91);
-            this.simpleButtonRoomTypeAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.simpleButtonRoomTypeAdd.Location = new System.Drawing.Point(1324, 75);
+            this.simpleButtonRoomTypeAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simpleButtonRoomTypeAdd.Name = "simpleButtonRoomTypeAdd";
-            this.simpleButtonRoomTypeAdd.Size = new System.Drawing.Size(60, 77);
+            this.simpleButtonRoomTypeAdd.Size = new System.Drawing.Size(54, 64);
             this.simpleButtonRoomTypeAdd.TabIndex = 100;
             this.simpleButtonRoomTypeAdd.TabStop = false;
             this.simpleButtonRoomTypeAdd.Text = "simpleButton3";
@@ -6571,12 +6577,12 @@
             // GridControlSuppRoomType
             // 
             this.GridControlSuppRoomType.DataSource = this.supplierHotelRoomTypeBindingSource;
-            this.GridControlSuppRoomType.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlSuppRoomType.Location = new System.Drawing.Point(37, 80);
+            this.GridControlSuppRoomType.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridControlSuppRoomType.Location = new System.Drawing.Point(33, 66);
             this.GridControlSuppRoomType.MainView = this.GridViewSuppRoomType;
-            this.GridControlSuppRoomType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlSuppRoomType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridControlSuppRoomType.Name = "GridControlSuppRoomType";
-            this.GridControlSuppRoomType.Size = new System.Drawing.Size(1404, 294);
+            this.GridControlSuppRoomType.Size = new System.Drawing.Size(1264, 243);
             this.GridControlSuppRoomType.TabIndex = 0;
             this.GridControlSuppRoomType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSuppRoomType});
@@ -6599,7 +6605,7 @@
             this.colSupplier,
             this.colSupplierHotelRatePlan,
             this.gridColumn35});
-            this.GridViewSuppRoomType.DetailHeight = 322;
+            this.GridViewSuppRoomType.DetailHeight = 266;
             this.GridViewSuppRoomType.GridControl = this.GridControlSuppRoomType;
             this.GridViewSuppRoomType.Name = "GridViewSuppRoomType";
             this.GridViewSuppRoomType.OptionsNavigation.AutoFocusNewRow = true;
@@ -6613,91 +6619,91 @@
             // colId3
             // 
             this.colId3.FieldName = "Id";
-            this.colId3.MinWidth = 17;
+            this.colId3.MinWidth = 15;
             this.colId3.Name = "colId3";
-            this.colId3.Width = 62;
+            this.colId3.Width = 56;
             // 
             // colCode3
             // 
             this.colCode3.Caption = "Supplier Room Type Code";
             this.colCode3.FieldName = "Code";
-            this.colCode3.MinWidth = 17;
+            this.colCode3.MinWidth = 15;
             this.colCode3.Name = "colCode3";
             this.colCode3.Visible = true;
             this.colCode3.VisibleIndex = 1;
-            this.colCode3.Width = 152;
+            this.colCode3.Width = 137;
             // 
             // colRoomTypeMappingSupplier
             // 
             this.colRoomTypeMappingSupplier.Caption = "Supplier";
             this.colRoomTypeMappingSupplier.FieldName = "Supplier_GUID";
-            this.colRoomTypeMappingSupplier.MinWidth = 17;
+            this.colRoomTypeMappingSupplier.MinWidth = 15;
             this.colRoomTypeMappingSupplier.Name = "colRoomTypeMappingSupplier";
             this.colRoomTypeMappingSupplier.Visible = true;
             this.colRoomTypeMappingSupplier.VisibleIndex = 0;
-            this.colRoomTypeMappingSupplier.Width = 108;
+            this.colRoomTypeMappingSupplier.Width = 97;
             // 
             // colHotel_Code
             // 
             this.colHotel_Code.FieldName = "Product_Code";
-            this.colHotel_Code.MinWidth = 17;
+            this.colHotel_Code.MinWidth = 15;
             this.colHotel_Code.Name = "colHotel_Code";
-            this.colHotel_Code.Width = 162;
+            this.colHotel_Code.Width = 146;
             // 
             // colRoomTypeMappingRoomcod
             // 
             this.colRoomTypeMappingRoomcod.Caption = "Category";
             this.colRoomTypeMappingRoomcod.FieldName = "Roomcod_Code";
-            this.colRoomTypeMappingRoomcod.MinWidth = 17;
+            this.colRoomTypeMappingRoomcod.MinWidth = 15;
             this.colRoomTypeMappingRoomcod.Name = "colRoomTypeMappingRoomcod";
             this.colRoomTypeMappingRoomcod.Visible = true;
             this.colRoomTypeMappingRoomcod.VisibleIndex = 2;
-            this.colRoomTypeMappingRoomcod.Width = 229;
+            this.colRoomTypeMappingRoomcod.Width = 206;
             // 
             // colInactive1
             // 
             this.colInactive1.FieldName = "Inactive";
-            this.colInactive1.MinWidth = 17;
+            this.colInactive1.MinWidth = 15;
             this.colInactive1.Name = "colInactive1";
             this.colInactive1.Visible = true;
             this.colInactive1.VisibleIndex = 3;
-            this.colInactive1.Width = 104;
+            this.colInactive1.Width = 94;
             // 
             // colHOTEL
             // 
             this.colHOTEL.FieldName = "HOTEL";
-            this.colHOTEL.MinWidth = 17;
+            this.colHOTEL.MinWidth = 15;
             this.colHOTEL.Name = "colHOTEL";
-            this.colHOTEL.Width = 62;
+            this.colHOTEL.Width = 56;
             // 
             // colROOMCOD1
             // 
             this.colROOMCOD1.FieldName = "ROOMCOD";
-            this.colROOMCOD1.MinWidth = 17;
+            this.colROOMCOD1.MinWidth = 15;
             this.colROOMCOD1.Name = "colROOMCOD1";
-            this.colROOMCOD1.Width = 62;
+            this.colROOMCOD1.Width = 56;
             // 
             // colSupplier
             // 
             this.colSupplier.FieldName = "Supplier";
-            this.colSupplier.MinWidth = 17;
+            this.colSupplier.MinWidth = 15;
             this.colSupplier.Name = "colSupplier";
-            this.colSupplier.Width = 62;
+            this.colSupplier.Width = 56;
             // 
             // colSupplierHotelRatePlan
             // 
             this.colSupplierHotelRatePlan.FieldName = "SupplierHotelRatePlan";
-            this.colSupplierHotelRatePlan.MinWidth = 17;
+            this.colSupplierHotelRatePlan.MinWidth = 15;
             this.colSupplierHotelRatePlan.Name = "colSupplierHotelRatePlan";
-            this.colSupplierHotelRatePlan.Width = 62;
+            this.colSupplierHotelRatePlan.Width = 56;
             // 
             // gridColumn35
             // 
             this.gridColumn35.Caption = "gridColumn35";
             this.gridColumn35.FieldName = "Product_Type";
-            this.gridColumn35.MinWidth = 17;
+            this.gridColumn35.MinWidth = 15;
             this.gridColumn35.Name = "gridColumn35";
-            this.gridColumn35.Width = 62;
+            this.gridColumn35.Width = 56;
             // 
             // supplierHotelMappingBindingSource
             // 
@@ -6710,8 +6716,8 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 52);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 45);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.AutoScroll = true;
             this.splitContainerControl1.Panel1.Controls.Add(this.GridControlHotels);
@@ -6730,8 +6736,8 @@
             this.splitContainerControl1.Panel2.Controls.Add(nAMELabel);
             this.splitContainerControl1.Panel2.Controls.Add(this.typeTextEdit);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1933, 1059);
-            this.splitContainerControl1.SplitterPosition = 300;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1740, 873);
+            this.splitContainerControl1.SplitterPosition = 270;
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -6739,11 +6745,11 @@
             // 
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "CODE", true));
             this.TextEditCode.EnterMoveNextControl = true;
-            this.TextEditCode.Location = new System.Drawing.Point(117, 33);
-            this.TextEditCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextEditCode.Location = new System.Drawing.Point(105, 27);
+            this.TextEditCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Properties.MaxLength = 12;
-            this.TextEditCode.Size = new System.Drawing.Size(284, 36);
+            this.TextEditCode.Size = new System.Drawing.Size(256, 28);
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Enter += new System.EventHandler(this.enterControl);
             this.TextEditCode.Leave += new System.EventHandler(this.codeSearch_Leave);
@@ -6751,10 +6757,10 @@
             // typeTextEdit
             // 
             this.typeTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.HotelBindingSource, "Type", true));
-            this.typeTextEdit.Location = new System.Drawing.Point(847, 74);
-            this.typeTextEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.typeTextEdit.Location = new System.Drawing.Point(762, 61);
+            this.typeTextEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.typeTextEdit.Name = "typeTextEdit";
-            this.typeTextEdit.Size = new System.Drawing.Size(167, 36);
+            this.typeTextEdit.Size = new System.Drawing.Size(150, 28);
             this.typeTextEdit.TabIndex = 14;
             this.typeTextEdit.TabStop = false;
             this.typeTextEdit.Visible = false;
@@ -6766,27 +6772,27 @@
             this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.panelControlStatus.Controls.Add(this.labelControl9);
             this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(511, 1);
-            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelControlStatus.Location = new System.Drawing.Point(460, 1);
+            this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(200, 45);
+            this.panelControlStatus.Size = new System.Drawing.Size(180, 37);
             this.panelControlStatus.TabIndex = 40;
             this.panelControlStatus.Visible = false;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(50, 8);
-            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.labelControl9.Location = new System.Drawing.Point(45, 7);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(0, 23);
+            this.labelControl9.Size = new System.Drawing.Size(0, 19);
             this.labelControl9.TabIndex = 5;
             // 
             // LabelStatus
             // 
-            this.LabelStatus.Location = new System.Drawing.Point(40, 8);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LabelStatus.Location = new System.Drawing.Point(36, 7);
+            this.LabelStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 23);
+            this.LabelStatus.Size = new System.Drawing.Size(0, 19);
             this.LabelStatus.TabIndex = 38;
             // 
             // BarManager
@@ -6853,52 +6859,63 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlTop.Size = new System.Drawing.Size(1933, 52);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(1740, 45);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1111);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 918);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1933, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1740, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 52);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1059);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 873);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1933, 52);
+            this.barDockControlRight.Location = new System.Drawing.Point(1740, 45);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1059);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 873);
             // 
-            // colSupplierProduct_Name
+            // gridColumnMarkupPct
             // 
-            this.colSupplierProduct_Name.Caption = "Supplier Name";
-            this.colSupplierProduct_Name.FieldName = "Name";
-            this.colSupplierProduct_Name.MinWidth = 35;
-            this.colSupplierProduct_Name.Name = "colSupplierProduct_Name";
-            this.colSupplierProduct_Name.Visible = true;
-            this.colSupplierProduct_Name.VisibleIndex = 6;
-            this.colSupplierProduct_Name.Width = 108;
+            this.gridColumnMarkupPct.Caption = "Markup %";
+            this.gridColumnMarkupPct.ColumnEdit = this.repositoryItemSpinEditPct;
+            this.gridColumnMarkupPct.FieldName = "MarkupPct";
+            this.gridColumnMarkupPct.MinWidth = 30;
+            this.gridColumnMarkupPct.Name = "gridColumnMarkupPct";
+            this.gridColumnMarkupPct.Visible = true;
+            this.gridColumnMarkupPct.VisibleIndex = 7;
+            this.gridColumnMarkupPct.Width = 103;
+            // 
+            // repositoryItemSpinEditPct
+            // 
+            this.repositoryItemSpinEditPct.AutoHeight = false;
+            this.repositoryItemSpinEditPct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEditPct.EditFormat.FormatString = "#0.00";
+            this.repositoryItemSpinEditPct.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEditPct.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemSpinEditPct.Name = "repositoryItemSpinEditPct";
             // 
             // HotelGenInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1933, 1111);
+            this.ClientSize = new System.Drawing.Size(1740, 918);
             this.Controls.Add(this.panelControlStatus);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.barDockControlLeft);
@@ -6906,7 +6923,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinimizeBox = false;
             this.Name = "HotelGenInfo";
             this.ShowInTaskbar = false;
@@ -7107,6 +7124,7 @@
             this.panelControlStatus.ResumeLayout(false);
             this.panelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditPct)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7622,5 +7640,7 @@
         private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
         private DevExpress.XtraGrid.Columns.GridColumn colSupplierProduct_Name;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMarkupPct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditPct;
     }
 }
