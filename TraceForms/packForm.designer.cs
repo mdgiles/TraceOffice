@@ -397,11 +397,11 @@
             this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemUpdateWebsite = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.BarButtonItemUpdateWebsite = new DevExpress.XtraBars.BarButtonItem();
             LabelDate = new System.Windows.Forms.Label();
             LabelAgency = new System.Windows.Forms.Label();
             LabelRanking = new System.Windows.Forms.Label();
@@ -4133,6 +4133,15 @@
             this.BarButtonItemSave.Name = "BarButtonItemSave";
             this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
             // 
+            // BarButtonItemUpdateWebsite
+            // 
+            this.BarButtonItemUpdateWebsite.Caption = "Update Website";
+            this.BarButtonItemUpdateWebsite.Id = 3;
+            this.BarButtonItemUpdateWebsite.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.Image")));
+            this.BarButtonItemUpdateWebsite.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.LargeImage")));
+            this.BarButtonItemUpdateWebsite.Name = "BarButtonItemUpdateWebsite";
+            this.BarButtonItemUpdateWebsite.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUpdateWebsite_ItemClick);
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -4168,15 +4177,6 @@
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1013);
-            // 
-            // BarButtonItemUpdateWebsite
-            // 
-            this.BarButtonItemUpdateWebsite.Caption = "Update Website";
-            this.BarButtonItemUpdateWebsite.Id = 3;
-            this.BarButtonItemUpdateWebsite.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.Image")));
-            this.BarButtonItemUpdateWebsite.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUpdateWebsite.ImageOptions.LargeImage")));
-            this.BarButtonItemUpdateWebsite.Name = "BarButtonItemUpdateWebsite";
-            this.BarButtonItemUpdateWebsite.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUpdateWebsite_ItemClick);
             // 
             // packForm
             // 

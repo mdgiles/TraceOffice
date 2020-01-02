@@ -1036,9 +1036,7 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!transfer.IsNew()) {
-                    _context.BUSTABLE.DeleteObject(transfer);
-                }
+                _context.BUSTABLE.DeleteObject(transfer);                
             }
         }
 
@@ -1497,9 +1495,7 @@ namespace TraceForms
 				//Removing from the bindingsource just removes the object from its parent, but does not mark
 				//it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
 				//To flag for deletion, delete it from the context as well.
-                if (!route.IsNew()) {
-                    _context.CompBusRoute.DeleteObject(route);
-                }
+                    _context.CompBusRoute.DeleteObject(route);               
 				BindCompBusRoutes();
 			}
 		}
@@ -1579,9 +1575,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!detail.IsNew()) {
-                    _context.DETAIL.DeleteObject(detail);
-                }
+                _context.DETAIL.DeleteObject(detail);            
                 BindMemberships();
             }
         }
@@ -1605,9 +1599,7 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!suppProduct.IsNew()) {
-                    _context.SupplierProduct.DeleteObject(suppProduct);
-                }
+                _context.SupplierProduct.DeleteObject(suppProduct);
                 BindSupplierProducts();
             }
         }
@@ -1739,9 +1731,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!cat.IsNew()) {
-                    _context.SupplierCategory.DeleteObject(cat);
-                }
+                _context.SupplierCategory.DeleteObject(cat);
                 BindSupplierCategories();
             }
         }
@@ -1950,9 +1940,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!sup.IsNew()) {
-                    _context.ProductSupplement.DeleteObject(sup);
-                }
+                _context.ProductSupplement.DeleteObject(sup);
                 BindSupplements();
             }
         }
@@ -2005,9 +1993,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!rel.IsNew()) {
-                    _context.RelatedProduct.DeleteObject(rel);
-                }
+                _context.RelatedProduct.DeleteObject(rel);
                 BindRelatedProducts();
             }
         }

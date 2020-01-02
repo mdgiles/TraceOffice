@@ -795,9 +795,7 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!suppProduct.IsNew()) {
-                    _context.SupplierProduct.DeleteObject(suppProduct);
-                }
+                _context.SupplierProduct.DeleteObject(suppProduct);
                 BindSupplierProducts();
             }
         }
@@ -882,9 +880,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!cat.IsNew()) {
-                    _context.SupplierCategory.DeleteObject(cat);
-                }
+                _context.SupplierCategory.DeleteObject(cat);
                 BindSupplierCategories();
             }
         }

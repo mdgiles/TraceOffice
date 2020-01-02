@@ -3413,10 +3413,10 @@
             this.simpleButtonRemoveRoute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.simpleButtonRemoveRoute.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonRemoveRoute.ImageOptions.Image")));
             this.simpleButtonRemoveRoute.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonRemoveRoute.Location = new System.Drawing.Point(286, -9363);
+            this.simpleButtonRemoveRoute.Location = new System.Drawing.Point(1716, 138);
             this.simpleButtonRemoveRoute.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.simpleButtonRemoveRoute.Name = "simpleButtonRemoveRoute";
-            this.simpleButtonRemoveRoute.Size = new System.Drawing.Size(68, 69);
+            this.simpleButtonRemoveRoute.Size = new System.Drawing.Size(75, 82);
             this.simpleButtonRemoveRoute.TabIndex = 34;
             this.simpleButtonRemoveRoute.TabStop = false;
             this.simpleButtonRemoveRoute.Text = "simpleButton4";
@@ -3427,10 +3427,10 @@
             this.simpleButtonAddRoute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.simpleButtonAddRoute.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButtonAddRoute.ImageOptions.Image")));
             this.simpleButtonAddRoute.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButtonAddRoute.Location = new System.Drawing.Point(76, -9363);
+            this.simpleButtonAddRoute.Location = new System.Drawing.Point(1716, 44);
             this.simpleButtonAddRoute.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.simpleButtonAddRoute.Name = "simpleButtonAddRoute";
-            this.simpleButtonAddRoute.Size = new System.Drawing.Size(72, 69);
+            this.simpleButtonAddRoute.Size = new System.Drawing.Size(75, 82);
             this.simpleButtonAddRoute.TabIndex = 35;
             this.simpleButtonAddRoute.TabStop = false;
             this.simpleButtonAddRoute.Text = "simpleButton3";
@@ -3452,7 +3452,7 @@
             this.repositoryItemLookUpEditBusRoutes,
             this.repositoryItemCheckEditInactive,
             this.repositoryItemLookUpEditStop});
-            this.GridControlRoutes.Size = new System.Drawing.Size(1714, 625);
+            this.GridControlRoutes.Size = new System.Drawing.Size(1651, 625);
             this.GridControlRoutes.TabIndex = 32;
             this.GridControlRoutes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewRoutes,
