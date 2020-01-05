@@ -258,6 +258,7 @@
             // ribbonControl
             // 
             this.ribbonControl.ApplicationButtonText = null;
+            this.ribbonControl.DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Images = this.ribbonImageCollection;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -385,8 +386,8 @@
             this.BarButtonItemInvBuild});
             this.ribbonControl.LargeImages = this.ribbonImageCollectionLarge;
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(5);
-            this.ribbonControl.MaxItemId = 3;
+            this.ribbonControl.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbonControl.MaxItemId = 1;
             this.ribbonControl.MiniToolbars.Add(this.ribbonMiniToolbar1);
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.PageHeaderItemLinks.Add(this.iAbout);
@@ -397,8 +398,8 @@
             this.ribbonControl.QuickToolbarItemLinks.Add(this.iNew);
             this.ribbonControl.QuickToolbarItemLinks.Add(this.iSaveAs);
             this.ribbonControl.QuickToolbarItemLinks.Add(this.iHelp);
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl.Size = new System.Drawing.Size(2335, 281);
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019;
+            this.ribbonControl.Size = new System.Drawing.Size(1751, 180);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.Visible = false;
             // 
@@ -1657,11 +1658,11 @@
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.siStatus);
             this.ribbonStatusBar.ItemLinks.Add(this.siInfo);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1429);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(5);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1092);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(2335, 62);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1751, 41);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -1816,14 +1817,14 @@
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2335, 1491);
+            this.ClientSize = new System.Drawing.Size(1751, 1133);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainMenu";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;

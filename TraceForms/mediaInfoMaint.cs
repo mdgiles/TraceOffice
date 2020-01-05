@@ -1,4 +1,6 @@
-﻿using Custom_SearchLookupEdit;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Custom_SearchLookupEdit;
 using DevExpress.Data.Async.Helpers;
 using DevExpress.Utils.Win;
 using DevExpress.XtraEditors;
@@ -7,7 +9,10 @@ using DevExpress.XtraEditors.Popup;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraTreeList.Nodes;
 using FlexModel;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +21,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TraceForms
@@ -27,9 +33,11 @@ namespace TraceForms
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         Dictionary<String, List<CodeName>> _productLookups;
-        public string _imagesRoot;
+        string _imagesRoot;
         string _originalHtml = string.Empty;
-        public bool _resourcesModified = false;
+        bool _resourcesModified = false;
+        FlexInterfaces.Core.ICoreSys _sys;
+        CloudBlobContainer _container = null;
 
         public mediaInfoMaint(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -37,6 +45,7 @@ namespace TraceForms
                 InitializeComponent();
                 Connect(sys);
                 LoadLookups();
+                SetImageSources();
                 SetReadOnly(true);
             }
             catch (Exception ex) {
@@ -48,7 +57,47 @@ namespace TraceForms
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            _sys = sys;
             _imagesRoot = sys.Settings.ImagesRoot;
+        }
+
+        private void SetImageSources()
+        {
+            if (!string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Configurator.AzureStorageConnectionString);
+                CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                _container = blobClient.GetContainerReference(_sys.Settings.ImagesContainer);
+                //CloudBlobContainer container = blobClient.GetContainerReference("images");
+                azureBlobBrowser1LowRes.BlobContainer = _container;
+                azureBlobBrowser1LowRes.Top = ButtonEditImage1LowRes.Top;
+                azureBlobBrowser1LowRes.Visible = true;
+                ButtonEditImage1LowRes.Visible = false;
+                ButtonEditImage1LowRes.DataBindings.Clear();
+
+                azureBlobBrowser2MedRes.BlobContainer = _container;
+                azureBlobBrowser2MedRes.Top = ButtonEditImage1LowRes.Top;
+                azureBlobBrowser2MedRes.Visible = true;
+                ButtonEditImage2MedRes.Visible = false;
+                ButtonEditImage2MedRes.DataBindings.Clear();
+
+                azureBlobBrowser3HighRes.BlobContainer = _container;
+                azureBlobBrowser3HighRes.Top = ButtonEditImage1LowRes.Top;
+                azureBlobBrowser3HighRes.Visible = true;
+                ButtonEditImage3HighRes.Visible = false;
+                ButtonEditImage3HighRes.DataBindings.Clear();
+
+                azureBlobBrowser4Thumb.BlobContainer = _container;
+                azureBlobBrowser4Thumb.Top = ButtonEditImage1LowRes.Top;
+                azureBlobBrowser4Thumb.Visible = true;
+                ButtonEditImage4Thumb.Visible = false;
+                ButtonEditImage4Thumb.DataBindings.Clear();
+            }
+            else {
+                azureBlobBrowser1LowRes.DataBindings.Clear();
+                azureBlobBrowser2MedRes.DataBindings.Clear();
+                azureBlobBrowser3HighRes.DataBindings.Clear();
+                azureBlobBrowser4Thumb.DataBindings.Clear();
+            }
         }
 
         private void LoadLookups()
@@ -148,12 +197,17 @@ namespace TraceForms
 
         private void ButtonEditImage1LowRes_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog() { Title = "Open Image", InitialDirectory = _imagesRoot }) {
-                if (dlg.ShowDialog() == DialogResult.OK) {
-                    if (dlg.FileName.ToLower().IndexOf(_imagesRoot.ToLower()) != -1)
-                        ButtonEditImage1LowRes.Text = dlg.FileName.Substring(_imagesRoot.Length);
-                    else
-                        ButtonEditImage1LowRes.Text = dlg.FileName;
+            if (!string.IsNullOrEmpty(_sys.Settings.StorageRoot)) {
+
+            }
+            else {
+                using (OpenFileDialog dlg = new OpenFileDialog() { Title = "Open Image", InitialDirectory = _imagesRoot }) {
+                    if (dlg.ShowDialog() == DialogResult.OK) {
+                        if (dlg.FileName.ToLower().IndexOf(_imagesRoot.ToLower()) != -1)
+                            ButtonEditImage1LowRes.Text = dlg.FileName.Substring(_imagesRoot.Length);
+                        else
+                            ButtonEditImage1LowRes.Text = dlg.FileName;
+                    }
                 }
             }
         }
@@ -161,13 +215,14 @@ namespace TraceForms
         private void ButtonEditImage1LowRes_TextChanged(object sender, EventArgs e)
         {
 
-            PictureEditPreviewImage1.Image = null;
+            PictureEditPreviewImage1LowRes.Image = null;
 
             try {
+
                 using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + ButtonEditImage1LowRes.Text))) {
-                    PictureEditPreviewImage1.Height = Image.FromStream(stream).Height;
-                    PictureEditPreviewImage1.Width = Image.FromStream(stream).Width;
-                    PictureEditPreviewImage1.Image = Image.FromStream(stream);
+                    PictureEditPreviewImage1LowRes.Height = Image.FromStream(stream).Height;
+                    PictureEditPreviewImage1LowRes.Width = Image.FromStream(stream).Width;
+                    PictureEditPreviewImage1LowRes.Image = Image.FromStream(stream);
                     ErrorProvider.SetError(ButtonEditImage1LowRes, "");
                 }
 
@@ -175,9 +230,9 @@ namespace TraceForms
             catch {
                 try {
                     using (var stream = new MemoryStream(File.ReadAllBytes(ButtonEditImage1LowRes.Text))) {
-                        PictureEditPreviewImage1.Height = Image.FromStream(stream).Height;
-                        PictureEditPreviewImage1.Width = Image.FromStream(stream).Width;
-                        PictureEditPreviewImage1.Image = Image.FromStream(stream);
+                        PictureEditPreviewImage1LowRes.Height = Image.FromStream(stream).Height;
+                        PictureEditPreviewImage1LowRes.Width = Image.FromStream(stream).Width;
+                        PictureEditPreviewImage1LowRes.Image = Image.FromStream(stream);
                         ErrorProvider.SetError(ButtonEditImage1LowRes, "");
                     }
                 }
@@ -188,7 +243,7 @@ namespace TraceForms
             }
 
 
-            labelControlSizeDisplay.Text = PictureEditPreviewImage1.Image.Height + " * " + PictureEditPreviewImage1.Image.Width;
+            labelControlSizeDisplay1LowRes.Text = PictureEditPreviewImage1LowRes.Image.Height + " * " + PictureEditPreviewImage1LowRes.Image.Width;
         }
 
         private void ButtonEditImage2MedRes_ButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -205,13 +260,13 @@ namespace TraceForms
 
         private void ButtonEditImage2MedRes_TextChanged(object sender, EventArgs e)
         {
-            PictureEditPreviewImage2.Image = null;
+            PictureEditPreviewImage2MedRes.Image = null;
 
             try {
                 using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + ButtonEditImage2MedRes.Text))) {
-                    PictureEditPreviewImage2.Height = Image.FromStream(stream).Height;
-                    PictureEditPreviewImage2.Width = Image.FromStream(stream).Width;
-                    PictureEditPreviewImage2.Image = Image.FromStream(stream);
+                    PictureEditPreviewImage2MedRes.Height = Image.FromStream(stream).Height;
+                    PictureEditPreviewImage2MedRes.Width = Image.FromStream(stream).Width;
+                    PictureEditPreviewImage2MedRes.Image = Image.FromStream(stream);
                     ErrorProvider.SetError(ButtonEditImage2MedRes, "");
                 }
 
@@ -219,9 +274,9 @@ namespace TraceForms
             catch {
                 try {
                     using (var stream = new MemoryStream(File.ReadAllBytes(ButtonEditImage2MedRes.Text))) {
-                        PictureEditPreviewImage2.Height = Image.FromStream(stream).Height;
-                        PictureEditPreviewImage2.Width = Image.FromStream(stream).Width;
-                        PictureEditPreviewImage2.Image = Image.FromStream(stream);
+                        PictureEditPreviewImage2MedRes.Height = Image.FromStream(stream).Height;
+                        PictureEditPreviewImage2MedRes.Width = Image.FromStream(stream).Width;
+                        PictureEditPreviewImage2MedRes.Image = Image.FromStream(stream);
                         ErrorProvider.SetError(ButtonEditImage2MedRes, "");
                     }
                 }
@@ -231,7 +286,7 @@ namespace TraceForms
 
             }
 
-            labelControlSizeDisplay2.Text = PictureEditPreviewImage2.Image.Height + " * " + PictureEditPreviewImage2.Image.Width;
+            labelControlSizeDisplay2MedRes.Text = PictureEditPreviewImage2MedRes.Image.Height + " * " + PictureEditPreviewImage2MedRes.Image.Width;
         }
 
         private void ButtonEditImage3HighRes_ButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -249,13 +304,13 @@ namespace TraceForms
         private void ButtonEditImage3HighRes_TextChanged(object sender, EventArgs e)
         {
 
-            PictureEditPreviewImage3.Image = null;
+            PictureEditPreviewImage3HighRes.Image = null;
 
             try {
                 using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + ButtonEditImage3HighRes.Text))) {
-                    PictureEditPreviewImage3.Height = Image.FromStream(stream).Height;
-                    PictureEditPreviewImage3.Width = Image.FromStream(stream).Width;
-                    PictureEditPreviewImage3.Image = Image.FromStream(stream);
+                    PictureEditPreviewImage3HighRes.Height = Image.FromStream(stream).Height;
+                    PictureEditPreviewImage3HighRes.Width = Image.FromStream(stream).Width;
+                    PictureEditPreviewImage3HighRes.Image = Image.FromStream(stream);
                     ErrorProvider.SetError(ButtonEditImage3HighRes, "");
                 }
 
@@ -263,9 +318,9 @@ namespace TraceForms
             catch {
                 try {
                     using (var stream = new MemoryStream(File.ReadAllBytes(ButtonEditImage3HighRes.Text))) {
-                        PictureEditPreviewImage3.Height = Image.FromStream(stream).Height;
-                        PictureEditPreviewImage3.Width = Image.FromStream(stream).Width;
-                        PictureEditPreviewImage3.Image = Image.FromStream(stream);
+                        PictureEditPreviewImage3HighRes.Height = Image.FromStream(stream).Height;
+                        PictureEditPreviewImage3HighRes.Width = Image.FromStream(stream).Width;
+                        PictureEditPreviewImage3HighRes.Image = Image.FromStream(stream);
                         ErrorProvider.SetError(ButtonEditImage3HighRes, "");
                     }
                 }
@@ -275,7 +330,7 @@ namespace TraceForms
 
             }
 
-            labelControlSizeDisplay3.Text = PictureEditPreviewImage3.Image.Height + " * " + PictureEditPreviewImage3.Image.Width;
+            labelControlSizeDisplay3HighRes.Text = PictureEditPreviewImage3HighRes.Image.Height + " * " + PictureEditPreviewImage3HighRes.Image.Width;
         }
 
         private void ButtonEditImage4ThmNail_ButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -283,32 +338,32 @@ namespace TraceForms
             using (OpenFileDialog dlg = new OpenFileDialog() { Title = "Open Image", InitialDirectory = _imagesRoot }) {
                 if (dlg.ShowDialog() == DialogResult.OK) {
                     if (dlg.FileName.ToLower().IndexOf(_imagesRoot.ToLower()) != -1)
-                        ButtonEditImage4ThmNail.Text = dlg.FileName.Substring(_imagesRoot.Length);
+                        ButtonEditImage4Thumb.Text = dlg.FileName.Substring(_imagesRoot.Length);
                     else
-                        ButtonEditImage4ThmNail.Text = dlg.FileName;
+                        ButtonEditImage4Thumb.Text = dlg.FileName;
                 }
             }
         }
 
         private void ButtonEditImage4ThmNail_TextChanged(object sender, EventArgs e)
         {
-            PictureEditPreviewImage4.Image = null;
+            PictureEditPreviewImage4Thumb.Image = null;
 
             try {
-                using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + ButtonEditImage4ThmNail.Text))) {
-                    PictureEditPreviewImage4.Height = Image.FromStream(stream).Height;
-                    PictureEditPreviewImage4.Width = Image.FromStream(stream).Width;
-                    PictureEditPreviewImage4.Image = Image.FromStream(stream);
-                    ErrorProvider.SetError(ButtonEditImage4ThmNail, "");
+                using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + ButtonEditImage4Thumb.Text))) {
+                    PictureEditPreviewImage4Thumb.Height = Image.FromStream(stream).Height;
+                    PictureEditPreviewImage4Thumb.Width = Image.FromStream(stream).Width;
+                    PictureEditPreviewImage4Thumb.Image = Image.FromStream(stream);
+                    ErrorProvider.SetError(ButtonEditImage4Thumb, "");
                 }
             }
             catch {
                 try {
-                    using (var stream = new MemoryStream(File.ReadAllBytes(ButtonEditImage4ThmNail.Text))) {
-                        PictureEditPreviewImage4.Height = Image.FromStream(stream).Height;
-                        PictureEditPreviewImage4.Width = Image.FromStream(stream).Width;
-                        PictureEditPreviewImage4.Image = Image.FromStream(stream);
-                        ErrorProvider.SetError(ButtonEditImage4ThmNail, "");
+                    using (var stream = new MemoryStream(File.ReadAllBytes(ButtonEditImage4Thumb.Text))) {
+                        PictureEditPreviewImage4Thumb.Height = Image.FromStream(stream).Height;
+                        PictureEditPreviewImage4Thumb.Width = Image.FromStream(stream).Width;
+                        PictureEditPreviewImage4Thumb.Image = Image.FromStream(stream);
+                        ErrorProvider.SetError(ButtonEditImage4Thumb, "");
                     }
                 }
                 catch {
@@ -317,7 +372,7 @@ namespace TraceForms
 
             }
 
-            labelControlSizeDisplay4.Text = String.Format("{0} * {1}", PictureEditPreviewImage4.Image.Height, PictureEditPreviewImage4.Image.Width);
+            labelControlSizeDisplay4Thumb.Text = String.Format("{0} * {1}", PictureEditPreviewImage4Thumb.Image.Height, PictureEditPreviewImage4Thumb.Image.Width);
         }
 
         private void MediaInfoBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -957,25 +1012,70 @@ namespace TraceForms
 
         private void ButtonCreateThumbnailLowRes_Click(object sender, EventArgs e)
         {
-            CreateThumbNail(ButtonEditImage1LowRes.Text);
+            if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                CreateThumbnail(ButtonEditImage1LowRes.Text);
+            }
+            else {
+                CreateThumbnail(PictureEditPreviewImage1LowRes.Image, ButtonEditImage1LowRes.Text);
+            }
         }
 
         private void ButtonCreateThumbnailMedRes_Click(object sender, EventArgs e)
         {
-            CreateThumbNail(ButtonEditImage2MedRes.Text);
+            if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                CreateThumbnail(ButtonEditImage2MedRes.Text);
+            }
+            else {
+                CreateThumbnail(PictureEditPreviewImage2MedRes.Image, ButtonEditImage2MedRes.Text);
+            }
         }
 
         private void ButtonCreateThumbNailHighRes_Click(object sender, EventArgs e)
         {
-            CreateThumbNail(ButtonEditImage3HighRes.Text);
+            if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                CreateThumbnail(ButtonEditImage3HighRes.Text);
+            }
+            else {
+                CreateThumbnail(PictureEditPreviewImage3HighRes.Image, ButtonEditImage3HighRes.Text);
+            }
         }
 
-        private void CreateThumbNail(string path)
+
+        private bool CreateThumbnailAbort()
+        {
+            return false;
+        }
+
+        private Image CreateThumbnail(Image fullSizeImg, int width = 128, int height = 128)
+        {
+            Image.GetThumbnailImageAbort callBack = new Image.GetThumbnailImageAbort(CreateThumbnailAbort);
+            return fullSizeImg.GetThumbnailImage(width, height, callBack, IntPtr.Zero);
+        }
+
+        private void CreateThumbnail(Image fullSizeImg, string path)
+        {
+            var thumb = CreateThumbnail(fullSizeImg);
+            string imagePath = path;
+            string[] segments = imagePath.Split('.');
+            string ext = segments.Last();
+            string pathWithoutExt = imagePath.Substring(0, imagePath.Length - (ext.Length + 1));
+            string filename = pathWithoutExt + "_thumb." + ext;
+            CloudBlockBlob blockBlob = _container.GetBlockBlobReference(filename);
+            ImageConverter converter = new ImageConverter();
+            byte[] data = (byte[])converter.ConvertTo(thumb, typeof(byte[]));
+            //Use MemoryStream because it abstracts the process of having to loop through buffers of byte data
+            using (MemoryStream memoryStream = new MemoryStream(data)) {
+                blockBlob.UploadFromStream(memoryStream);
+            }
+            ButtonEditImage4Thumb.Text = filename;
+        }
+
+        private void CreateThumbnail(string path)
         {
             MediaInfo.MediaInfoSys MediaSys = new MediaInfo.MediaInfoSys();
             string newPath = MediaSys.CreateThumbnail(path);
             if (!string.IsNullOrEmpty(newPath)) {
-                ButtonEditImage4ThmNail.Text = newPath;
+                ButtonEditImage4Thumb.Text = newPath;
             }
         }
 
@@ -1140,6 +1240,42 @@ namespace TraceForms
         private void GridViewAdditionalImages_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             _resourcesModified = true;
+        }
+
+        private void SetPreviewImage(string url, PictureEdit previewControl, LabelControl sizeLabel)
+        {
+            if (string.IsNullOrEmpty(url)) {
+                previewControl.LoadAsync(url);
+                sizeLabel.Text = previewControl.Image.Height + " * " + previewControl.Image.Width;
+            }
+            else {
+                previewControl.Image = null;
+                sizeLabel.Text = string.Empty;
+            }
+        }
+
+        private void azureBlobBrowser1LowRes_EditValueChanged(object sender, EventArgs e)
+        {
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage1LowRes, labelControlSizeDisplay1LowRes);
+        }
+
+        private void azureBlobBrowser4Thumb_EditValueChanged(object sender, EventArgs e)
+        {
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage2MedRes, labelControlSizeDisplay2MedRes);
+        }
+
+        private void azureBlobBrowser3HighRes_EditValueChanged(object sender, EventArgs e)
+        {
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage3HighRes, labelControlSizeDisplay3HighRes);
+        }
+
+        private void azureBlobBrowser2MedRes_EditValueChanged(object sender, EventArgs e)
+        {
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage4Thumb, labelControlSizeDisplay4Thumb);
         }
 
         private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

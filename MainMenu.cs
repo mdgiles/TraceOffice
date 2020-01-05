@@ -67,8 +67,10 @@ namespace FlexOffice
         }
         void createRibControl()
         {
-            ribbon1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            ribbon1.RibbonStyle = RibbonControlStyle.Office2010;
+            ribbon1 = new DevExpress.XtraBars.Ribbon.RibbonControl() {
+                DrawGroupCaptions = DevExpress.Utils.DefaultBoolean.False
+            };
+            ribbon1.RibbonStyle = RibbonControlStyle.Office2019;
             //ribbon1.ApplicationButtonAccessibleDescription = "HELP";
             //ribbon1.ApplicationButtonDropDownControl = HotelDrop;
             Ribbon = ribbon1;
