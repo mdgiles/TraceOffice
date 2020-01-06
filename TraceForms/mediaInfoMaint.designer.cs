@@ -101,6 +101,7 @@ namespace TraceForms
             this.LabelPeview = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControlMedRes = new DevExpress.XtraEditors.PanelControl();
+            this.azureBlobBrowser2MedRes = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
             this.labelControlSizeDisplay2MedRes = new DevExpress.XtraEditors.LabelControl();
             this.labelControlSize2 = new DevExpress.XtraEditors.LabelControl();
             this.ButtonEditImage2MedRes = new DevExpress.XtraEditors.ButtonEdit();
@@ -109,6 +110,7 @@ namespace TraceForms
             this.PictureEditPreviewImage2MedRes = new DevExpress.XtraEditors.PictureEdit();
             this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControlHighRes = new DevExpress.XtraEditors.PanelControl();
+            this.azureBlobBrowser3HighRes = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
             this.labelControlSizeDisplay3HighRes = new DevExpress.XtraEditors.LabelControl();
             this.labelControlSize3 = new DevExpress.XtraEditors.LabelControl();
             this.ButtonEditImage3HighRes = new DevExpress.XtraEditors.ButtonEdit();
@@ -117,6 +119,7 @@ namespace TraceForms
             this.PictureEditPreviewImage3HighRes = new DevExpress.XtraEditors.PictureEdit();
             this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControlThumbNail = new DevExpress.XtraEditors.PanelControl();
+            this.azureBlobBrowser4Thumb = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
             this.labelControlSizeDisplay4Thumb = new DevExpress.XtraEditors.LabelControl();
             this.labelControlSize4 = new DevExpress.XtraEditors.LabelControl();
             this.ButtonEditImage4Thumb = new DevExpress.XtraEditors.ButtonEdit();
@@ -239,9 +242,6 @@ namespace TraceForms
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.azureBlobBrowser2MedRes = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
-            this.azureBlobBrowser3HighRes = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
-            this.azureBlobBrowser4Thumb = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
             LabelAgency = new System.Windows.Forms.Label();
             LabelType = new System.Windows.Forms.Label();
             LabelsvcStartDate = new System.Windows.Forms.Label();
@@ -1220,14 +1220,14 @@ namespace TraceForms
             this.panelControlLowRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlLowRes.TabIndex = 0;
             // 
-            // azureBlobBrowserLowRes
+            // azureBlobBrowser1LowRes
             // 
             this.azureBlobBrowser1LowRes.BlobContainer = null;
             this.azureBlobBrowser1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE1", true));
             this.azureBlobBrowser1LowRes.EditValueData = null;
             this.azureBlobBrowser1LowRes.Location = new System.Drawing.Point(67, 47);
             this.azureBlobBrowser1LowRes.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser1LowRes.Name = "azureBlobBrowserLowRes";
+            this.azureBlobBrowser1LowRes.Name = "azureBlobBrowser1LowRes";
             this.azureBlobBrowser1LowRes.Size = new System.Drawing.Size(524, 24);
             this.azureBlobBrowser1LowRes.TabIndex = 17;
             this.azureBlobBrowser1LowRes.Visible = false;
@@ -1316,6 +1316,19 @@ namespace TraceForms
             this.panelControlMedRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlMedRes.TabIndex = 0;
             // 
+            // azureBlobBrowser2MedRes
+            // 
+            this.azureBlobBrowser2MedRes.BlobContainer = null;
+            this.azureBlobBrowser2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE2", true));
+            this.azureBlobBrowser2MedRes.EditValueData = null;
+            this.azureBlobBrowser2MedRes.Location = new System.Drawing.Point(67, 47);
+            this.azureBlobBrowser2MedRes.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser2MedRes.Name = "azureBlobBrowser2MedRes";
+            this.azureBlobBrowser2MedRes.Size = new System.Drawing.Size(524, 24);
+            this.azureBlobBrowser2MedRes.TabIndex = 19;
+            this.azureBlobBrowser2MedRes.Visible = false;
+            this.azureBlobBrowser2MedRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser2MedRes_EditValueChanged);
+            // 
             // labelControlSizeDisplay2MedRes
             // 
             this.labelControlSizeDisplay2MedRes.Location = new System.Drawing.Point(73, 55);
@@ -1399,6 +1412,19 @@ namespace TraceForms
             this.panelControlHighRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlHighRes.TabIndex = 0;
             // 
+            // azureBlobBrowser3HighRes
+            // 
+            this.azureBlobBrowser3HighRes.BlobContainer = null;
+            this.azureBlobBrowser3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE3", true));
+            this.azureBlobBrowser3HighRes.EditValueData = null;
+            this.azureBlobBrowser3HighRes.Location = new System.Drawing.Point(67, 47);
+            this.azureBlobBrowser3HighRes.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser3HighRes.Name = "azureBlobBrowser3HighRes";
+            this.azureBlobBrowser3HighRes.Size = new System.Drawing.Size(524, 24);
+            this.azureBlobBrowser3HighRes.TabIndex = 19;
+            this.azureBlobBrowser3HighRes.Visible = false;
+            this.azureBlobBrowser3HighRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser3HighRes_EditValueChanged);
+            // 
             // labelControlSizeDisplay3HighRes
             // 
             this.labelControlSizeDisplay3HighRes.Location = new System.Drawing.Point(73, 56);
@@ -1480,6 +1506,19 @@ namespace TraceForms
             this.panelControlThumbNail.Name = "panelControlThumbNail";
             this.panelControlThumbNail.Size = new System.Drawing.Size(607, 246);
             this.panelControlThumbNail.TabIndex = 0;
+            // 
+            // azureBlobBrowser4Thumb
+            // 
+            this.azureBlobBrowser4Thumb.BlobContainer = null;
+            this.azureBlobBrowser4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE4", true));
+            this.azureBlobBrowser4Thumb.EditValueData = null;
+            this.azureBlobBrowser4Thumb.Location = new System.Drawing.Point(67, 47);
+            this.azureBlobBrowser4Thumb.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser4Thumb.Name = "azureBlobBrowser4Thumb";
+            this.azureBlobBrowser4Thumb.Size = new System.Drawing.Size(524, 24);
+            this.azureBlobBrowser4Thumb.TabIndex = 20;
+            this.azureBlobBrowser4Thumb.Visible = false;
+            this.azureBlobBrowser4Thumb.EditValueChanged += new System.EventHandler(this.azureBlobBrowser4Thumb_EditValueChanged);
             // 
             // labelControlSizeDisplay4Thumb
             // 
@@ -2757,45 +2796,6 @@ namespace TraceForms
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(0, 13);
             this.labelControl1.TabIndex = 5;
-            // 
-            // azureBlobBrowser2MedRes
-            // 
-            this.azureBlobBrowser2MedRes.BlobContainer = null;
-            this.azureBlobBrowser2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE2", true));
-            this.azureBlobBrowser2MedRes.EditValueData = null;
-            this.azureBlobBrowser2MedRes.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser2MedRes.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser2MedRes.Name = "azureBlobBrowser2MedRes";
-            this.azureBlobBrowser2MedRes.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser2MedRes.TabIndex = 19;
-            this.azureBlobBrowser2MedRes.Visible = false;
-            this.azureBlobBrowser2MedRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser2MedRes_EditValueChanged);
-            // 
-            // azureBlobBrowser3HighRes
-            // 
-            this.azureBlobBrowser3HighRes.BlobContainer = null;
-            this.azureBlobBrowser3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE3", true));
-            this.azureBlobBrowser3HighRes.EditValueData = null;
-            this.azureBlobBrowser3HighRes.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser3HighRes.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser3HighRes.Name = "azureBlobBrowser3HighRes";
-            this.azureBlobBrowser3HighRes.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser3HighRes.TabIndex = 19;
-            this.azureBlobBrowser3HighRes.Visible = false;
-            this.azureBlobBrowser3HighRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser3HighRes_EditValueChanged);
-            // 
-            // azureBlobBrowser4Thumb
-            // 
-            this.azureBlobBrowser4Thumb.BlobContainer = null;
-            this.azureBlobBrowser4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE4", true));
-            this.azureBlobBrowser4Thumb.EditValueData = null;
-            this.azureBlobBrowser4Thumb.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser4Thumb.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser4Thumb.Name = "azureBlobBrowser4Thumb";
-            this.azureBlobBrowser4Thumb.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser4Thumb.TabIndex = 20;
-            this.azureBlobBrowser4Thumb.Visible = false;
-            this.azureBlobBrowser4Thumb.EditValueChanged += new System.EventHandler(this.azureBlobBrowser4Thumb_EditValueChanged);
             // 
             // mediaInfoMaint
             // 

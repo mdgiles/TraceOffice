@@ -15,14 +15,6 @@ namespace TraceForms.AzureBlobBrowser
 {
     public partial class AzureBlobBrowser : DevExpress.XtraEditors.XtraUserControl
     {
-        private class BlobEntry
-        {
-            public List<BlobEntry> Entries { get; set; }
-            public string DisplayName { get; set; }
-            public string FullPath { get; set; }
-            public bool IsFolder { get; set; }
-        }
-
         public CloudBlobContainer BlobContainer { get; set; }
 
         const int FullPathField = 0;
@@ -30,6 +22,8 @@ namespace TraceForms.AzureBlobBrowser
         const int IsFolderField = 2;
 
         public event EventHandler EditValueChanged;
+
+        private bool MouseDoubleClicked;
 
         public AzureBlobBrowser()
         {
@@ -44,7 +38,11 @@ namespace TraceForms.AzureBlobBrowser
             } 
             set {
                 popupContainerEditBrowser.EditValue = value;
-                this.EditValueChanged(this, new EventArgs());
+                //Events are only initialized at runtime, but at design time the data bound properties are set to null
+                // causing a crash in the designer if there is not a null check for the event
+                if (this.EditValueChanged != null) {
+                    this.EditValueChanged(this, new EventArgs());
+                }
             }
         }
 
@@ -156,7 +154,11 @@ namespace TraceForms.AzureBlobBrowser
 
         private void popupContainerEdit1_Properties_QueryResultValue(object sender, DevExpress.XtraEditors.Controls.QueryResultValueEventArgs e)
         {
-            if (treeListBrowser.FocusedNode != null) {
+            //Only allow selecting a new value by double-clicking a node.  Default functionality is to 
+            //select a new value whenever the popup closes but this is not intuitive because the popup can
+            //be closed by clicking outside it, which should not select a value.
+            if (treeListBrowser.FocusedNode != null && MouseDoubleClicked) {
+                MouseDoubleClicked = false;
                 string selectedVal = treeListBrowser.FocusedNode[treeListColumnFullPath].ToString();
                 //string originalVal = e.Value.ToStringEmptyIfNull();
                 e.Value = selectedVal;
@@ -170,6 +172,7 @@ namespace TraceForms.AzureBlobBrowser
             if (hitInfo.Node != null) {
                 var node = hitInfo.Node;
                 if (!(bool)node[treeListColumnIsFolder]) {
+                    MouseDoubleClicked = true;
                     popupContainerEditBrowser.ClosePopup();
                 }
             }
@@ -205,4 +208,13 @@ namespace TraceForms.AzureBlobBrowser
             }
         }
     }
+
+    internal class BlobEntry
+    {
+        public List<BlobEntry> Entries { get; set; }
+        public string DisplayName { get; set; }
+        public string FullPath { get; set; }
+        public bool IsFolder { get; set; }
+    }
+
 }
