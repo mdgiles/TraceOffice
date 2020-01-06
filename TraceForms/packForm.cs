@@ -978,6 +978,7 @@ namespace TraceForms
             string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
             _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
                 _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
+            ShowActionConfirmation("Website Updated");
         }
 
         private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e)
