@@ -478,9 +478,8 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!suppCity.IsNew()) {
-                    _context.SupplierCity.DeleteObject(suppCity);
-                }
+                _selectedRecord.SupplierCity.Remove(suppCity);
+                _context.SupplierCity.DeleteObject(suppCity);                
                 BindSupplierCities();
             }
         }
