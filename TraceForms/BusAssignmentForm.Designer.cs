@@ -149,7 +149,8 @@
             // 
             // gridControlRoutes
             // 
-            this.gridControlRoutes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridControlRoutes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlRoutes.DataSource = this.busAssignmentBindingSource;
             this.gridControlRoutes.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
@@ -159,7 +160,7 @@
             this.gridControlRoutes.Name = "gridControlRoutes";
             this.gridControlRoutes.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckedComboBoxEditBuses});
-            this.gridControlRoutes.Size = new System.Drawing.Size(941, 239);
+            this.gridControlRoutes.Size = new System.Drawing.Size(956, 240);
             this.gridControlRoutes.TabIndex = 4;
             this.gridControlRoutes.TabStop = false;
             this.gridControlRoutes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -263,18 +264,17 @@
             // 
             // gridControlPassengers
             // 
-            this.gridControlPassengers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridControlPassengers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlPassengers.DataSource = this.passengerAssignmentBindingSource;
             this.gridControlPassengers.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlPassengers.Location = new System.Drawing.Point(30, 508);
+            this.gridControlPassengers.Location = new System.Drawing.Point(30, 501);
             this.gridControlPassengers.MainView = this.gridViewPassengers;
             this.gridControlPassengers.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlPassengers.Name = "gridControlPassengers";
             this.gridControlPassengers.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBoxBus});
-            this.gridControlPassengers.Size = new System.Drawing.Size(941, 233);
+            this.gridControlPassengers.Size = new System.Drawing.Size(956, 233);
             this.gridControlPassengers.TabIndex = 6;
             this.gridControlPassengers.TabStop = false;
             this.gridControlPassengers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -425,7 +425,8 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(30, 482);
+            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl3.Location = new System.Drawing.Point(30, 475);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(194, 19);
             this.labelControl3.TabIndex = 5;
@@ -436,7 +437,7 @@
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSave.ImageOptions.Image = global::TraceForms.Properties.Resources.save;
             this.buttonSave.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.buttonSave.Location = new System.Drawing.Point(30, 749);
+            this.buttonSave.Location = new System.Drawing.Point(30, 742);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(205, 54);
@@ -451,7 +452,7 @@
             this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
             this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(30, 811);
+            this.panelControlStatus.Location = new System.Drawing.Point(37, 804);
             this.panelControlStatus.Margin = new System.Windows.Forms.Padding(4);
             this.panelControlStatus.Name = "panelControlStatus";
             this.panelControlStatus.Size = new System.Drawing.Size(219, 34);
@@ -471,7 +472,7 @@
             this.buttonSendManifest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSendManifest.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("buttonSendManifest.ImageOptions.Image")));
             this.buttonSendManifest.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.buttonSendManifest.Location = new System.Drawing.Point(792, 749);
+            this.buttonSendManifest.Location = new System.Drawing.Point(792, 742);
             this.buttonSendManifest.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSendManifest.Name = "buttonSendManifest";
             this.buttonSendManifest.Size = new System.Drawing.Size(179, 54);
@@ -482,7 +483,7 @@
             // textEmailAddress
             // 
             this.textEmailAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textEmailAddress.Location = new System.Drawing.Point(365, 764);
+            this.textEmailAddress.Location = new System.Drawing.Point(365, 757);
             this.textEmailAddress.Name = "textEmailAddress";
             this.textEmailAddress.Size = new System.Drawing.Size(420, 28);
             this.textEmailAddress.TabIndex = 9;
@@ -490,7 +491,7 @@
             // labelControl4
             // 
             this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl4.Location = new System.Drawing.Point(251, 767);
+            this.labelControl4.Location = new System.Drawing.Point(251, 760);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(98, 19);
             this.labelControl4.TabIndex = 8;
@@ -516,12 +517,13 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1002, 856);
+            this.panelControl1.Size = new System.Drawing.Size(1017, 857);
             this.panelControl1.TabIndex = 0;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(30, 348);
+            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl1.Location = new System.Drawing.Point(30, 341);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(169, 19);
             this.labelControl1.TabIndex = 14;
@@ -529,11 +531,11 @@
             // 
             // gridControlNames
             // 
-            this.gridControlNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridControlNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlNames.DataSource = this.nameAssignmentBindingSource;
             this.gridControlNames.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gridControlNames.Location = new System.Drawing.Point(30, 374);
+            this.gridControlNames.Location = new System.Drawing.Point(30, 367);
             this.gridControlNames.MainView = this.gridViewNames;
             this.gridControlNames.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlNames.Name = "gridControlNames";
@@ -541,7 +543,7 @@
             this.repositoryItemImageComboBox1,
             this.repositoryItemTextEditName,
             this.repositoryItemTextEditPhone});
-            this.gridControlNames.Size = new System.Drawing.Size(941, 101);
+            this.gridControlNames.Size = new System.Drawing.Size(956, 101);
             this.gridControlNames.TabIndex = 13;
             this.gridControlNames.TabStop = false;
             this.gridControlNames.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -642,7 +644,8 @@
             // 
             // gridControlServices
             // 
-            this.gridControlServices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridControlServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControlServices.DataSource = this.busAssignmentBindingSource;
             this.gridControlServices.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
@@ -650,7 +653,7 @@
             this.gridControlServices.MainView = this.gridViewServices;
             this.gridControlServices.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlServices.Name = "gridControlServices";
-            this.gridControlServices.Size = new System.Drawing.Size(941, 239);
+            this.gridControlServices.Size = new System.Drawing.Size(956, 240);
             this.gridControlServices.TabIndex = 12;
             this.gridControlServices.TabStop = false;
             this.gridControlServices.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -754,7 +757,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 856);
+            this.ClientSize = new System.Drawing.Size(1017, 857);
             this.Controls.Add(this.panelControl1);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
