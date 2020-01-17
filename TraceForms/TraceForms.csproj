@@ -201,6 +201,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -309,6 +310,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFareHarbor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportFareHarbor.Designer.cs">
+      <DependentUpon>ImportFareHarbor.cs</DependentUpon>
     </Compile>
     <Compile Include="CommissionsForm.cs">
       <SubType>Form</SubType>
@@ -564,6 +571,8 @@
     <Compile Include="MGMRatesImportForm.Designer.cs">
       <DependentUpon>MGMRatesImportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApiInvoker.cs" />
+    <Compile Include="Models\FareHarbor.cs" />
     <Compile Include="navigator.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -944,6 +953,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChgCodeForm.resx">
       <DependentUpon>ChgCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportFareHarbor.resx">
+      <DependentUpon>ImportFareHarbor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommissionsForm.resx">
       <DependentUpon>CommissionsForm.cs</DependentUpon>
