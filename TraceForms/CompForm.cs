@@ -2019,10 +2019,15 @@ namespace TraceForms
 
         private void BarButtonItemUpdateWebsite_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
-            _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
-                _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
-            ShowActionConfirmation("Website Updated");
+            try {
+                string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
+                _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
+                    _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
+                ShowActionConfirmation("Website Updated");
+            }
+            catch {
+                ShowActionConfirmation("Update Failed");
+            }
         }
 
         private void ImageComboBoxEditTransType_EditValueChanged(object sender, EventArgs e)
