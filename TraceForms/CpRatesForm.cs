@@ -774,17 +774,17 @@ namespace TraceForms
 
             if ((SpinEditGrossChild.Value == 0 && SpinEditCostChild.Value == 0) || (string.IsNullOrWhiteSpace(SpinEditGrossChild.Text) && string.IsNullOrWhiteSpace(SpinEditCostChild.Text)))
             {
-                if (!string.IsNullOrWhiteSpace(TextEditChildLimit.Text) && validCheck.IsNumeric(TextEditChildLimit.Text))
-                {
+                bool isNumericAge = int.TryParse(TextEditChildLimit.Text, out int age);
+                //2 is a typical age for the upper limit of free children, so allow up to that age without warning
+                if (isNumericAge && age > 2) {
                     DialogResult select = XtraMessageBox.Show("You have entered a child age limit with no corresponding rate. Is this correct?", "Child Limit", MessageBoxButtons.YesNo);
-                    if (select == DialogResult.No)
-                    {
+                    if (select == DialogResult.No) {
                         XtraMessageBox.Show("Please correct the values entered.");
                         SpinEditGrossChild.Focus();
                         return;
                     }
                 }
-                    
+
             }
         }
 
