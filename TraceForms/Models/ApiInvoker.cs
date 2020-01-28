@@ -1,4 +1,4 @@
-﻿//using SML.Common.Logging;
+﻿using SML.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace TraceForms.Models
 {
     class ApiInvoker
-    {/*
+    {
         public static async Task<string> SendRequestGet(string token, string url)
         {
             return await SendRequestGet(token, url, null, null);
@@ -44,7 +44,7 @@ namespace TraceForms.Models
         public static async Task<string> SendRequestPost(string token, string url, string content)
         {
             if (!string.IsNullOrEmpty(token)) {
-                url = url + $"?apiKey={token}";
+                url += $"?apiKey={token}";
             }
             return await SendRequest(HttpMethod.Post, url, content, null);
         }
@@ -143,7 +143,6 @@ namespace TraceForms.Models
                 }
             }
             return file;
-        }*/
-
+        }
     }
 }

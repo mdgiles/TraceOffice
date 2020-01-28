@@ -19,6 +19,9 @@ using DevExpress.Map;
 using DevExpress.XtraMap;
 using System.Threading.Tasks;
 using TraceForms.Models;
+using Newtonsoft.Json;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace TraceForms
 {
@@ -38,7 +41,7 @@ namespace TraceForms
                 InitializeComponent();
                 Connect(sys);
                 LoadLookups();
-
+                //GetDataFromAPI();
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);
@@ -63,29 +66,36 @@ namespace TraceForms
             }
         }
 
-        /*private async Task<List<T>> GetDataFromAPI<T>(Type type, SupplierConnection connection, LANGUAGE lang, string url,
-    CommonRQ request, bool getAllPages)
+        private async Task<List<T>> GetDataFromAPI<T>(Type type, SupplierConnection connection, string url,
+    CommonRQ request)
         {
+            string hash = GetHash(connection);
+            Dictionary<string, string> headers = new Dictionary<string, string> {
+                { "Api-key", connection.Login },
+                { "X-Signature", hash },
+            };
             List<T> list = new List<T>();
             //Use whatever valid "from" value is provided or start at 1
-            do {
-                //convert strongly typed class to dictionary of request parameters
-                Dictionary<string, string> parameters = request.AsDictionary();
-                string result = await ApiInvoker.SendRequestGet(string.Empty, connection.URL + url + "?", parameters, headers);
-                var rs = JsonConvert.DeserializeObject(result, type);       //Deserialize the data as the provided type
-                if (rs == null) {
-                    break;
-                }
-                CommonRS common = (CommonRS)rs;     //We know all returned data can be cast to this basic type
-                var data = common.GetData<T>();     //Get the actual list of results as generic type
-                if (data.Count == 0) {
-                    break;
-                }
-                list.AddRange(data);
-                to += 1000;
-                from += 1000;
-            } while (getAllPages);
+            
+            //convert strongly typed class to dictionary of request parameters
+            Dictionary<string, string> parameters = request.AsDictionary();
+            string result = await ApiInvoker.SendRequestGet(string.Empty, connection.URL + url + "?", parameters, headers);
+            var rs = JsonConvert.DeserializeObject(result, type);       //Deserialize the data as the provided type
+            CommonRS common = (CommonRS)rs;     //We know all returned data can be cast to this basic type
+            var data = common.GetData<T>();     //Get the actual list of results as generic type
+            list.AddRange(data);
+            
             return list;
-        }*/
+        }
+
+        private string GetHash(SupplierConnection connection)
+        {
+            // Compute the signature to be used in the API call (combined key + secret + timestamp in seconds)
+            using (var sha = SHA256.Create()) {
+                long ts = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds / 1000;
+                var computedHash = sha.ComputeHash(Encoding.UTF8.GetBytes(connection.Login + connection.Secret + ts));
+                return BitConverter.ToString(computedHash).Replace("-", "");
+            }
+        }
     }
 }

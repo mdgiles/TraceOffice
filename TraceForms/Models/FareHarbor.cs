@@ -86,11 +86,36 @@ namespace TraceForms.Models
         public List<Item> Items { get; set; }
     }
 
-    class CommonRQ
+    public partial class AuditData
     {
+        public long ProcessTime { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
+        public string RequestHost { get; set; }
+        public string ServerId { get; set; }
+        public string Environment { get; set; }
+        public string Release { get; set; }
     }
 
-    class CommonRS
+    public class CommonRQ
     {
+        public string fields { get; set; }
+        public string language { get; set; }
+        public int? from { get; set; }
+        public int to { get; set; }
+        public bool? useSecondaryLanguage { get; set; }
+        public DateTime? lastUpdateTime { get; set; }
+    }
+
+    public abstract class CommonRS
+    {
+        public long From { get; set; }
+        public long To { get; set; }
+        public long Total { get; set; }
+        public AuditData AuditData { get; set; }
+        /// <summary>
+        /// The purpose of this method is to allow implementing classes to return their collections as generics using a common
+        /// format, so that there doesn't have to be a method per type
+        /// </summary>
+        public abstract List<T> GetData<T>();
     }
 }
