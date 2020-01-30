@@ -1569,10 +1569,11 @@ namespace TraceForms
 			if (gridViewRoutes.FocusedRowHandle >= 0) {
 				CompBusRoute route = (CompBusRoute)gridViewRoutes.GetFocusedRow();
 				bindingSourceCompBusRoutes.Remove(route);
-				//Removing from the bindingsource just removes the object from its parent, but does not mark
-				//it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
-				//To flag for deletion, delete it from the context as well.
-				_context.CompBusRoute.DeleteObject(route);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                _selectedRecord.CompBusRoute.Remove(route);
+				_context.CompBusRoute.DeleteObject(route);               
 				BindCompBusRoute();
 				Modified = true;
 			}
@@ -1793,6 +1794,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
+                _selectedRecord.SupplierProduct.Remove(suppProd);
                 _context.SupplierProduct.DeleteObject(suppProd);
                 BindSupplierProducts();
                 Modified = true;
@@ -2070,6 +2072,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
+                _selectedRecord.SupplierCategory.Remove(cat);
                 _context.SupplierCategory.DeleteObject(cat);
                 BindSupplierCategories();
                 Modified = true;

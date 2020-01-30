@@ -189,6 +189,10 @@
       <HintPath>..\..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SML.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2767b7a86b2c6482, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SupplierMappingLayer\SML.Common\bin\Debug\SML.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -201,6 +205,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -309,6 +314,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFareHarbor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportFareHarbor.Designer.cs">
+      <DependentUpon>ImportFareHarbor.cs</DependentUpon>
     </Compile>
     <Compile Include="CommissionsForm.cs">
       <SubType>Form</SubType>
@@ -564,6 +575,8 @@
     <Compile Include="MGMRatesImportForm.Designer.cs">
       <DependentUpon>MGMRatesImportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApiInvoker.cs" />
+    <Compile Include="Models\FareHarbor.cs" />
     <Compile Include="navigator.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -944,6 +957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChgCodeForm.resx">
       <DependentUpon>ChgCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportFareHarbor.resx">
+      <DependentUpon>ImportFareHarbor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommissionsForm.resx">
       <DependentUpon>CommissionsForm.cs</DependentUpon>
