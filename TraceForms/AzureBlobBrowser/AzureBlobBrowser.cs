@@ -89,7 +89,7 @@ namespace TraceForms.AzureBlobBrowser
             }
             if (isFolder || string.IsNullOrEmpty(prefix)) {
                 var entries = ListBlobsHierarchicalListing(BlobContainer, prefix);
-                e.Children = entries.Select(e => new object[] { e.FullPath, e.DisplayName, e.IsFolder }).ToArray();
+                e.Children = entries.Select(a => new object[] { a.FullPath, a.DisplayName, a.IsFolder }).ToArray();
             }
         }
 

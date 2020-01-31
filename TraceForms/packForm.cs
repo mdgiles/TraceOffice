@@ -372,7 +372,7 @@ namespace TraceForms
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
-                BarButtonItemUpdateWebsite.Enabled = false;
+                BarButtonItemUpdateWebsite.Enabled = true;
                 BarButtonItemSave.Enabled = true;
                 GridViewUserFields.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to display the custom fields
             }
