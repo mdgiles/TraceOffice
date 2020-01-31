@@ -22,6 +22,7 @@ using DevExpress.LookAndFeel;
 using DevExpress.UserSkins;
 using DevExpress.XtraGrid;
 using System.Data.Linq.SqlClient;
+using System.Data.Entity;
 
 namespace TraceForms
 {
@@ -39,6 +40,7 @@ namespace TraceForms
         public string[]  meals, fgross, fnet, sgross, snet = new string[5];
         public string hcomm;
         List<CodeName> _hotelLookup;
+        Timer _actionConfirmation;
 
         public HRatesForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -317,7 +319,7 @@ namespace TraceForms
                 errorProvider1.Clear();
                 context.SaveChanges();
                 setReadOnly(true);
-                panelControlStatus.Visible = true;
+                PanelControlStatus.Visible = true;
                 LabelStatus.Text = "Record Deleted";
                 rowStatusDelete = new Timer();
                 rowStatusDelete.Interval = 3000;
@@ -331,7 +333,7 @@ namespace TraceForms
 
         private void TimedEventDelete(object sender, EventArgs e)
         {
-            panelControlStatus.Visible = false;
+            PanelControlStatus.Visible = false;
             rowStatusDelete.Stop();
         }
 
@@ -405,7 +407,7 @@ namespace TraceForms
                 setReadOnly(true);
                 Modified = false;
                 newRec = false;
-                panelControlStatus.Visible = true;
+                PanelControlStatus.Visible = true;
                 LabelStatus.Text = "Record Saved";
                 rowStatusSave = new Timer();
                 rowStatusSave.Interval = 3000;
@@ -420,7 +422,7 @@ namespace TraceForms
             
         private void TimedEventSave(object sender, EventArgs e)
         {
-            panelControlStatus.Visible = false;
+            PanelControlStatus.Visible = false;
             rowStatusSave.Stop();
         }
 
@@ -1889,17 +1891,19 @@ namespace TraceForms
             if (newRec && gridLookUpEditHotel.EditValue != null)
             {
                 string code = gridLookUpEditHotel.EditValue.ToString();
-                var hotValues =( from hotRec in context.HOTEL where hotRec.CODE == code select new { hotRec.NAME, hotRec.MAX_SGL, hotRec.MAX_DBL, hotRec.MAX_TPL, hotRec.MAX_QUA, hotRec.MAX_OTH, hotRec.CHILD_DESC }).Single();
-                rATE_DESCTextEdit.Text = hotValues.NAME;
-                mAX_SGLTextEdit.Text = hotValues.MAX_SGL.ToString();
-                mAX_DBLTextEdit.Text = hotValues.MAX_DBL.ToString();
-                mAX_TPLTextEdit.Text = hotValues.MAX_TPL.ToString();
-                mAX_QUATextEdit.Text = hotValues.MAX_QUA.ToString();
-                mAX_OTHTextEdit.Text = hotValues.MAX_OTH.ToString();
-                cHD_LIMITTextEdit.Text = hotValues.CHILD_DESC;
-                sCHD_LIMITTextEdit.Text = hotValues.CHILD_DESC;
-                jR_LIMITTextEdit.Text = "";
-                sJR_LIMITTextEdit.Text = "";
+                var hotValues =( from hotRec in context.HOTEL where hotRec.CODE == code select new { hotRec.NAME, hotRec.MAX_SGL, hotRec.MAX_DBL, hotRec.MAX_TPL, hotRec.MAX_QUA, hotRec.MAX_OTH, hotRec.CHILD_DESC }).SingleOrDefault();
+                if (hotValues != null) {
+                    rATE_DESCTextEdit.Text = hotValues.NAME;
+                    mAX_SGLTextEdit.Text = hotValues.MAX_SGL.ToString();
+                    mAX_DBLTextEdit.Text = hotValues.MAX_DBL.ToString();
+                    mAX_TPLTextEdit.Text = hotValues.MAX_TPL.ToString();
+                    mAX_QUATextEdit.Text = hotValues.MAX_QUA.ToString();
+                    mAX_OTHTextEdit.Text = hotValues.MAX_OTH.ToString();
+                    cHD_LIMITTextEdit.Text = hotValues.CHILD_DESC;
+                    sCHD_LIMITTextEdit.Text = hotValues.CHILD_DESC;
+                    jR_LIMITTextEdit.Text = "";
+                    sJR_LIMITTextEdit.Text = "";
+                }
             }
         }
 
@@ -2284,6 +2288,48 @@ namespace TraceForms
                     Modified = true;
                 }
                 //validCheck.check(sender, errorProvider1, ((HRATES)HRateBindingSource.Current).checkNet1, HRateBindingSource);
+            }
+        }
+
+        private void ShowActionConfirmation(string confirmation)
+        {
+            PanelControlStatus.Visible = true;
+            LabelStatus.Text = confirmation;
+            _actionConfirmation = new Timer {
+                Interval = 3000
+            };
+            _actionConfirmation.Start();
+            _actionConfirmation.Tick += TimedEvent;
+        }
+
+        private void TimedEvent(object sender, EventArgs e)
+        {
+            PanelControlStatus.Visible = false;
+            _actionConfirmation.Stop();
+        }
+
+        private void ToolStripButtonClone_Click(object sender, EventArgs e)
+        {
+            if (HRateBindingSource.Current != null) {
+                if (move()) {
+                    var current = (HRATES)HRateBindingSource.Current;
+                    var entity = context.HRATES
+                        .AsNoTracking()
+                        .FirstOrDefault(x => x.ID == current.ID);
+                    if (entity != null) {
+                        //clear flags so we don't get save warnings displaying the new record
+                        Modified = false;
+                        newRec = false;
+                        entity.EntityKey = null;
+                        HRateBindingSource.Add(entity);
+                        HRateBindingSource.Position = HRateBindingSource.Count;
+                        //set flags so the user will get save warnings when leaving or discarding the new record
+                        gridLookUpEditHotel.Focus();
+                        Modified = true;
+                        newRec = true;
+                        setReadOnly(false);
+                    }
+                }
             }
         }
 

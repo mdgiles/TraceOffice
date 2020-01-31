@@ -352,6 +352,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.WarningProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.BarButtonItemClone = new DevExpress.XtraBars.BarButtonItem();
             resDate_EndLabel = new System.Windows.Forms.Label();
             resDate_StartLabel = new System.Windows.Forms.Label();
             cOMM_PCTLabel = new System.Windows.Forms.Label();
@@ -3616,6 +3617,15 @@
             // 
             this.WarningProvider.ContainerControl = this;
             this.WarningProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("WarningProvider.Icon")));
+            // 
+            // BarButtonItemClone
+            // 
+            this.BarButtonItemClone.Caption = "Clone";
+            this.BarButtonItemClone.Id = 6;
+            this.BarButtonItemClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.Image")));
+            this.BarButtonItemClone.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemClone.ImageOptions.LargeImage")));
+            this.BarButtonItemClone.Name = "BarButtonItemClone";
+            this.BarButtonItemClone.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemClone_ItemClick);
             // 
             // PRatesForm
             // 
