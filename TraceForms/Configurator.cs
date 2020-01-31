@@ -89,10 +89,6 @@ namespace TraceForms
             get { return ConfigurationManager.AppSettings["ConfigSet"] ?? string.Empty; }
         }
 
-        public static string AzureStorageConnectionString {
-            get { return ConfigurationManager.ConnectionStrings["AzureStorage"]?.ConnectionString ?? string.Empty; }
-        }
-
         //public static string FeaturedMediaReportSection
         //{
         //    get { return ConfigurationManager.AppSettings["FeaturedMediaReportSection"]; }

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.WindowsAzure.Storage.Blob;
 using DevExpress.XtraTreeList.Nodes;
-using Microsoft.WindowsAzure.Storage;
+using Microsoft.Azure.Storage.Blob;
+using Microsoft.Azure.Storage;
 
 namespace TraceForms.AzureBlobBrowser
 {
