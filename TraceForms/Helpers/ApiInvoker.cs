@@ -8,27 +8,25 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TraceForms.Models
+namespace TraceForms.Helpers
 {
     class ApiInvoker
     {
-        public static async Task<string> SendRequestGet(string token, string url)
+        public static async Task<string> SendRequestGet(string url)
         {
-            return await SendRequestGet(token, url, null, null);
+            return await SendRequestGet(url, null, null);
         }
 
-        public static async Task<string> SendRequestGet(string token, string url, Dictionary<string, string> parameters)
+        public static async Task<string> SendRequestGet(string url, Dictionary<string, string> parameters)
         {
-            return await SendRequestGet(token, url, parameters, null);
+            return await SendRequestGet(url, parameters, null);
         }
 
-        public static async Task<string> SendRequestGet(string token, string url, Dictionary<string, string> parameters, Dictionary<string, string> headers)
+        public static async Task<string> SendRequestGet(string url, Dictionary<string, string> parameters, Dictionary<string, string> headers)
         {
             string queryString = url;
-            if (!string.IsNullOrEmpty(token)) {
-                queryString += $"?apiKey={token}";
-            }
-            if (parameters != null) {
+            if (parameters != null && parameters.Any()) {
+                queryString += "?";
                 foreach (var parameter in parameters) {
                     queryString += $"&{parameter.Key}={parameter.Value}";
                 }
@@ -41,11 +39,8 @@ namespace TraceForms.Models
             return await SendRequest(HttpMethod.Post, url, content, headers);
         }
 
-        public static async Task<string> SendRequestPost(string token, string url, string content)
+        public static async Task<string> SendRequestPost(string url, string content)
         {
-            if (!string.IsNullOrEmpty(token)) {
-                url += $"?apiKey={token}";
-            }
             return await SendRequest(HttpMethod.Post, url, content, null);
         }
 

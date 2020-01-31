@@ -173,6 +173,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MediaInfo\bin\$(Configuration)\MediaInfo.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Blob, Version=11.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Blob.11.1.2\lib\net452\Microsoft.Azure.Storage.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Storage.Common, Version=11.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Storage.Common.11.1.2\lib\net452\Microsoft.Azure.Storage.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.mshtml" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -180,9 +189,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SharedBin\Microsoft.VisualBasic.PowerPacks.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -315,6 +323,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MediaHelper.cs" />
     <Compile Include="ImportFareHarbor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -575,7 +584,7 @@
     <Compile Include="MGMRatesImportForm.Designer.cs">
       <DependentUpon>MGMRatesImportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApiInvoker.cs" />
+    <Compile Include="Helpers\ApiInvoker.cs" />
     <Compile Include="Models\FareHarbor.cs" />
     <Compile Include="navigator.cs">
       <SubType>Component</SubType>
@@ -1283,6 +1292,7 @@
     <None Include="Properties\DataSources\NameAssignment.datasource" />
     <None Include="Properties\DataSources\PassengerAssignment.datasource" />
     <None Include="Properties\DataSources\PassengerCounts.datasource" />
+    <None Include="Properties\DataSources\TraceForms.Models.FareHarbor.Item.datasource" />
     <None Include="Properties\DataSources\Trav_ProdDataContext.datasource" />
     <None Include="Properties\DataSources\TypeCode.datasource" />
     <None Include="Properties\DataSources\TypeCodeName.datasource" />

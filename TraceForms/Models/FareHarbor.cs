@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TraceForms.Models
+namespace TraceForms.Models.FareHarbor
 {
     public class Company
     {
@@ -15,10 +15,20 @@ namespace TraceForms.Models
         public string Name { get; set; }
     }
 
-    class FareHarbor
+    public class CompaniesRS : CommonRS
     {
+        public override List<T> GetData<T>()
+        {
+            if (Companies == null) {
+                return new List<T>();
+            }
+
+            return Companies.OfType<T>().ToList();
+        }
+
         public List<Company> Companies { get; set; }
     }
+
 
     public class EffectiveCancellationPolicy
     {
@@ -59,14 +69,16 @@ namespace TraceForms.Models
 
     public class Item
     {
+        public bool Selected { get; set; }
+        public string InternalCode { get; set; }
         public string Image_cdn_url { get; set; }
         public string Description_text { get; set; }
         public EffectiveCancellationPolicy Effective_cancellation_policy { get; set; }
         public string Description { get; set; }
-        public List<object> Description_bullets { get; set; }
+        public List<string> Description_bullets { get; set; }
         public string Booking_notes_safe_html { get; set; }
         public string Cancellation_policy { get; set; }
-        public List<object> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
         public List<Location> Locations { get; set; }
         public bool Is_pickup_ever_available { get; set; }
         public string Headline { get; set; }
@@ -75,43 +87,47 @@ namespace TraceForms.Models
         public string Location { get; set; }
         public string Booking_notes { get; set; }
         public int Pk { get; set; }
-        public List<object> Images { get; set; }
+        public List<Image> Images { get; set; }
         public List<CustomerPrototype> Customer_prototypes { get; set; }
         public double Tax_percentage { get; set; }
         public string Name { get; set; }
     }
 
-    public class RootObject
+    public class Image
     {
+        public string Image_cdn_url { get; set; }
+        public int Pk { get; set; }
+        public string Gallery { get; set; }
+    }
+
+    public class Tag
+    {
+        public string Name { get; set; }
+    }
+
+    public class ItemsRS : CommonRS
+    {
+        public override List<T> GetData<T>()
+        {
+            if (Items == null) {
+                return new List<T>();
+            }
+
+            return Items.OfType<T>().ToList();
+        }
+
         public List<Item> Items { get; set; }
     }
 
-    public partial class AuditData
+    public class ItemsRQ : CommonRQ
     {
-        public long ProcessTime { get; set; }
-        public DateTimeOffset Timestamp { get; set; }
-        public string RequestHost { get; set; }
-        public string ServerId { get; set; }
-        public string Environment { get; set; }
-        public string Release { get; set; }
+        public string detailed { get; set; }
     }
 
-    public class CommonRQ
-    {
-        public string fields { get; set; }
-        public string language { get; set; }
-        public int? from { get; set; }
-        public int to { get; set; }
-        public bool? useSecondaryLanguage { get; set; }
-        public DateTime? lastUpdateTime { get; set; }
-    }
+    public class CommonRQ { }
 
     public abstract class CommonRS
     {
-        public long From { get; set; }
-        public long To { get; set; }
-        public long Total { get; set; }
-        public AuditData AuditData { get; set; }
         /// <summary>
         /// The purpose of this method is to allow implementing classes to return their collections as generics using a common
         /// format, so that there doesn't have to be a method per type
