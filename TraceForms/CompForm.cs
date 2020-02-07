@@ -37,12 +37,13 @@ namespace TraceForms
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         string _pupDrp = "";
         ICoreSys _sys;
+        bool _isPass = false;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
         Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
         Dictionary<String, List<CodeName>> _passLookups = new Dictionary<String, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
-        bool _isPass = false;
+        Dictionary<String, List<CodeName>> _ServPackTypeLookups = new Dictionary<String, List<CodeName>>();
 
         public CompForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -134,6 +135,7 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditOperator.Properties.DataSource = operators;
+            RepositoryItemSearchLookUpEditOperator.DataSource = operators;
 
             var categories = new List<CodeName> {
                 new CodeName(null)
@@ -174,6 +176,15 @@ namespace TraceForms
                 .OrderBy(o => o.TYPE)
                 .Select(s => new CodeName() { Code = s.TYPE, Name = s.DESCRIP }).ToList());
             SearchLookupEditServiceType.Properties.DataSource = servicetypes;
+            _ServPackTypeLookups.Add("OPT", servicetypes);
+
+            var packtypes = new List<CodeName> {
+                new CodeName(null)
+            };
+            packtypes.AddRange(_context.PACKTYPE
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            _ServPackTypeLookups.Add("PKG", packtypes);
 
             var hotels = new List<CodeName> {
                 new CodeName(null)
@@ -182,6 +193,8 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             _locationLookups.Add("HTL", hotels);
+            _passLookups.Add("HTL", hotels);
+
             //repositoryItemImageComboboxLocation.DataSource = hotels;
 
             var waypoints = new List<CodeName> {
@@ -364,6 +377,16 @@ namespace TraceForms
                 RelatedProduct relProduct = (RelatedProduct)GridViewRelatedProducts.GetRow(rowCtr);
                 relProduct.Product_Type = "OPT";
                 relProduct.Product_Code = TextEditCode.Text ?? string.Empty;
+                relProduct.IsPassComponent = _isPass;
+                if (!_isPass) {
+                    relProduct.Reciprocal = false;
+                    relProduct.ForUpSell = false;
+                    relProduct.IsRoundTrip = false;
+                    relProduct.IsReturn = false;
+                    relProduct.ForPackaging = false;
+                    relProduct.ServPackType_Code = null;
+                    relProduct.Operator_Code = null;
+                }
             }
             BindingSourceRelatedProduct.EndEdit();
 
@@ -1861,8 +1884,21 @@ namespace TraceForms
             xtraTabPageRelatedProducts.Text = _isPass ? "Pass Products" : "Related Products";
             GridViewRelatedProducts.Columns["IsRoundTrip"].Visible = !_isPass;
             GridViewRelatedProducts.Columns["IsReturn"].Visible = !_isPass;
+            GridViewRelatedProducts.Columns["Reciprocal"].Visible = !_isPass;
             GridViewRelatedProducts.Columns["ForUpSell"].Visible = !_isPass;
             GridViewRelatedProducts.Columns["ForPackaging"].Visible = !_isPass;
+            GridViewRelatedProducts.Columns["ServPackType_Code"].Visible = _isPass;
+            GridViewRelatedProducts.Columns["Operator_Code"].Visible = _isPass;
+            if (_isPass) {
+                if (RepositoryItemComboBoxType.Items.Contains("HTL")) {
+                    RepositoryItemComboBoxType.Items.Remove("HTL");
+                }
+            }
+            else {
+                if (!RepositoryItemComboBoxType.Items.Contains("HTL")) {
+                    RepositoryItemComboBoxType.Items.Add("HTL");
+                }
+            }
         }
 
         private void CompForm_Shown(object sender, EventArgs e)
@@ -2000,13 +2036,24 @@ namespace TraceForms
 
         private void GridViewRelatedProducts_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == colRelatedCode) {
-                string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
-                if (_passLookups.ContainsKey(type)) {
-                    RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = _passLookups[type];
+            if (e.RowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle) {
+                if (e.Column == colRelatedCode) {
+                    string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
+                    if (_passLookups.ContainsKey(type)) {
+                        RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = _passLookups[type];
+                    }
+                    else {
+                        RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = null;
+                    }
                 }
-                else {
-                    RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = null;
+                else if (e.Column == colServPackType) {
+                    string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
+                    if (_ServPackTypeLookups.ContainsKey(type)) {
+                        RepositoryItemSearchLookUpEditServPackType.DataSource = _ServPackTypeLookups[type];
+                    }
+                    else {
+                        RepositoryItemSearchLookUpEditServPackType.DataSource = null;
+                    }
                 }
             }
         }
