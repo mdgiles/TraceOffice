@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace TraceForms
 {
@@ -70,6 +71,17 @@ namespace TraceForms
             else {
                 return 0;
             }
+        }
+
+        public static Dictionary<string, string> AsDictionary(this object source, BindingFlags bindingAttr = BindingFlags.Public | BindingFlags.Instance)
+        {
+            //modified to not include properties with null or empty values in the dictionary, and to convert everything to a string
+            return source.GetType().GetProperties(bindingAttr).Where(p => !p.GetValue(source, null).IsNullOrEmpty()).ToDictionary
+            (
+                propInfo => propInfo.Name,
+                propInfo => propInfo.GetValue(source, null).ToString()
+            );
+
         }
 
         public static int IndexOf(this OrderedDictionary dictionary, string key)

@@ -441,7 +441,9 @@ namespace FlexOffice
                 case "OTA Reference List":
                     button2.ItemClick += OTAReferenceListForm_ItemClick;
                     break;
-
+                case "Import FareHarbor Products":
+                    button2.ItemClick += barButtonImportFareHarborProducts_ItemClick;
+                    break;
             }
             //
         }
@@ -625,6 +627,24 @@ namespace FlexOffice
             //the constructor and show it to the user.
             try {
                 CommissionsForm xform1 = new CommissionsForm(_FlexSys) { MdiParent = this };
+                xform1.Show();
+            }
+            catch (Exception ex) {
+                DisplayError(ex);
+            }
+        }
+
+        private void barButtonImportFareHarborProducts_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //Tried to use a function which took the type of the form as a parameter and
+            //created it using Activator.CreateInstance, but wrapping that in a try/catch
+            //does not catch any exception in the form constructor. If you handle it in the 
+            //constructor, Activator.CreateInstance just says "Exception was thrown by the target 
+            //of an invocation" and doesn't give the actual exception. Thus the forms have to 
+            //be created as strongly typed in order to get any exception from
+            //the constructor and show it to the user.
+            try {
+                ImportFareHarbor xform1 = new ImportFareHarbor(_FlexSys) { MdiParent = this };
                 xform1.Show();
             }
             catch (Exception ex) {

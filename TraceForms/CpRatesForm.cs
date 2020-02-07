@@ -774,11 +774,12 @@ namespace TraceForms
 
             if ((SpinEditGrossChild.Value == 0 && SpinEditCostChild.Value == 0) || (string.IsNullOrWhiteSpace(SpinEditGrossChild.Text) && string.IsNullOrWhiteSpace(SpinEditCostChild.Text)))
             {
-                if (!string.IsNullOrWhiteSpace(TextEditChildLimit.Text) && validCheck.IsNumeric(TextEditChildLimit.Text))
+                bool isNumericAge = int.TryParse(TextEditChildLimit.Text, out int age);
+                //2 is a typical age for the upper limit of free children, so allow up to that age without warning
+                if (isNumericAge && age > 2)
                 {
                     DialogResult select = XtraMessageBox.Show("You have entered a child age limit with no corresponding rate. Is this correct?", "Child Limit", MessageBoxButtons.YesNo);
-                    if (select == DialogResult.No)
-                    {
+                    if (select == DialogResult.No) {
                         XtraMessageBox.Show("Please correct the values entered.");
                         SpinEditGrossChild.Focus();
                         return;
@@ -1369,6 +1370,32 @@ namespace TraceForms
         {
             if (e.Value as DateTime? == DateTime.MinValue) {
                 e.DisplayText = string.Empty;
+            }
+        }
+
+        private void BarButtonItemClone_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (_selectedRecord != null) {
+                if (SaveRecord(true)) {
+                    var entity = _context.CPRATES
+                        .AsNoTracking()
+                        .FirstOrDefault(x => x.ID == _selectedRecord.ID);
+                    if (entity != null) {
+                        //clear flags so we don't get save warnings displaying the new record
+                        _ignoreLeaveRow = true;
+                        entity.EntityKey = null;
+                        BindingSource.Add(entity);
+                        BindingSource.Position = BindingSource.Count;
+                        //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                        //the focused row to the filter row just so that no other existing row is visually highlighted
+                        GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                        //set flags so the user will get save warnings when leaving or discarding the new record
+                        SetFieldAndButtonStates(isExistingRecord: false);
+                        SearchLookupEditCode.Focus();
+                        ShowActionConfirmation("Record Cloned");
+                        _ignoreLeaveRow = false;
+                    }
+                }
             }
         }
 

@@ -90,23 +90,22 @@
             // LabelMappings
             // 
             LabelMappings.AutoSize = true;
-            LabelMappings.Location = new System.Drawing.Point(41, 22);
-            LabelMappings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            LabelMappings.Location = new System.Drawing.Point(20, 11);
+            LabelMappings.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelMappings.Name = "LabelMappings";
-            LabelMappings.Size = new System.Drawing.Size(192, 25);
+            LabelMappings.Size = new System.Drawing.Size(97, 13);
             LabelMappings.TabIndex = 85;
             LabelMappings.Text = "Supplier Mappings:";
             // 
             // TextEditCode
             // 
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
-            this.TextEditCode.Location = new System.Drawing.Point(170, 190);
-            this.TextEditCode.Margin = new System.Windows.Forms.Padding(6);
+            this.TextEditCode.Location = new System.Drawing.Point(85, 99);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.TextEditCode.Properties.Appearance.Options.UseBackColor = true;
             this.TextEditCode.Properties.MaxLength = 10;
-            this.TextEditCode.Size = new System.Drawing.Size(282, 34);
+            this.TextEditCode.Size = new System.Drawing.Size(141, 20);
             this.TextEditCode.TabIndex = 9;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
@@ -118,29 +117,26 @@
             // TextEditName
             // 
             this.TextEditName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DESC", true));
-            this.TextEditName.Location = new System.Drawing.Point(170, 240);
-            this.TextEditName.Margin = new System.Windows.Forms.Padding(6);
+            this.TextEditName.Location = new System.Drawing.Point(85, 125);
             this.TextEditName.Name = "TextEditName";
             this.TextEditName.Properties.MaxLength = 30;
-            this.TextEditName.Size = new System.Drawing.Size(558, 34);
+            this.TextEditName.Size = new System.Drawing.Size(279, 20);
             this.TextEditName.TabIndex = 10;
             this.TextEditName.Leave += new System.EventHandler(this.TextEditName_Leave);
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(100, 194);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl1.Location = new System.Drawing.Point(50, 101);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(47, 25);
+            this.labelControl1.Size = new System.Drawing.Size(25, 13);
             this.labelControl1.TabIndex = 11;
             this.labelControl1.Text = "Code";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(100, 244);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl2.Location = new System.Drawing.Point(50, 127);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(54, 25);
+            this.labelControl2.Size = new System.Drawing.Size(27, 13);
             this.labelControl2.TabIndex = 12;
             this.labelControl2.Text = "Name";
             // 
@@ -148,12 +144,10 @@
             // 
             this.GridControlLookup.DataSource = this.EntityInstantFeedbackSource;
             this.GridControlLookup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridControlLookup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
             this.GridControlLookup.MainView = this.GridViewLookup;
-            this.GridControlLookup.Margin = new System.Windows.Forms.Padding(6);
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(524, 898);
+            this.GridControlLookup.Size = new System.Drawing.Size(262, 437);
             this.GridControlLookup.TabIndex = 5;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewLookup});
@@ -170,7 +164,10 @@
             this.GridViewLookup.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCODE,
             this.colDESC});
+            this.GridViewLookup.DetailHeight = 182;
+            this.GridViewLookup.FixedLineWidth = 1;
             this.GridViewLookup.GridControl = this.GridControlLookup;
+            this.GridViewLookup.LevelIndent = 0;
             this.GridViewLookup.Name = "GridViewLookup";
             this.GridViewLookup.OptionsBehavior.Editable = false;
             this.GridViewLookup.OptionsCustomization.AllowQuickHideColumns = false;
@@ -178,6 +175,7 @@
             this.GridViewLookup.OptionsView.ShowGroupPanel = false;
             this.GridViewLookup.OptionsView.ShowIndicator = false;
             this.GridViewLookup.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
+            this.GridViewLookup.PreviewIndent = 0;
             this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
             this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
             this.GridViewLookup.ColumnFilterChanged += new System.EventHandler(this.GridViewLookup_ColumnFilterChanged);
@@ -186,17 +184,21 @@
             // 
             this.colCODE.Caption = "Code";
             this.colCODE.FieldName = "CODE";
+            this.colCODE.MinWidth = 10;
             this.colCODE.Name = "colCODE";
             this.colCODE.Visible = true;
             this.colCODE.VisibleIndex = 0;
+            this.colCODE.Width = 37;
             // 
             // colDESC
             // 
             this.colDESC.Caption = "Name";
             this.colDESC.FieldName = "DESC";
+            this.colDESC.MinWidth = 10;
             this.colDESC.Name = "colDESC";
             this.colDESC.Visible = true;
             this.colDESC.VisibleIndex = 1;
+            this.colDESC.Width = 37;
             // 
             // ErrorProvider
             // 
@@ -205,8 +207,7 @@
             // SplitContainerControl
             // 
             this.SplitContainerControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitContainerControl.Location = new System.Drawing.Point(0, 60);
-            this.SplitContainerControl.Margin = new System.Windows.Forms.Padding(6);
+            this.SplitContainerControl.Location = new System.Drawing.Point(0, 31);
             this.SplitContainerControl.Name = "SplitContainerControl";
             this.SplitContainerControl.Panel1.AutoScroll = true;
             this.SplitContainerControl.Panel1.Controls.Add(this.GridControlLookup);
@@ -218,8 +219,8 @@
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditName);
             this.SplitContainerControl.Panel2.Controls.Add(this.labelControl1);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(1924, 898);
-            this.SplitContainerControl.SplitterPosition = 524;
+            this.SplitContainerControl.Size = new System.Drawing.Size(787, 437);
+            this.SplitContainerControl.SplitterPosition = 262;
             this.SplitContainerControl.TabIndex = 15;
             this.SplitContainerControl.Text = "splitContainerControl1";
             // 
@@ -231,10 +232,10 @@
             this.PanelControlMappings.Controls.Add(this.GridControlSupplierRegion);
             this.PanelControlMappings.Controls.Add(this.ButtonDeleteMapping);
             this.PanelControlMappings.Controls.Add(this.ButtonAddMapping);
-            this.PanelControlMappings.Location = new System.Drawing.Point(20, 346);
-            this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PanelControlMappings.Location = new System.Drawing.Point(10, 150);
+            this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PanelControlMappings.Name = "PanelControlMappings";
-            this.PanelControlMappings.Size = new System.Drawing.Size(1357, 471);
+            this.PanelControlMappings.Size = new System.Drawing.Size(500, 245);
             this.PanelControlMappings.TabIndex = 271;
             // 
             // GridControlSupplierRegion
@@ -242,14 +243,14 @@
             this.GridControlSupplierRegion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlSupplierRegion.DataSource = this.BindingSourceSupplierRegion;
-            this.GridControlSupplierRegion.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridControlSupplierRegion.Location = new System.Drawing.Point(46, 65);
+            this.GridControlSupplierRegion.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.GridControlSupplierRegion.Location = new System.Drawing.Point(23, 34);
             this.GridControlSupplierRegion.MainView = this.GridViewSupplierRegion;
-            this.GridControlSupplierRegion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridControlSupplierRegion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.GridControlSupplierRegion.Name = "GridControlSupplierRegion";
             this.GridControlSupplierRegion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEdit50});
-            this.GridControlSupplierRegion.Size = new System.Drawing.Size(1184, 373);
+            this.GridControlSupplierRegion.Size = new System.Drawing.Size(414, 194);
             this.GridControlSupplierRegion.TabIndex = 84;
             this.GridControlSupplierRegion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierRegion});
@@ -268,34 +269,44 @@
             this.gridColumnSupplierName,
             this.gridColumnInternalCode,
             this.gridColumnInactive});
+            this.GridViewSupplierRegion.DetailHeight = 182;
+            this.GridViewSupplierRegion.FixedLineWidth = 1;
             this.GridViewSupplierRegion.GridControl = this.GridControlSupplierRegion;
+            this.GridViewSupplierRegion.LevelIndent = 0;
             this.GridViewSupplierRegion.Name = "GridViewSupplierRegion";
             this.GridViewSupplierRegion.OptionsView.ShowGroupPanel = false;
+            this.GridViewSupplierRegion.PreviewIndent = 0;
             this.GridViewSupplierRegion.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewSupplierRegion_CustomRowCellEdit);
             // 
             // gridColumnId
             // 
             this.gridColumnId.FieldName = "Id";
+            this.gridColumnId.MinWidth = 10;
             this.gridColumnId.Name = "gridColumnId";
+            this.gridColumnId.Width = 37;
             // 
             // gridColumnSupplierGuid
             // 
             this.gridColumnSupplierGuid.Caption = "Supplier";
             this.gridColumnSupplierGuid.FieldName = "Supplier_GUID";
+            this.gridColumnSupplierGuid.MinWidth = 10;
             this.gridColumnSupplierGuid.Name = "gridColumnSupplierGuid";
             this.gridColumnSupplierGuid.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnSupplierGuid.Visible = true;
             this.gridColumnSupplierGuid.VisibleIndex = 0;
+            this.gridColumnSupplierGuid.Width = 37;
             // 
             // gridColumnSupplierId
             // 
             this.gridColumnSupplierId.Caption = "Supplier Id";
             this.gridColumnSupplierId.ColumnEdit = this.RepositoryItemTextEdit50;
             this.gridColumnSupplierId.FieldName = "SupplierId";
+            this.gridColumnSupplierId.MinWidth = 10;
             this.gridColumnSupplierId.Name = "gridColumnSupplierId";
             this.gridColumnSupplierId.UnboundType = DevExpress.Data.UnboundColumnType.String;
             this.gridColumnSupplierId.Visible = true;
             this.gridColumnSupplierId.VisibleIndex = 1;
+            this.gridColumnSupplierId.Width = 37;
             // 
             // RepositoryItemTextEdit50
             // 
@@ -308,33 +319,39 @@
             this.gridColumnSupplierName.Caption = "Supplier Name";
             this.gridColumnSupplierName.ColumnEdit = this.RepositoryItemTextEdit50;
             this.gridColumnSupplierName.FieldName = "SupplierName";
+            this.gridColumnSupplierName.MinWidth = 10;
             this.gridColumnSupplierName.Name = "gridColumnSupplierName";
             this.gridColumnSupplierName.Visible = true;
             this.gridColumnSupplierName.VisibleIndex = 2;
+            this.gridColumnSupplierName.Width = 37;
             // 
             // gridColumnInternalCode
             // 
             this.gridColumnInternalCode.Caption = "gridColumn1";
             this.gridColumnInternalCode.FieldName = "Region_Code";
+            this.gridColumnInternalCode.MinWidth = 10;
             this.gridColumnInternalCode.Name = "gridColumnInternalCode";
+            this.gridColumnInternalCode.Width = 37;
             // 
             // gridColumnInactive
             // 
             this.gridColumnInactive.Caption = "Inactive";
             this.gridColumnInactive.FieldName = "Inactive";
+            this.gridColumnInactive.MinWidth = 10;
             this.gridColumnInactive.Name = "gridColumnInactive";
             this.gridColumnInactive.Visible = true;
             this.gridColumnInactive.VisibleIndex = 3;
+            this.gridColumnInactive.Width = 37;
             // 
             // ButtonDeleteMapping
             // 
             this.ButtonDeleteMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDeleteMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteMapping.ImageOptions.Image")));
             this.ButtonDeleteMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteMapping.Location = new System.Drawing.Point(1253, 145);
-            this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonDeleteMapping.Location = new System.Drawing.Point(448, 75);
+            this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDeleteMapping.Name = "ButtonDeleteMapping";
-            this.ButtonDeleteMapping.Size = new System.Drawing.Size(82, 70);
+            this.ButtonDeleteMapping.Size = new System.Drawing.Size(41, 36);
             this.ButtonDeleteMapping.TabIndex = 39;
             this.ButtonDeleteMapping.TabStop = false;
             this.ButtonDeleteMapping.Click += new System.EventHandler(this.ButtonDeleteMapping_Click);
@@ -344,10 +361,10 @@
             this.ButtonAddMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddMapping.ImageOptions.Image")));
             this.ButtonAddMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddMapping.Location = new System.Drawing.Point(1253, 65);
-            this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ButtonAddMapping.Location = new System.Drawing.Point(448, 34);
+            this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddMapping.Name = "ButtonAddMapping";
-            this.ButtonAddMapping.Size = new System.Drawing.Size(82, 70);
+            this.ButtonAddMapping.Size = new System.Drawing.Size(41, 36);
             this.ButtonAddMapping.TabIndex = 34;
             this.ButtonAddMapping.Click += new System.EventHandler(this.ButtonAddMapping_Click);
             // 
@@ -357,19 +374,17 @@
             this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
             this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.PanelControlStatus.Controls.Add(this.LabelStatus);
-            this.PanelControlStatus.Location = new System.Drawing.Point(594, 4);
-            this.PanelControlStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.PanelControlStatus.Location = new System.Drawing.Point(297, 2);
             this.PanelControlStatus.Name = "PanelControlStatus";
-            this.PanelControlStatus.Size = new System.Drawing.Size(240, 44);
+            this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
             this.PanelControlStatus.TabIndex = 265;
             this.PanelControlStatus.Visible = false;
             // 
             // LabelStatus
             // 
-            this.LabelStatus.Location = new System.Drawing.Point(60, 10);
-            this.LabelStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.LabelStatus.Location = new System.Drawing.Point(30, 5);
             this.LabelStatus.Name = "LabelStatus";
-            this.LabelStatus.Size = new System.Drawing.Size(0, 25);
+            this.LabelStatus.Size = new System.Drawing.Size(0, 13);
             this.LabelStatus.TabIndex = 5;
             // 
             // BarManager
@@ -435,41 +450,41 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1924, 60);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(787, 31);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 958);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 468);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1924, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(787, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 60);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 898);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 437);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1924, 60);
+            this.barDockControlRight.Location = new System.Drawing.Point(787, 31);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 898);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 437);
             // 
             // RegionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 958);
+            this.ClientSize = new System.Drawing.Size(787, 468);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -477,7 +492,6 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimizeBox = false;
             this.Name = "RegionForm";
             this.ShowInTaskbar = false;

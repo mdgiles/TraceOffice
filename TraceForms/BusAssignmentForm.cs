@@ -997,16 +997,16 @@ namespace TraceForms
 
 					ws.Cells[row, col].Value = "Main Guest Name";
 					ws.Cells[row, col+1].Value = "Phone";
-					ws.Cells[row, col+2].Value = "Handled by";
-					ws.Cells[row, col+3].Value = "Remarks";
+					//ws.Cells[row, col+2].Value = "Handled by";
+					ws.Cells[row, col+2].Value = "Remarks";
 					ws.Cells[row, 1, row, col+3].Style.Font.Size = 9;
-					ws.Cells[row - 1, 4, row - 1, col + 3].Merge = true;
-					ws.Cells[row - 1, 4, row - 1, col + 3].Value = "Operations Information";
-					ws.Cells[row - 1, 4, row - 1, col + 3].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-					ws.Cells[row - 1, 4, row, col + 3].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
-					ws.Cells[row - 1, 4, row - 1, col + 3].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
-					ws.Cells[row - 1, 4, row, col + 3].Style.Fill.PatternType = ExcelFillStyle.Solid;
-					ws.Cells[row - 1, 4, row, col + 3].Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
+					ws.Cells[row - 1, 4, row - 1, col + 2].Merge = true;
+					ws.Cells[row - 1, 4, row - 1, col + 2].Value = "Operations Information";
+					ws.Cells[row - 1, 4, row - 1, col + 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+					ws.Cells[row - 1, 4, row, col + 2].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
+					ws.Cells[row - 1, 4, row - 1, col + 2].Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
+					ws.Cells[row - 1, 4, row, col + 2].Style.Fill.PatternType = ExcelFillStyle.Solid;
+					ws.Cells[row - 1, 4, row, col + 2].Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
 
 					var trips = matches.SelectMany(x => x.Assignments).
 						Where(a => a.BusID == busID).
@@ -1055,8 +1055,8 @@ namespace TraceForms
                         ws.Cells[row, col].Value = string.Format("{0}, {1}", mainPsgr.LastName, mainPsgr.FirstName);
 						col++;
 						ws.Cells[row, col].Value = mainPsgr.Phone;
-						col++;
-						ws.Cells[row, col].Value = resitm.RES_AGT;
+						//col++;
+						//ws.Cells[row, col].Value = resitm.RES_AGT;
 						col++;
 						ws.Cells[row, col].Value = resitm.InternalRemarks;
 					}
