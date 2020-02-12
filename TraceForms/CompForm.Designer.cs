@@ -324,6 +324,7 @@
             this.gridColumnCat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemSearchLookUpEditCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -443,14 +444,13 @@
             this.gridColumnMappingDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultCat = new Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit();
-            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemCustomSearchLookUpEditDefaultCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPickup_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBoxDefaultPupLocType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colPickup_Location_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc = new Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit();
+            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -459,7 +459,7 @@
             this.colDropoff_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBoxDefaultDrpLocType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colDropoff_Location_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc = new Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit();
+            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -489,7 +489,7 @@
             this.colCatMappingSupplier = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProduct_Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCatMappingRoomcod = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RepositoryItemCustomSearchLookUpEditMappingCat = new Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit();
+            this.RepositoryItemCustomSearchLookUpEditMappingCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -794,7 +794,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -5408,7 +5407,6 @@
             this.repositoryItemCustomSearchLookUpEditDefaultCat.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultCat.PopupView = this.repositoryItemCustomSearchLookUpEdit1View;
             this.repositoryItemCustomSearchLookUpEditDefaultCat.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.repositoryItemCustomSearchLookUpEditDefaultCat.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // repositoryItemCustomSearchLookUpEdit1View
@@ -5483,7 +5481,6 @@
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.PopupView = this.gridView1;
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView1
@@ -5579,7 +5576,6 @@
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.NullText = "";
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.PopupView = this.gridView3;
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView3
@@ -5891,7 +5887,6 @@
             this.RepositoryItemCustomSearchLookUpEditMappingCat.NullText = "";
             this.RepositoryItemCustomSearchLookUpEditMappingCat.PopupView = this.gridView2;
             this.RepositoryItemCustomSearchLookUpEditMappingCat.ValueMember = "Code";
-            this.RepositoryItemCustomSearchLookUpEditMappingCat.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.RepositoryItemCustomSearchLookUpEditMappingCat.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView2
@@ -7599,14 +7594,14 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnMappingDesc;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnMappingOperator;
         private DevExpress.XtraGrid.Columns.GridColumn colRoomcod_Code_Default;
-        private Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultCat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultCat;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemCustomSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn colCode4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn colPickup_LocationType_Default;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDefaultPupLocType;
         private DevExpress.XtraGrid.Columns.GridColumn colPickup_Location_Default;
-        private Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultPUpLoc;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultPUpLoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colCode2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
@@ -7615,7 +7610,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDropoff_LocationType_Default;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDefaultDrpLocType;
         private DevExpress.XtraGrid.Columns.GridColumn colDropoff_Location_Default;
-        private Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultDropLoc;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultDropLoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn colCode6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
@@ -7634,7 +7629,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCatMappingSupplier;
         private DevExpress.XtraGrid.Columns.GridColumn colProduct_Code;
         private DevExpress.XtraGrid.Columns.GridColumn colCatMappingRoomcod;
-        private Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit RepositoryItemCustomSearchLookUpEditMappingCat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemCustomSearchLookUpEditMappingCat;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn colCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
