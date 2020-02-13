@@ -240,7 +240,7 @@
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
             this.TextEditCode.Location = new System.Drawing.Point(103, 88);
             this.TextEditCode.Name = "TextEditCode";
-            this.TextEditCode.Properties.MaxLength = 5;
+            this.TextEditCode.Properties.MaxLength = 12;
             this.TextEditCode.Size = new System.Drawing.Size(100, 20);
             this.TextEditCode.TabIndex = 19;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditType_Leave);
