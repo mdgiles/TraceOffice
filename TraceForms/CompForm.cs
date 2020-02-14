@@ -17,7 +17,6 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using FlexModel;
-using Custom_SearchLookupEdit;
 using DevExpress.Data.Async.Helpers;
 using FlexInterfaces.Core;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;

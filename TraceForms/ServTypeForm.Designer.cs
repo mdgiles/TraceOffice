@@ -240,7 +240,7 @@
             this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
             this.TextEditCode.Location = new System.Drawing.Point(103, 88);
             this.TextEditCode.Name = "TextEditCode";
-            this.TextEditCode.Properties.MaxLength = 5;
+            this.TextEditCode.Properties.MaxLength = 12;
             this.TextEditCode.Size = new System.Drawing.Size(100, 20);
             this.TextEditCode.TabIndex = 19;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditType_Leave);
@@ -274,7 +274,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(LabelType);
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditDesc);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(782, 652);
+            this.SplitContainerControl.Size = new System.Drawing.Size(951, 652);
             this.SplitContainerControl.SplitterPosition = 297;
             this.SplitContainerControl.TabIndex = 21;
             this.SplitContainerControl.Text = "splitContainerControl1";
@@ -291,7 +291,7 @@
             this.PanelControlMappings.Location = new System.Drawing.Point(41, 156);
             this.PanelControlMappings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PanelControlMappings.Name = "PanelControlMappings";
-            this.PanelControlMappings.Size = new System.Drawing.Size(424, 269);
+            this.PanelControlMappings.Size = new System.Drawing.Size(593, 269);
             this.PanelControlMappings.TabIndex = 273;
             // 
             // GridControlSupplierServType
@@ -306,7 +306,7 @@
             this.GridControlSupplierServType.Name = "GridControlSupplierServType";
             this.GridControlSupplierServType.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEdit50});
-            this.GridControlSupplierServType.Size = new System.Drawing.Size(337, 194);
+            this.GridControlSupplierServType.Size = new System.Drawing.Size(506, 194);
             this.GridControlSupplierServType.TabIndex = 84;
             this.GridControlSupplierServType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierServType});
@@ -404,7 +404,7 @@
             this.ButtonDeleteMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDeleteMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteMapping.ImageOptions.Image")));
             this.ButtonDeleteMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteMapping.Location = new System.Drawing.Point(372, 75);
+            this.ButtonDeleteMapping.Location = new System.Drawing.Point(541, 75);
             this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDeleteMapping.Name = "ButtonDeleteMapping";
             this.ButtonDeleteMapping.Size = new System.Drawing.Size(41, 36);
@@ -417,7 +417,7 @@
             this.ButtonAddMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddMapping.ImageOptions.Image")));
             this.ButtonAddMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddMapping.Location = new System.Drawing.Point(372, 34);
+            this.ButtonAddMapping.Location = new System.Drawing.Point(541, 34);
             this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddMapping.Name = "ButtonAddMapping";
             this.ButtonAddMapping.Size = new System.Drawing.Size(41, 36);
@@ -507,7 +507,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(782, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(951, 31);
             // 
             // barDockControlBottom
             // 
@@ -515,7 +515,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 683);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(782, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(951, 0);
             // 
             // barDockControlLeft
             // 
@@ -529,7 +529,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(782, 31);
+            this.barDockControlRight.Location = new System.Drawing.Point(951, 31);
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 652);
             // 
@@ -537,7 +537,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 683);
+            this.ClientSize = new System.Drawing.Size(951, 683);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
