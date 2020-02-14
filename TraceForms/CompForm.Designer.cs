@@ -217,6 +217,8 @@
             this.colName7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SearchLookupEditAirportCode = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView11 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode20 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPagePolicies = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlPoliciesTab = new DevExpress.XtraEditors.PanelControl();
             this.CheckEditPhone = new DevExpress.XtraEditors.CheckEdit();
@@ -324,7 +326,6 @@
             this.gridColumnCat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemSearchLookUpEditCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -445,6 +446,7 @@
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCustomSearchLookUpEditDefaultCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPickup_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -545,11 +547,11 @@
             this.colServiceEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBookingStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBookingEnd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colReciprocal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInactive2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiscountPct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiscountFlat = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colReciprocal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsRoundTrip = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colForUpSell = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -794,6 +796,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -2263,7 +2266,7 @@
             this.MapControl.Name = "MapControl";
             this.MapControl.NavigationPanelOptions.Height = 200;
             this.MapControl.ShowSearchPanel = false;
-            this.MapControl.Size = new System.Drawing.Size(358, 152);
+            this.MapControl.Size = new System.Drawing.Size(358, 194);
             this.MapControl.TabIndex = 272;
             this.MapControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseDown);
             this.MapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseMove);
@@ -2609,21 +2612,43 @@
             this.SearchLookupEditAirportCode.Location = new System.Drawing.Point(458, 34);
             this.SearchLookupEditAirportCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.SearchLookupEditAirportCode.Name = "SearchLookupEditAirportCode";
+            this.SearchLookupEditAirportCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
             this.SearchLookupEditAirportCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditAirportCode.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditAirportCode.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditAirportCode.Properties.NullText = "";
             this.SearchLookupEditAirportCode.Properties.PopupSizeable = false;
             this.SearchLookupEditAirportCode.Properties.PopupView = this.gridView11;
+            this.SearchLookupEditAirportCode.Properties.ValueMember = "Code";
             this.SearchLookupEditAirportCode.Size = new System.Drawing.Size(234, 20);
             this.SearchLookupEditAirportCode.TabIndex = 15;
             this.SearchLookupEditAirportCode.Leave += new System.EventHandler(this.ImageComboBoxEditAirportCode_Leave);
             // 
             // gridView11
             // 
+            this.gridView11.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode20,
+            this.colName15});
             this.gridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView11.Name = "gridView11";
             this.gridView11.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView11.OptionsView.ShowGroupPanel = false;
+            this.gridView11.OptionsView.ShowIndicator = false;
+            // 
+            // colCode20
+            // 
+            this.colCode20.FieldName = "Code";
+            this.colCode20.Name = "colCode20";
+            this.colCode20.Visible = true;
+            this.colCode20.VisibleIndex = 0;
+            // 
+            // colName15
+            // 
+            this.colName15.FieldName = "Name";
+            this.colName15.Name = "colName15";
+            this.colName15.Visible = true;
+            this.colName15.VisibleIndex = 1;
             // 
             // xtraTabPagePolicies
             // 
@@ -6469,6 +6494,13 @@
             this.colBookingEnd.VisibleIndex = 5;
             this.colBookingEnd.Width = 47;
             // 
+            // colReciprocal
+            // 
+            this.colReciprocal.FieldName = "Reciprocal";
+            this.colReciprocal.Name = "colReciprocal";
+            this.colReciprocal.Visible = true;
+            this.colReciprocal.VisibleIndex = 11;
+            // 
             // colInactive2
             // 
             this.colInactive2.FieldName = "Inactive";
@@ -6495,13 +6527,6 @@
             this.colDiscountFlat.Name = "colDiscountFlat";
             this.colDiscountFlat.Visible = true;
             this.colDiscountFlat.VisibleIndex = 14;
-            // 
-            // colReciprocal
-            // 
-            this.colReciprocal.FieldName = "Reciprocal";
-            this.colReciprocal.Name = "colReciprocal";
-            this.colReciprocal.Visible = true;
-            this.colReciprocal.VisibleIndex = 11;
             // 
             // colIsRoundTrip
             // 
@@ -7777,5 +7802,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName13;
         private DevExpress.XtraGrid.Columns.GridColumn colCode19;
         private DevExpress.XtraGrid.Columns.GridColumn colName14;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode20;
+        private DevExpress.XtraGrid.Columns.GridColumn colName15;
     }
 }
