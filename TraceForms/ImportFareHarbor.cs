@@ -135,12 +135,13 @@ namespace TraceForms
                 var rq = new ItemsRQ() { detailed = "yes" };
                 var items = await GetDataFromAPI<Item>(typeof(ItemsRS), _supplierConnection, $"companies/{_company}/items/", rq);
                 //Check if items are already imported
-                foreach (var item in items) {
+                foreach (var item in items.Where(i => i.Customer_prototypes != null && i.Customer_prototypes.Any())) {
                     string pk = item.Pk.ToString();
                     var mapping = _context.SupplierProduct.FirstOrDefault(sp => sp.ProductCodeSupplier == pk
                       && sp.Supplier_GUID == _supplierConnection.Supplier_GUID);
                     if (mapping != null) {
                         item.InternalCode = mapping.Product_Code_Internal;
+                        item.AlreadyImported = true;
                     }
                     else {
                         item.Selected = true;
@@ -161,7 +162,10 @@ namespace TraceForms
                             custType.Selected = true;
                         }
                     }
-                    item.StartingPrice = item.Customer_prototypes.Where(cp => cp.PaxType == "Adult").Min(cp => cp.Total_including_tax) / 100;
+                    var adults = item.Customer_prototypes.Where(cp => cp.PaxType == "Adult");
+                    if (adults.Any()) {
+                        item.StartingPrice = adults.Min(cp => cp.Total_including_tax) / 100;
+                    }
                 }
                 bindingSourceItems.DataSource = items;
             }
@@ -297,7 +301,12 @@ namespace TraceForms
         {
             if (bindingSourceItems.DataSource != null && bindingSourceItems.List.Count > 0) {
                 var items = (List<Item>)bindingSourceItems.List;
-                if (items.Any(i => i.Selected && string.IsNullOrEmpty(i.InternalCode))) {
+                var itemsToCreate = items.Where(i => i.Selected && !i.AlreadyImported);
+                if (itemsToCreate.Any()) {
+                    if (itemsToCreate.Any(i => string.IsNullOrEmpty(i.InternalCode))) {
+                        this.DisplayError("Please enter a TourTrace product code for all the new products to be imported");
+                        return;
+                    }
                     if (searchLookUpEditCity.EditValue == null) {
                         this.DisplayError("Please select a valid city for the new products to be imported");
                         return;

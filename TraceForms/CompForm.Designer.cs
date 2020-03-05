@@ -429,9 +429,6 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.GridControlSupplierProduct = new DevExpress.XtraGrid.GridControl();
             this.GridViewSupplierProduct = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnSupplierProductId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnProductCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnProductType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSupplierGuid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnProductSupplierCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEditMax50 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -442,6 +439,7 @@
             this.gridColumnMappingSvcEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingResStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingResEnd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -2991,6 +2989,7 @@
             this.RatingControlStars.Name = "RatingControlStars";
             this.RatingControlStars.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.RatingControlStars.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.RatingControlStars.Properties.FillPrecision = DevExpress.XtraEditors.RatingItemFillPrecision.Exact;
             this.RatingControlStars.Rating = new decimal(new int[] {
             0,
             0,
@@ -5221,9 +5220,6 @@
             // GridViewSupplierProduct
             // 
             this.GridViewSupplierProduct.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnSupplierProductId,
-            this.gridColumnProductCode,
-            this.gridColumnProductType,
             this.gridColumnSupplierGuid,
             this.gridColumnProductSupplierCode,
             this.gridColumnMappingInactive,
@@ -5233,6 +5229,7 @@
             this.gridColumnMappingSvcEnd,
             this.gridColumnMappingResStart,
             this.gridColumnMappingResEnd,
+            this.colServiceTime,
             this.gridColumnMappingDesc,
             this.gridColumnMappingOperator,
             this.colRoomcod_Code_Default,
@@ -5260,27 +5257,6 @@
             this.GridViewSupplierProduct.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewSupplierProduct_CustomRowCellEdit);
             this.GridViewSupplierProduct.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewSupplierProduct_CellValueChanged);
             this.GridViewSupplierProduct.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewSupplierProduct_InvalidRowException);
-            // 
-            // gridColumnSupplierProductId
-            // 
-            this.gridColumnSupplierProductId.FieldName = "ID";
-            this.gridColumnSupplierProductId.MinWidth = 10;
-            this.gridColumnSupplierProductId.Name = "gridColumnSupplierProductId";
-            this.gridColumnSupplierProductId.Width = 37;
-            // 
-            // gridColumnProductCode
-            // 
-            this.gridColumnProductCode.FieldName = "Product_Code_Internal";
-            this.gridColumnProductCode.MinWidth = 10;
-            this.gridColumnProductCode.Name = "gridColumnProductCode";
-            this.gridColumnProductCode.Width = 37;
-            // 
-            // gridColumnProductType
-            // 
-            this.gridColumnProductType.FieldName = "Product_Type";
-            this.gridColumnProductType.MinWidth = 10;
-            this.gridColumnProductType.Name = "gridColumnProductType";
-            this.gridColumnProductType.Width = 37;
             // 
             // gridColumnSupplierGuid
             // 
@@ -5389,6 +5365,14 @@
             this.gridColumnMappingResEnd.VisibleIndex = 8;
             this.gridColumnMappingResEnd.Width = 90;
             // 
+            // colServiceTime
+            // 
+            this.colServiceTime.ColumnEdit = this.repositoryItemTimeEditDefault;
+            this.colServiceTime.FieldName = "ServiceTime";
+            this.colServiceTime.Name = "colServiceTime";
+            this.colServiceTime.Visible = true;
+            this.colServiceTime.VisibleIndex = 9;
+            // 
             // gridColumnMappingDesc
             // 
             this.gridColumnMappingDesc.Caption = "Description";
@@ -5396,7 +5380,7 @@
             this.gridColumnMappingDesc.MinWidth = 10;
             this.gridColumnMappingDesc.Name = "gridColumnMappingDesc";
             this.gridColumnMappingDesc.Visible = true;
-            this.gridColumnMappingDesc.VisibleIndex = 9;
+            this.gridColumnMappingDesc.VisibleIndex = 10;
             this.gridColumnMappingDesc.Width = 111;
             // 
             // gridColumnMappingOperator
@@ -5406,7 +5390,7 @@
             this.gridColumnMappingOperator.MinWidth = 10;
             this.gridColumnMappingOperator.Name = "gridColumnMappingOperator";
             this.gridColumnMappingOperator.Visible = true;
-            this.gridColumnMappingOperator.VisibleIndex = 10;
+            this.gridColumnMappingOperator.VisibleIndex = 11;
             this.gridColumnMappingOperator.Width = 98;
             // 
             // colRoomcod_Code_Default
@@ -5417,7 +5401,7 @@
             this.colRoomcod_Code_Default.MinWidth = 21;
             this.colRoomcod_Code_Default.Name = "colRoomcod_Code_Default";
             this.colRoomcod_Code_Default.Visible = true;
-            this.colRoomcod_Code_Default.VisibleIndex = 11;
+            this.colRoomcod_Code_Default.VisibleIndex = 12;
             this.colRoomcod_Code_Default.Width = 78;
             // 
             // repositoryItemCustomSearchLookUpEditDefaultCat
@@ -5467,7 +5451,7 @@
             this.colPickup_LocationType_Default.MinWidth = 21;
             this.colPickup_LocationType_Default.Name = "colPickup_LocationType_Default";
             this.colPickup_LocationType_Default.Visible = true;
-            this.colPickup_LocationType_Default.VisibleIndex = 12;
+            this.colPickup_LocationType_Default.VisibleIndex = 13;
             this.colPickup_LocationType_Default.Width = 84;
             // 
             // repositoryItemComboBoxDefaultPupLocType
@@ -5491,7 +5475,7 @@
             this.colPickup_Location_Default.MinWidth = 21;
             this.colPickup_Location_Default.Name = "colPickup_Location_Default";
             this.colPickup_Location_Default.Visible = true;
-            this.colPickup_Location_Default.VisibleIndex = 13;
+            this.colPickup_Location_Default.VisibleIndex = 14;
             this.colPickup_Location_Default.Width = 137;
             // 
             // repositoryItemCustomSearchLookUpEditDefaultPUpLoc
@@ -5541,7 +5525,7 @@
             this.colPickup_Time_Default.MinWidth = 21;
             this.colPickup_Time_Default.Name = "colPickup_Time_Default";
             this.colPickup_Time_Default.Visible = true;
-            this.colPickup_Time_Default.VisibleIndex = 14;
+            this.colPickup_Time_Default.VisibleIndex = 15;
             this.colPickup_Time_Default.Width = 78;
             // 
             // repositoryItemTimeEditDefault
@@ -5562,7 +5546,7 @@
             this.colDropoff_LocationType_Default.MinWidth = 21;
             this.colDropoff_LocationType_Default.Name = "colDropoff_LocationType_Default";
             this.colDropoff_LocationType_Default.Visible = true;
-            this.colDropoff_LocationType_Default.VisibleIndex = 15;
+            this.colDropoff_LocationType_Default.VisibleIndex = 16;
             this.colDropoff_LocationType_Default.Width = 91;
             // 
             // repositoryItemComboBoxDefaultDrpLocType
@@ -5586,7 +5570,7 @@
             this.colDropoff_Location_Default.MinWidth = 21;
             this.colDropoff_Location_Default.Name = "colDropoff_Location_Default";
             this.colDropoff_Location_Default.Visible = true;
-            this.colDropoff_Location_Default.VisibleIndex = 16;
+            this.colDropoff_Location_Default.VisibleIndex = 17;
             this.colDropoff_Location_Default.Width = 158;
             // 
             // repositoryItemCustomSearchLookUpEditDefaultDropLoc
@@ -5636,7 +5620,7 @@
             this.colDropoff_Time_Default.MinWidth = 21;
             this.colDropoff_Time_Default.Name = "colDropoff_Time_Default";
             this.colDropoff_Time_Default.Visible = true;
-            this.colDropoff_Time_Default.VisibleIndex = 17;
+            this.colDropoff_Time_Default.VisibleIndex = 18;
             this.colDropoff_Time_Default.Width = 78;
             // 
             // colMarkupPct
@@ -5646,7 +5630,7 @@
             this.colMarkupPct.FieldName = "MarkupPct";
             this.colMarkupPct.Name = "colMarkupPct";
             this.colMarkupPct.Visible = true;
-            this.colMarkupPct.VisibleIndex = 18;
+            this.colMarkupPct.VisibleIndex = 19;
             // 
             // RepositoryItemSpinEditMarkupPct
             // 
@@ -5662,7 +5646,7 @@
             this.colSupplierCommPct.FieldName = "SupplierCommPct";
             this.colSupplierCommPct.Name = "colSupplierCommPct";
             this.colSupplierCommPct.Visible = true;
-            this.colSupplierCommPct.VisibleIndex = 19;
+            this.colSupplierCommPct.VisibleIndex = 20;
             // 
             // RepositoryItemSpinEditSupplierCommPct
             // 
@@ -5678,7 +5662,7 @@
             this.colRetailMarkupPct.FieldName = "RetailMarkupPct";
             this.colRetailMarkupPct.Name = "colRetailMarkupPct";
             this.colRetailMarkupPct.Visible = true;
-            this.colRetailMarkupPct.VisibleIndex = 20;
+            this.colRetailMarkupPct.VisibleIndex = 21;
             // 
             // RepositoryItemSpinEditRetailMarkupPct
             // 
@@ -5694,7 +5678,7 @@
             this.colMarkupFlat.FieldName = "MarkupFlat";
             this.colMarkupFlat.Name = "colMarkupFlat";
             this.colMarkupFlat.Visible = true;
-            this.colMarkupFlat.VisibleIndex = 21;
+            this.colMarkupFlat.VisibleIndex = 22;
             // 
             // RepositoryItemSpinEditMarkupFlat
             // 
@@ -5710,7 +5694,7 @@
             this.colSupplierCommFlat.FieldName = "SupplierCommFlat";
             this.colSupplierCommFlat.Name = "colSupplierCommFlat";
             this.colSupplierCommFlat.Visible = true;
-            this.colSupplierCommFlat.VisibleIndex = 22;
+            this.colSupplierCommFlat.VisibleIndex = 23;
             // 
             // RepositoryItemSpinEditSupplierCommFlat
             // 
@@ -5721,12 +5705,12 @@
             // 
             // colRetailMarkupFlat
             // 
-            this.colRetailMarkupFlat.Caption = "colRetailMarkupFlat";
+            this.colRetailMarkupFlat.Caption = "Retail Markup Flat";
             this.colRetailMarkupFlat.ColumnEdit = this.RepositoryItemSpinEditRetailMarkupFlat;
             this.colRetailMarkupFlat.FieldName = "RetailMarkupFlat";
             this.colRetailMarkupFlat.Name = "colRetailMarkupFlat";
             this.colRetailMarkupFlat.Visible = true;
-            this.colRetailMarkupFlat.VisibleIndex = 23;
+            this.colRetailMarkupFlat.VisibleIndex = 24;
             // 
             // RepositoryItemSpinEditRetailMarkupFlat
             // 
@@ -7603,9 +7587,6 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageSupplierMapping;
         private DevExpress.XtraGrid.GridControl GridControlSupplierProduct;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewSupplierProduct;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSupplierProductId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProductCode;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProductType;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSupplierGuid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProductSupplierCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditMax50;
@@ -7804,5 +7785,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName14;
         private DevExpress.XtraGrid.Columns.GridColumn colCode20;
         private DevExpress.XtraGrid.Columns.GridColumn colName15;
+        private DevExpress.XtraGrid.Columns.GridColumn colServiceTime;
     }
 }

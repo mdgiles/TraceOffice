@@ -97,6 +97,7 @@ namespace TraceForms.Models.FareHarbor
         public double Tax_percentage { get; set; }
         public string Name { get; set; }
         public decimal StartingPrice { get; set; }
+        public bool AlreadyImported { get; set; }
     }
 
     public class Image
