@@ -50,6 +50,10 @@ namespace TraceForms
                 if (endDate.Equals(DateTime.MinValue)) {
                     endDate = DateTime.Today.AddDays(days);
                 }
+                //Yes, it really is this hard to get the tag property of the selected radio option. 
+                //They should have a radioGroupDate.SelectedItem property
+                string dateType = radioGroupDate.Properties.Items[radioGroupDate.SelectedIndex].Tag.ToString();
+
                 using (ExcelPackage xl = new ExcelPackage()) {
                     ExportForOPT(startDate, endDate, xl);
                     ExportForHTL(startDate, endDate, xl);
@@ -64,12 +68,9 @@ namespace TraceForms
                         using (SmtpClient smtp = new SmtpClient(_sys.Settings.MailServer, _sys.Settings.EmailPort)) {
                             smtp.Credentials = new System.Net.NetworkCredential(_sys.Settings.EmailUser, _sys.Settings.EmailPassword);
                             using (MailMessage message = new MailMessage(_sys.Settings.UnmonitoredEmail, recipients)) {
-                                message.Subject = string.Format("Operations Service List {0:dd-MMM-yy} to {1:dd-MMM-yy}",
-                                    DateTime.Today, endDate);
-                                message.Body = string.Format("The operations service list is attached for dates beginning {0:dd-MMM-yy} and ending {1:dd-MMM-yy}.",
-                                    DateTime.Today, endDate);
-                                message.Attachments.Add(new Attachment(stream, string.Format("OpsServiceList {0:dd-MMM-yy} to {1:dd-MMM-yy}.xlsx",
-                                    DateTime.Today, endDate),
+                                message.Subject = $"Operations Service List {startDate:dd-MMM-yyyy} to {endDate:dd-MMM-yyyy}";
+                                message.Body = $"The operations service list is attached for {dateType} dates beginning {startDate:dd-MMM-yyyy} and ending {endDate:dd-MMM-yyyy}.";
+                                message.Attachments.Add(new Attachment(stream, $"OpsServiceList {startDate:dd-MMM-yyyy} to {endDate:dd-MMM-yyyy}.xlsx",
                                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
                                 smtp.Send(message);
                             }
@@ -88,9 +89,11 @@ namespace TraceForms
 
         private void ExportForHTL(DateTime startDate, DateTime endDate, ExcelPackage xl)
         {
+            string dateField = $"[{radioGroupDate.EditValue}]";
             OrderedDictionary columns = new OrderedDictionary()
             {
                 { "strt date", "Service Date" },
+                { "res date", "Booking Date" },
                 { "res no", "Trip #" },
                 { "agy name", "Agency Name" },
                 { "city", "City" },
@@ -110,7 +113,7 @@ namespace TraceForms
                 { "doc via", "CC" },
             };
 
-            string sql = string.Format(@"select resitm.*, pkg.code as pkgcode, pkg.descrip as pkgdescrip, reshdr.[doc via], reshdr.reference, 
+            string sql = $@"select resitm.*, pkg.code as pkgcode, pkg.descrip as pkgdescrip, reshdr.[doc via], reshdr.reference, 
 reshdr.client1, reshdr.[agy name], reshdr.internalremarks, (select top 1 psgrlist.[phone nbr] from psgrlist 
 inner join psgrres on psgrres.[client no] = psgrlist.[client no] AND [client level] = 1 
 WHERE psgrres.[res no] = resitm.[res no] and ISNULL([phone nbr], '') <> '') as PhoneNbr,
@@ -122,16 +125,18 @@ inner join reshdr on reshdr.[res no] = resitm.[res no]
 inner join hotel on resitm.code = hotel.code
 left outer join resitm pkg on resitm.parentitem = pkg.item and resitm.[res no] = pkg.[res no] 
 left outer join operator on resitm.oper = operator.code
-where resitm.[strt date] between '{0}' and '{1}' and resitm.inactive = 0 and resitm.type = '{2}' 
-order by resitm.[strt date], resitm.[res no], item", startDate, endDate, "HTL");
+where resitm.{dateField} between '{startDate}' and '{endDate}' and resitm.inactive = 0 and resitm.type = 'HTL' 
+order by resitm.{dateField}, resitm.[res no], item";
             ExportCommon(columns, sql, xl, "HTL");
         }
 
         private void ExportForOPT(DateTime startDate, DateTime endDate, ExcelPackage xl)
         {
+            string dateField = $"[{radioGroupDate.EditValue}]";
             OrderedDictionary columns = new OrderedDictionary()
             {
                 { "strt date", "Service Date" },
+                { "res date", "Booking Date" },
                 { "res no", "Trip #" },
                 { "agy name", "Agency Name" },
                 { "city", "City" },
@@ -156,7 +161,7 @@ order by resitm.[strt date], resitm.[res no], item", startDate, endDate, "HTL");
             };
 
             endDate = endDate.AddDays(1).AddSeconds(-1);
-            string sql = string.Format(@"select resitm.*, pkg.code as pkgcode, pkg.descrip as pkgdescrip, reshdr.[doc via], reshdr.reference, 
+            string sql = $@"select resitm.*, pkg.code as pkgcode, pkg.descrip as pkgdescrip, reshdr.[doc via], reshdr.reference, 
 reshdr.client1, reshdr.[agy name], reshdr.internalremarks, (select top 1 psgrlist.[phone nbr] from psgrlist 
 inner join psgrres on psgrres.[client no] = psgrlist.[client no] AND [client level] = 1 
 WHERE psgrres.[res no] = resitm.[res no] and ISNULL([phone nbr], '') <> '') as PhoneNbr,
@@ -168,8 +173,8 @@ inner join reshdr on reshdr.[res no] = resitm.[res no]
 inner join comp on resitm.code = comp.code
 left outer join resitm pkg on resitm.parentitem = pkg.item and resitm.[res no] = pkg.[res no] 
 left outer join operator on resitm.oper = operator.code
-where resitm.[strt date] between '{0}' and '{1}' and resitm.inactive = 0 and resitm.type = '{2}' 
-order by resitm.[strt date], resitm.[res no], item", startDate, endDate, "OPT");
+where resitm.{dateField} between '{startDate}' and '{endDate}' and resitm.inactive = 0 and resitm.type = 'OPT' 
+order by resitm.{dateField}, resitm.[res no], item";
 
             ExportCommon(columns, sql, xl, "OPT");
         }
@@ -200,8 +205,9 @@ order by resitm.[strt date], resitm.[res no], item", startDate, endDate, "OPT");
                 conn.Close();
             }
 
-            ws.Cells["A1:V1"].AutoFilter = true;
+            ws.Cells["A1:W1"].AutoFilter = true;
             ws.Column(1).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
+            ws.Column(2).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
 
             for (colIndex = 1; colIndex <= columns.Count; colIndex++) {
                 ws.Cells[1, colIndex].Value = columns[colIndex - 1];
@@ -213,6 +219,19 @@ order by resitm.[strt date], resitm.[res no], item", startDate, endDate, "OPT");
         private void OperationsServiceListForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _sys.Dispose();
+        }
+
+        private void radioGroupDate_EditValueChanged(object sender, EventArgs e)
+        {
+            if (radioGroupDate.SelectedIndex == 1) {
+                dateEditEnd.Properties.MaxValue = DateTime.Today;
+                if (dateEditEnd.DateTime > DateTime.Today) {
+                    dateEditEnd.DateTime = DateTime.Today;
+                }
+            }
+            else {
+                dateEditEnd.Properties.MaxValue = DateTime.MaxValue;
+            }
         }
     }
 }

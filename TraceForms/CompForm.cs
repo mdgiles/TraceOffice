@@ -111,6 +111,14 @@ namespace TraceForms
             //repositoryItemImageComboboxLocation.DataSource = cities;
 
 
+            var airports = new List<CodeName> {
+                new CodeName(null)
+            };
+            airports.AddRange(_context.Airport
+                .OrderBy(o => o.Code)
+                .Select(s => new CodeName() { Code = s.Code, Name = s.Name}).ToList());
+            SearchLookupEditAirportCode.Properties.DataSource = airports;
+
             var languages = new List<CodeName> {
                 new CodeName(null)
             };

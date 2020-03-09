@@ -17,6 +17,8 @@ using FlexInterfaces.Core;
 using FlexInterfaces;
 using System.Data.Entity.Validation;
 using System.ComponentModel;
+using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 namespace TraceForms
 {
@@ -37,6 +39,7 @@ namespace TraceForms
         DateTime _update = DateTime.Now;
         const string _prefix = "FH";
         BackgroundWorker _bgWorker = new BackgroundWorker();
+        string _company = string.Empty;
 
         public ImportFareHarbor(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -64,6 +67,7 @@ namespace TraceForms
 
         private async void LoadLookups()
         {
+            this.UseWaitCursor = true;
             var supplier = _context.Supplier.SingleOrDefault(s => s.EnumValue == (int)FlexInterfaces.Enumerations.FlexExternalSuppliers.FareHarbor);
             if(supplier == null) {
                 this.DisplayError("The supplier was not found.");
@@ -93,6 +97,7 @@ namespace TraceForms
                             .OrderBy(o => o.TYPE)
                             .Select(s => new CodeName() { Code = s.TYPE, Name = s.DESCRIP }));
             searchLookUpEditServiceType.Properties.DataSource = lookup;
+            this.UseWaitCursor = false;
         }
 
         private async Task<List<T>> GetDataFromAPI<T>(Type type, SupplierConnection connection, string url, CommonRQ request)
@@ -116,22 +121,128 @@ namespace TraceForms
         private async void imageComboBoxEditCompanies_EditValueChanged(object sender, EventArgs e)
         {
             bindingSourceItems.DataSource = null;
+            _company = string.Empty;
             if (imageComboBoxEditCompanies.EditValue != null) {
-                this.Cursor = Cursors.WaitCursor;
-                string company = imageComboBoxEditCompanies.EditValue.ToString();
+                _company = imageComboBoxEditCompanies.EditValue.ToString();
+                await LoadProductsForCompany();
+            }
+        }
+
+        private async Task LoadProductsForCompany()
+        {
+            try {
+                this.UseWaitCursor = true;
                 var rq = new ItemsRQ() { detailed = "yes" };
-                var items = await GetDataFromAPI<Item>(typeof(ItemsRS), _supplierConnection, $"companies/{company}/items/", rq);
+                var items = await GetDataFromAPI<Item>(typeof(ItemsRS), _supplierConnection, $"companies/{_company}/items/", rq);
                 //Check if items are already imported
-                foreach (var item in items) {
+                foreach (var item in items.Where(i => i.Customer_prototypes != null && i.Customer_prototypes.Any())) {
                     string pk = item.Pk.ToString();
-                    var mapping = _context.SupplierProduct.FirstOrDefault(sp => sp.ProductCodeSupplier == pk 
+                    var mapping = _context.SupplierProduct.FirstOrDefault(sp => sp.ProductCodeSupplier == pk
                       && sp.Supplier_GUID == _supplierConnection.Supplier_GUID);
                     if (mapping != null) {
                         item.InternalCode = mapping.Product_Code_Internal;
+                        item.AlreadyImported = true;
+                    }
+                    else {
+                        item.Selected = true;
+                    }
+                    foreach (var custType in item.Customer_prototypes) {
+                        pk = custType.Pk.ToString();
+                        var cust = _context.SupplierProductAge.Include(spa => spa.ProductAge).FirstOrDefault(spa => spa.SupplierId == pk);
+                        if (cust != null) {
+                            custType.InternalId = cust.Id;
+                            if (cust.ProductAge != null) {
+                                custType.FromAge = cust.ProductAge.FromAge;
+                                custType.ToAge = cust.ProductAge.ToAge;
+                                custType.PaxType = cust.ProductAge.Description;
+                            }
+                        }
+                        else {
+                            SetAgeRange(custType);
+                            custType.Selected = true;
+                        }
+                    }
+                    var adults = item.Customer_prototypes.Where(cp => cp.PaxType == "Adult");
+                    if (adults.Any()) {
+                        item.StartingPrice = adults.Min(cp => cp.Total_including_tax) / 100;
                     }
                 }
                 bindingSourceItems.DataSource = items;
-                this.Cursor = Cursors.Default;
+            }
+            finally {
+                this.UseWaitCursor = false;
+            }
+        }
+
+        private void SetAgeRange(CustomerPrototype custType)
+        {
+            //Match any 1 or 2 digit number that stands alone (ie, no other digits before it so it won't match a year)
+            //followed by any whitespace, a dash, any whitespace, and another 1 or 2 digits
+            Regex rangeRegex = new Regex(@"(?<!\d)\d{1,2}\s*-\s*\d{1,2}(?!\d)");
+            //Match any 2 digit number preceded by whitespace or a parenthesis or at the start of the string, and followed by whitespace or
+            //a parenthesis or a plus or at the end of the string.  The parentheses are because I frequently see (5 and up)
+            Regex numberRegex = new Regex(@"(?<!\d)(?<=\s|^)\d{1,2}(?=\s|\)|\+|$)");
+
+            string stringToTest = custType.Note.ToLower();
+            Match rangeMatch = rangeRegex.Match(stringToTest);
+            Match numberMatch = null;
+            if (!rangeMatch.Success) {
+                stringToTest = custType.Display_name.ToLower();
+                rangeMatch = rangeRegex.Match(stringToTest);
+            }
+            if (!rangeMatch.Success) {
+                stringToTest = custType.Note.ToLower();
+                numberMatch = numberRegex.Match(stringToTest);
+                if (!numberMatch.Success) {
+                    stringToTest = custType.Display_name.ToLower();
+                    numberMatch = numberRegex.Match(stringToTest);
+                }
+            }
+
+            if (rangeMatch.Success) {
+                var splitNumbers = rangeMatch.Value.Split('-');
+                custType.FromAge = Convert.ToInt16(splitNumbers[0]);
+                custType.ToAge = Convert.ToInt16(splitNumbers[1]);
+                int matchPos = rangeMatch.Index + rangeMatch.Length;
+                string remainingString = stringToTest.Substring(matchPos, stringToTest.Length - matchPos).TrimStart();
+                //If the age is in months, eg 0-23 months, then convert it to years
+                if (remainingString.IndexOf("months", 0) == 0) {
+                    double ageInYears = ((custType.ToAge ?? 0) / 12);
+                    custType.ToAge = (short)Math.Floor(ageInYears);
+                    ageInYears = ((custType.FromAge ?? 0) / 12);
+                    custType.FromAge = (short)Math.Floor(ageInYears);
+                }
+            }
+            else if (numberMatch?.Success ?? false) {
+                //The best we can do if there is only one number is to check for a subsequent string like
+                //13+, 13 and over, 13 and up, 13 and above, 13 and under, 13 and below to tell if the single
+                //number could represent the upper or lower limit of an age range
+                int matchPos = numberMatch.Index + numberMatch.Length;
+                string remainingString = stringToTest.Substring(matchPos, stringToTest.Length - matchPos).TrimStart();
+                string priorString = stringToTest.Substring(0, matchPos).TrimEnd();
+                if (remainingString.IndexOf('+', 0) == 0
+                  || remainingString.IndexOf("and up", 0) == 0
+                  || remainingString.IndexOf("and over", 0) == 0
+                  || remainingString.IndexOf("and above", 0) == 0) {
+                    custType.FromAge = Convert.ToInt16(numberMatch.Value);
+                }
+                else if (remainingString.IndexOf("and under", 0) == 0
+                  || remainingString.IndexOf("and below", 0) == 0
+                  || priorString.IndexOf("up to", matchPos - "up to".Length) != -1) {
+                    custType.ToAge = Convert.ToInt16(numberMatch.Value);
+                }
+            }
+
+            if (custType.ToAge == null || custType.FromAge >= 18) {
+                custType.PaxType = "Adult";
+            }
+            else {
+                if (custType.ToAge <= 2) {
+                    custType.PaxType = "Infant";
+                }
+                else {
+                    custType.PaxType = "Child";
+                }
             }
         }
 
@@ -190,7 +301,12 @@ namespace TraceForms
         {
             if (bindingSourceItems.DataSource != null && bindingSourceItems.List.Count > 0) {
                 var items = (List<Item>)bindingSourceItems.List;
-                if (items.Any(i => i.Selected && string.IsNullOrEmpty(i.InternalCode))) {
+                var itemsToCreate = items.Where(i => i.Selected && !i.AlreadyImported);
+                if (itemsToCreate.Any()) {
+                    if (itemsToCreate.Any(i => string.IsNullOrEmpty(i.InternalCode))) {
+                        this.DisplayError("Please enter a TourTrace product code for all the new products to be imported");
+                        return;
+                    }
                     if (searchLookUpEditCity.EditValue == null) {
                         this.DisplayError("Please select a valid city for the new products to be imported");
                         return;
@@ -230,9 +346,14 @@ namespace TraceForms
         private void ImportProduct(Item item, BackgroundWorker worker)
         {
             try {
+                SupplierProduct suppProd;
                 //Set up the main COMP record
                 bool productAddedOrNameChanged = false;
-                var comp = _context.COMP.FirstOrDefault(c => c.CODE == item.InternalCode);
+                var comp = _context.COMP
+                    .Include(c => c.ProductAge)
+                    .Include(c => c.SupplierProductAge)
+                    .Include(c => c.SupplierProduct)
+                    .FirstOrDefault(c => c.CODE == item.InternalCode);
                 if (comp == null) {
                     productAddedOrNameChanged = true;
                     comp = new COMP() {
@@ -255,14 +376,17 @@ namespace TraceForms
                         CITY = searchLookUpEditCity.EditValue.ToString()
                     };
                     _context.COMP.AddObject(comp);
-                    SupplierProduct suppProd = new SupplierProduct() {
+                    suppProd = new SupplierProduct() {
                         Product_Type = "OPT",
                         Product_Code_Internal = item.InternalCode,
                         ProductCodeSupplier = item.Pk.ToString(),
                         Supplier_GUID = _supplierConnection.Supplier_GUID,
+                        Custom1 = _company,
                         Inactive = false,
                         SupplierCommPct = spinEditCommPct.Value,
-                        SupplierCommFlat = spinEditCommFlat.Value
+                        SupplierCommFlat = spinEditCommFlat.Value,
+                        MarkupPct = spinEditMarkupPct.Value,
+                        MarkupFlat = spinEditMarkupFlat.Value
                     };
                     suppProd.COMP = comp;
                     _context.SupplierProduct.AddObject(suppProd);
@@ -270,6 +394,8 @@ namespace TraceForms
                 else {
                     if (comp.AdminClosed || comp.Inactive == "Y")
                         return;
+                    suppProd = comp.SupplierProduct.FirstOrDefault(sp => sp.Supplier_GUID == _supplierConnection.Supplier_GUID
+                      && sp.ProductCodeSupplier == item.Pk.ToString());
                 }
                 if (comp.NAME != item.Name) {
                     productAddedOrNameChanged = true;
@@ -282,6 +408,9 @@ namespace TraceForms
                 else {
                     comp.TRSFR_TYP = "N";
                 }
+                comp.StartingPrice = item.StartingPrice;
+                comp.StartingCost = Math.Round(item.StartingPrice * (1 - ((suppProd.SupplierCommPct ?? 0) / 100)), 2) - (suppProd.SupplierCommFlat ?? 0);
+                comp.StartingAgentNet = Math.Round((comp.StartingCost ?? 0) * (1 + ((suppProd.MarkupPct ?? 0) / 100)), 2) - (suppProd.MarkupFlat ?? 0);
                 //Other location types seem to be "pre", "start", "end"
                 //TODO: Each location can also have notes, which are rarely provided and often duplicate other information
                 //Should the location notes be stored somewhere?
@@ -312,6 +441,65 @@ namespace TraceForms
                     //Cancellation policy has a type field which so far is only ever "hours-before-start"
                     int daysPrior = (int)Math.Ceiling(item.Effective_cancellation_policy.Cutoff_hours_before / 24) + (_supplierConnection.ExtraNightsPriorForCxlPolicy ?? 0);
                     FindOrAddCxlfee(_sys, _context, comp.CODE, daysPrior, 100);
+                }
+
+                //Set up the age mappings
+                foreach (var custType in item.Customer_prototypes.Where(cp => cp.Selected)) {
+                    SupplierProductAge suppProdAge = null;
+                    ProductAge prodAge = null;
+                    if (custType.InternalId != null) {
+                        suppProdAge = comp.SupplierProductAge.FirstOrDefault(sp => sp.Id == custType.InternalId);
+                    }
+                    if (suppProdAge == null) {
+                        suppProdAge = new SupplierProductAge() {
+                            Product_Code = comp.CODE,
+                            Product_Type = "OPT",
+                            Supplier_GUID = _supplierConnection.Supplier_GUID,
+                            SupplierId = custType.Pk.ToString()
+                        };
+                        _context.SupplierProductAge.AddObject(suppProdAge);
+                    }
+                    else {
+                        prodAge = suppProdAge.ProductAge;
+                    }
+                    if (prodAge == null) {
+                        //If there is already a ProductAge record with the same age limits, reuse it rather than creating a new one
+                        prodAge = comp.ProductAge.FirstOrDefault(pa => pa.FromAge == custType.FromAge && pa.ToAge == custType.ToAge);
+                        if (prodAge == null) {
+                            prodAge = new ProductAge() {
+                                Product_Type = "OPT",
+                                Product_Code = comp.CODE,
+                            };
+                            comp.ProductAge.Add(prodAge);
+                            _context.ProductAge.AddObject(prodAge);
+                        }
+                    }
+                    suppProdAge.SupplierName = custType.Display_name;
+                    prodAge.FromAge = custType.FromAge;
+                    prodAge.ToAge = custType.ToAge;
+                    prodAge.Description = custType.PaxType;
+                    switch (custType.PaxType.ToLower()) {
+                        case "adult":
+                            prodAge.PluralDescription = "Adults";
+                            break;
+                        case "child":
+                            prodAge.PluralDescription = "Children";
+                            break;
+                        case "junior":
+                            prodAge.PluralDescription = "Juniors";
+                            break;
+                        case "infant":
+                            prodAge.PluralDescription = "Infants";
+                            break;
+                        case "senior":
+                            prodAge.PluralDescription = "Seniors";
+                            break;
+                    }
+                    if (custType.ToAge == null || custType.ToAge >= 18) {
+                        prodAge.IsAdult = true;
+                        prodAge.TreatAsAdult = true;
+                    }
+                    suppProdAge.ProductAge = prodAge;
                 }
 
                 //Set up the media information
@@ -471,7 +659,7 @@ namespace TraceForms
             MediaHelper.SetCxlfeeChgDate(context, cxlFee, _update, _sys.User.Name);
         }
 
-        private void _bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private async void _bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Cursor = Cursors.Default;
             SetControlState(true);
@@ -483,6 +671,8 @@ namespace TraceForms
                 this.DisplayError(e.Error);
             }
             else {
+                //Reload to get the ids populated for the age records in case the user hits Import again
+                await LoadProductsForCompany();
                 this.DisplayInfo("Import completed");
             }
         }

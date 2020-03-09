@@ -65,6 +65,11 @@ namespace TraceForms.Models.FareHarbor
         public int Total { get; set; }
         public string Display_name { get; set; }
         public int Total_including_tax { get; set; }
+        public bool Selected { get; set; }
+        public short? FromAge { get; set; }
+        public short? ToAge { get; set; }
+        public int? InternalId { get; set; }
+        public string PaxType { get; set; }
     }
 
     public class Item
@@ -91,6 +96,8 @@ namespace TraceForms.Models.FareHarbor
         public List<CustomerPrototype> Customer_prototypes { get; set; }
         public double Tax_percentage { get; set; }
         public string Name { get; set; }
+        public decimal StartingPrice { get; set; }
+        public bool AlreadyImported { get; set; }
     }
 
     public class Image
