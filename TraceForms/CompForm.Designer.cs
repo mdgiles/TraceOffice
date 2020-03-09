@@ -235,7 +235,7 @@
             this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
             this.RatingControlStars = new DevExpress.XtraEditors.RatingControl();
             this.SpinEditRanking = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
+            this.SpinEditMaxDuration = new DevExpress.XtraEditors.SpinEdit();
             this.TextEditDueDays = new DevExpress.XtraEditors.TextEdit();
             this.TextEditARNumber = new DevExpress.XtraEditors.TextEdit();
             this.TextEditAPNumber = new DevExpress.XtraEditors.TextEdit();
@@ -324,7 +324,6 @@
             this.gridColumnCat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemSearchLookUpEditCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -445,6 +444,7 @@
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCustomSearchLookUpEditDefaultCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPickup_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -545,11 +545,11 @@
             this.colServiceEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBookingStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBookingEnd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colReciprocal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInactive2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiscountPct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiscountFlat = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colReciprocal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsRoundTrip = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIsReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colForUpSell = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -701,7 +701,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RatingControlStars.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditRanking.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditMaxDuration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditDueDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditARNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAPNumber.Properties)).BeginInit();
@@ -794,6 +794,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -2665,7 +2666,7 @@
             this.PanelControlPoliciesTab.Controls.Add(LabelRanking);
             this.PanelControlPoliciesTab.Controls.Add(this.SpinEditRanking);
             this.PanelControlPoliciesTab.Controls.Add(LabelMaxDuration);
-            this.PanelControlPoliciesTab.Controls.Add(this.spinEdit1);
+            this.PanelControlPoliciesTab.Controls.Add(this.SpinEditMaxDuration);
             this.PanelControlPoliciesTab.Controls.Add(LabelDueDays);
             this.PanelControlPoliciesTab.Controls.Add(this.TextEditDueDays);
             this.PanelControlPoliciesTab.Controls.Add(LabelARNumber);
@@ -2999,32 +3000,28 @@
             this.SpinEditRanking.Size = new System.Drawing.Size(83, 20);
             this.SpinEditRanking.TabIndex = 118;
             // 
-            // spinEdit1
+            // SpinEditMaxDuration
             // 
-            this.spinEdit1.CausesValidation = false;
-            this.spinEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MaxDuration", true));
-            this.spinEdit1.EditValue = new decimal(new int[] {
+            this.SpinEditMaxDuration.CausesValidation = false;
+            this.SpinEditMaxDuration.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MaxDuration", true));
+            this.SpinEditMaxDuration.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(723, 97);
-            this.spinEdit1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.spinEdit1.Name = "spinEdit1";
-            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SpinEditMaxDuration.Location = new System.Drawing.Point(723, 97);
+            this.SpinEditMaxDuration.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SpinEditMaxDuration.Name = "SpinEditMaxDuration";
+            this.SpinEditMaxDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit1.Properties.Increment = new decimal(new int[] {
-            5,
+            this.SpinEditMaxDuration.Properties.MaxValue = new decimal(new int[] {
+            1440,
             0,
             0,
-            65536});
-            this.spinEdit1.Properties.MaxValue = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            131072});
-            this.spinEdit1.Size = new System.Drawing.Size(100, 20);
-            this.spinEdit1.TabIndex = 114;
+            0});
+            this.SpinEditMaxDuration.Size = new System.Drawing.Size(100, 20);
+            this.SpinEditMaxDuration.TabIndex = 114;
+            this.SpinEditMaxDuration.Leave += new System.EventHandler(this.SpinEditMaxDuration_Leave);
             // 
             // TextEditDueDays
             // 
@@ -3321,16 +3318,11 @@
             this.SpinEditDuration.Name = "SpinEditDuration";
             this.SpinEditDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.SpinEditDuration.Properties.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.SpinEditDuration.Properties.MaxValue = new decimal(new int[] {
-            9999,
+            1440,
             0,
             0,
-            131072});
+            0});
             this.SpinEditDuration.Size = new System.Drawing.Size(100, 20);
             this.SpinEditDuration.TabIndex = 39;
             this.SpinEditDuration.Leave += new System.EventHandler(this.DurationTimeEdit_Leave);
@@ -6469,6 +6461,13 @@
             this.colBookingEnd.VisibleIndex = 5;
             this.colBookingEnd.Width = 47;
             // 
+            // colReciprocal
+            // 
+            this.colReciprocal.FieldName = "Reciprocal";
+            this.colReciprocal.Name = "colReciprocal";
+            this.colReciprocal.Visible = true;
+            this.colReciprocal.VisibleIndex = 11;
+            // 
             // colInactive2
             // 
             this.colInactive2.FieldName = "Inactive";
@@ -6495,13 +6494,6 @@
             this.colDiscountFlat.Name = "colDiscountFlat";
             this.colDiscountFlat.Visible = true;
             this.colDiscountFlat.VisibleIndex = 14;
-            // 
-            // colReciprocal
-            // 
-            this.colReciprocal.FieldName = "Reciprocal";
-            this.colReciprocal.Name = "colReciprocal";
-            this.colReciprocal.Visible = true;
-            this.colReciprocal.VisibleIndex = 11;
             // 
             // colIsRoundTrip
             // 
@@ -7062,7 +7054,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RatingControlStars.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditRanking.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpinEditMaxDuration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditDueDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditARNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAPNumber.Properties)).EndInit();
@@ -7665,7 +7657,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName7;
         private DevExpress.XtraGrid.Columns.GridColumn colCode13;
         private DevExpress.XtraGrid.Columns.GridColumn colName8;
-        private DevExpress.XtraEditors.SpinEdit spinEdit1;
+        private DevExpress.XtraEditors.SpinEdit SpinEditMaxDuration;
         private DevExpress.XtraEditors.SpinEdit SpinEditRanking;
         private DevExpress.XtraEditors.CheckEdit CheckEditDOBRequired;
         private DevExpress.XtraEditors.SpinEdit spinEdit2;

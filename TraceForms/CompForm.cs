@@ -735,6 +735,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateInclude5, TextEditIncl5);
             SetErrorInfo(_selectedRecord.ValidateInclude6, TextEditIncl6);
             SetErrorInfo(_selectedRecord.ValidateDuration, SpinEditDuration);
+            SetErrorInfo(_selectedRecord.ValidateMaxDuration, SpinEditMaxDuration);
             SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
             SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
             SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
@@ -2083,6 +2084,12 @@ namespace TraceForms
             } else {
                 xtraTabPageTransferPoints.PageEnabled = "IO".Contains(ImageComboBoxEditTransType.EditValue.ToString());
             }
+        }
+
+        private void SpinEditMaxDuration_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateMaxDuration, sender);
         }
 
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
