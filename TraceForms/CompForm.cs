@@ -1261,6 +1261,7 @@ namespace TraceForms
             {               
                 GridViewTransferPoints.SetFocusedRowCellValue("LOCATION", "");
                 GridViewTransferPoints.SetFocusedRowCellValue("CarOffice", "");
+                GridViewTransferPoints.SetFocusedRowCellValue("Exclusion", "0");
             }
         }
 
@@ -1280,7 +1281,6 @@ namespace TraceForms
                 else {
                     RepositoryItemSearchLookupEditLocation.DataSource = null;
                 }
-                repositoryItemCheckEditLocationExclusion.ReadOnly = (type != "HTL");
             }
 			if (e.Column.FieldName == "CompBusRoute_ID") {
                 RepositoryItemImageComboBox editor = new RepositoryItemImageComboBox();
@@ -1292,6 +1292,15 @@ namespace TraceForms
 				}
 				e.RepositoryItem = editor;
 			}
+            if (e.Column == ColumnExclusion) {
+                string type = GridViewTransferPoints.GetRowCellDisplayText(e.RowHandle, "LocationType");
+                if (type != "HTL") {
+                    e.RepositoryItem = repositoryItemCheckEditReadOnly;
+                }
+                else {
+                    e.RepositoryItem = RepositoryItemCheckEditLocationExclusion;
+                }
+            }
         }
 
         private void TextEditCode_Leave(object sender, EventArgs e)

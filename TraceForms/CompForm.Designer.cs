@@ -319,7 +319,7 @@
             this.ColumnCarOffice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnArrivalTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnExclusion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCheckEditLocationExclusion = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.RepositoryItemCheckEditLocationExclusion = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnRoute = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBoxRoutes = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
@@ -440,6 +440,7 @@
             this.gridColumnMappingResStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingResEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTimeEditDefault = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.gridColumnMappingDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -455,7 +456,6 @@
             this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPickup_Time_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTimeEditDefault = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.colDropoff_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBoxDefaultDrpLocType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colDropoff_Location_Default = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -598,6 +598,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.repositoryItemCheckEditReadOnly = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             LabelCode = new System.Windows.Forms.Label();
             LabelRateBasis = new System.Windows.Forms.Label();
             LabelRestrictions = new System.Windows.Forms.Label();
@@ -753,7 +754,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookupEditLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocationView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditLocationExclusion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckEditLocationExclusion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
@@ -793,12 +794,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControlSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
@@ -860,6 +861,7 @@
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelCode
@@ -3824,7 +3826,8 @@
             this.RepositoryItemTimeEditServiceTime,
             this.RepositoryItemSearchLookUpEditCat,
             this.repositoryItemComboBoxLocType,
-            this.repositoryItemCheckEditLocationExclusion});
+            this.RepositoryItemCheckEditLocationExclusion,
+            this.repositoryItemCheckEditReadOnly});
             this.GridControlTransferPoints.Size = new System.Drawing.Size(814, 502);
             this.GridControlTransferPoints.TabIndex = 31;
             this.GridControlTransferPoints.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -4070,7 +4073,7 @@
             // 
             // ColumnExclusion
             // 
-            this.ColumnExclusion.ColumnEdit = this.repositoryItemCheckEditLocationExclusion;
+            this.ColumnExclusion.ColumnEdit = this.RepositoryItemCheckEditLocationExclusion;
             this.ColumnExclusion.FieldName = "Exclusion";
             this.ColumnExclusion.MinWidth = 10;
             this.ColumnExclusion.Name = "ColumnExclusion";
@@ -4078,13 +4081,12 @@
             this.ColumnExclusion.VisibleIndex = 5;
             this.ColumnExclusion.Width = 51;
             // 
-            // repositoryItemCheckEditLocationExclusion
+            // RepositoryItemCheckEditLocationExclusion
             // 
-            this.repositoryItemCheckEditLocationExclusion.AutoHeight = false;
-            this.repositoryItemCheckEditLocationExclusion.Name = "repositoryItemCheckEditLocationExclusion";
-            this.repositoryItemCheckEditLocationExclusion.ReadOnly = true;
-            this.repositoryItemCheckEditLocationExclusion.ValueChecked = "1";
-            this.repositoryItemCheckEditLocationExclusion.ValueUnchecked = "0";
+            this.RepositoryItemCheckEditLocationExclusion.AutoHeight = false;
+            this.RepositoryItemCheckEditLocationExclusion.Name = "RepositoryItemCheckEditLocationExclusion";
+            this.RepositoryItemCheckEditLocationExclusion.ValueChecked = "1";
+            this.RepositoryItemCheckEditLocationExclusion.ValueUnchecked = "0";
             // 
             // colID
             // 
@@ -5364,6 +5366,16 @@
             this.colServiceTime.Visible = true;
             this.colServiceTime.VisibleIndex = 9;
             // 
+            // repositoryItemTimeEditDefault
+            // 
+            this.repositoryItemTimeEditDefault.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemTimeEditDefault.AutoHeight = false;
+            this.repositoryItemTimeEditDefault.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEditDefault.Mask.EditMask = "h:mm tt";
+            this.repositoryItemTimeEditDefault.Name = "repositoryItemTimeEditDefault";
+            this.repositoryItemTimeEditDefault.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            // 
             // gridColumnMappingDesc
             // 
             this.gridColumnMappingDesc.Caption = "Description";
@@ -5518,16 +5530,6 @@
             this.colPickup_Time_Default.Visible = true;
             this.colPickup_Time_Default.VisibleIndex = 15;
             this.colPickup_Time_Default.Width = 78;
-            // 
-            // repositoryItemTimeEditDefault
-            // 
-            this.repositoryItemTimeEditDefault.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.repositoryItemTimeEditDefault.AutoHeight = false;
-            this.repositoryItemTimeEditDefault.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemTimeEditDefault.Mask.EditMask = "h:mm tt";
-            this.repositoryItemTimeEditDefault.Name = "repositoryItemTimeEditDefault";
-            this.repositoryItemTimeEditDefault.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             // 
             // colDropoff_LocationType_Default
             // 
@@ -6970,6 +6972,14 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 620);
             // 
+            // repositoryItemCheckEditReadOnly
+            // 
+            this.repositoryItemCheckEditReadOnly.AutoHeight = false;
+            this.repositoryItemCheckEditReadOnly.Name = "repositoryItemCheckEditReadOnly";
+            this.repositoryItemCheckEditReadOnly.ReadOnly = true;
+            this.repositoryItemCheckEditReadOnly.ValueChecked = "1";
+            this.repositoryItemCheckEditReadOnly.ValueUnchecked = "0";
+            // 
             // CompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -7117,7 +7127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookupEditLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboboxLocationView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxLocType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditLocationExclusion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckEditLocationExclusion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxRoutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
@@ -7163,12 +7173,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControlSupplierProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
@@ -7233,6 +7243,7 @@
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7762,7 +7773,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCode16;
         private DevExpress.XtraGrid.Columns.GridColumn colName11;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemUpdateWebsite;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditLocationExclusion;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit RepositoryItemCheckEditLocationExclusion;
         private DevExpress.XtraGrid.Columns.GridColumn colServPackType;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditServPackType;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView15;
@@ -7777,5 +7788,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCode20;
         private DevExpress.XtraGrid.Columns.GridColumn colName15;
         private DevExpress.XtraGrid.Columns.GridColumn colServiceTime;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditReadOnly;
     }
 }
