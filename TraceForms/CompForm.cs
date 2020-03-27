@@ -53,6 +53,7 @@ namespace TraceForms
                 SetReadOnly(true);
                 xtraTabPageRoutes.PageEnabled = false;
                 SetMapProperties();         //Mapping
+                //TimeEditDefaultTime.DataBindings.Add(new Binding("Text", this.BindingSource, "Default_Time", true, DataSourceUpdateMode.OnValidation));
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);

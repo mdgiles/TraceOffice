@@ -260,7 +260,7 @@
             this.CheckEditSvcList = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditDuration = new DevExpress.XtraEditors.SpinEdit();
             this.ImageComboBoxEditTransType = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.TextEditDefaultTime = new DevExpress.XtraEditors.TimeEdit();
+            this.TextEditDefaultTime = new DevExpress.XtraEditors.TextEdit();
             this.xtraTabPageServices = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlServicesTab = new DevExpress.XtraEditors.PanelControl();
             this.TextEditIncl6 = new DevExpress.XtraEditors.TextEdit();
@@ -330,6 +330,7 @@
             this.colName11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemTimeEditServiceTime = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.repositoryItemCheckEditReadOnly = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPageMemberships = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -598,7 +599,6 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.repositoryItemCheckEditReadOnly = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             LabelCode = new System.Windows.Forms.Label();
             LabelRateBasis = new System.Windows.Forms.Label();
             LabelRestrictions = new System.Windows.Forms.Label();
@@ -759,6 +759,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTimeEditServiceTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             this.xtraTabPageMemberships.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -861,7 +862,6 @@
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelCode
@@ -2250,6 +2250,7 @@
             this.SimpleButtonPlot.Size = new System.Drawing.Size(66, 41);
             this.SimpleButtonPlot.TabIndex = 276;
             this.SimpleButtonPlot.Text = "Plot";
+            this.SimpleButtonPlot.Click += new System.EventHandler(this.SimpleButtonPlot_Click);
             // 
             // MapControl
             // 
@@ -2959,7 +2960,7 @@
             // spinEdit2
             // 
             this.spinEdit2.CausesValidation = false;
-            this.spinEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MaxDuration", true));
+            this.spinEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UserReviews", true));
             this.spinEdit2.EditValue = new decimal(new int[] {
             0,
             0,
@@ -3373,20 +3374,11 @@
             // TextEditDefaultTime
             // 
             this.TextEditDefaultTime.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Default_Time", true));
-            this.TextEditDefaultTime.EditValue = null;
             this.TextEditDefaultTime.Location = new System.Drawing.Point(239, 97);
             this.TextEditDefaultTime.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextEditDefaultTime.Name = "TextEditDefaultTime";
-            this.TextEditDefaultTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.TextEditDefaultTime.Properties.DisplayFormat.FormatString = "hh:mm tt";
+            this.TextEditDefaultTime.Properties.DisplayFormat.FormatString = "HHmm";
             this.TextEditDefaultTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.TextEditDefaultTime.Properties.EditFormat.FormatString = "hh:mm tt";
-            this.TextEditDefaultTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.TextEditDefaultTime.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.TextEditDefaultTime.Properties.Mask.EditMask = "hh:mm tt";
-            this.TextEditDefaultTime.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.TextEditDefaultTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.TextEditDefaultTime.Size = new System.Drawing.Size(100, 20);
             this.TextEditDefaultTime.TabIndex = 32;
             this.TextEditDefaultTime.Leave += new System.EventHandler(this.TextEditDefaultTime_Leave);
@@ -4186,6 +4178,14 @@
             this.RepositoryItemTimeEditServiceTime.Mask.EditMask = "hh:mm tt";
             this.RepositoryItemTimeEditServiceTime.Mask.UseMaskAsDisplayFormat = true;
             this.RepositoryItemTimeEditServiceTime.Name = "RepositoryItemTimeEditServiceTime";
+            // 
+            // repositoryItemCheckEditReadOnly
+            // 
+            this.repositoryItemCheckEditReadOnly.AutoHeight = false;
+            this.repositoryItemCheckEditReadOnly.Name = "repositoryItemCheckEditReadOnly";
+            this.repositoryItemCheckEditReadOnly.ReadOnly = true;
+            this.repositoryItemCheckEditReadOnly.ValueChecked = "1";
+            this.repositoryItemCheckEditReadOnly.ValueUnchecked = "0";
             // 
             // gridView12
             // 
@@ -6972,14 +6972,6 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 620);
             // 
-            // repositoryItemCheckEditReadOnly
-            // 
-            this.repositoryItemCheckEditReadOnly.AutoHeight = false;
-            this.repositoryItemCheckEditReadOnly.Name = "repositoryItemCheckEditReadOnly";
-            this.repositoryItemCheckEditReadOnly.ReadOnly = true;
-            this.repositoryItemCheckEditReadOnly.ValueChecked = "1";
-            this.repositoryItemCheckEditReadOnly.ValueUnchecked = "0";
-            // 
             // CompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -7132,6 +7124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTimeEditServiceTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             this.xtraTabPageMemberships.ResumeLayout(false);
             this.xtraTabPageMemberships.PerformLayout();
@@ -7243,7 +7236,6 @@
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEditReadOnly)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7654,7 +7646,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCode5;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxLocType;
-        private DevExpress.XtraEditors.TimeEdit TextEditDefaultTime;
         private DevExpress.XtraEditors.DateEdit ButtonEditDate;
         private DevExpress.XtraGrid.Columns.GridColumn colCode10;
         private DevExpress.XtraGrid.Columns.GridColumn colName4;
@@ -7789,5 +7780,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName15;
         private DevExpress.XtraGrid.Columns.GridColumn colServiceTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditReadOnly;
+        private DevExpress.XtraEditors.TextEdit TextEditDefaultTime;
     }
 }
