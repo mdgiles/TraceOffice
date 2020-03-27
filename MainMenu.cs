@@ -540,10 +540,15 @@ namespace FlexOffice
 
         private void barButtonPkgComp_ItemClick(object sender, ItemClickEventArgs e)
         {
-            PCompForm xform1 = new PCompForm(_FlexSys) { MdiParent = this };
-            xform1.Show();
+            try {
+                PCompForm xform1 = new PCompForm(_FlexSys) { MdiParent = this };
+                xform1.Show();
+            }
+            catch(Exception ex) {
+                DisplayError(ex);
+            }
         }
-
+        
         private void barButtonPkgCompUtil_ItemClick(object sender, ItemClickEventArgs e)
         {
             pcompCopyForm xform1 = new pcompCopyForm(_FlexSys) { MdiParent = this };

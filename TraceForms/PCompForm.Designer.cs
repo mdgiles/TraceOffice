@@ -331,7 +331,7 @@ namespace TraceForms
             label18.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             label18.Name = "label18";
             label18.Size = new System.Drawing.Size(46, 13);
-            label18.TabIndex = 271;
+            label18.TabIndex = 4;
             label18.Text = "Rate plan";
             // 
             // label1
@@ -340,7 +340,7 @@ namespace TraceForms
             label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(22, 13);
-            label1.TabIndex = 269;
+            label1.TabIndex = 6;
             label1.Text = "Time";
             // 
             // labelControl32
@@ -348,7 +348,7 @@ namespace TraceForms
             this.labelControl32.Location = new System.Drawing.Point(19, 205);
             this.labelControl32.Name = "labelControl32";
             this.labelControl32.Size = new System.Drawing.Size(84, 13);
-            this.labelControl32.TabIndex = 64;
+            this.labelControl32.TabIndex = 24;
             this.labelControl32.Text = "Update inventory";
             // 
             // BindingSource
@@ -369,7 +369,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Default", "D", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Agency", "A", -1)});
             this.ImageComboBoxEditUpdateInvt.Size = new System.Drawing.Size(100, 20);
-            this.ImageComboBoxEditUpdateInvt.TabIndex = 14;
+            this.ImageComboBoxEditUpdateInvt.TabIndex = 25;
             this.ImageComboBoxEditUpdateInvt.Leave += new System.EventHandler(this.ImageComboBoxEditUpdateInvt_Leave);
             // 
             // labelControl9
@@ -377,7 +377,7 @@ namespace TraceForms
             this.labelControl9.Location = new System.Drawing.Point(247, 229);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(52, 13);
-            this.labelControl9.TabIndex = 46;
+            this.labelControl9.TabIndex = 29;
             this.labelControl9.Text = "Room type";
             this.labelControl9.Visible = false;
             // 
@@ -394,7 +394,7 @@ namespace TraceForms
             this.CheckEditPrivateCar.Properties.ValueChecked = "Y";
             this.CheckEditPrivateCar.Properties.ValueUnchecked = "N";
             this.CheckEditPrivateCar.Size = new System.Drawing.Size(87, 19);
-            this.CheckEditPrivateCar.TabIndex = 13;
+            this.CheckEditPrivateCar.TabIndex = 3;
             this.CheckEditPrivateCar.Visible = false;
             // 
             // labelControl6
@@ -402,7 +402,7 @@ namespace TraceForms
             this.labelControl6.Location = new System.Drawing.Point(19, 300);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(44, 13);
-            this.labelControl6.TabIndex = 42;
+            this.labelControl6.TabIndex = 38;
             this.labelControl6.Text = "Operator";
             // 
             // ComboBoxEditRoom
@@ -423,7 +423,7 @@ namespace TraceForms
             "OTH"});
             this.ComboBoxEditRoom.Properties.NullText = " ";
             this.ComboBoxEditRoom.Size = new System.Drawing.Size(100, 20);
-            this.ComboBoxEditRoom.TabIndex = 10;
+            this.ComboBoxEditRoom.TabIndex = 30;
             this.ComboBoxEditRoom.Visible = false;
             // 
             // labelControl5
@@ -431,7 +431,7 @@ namespace TraceForms
             this.labelControl5.Location = new System.Drawing.Point(19, 276);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(45, 13);
-            this.labelControl5.TabIndex = 41;
+            this.labelControl5.TabIndex = 36;
             this.labelControl5.Text = "Meal plan";
             // 
             // labelControl3
@@ -439,7 +439,7 @@ namespace TraceForms
             this.labelControl3.Location = new System.Drawing.Point(441, 252);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(58, 13);
-            this.labelControl3.TabIndex = 39;
+            this.labelControl3.TabIndex = 34;
             this.labelControl3.Text = "Service time";
             // 
             // CheckEditCheckOutTime
@@ -454,7 +454,7 @@ namespace TraceForms
             this.CheckEditCheckOutTime.Properties.ValueChecked = "Y";
             this.CheckEditCheckOutTime.Properties.ValueUnchecked = "N";
             this.CheckEditCheckOutTime.Size = new System.Drawing.Size(187, 19);
-            this.CheckEditCheckOutTime.TabIndex = 12;
+            this.CheckEditCheckOutTime.TabIndex = 31;
             this.CheckEditCheckOutTime.Visible = false;
             // 
             // labelControl2
@@ -462,7 +462,7 @@ namespace TraceForms
             this.labelControl2.Location = new System.Drawing.Point(19, 45);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(45, 13);
-            this.labelControl2.TabIndex = 33;
+            this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Category";
             // 
             // labelControl1
@@ -470,7 +470,7 @@ namespace TraceForms
             this.labelControl1.Location = new System.Drawing.Point(19, 21);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(40, 13);
-            this.labelControl1.TabIndex = 32;
+            this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Package";
             // 
             // ErrorProvider
@@ -547,7 +547,7 @@ namespace TraceForms
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Name = "GridControlLookup";
             this.GridControlLookup.Size = new System.Drawing.Size(549, 711);
-            this.GridControlLookup.TabIndex = 30;
+            this.GridControlLookup.TabIndex = 0;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewLookup});
@@ -889,7 +889,7 @@ namespace TraceForms
             this.labelControl13.Location = new System.Drawing.Point(19, 252);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(83, 13);
-            this.labelControl13.TabIndex = 284;
+            this.labelControl13.TabIndex = 32;
             this.labelControl13.Text = "Product rate plan";
             // 
             // GridLookupEditItemSpecialValue
@@ -912,7 +912,7 @@ namespace TraceForms
             this.GridLookupEditItemSpecialValue.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.GridLookupEditItemSpecialValue.Properties.ValueMember = "Code";
             this.GridLookupEditItemSpecialValue.Size = new System.Drawing.Size(311, 20);
-            this.GridLookupEditItemSpecialValue.TabIndex = 285;
+            this.GridLookupEditItemSpecialValue.TabIndex = 33;
             this.GridLookupEditItemSpecialValue.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditItemSpecialValue_ProcessNewValue);
             this.GridLookupEditItemSpecialValue.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.GridLookupEditItemSpecialValue.Leave += new System.EventHandler(this.GridLookUpEditItemSpecialValue_Leave);
@@ -958,18 +958,18 @@ namespace TraceForms
             this.labelControl10.Location = new System.Drawing.Point(19, 157);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(80, 13);
-            this.labelControl10.TabIndex = 283;
+            this.labelControl10.TabIndex = 20;
             this.labelControl10.Text = "External product";
             // 
             // SimpleButtonDown
             // 
             this.SimpleButtonDown.AutoSize = true;
             this.SimpleButtonDown.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDown.ImageOptions.Image")));
-            this.SimpleButtonDown.Location = new System.Drawing.Point(555, 103);
+            this.SimpleButtonDown.Location = new System.Drawing.Point(631, 104);
             this.SimpleButtonDown.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.SimpleButtonDown.Name = "SimpleButtonDown";
             this.SimpleButtonDown.Size = new System.Drawing.Size(40, 38);
-            this.SimpleButtonDown.TabIndex = 281;
+            this.SimpleButtonDown.TabIndex = 17;
             this.SimpleButtonDown.ToolTip = "Move item to later in package";
             this.SimpleButtonDown.Click += new System.EventHandler(this.SimpleButtonDown_Click);
             // 
@@ -977,11 +977,11 @@ namespace TraceForms
             // 
             this.SimpleButtonUp.AutoSize = true;
             this.SimpleButtonUp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonUp.ImageOptions.Image")));
-            this.SimpleButtonUp.Location = new System.Drawing.Point(525, 103);
+            this.SimpleButtonUp.Location = new System.Drawing.Point(586, 104);
             this.SimpleButtonUp.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.SimpleButtonUp.Name = "SimpleButtonUp";
             this.SimpleButtonUp.Size = new System.Drawing.Size(40, 38);
-            this.SimpleButtonUp.TabIndex = 280;
+            this.SimpleButtonUp.TabIndex = 16;
             this.SimpleButtonUp.ToolTip = "Move item to earlier in package";
             this.SimpleButtonUp.Click += new System.EventHandler(this.SimpleButtonUp_Click);
             // 
@@ -990,11 +990,11 @@ namespace TraceForms
             this.SimpleButtonClone.AutoSize = true;
             this.SimpleButtonClone.Enabled = false;
             this.SimpleButtonClone.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonClone.ImageOptions.Image")));
-            this.SimpleButtonClone.Location = new System.Drawing.Point(587, 64);
+            this.SimpleButtonClone.Location = new System.Drawing.Point(586, 48);
             this.SimpleButtonClone.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.SimpleButtonClone.Name = "SimpleButtonClone";
             this.SimpleButtonClone.Size = new System.Drawing.Size(71, 38);
-            this.SimpleButtonClone.TabIndex = 279;
+            this.SimpleButtonClone.TabIndex = 8;
             this.SimpleButtonClone.Text = "Clone";
             this.SimpleButtonClone.ToolTip = "Begin a new record with the same key values";
             this.SimpleButtonClone.Click += new System.EventHandler(this.SimpleButtonClone_Click);
@@ -1009,7 +1009,7 @@ namespace TraceForms
             this.CheckEditVoucherable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditVoucherable.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             this.CheckEditVoucherable.Size = new System.Drawing.Size(125, 19);
-            this.CheckEditVoucherable.TabIndex = 278;
+            this.CheckEditVoucherable.TabIndex = 26;
             // 
             // labelControl4
             // 
@@ -1018,7 +1018,7 @@ namespace TraceForms
             this.labelControl4.Location = new System.Drawing.Point(19, 96);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(673, 1);
-            this.labelControl4.TabIndex = 277;
+            this.labelControl4.TabIndex = 9;
             // 
             // labelControlLastUpdatedBy
             // 
@@ -1026,7 +1026,7 @@ namespace TraceForms
             this.labelControlLastUpdatedBy.Location = new System.Drawing.Point(262, 506);
             this.labelControlLastUpdatedBy.Name = "labelControlLastUpdatedBy";
             this.labelControlLastUpdatedBy.Size = new System.Drawing.Size(0, 13);
-            this.labelControlLastUpdatedBy.TabIndex = 276;
+            this.labelControlLastUpdatedBy.TabIndex = 44;
             // 
             // TimeEditDepartureTime
             // 
@@ -1043,7 +1043,7 @@ namespace TraceForms
             this.TimeEditDepartureTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TimeEditDepartureTime.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             this.TimeEditDepartureTime.Size = new System.Drawing.Size(100, 20);
-            this.TimeEditDepartureTime.TabIndex = 270;
+            this.TimeEditDepartureTime.TabIndex = 7;
             this.TimeEditDepartureTime.Leave += new System.EventHandler(this.TimeEditDepartureTime_Leave);
             // 
             // labelControlLastUpdated
@@ -1052,14 +1052,14 @@ namespace TraceForms
             this.labelControlLastUpdated.Location = new System.Drawing.Point(88, 506);
             this.labelControlLastUpdated.Name = "labelControlLastUpdated";
             this.labelControlLastUpdated.Size = new System.Drawing.Size(0, 13);
-            this.labelControlLastUpdated.TabIndex = 109;
+            this.labelControlLastUpdated.TabIndex = 42;
             // 
             // labelControl12
             // 
             this.labelControl12.Location = new System.Drawing.Point(194, 506);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(60, 13);
-            this.labelControl12.TabIndex = 108;
+            this.labelControl12.TabIndex = 43;
             this.labelControl12.Text = "Updated By:";
             // 
             // labelControl11
@@ -1067,7 +1067,7 @@ namespace TraceForms
             this.labelControl11.Location = new System.Drawing.Point(12, 506);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(68, 13);
-            this.labelControl11.TabIndex = 107;
+            this.labelControl11.TabIndex = 41;
             this.labelControl11.Text = "Last Updated:";
             // 
             // PanelControlPickupDropoff
@@ -1091,7 +1091,7 @@ namespace TraceForms
             this.PanelControlPickupDropoff.Location = new System.Drawing.Point(9, 322);
             this.PanelControlPickupDropoff.Name = "PanelControlPickupDropoff";
             this.PanelControlPickupDropoff.Size = new System.Drawing.Size(678, 178);
-            this.PanelControlPickupDropoff.TabIndex = 104;
+            this.PanelControlPickupDropoff.TabIndex = 40;
             // 
             // CheckEditPickupInfoProhibited
             // 
@@ -1103,7 +1103,7 @@ namespace TraceForms
             this.CheckEditPickupInfoProhibited.Properties.Caption = "Prevent user from entering pickup info";
             this.CheckEditPickupInfoProhibited.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditPickupInfoProhibited.Size = new System.Drawing.Size(237, 19);
-            this.CheckEditPickupInfoProhibited.TabIndex = 280;
+            this.CheckEditPickupInfoProhibited.TabIndex = 9;
             this.CheckEditPickupInfoProhibited.CheckedChanged += new System.EventHandler(this.CheckEditPickupInfoProhibited_CheckedChanged);
             // 
             // CheckEditPickupInfoRequired
@@ -1116,7 +1116,7 @@ namespace TraceForms
             this.CheckEditPickupInfoRequired.Properties.Caption = "Require user to enter pickup info";
             this.CheckEditPickupInfoRequired.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditPickupInfoRequired.Size = new System.Drawing.Size(207, 19);
-            this.CheckEditPickupInfoRequired.TabIndex = 279;
+            this.CheckEditPickupInfoRequired.TabIndex = 8;
             this.CheckEditPickupInfoRequired.CheckedChanged += new System.EventHandler(this.CheckEditPickupInfoRequired_CheckedChanged);
             // 
             // CheckEditDropoffInfoProhibited
@@ -1129,7 +1129,7 @@ namespace TraceForms
             this.CheckEditDropoffInfoProhibited.Properties.Caption = "Prevent user from entering dropoff info";
             this.CheckEditDropoffInfoProhibited.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditDropoffInfoProhibited.Size = new System.Drawing.Size(237, 19);
-            this.CheckEditDropoffInfoProhibited.TabIndex = 278;
+            this.CheckEditDropoffInfoProhibited.TabIndex = 15;
             this.CheckEditDropoffInfoProhibited.CheckedChanged += new System.EventHandler(this.CheckEditDropoffInfoProhibited_CheckedChanged);
             // 
             // CheckEditDropoffInfoRequired
@@ -1142,7 +1142,7 @@ namespace TraceForms
             this.CheckEditDropoffInfoRequired.Properties.Caption = "Require user to enter dropoff info";
             this.CheckEditDropoffInfoRequired.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditDropoffInfoRequired.Size = new System.Drawing.Size(207, 19);
-            this.CheckEditDropoffInfoRequired.TabIndex = 277;
+            this.CheckEditDropoffInfoRequired.TabIndex = 14;
             this.CheckEditDropoffInfoRequired.CheckedChanged += new System.EventHandler(this.CheckEditDropoffInfoRequired_CheckedChanged);
             // 
             // labelControl8
@@ -1150,7 +1150,7 @@ namespace TraceForms
             this.labelControl8.Location = new System.Drawing.Point(212, 7);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(61, 13);
-            this.labelControl8.TabIndex = 274;
+            this.labelControl8.TabIndex = 1;
             this.labelControl8.Tag = "";
             this.labelControl8.Text = "Rental office";
             this.labelControl8.Visible = false;
@@ -1160,7 +1160,7 @@ namespace TraceForms
             this.labelControl38.Location = new System.Drawing.Point(17, 104);
             this.labelControl38.Name = "labelControl38";
             this.labelControl38.Size = new System.Drawing.Size(66, 13);
-            this.labelControl38.TabIndex = 5;
+            this.labelControl38.TabIndex = 10;
             this.labelControl38.Text = "Drop-off type";
             // 
             // labelControl30
@@ -1168,7 +1168,7 @@ namespace TraceForms
             this.labelControl30.Location = new System.Drawing.Point(17, 128);
             this.labelControl30.Name = "labelControl30";
             this.labelControl30.Size = new System.Drawing.Size(68, 13);
-            this.labelControl30.TabIndex = 3;
+            this.labelControl30.TabIndex = 12;
             this.labelControl30.Text = "Drop-off point";
             // 
             // labelControl29
@@ -1176,7 +1176,7 @@ namespace TraceForms
             this.labelControl29.Location = new System.Drawing.Point(17, 57);
             this.labelControl29.Name = "labelControl29";
             this.labelControl29.Size = new System.Drawing.Size(57, 13);
-            this.labelControl29.TabIndex = 2;
+            this.labelControl29.TabIndex = 6;
             this.labelControl29.Text = "Pickup point";
             // 
             // ComboBoxEditDropoffType
@@ -1200,7 +1200,7 @@ namespace TraceForms
             "TRN"});
             this.ComboBoxEditDropoffType.Properties.MaxLength = 3;
             this.ComboBoxEditDropoffType.Size = new System.Drawing.Size(100, 20);
-            this.ComboBoxEditDropoffType.TabIndex = 20;
+            this.ComboBoxEditDropoffType.TabIndex = 11;
             this.ComboBoxEditDropoffType.EditValueChanged += new System.EventHandler(this.ComboBoxEditDropoffType_EditValueChanged);
             this.ComboBoxEditDropoffType.Leave += new System.EventHandler(this.ComboBoxEditDropoffType_Leave);
             // 
@@ -1233,7 +1233,7 @@ namespace TraceForms
             "TRN"});
             this.ComboBoxEditPickupType.Properties.MaxLength = 3;
             this.ComboBoxEditPickupType.Size = new System.Drawing.Size(100, 20);
-            this.ComboBoxEditPickupType.TabIndex = 18;
+            this.ComboBoxEditPickupType.TabIndex = 5;
             this.ComboBoxEditPickupType.EditValueChanged += new System.EventHandler(this.ComboBoxEditPickupType_EditValueChanged);
             this.ComboBoxEditPickupType.Leave += new System.EventHandler(this.ComboBoxEditPickupType_Leave);
             // 
@@ -1259,7 +1259,7 @@ namespace TraceForms
             this.SearchLookupEditCarOffice.Properties.PopupView = this.gridView6;
             this.SearchLookupEditCarOffice.Properties.ValueMember = "Code";
             this.SearchLookupEditCarOffice.Size = new System.Drawing.Size(239, 20);
-            this.SearchLookupEditCarOffice.TabIndex = 275;
+            this.SearchLookupEditCarOffice.TabIndex = 2;
             this.SearchLookupEditCarOffice.Visible = false;
             // 
             // gridView6
@@ -1309,7 +1309,7 @@ namespace TraceForms
             this.SearchLookupEditPickupLocation.Properties.PopupView = this.gridView4;
             this.SearchLookupEditPickupLocation.Properties.ValueMember = "Code";
             this.SearchLookupEditPickupLocation.Size = new System.Drawing.Size(366, 20);
-            this.SearchLookupEditPickupLocation.TabIndex = 22;
+            this.SearchLookupEditPickupLocation.TabIndex = 7;
             this.SearchLookupEditPickupLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditPickupLocation.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditPickupLocation.Leave += new System.EventHandler(this.SearchLookupEditPickupLocation_Leave);
@@ -1361,7 +1361,7 @@ namespace TraceForms
             this.SearchLookupEditDropoffLocation.Properties.PopupView = this.gridView7;
             this.SearchLookupEditDropoffLocation.Properties.ValueMember = "Code";
             this.SearchLookupEditDropoffLocation.Size = new System.Drawing.Size(366, 20);
-            this.SearchLookupEditDropoffLocation.TabIndex = 23;
+            this.SearchLookupEditDropoffLocation.TabIndex = 13;
             this.SearchLookupEditDropoffLocation.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditDropoffLocation.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditDropoffLocation.Leave += new System.EventHandler(this.SearchLookupEditDropoffLocation_Leave);
@@ -1412,7 +1412,7 @@ namespace TraceForms
             "OPT"});
             this.ComboBoxEditItemType.Properties.MaxLength = 3;
             this.ComboBoxEditItemType.Size = new System.Drawing.Size(100, 20);
-            this.ComboBoxEditItemType.TabIndex = 6;
+            this.ComboBoxEditItemType.TabIndex = 11;
             this.ComboBoxEditItemType.EditValueChanged += new System.EventHandler(this.ComboBoxEditItemType_EditValueChanged);
             this.ComboBoxEditItemType.Leave += new System.EventHandler(this.ComboBoxEditItemType_Leave);
             // 
@@ -1421,7 +1421,7 @@ namespace TraceForms
             this.labelControl36.Location = new System.Drawing.Point(20, 110);
             this.labelControl36.Name = "labelControl36";
             this.labelControl36.Size = new System.Drawing.Size(62, 13);
-            this.labelControl36.TabIndex = 82;
+            this.labelControl36.TabIndex = 10;
             this.labelControl36.Text = "Product type";
             // 
             // labelControl35
@@ -1429,7 +1429,7 @@ namespace TraceForms
             this.labelControl35.Location = new System.Drawing.Point(19, 134);
             this.labelControl35.Name = "labelControl35";
             this.labelControl35.Size = new System.Drawing.Size(37, 13);
-            this.labelControl35.TabIndex = 81;
+            this.labelControl35.TabIndex = 18;
             this.labelControl35.Text = "Product";
             // 
             // PanelControlArvInfo
@@ -1450,7 +1450,7 @@ namespace TraceForms
             this.PanelControlArvInfo.Location = new System.Drawing.Point(15, 626);
             this.PanelControlArvInfo.Name = "PanelControlArvInfo";
             this.PanelControlArvInfo.Size = new System.Drawing.Size(673, 77);
-            this.PanelControlArvInfo.TabIndex = 103;
+            this.PanelControlArvInfo.TabIndex = 46;
             this.PanelControlArvInfo.Visible = false;
             // 
             // TextEditArvFlight
@@ -1461,7 +1461,7 @@ namespace TraceForms
             this.TextEditArvFlight.Name = "TextEditArvFlight";
             this.TextEditArvFlight.Properties.MaxLength = 6;
             this.TextEditArvFlight.Size = new System.Drawing.Size(61, 20);
-            this.TextEditArvFlight.TabIndex = 106;
+            this.TextEditArvFlight.TabIndex = 6;
             this.TextEditArvFlight.Leave += new System.EventHandler(this.TextEditArvFlight_Leave);
             // 
             // labelControl42
@@ -1469,7 +1469,7 @@ namespace TraceForms
             this.labelControl42.Location = new System.Drawing.Point(7, 7);
             this.labelControl42.Name = "labelControl42";
             this.labelControl42.Size = new System.Drawing.Size(90, 13);
-            this.labelControl42.TabIndex = 101;
+            this.labelControl42.TabIndex = 0;
             this.labelControl42.Tag = "";
             this.labelControl42.Text = "Arrival Information";
             // 
@@ -1478,7 +1478,7 @@ namespace TraceForms
             this.labelControl41.Location = new System.Drawing.Point(507, 52);
             this.labelControl41.Name = "labelControl41";
             this.labelControl41.Size = new System.Drawing.Size(41, 13);
-            this.labelControl41.TabIndex = 100;
+            this.labelControl41.TabIndex = 11;
             this.labelControl41.Tag = "";
             this.labelControl41.Text = "Transfer";
             // 
@@ -1487,7 +1487,7 @@ namespace TraceForms
             this.labelControl21.Location = new System.Drawing.Point(347, 52);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(54, 13);
-            this.labelControl21.TabIndex = 99;
+            this.labelControl21.TabIndex = 9;
             this.labelControl21.Tag = "";
             this.labelControl21.Text = "Arrival time";
             // 
@@ -1496,7 +1496,7 @@ namespace TraceForms
             this.labelControl20.Location = new System.Drawing.Point(181, 52);
             this.labelControl20.Name = "labelControl20";
             this.labelControl20.Size = new System.Drawing.Size(74, 13);
-            this.labelControl20.TabIndex = 98;
+            this.labelControl20.TabIndex = 7;
             this.labelControl20.Tag = "";
             this.labelControl20.Text = "Departure Time";
             // 
@@ -1505,7 +1505,7 @@ namespace TraceForms
             this.labelControl18.Location = new System.Drawing.Point(16, 52);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(26, 13);
-            this.labelControl18.TabIndex = 97;
+            this.labelControl18.TabIndex = 5;
             this.labelControl18.Tag = "";
             this.labelControl18.Text = "Flight";
             // 
@@ -1514,7 +1514,7 @@ namespace TraceForms
             this.labelControl17.Location = new System.Drawing.Point(347, 27);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(24, 13);
-            this.labelControl17.TabIndex = 96;
+            this.labelControl17.TabIndex = 3;
             this.labelControl17.Tag = "";
             this.labelControl17.Text = "From";
             // 
@@ -1523,7 +1523,7 @@ namespace TraceForms
             this.labelControl16.Location = new System.Drawing.Point(17, 27);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(51, 13);
-            this.labelControl16.TabIndex = 95;
+            this.labelControl16.TabIndex = 1;
             this.labelControl16.Tag = "";
             this.labelControl16.Text = "Arrival city";
             // 
@@ -1540,7 +1540,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Seat In", "S", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Private", "P", -1)});
             this.ComboBoxEditArvTransfer.Size = new System.Drawing.Size(104, 20);
-            this.ComboBoxEditArvTransfer.TabIndex = 107;
+            this.ComboBoxEditArvTransfer.TabIndex = 12;
             this.ComboBoxEditArvTransfer.Leave += new System.EventHandler(this.ComboBoxEditArvTransfer_Leave);
             // 
             // TextEditArvDepartureTime
@@ -1555,7 +1555,7 @@ namespace TraceForms
             this.TextEditArvDepartureTime.Properties.Mask.EditMask = "";
             this.TextEditArvDepartureTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditArvDepartureTime.Size = new System.Drawing.Size(69, 20);
-            this.TextEditArvDepartureTime.TabIndex = 102;
+            this.TextEditArvDepartureTime.TabIndex = 8;
             this.TextEditArvDepartureTime.Leave += new System.EventHandler(this.TextEditArvDepartureTime_Leave);
             // 
             // TextEditArvArrivalTime
@@ -1570,7 +1570,7 @@ namespace TraceForms
             this.TextEditArvArrivalTime.Properties.Mask.EditMask = "";
             this.TextEditArvArrivalTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditArvArrivalTime.Size = new System.Drawing.Size(69, 20);
-            this.TextEditArvArrivalTime.TabIndex = 103;
+            this.TextEditArvArrivalTime.TabIndex = 10;
             this.TextEditArvArrivalTime.Leave += new System.EventHandler(this.TextEditArvArrivalTime_Leave);
             // 
             // SearchLookupEditArvArrivalCity
@@ -1588,7 +1588,7 @@ namespace TraceForms
             this.SearchLookupEditArvArrivalCity.Properties.PopupView = this.gridView13;
             this.SearchLookupEditArvArrivalCity.Properties.ValueMember = "Code";
             this.SearchLookupEditArvArrivalCity.Size = new System.Drawing.Size(249, 20);
-            this.SearchLookupEditArvArrivalCity.TabIndex = 104;
+            this.SearchLookupEditArvArrivalCity.TabIndex = 2;
             this.SearchLookupEditArvArrivalCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditArvArrivalCity.Leave += new System.EventHandler(this.SearchLookupEditArvArrivalCity_Leave);
             // 
@@ -1639,7 +1639,7 @@ namespace TraceForms
             this.SearchLookupEditArvDepartureCity.Properties.PopupView = this.gridView10;
             this.SearchLookupEditArvDepartureCity.Properties.ValueMember = "Code";
             this.SearchLookupEditArvDepartureCity.Size = new System.Drawing.Size(249, 20);
-            this.SearchLookupEditArvDepartureCity.TabIndex = 105;
+            this.SearchLookupEditArvDepartureCity.TabIndex = 4;
             this.SearchLookupEditArvDepartureCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditArvDepartureCity.Leave += new System.EventHandler(this.SearchLookupEditArvDepartureCity_Leave);
             // 
@@ -1680,7 +1680,7 @@ namespace TraceForms
             this.labelControl34.Location = new System.Drawing.Point(19, 181);
             this.labelControl34.Name = "labelControl34";
             this.labelControl34.Size = new System.Drawing.Size(83, 13);
-            this.labelControl34.TabIndex = 80;
+            this.labelControl34.TabIndex = 22;
             this.labelControl34.Text = "Product category";
             // 
             // labelControl33
@@ -1688,7 +1688,7 @@ namespace TraceForms
             this.labelControl33.Location = new System.Drawing.Point(19, 229);
             this.labelControl33.Name = "labelControl33";
             this.labelControl33.Size = new System.Drawing.Size(30, 13);
-            this.labelControl33.TabIndex = 79;
+            this.labelControl33.TabIndex = 27;
             this.labelControl33.Text = "Nights";
             // 
             // SpinEditNights
@@ -1713,7 +1713,7 @@ namespace TraceForms
             0,
             0});
             this.SpinEditNights.Size = new System.Drawing.Size(72, 20);
-            this.SpinEditNights.TabIndex = 9;
+            this.SpinEditNights.TabIndex = 28;
             this.SpinEditNights.Leave += new System.EventHandler(this.SpinEditNights_Leave);
             // 
             // labelControl24
@@ -1721,7 +1721,7 @@ namespace TraceForms
             this.labelControl24.Location = new System.Drawing.Point(396, 112);
             this.labelControl24.Name = "labelControl24";
             this.labelControl24.Size = new System.Drawing.Size(19, 13);
-            this.labelControl24.TabIndex = 73;
+            this.labelControl24.TabIndex = 14;
             this.labelControl24.Text = "Line";
             // 
             // labelControl23
@@ -1729,7 +1729,7 @@ namespace TraceForms
             this.labelControl23.Location = new System.Drawing.Point(269, 112);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(19, 13);
-            this.labelControl23.TabIndex = 72;
+            this.labelControl23.TabIndex = 12;
             this.labelControl23.Text = "Day";
             // 
             // SpinEditLine
@@ -1758,7 +1758,7 @@ namespace TraceForms
             0,
             0});
             this.SpinEditLine.Size = new System.Drawing.Size(48, 20);
-            this.SpinEditLine.TabIndex = 5;
+            this.SpinEditLine.TabIndex = 15;
             this.SpinEditLine.Leave += new System.EventHandler(this.SpinEditLine_Leave);
             // 
             // SpinEditDay
@@ -1787,7 +1787,7 @@ namespace TraceForms
             0,
             0});
             this.SpinEditDay.Size = new System.Drawing.Size(56, 20);
-            this.SpinEditDay.TabIndex = 4;
+            this.SpinEditDay.TabIndex = 13;
             this.SpinEditDay.Leave += new System.EventHandler(this.SpinEditDay_Leave);
             // 
             // PanelControlDepInfo
@@ -1808,7 +1808,7 @@ namespace TraceForms
             this.PanelControlDepInfo.Location = new System.Drawing.Point(15, 544);
             this.PanelControlDepInfo.Name = "PanelControlDepInfo";
             this.PanelControlDepInfo.Size = new System.Drawing.Size(673, 77);
-            this.PanelControlDepInfo.TabIndex = 102;
+            this.PanelControlDepInfo.TabIndex = 45;
             this.PanelControlDepInfo.Visible = false;
             // 
             // TextEditDepFlight
@@ -1819,7 +1819,7 @@ namespace TraceForms
             this.TextEditDepFlight.Name = "TextEditDepFlight";
             this.TextEditDepFlight.Properties.MaxLength = 6;
             this.TextEditDepFlight.Size = new System.Drawing.Size(61, 20);
-            this.TextEditDepFlight.TabIndex = 98;
+            this.TextEditDepFlight.TabIndex = 6;
             this.TextEditDepFlight.Leave += new System.EventHandler(this.TextEditDepFlight_Leave);
             // 
             // labelControl25
@@ -1827,7 +1827,7 @@ namespace TraceForms
             this.labelControl25.Location = new System.Drawing.Point(514, 51);
             this.labelControl25.Name = "labelControl25";
             this.labelControl25.Size = new System.Drawing.Size(41, 13);
-            this.labelControl25.TabIndex = 94;
+            this.labelControl25.TabIndex = 11;
             this.labelControl25.Tag = "";
             this.labelControl25.Text = "Transfer";
             // 
@@ -1836,7 +1836,7 @@ namespace TraceForms
             this.labelControl19.Location = new System.Drawing.Point(184, 51);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(72, 13);
-            this.labelControl19.TabIndex = 93;
+            this.labelControl19.TabIndex = 7;
             this.labelControl19.Tag = "";
             this.labelControl19.Text = "Departure time";
             // 
@@ -1845,7 +1845,7 @@ namespace TraceForms
             this.labelControl40.Location = new System.Drawing.Point(347, 51);
             this.labelControl40.Name = "labelControl40";
             this.labelControl40.Size = new System.Drawing.Size(54, 13);
-            this.labelControl40.TabIndex = 92;
+            this.labelControl40.TabIndex = 9;
             this.labelControl40.Tag = "";
             this.labelControl40.Text = "Arrival time";
             // 
@@ -1854,7 +1854,7 @@ namespace TraceForms
             this.labelControl39.Location = new System.Drawing.Point(15, 51);
             this.labelControl39.Name = "labelControl39";
             this.labelControl39.Size = new System.Drawing.Size(26, 13);
-            this.labelControl39.TabIndex = 91;
+            this.labelControl39.TabIndex = 5;
             this.labelControl39.Tag = "";
             this.labelControl39.Text = "Flight";
             // 
@@ -1863,7 +1863,7 @@ namespace TraceForms
             this.labelControl27.Location = new System.Drawing.Point(15, 27);
             this.labelControl27.Name = "labelControl27";
             this.labelControl27.Size = new System.Drawing.Size(55, 13);
-            this.labelControl27.TabIndex = 90;
+            this.labelControl27.TabIndex = 1;
             this.labelControl27.Tag = "";
             this.labelControl27.Text = "Depart City";
             // 
@@ -1872,7 +1872,7 @@ namespace TraceForms
             this.labelControl26.Location = new System.Drawing.Point(347, 27);
             this.labelControl26.Name = "labelControl26";
             this.labelControl26.Size = new System.Drawing.Size(54, 13);
-            this.labelControl26.TabIndex = 89;
+            this.labelControl26.TabIndex = 3;
             this.labelControl26.Tag = "";
             this.labelControl26.Text = "Destination";
             // 
@@ -1881,7 +1881,7 @@ namespace TraceForms
             this.labelControl22.Location = new System.Drawing.Point(6, 7);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(108, 13);
-            this.labelControl22.TabIndex = 88;
+            this.labelControl22.TabIndex = 0;
             this.labelControl22.Tag = "";
             this.labelControl22.Text = "Departure Information";
             // 
@@ -1898,7 +1898,7 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("None", "N", -1),
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Private", "P", -1)});
             this.ComboBoxEditDepTransfer.Size = new System.Drawing.Size(96, 20);
-            this.ComboBoxEditDepTransfer.TabIndex = 99;
+            this.ComboBoxEditDepTransfer.TabIndex = 12;
             this.ComboBoxEditDepTransfer.Leave += new System.EventHandler(this.ComboBoxEditDepTransfer_Leave);
             // 
             // TextEditDepDepartureTime
@@ -1913,7 +1913,7 @@ namespace TraceForms
             this.TextEditDepDepartureTime.Properties.Mask.EditMask = "";
             this.TextEditDepDepartureTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditDepDepartureTime.Size = new System.Drawing.Size(69, 20);
-            this.TextEditDepDepartureTime.TabIndex = 21;
+            this.TextEditDepDepartureTime.TabIndex = 8;
             this.TextEditDepDepartureTime.Leave += new System.EventHandler(this.TextEditDepDepartureTime_Leave);
             // 
             // TextEditDepArrivalTime
@@ -1928,7 +1928,7 @@ namespace TraceForms
             this.TextEditDepArrivalTime.Properties.Mask.EditMask = "";
             this.TextEditDepArrivalTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.TextEditDepArrivalTime.Size = new System.Drawing.Size(69, 20);
-            this.TextEditDepArrivalTime.TabIndex = 95;
+            this.TextEditDepArrivalTime.TabIndex = 10;
             this.TextEditDepArrivalTime.Leave += new System.EventHandler(this.TextEditDepArrivalTime_Leave);
             // 
             // SearchLookupEditDepDepartureCity
@@ -1946,7 +1946,7 @@ namespace TraceForms
             this.SearchLookupEditDepDepartureCity.Properties.PopupView = this.gridView8;
             this.SearchLookupEditDepDepartureCity.Properties.ValueMember = "Code";
             this.SearchLookupEditDepDepartureCity.Size = new System.Drawing.Size(249, 20);
-            this.SearchLookupEditDepDepartureCity.TabIndex = 96;
+            this.SearchLookupEditDepDepartureCity.TabIndex = 2;
             this.SearchLookupEditDepDepartureCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditDepDepartureCity.Leave += new System.EventHandler(this.SearchLookupEditDepDepartureCity_Leave);
             // 
@@ -1997,7 +1997,7 @@ namespace TraceForms
             this.SearchLookupEditDepArrivalCity.Properties.PopupView = this.gridView12;
             this.SearchLookupEditDepArrivalCity.Properties.ValueMember = "Code";
             this.SearchLookupEditDepArrivalCity.Size = new System.Drawing.Size(249, 20);
-            this.SearchLookupEditDepArrivalCity.TabIndex = 97;
+            this.SearchLookupEditDepArrivalCity.TabIndex = 4;
             this.SearchLookupEditDepArrivalCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditDepArrivalCity.Leave += new System.EventHandler(this.SearchLookupEditDepArrivalCity_Leave);
             // 
@@ -2037,7 +2037,7 @@ namespace TraceForms
             // 
             this.GridLookupEditItemCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT1", true));
             this.GridLookupEditItemCategory.Enabled = false;
-            this.GridLookupEditItemCategory.Location = new System.Drawing.Point(122, 179);
+            this.GridLookupEditItemCategory.Location = new System.Drawing.Point(121, 178);
             this.GridLookupEditItemCategory.Name = "GridLookupEditItemCategory";
             this.GridLookupEditItemCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.GridLookupEditItemCategory.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -2053,7 +2053,7 @@ namespace TraceForms
             this.GridLookupEditItemCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.GridLookupEditItemCategory.Properties.ValueMember = "Code";
             this.GridLookupEditItemCategory.Size = new System.Drawing.Size(461, 20);
-            this.GridLookupEditItemCategory.TabIndex = 111;
+            this.GridLookupEditItemCategory.TabIndex = 23;
             this.GridLookupEditItemCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditItemCategory_ProcessNewValue);
             this.GridLookupEditItemCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.GridLookupEditItemCategory.Leave += new System.EventHandler(this.GridLookupEditItemCategory_Leave);
@@ -2106,7 +2106,7 @@ namespace TraceForms
             this.SearchLookupEditItemCode.Properties.PopupView = this.searchLookUpEdit1View;
             this.SearchLookupEditItemCode.Properties.ValueMember = "Code";
             this.SearchLookupEditItemCode.Size = new System.Drawing.Size(461, 20);
-            this.SearchLookupEditItemCode.TabIndex = 7;
+            this.SearchLookupEditItemCode.TabIndex = 19;
             this.SearchLookupEditItemCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditItemCode.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditItemCode.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookupEditItemCode_Closed);
@@ -2213,7 +2213,7 @@ namespace TraceForms
             this.SearchLookupEditCategory.Properties.PopupView = this.gridView15;
             this.SearchLookupEditCategory.Properties.ValueMember = "Code";
             this.SearchLookupEditCategory.Size = new System.Drawing.Size(461, 20);
-            this.SearchLookupEditCategory.TabIndex = 2;
+            this.SearchLookupEditCategory.TabIndex = 3;
             this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditCategory.Leave += new System.EventHandler(this.SearchLookupEditCategory_Leave);
             // 
@@ -2265,7 +2265,7 @@ namespace TraceForms
             this.SearchLookupEditSpecialValue.Properties.PopupView = this.gridView1;
             this.SearchLookupEditSpecialValue.Properties.ValueMember = "Code";
             this.SearchLookupEditSpecialValue.Size = new System.Drawing.Size(311, 20);
-            this.SearchLookupEditSpecialValue.TabIndex = 272;
+            this.SearchLookupEditSpecialValue.TabIndex = 5;
             this.SearchLookupEditSpecialValue.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditSpecialValue.Leave += new System.EventHandler(this.SearchLookupEditSpecialValue_Leave);
             // 
@@ -2317,7 +2317,7 @@ namespace TraceForms
             this.SearchLookupEditSupplierProduct.Properties.PopupView = this.gridView9;
             this.SearchLookupEditSupplierProduct.Properties.ValueMember = "ID";
             this.SearchLookupEditSupplierProduct.Size = new System.Drawing.Size(461, 20);
-            this.SearchLookupEditSupplierProduct.TabIndex = 282;
+            this.SearchLookupEditSupplierProduct.TabIndex = 21;
             this.SearchLookupEditSupplierProduct.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditSupplierProduct.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditSupplierProduct.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookUpEditSupplierProduct_Closed);
@@ -2459,7 +2459,7 @@ namespace TraceForms
             this.SearchLookupEditMeal.Properties.PopupView = this.gridView3;
             this.SearchLookupEditMeal.Properties.ValueMember = "Code";
             this.SearchLookupEditMeal.Size = new System.Drawing.Size(311, 20);
-            this.SearchLookupEditMeal.TabIndex = 15;
+            this.SearchLookupEditMeal.TabIndex = 37;
             this.SearchLookupEditMeal.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditMeal.Leave += new System.EventHandler(this.SearchLookupEditEditMeal_Leave);
             // 
@@ -2510,7 +2510,7 @@ namespace TraceForms
             this.SearchLookupEditOperator.Properties.PopupView = this.gridView5;
             this.SearchLookupEditOperator.Properties.ValueMember = "Code";
             this.SearchLookupEditOperator.Size = new System.Drawing.Size(311, 20);
-            this.SearchLookupEditOperator.TabIndex = 16;
+            this.SearchLookupEditOperator.TabIndex = 39;
             this.SearchLookupEditOperator.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditOperator.Leave += new System.EventHandler(this.SearchLookupEditOperator_Leave);
             // 
@@ -2558,7 +2558,7 @@ namespace TraceForms
             this.TimeEditServiceTime.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.TimeEditServiceTime.Properties.MaxLength = 4;
             this.TimeEditServiceTime.Size = new System.Drawing.Size(72, 20);
-            this.TimeEditServiceTime.TabIndex = 273;
+            this.TimeEditServiceTime.TabIndex = 35;
             this.TimeEditServiceTime.Leave += new System.EventHandler(this.TimeEditServiceTime_Leave);
             // 
             // PanelControlStatus

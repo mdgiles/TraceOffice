@@ -193,7 +193,7 @@ namespace TraceForms
                 if (_selectedRecord == null)
                     return true;
 
-                BindingSource.EndEdit();
+                FinalizeBindings();
                 bool newRec = _selectedRecord.IsNew();
                 bool modified = newRec || IsModified(_selectedRecord);
 
@@ -279,6 +279,20 @@ namespace TraceForms
             }
         }
 
+        private void FinalizeBindings()
+        {
+            //Leave event of control doesn't fire when Save button is clicked, and for the GridLookupEditItem controls
+            //that is when the value in the editor is manually posted back to the data source. Thus we need to manually update
+            //the data source here, but first we have to make sure all the other fields in the data source are posted back,
+            //otherwise updating _selectedRecord will cause the entity framework to fire a property changed notification
+            //which will undo edits on any unposted controls
+            BindingSource.EndEdit();
+            _selectedRecord.CAT1 = GridLookupEditItemCategory.Text;
+            SetItemCategoryLookup(GridLookupEditItemCategory.Text);
+            _selectedRecord.SpecialValue_Code_Item = GridLookupEditItemSpecialValue.Text;
+            SetItemSpecialValueLookup(GridLookupEditItemSpecialValue.Text);
+        }
+
         private bool IsModified(PCOMP record)
         {
             //Type-specific routine that takes into account relationships that should also be considered
@@ -302,6 +316,7 @@ namespace TraceForms
                 SetAllFieldsEnabledState(false);
                 SetReadOnlyKeyFields(true);
                 SetButtonEnabledState(true);
+                ItemChanged(_selectedRecord.CODE1);
             }
         }
 
@@ -321,15 +336,15 @@ namespace TraceForms
 
         private void SetItemSpecialValueLookup(string itemVal)
         {
-            //If the value of rate plan isn't in SpecialValue, add it to the list
-            //We allow non-matching rate plans so that API products can be booked
-            if (!string.IsNullOrEmpty(itemVal) && !_specialVals.Any(c => c.Code == itemVal)) {
-                var vals = _specialVals.ToList();
-                vals.Add(new CodeName(itemVal));
-                GridLookupEditItemSpecialValue.Properties.DataSource = vals;
+            if (string.IsNullOrEmpty(itemVal) || _specialVals.Any(c => c.Code == itemVal)) {
+                GridLookupEditItemSpecialValue.Properties.DataSource = _specialVals;
             }
             else {
-                GridLookupEditItemSpecialValue.Properties.DataSource = _specialVals;
+                //If the value of rate plan isn't in SpecialValue, add it to the list
+                //We allow non-matching rate plans so that API products can be booked
+                var vals = new List<CodeName>(_specialVals);
+                vals.Add(new CodeName(itemVal));
+                GridLookupEditItemSpecialValue.Properties.DataSource = vals;
             }
         }
 
@@ -534,11 +549,11 @@ namespace TraceForms
                 SetBindings();
         }
 
-        //This will fire in response to both a user selecting a value from the popup
-        //or from the value changing because of databinding
-        private void ItemChanged()
+        //This will fire in response to both a user selecting a value from the popup or from the value changing because of databinding
+        //However, for the change in databinding it fires before BindingSource_CurrentRowChanged, so _selectedRecord will still be the 
+        //prior value. Thus this is also invoked from BindingSource_CurrentRowChanged.
+        private void ItemChanged(string code)
         {
-            string code = SearchLookupEditItemCode.EditValue?.ToString();
             //If the product is empty (ie blank hotel) do not allow supplier, cat, rate plan etc to be entered
             if (string.IsNullOrEmpty(code)) {
                 ClearProductKeyFields(true);
@@ -911,10 +926,11 @@ namespace TraceForms
 
         private void GridLookupEditItemCategory_Leave(object sender, EventArgs e)
         {
-            if (_selectedRecord != null)
-            //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
-            GridLookupEditItemCategory.DataBindings[0].WriteValue();
-            SetErrorInfo(_selectedRecord.ValidateItemCategory, sender);
+            if (_selectedRecord != null) {
+                //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
+                GridLookupEditItemCategory.DataBindings[0].WriteValue();
+                SetErrorInfo(_selectedRecord.ValidateItemCategory, sender);
+            }
         }
 
         private void SearchLookupEditEditMeal_Leave(object sender, EventArgs e)
@@ -1001,7 +1017,8 @@ namespace TraceForms
 
         private void SearchLookupEditItemCode_EditValueChanged(object sender, EventArgs e)
         {
-            ItemChanged();
+            string code = SearchLookupEditItemCode.EditValue?.ToString();
+            ItemChanged(code);
         }
 
         private void SpinEditNights_Leave(object sender, EventArgs e)
@@ -1264,10 +1281,11 @@ namespace TraceForms
 
         private void GridLookUpEditItemSpecialValue_Leave(object sender, EventArgs e)
         {
-            if (_selectedRecord != null)
-            //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
-            GridLookupEditItemSpecialValue.DataBindings[0].WriteValue();
-            SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, sender);
+            if (_selectedRecord != null) {
+                //https://www.devexpress.com/Support/Center/Question/Details/T656198/gridlookupedit-processnewvalue-post-new-value
+                GridLookupEditItemSpecialValue.DataBindings[0].WriteValue();
+                SetErrorInfo(_selectedRecord.ValidateItemSpecialValue, sender);
+            }
         }
 
         private void GridLookUpEditItemSpecialValue_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
