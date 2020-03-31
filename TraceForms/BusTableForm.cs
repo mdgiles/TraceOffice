@@ -279,7 +279,6 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateLocation, SearchLookupEditLocation);
             SetErrorInfo(_selectedRecord.ValidateStartTime, TimeEditStartTime);
             SetErrorInfo(_selectedRecord.ValidateEndTime, TimeEditEndTime);
-            SetErrorInfo(_selectedRecord.ValidateExclusion, CheckEditExclusion);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)

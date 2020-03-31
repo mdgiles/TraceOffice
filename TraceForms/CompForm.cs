@@ -1293,15 +1293,16 @@ namespace TraceForms
 				}
 				e.RepositoryItem = editor;
 			}
-            if (e.Column == ColumnExclusion) {
-                string type = GridViewTransferPoints.GetRowCellDisplayText(e.RowHandle, "LocationType");
-                if (type != "HTL") {
-                    e.RepositoryItem = repositoryItemCheckEditReadOnly;
-                }
-                else {
-                    e.RepositoryItem = RepositoryItemCheckEditLocationExclusion;
-                }
-            }
+            //It turns out that CHD were using the exclusion field as an inactive field, so it needs to be allowed on all records.
+            //if (e.Column == ColumnExclusion) {
+            //    string type = GridViewTransferPoints.GetRowCellDisplayText(e.RowHandle, "LocationType");
+            //    if (type != "HTL") {
+            //        e.RepositoryItem = repositoryItemCheckEditReadOnly;
+            //    }
+            //    else {
+            //        e.RepositoryItem = RepositoryItemCheckEditLocationExclusion;
+            //    }
+            //}
         }
 
         private void TextEditCode_Leave(object sender, EventArgs e)
