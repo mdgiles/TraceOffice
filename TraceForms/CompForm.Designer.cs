@@ -599,6 +599,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
             LabelCode = new System.Windows.Forms.Label();
             LabelRateBasis = new System.Windows.Forms.Label();
             LabelRestrictions = new System.Windows.Forms.Label();
@@ -6972,12 +6973,27 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 620);
             // 
+            // progressPanel1
+            // 
+            this.progressPanel1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.progressPanel1.Appearance.Options.UseBackColor = true;
+            this.progressPanel1.BarAnimationElementThickness = 2;
+            this.progressPanel1.Location = new System.Drawing.Point(242, 6);
+            this.progressPanel1.Name = "progressPanel1";
+            this.progressPanel1.ShowCaption = false;
+            this.progressPanel1.ShowDescription = false;
+            this.progressPanel1.Size = new System.Drawing.Size(49, 19);
+            this.progressPanel1.TabIndex = 38;
+            this.progressPanel1.Text = "progressPanel1";
+            this.progressPanel1.Visible = false;
+            // 
             // CompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1164, 651);
+            this.Controls.Add(this.progressPanel1);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.SplitContainerControl);
             this.Controls.Add(this.barDockControlLeft);
@@ -7781,5 +7797,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colServiceTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditReadOnly;
         private DevExpress.XtraEditors.TextEdit TextEditDefaultTime;
+        private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
     }
 }

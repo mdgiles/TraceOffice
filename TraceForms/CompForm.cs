@@ -717,6 +717,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
             SetErrorInfo(_selectedRecord.ValidateLanguage, SearchLookupEditLanguage);
             SetErrorInfo(_selectedRecord.ValidateVendorCode, TextEditVendorCode);
+            SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
             SetErrorInfo(_selectedRecord.ValidateDifficulty, SearchLookupEditDifficulty);
             SetErrorInfo(_selectedRecord.ValidateOperator, SearchLookupEditOperator);
             SetErrorInfo(_selectedRecord.ValidateVoucherType, ImageComboBoxEditVoucherTypes);
