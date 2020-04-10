@@ -64,7 +64,7 @@ namespace TraceForms
         private void SetImageSources()
         {
             if (!string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Configurator.AzureStorageConnectionString);
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(_sys.Settings.AzureStorageConnectionString);
                 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
                 _container = blobClient.GetContainerReference(_sys.Settings.ImagesContainer);
                 //CloudBlobContainer container = blobClient.GetContainerReference("images");
@@ -1084,15 +1084,21 @@ namespace TraceForms
             pictureEditPreviewAddImg.Image = null;
             string path = GridViewAdditionalImages.GetFocusedRowCellDisplayText(ColumnItem);
             try {
-                if (path.Contains(":") || path.StartsWith("\\")) {
-                    using (var stream = new MemoryStream(File.ReadAllBytes(path))) {
-                        pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                    if (path.Contains(":") || path.StartsWith("\\")) {
+                        using (var stream = new MemoryStream(File.ReadAllBytes(path))) {
+                            pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                        }
+                    }
+                    else {
+                        using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + path))) {
+                            pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                        }
                     }
                 }
                 else {
-                    using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + path))) {
-                        pictureEditPreviewAddImg.Image = Image.FromStream(stream);
-                    }
+                    path = _sys.Settings.StorageRoot + _sys.Settings.ImagesContainer + '/' + path.Replace("\\", "/");
+                    pictureEditPreviewAddImg.LoadAsync(path);
                 }
             }
             catch { }
@@ -1242,40 +1248,85 @@ namespace TraceForms
             _resourcesModified = true;
         }
 
-        private void SetPreviewImage(string url, PictureEdit previewControl, LabelControl sizeLabel)
+        private void SetPreviewImage(string url, PictureEdit previewControl, LabelControl sizeLabel, SimpleButton thumbnailButton)
         {
-            if (string.IsNullOrEmpty(url)) {
+            if (!string.IsNullOrEmpty(url)) {
+                url = _sys.Settings.StorageRoot + _sys.Settings.ImagesContainer + '/' + url.Replace("\\","/");
                 previewControl.LoadAsync(url);
-                sizeLabel.Text = previewControl.Image.Height + " * " + previewControl.Image.Width;
             }
             else {
                 previewControl.Image = null;
                 sizeLabel.Text = string.Empty;
             }
+
+            if (thumbnailButton != null) {
+                thumbnailButton.Enabled = !string.IsNullOrEmpty(url);
+            }
         }
 
         private void azureBlobBrowser1LowRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage1LowRes, labelControlSizeDisplay1LowRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage1LowRes, labelControlSizeDisplay1LowRes, ButtonCreateThumbnailLowRes);
         }
 
         private void azureBlobBrowser4Thumb_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage2MedRes, labelControlSizeDisplay2MedRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage4Thumb, labelControlSizeDisplay4Thumb, null);
         }
 
         private void azureBlobBrowser3HighRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage3HighRes, labelControlSizeDisplay3HighRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage3HighRes, labelControlSizeDisplay3HighRes, ButtonCreateThumbNailHighRes);
         }
 
         private void azureBlobBrowser2MedRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage4Thumb, labelControlSizeDisplay4Thumb);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage2MedRes, labelControlSizeDisplay2MedRes, ButtonCreateThumbnailMedRes);
+        }
+
+        private void PictureEditPreviewImage1LowRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay1LowRes.Text = PictureEditPreviewImage1LowRes.Image.Height + " * " + PictureEditPreviewImage1LowRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage2MedRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay2MedRes.Text = PictureEditPreviewImage2MedRes.Image.Height + " * " + PictureEditPreviewImage2MedRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage3HighRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay3HighRes.Text = PictureEditPreviewImage3HighRes.Image.Height + " * " + PictureEditPreviewImage3HighRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage4Thumb_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay4Thumb.Text = PictureEditPreviewImage4Thumb.Image.Height + " * " + PictureEditPreviewImage4Thumb.Image.Width;
+        }
+
+        private void GridViewAdditionalImages_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column.FieldName == "ITEM") {
+                if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                    e.RepositoryItem = repositoryItemButtonEdit_Item;
+                }
+                else {
+                    e.RepositoryItem = repositoryItemAzureBlobBrowser;
+                }
+            }
+        }
+
+        private void GridViewAdditionalImages_ShownEditor(object sender, EventArgs e)
+        {
+            ColumnView view = (ColumnView)sender;
+            if (view.FocusedColumn.FieldName == "ITEM" && _container != null) {
+                AzureBlobBrowser.AzureBlobBrowser browser = (AzureBlobBrowser.AzureBlobBrowser)view.ActiveEditor;
+                browser.BlobContainer = _container;
+            }
         }
 
         private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

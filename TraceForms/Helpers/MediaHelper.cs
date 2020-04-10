@@ -145,7 +145,7 @@ namespace TraceForms.Helpers
         internal static string GetOrPutImage(ICoreSys sys, string type, string code, string supplier, string masterCity, string image, string tag,
             bool createThumbnail)
         {
-            if (string.IsNullOrEmpty(Configurator.AzureStorageConnectionString)) {
+            if (string.IsNullOrEmpty(sys.Settings.AzureStorageConnectionString)) {
                 return GetImage(sys, type, code, supplier, masterCity, image, tag, createThumbnail);
             }
             else {
@@ -167,7 +167,7 @@ namespace TraceForms.Helpers
                     if (string.IsNullOrEmpty(file.Extension)) {
                         filename += ".jpg";
                     }
-                    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Configurator.AzureStorageConnectionString);
+                    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(sys.Settings.AzureStorageConnectionString);
                     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
                     CloudBlobContainer container = blobClient.GetContainerReference("images");
                     //CloudBlobContainer container = blobClient.GetContainerReference(sys.Settings.ImagesContainer);

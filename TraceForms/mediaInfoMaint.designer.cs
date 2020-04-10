@@ -93,6 +93,23 @@ namespace TraceForms
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControlLowRes = new DevExpress.XtraEditors.PanelControl();
             this.azureBlobBrowser1LowRes = new TraceForms.AzureBlobBrowser.AzureBlobBrowser();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.barTools = new DevExpress.XtraBars.Bar();
+            this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemClone = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemExpand = new DevExpress.XtraBars.BarButtonItem();
+            this.BarSubItemReports = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItemReportsContainingSection = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemAddToReports = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemRemoveFromReports = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemCreateNewReports = new DevExpress.XtraBars.BarButtonItem();
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.PictureEditPreviewImage1LowRes = new DevExpress.XtraEditors.PictureEdit();
             this.labelControlSizeDisplay1LowRes = new DevExpress.XtraEditors.LabelControl();
             this.labelControlSize = new DevExpress.XtraEditors.LabelControl();
@@ -137,7 +154,6 @@ namespace TraceForms
             this.ColumnTag = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBoxTag = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.ColumnItem = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit_Item = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.ColumnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserDec1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserDec2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -154,6 +170,8 @@ namespace TraceForms
             this.repositoryItemPopupContainerEditPreview = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.popupContainerControlPreview = new DevExpress.XtraEditors.PopupContainerControl();
             this.pictureEditPreviewAddImg = new DevExpress.XtraEditors.PictureEdit();
+            this.repositoryItemButtonEdit_Item = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repositoryItemAzureBlobBrowser = new TraceForms.AzureBlobBrowser.RepositoryItemAzureBlobBrowser();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
@@ -162,23 +180,6 @@ namespace TraceForms
             this.ImageComboBoxEditSeverity = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.CheckEditConsent = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditInactive = new DevExpress.XtraEditors.CheckEdit();
-            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
-            this.barTools = new DevExpress.XtraBars.Bar();
-            this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemClone = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemExpand = new DevExpress.XtraBars.BarButtonItem();
-            this.BarSubItemReports = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItemReportsContainingSection = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemAddToReports = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemRemoveFromReports = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItemCreateNewReports = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
             this.EntityInstantFeedbackSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource();
             this.GridViewLookup = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -216,29 +217,29 @@ namespace TraceForms
             this.DateEditSvcEndDate = new DevExpress.XtraEditors.DateEdit();
             this.DateEditResStartDate = new DevExpress.XtraEditors.DateEdit();
             this.DateEditResEndDate = new DevExpress.XtraEditors.DateEdit();
-            this.SearchLookupEditLang = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.SearchLookupEditLang = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
-            this.customSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditProduct = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditProduct = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bindingSourceCodeNameProduct = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditSection = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditSection = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.SearchLookupEditAgency = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditAgency = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditCategory = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditCategory = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -284,21 +285,26 @@ namespace TraceForms
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlLowRes)).BeginInit();
             this.panelControlLowRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser1LowRes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage1LowRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage1LowRes.Properties)).BeginInit();
             this.xtraTabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMedRes)).BeginInit();
             this.panelControlMedRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser2MedRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage2MedRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage2MedRes.Properties)).BeginInit();
             this.xtraTabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlHighRes)).BeginInit();
             this.panelControlHighRes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser3HighRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage3HighRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage3HighRes.Properties)).BeginInit();
             this.xtraTabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThumbNail)).BeginInit();
             this.panelControlThumbNail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser4Thumb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage4Thumb.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage4Thumb.Properties)).BeginInit();
             this.xtraTabPageAdditionalImages.SuspendLayout();
@@ -308,12 +314,13 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).BeginInit();
             this.popupContainerControlPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditPreviewAddImg.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.xtraTabPageDisplay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDisplay)).BeginInit();
@@ -321,7 +328,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSeverity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditConsent.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditInactive.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).BeginInit();
@@ -339,16 +345,16 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.DateEditResEndDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCodeNameProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSection.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             this.SuspendLayout();
@@ -1223,717 +1229,17 @@ namespace TraceForms
             // azureBlobBrowser1LowRes
             // 
             this.azureBlobBrowser1LowRes.BlobContainer = null;
-            this.azureBlobBrowser1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE1", true));
-            this.azureBlobBrowser1LowRes.EditValueData = null;
-            this.azureBlobBrowser1LowRes.Location = new System.Drawing.Point(67, 47);
+            this.azureBlobBrowser1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE1", true));
+            this.azureBlobBrowser1LowRes.Location = new System.Drawing.Point(67, 49);
             this.azureBlobBrowser1LowRes.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser1LowRes.MenuManager = this.BarManager;
             this.azureBlobBrowser1LowRes.Name = "azureBlobBrowser1LowRes";
-            this.azureBlobBrowser1LowRes.Size = new System.Drawing.Size(524, 24);
+            this.azureBlobBrowser1LowRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.azureBlobBrowser1LowRes.Size = new System.Drawing.Size(524, 20);
             this.azureBlobBrowser1LowRes.TabIndex = 17;
             this.azureBlobBrowser1LowRes.Visible = false;
             this.azureBlobBrowser1LowRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser1LowRes_EditValueChanged);
-            // 
-            // PictureEditPreviewImage1LowRes
-            // 
-            this.PictureEditPreviewImage1LowRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PictureEditPreviewImage1LowRes.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PictureEditPreviewImage1LowRes.Location = new System.Drawing.Point(67, 85);
-            this.PictureEditPreviewImage1LowRes.Name = "PictureEditPreviewImage1LowRes";
-            this.PictureEditPreviewImage1LowRes.Size = new System.Drawing.Size(233, 155);
-            this.PictureEditPreviewImage1LowRes.TabIndex = 2;
-            // 
-            // labelControlSizeDisplay1LowRes
-            // 
-            this.labelControlSizeDisplay1LowRes.Location = new System.Drawing.Point(71, 57);
-            this.labelControlSizeDisplay1LowRes.Name = "labelControlSizeDisplay1LowRes";
-            this.labelControlSizeDisplay1LowRes.Size = new System.Drawing.Size(0, 13);
-            this.labelControlSizeDisplay1LowRes.TabIndex = 7;
-            // 
-            // labelControlSize
-            // 
-            this.labelControlSize.Location = new System.Drawing.Point(13, 57);
-            this.labelControlSize.Name = "labelControlSize";
-            this.labelControlSize.Size = new System.Drawing.Size(19, 13);
-            this.labelControlSize.TabIndex = 0;
-            this.labelControlSize.Text = "Size";
-            // 
-            // ButtonEditImage1LowRes
-            // 
-            this.ButtonEditImage1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE1", true));
-            this.ButtonEditImage1LowRes.EnterMoveNextControl = true;
-            this.ButtonEditImage1LowRes.Location = new System.Drawing.Point(67, 22);
-            this.ButtonEditImage1LowRes.Name = "ButtonEditImage1LowRes";
-            this.ButtonEditImage1LowRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ButtonEditImage1LowRes.Properties.Tag = "";
-            this.ButtonEditImage1LowRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage1LowRes_ButtonPressed);
-            this.ButtonEditImage1LowRes.Size = new System.Drawing.Size(524, 20);
-            this.ButtonEditImage1LowRes.TabIndex = 16;
-            this.ButtonEditImage1LowRes.TextChanged += new System.EventHandler(this.ButtonEditImage1LowRes_TextChanged);
-            this.ButtonEditImage1LowRes.Leave += new System.EventHandler(this.ButtonEditImage1LowRes_Leave);
-            // 
-            // ButtonCreateThumbnailLowRes
-            // 
-            this.ButtonCreateThumbnailLowRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCreateThumbnailLowRes.Location = new System.Drawing.Point(306, 85);
-            this.ButtonCreateThumbnailLowRes.Name = "ButtonCreateThumbnailLowRes";
-            this.ButtonCreateThumbnailLowRes.Size = new System.Drawing.Size(114, 37);
-            this.ButtonCreateThumbnailLowRes.TabIndex = 4;
-            this.ButtonCreateThumbnailLowRes.TabStop = false;
-            this.ButtonCreateThumbnailLowRes.Text = "Create Thumbnail";
-            this.ButtonCreateThumbnailLowRes.Click += new System.EventHandler(this.ButtonCreateThumbnailLowRes_Click);
-            // 
-            // LabelPeview
-            // 
-            this.LabelPeview.Location = new System.Drawing.Point(13, 85);
-            this.LabelPeview.Name = "LabelPeview";
-            this.LabelPeview.Size = new System.Drawing.Size(42, 13);
-            this.LabelPeview.TabIndex = 0;
-            this.LabelPeview.Text = "Preview:";
-            // 
-            // xtraTabPage5
-            // 
-            this.xtraTabPage5.Controls.Add(this.panelControlMedRes);
-            this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(607, 246);
-            this.xtraTabPage5.Text = "Medium Res";
-            // 
-            // panelControlMedRes
-            // 
-            this.panelControlMedRes.Controls.Add(this.azureBlobBrowser2MedRes);
-            this.panelControlMedRes.Controls.Add(this.labelControlSizeDisplay2MedRes);
-            this.panelControlMedRes.Controls.Add(this.labelControlSize2);
-            this.panelControlMedRes.Controls.Add(LabelImage2);
-            this.panelControlMedRes.Controls.Add(this.ButtonEditImage2MedRes);
-            this.panelControlMedRes.Controls.Add(this.labelControlPreview2);
-            this.panelControlMedRes.Controls.Add(this.ButtonCreateThumbnailMedRes);
-            this.panelControlMedRes.Controls.Add(this.PictureEditPreviewImage2MedRes);
-            this.panelControlMedRes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlMedRes.Location = new System.Drawing.Point(0, 0);
-            this.panelControlMedRes.Name = "panelControlMedRes";
-            this.panelControlMedRes.Size = new System.Drawing.Size(607, 246);
-            this.panelControlMedRes.TabIndex = 0;
-            // 
-            // azureBlobBrowser2MedRes
-            // 
-            this.azureBlobBrowser2MedRes.BlobContainer = null;
-            this.azureBlobBrowser2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE2", true));
-            this.azureBlobBrowser2MedRes.EditValueData = null;
-            this.azureBlobBrowser2MedRes.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser2MedRes.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser2MedRes.Name = "azureBlobBrowser2MedRes";
-            this.azureBlobBrowser2MedRes.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser2MedRes.TabIndex = 19;
-            this.azureBlobBrowser2MedRes.Visible = false;
-            this.azureBlobBrowser2MedRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser2MedRes_EditValueChanged);
-            // 
-            // labelControlSizeDisplay2MedRes
-            // 
-            this.labelControlSizeDisplay2MedRes.Location = new System.Drawing.Point(73, 55);
-            this.labelControlSizeDisplay2MedRes.Name = "labelControlSizeDisplay2MedRes";
-            this.labelControlSizeDisplay2MedRes.Size = new System.Drawing.Size(0, 13);
-            this.labelControlSizeDisplay2MedRes.TabIndex = 9;
-            // 
-            // labelControlSize2
-            // 
-            this.labelControlSize2.Location = new System.Drawing.Point(13, 57);
-            this.labelControlSize2.Name = "labelControlSize2";
-            this.labelControlSize2.Size = new System.Drawing.Size(19, 13);
-            this.labelControlSize2.TabIndex = 0;
-            this.labelControlSize2.Text = "Size";
-            // 
-            // ButtonEditImage2MedRes
-            // 
-            this.ButtonEditImage2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE2", true));
-            this.ButtonEditImage2MedRes.EnterMoveNextControl = true;
-            this.ButtonEditImage2MedRes.Location = new System.Drawing.Point(67, 22);
-            this.ButtonEditImage2MedRes.Name = "ButtonEditImage2MedRes";
-            this.ButtonEditImage2MedRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ButtonEditImage2MedRes.Properties.Tag = "";
-            this.ButtonEditImage2MedRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage2MedRes_ButtonPressed);
-            this.ButtonEditImage2MedRes.Size = new System.Drawing.Size(524, 20);
-            this.ButtonEditImage2MedRes.TabIndex = 17;
-            this.ButtonEditImage2MedRes.TextChanged += new System.EventHandler(this.ButtonEditImage2MedRes_TextChanged);
-            this.ButtonEditImage2MedRes.Leave += new System.EventHandler(this.ButtonEditImage2MidRes_Leave);
-            // 
-            // labelControlPreview2
-            // 
-            this.labelControlPreview2.Location = new System.Drawing.Point(13, 85);
-            this.labelControlPreview2.Name = "labelControlPreview2";
-            this.labelControlPreview2.Size = new System.Drawing.Size(42, 13);
-            this.labelControlPreview2.TabIndex = 0;
-            this.labelControlPreview2.Text = "Preview:";
-            // 
-            // ButtonCreateThumbnailMedRes
-            // 
-            this.ButtonCreateThumbnailMedRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCreateThumbnailMedRes.Location = new System.Drawing.Point(306, 85);
-            this.ButtonCreateThumbnailMedRes.Name = "ButtonCreateThumbnailMedRes";
-            this.ButtonCreateThumbnailMedRes.Size = new System.Drawing.Size(114, 37);
-            this.ButtonCreateThumbnailMedRes.TabIndex = 5;
-            this.ButtonCreateThumbnailMedRes.TabStop = false;
-            this.ButtonCreateThumbnailMedRes.Text = "Create Thumbnail";
-            this.ButtonCreateThumbnailMedRes.Click += new System.EventHandler(this.ButtonCreateThumbnailMedRes_Click);
-            // 
-            // PictureEditPreviewImage2MedRes
-            // 
-            this.PictureEditPreviewImage2MedRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PictureEditPreviewImage2MedRes.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PictureEditPreviewImage2MedRes.Location = new System.Drawing.Point(67, 85);
-            this.PictureEditPreviewImage2MedRes.Name = "PictureEditPreviewImage2MedRes";
-            this.PictureEditPreviewImage2MedRes.Size = new System.Drawing.Size(233, 156);
-            this.PictureEditPreviewImage2MedRes.TabIndex = 3;
-            // 
-            // xtraTabPage6
-            // 
-            this.xtraTabPage6.Controls.Add(this.panelControlHighRes);
-            this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(607, 246);
-            this.xtraTabPage6.Text = "High Res";
-            // 
-            // panelControlHighRes
-            // 
-            this.panelControlHighRes.Controls.Add(this.azureBlobBrowser3HighRes);
-            this.panelControlHighRes.Controls.Add(this.labelControlSizeDisplay3HighRes);
-            this.panelControlHighRes.Controls.Add(this.labelControlSize3);
-            this.panelControlHighRes.Controls.Add(LabelImage3);
-            this.panelControlHighRes.Controls.Add(this.ButtonEditImage3HighRes);
-            this.panelControlHighRes.Controls.Add(this.ButtonCreateThumbNailHighRes);
-            this.panelControlHighRes.Controls.Add(this.LabelPreview3);
-            this.panelControlHighRes.Controls.Add(this.PictureEditPreviewImage3HighRes);
-            this.panelControlHighRes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlHighRes.Location = new System.Drawing.Point(0, 0);
-            this.panelControlHighRes.Name = "panelControlHighRes";
-            this.panelControlHighRes.Size = new System.Drawing.Size(607, 246);
-            this.panelControlHighRes.TabIndex = 0;
-            // 
-            // azureBlobBrowser3HighRes
-            // 
-            this.azureBlobBrowser3HighRes.BlobContainer = null;
-            this.azureBlobBrowser3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE3", true));
-            this.azureBlobBrowser3HighRes.EditValueData = null;
-            this.azureBlobBrowser3HighRes.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser3HighRes.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser3HighRes.Name = "azureBlobBrowser3HighRes";
-            this.azureBlobBrowser3HighRes.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser3HighRes.TabIndex = 19;
-            this.azureBlobBrowser3HighRes.Visible = false;
-            this.azureBlobBrowser3HighRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser3HighRes_EditValueChanged);
-            // 
-            // labelControlSizeDisplay3HighRes
-            // 
-            this.labelControlSizeDisplay3HighRes.Location = new System.Drawing.Point(73, 56);
-            this.labelControlSizeDisplay3HighRes.Name = "labelControlSizeDisplay3HighRes";
-            this.labelControlSizeDisplay3HighRes.Size = new System.Drawing.Size(0, 13);
-            this.labelControlSizeDisplay3HighRes.TabIndex = 9;
-            // 
-            // labelControlSize3
-            // 
-            this.labelControlSize3.Location = new System.Drawing.Point(13, 57);
-            this.labelControlSize3.Name = "labelControlSize3";
-            this.labelControlSize3.Size = new System.Drawing.Size(19, 13);
-            this.labelControlSize3.TabIndex = 0;
-            this.labelControlSize3.Text = "Size";
-            // 
-            // ButtonEditImage3HighRes
-            // 
-            this.ButtonEditImage3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE3", true));
-            this.ButtonEditImage3HighRes.EnterMoveNextControl = true;
-            this.ButtonEditImage3HighRes.Location = new System.Drawing.Point(67, 22);
-            this.ButtonEditImage3HighRes.Name = "ButtonEditImage3HighRes";
-            this.ButtonEditImage3HighRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ButtonEditImage3HighRes.Properties.Tag = "";
-            this.ButtonEditImage3HighRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage3HighRes_ButtonPressed);
-            this.ButtonEditImage3HighRes.Size = new System.Drawing.Size(524, 20);
-            this.ButtonEditImage3HighRes.TabIndex = 18;
-            this.ButtonEditImage3HighRes.TextChanged += new System.EventHandler(this.ButtonEditImage3HighRes_TextChanged);
-            this.ButtonEditImage3HighRes.Leave += new System.EventHandler(this.ButtonEditImage3HighRes_Leave);
-            // 
-            // ButtonCreateThumbNailHighRes
-            // 
-            this.ButtonCreateThumbNailHighRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCreateThumbNailHighRes.Location = new System.Drawing.Point(306, 85);
-            this.ButtonCreateThumbNailHighRes.Name = "ButtonCreateThumbNailHighRes";
-            this.ButtonCreateThumbNailHighRes.Size = new System.Drawing.Size(114, 37);
-            this.ButtonCreateThumbNailHighRes.TabIndex = 6;
-            this.ButtonCreateThumbNailHighRes.TabStop = false;
-            this.ButtonCreateThumbNailHighRes.Text = "Create Thumbnail";
-            this.ButtonCreateThumbNailHighRes.Click += new System.EventHandler(this.ButtonCreateThumbNailHighRes_Click);
-            // 
-            // LabelPreview3
-            // 
-            this.LabelPreview3.Location = new System.Drawing.Point(13, 85);
-            this.LabelPreview3.Name = "LabelPreview3";
-            this.LabelPreview3.Size = new System.Drawing.Size(42, 13);
-            this.LabelPreview3.TabIndex = 0;
-            this.LabelPreview3.Text = "Preview:";
-            // 
-            // PictureEditPreviewImage3HighRes
-            // 
-            this.PictureEditPreviewImage3HighRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PictureEditPreviewImage3HighRes.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PictureEditPreviewImage3HighRes.Location = new System.Drawing.Point(67, 85);
-            this.PictureEditPreviewImage3HighRes.Name = "PictureEditPreviewImage3HighRes";
-            this.PictureEditPreviewImage3HighRes.Size = new System.Drawing.Size(233, 156);
-            this.PictureEditPreviewImage3HighRes.TabIndex = 3;
-            // 
-            // xtraTabPage7
-            // 
-            this.xtraTabPage7.Controls.Add(this.panelControlThumbNail);
-            this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(607, 246);
-            this.xtraTabPage7.Text = "Thumbnail";
-            // 
-            // panelControlThumbNail
-            // 
-            this.panelControlThumbNail.Controls.Add(this.azureBlobBrowser4Thumb);
-            this.panelControlThumbNail.Controls.Add(this.labelControlSizeDisplay4Thumb);
-            this.panelControlThumbNail.Controls.Add(this.labelControlSize4);
-            this.panelControlThumbNail.Controls.Add(LabelImage4);
-            this.panelControlThumbNail.Controls.Add(this.ButtonEditImage4Thumb);
-            this.panelControlThumbNail.Controls.Add(this.LabelPreview4);
-            this.panelControlThumbNail.Controls.Add(this.PictureEditPreviewImage4Thumb);
-            this.panelControlThumbNail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlThumbNail.Location = new System.Drawing.Point(0, 0);
-            this.panelControlThumbNail.Name = "panelControlThumbNail";
-            this.panelControlThumbNail.Size = new System.Drawing.Size(607, 246);
-            this.panelControlThumbNail.TabIndex = 0;
-            // 
-            // azureBlobBrowser4Thumb
-            // 
-            this.azureBlobBrowser4Thumb.BlobContainer = null;
-            this.azureBlobBrowser4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValueData", this.BindingSource, "IMAGE4", true));
-            this.azureBlobBrowser4Thumb.EditValueData = null;
-            this.azureBlobBrowser4Thumb.Location = new System.Drawing.Point(67, 47);
-            this.azureBlobBrowser4Thumb.Margin = new System.Windows.Forms.Padding(2);
-            this.azureBlobBrowser4Thumb.Name = "azureBlobBrowser4Thumb";
-            this.azureBlobBrowser4Thumb.Size = new System.Drawing.Size(524, 24);
-            this.azureBlobBrowser4Thumb.TabIndex = 20;
-            this.azureBlobBrowser4Thumb.Visible = false;
-            this.azureBlobBrowser4Thumb.EditValueChanged += new System.EventHandler(this.azureBlobBrowser4Thumb_EditValueChanged);
-            // 
-            // labelControlSizeDisplay4Thumb
-            // 
-            this.labelControlSizeDisplay4Thumb.Location = new System.Drawing.Point(67, 57);
-            this.labelControlSizeDisplay4Thumb.Name = "labelControlSizeDisplay4Thumb";
-            this.labelControlSizeDisplay4Thumb.Size = new System.Drawing.Size(0, 13);
-            this.labelControlSizeDisplay4Thumb.TabIndex = 9;
-            // 
-            // labelControlSize4
-            // 
-            this.labelControlSize4.Location = new System.Drawing.Point(13, 57);
-            this.labelControlSize4.Name = "labelControlSize4";
-            this.labelControlSize4.Size = new System.Drawing.Size(19, 13);
-            this.labelControlSize4.TabIndex = 0;
-            this.labelControlSize4.Text = "Size";
-            // 
-            // ButtonEditImage4Thumb
-            // 
-            this.ButtonEditImage4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE4", true));
-            this.ButtonEditImage4Thumb.EnterMoveNextControl = true;
-            this.ButtonEditImage4Thumb.Location = new System.Drawing.Point(67, 22);
-            this.ButtonEditImage4Thumb.Name = "ButtonEditImage4Thumb";
-            this.ButtonEditImage4Thumb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ButtonEditImage4Thumb.Properties.Tag = "";
-            this.ButtonEditImage4Thumb.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage4ThmNail_ButtonPressed);
-            this.ButtonEditImage4Thumb.Size = new System.Drawing.Size(524, 20);
-            this.ButtonEditImage4Thumb.TabIndex = 19;
-            this.ButtonEditImage4Thumb.TextChanged += new System.EventHandler(this.ButtonEditImage4ThmNail_TextChanged);
-            this.ButtonEditImage4Thumb.Leave += new System.EventHandler(this.ButtonEditImage4ThmNail_Leave);
-            // 
-            // LabelPreview4
-            // 
-            this.LabelPreview4.Location = new System.Drawing.Point(13, 85);
-            this.LabelPreview4.Name = "LabelPreview4";
-            this.LabelPreview4.Size = new System.Drawing.Size(42, 13);
-            this.LabelPreview4.TabIndex = 0;
-            this.LabelPreview4.Text = "Preview:";
-            // 
-            // PictureEditPreviewImage4Thumb
-            // 
-            this.PictureEditPreviewImage4Thumb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PictureEditPreviewImage4Thumb.Location = new System.Drawing.Point(67, 85);
-            this.PictureEditPreviewImage4Thumb.Name = "PictureEditPreviewImage4Thumb";
-            this.PictureEditPreviewImage4Thumb.Size = new System.Drawing.Size(128, 128);
-            this.PictureEditPreviewImage4Thumb.TabIndex = 3;
-            // 
-            // xtraTabPageAdditionalImages
-            // 
-            this.xtraTabPageAdditionalImages.Controls.Add(this.panelControl3);
-            this.xtraTabPageAdditionalImages.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraTabPageAdditionalImages.Name = "xtraTabPageAdditionalImages";
-            this.xtraTabPageAdditionalImages.Size = new System.Drawing.Size(663, 319);
-            this.xtraTabPageAdditionalImages.Text = "Additional Images";
-            // 
-            // panelControl3
-            // 
-            this.panelControl3.Controls.Add(this.GridControlAdditionalImages);
-            this.panelControl3.Controls.Add(this.ButtonDelRow);
-            this.panelControl3.Controls.Add(this.ButtonAddRow);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(0, 0);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(663, 319);
-            this.panelControl3.TabIndex = 0;
-            // 
-            // GridControlAdditionalImages
-            // 
-            this.GridControlAdditionalImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridControlAdditionalImages.CausesValidation = false;
-            this.GridControlAdditionalImages.DataSource = this.ResourceBindingSource;
-            this.GridControlAdditionalImages.Location = new System.Drawing.Point(13, 8);
-            this.GridControlAdditionalImages.MainView = this.GridViewAdditionalImages;
-            this.GridControlAdditionalImages.Name = "GridControlAdditionalImages";
-            this.GridControlAdditionalImages.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEdit_Item,
-            this.repositoryItemImageComboBoxTag,
-            this.repositoryItemPopupContainerEditPreview,
-            this.repositoryItemComboBoxImagePurpose});
-            this.GridControlAdditionalImages.Size = new System.Drawing.Size(639, 248);
-            this.GridControlAdditionalImages.TabIndex = 19;
-            this.GridControlAdditionalImages.TabStop = false;
-            this.GridControlAdditionalImages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.GridViewAdditionalImages,
-            this.gridView1});
-            // 
-            // ResourceBindingSource
-            // 
-            this.ResourceBindingSource.DataSource = typeof(FlexModel.RESOURCE);
-            // 
-            // GridViewAdditionalImages
-            // 
-            this.GridViewAdditionalImages.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ColumnID1,
-            this.ColumnLinkTable,
-            this.ColumnLinkValue,
-            this.ColumnRecType,
-            this.ColumnTag,
-            this.ColumnItem,
-            this.ColumnDesc,
-            this.ColumnUserDec1,
-            this.ColumnUserDec2,
-            this.ColumnUserInt1,
-            this.ColumnUserInt2,
-            this.ColumnUserTxt1,
-            this.ColumnUserTxt2,
-            this.ColumnUserTxt3,
-            this.ColumnUserTxt4,
-            this.ColumnUserDte1,
-            this.ColumnUserDte2,
-            this.gridColumnPreview});
-            this.GridViewAdditionalImages.DetailHeight = 182;
-            this.GridViewAdditionalImages.FixedLineWidth = 1;
-            this.GridViewAdditionalImages.GridControl = this.GridControlAdditionalImages;
-            this.GridViewAdditionalImages.Name = "GridViewAdditionalImages";
-            this.GridViewAdditionalImages.OptionsView.ShowGroupPanel = false;
-            this.GridViewAdditionalImages.OptionsView.ShowIndicator = false;
-            this.GridViewAdditionalImages.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewAdditionalImages_CellValueChanged);
-            // 
-            // ColumnID1
-            // 
-            this.ColumnID1.FieldName = "ID";
-            this.ColumnID1.MinWidth = 10;
-            this.ColumnID1.Name = "ColumnID1";
-            this.ColumnID1.Width = 37;
-            // 
-            // ColumnLinkTable
-            // 
-            this.ColumnLinkTable.FieldName = "LINK_TABLE";
-            this.ColumnLinkTable.MinWidth = 10;
-            this.ColumnLinkTable.Name = "ColumnLinkTable";
-            this.ColumnLinkTable.Width = 37;
-            // 
-            // ColumnLinkValue
-            // 
-            this.ColumnLinkValue.FieldName = "LINK_VALUE";
-            this.ColumnLinkValue.MinWidth = 10;
-            this.ColumnLinkValue.Name = "ColumnLinkValue";
-            this.ColumnLinkValue.Width = 37;
-            // 
-            // ColumnRecType
-            // 
-            this.ColumnRecType.FieldName = "RECTYPE";
-            this.ColumnRecType.MinWidth = 10;
-            this.ColumnRecType.Name = "ColumnRecType";
-            this.ColumnRecType.Width = 37;
-            // 
-            // ColumnTag
-            // 
-            this.ColumnTag.Caption = "Resolution";
-            this.ColumnTag.ColumnEdit = this.repositoryItemImageComboBoxTag;
-            this.ColumnTag.FieldName = "TAG";
-            this.ColumnTag.MinWidth = 10;
-            this.ColumnTag.Name = "ColumnTag";
-            this.ColumnTag.OptionsColumn.FixedWidth = true;
-            this.ColumnTag.Visible = true;
-            this.ColumnTag.VisibleIndex = 4;
-            this.ColumnTag.Width = 50;
-            // 
-            // repositoryItemImageComboBoxTag
-            // 
-            this.repositoryItemImageComboBoxTag.AutoHeight = false;
-            this.repositoryItemImageComboBoxTag.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageComboBoxTag.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Low", "0", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Medium", "1", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("High", "2", -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Thumb", "3", -1)});
-            this.repositoryItemImageComboBoxTag.Name = "repositoryItemImageComboBoxTag";
-            // 
-            // ColumnItem
-            // 
-            this.ColumnItem.Caption = "File";
-            this.ColumnItem.ColumnEdit = this.repositoryItemButtonEdit_Item;
-            this.ColumnItem.FieldName = "ITEM";
-            this.ColumnItem.MinWidth = 10;
-            this.ColumnItem.Name = "ColumnItem";
-            this.ColumnItem.Visible = true;
-            this.ColumnItem.VisibleIndex = 1;
-            this.ColumnItem.Width = 215;
-            // 
-            // repositoryItemButtonEdit_Item
-            // 
-            this.repositoryItemButtonEdit_Item.AutoHeight = false;
-            this.repositoryItemButtonEdit_Item.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit_Item.Name = "repositoryItemButtonEdit_Item";
-            this.repositoryItemButtonEdit_Item.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemButtonEdit_Item_ButtonClick);
-            // 
-            // ColumnDesc
-            // 
-            this.ColumnDesc.Caption = "Caption";
-            this.ColumnDesc.FieldName = "DESCRIPTION";
-            this.ColumnDesc.MinWidth = 10;
-            this.ColumnDesc.Name = "ColumnDesc";
-            this.ColumnDesc.Visible = true;
-            this.ColumnDesc.VisibleIndex = 2;
-            this.ColumnDesc.Width = 341;
-            // 
-            // ColumnUserDec1
-            // 
-            this.ColumnUserDec1.FieldName = "USER_DEC1";
-            this.ColumnUserDec1.MinWidth = 10;
-            this.ColumnUserDec1.Name = "ColumnUserDec1";
-            this.ColumnUserDec1.Width = 37;
-            // 
-            // ColumnUserDec2
-            // 
-            this.ColumnUserDec2.FieldName = "USER_DEC2";
-            this.ColumnUserDec2.MinWidth = 10;
-            this.ColumnUserDec2.Name = "ColumnUserDec2";
-            this.ColumnUserDec2.Width = 37;
-            // 
-            // ColumnUserInt1
-            // 
-            this.ColumnUserInt1.FieldName = "USER_INT1";
-            this.ColumnUserInt1.MinWidth = 10;
-            this.ColumnUserInt1.Name = "ColumnUserInt1";
-            this.ColumnUserInt1.Width = 37;
-            // 
-            // ColumnUserInt2
-            // 
-            this.ColumnUserInt2.FieldName = "USER_INT2";
-            this.ColumnUserInt2.MinWidth = 10;
-            this.ColumnUserInt2.Name = "ColumnUserInt2";
-            this.ColumnUserInt2.Width = 37;
-            // 
-            // ColumnUserTxt1
-            // 
-            this.ColumnUserTxt1.Caption = "Purpose";
-            this.ColumnUserTxt1.ColumnEdit = this.repositoryItemComboBoxImagePurpose;
-            this.ColumnUserTxt1.FieldName = "USER_TXT1";
-            this.ColumnUserTxt1.MinWidth = 10;
-            this.ColumnUserTxt1.Name = "ColumnUserTxt1";
-            this.ColumnUserTxt1.Visible = true;
-            this.ColumnUserTxt1.VisibleIndex = 3;
-            this.ColumnUserTxt1.Width = 173;
-            // 
-            // repositoryItemComboBoxImagePurpose
-            // 
-            this.repositoryItemComboBoxImagePurpose.AutoHeight = false;
-            this.repositoryItemComboBoxImagePurpose.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBoxImagePurpose.Items.AddRange(new object[] {
-            "",
-            "SEATMAP"});
-            this.repositoryItemComboBoxImagePurpose.Name = "repositoryItemComboBoxImagePurpose";
-            // 
-            // ColumnUserTxt2
-            // 
-            this.ColumnUserTxt2.FieldName = "USER_TXT2";
-            this.ColumnUserTxt2.MinWidth = 10;
-            this.ColumnUserTxt2.Name = "ColumnUserTxt2";
-            this.ColumnUserTxt2.Width = 37;
-            // 
-            // ColumnUserTxt3
-            // 
-            this.ColumnUserTxt3.FieldName = "USER_TXT3";
-            this.ColumnUserTxt3.MinWidth = 10;
-            this.ColumnUserTxt3.Name = "ColumnUserTxt3";
-            this.ColumnUserTxt3.Width = 37;
-            // 
-            // ColumnUserTxt4
-            // 
-            this.ColumnUserTxt4.FieldName = "USER_TXT4";
-            this.ColumnUserTxt4.MinWidth = 10;
-            this.ColumnUserTxt4.Name = "ColumnUserTxt4";
-            this.ColumnUserTxt4.Width = 37;
-            // 
-            // ColumnUserDte1
-            // 
-            this.ColumnUserDte1.FieldName = "USER_DTE1";
-            this.ColumnUserDte1.MinWidth = 10;
-            this.ColumnUserDte1.Name = "ColumnUserDte1";
-            this.ColumnUserDte1.Width = 37;
-            // 
-            // ColumnUserDte2
-            // 
-            this.ColumnUserDte2.FieldName = "USER_DTE2";
-            this.ColumnUserDte2.MinWidth = 10;
-            this.ColumnUserDte2.Name = "ColumnUserDte2";
-            this.ColumnUserDte2.Width = 37;
-            // 
-            // gridColumnPreview
-            // 
-            this.gridColumnPreview.Caption = "Preview";
-            this.gridColumnPreview.ColumnEdit = this.repositoryItemPopupContainerEditPreview;
-            this.gridColumnPreview.MinWidth = 10;
-            this.gridColumnPreview.Name = "gridColumnPreview";
-            this.gridColumnPreview.OptionsColumn.FixedWidth = true;
-            this.gridColumnPreview.Visible = true;
-            this.gridColumnPreview.VisibleIndex = 0;
-            this.gridColumnPreview.Width = 23;
-            // 
-            // repositoryItemPopupContainerEditPreview
-            // 
-            this.repositoryItemPopupContainerEditPreview.AutoHeight = false;
-            this.repositoryItemPopupContainerEditPreview.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "Preview", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repositoryItemPopupContainerEditPreview.Name = "repositoryItemPopupContainerEditPreview";
-            this.repositoryItemPopupContainerEditPreview.PopupControl = this.popupContainerControlPreview;
-            this.repositoryItemPopupContainerEditPreview.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemPopupContainerEditPreview.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemPopupContainerEditPreview_ButtonClick);
-            // 
-            // popupContainerControlPreview
-            // 
-            this.popupContainerControlPreview.Controls.Add(this.pictureEditPreviewAddImg);
-            this.popupContainerControlPreview.Location = new System.Drawing.Point(1263, 851);
-            this.popupContainerControlPreview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.popupContainerControlPreview.Name = "popupContainerControlPreview";
-            this.popupContainerControlPreview.Size = new System.Drawing.Size(497, 386);
-            this.popupContainerControlPreview.TabIndex = 0;
-            // 
-            // pictureEditPreviewAddImg
-            // 
-            this.pictureEditPreviewAddImg.Location = new System.Drawing.Point(53, 35);
-            this.pictureEditPreviewAddImg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureEditPreviewAddImg.Name = "pictureEditPreviewAddImg";
-            this.pictureEditPreviewAddImg.Size = new System.Drawing.Size(391, 307);
-            this.pictureEditPreviewAddImg.TabIndex = 3;
-            // 
-            // gridView1
-            // 
-            this.gridView1.DetailHeight = 182;
-            this.gridView1.FixedLineWidth = 1;
-            this.gridView1.GridControl = this.GridControlAdditionalImages;
-            this.gridView1.Name = "gridView1";
-            // 
-            // ButtonDelRow
-            // 
-            this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonDelRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_delete2;
-            this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(71, 263);
-            this.ButtonDelRow.Name = "ButtonDelRow";
-            this.ButtonDelRow.Size = new System.Drawing.Size(34, 36);
-            this.ButtonDelRow.TabIndex = 2;
-            this.ButtonDelRow.TabStop = false;
-            this.ButtonDelRow.Text = "simpleButton4";
-            this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
-            // 
-            // ButtonAddRow
-            // 
-            this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonAddRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_new;
-            this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(29, 263);
-            this.ButtonAddRow.Name = "ButtonAddRow";
-            this.ButtonAddRow.Size = new System.Drawing.Size(36, 36);
-            this.ButtonAddRow.TabIndex = 1;
-            this.ButtonAddRow.TabStop = false;
-            this.ButtonAddRow.Text = "simpleButton3";
-            this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
-            // 
-            // xtraTabPageDisplay
-            // 
-            this.xtraTabPageDisplay.Controls.Add(this.panelControlDisplay);
-            this.xtraTabPageDisplay.Margin = new System.Windows.Forms.Padding(4);
-            this.xtraTabPageDisplay.Name = "xtraTabPageDisplay";
-            this.xtraTabPageDisplay.Size = new System.Drawing.Size(663, 319);
-            this.xtraTabPageDisplay.Text = "Display";
-            // 
-            // panelControlDisplay
-            // 
-            this.panelControlDisplay.Controls.Add(this.ImageComboBoxEditSeverity);
-            this.panelControlDisplay.Controls.Add(LabelConsent);
-            this.panelControlDisplay.Controls.Add(this.CheckEditConsent);
-            this.panelControlDisplay.Controls.Add(LabelSeverity);
-            this.panelControlDisplay.Controls.Add(this.CheckEditInactive);
-            this.panelControlDisplay.Controls.Add(LabelInactive);
-            this.panelControlDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlDisplay.Location = new System.Drawing.Point(0, 0);
-            this.panelControlDisplay.Name = "panelControlDisplay";
-            this.panelControlDisplay.Size = new System.Drawing.Size(663, 319);
-            this.panelControlDisplay.TabIndex = 0;
-            // 
-            // ImageComboBoxEditSeverity
-            // 
-            this.ImageComboBoxEditSeverity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Severity", true));
-            this.ImageComboBoxEditSeverity.EnterMoveNextControl = true;
-            this.ImageComboBoxEditSeverity.Location = new System.Drawing.Point(111, 100);
-            this.ImageComboBoxEditSeverity.Name = "ImageComboBoxEditSeverity";
-            this.ImageComboBoxEditSeverity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ImageComboBoxEditSeverity.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("0 - Informational", ((short)(0)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("1 - Warning", ((short)(1)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("2 - Additional Fees", ((short)(2)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("3 - Critical Service Disruption", ((short)(3)), -1)});
-            this.ImageComboBoxEditSeverity.Size = new System.Drawing.Size(182, 20);
-            this.ImageComboBoxEditSeverity.TabIndex = 21;
-            this.ImageComboBoxEditSeverity.Leave += new System.EventHandler(this.ImageComboBoxEditSeverity_Leave);
-            // 
-            // CheckEditConsent
-            // 
-            this.CheckEditConsent.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Consent", true));
-            this.CheckEditConsent.EnterMoveNextControl = true;
-            this.CheckEditConsent.Location = new System.Drawing.Point(109, 144);
-            this.CheckEditConsent.Name = "CheckEditConsent";
-            this.CheckEditConsent.Properties.Caption = "";
-            this.CheckEditConsent.Size = new System.Drawing.Size(20, 19);
-            this.CheckEditConsent.TabIndex = 22;
-            // 
-            // CheckEditInactive
-            // 
-            this.CheckEditInactive.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Inactive", true));
-            this.CheckEditInactive.EnterMoveNextControl = true;
-            this.CheckEditInactive.Location = new System.Drawing.Point(109, 64);
-            this.CheckEditInactive.Name = "CheckEditInactive";
-            this.CheckEditInactive.Properties.Caption = "";
-            this.CheckEditInactive.Size = new System.Drawing.Size(20, 19);
-            this.CheckEditInactive.TabIndex = 20;
             // 
             // BarManager
             // 
@@ -2109,6 +1415,727 @@ namespace TraceForms
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 578);
+            // 
+            // PictureEditPreviewImage1LowRes
+            // 
+            this.PictureEditPreviewImage1LowRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureEditPreviewImage1LowRes.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PictureEditPreviewImage1LowRes.Location = new System.Drawing.Point(67, 85);
+            this.PictureEditPreviewImage1LowRes.Name = "PictureEditPreviewImage1LowRes";
+            this.PictureEditPreviewImage1LowRes.Size = new System.Drawing.Size(233, 155);
+            this.PictureEditPreviewImage1LowRes.TabIndex = 2;
+            this.PictureEditPreviewImage1LowRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage1LowRes_LoadCompleted);
+            // 
+            // labelControlSizeDisplay1LowRes
+            // 
+            this.labelControlSizeDisplay1LowRes.Location = new System.Drawing.Point(71, 57);
+            this.labelControlSizeDisplay1LowRes.Name = "labelControlSizeDisplay1LowRes";
+            this.labelControlSizeDisplay1LowRes.Size = new System.Drawing.Size(0, 13);
+            this.labelControlSizeDisplay1LowRes.TabIndex = 7;
+            // 
+            // labelControlSize
+            // 
+            this.labelControlSize.Location = new System.Drawing.Point(13, 57);
+            this.labelControlSize.Name = "labelControlSize";
+            this.labelControlSize.Size = new System.Drawing.Size(19, 13);
+            this.labelControlSize.TabIndex = 0;
+            this.labelControlSize.Text = "Size";
+            // 
+            // ButtonEditImage1LowRes
+            // 
+            this.ButtonEditImage1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE1", true));
+            this.ButtonEditImage1LowRes.EnterMoveNextControl = true;
+            this.ButtonEditImage1LowRes.Location = new System.Drawing.Point(67, 22);
+            this.ButtonEditImage1LowRes.Name = "ButtonEditImage1LowRes";
+            this.ButtonEditImage1LowRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ButtonEditImage1LowRes.Properties.Tag = "";
+            this.ButtonEditImage1LowRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage1LowRes_ButtonPressed);
+            this.ButtonEditImage1LowRes.Size = new System.Drawing.Size(524, 20);
+            this.ButtonEditImage1LowRes.TabIndex = 16;
+            this.ButtonEditImage1LowRes.TextChanged += new System.EventHandler(this.ButtonEditImage1LowRes_TextChanged);
+            this.ButtonEditImage1LowRes.Leave += new System.EventHandler(this.ButtonEditImage1LowRes_Leave);
+            // 
+            // ButtonCreateThumbnailLowRes
+            // 
+            this.ButtonCreateThumbnailLowRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCreateThumbnailLowRes.Location = new System.Drawing.Point(306, 85);
+            this.ButtonCreateThumbnailLowRes.Name = "ButtonCreateThumbnailLowRes";
+            this.ButtonCreateThumbnailLowRes.Size = new System.Drawing.Size(114, 37);
+            this.ButtonCreateThumbnailLowRes.TabIndex = 4;
+            this.ButtonCreateThumbnailLowRes.TabStop = false;
+            this.ButtonCreateThumbnailLowRes.Text = "Create Thumbnail";
+            this.ButtonCreateThumbnailLowRes.Click += new System.EventHandler(this.ButtonCreateThumbnailLowRes_Click);
+            // 
+            // LabelPeview
+            // 
+            this.LabelPeview.Location = new System.Drawing.Point(13, 85);
+            this.LabelPeview.Name = "LabelPeview";
+            this.LabelPeview.Size = new System.Drawing.Size(42, 13);
+            this.LabelPeview.TabIndex = 0;
+            this.LabelPeview.Text = "Preview:";
+            // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Controls.Add(this.panelControlMedRes);
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(607, 246);
+            this.xtraTabPage5.Text = "Medium Res";
+            // 
+            // panelControlMedRes
+            // 
+            this.panelControlMedRes.Controls.Add(this.azureBlobBrowser2MedRes);
+            this.panelControlMedRes.Controls.Add(this.labelControlSizeDisplay2MedRes);
+            this.panelControlMedRes.Controls.Add(this.labelControlSize2);
+            this.panelControlMedRes.Controls.Add(LabelImage2);
+            this.panelControlMedRes.Controls.Add(this.ButtonEditImage2MedRes);
+            this.panelControlMedRes.Controls.Add(this.labelControlPreview2);
+            this.panelControlMedRes.Controls.Add(this.ButtonCreateThumbnailMedRes);
+            this.panelControlMedRes.Controls.Add(this.PictureEditPreviewImage2MedRes);
+            this.panelControlMedRes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControlMedRes.Location = new System.Drawing.Point(0, 0);
+            this.panelControlMedRes.Name = "panelControlMedRes";
+            this.panelControlMedRes.Size = new System.Drawing.Size(607, 246);
+            this.panelControlMedRes.TabIndex = 0;
+            // 
+            // azureBlobBrowser2MedRes
+            // 
+            this.azureBlobBrowser2MedRes.BlobContainer = null;
+            this.azureBlobBrowser2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE2", true));
+            this.azureBlobBrowser2MedRes.Location = new System.Drawing.Point(67, 50);
+            this.azureBlobBrowser2MedRes.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser2MedRes.MenuManager = this.BarManager;
+            this.azureBlobBrowser2MedRes.Name = "azureBlobBrowser2MedRes";
+            this.azureBlobBrowser2MedRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.azureBlobBrowser2MedRes.Size = new System.Drawing.Size(524, 20);
+            this.azureBlobBrowser2MedRes.TabIndex = 18;
+            this.azureBlobBrowser2MedRes.Visible = false;
+            this.azureBlobBrowser2MedRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser2MedRes_EditValueChanged);
+            // 
+            // labelControlSizeDisplay2MedRes
+            // 
+            this.labelControlSizeDisplay2MedRes.Location = new System.Drawing.Point(73, 55);
+            this.labelControlSizeDisplay2MedRes.Name = "labelControlSizeDisplay2MedRes";
+            this.labelControlSizeDisplay2MedRes.Size = new System.Drawing.Size(0, 13);
+            this.labelControlSizeDisplay2MedRes.TabIndex = 9;
+            // 
+            // labelControlSize2
+            // 
+            this.labelControlSize2.Location = new System.Drawing.Point(13, 57);
+            this.labelControlSize2.Name = "labelControlSize2";
+            this.labelControlSize2.Size = new System.Drawing.Size(19, 13);
+            this.labelControlSize2.TabIndex = 0;
+            this.labelControlSize2.Text = "Size";
+            // 
+            // ButtonEditImage2MedRes
+            // 
+            this.ButtonEditImage2MedRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE2", true));
+            this.ButtonEditImage2MedRes.EnterMoveNextControl = true;
+            this.ButtonEditImage2MedRes.Location = new System.Drawing.Point(67, 22);
+            this.ButtonEditImage2MedRes.Name = "ButtonEditImage2MedRes";
+            this.ButtonEditImage2MedRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ButtonEditImage2MedRes.Properties.Tag = "";
+            this.ButtonEditImage2MedRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage2MedRes_ButtonPressed);
+            this.ButtonEditImage2MedRes.Size = new System.Drawing.Size(524, 20);
+            this.ButtonEditImage2MedRes.TabIndex = 17;
+            this.ButtonEditImage2MedRes.TextChanged += new System.EventHandler(this.ButtonEditImage2MedRes_TextChanged);
+            this.ButtonEditImage2MedRes.Leave += new System.EventHandler(this.ButtonEditImage2MidRes_Leave);
+            // 
+            // labelControlPreview2
+            // 
+            this.labelControlPreview2.Location = new System.Drawing.Point(13, 85);
+            this.labelControlPreview2.Name = "labelControlPreview2";
+            this.labelControlPreview2.Size = new System.Drawing.Size(42, 13);
+            this.labelControlPreview2.TabIndex = 0;
+            this.labelControlPreview2.Text = "Preview:";
+            // 
+            // ButtonCreateThumbnailMedRes
+            // 
+            this.ButtonCreateThumbnailMedRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCreateThumbnailMedRes.Location = new System.Drawing.Point(306, 85);
+            this.ButtonCreateThumbnailMedRes.Name = "ButtonCreateThumbnailMedRes";
+            this.ButtonCreateThumbnailMedRes.Size = new System.Drawing.Size(114, 37);
+            this.ButtonCreateThumbnailMedRes.TabIndex = 5;
+            this.ButtonCreateThumbnailMedRes.TabStop = false;
+            this.ButtonCreateThumbnailMedRes.Text = "Create Thumbnail";
+            this.ButtonCreateThumbnailMedRes.Click += new System.EventHandler(this.ButtonCreateThumbnailMedRes_Click);
+            // 
+            // PictureEditPreviewImage2MedRes
+            // 
+            this.PictureEditPreviewImage2MedRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureEditPreviewImage2MedRes.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PictureEditPreviewImage2MedRes.Location = new System.Drawing.Point(67, 85);
+            this.PictureEditPreviewImage2MedRes.Name = "PictureEditPreviewImage2MedRes";
+            this.PictureEditPreviewImage2MedRes.Size = new System.Drawing.Size(233, 156);
+            this.PictureEditPreviewImage2MedRes.TabIndex = 3;
+            this.PictureEditPreviewImage2MedRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage2MedRes_LoadCompleted);
+            // 
+            // xtraTabPage6
+            // 
+            this.xtraTabPage6.Controls.Add(this.panelControlHighRes);
+            this.xtraTabPage6.Name = "xtraTabPage6";
+            this.xtraTabPage6.Size = new System.Drawing.Size(607, 246);
+            this.xtraTabPage6.Text = "High Res";
+            // 
+            // panelControlHighRes
+            // 
+            this.panelControlHighRes.Controls.Add(this.azureBlobBrowser3HighRes);
+            this.panelControlHighRes.Controls.Add(this.labelControlSizeDisplay3HighRes);
+            this.panelControlHighRes.Controls.Add(this.labelControlSize3);
+            this.panelControlHighRes.Controls.Add(LabelImage3);
+            this.panelControlHighRes.Controls.Add(this.ButtonEditImage3HighRes);
+            this.panelControlHighRes.Controls.Add(this.ButtonCreateThumbNailHighRes);
+            this.panelControlHighRes.Controls.Add(this.LabelPreview3);
+            this.panelControlHighRes.Controls.Add(this.PictureEditPreviewImage3HighRes);
+            this.panelControlHighRes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControlHighRes.Location = new System.Drawing.Point(0, 0);
+            this.panelControlHighRes.Name = "panelControlHighRes";
+            this.panelControlHighRes.Size = new System.Drawing.Size(607, 246);
+            this.panelControlHighRes.TabIndex = 0;
+            // 
+            // azureBlobBrowser3HighRes
+            // 
+            this.azureBlobBrowser3HighRes.BlobContainer = null;
+            this.azureBlobBrowser3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE3", true));
+            this.azureBlobBrowser3HighRes.Location = new System.Drawing.Point(67, 47);
+            this.azureBlobBrowser3HighRes.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser3HighRes.MenuManager = this.BarManager;
+            this.azureBlobBrowser3HighRes.Name = "azureBlobBrowser3HighRes";
+            this.azureBlobBrowser3HighRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.azureBlobBrowser3HighRes.Size = new System.Drawing.Size(524, 20);
+            this.azureBlobBrowser3HighRes.TabIndex = 19;
+            this.azureBlobBrowser3HighRes.Visible = false;
+            this.azureBlobBrowser3HighRes.EditValueChanged += new System.EventHandler(this.azureBlobBrowser3HighRes_EditValueChanged);
+            // 
+            // labelControlSizeDisplay3HighRes
+            // 
+            this.labelControlSizeDisplay3HighRes.Location = new System.Drawing.Point(73, 56);
+            this.labelControlSizeDisplay3HighRes.Name = "labelControlSizeDisplay3HighRes";
+            this.labelControlSizeDisplay3HighRes.Size = new System.Drawing.Size(0, 13);
+            this.labelControlSizeDisplay3HighRes.TabIndex = 9;
+            // 
+            // labelControlSize3
+            // 
+            this.labelControlSize3.Location = new System.Drawing.Point(13, 57);
+            this.labelControlSize3.Name = "labelControlSize3";
+            this.labelControlSize3.Size = new System.Drawing.Size(19, 13);
+            this.labelControlSize3.TabIndex = 0;
+            this.labelControlSize3.Text = "Size";
+            // 
+            // ButtonEditImage3HighRes
+            // 
+            this.ButtonEditImage3HighRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE3", true));
+            this.ButtonEditImage3HighRes.EnterMoveNextControl = true;
+            this.ButtonEditImage3HighRes.Location = new System.Drawing.Point(67, 22);
+            this.ButtonEditImage3HighRes.Name = "ButtonEditImage3HighRes";
+            this.ButtonEditImage3HighRes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ButtonEditImage3HighRes.Properties.Tag = "";
+            this.ButtonEditImage3HighRes.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage3HighRes_ButtonPressed);
+            this.ButtonEditImage3HighRes.Size = new System.Drawing.Size(524, 20);
+            this.ButtonEditImage3HighRes.TabIndex = 18;
+            this.ButtonEditImage3HighRes.TextChanged += new System.EventHandler(this.ButtonEditImage3HighRes_TextChanged);
+            this.ButtonEditImage3HighRes.Leave += new System.EventHandler(this.ButtonEditImage3HighRes_Leave);
+            // 
+            // ButtonCreateThumbNailHighRes
+            // 
+            this.ButtonCreateThumbNailHighRes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCreateThumbNailHighRes.Location = new System.Drawing.Point(306, 85);
+            this.ButtonCreateThumbNailHighRes.Name = "ButtonCreateThumbNailHighRes";
+            this.ButtonCreateThumbNailHighRes.Size = new System.Drawing.Size(114, 37);
+            this.ButtonCreateThumbNailHighRes.TabIndex = 6;
+            this.ButtonCreateThumbNailHighRes.TabStop = false;
+            this.ButtonCreateThumbNailHighRes.Text = "Create Thumbnail";
+            this.ButtonCreateThumbNailHighRes.Click += new System.EventHandler(this.ButtonCreateThumbNailHighRes_Click);
+            // 
+            // LabelPreview3
+            // 
+            this.LabelPreview3.Location = new System.Drawing.Point(13, 85);
+            this.LabelPreview3.Name = "LabelPreview3";
+            this.LabelPreview3.Size = new System.Drawing.Size(42, 13);
+            this.LabelPreview3.TabIndex = 0;
+            this.LabelPreview3.Text = "Preview:";
+            // 
+            // PictureEditPreviewImage3HighRes
+            // 
+            this.PictureEditPreviewImage3HighRes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureEditPreviewImage3HighRes.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PictureEditPreviewImage3HighRes.Location = new System.Drawing.Point(67, 85);
+            this.PictureEditPreviewImage3HighRes.Name = "PictureEditPreviewImage3HighRes";
+            this.PictureEditPreviewImage3HighRes.Size = new System.Drawing.Size(233, 156);
+            this.PictureEditPreviewImage3HighRes.TabIndex = 3;
+            this.PictureEditPreviewImage3HighRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage3HighRes_LoadCompleted);
+            // 
+            // xtraTabPage7
+            // 
+            this.xtraTabPage7.Controls.Add(this.panelControlThumbNail);
+            this.xtraTabPage7.Name = "xtraTabPage7";
+            this.xtraTabPage7.Size = new System.Drawing.Size(607, 246);
+            this.xtraTabPage7.Text = "Thumbnail";
+            // 
+            // panelControlThumbNail
+            // 
+            this.panelControlThumbNail.Controls.Add(this.azureBlobBrowser4Thumb);
+            this.panelControlThumbNail.Controls.Add(this.labelControlSizeDisplay4Thumb);
+            this.panelControlThumbNail.Controls.Add(this.labelControlSize4);
+            this.panelControlThumbNail.Controls.Add(LabelImage4);
+            this.panelControlThumbNail.Controls.Add(this.ButtonEditImage4Thumb);
+            this.panelControlThumbNail.Controls.Add(this.LabelPreview4);
+            this.panelControlThumbNail.Controls.Add(this.PictureEditPreviewImage4Thumb);
+            this.panelControlThumbNail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControlThumbNail.Location = new System.Drawing.Point(0, 0);
+            this.panelControlThumbNail.Name = "panelControlThumbNail";
+            this.panelControlThumbNail.Size = new System.Drawing.Size(607, 246);
+            this.panelControlThumbNail.TabIndex = 0;
+            // 
+            // azureBlobBrowser4Thumb
+            // 
+            this.azureBlobBrowser4Thumb.BlobContainer = null;
+            this.azureBlobBrowser4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE4", true));
+            this.azureBlobBrowser4Thumb.Location = new System.Drawing.Point(67, 50);
+            this.azureBlobBrowser4Thumb.Margin = new System.Windows.Forms.Padding(2);
+            this.azureBlobBrowser4Thumb.MenuManager = this.BarManager;
+            this.azureBlobBrowser4Thumb.Name = "azureBlobBrowser4Thumb";
+            this.azureBlobBrowser4Thumb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.azureBlobBrowser4Thumb.Size = new System.Drawing.Size(524, 20);
+            this.azureBlobBrowser4Thumb.TabIndex = 20;
+            this.azureBlobBrowser4Thumb.Visible = false;
+            this.azureBlobBrowser4Thumb.EditValueChanged += new System.EventHandler(this.azureBlobBrowser4Thumb_EditValueChanged);
+            // 
+            // labelControlSizeDisplay4Thumb
+            // 
+            this.labelControlSizeDisplay4Thumb.Location = new System.Drawing.Point(67, 57);
+            this.labelControlSizeDisplay4Thumb.Name = "labelControlSizeDisplay4Thumb";
+            this.labelControlSizeDisplay4Thumb.Size = new System.Drawing.Size(0, 13);
+            this.labelControlSizeDisplay4Thumb.TabIndex = 9;
+            // 
+            // labelControlSize4
+            // 
+            this.labelControlSize4.Location = new System.Drawing.Point(13, 57);
+            this.labelControlSize4.Name = "labelControlSize4";
+            this.labelControlSize4.Size = new System.Drawing.Size(19, 13);
+            this.labelControlSize4.TabIndex = 0;
+            this.labelControlSize4.Text = "Size";
+            // 
+            // ButtonEditImage4Thumb
+            // 
+            this.ButtonEditImage4Thumb.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE4", true));
+            this.ButtonEditImage4Thumb.EnterMoveNextControl = true;
+            this.ButtonEditImage4Thumb.Location = new System.Drawing.Point(67, 22);
+            this.ButtonEditImage4Thumb.Name = "ButtonEditImage4Thumb";
+            this.ButtonEditImage4Thumb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.ButtonEditImage4Thumb.Properties.Tag = "";
+            this.ButtonEditImage4Thumb.Properties.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.ButtonEditImage4ThmNail_ButtonPressed);
+            this.ButtonEditImage4Thumb.Size = new System.Drawing.Size(524, 20);
+            this.ButtonEditImage4Thumb.TabIndex = 19;
+            this.ButtonEditImage4Thumb.TextChanged += new System.EventHandler(this.ButtonEditImage4ThmNail_TextChanged);
+            this.ButtonEditImage4Thumb.Leave += new System.EventHandler(this.ButtonEditImage4ThmNail_Leave);
+            // 
+            // LabelPreview4
+            // 
+            this.LabelPreview4.Location = new System.Drawing.Point(13, 85);
+            this.LabelPreview4.Name = "LabelPreview4";
+            this.LabelPreview4.Size = new System.Drawing.Size(42, 13);
+            this.LabelPreview4.TabIndex = 0;
+            this.LabelPreview4.Text = "Preview:";
+            // 
+            // PictureEditPreviewImage4Thumb
+            // 
+            this.PictureEditPreviewImage4Thumb.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PictureEditPreviewImage4Thumb.Location = new System.Drawing.Point(67, 85);
+            this.PictureEditPreviewImage4Thumb.Name = "PictureEditPreviewImage4Thumb";
+            this.PictureEditPreviewImage4Thumb.Size = new System.Drawing.Size(128, 128);
+            this.PictureEditPreviewImage4Thumb.TabIndex = 3;
+            this.PictureEditPreviewImage4Thumb.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage4Thumb_LoadCompleted);
+            // 
+            // xtraTabPageAdditionalImages
+            // 
+            this.xtraTabPageAdditionalImages.Controls.Add(this.panelControl3);
+            this.xtraTabPageAdditionalImages.Margin = new System.Windows.Forms.Padding(4);
+            this.xtraTabPageAdditionalImages.Name = "xtraTabPageAdditionalImages";
+            this.xtraTabPageAdditionalImages.Size = new System.Drawing.Size(663, 319);
+            this.xtraTabPageAdditionalImages.Text = "Additional Images";
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.GridControlAdditionalImages);
+            this.panelControl3.Controls.Add(this.ButtonDelRow);
+            this.panelControl3.Controls.Add(this.ButtonAddRow);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(0, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(663, 319);
+            this.panelControl3.TabIndex = 0;
+            // 
+            // GridControlAdditionalImages
+            // 
+            this.GridControlAdditionalImages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridControlAdditionalImages.CausesValidation = false;
+            this.GridControlAdditionalImages.DataSource = this.ResourceBindingSource;
+            this.GridControlAdditionalImages.Location = new System.Drawing.Point(13, 8);
+            this.GridControlAdditionalImages.MainView = this.GridViewAdditionalImages;
+            this.GridControlAdditionalImages.Name = "GridControlAdditionalImages";
+            this.GridControlAdditionalImages.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit_Item,
+            this.repositoryItemImageComboBoxTag,
+            this.repositoryItemPopupContainerEditPreview,
+            this.repositoryItemComboBoxImagePurpose,
+            this.repositoryItemAzureBlobBrowser});
+            this.GridControlAdditionalImages.Size = new System.Drawing.Size(639, 248);
+            this.GridControlAdditionalImages.TabIndex = 19;
+            this.GridControlAdditionalImages.TabStop = false;
+            this.GridControlAdditionalImages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewAdditionalImages,
+            this.gridView1});
+            // 
+            // ResourceBindingSource
+            // 
+            this.ResourceBindingSource.DataSource = typeof(FlexModel.RESOURCE);
+            // 
+            // GridViewAdditionalImages
+            // 
+            this.GridViewAdditionalImages.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ColumnID1,
+            this.ColumnLinkTable,
+            this.ColumnLinkValue,
+            this.ColumnRecType,
+            this.ColumnTag,
+            this.ColumnItem,
+            this.ColumnDesc,
+            this.ColumnUserDec1,
+            this.ColumnUserDec2,
+            this.ColumnUserInt1,
+            this.ColumnUserInt2,
+            this.ColumnUserTxt1,
+            this.ColumnUserTxt2,
+            this.ColumnUserTxt3,
+            this.ColumnUserTxt4,
+            this.ColumnUserDte1,
+            this.ColumnUserDte2,
+            this.gridColumnPreview});
+            this.GridViewAdditionalImages.DetailHeight = 182;
+            this.GridViewAdditionalImages.FixedLineWidth = 1;
+            this.GridViewAdditionalImages.GridControl = this.GridControlAdditionalImages;
+            this.GridViewAdditionalImages.Name = "GridViewAdditionalImages";
+            this.GridViewAdditionalImages.OptionsView.ShowGroupPanel = false;
+            this.GridViewAdditionalImages.OptionsView.ShowIndicator = false;
+            this.GridViewAdditionalImages.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewAdditionalImages_CustomRowCellEdit);
+            this.GridViewAdditionalImages.ShownEditor += new System.EventHandler(this.GridViewAdditionalImages_ShownEditor);
+            this.GridViewAdditionalImages.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewAdditionalImages_CellValueChanged);
+            // 
+            // ColumnID1
+            // 
+            this.ColumnID1.FieldName = "ID";
+            this.ColumnID1.MinWidth = 10;
+            this.ColumnID1.Name = "ColumnID1";
+            this.ColumnID1.Width = 37;
+            // 
+            // ColumnLinkTable
+            // 
+            this.ColumnLinkTable.FieldName = "LINK_TABLE";
+            this.ColumnLinkTable.MinWidth = 10;
+            this.ColumnLinkTable.Name = "ColumnLinkTable";
+            this.ColumnLinkTable.Width = 37;
+            // 
+            // ColumnLinkValue
+            // 
+            this.ColumnLinkValue.FieldName = "LINK_VALUE";
+            this.ColumnLinkValue.MinWidth = 10;
+            this.ColumnLinkValue.Name = "ColumnLinkValue";
+            this.ColumnLinkValue.Width = 37;
+            // 
+            // ColumnRecType
+            // 
+            this.ColumnRecType.FieldName = "RECTYPE";
+            this.ColumnRecType.MinWidth = 10;
+            this.ColumnRecType.Name = "ColumnRecType";
+            this.ColumnRecType.Width = 37;
+            // 
+            // ColumnTag
+            // 
+            this.ColumnTag.Caption = "Resolution";
+            this.ColumnTag.ColumnEdit = this.repositoryItemImageComboBoxTag;
+            this.ColumnTag.FieldName = "TAG";
+            this.ColumnTag.MinWidth = 10;
+            this.ColumnTag.Name = "ColumnTag";
+            this.ColumnTag.OptionsColumn.FixedWidth = true;
+            this.ColumnTag.Visible = true;
+            this.ColumnTag.VisibleIndex = 4;
+            this.ColumnTag.Width = 50;
+            // 
+            // repositoryItemImageComboBoxTag
+            // 
+            this.repositoryItemImageComboBoxTag.AutoHeight = false;
+            this.repositoryItemImageComboBoxTag.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBoxTag.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Low", "0", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Medium", "1", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("High", "2", -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Thumb", "3", -1)});
+            this.repositoryItemImageComboBoxTag.Name = "repositoryItemImageComboBoxTag";
+            // 
+            // ColumnItem
+            // 
+            this.ColumnItem.Caption = "File";
+            this.ColumnItem.FieldName = "ITEM";
+            this.ColumnItem.MinWidth = 10;
+            this.ColumnItem.Name = "ColumnItem";
+            this.ColumnItem.Visible = true;
+            this.ColumnItem.VisibleIndex = 1;
+            this.ColumnItem.Width = 215;
+            // 
+            // ColumnDesc
+            // 
+            this.ColumnDesc.Caption = "Caption";
+            this.ColumnDesc.FieldName = "DESCRIPTION";
+            this.ColumnDesc.MinWidth = 10;
+            this.ColumnDesc.Name = "ColumnDesc";
+            this.ColumnDesc.Visible = true;
+            this.ColumnDesc.VisibleIndex = 2;
+            this.ColumnDesc.Width = 341;
+            // 
+            // ColumnUserDec1
+            // 
+            this.ColumnUserDec1.FieldName = "USER_DEC1";
+            this.ColumnUserDec1.MinWidth = 10;
+            this.ColumnUserDec1.Name = "ColumnUserDec1";
+            this.ColumnUserDec1.Width = 37;
+            // 
+            // ColumnUserDec2
+            // 
+            this.ColumnUserDec2.FieldName = "USER_DEC2";
+            this.ColumnUserDec2.MinWidth = 10;
+            this.ColumnUserDec2.Name = "ColumnUserDec2";
+            this.ColumnUserDec2.Width = 37;
+            // 
+            // ColumnUserInt1
+            // 
+            this.ColumnUserInt1.FieldName = "USER_INT1";
+            this.ColumnUserInt1.MinWidth = 10;
+            this.ColumnUserInt1.Name = "ColumnUserInt1";
+            this.ColumnUserInt1.Width = 37;
+            // 
+            // ColumnUserInt2
+            // 
+            this.ColumnUserInt2.FieldName = "USER_INT2";
+            this.ColumnUserInt2.MinWidth = 10;
+            this.ColumnUserInt2.Name = "ColumnUserInt2";
+            this.ColumnUserInt2.Width = 37;
+            // 
+            // ColumnUserTxt1
+            // 
+            this.ColumnUserTxt1.Caption = "Purpose";
+            this.ColumnUserTxt1.ColumnEdit = this.repositoryItemComboBoxImagePurpose;
+            this.ColumnUserTxt1.FieldName = "USER_TXT1";
+            this.ColumnUserTxt1.MinWidth = 10;
+            this.ColumnUserTxt1.Name = "ColumnUserTxt1";
+            this.ColumnUserTxt1.Visible = true;
+            this.ColumnUserTxt1.VisibleIndex = 3;
+            this.ColumnUserTxt1.Width = 173;
+            // 
+            // repositoryItemComboBoxImagePurpose
+            // 
+            this.repositoryItemComboBoxImagePurpose.AutoHeight = false;
+            this.repositoryItemComboBoxImagePurpose.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxImagePurpose.Items.AddRange(new object[] {
+            "",
+            "SEATMAP"});
+            this.repositoryItemComboBoxImagePurpose.Name = "repositoryItemComboBoxImagePurpose";
+            // 
+            // ColumnUserTxt2
+            // 
+            this.ColumnUserTxt2.FieldName = "USER_TXT2";
+            this.ColumnUserTxt2.MinWidth = 10;
+            this.ColumnUserTxt2.Name = "ColumnUserTxt2";
+            this.ColumnUserTxt2.Width = 37;
+            // 
+            // ColumnUserTxt3
+            // 
+            this.ColumnUserTxt3.FieldName = "USER_TXT3";
+            this.ColumnUserTxt3.MinWidth = 10;
+            this.ColumnUserTxt3.Name = "ColumnUserTxt3";
+            this.ColumnUserTxt3.Width = 37;
+            // 
+            // ColumnUserTxt4
+            // 
+            this.ColumnUserTxt4.FieldName = "USER_TXT4";
+            this.ColumnUserTxt4.MinWidth = 10;
+            this.ColumnUserTxt4.Name = "ColumnUserTxt4";
+            this.ColumnUserTxt4.Width = 37;
+            // 
+            // ColumnUserDte1
+            // 
+            this.ColumnUserDte1.FieldName = "USER_DTE1";
+            this.ColumnUserDte1.MinWidth = 10;
+            this.ColumnUserDte1.Name = "ColumnUserDte1";
+            this.ColumnUserDte1.Width = 37;
+            // 
+            // ColumnUserDte2
+            // 
+            this.ColumnUserDte2.FieldName = "USER_DTE2";
+            this.ColumnUserDte2.MinWidth = 10;
+            this.ColumnUserDte2.Name = "ColumnUserDte2";
+            this.ColumnUserDte2.Width = 37;
+            // 
+            // gridColumnPreview
+            // 
+            this.gridColumnPreview.Caption = "Preview";
+            this.gridColumnPreview.ColumnEdit = this.repositoryItemPopupContainerEditPreview;
+            this.gridColumnPreview.MinWidth = 10;
+            this.gridColumnPreview.Name = "gridColumnPreview";
+            this.gridColumnPreview.OptionsColumn.FixedWidth = true;
+            this.gridColumnPreview.Visible = true;
+            this.gridColumnPreview.VisibleIndex = 0;
+            this.gridColumnPreview.Width = 23;
+            // 
+            // repositoryItemPopupContainerEditPreview
+            // 
+            this.repositoryItemPopupContainerEditPreview.AutoHeight = false;
+            this.repositoryItemPopupContainerEditPreview.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus, "Preview", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repositoryItemPopupContainerEditPreview.Name = "repositoryItemPopupContainerEditPreview";
+            this.repositoryItemPopupContainerEditPreview.PopupControl = this.popupContainerControlPreview;
+            this.repositoryItemPopupContainerEditPreview.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemPopupContainerEditPreview.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemPopupContainerEditPreview_ButtonClick);
+            // 
+            // popupContainerControlPreview
+            // 
+            this.popupContainerControlPreview.Controls.Add(this.pictureEditPreviewAddImg);
+            this.popupContainerControlPreview.Location = new System.Drawing.Point(1263, 851);
+            this.popupContainerControlPreview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.popupContainerControlPreview.Name = "popupContainerControlPreview";
+            this.popupContainerControlPreview.Size = new System.Drawing.Size(497, 386);
+            this.popupContainerControlPreview.TabIndex = 0;
+            // 
+            // pictureEditPreviewAddImg
+            // 
+            this.pictureEditPreviewAddImg.Location = new System.Drawing.Point(53, 35);
+            this.pictureEditPreviewAddImg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureEditPreviewAddImg.Name = "pictureEditPreviewAddImg";
+            this.pictureEditPreviewAddImg.Size = new System.Drawing.Size(391, 307);
+            this.pictureEditPreviewAddImg.TabIndex = 3;
+            // 
+            // repositoryItemButtonEdit_Item
+            // 
+            this.repositoryItemButtonEdit_Item.AutoHeight = false;
+            this.repositoryItemButtonEdit_Item.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit_Item.Name = "repositoryItemButtonEdit_Item";
+            this.repositoryItemButtonEdit_Item.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemButtonEdit_Item_ButtonClick);
+            // 
+            // repositoryItemAzureBlobBrowser
+            // 
+            this.repositoryItemAzureBlobBrowser.AutoHeight = false;
+            this.repositoryItemAzureBlobBrowser.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemAzureBlobBrowser.Name = "repositoryItemAzureBlobBrowser";
+            // 
+            // gridView1
+            // 
+            this.gridView1.DetailHeight = 182;
+            this.gridView1.FixedLineWidth = 1;
+            this.gridView1.GridControl = this.GridControlAdditionalImages;
+            this.gridView1.Name = "gridView1";
+            // 
+            // ButtonDelRow
+            // 
+            this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonDelRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_delete2;
+            this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDelRow.Location = new System.Drawing.Point(71, 263);
+            this.ButtonDelRow.Name = "ButtonDelRow";
+            this.ButtonDelRow.Size = new System.Drawing.Size(34, 36);
+            this.ButtonDelRow.TabIndex = 2;
+            this.ButtonDelRow.TabStop = false;
+            this.ButtonDelRow.Text = "simpleButton4";
+            this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
+            // 
+            // ButtonAddRow
+            // 
+            this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonAddRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_new;
+            this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddRow.Location = new System.Drawing.Point(29, 263);
+            this.ButtonAddRow.Name = "ButtonAddRow";
+            this.ButtonAddRow.Size = new System.Drawing.Size(36, 36);
+            this.ButtonAddRow.TabIndex = 1;
+            this.ButtonAddRow.TabStop = false;
+            this.ButtonAddRow.Text = "simpleButton3";
+            this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
+            // 
+            // xtraTabPageDisplay
+            // 
+            this.xtraTabPageDisplay.Controls.Add(this.panelControlDisplay);
+            this.xtraTabPageDisplay.Margin = new System.Windows.Forms.Padding(4);
+            this.xtraTabPageDisplay.Name = "xtraTabPageDisplay";
+            this.xtraTabPageDisplay.Size = new System.Drawing.Size(663, 319);
+            this.xtraTabPageDisplay.Text = "Display";
+            // 
+            // panelControlDisplay
+            // 
+            this.panelControlDisplay.Controls.Add(this.ImageComboBoxEditSeverity);
+            this.panelControlDisplay.Controls.Add(LabelConsent);
+            this.panelControlDisplay.Controls.Add(this.CheckEditConsent);
+            this.panelControlDisplay.Controls.Add(LabelSeverity);
+            this.panelControlDisplay.Controls.Add(this.CheckEditInactive);
+            this.panelControlDisplay.Controls.Add(LabelInactive);
+            this.panelControlDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControlDisplay.Location = new System.Drawing.Point(0, 0);
+            this.panelControlDisplay.Name = "panelControlDisplay";
+            this.panelControlDisplay.Size = new System.Drawing.Size(663, 319);
+            this.panelControlDisplay.TabIndex = 0;
+            // 
+            // ImageComboBoxEditSeverity
+            // 
+            this.ImageComboBoxEditSeverity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Severity", true));
+            this.ImageComboBoxEditSeverity.EnterMoveNextControl = true;
+            this.ImageComboBoxEditSeverity.Location = new System.Drawing.Point(111, 100);
+            this.ImageComboBoxEditSeverity.Name = "ImageComboBoxEditSeverity";
+            this.ImageComboBoxEditSeverity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ImageComboBoxEditSeverity.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("0 - Informational", ((short)(0)), -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("1 - Warning", ((short)(1)), -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("2 - Additional Fees", ((short)(2)), -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("3 - Critical Service Disruption", ((short)(3)), -1)});
+            this.ImageComboBoxEditSeverity.Size = new System.Drawing.Size(182, 20);
+            this.ImageComboBoxEditSeverity.TabIndex = 21;
+            this.ImageComboBoxEditSeverity.Leave += new System.EventHandler(this.ImageComboBoxEditSeverity_Leave);
+            // 
+            // CheckEditConsent
+            // 
+            this.CheckEditConsent.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Consent", true));
+            this.CheckEditConsent.EnterMoveNextControl = true;
+            this.CheckEditConsent.Location = new System.Drawing.Point(109, 144);
+            this.CheckEditConsent.Name = "CheckEditConsent";
+            this.CheckEditConsent.Properties.Caption = "";
+            this.CheckEditConsent.Size = new System.Drawing.Size(20, 19);
+            this.CheckEditConsent.TabIndex = 22;
+            // 
+            // CheckEditInactive
+            // 
+            this.CheckEditInactive.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Inactive", true));
+            this.CheckEditInactive.EnterMoveNextControl = true;
+            this.CheckEditInactive.Location = new System.Drawing.Point(109, 64);
+            this.CheckEditInactive.Name = "CheckEditInactive";
+            this.CheckEditInactive.Properties.Caption = "";
+            this.CheckEditInactive.Size = new System.Drawing.Size(20, 19);
+            this.CheckEditInactive.TabIndex = 20;
             // 
             // GridControlLookup
             // 
@@ -2531,17 +2558,17 @@ namespace TraceForms
             this.SearchLookupEditLang.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LANG", true));
             this.SearchLookupEditLang.Location = new System.Drawing.Point(69, 32);
             this.SearchLookupEditLang.Name = "SearchLookupEditLang";
+            this.SearchLookupEditLang.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.SearchLookupEditLang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.SearchLookupEditLang.Properties.DataSource = this.BindingSourceCodeName;
             this.SearchLookupEditLang.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditLang.Properties.NullText = "";
             this.SearchLookupEditLang.Properties.PopupSizeable = false;
-            this.SearchLookupEditLang.Properties.PopupView = this.customSearchLookUpEdit1View;
+            this.SearchLookupEditLang.Properties.PopupView = this.searchLookUpEdit1View;
             this.SearchLookupEditLang.Properties.ValueMember = "Code";
             this.SearchLookupEditLang.Size = new System.Drawing.Size(277, 20);
             this.SearchLookupEditLang.TabIndex = 2;
-            this.SearchLookupEditLang.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditLang.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditLang.Leave += new System.EventHandler(this.ImageComboBoxEditLang_Leave);
             // 
@@ -2549,30 +2576,30 @@ namespace TraceForms
             // 
             this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
-            // customSearchLookUpEdit1View
+            // searchLookUpEdit1View
             // 
-            this.customSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode,
-            this.colName});
-            this.customSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.customSearchLookUpEdit1View.Name = "customSearchLookUpEdit1View";
-            this.customSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.customSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.customSearchLookUpEdit1View.OptionsView.ShowIndicator = false;
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpEdit1View.OptionsView.ShowIndicator = false;
             // 
-            // colCode
+            // gridColumn4
             // 
-            this.colCode.FieldName = "Code";
-            this.colCode.Name = "colCode";
-            this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 0;
+            this.gridColumn4.FieldName = "Code";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 0;
             // 
-            // colName
+            // gridColumn5
             // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
+            this.gridColumn5.FieldName = "Name";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
             // 
             // SearchLookupEditProduct
             // 
@@ -2580,17 +2607,17 @@ namespace TraceForms
             this.SearchLookupEditProduct.Location = new System.Drawing.Point(69, 55);
             this.SearchLookupEditProduct.Margin = new System.Windows.Forms.Padding(2);
             this.SearchLookupEditProduct.Name = "SearchLookupEditProduct";
+            this.SearchLookupEditProduct.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.SearchLookupEditProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.SearchLookupEditProduct.Properties.DataSource = this.bindingSourceCodeNameProduct;
             this.SearchLookupEditProduct.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditProduct.Properties.NullText = "";
             this.SearchLookupEditProduct.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.SearchLookupEditProduct.Properties.PopupView = this.gridView2;
+            this.SearchLookupEditProduct.Properties.PopupView = this.gridView6;
             this.SearchLookupEditProduct.Properties.ValueMember = "Code";
             this.SearchLookupEditProduct.Size = new System.Drawing.Size(277, 20);
             this.SearchLookupEditProduct.TabIndex = 3;
-            this.SearchLookupEditProduct.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditProduct.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditProduct.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.SearchLookupEditProduct.Leave += new System.EventHandler(this.ImageComboBoxEditCode_Leave);
@@ -2599,12 +2626,64 @@ namespace TraceForms
             // 
             this.bindingSourceCodeNameProduct.DataSource = typeof(TraceForms.CodeName);
             // 
+            // gridView6
+            // 
+            this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8});
+            this.gridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
+            this.gridView6.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.FieldName = "Code";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.Width = 404;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.FieldName = "Name";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            this.gridColumn7.Width = 1427;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.FieldName = "DisplayName";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.ReadOnly = true;
+            // 
+            // SearchLookupEditSection
+            // 
+            this.SearchLookupEditSection.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SECTION", true));
+            this.SearchLookupEditSection.Location = new System.Drawing.Point(69, 78);
+            this.SearchLookupEditSection.Name = "SearchLookupEditSection";
+            this.SearchLookupEditSection.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.SearchLookupEditSection.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditSection.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditSection.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditSection.Properties.NullText = "";
+            this.SearchLookupEditSection.Properties.PopupSizeable = false;
+            this.SearchLookupEditSection.Properties.PopupView = this.gridView2;
+            this.SearchLookupEditSection.Properties.ValueMember = "Code";
+            this.SearchLookupEditSection.Size = new System.Drawing.Size(277, 20);
+            this.SearchLookupEditSection.TabIndex = 4;
+            this.SearchLookupEditSection.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditSection.Leave += new System.EventHandler(this.ImageComboBoxEditSection_Leave);
+            // 
             // gridView2
             // 
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn2});
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -2617,7 +2696,6 @@ namespace TraceForms
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 404;
             // 
             // gridColumn2
             // 
@@ -2625,62 +2703,11 @@ namespace TraceForms
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 1427;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.FieldName = "DisplayName";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.ReadOnly = true;
-            // 
-            // SearchLookupEditSection
-            // 
-            this.SearchLookupEditSection.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SECTION", true));
-            this.SearchLookupEditSection.Location = new System.Drawing.Point(69, 79);
-            this.SearchLookupEditSection.Name = "SearchLookupEditSection";
-            this.SearchLookupEditSection.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditSection.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditSection.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditSection.Properties.NullText = "";
-            this.SearchLookupEditSection.Properties.PopupSizeable = false;
-            this.SearchLookupEditSection.Properties.PopupView = this.gridView3;
-            this.SearchLookupEditSection.Properties.ValueMember = "Code";
-            this.SearchLookupEditSection.Size = new System.Drawing.Size(277, 20);
-            this.SearchLookupEditSection.TabIndex = 4;
-            this.SearchLookupEditSection.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditSection.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditSection.Leave += new System.EventHandler(this.ImageComboBoxEditSection_Leave);
-            // 
-            // gridView3
-            // 
-            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode1,
-            this.colName1});
-            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            this.gridView3.OptionsView.ShowIndicator = false;
-            // 
-            // colCode1
-            // 
-            this.colCode1.FieldName = "Code";
-            this.colCode1.Name = "colCode1";
-            this.colCode1.Visible = true;
-            this.colCode1.VisibleIndex = 0;
-            // 
-            // colName1
-            // 
-            this.colName1.FieldName = "Name";
-            this.colName1.Name = "colName1";
-            this.colName1.Visible = true;
-            this.colName1.VisibleIndex = 1;
             // 
             // SearchLookupEditAgency
             // 
             this.SearchLookupEditAgency.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Agency", true));
-            this.SearchLookupEditAgency.Location = new System.Drawing.Point(69, 102);
+            this.SearchLookupEditAgency.Location = new System.Drawing.Point(69, 101);
             this.SearchLookupEditAgency.Name = "SearchLookupEditAgency";
             this.SearchLookupEditAgency.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2688,42 +2715,42 @@ namespace TraceForms
             this.SearchLookupEditAgency.Properties.DisplayMember = "DisplayName";
             this.SearchLookupEditAgency.Properties.NullText = "";
             this.SearchLookupEditAgency.Properties.PopupSizeable = false;
-            this.SearchLookupEditAgency.Properties.PopupView = this.gridView4;
+            this.SearchLookupEditAgency.Properties.PopupView = this.gridView3;
             this.SearchLookupEditAgency.Properties.ValueMember = "Code";
             this.SearchLookupEditAgency.Size = new System.Drawing.Size(277, 20);
             this.SearchLookupEditAgency.TabIndex = 5;
             this.SearchLookupEditAgency.TextChanged += new System.EventHandler(this.ImageComboBoxEditAgency_TextChanged);
             this.SearchLookupEditAgency.Leave += new System.EventHandler(this.ImageComboBoxEditAgency_Leave);
             // 
-            // gridView4
+            // gridView3
             // 
-            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode2,
-            this.colName2});
-            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView4.Name = "gridView4";
-            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView4.OptionsView.ShowGroupPanel = false;
-            this.gridView4.OptionsView.ShowIndicator = false;
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn9});
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.OptionsView.ShowIndicator = false;
             // 
-            // colCode2
+            // gridColumn3
             // 
-            this.colCode2.FieldName = "Code";
-            this.colCode2.Name = "colCode2";
-            this.colCode2.Visible = true;
-            this.colCode2.VisibleIndex = 0;
+            this.gridColumn3.FieldName = "Code";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
             // 
-            // colName2
+            // gridColumn9
             // 
-            this.colName2.FieldName = "Name";
-            this.colName2.Name = "colName2";
-            this.colName2.Visible = true;
-            this.colName2.VisibleIndex = 1;
+            this.gridColumn9.FieldName = "Name";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 1;
             // 
             // SearchLookupEditCategory
             // 
             this.SearchLookupEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
-            this.SearchLookupEditCategory.Location = new System.Drawing.Point(69, 125);
+            this.SearchLookupEditCategory.Location = new System.Drawing.Point(69, 124);
             this.SearchLookupEditCategory.Name = "SearchLookupEditCategory";
             this.SearchLookupEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -2733,42 +2760,41 @@ namespace TraceForms
             this.SearchLookupEditCategory.Properties.NullText = "";
             this.SearchLookupEditCategory.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.SearchLookupEditCategory.Properties.PopupSizeable = false;
-            this.SearchLookupEditCategory.Properties.PopupView = this.gridView5;
+            this.SearchLookupEditCategory.Properties.PopupView = this.gridView4;
             this.SearchLookupEditCategory.Properties.ValueMember = "Code";
             this.SearchLookupEditCategory.Size = new System.Drawing.Size(277, 20);
             this.SearchLookupEditCategory.TabIndex = 7;
-            this.SearchLookupEditCategory.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
             this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditCategory.TextChanged += new System.EventHandler(this.ImageComboBoxEditCategory_TextChanged);
             this.SearchLookupEditCategory.Leave += new System.EventHandler(this.ImageComboBoxEditCategory_Leave);
             // 
-            // gridView5
+            // gridView4
             // 
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode3,
-            this.colName3});
-            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView5.OptionsView.ShowColumnHeaders = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
-            this.gridView5.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView5.OptionsView.ShowIndicator = false;
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn10,
+            this.gridColumn11});
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowColumnHeaders = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView4.OptionsView.ShowIndicator = false;
             // 
-            // colCode3
+            // gridColumn10
             // 
-            this.colCode3.FieldName = "Code";
-            this.colCode3.Name = "colCode3";
-            this.colCode3.Visible = true;
-            this.colCode3.VisibleIndex = 0;
+            this.gridColumn10.FieldName = "Code";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
             // 
-            // colName3
+            // gridColumn11
             // 
-            this.colName3.FieldName = "Name";
-            this.colName3.Name = "colName3";
-            this.colName3.Visible = true;
-            this.colName3.VisibleIndex = 1;
+            this.gridColumn11.FieldName = "Name";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
             // 
             // LabelStatus
             // 
@@ -2843,24 +2869,29 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControlLowRes)).EndInit();
             this.panelControlLowRes.ResumeLayout(false);
             this.panelControlLowRes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser1LowRes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage1LowRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage1LowRes.Properties)).EndInit();
             this.xtraTabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMedRes)).EndInit();
             this.panelControlMedRes.ResumeLayout(false);
             this.panelControlMedRes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser2MedRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage2MedRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage2MedRes.Properties)).EndInit();
             this.xtraTabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlHighRes)).EndInit();
             this.panelControlHighRes.ResumeLayout(false);
             this.panelControlHighRes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser3HighRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage3HighRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage3HighRes.Properties)).EndInit();
             this.xtraTabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThumbNail)).EndInit();
             this.panelControlThumbNail.ResumeLayout(false);
             this.panelControlThumbNail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azureBlobBrowser4Thumb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage4Thumb.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureEditPreviewImage4Thumb.Properties)).EndInit();
             this.xtraTabPageAdditionalImages.ResumeLayout(false);
@@ -2870,12 +2901,13 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).EndInit();
             this.popupContainerControlPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditPreviewAddImg.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.xtraTabPageDisplay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDisplay)).EndInit();
@@ -2884,7 +2916,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditSeverity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditConsent.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditInactive.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).EndInit();
@@ -2902,16 +2933,16 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.DateEditResEndDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCodeNameProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditSection.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
@@ -3058,33 +3089,34 @@ namespace TraceForms
         private DateEdit DateEditSvcEndDate;
         private DateEdit DateEditResStartDate;
         private DateEdit DateEditResEndDate;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditLang;
-        private DevExpress.XtraGrid.Views.Grid.GridView customSearchLookUpEdit1View;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditProduct;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private GridColumn gridColumn1;
-        private GridColumn gridColumn2;
-        private GridColumn gridColumn3;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditSection;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditAgency;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditCategory;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.Data.Linq.EntityInstantFeedbackSource EntityInstantFeedbackSource;
         private BindingSource BindingSourceCodeName;
-        private GridColumn colCode;
-        private GridColumn colName;
-        private GridColumn colCode1;
-        private GridColumn colName1;
-        private GridColumn colCode2;
-        private GridColumn colName2;
-        private GridColumn colCode3;
-        private GridColumn colName3;
         private PictureEdit PictureEditPreviewImage1LowRes;
         private AzureBlobBrowser.AzureBlobBrowser azureBlobBrowser1LowRes;
         private AzureBlobBrowser.AzureBlobBrowser azureBlobBrowser2MedRes;
         private AzureBlobBrowser.AzureBlobBrowser azureBlobBrowser3HighRes;
         private AzureBlobBrowser.AzureBlobBrowser azureBlobBrowser4Thumb;
+        private AzureBlobBrowser.RepositoryItemAzureBlobBrowser repositoryItemAzureBlobBrowser;
+        private SearchLookUpEdit SearchLookupEditLang;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private GridColumn gridColumn4;
+        private GridColumn gridColumn5;
+        private SearchLookUpEdit SearchLookupEditProduct;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private GridColumn gridColumn6;
+        private GridColumn gridColumn7;
+        private GridColumn gridColumn8;
+        private SearchLookUpEdit SearchLookupEditSection;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private GridColumn gridColumn1;
+        private GridColumn gridColumn2;
+        private SearchLookUpEdit SearchLookupEditAgency;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private GridColumn gridColumn3;
+        private GridColumn gridColumn9;
+        private SearchLookUpEdit SearchLookupEditCategory;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private GridColumn gridColumn10;
+        private GridColumn gridColumn11;
     }
 }

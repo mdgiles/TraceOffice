@@ -299,10 +299,7 @@
       <DependentUpon>AmenityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AzureBlobBrowser\AzureBlobBrowser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AzureBlobBrowser\AzureBlobBrowser.Designer.cs">
-      <DependentUpon>AzureBlobBrowser.cs</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="BlowFish.cs" />
     <Compile Include="BookSelForm.cs">
