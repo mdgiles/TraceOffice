@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Windows.Forms;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using DevExpress.XtraEditors.Controls;
@@ -19,39 +21,26 @@ using FlexEntities.Entities;
 using System.Globalization;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors;
+using DevExpress.Data.Async.Helpers;
+using FlexInterfaces.Core;
 
 namespace TraceForms
 {
-
-
     public partial class AgencyForm : DevExpress.XtraEditors.XtraForm
     {
         public List<IComprod2> myCommRecs;
         public List<IComprod2> myCommRecsAgy;
         public List<ICommLevel> myCommLvl;
-        public string currentVal;
-        public bool proceed = false;
-        public bool modified = false;
-        public bool newRec = false;
-        public bool newAgyLogRec = false;
-        public bool agyLogModified = false;
-        public bool authorizeCreditMod = false;
-        public bool authorizeBankMod = false;
-        public bool newRowRec = false;
-        public bool memberNewRowRec = false;
-        public bool temp = false;
+        ICoreSys _sys;
         public string imagesRoot;
         const string col = "colNO";
-        public Timer rowStatusDelete;
-        public Timer rowStatusSave;
-        public FlextourEntities context;
         public bool firstLoad = false;
         public string globalRptType = string.Empty;
         public string username;
-        public string defAgy = string.Empty;
+        public string _defAgy = string.Empty;
         public string apiLogin;
         public string transactionKey;
-        public AuthorizeNet.CustomerGateway conn;
+        public AuthorizeNet.CustomerGateway _custGateway;
         public AuthorizeNet.Customer currentCust;
         public List<int> authorizeCurrentRow;
         public List<int> authorizeCurrentBankRow;
@@ -64,15 +53,15 @@ namespace TraceForms
         public FileSystemWatcher fsw;
         string _accountingURL;
         RepositoryItemImageComboBox agyCurrencyCodeRepository = new RepositoryItemImageComboBox();
-        public bool newAgyCurrencyRec = false;
-        public bool modifiedAgyCurrencyRec = false;
-        public List<int> newAgyCurrencyIndices = new List<int>();
-        public List<int> modifiedAgyCurrencyIndices = new List<int>();
-        public string fixedDefaultCurrency;
-        public int actualDefaultCurrencyIndex;
-        public int fixedDefaultCurrencyIndex;
+        bool _detailsModified = false;
+        bool _contactsModified = false;
 
-        public AgencyForm(FlexInterfaces.Core.ICoreSys sys)
+        FlextourEntities _context;
+        AGY _selectedRecord;
+        Timer _actionConfirmation;
+        bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+
+        public AgencyForm(ICoreSys sys)
         {
             InitializeComponent();
             Connect(sys);
@@ -81,20 +70,53 @@ namespace TraceForms
             bankAccnts = new List<AuthorizeNet.PaymentProfile>();
             authorizeCurrentRow = new List<int>();
             authorizeCurrentBankRow = new List<int>();
+            _sys = sys;
+            CheckEditAllowAttachments.Checked = true;
+        }
+
+        void SetReadOnly(bool value)
+        {
+            foreach (Control control in SplitContainerControl.Panel2.Controls) {
+                control.Enabled = !value;
+            }
+        }
+
+        void SetReadOnlyKeyFields(bool value)
+        {
+            TextEditCode.ReadOnly = value;
+        }
+
+        private void ShowActionConfirmation(string confirmation)
+        {
+            PanelControlStatus.Visible = true;
+            LabelStatus.Text = confirmation;
+            _actionConfirmation = new Timer {
+                Interval = 3000
+            };
+            _actionConfirmation.Start();
+            _actionConfirmation.Tick += TimedEvent;
+        }
+
+        private void TimedEvent(object sender, EventArgs e)
+        {
+            PanelControlStatus.Visible = false;
+            _actionConfirmation.Stop();
         }
 
         private void Connect(FlexInterfaces.Core.ICoreSys sys)
         {
-
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
-            context = new FlextourEntities(sys.Settings.EFConnectionString);
+            AGY.MaxLengths = Connection.GetMaxLengths(typeof(AGY).GetType().Name);
+            AGCYLOG.MaxLengths = Connection.GetMaxLengths(typeof(AGCYLOG).GetType().Name);
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            _sys = sys;
             //FlexBObj.FileWatcher watcher = new FlexBObj.FileWatcher(sys.Settings.DataPath, sys.Settings.EFConnectionString);
             username = sys.User.Name;
             imagesRoot = sys.Settings.ImagesRoot;
-            defAgy = sys.Settings.DefaultAgency;
+            _defAgy = sys.Settings.DefaultAgency;
             _accountingURL = sys.Settings.TourAccountingURL;
 
-            var defCredit = context.AGY.First(a => a.NO == defAgy).CreditLimitRemainingWarningPct;
+            var defCredit = _context.AGY.First(a => a.NO == _defAgy).CreditLimitRemainingWarningPct;
             defaultCreditPct = (defCredit == null ? 0 : (float)defCredit);
             allowElecPayments = sys.Settings.AllowElectronicPayments;
             reqAgyInfoOnFile = sys.Settings.RequireAgyPaymentInfoOnFile;
@@ -102,16 +124,16 @@ namespace TraceForms
             if (allowElecPayments) {
                 if (string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorLoginId) || string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorTxKey)) {
                     MessageBox.Show("You are not currently setup to enter payment info please enter your credentials in the Company File form.");
-                    xtraTabPage14.PageVisible = false;
+                    XtraTabPagePayments.PageVisible = false;
                     return;
 
                 }
-                xtraTabPage14.PageVisible = true;
+                XtraTabPagePayments.PageVisible = true;
                 if (!string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorLoginId) && !string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorTxKey)) {
                     apiLogin = sys.Settings.PaymentProcessorLoginId;
                     transactionKey = sys.Settings.PaymentProcessorTxKey;
                     try {
-                        conn = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, paymentTestMode);
+                        _custGateway = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, paymentTestMode);
                     }
                     catch (Exception ex) {
                         MessageBox.Show(ex.Message);
@@ -122,14 +144,12 @@ namespace TraceForms
                 grdColExpDate.Caption = "Exp. Date \n(YYYY-MM)";
             }
             else
-                xtraTabPage14.PageVisible = false;
+                XtraTabPagePayments.PageVisible = false;
 
-            var agentLoad = from c in context.AGCYLOG
+            var agentLoad = from c in _context.AGCYLOG
                             where c.AGENCY == "KJM"
                             select c;
-            AgcyLogBindingSource.DataSource = agentLoad;
-
-            fixedDefaultCurrency = sys.Settings.DefaultCurrency;
+            BindingSourceAgcyLog.DataSource = agentLoad;
             //file watcher demo
             //fsw = new FileSystemWatcher();
             ////fsw.Path = sys.Settings.DataPath;
@@ -143,47 +163,15 @@ namespace TraceForms
             //fsw.Created += new FileSystemEventHandler(OnCreated);
             //fsw.Deleted += new FileSystemEventHandler(OnChanged);
             //fsw.Renamed += new RenamedEventHandler(OnRenamed);
-
-
-
-        }
-
-        private void OnCreated(object sender, FileSystemEventArgs e)
-        {
-            string[] extensions = { ".txt" };
-            var ext = (Path.GetExtension(e.FullPath) ?? string.Empty).ToLower();
-
-            if (extensions.Any(ext.Equals)) {
-                MessageBox.Show(e.FullPath + "   " + e.Name);
-                // Do your magic here
-            }
-        }
-
-        private void OnRenamed(object sender, RenamedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnChanged(object sender, FileSystemEventArgs e)
-        {
-            //string[] extensions = { ".txt" };
-            //var ext = (Path.GetExtension(e.FullPath) ?? string.Empty).ToLower();
-
-            //if (extensions.Any(ext.Equals))
-            //{
-            //    MessageBox.Show("hey we have something here");
-            //    // Do your magic here
-            //}
         }
 
         private void LoadLookups()
         {
-            GridControlLookup.DataSource = from lookupRec in context.LOOKUP where lookupRec.RECTYPE == "AGYCLASS" select lookupRec;
-            loadDirectory();
-            myCommRecsAgy = (from rec in context.COMPROD2
+            //loadDirectory();
+            myCommRecsAgy = (from rec in _context.COMPROD2
                              where (rec.TYPE == "AGY") && (rec.Inactive == false) && ((rec.START_DATE <= DateTime.Now) && (rec.END_DATE >= DateTime.Now))
                              select rec).ToList<IComprod2>();
-            myCommLvl = (from rec in context.CommLevel select rec).ToList<ICommLevel>();
+            myCommLvl = (from rec in _context.CommLevel select rec).ToList<ICommLevel>();
 
             foreach (COMPROD2 rec in myCommRecsAgy) {
                 rec.SetProductRulePosition(myCommLvl);
@@ -192,606 +180,98 @@ namespace TraceForms
             columnHotelInfo3.VisibleIndex = 1;
             columnHotelInfo3.UnboundType = DevExpress.Data.UnboundColumnType.String;
             columnHotelInfo3.Visible = true;
-            gridControl1.DataSource = from rptTypeRec in context.RPTTYPE where rptTypeRec.MEDIA_RPT == false && rptTypeRec.RecipientType == "Agy" select rptTypeRec;
-            modified = false;
-            newRec = false;
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
-            imageComboBoxEditAgentDelegate.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditAgency.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditConsrt.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditCountry.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditLanguage.Properties.Items.Add(loadBlank);
+            RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(loadBlank);
 
-            var lang = from langRec in context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
-            var country = from countryRec in context.COUNTRY orderby countryRec.CODE ascending select new { countryRec.CODE, countryRec.NAME };
-            var consrt = from consrtRec in context.CONSRT orderby consrtRec.CODE ascending select new { consrtRec.CODE, consrtRec.NAME };
-            var agency = from agencyRec in context.AGY orderby agencyRec.NO ascending select new { agencyRec.NO, agencyRec.NAME };
-            var dept = from deptRec in context.Dept orderby deptRec.Code ascending select new { deptRec.Code, deptRec.Desc };
-            var city = from citRec in context.CITYCOD orderby citRec.CODE ascending select new { citRec.CODE, citRec.NAME };
-            var state = from stateRec in context.State orderby stateRec.Code ascending select new { stateRec.Code, stateRec.State1 };
-            ///////////////////////////////////////////////////
-            // Prevent columns from being automatically created when a data source is assigned.
-            //GridLookUpEditCity.Properties.View.OptionsBehavior.AutoPopulateColumns = false;
-            //// The data source for the dropdown rows
-            //GridLookUpEditCity.Properties.DataSource = city;
-            //// The field for the editor's display text.
-            //GridLookUpEditCity.Properties.DisplayMember = "CODE" + "(" + "NAME" +")";
-            //// The field matching the edit value.
-            //GridLookUpEditCity.Properties.ValueMember = "CODE";
-
-
-            //GridColumn col1 = GridLookUpEditCity.Properties.View.Columns.AddField("CODE");
-            //col1.VisibleIndex = 0;
-            //col1.Caption = "Code";
-            //// A column to display the values of the ProductName field.
-            //GridColumn col2 = GridLookUpEditCity.Properties.View.Columns.AddField("NAME");
-            //col2.VisibleIndex = 1;
-            //col2.Caption = "Name";
-
-            //// Set column widths according to their contents.
-            //GridLookUpEditCity.Properties.View.BestFitColumns();
-            //// Specify the total dropdown width.
-            //GridLookUpEditCity.Properties.PopupFormWidth = 300;    
-
-
-            ///////////////////////////////////////////////////
-
-            foreach (var result in lang) {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditLanguage.Properties.Items.Add(load);
-            }
-
-            foreach (var result in country) {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditCountry.Properties.Items.Add(load);
-            }
-
-            foreach (var result in consrt) {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditConsrt.Properties.Items.Add(load);
-            }
-
-            foreach (var result in agency) {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.NO.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.NO.TrimEnd() };
-                ImageComboBoxEditParentAgy.Properties.Items.Add(load);
-                ImageComboBoxEditAgency.Properties.Items.Add(load);
-            }
+            var lang = from langRec in _context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
+            var country = from countryRec in _context.COUNTRY orderby countryRec.CODE ascending select new { countryRec.CODE, countryRec.NAME };
+            var consrt = from consrtRec in _context.CONSRT orderby consrtRec.CODE ascending select new { consrtRec.CODE, consrtRec.NAME };
+            var agency = from agencyRec in _context.AGY orderby agencyRec.NO ascending select new { agencyRec.NO, agencyRec.NAME };
+            var dept = from deptRec in _context.Dept orderby deptRec.Code ascending select new { deptRec.Code, deptRec.Desc };
+            var city = from citRec in _context.CITYCOD orderby citRec.CODE ascending select new { citRec.CODE, citRec.NAME };
+            var state = from stateRec in _context.State orderby stateRec.Code ascending select new { stateRec.Code, stateRec.State1 };
+            var agcylog = from agcylogRec in _context.AGCYLOG orderby agcylogRec.AGT_NAME ascending select new { agcylogRec.AGT_NAME };
 
             foreach (var result in dept) {
                 repositoryItemComboBoxDept.Items.Add(result.Code + " " + result.Desc);
             }
-            setReadOnly(true);
-            setAgcyLogReadOnly(true);
-            enableAgcyLogNavigator(false);
-            enableNavigator(false);
+            SetReadOnly(true);
             //DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
 
+            var lookup = new List<CodeName> {
+                new CodeName(null)
+            };
+            lookup.AddRange(_context.LANGUAGE
+                            .OrderBy(o => o.CODE)
+                            .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            SearchLookupEditDefLanguage.Properties.DataSource = lookup;
+
+            var agencies = new List<CodeName> {
+                new CodeName(null)
+            };
+            agencies.AddRange(_context.AGY
+                            .OrderBy(o => o.NO)
+                            .Select(s => new CodeName() { Code = s.NO, Name = s.NAME }));
+            SearchLookupEditAgency.Properties.DataSource = agencies;
+            SearchLookupEditParentAgy.Properties.DataSource = agencies;
+
+            var memberships = new List<CodeName> {
+                new CodeName(null)
+            };
+            memberships.AddRange(_context.LOOKUP.Where(c => c.LINK_TABLE == "DETAIL" && c.LINK_COLUMN == "CODE" && c.RECTYPE == "AGYCLASS")
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            RepositoryItemSearchLookUpEditClass.DataSource = memberships;
+
+            var countries = new List<CodeName> {
+                new CodeName(null)
+            };
+            countries.AddRange(_context.COUNTRY
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            SearchLookupEditCountry.Properties.DataSource = countries;
+
+            var reporttypes = new List<CodeName> {
+                new CodeName(null)
+            };
+            reporttypes.AddRange(_context.RPTTYPE
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }));
+            RepositoryItemSearchLookUpEditReportType.DataSource = reporttypes;
+
+            //_supplierCombo.Items.Add(loadBlank);
+            //_supplierCombo.Items.AddRange(_context.Supplier
+            //                .OrderBy(o => o.Name).AsEnumerable()
+            //                .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
+            //                .ToList());
+            //GridControlSupplierCity.RepositoryItems.Add(_supplierCombo);        //per DX recommendation to avoid memory leaks
+
+            //lookup = new List<CodeName> {
+            //    new CodeName(null)
+            //};
+            //lookup.AddRange(_context.OPERATOR
+            //                .OrderBy(o => o.CODE)
+            //                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
+            //RepositoryItemCustomSearchLookUpEditOperator.DataSource = lookup;
         }
 
-        void enableNavigator(bool value)
+        private void BindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            bindingNavigatorMoveNextItem.Enabled = value;
-            bindingNavigatorMoveLastItem.Enabled = value;
-            bindingNavigatorMoveFirstItem.Enabled = value;
-            bindingNavigatorMovePreviousItem.Enabled = value;
+            //If the current record is changing as a result of removing a record to delete it, and it is the last
+            //record in the table, then SetBindings will clear the bindings, which will cause the delete
+            //to fail because the associated entities will become detached when their BindingSources are cleared.
+            //Thus we have a flag which is set in that case to ignore this event.
+            if (!_ignorePositionChange)
+                SetBindings();
         }
 
-        void setReadOnly(bool value)
-        {
-            TextEditNo.Properties.ReadOnly = value;
-            GridViewAgy.Columns.ColumnByName(col).OptionsColumn.AllowEdit = !(value);
-        }
-
-        private void enterControl(object sender, EventArgs e)
-        {
-            currentVal = ((Control)sender).Text;
-        }
-
-        private bool checkForms()
-        {
-            if (!modified && !newRec && !agyLogModified && !newAgyCurrencyRec && !modifiedAgyCurrencyRec)
-                return true;
-
-            if (agyLogModified)
-                modified = true;
-
-            bool validateMain = validCheck.checkAll(splitContainerControl1.Panel2.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkMain, AgyBindingSource);
-            bool validateLocation = validCheck.checkAll(PanelControlLocationTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkLocationTab, AgyBindingSource);
-            bool validateContact = validCheck.checkAll(PanelControlContactTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkContactTab, AgyBindingSource);
-            bool validateAvailTab = validCheck.checkAll(PanelControlAvailabilityTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkAvailabilityTab, AgyBindingSource);
-            bool validateReport = validCheck.checkAll(PanelControlReportTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkReportTab, AgyBindingSource);
-            bool validatePolicies = validCheck.checkAll(PanelControlPoliciesTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkPoliciesTab, AgyBindingSource);
-            bool validateCurrencies = ValidateCurrencies();
-            bool validateConsrt = validCheck.checkAll(PanelControlConsrtTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkConsrtTab, AgyBindingSource);
-            bool validateAccount = validCheck.checkAll(PanelControlAccountTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkAccountTab, AgyBindingSource);
-            bool validateAdmin = validCheck.checkAll(PanelControlAdminTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkAdminTab, AgyBindingSource);
-            bool validateMember = validCheck.checkAll(PanelControlMemberTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkMemberTab, AgyBindingSource);
-            bool validateResource = validCheck.checkAll(PanelControlResourceTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkResourceTab, AgyBindingSource);
-            bool validateCustom = validCheck.checkAll(PanelControlCustomTab.Controls, errorProvider1, ((AGY)AgyBindingSource.Current).checkCustomTab, AgyBindingSource);
-            bool validateAgents = true;
-
-            if (AgcyLogBindingSource.Current != null)
-                validateAgents = validCheck.checkAll(PanelControlAgentTab.Controls, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkAll, AgcyLogBindingSource);
-
-            if (validateMain && validateLocation && validateContact && validateAvailTab && validateReport && validatePolicies && validateConsrt && validateAccount 
-                && validateAdmin && validateMember && validateResource && validateCustom && validateAgents && validateCurrencies) {
-                var ret = validCheck.saveRec(ref modified, true, ref newRec, context, AgyBindingSource, this.Name, errorProvider1, Cursor);
-                if (ret)
-                    ret = SaveAgencyCurrency();
-                if (ret) {
-                    AccountingAPI.InvokeForAgency(_accountingURL, ((AGY)AgyBindingSource.Current).NO);
-                    if (agyLogModified || newAgyLogRec) {
-                        AccountingAPI.InvokeForAgent(_accountingURL, ((AGCYLOG)AgcyLogBindingSource.Current).AGT_NAME);
-                    }
-                }
-                return ret;
-            }
-            else {
-                validCheck.saveRec(ref modified, false, ref newRec, context, AgyBindingSource, this.Name, errorProvider1, Cursor);
-                return false;
-            }
-        }
-
-        void setValues()
-        {
-            GridViewAgy.SetFocusedRowCellValue("DUE_DAY", 0);
-            GridViewAgy.SetFocusedRowCellValue("VOUCH_TYPES", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ALLOW_ATTACHMENTS", "Y");
-            GridViewAgy.SetFocusedRowCellValue("ShowAllLanguages", 0);
-            GridViewAgy.SetFocusedRowCellValue("TourfaxEmailFormat", "txt");
-            GridViewAgy.SetFocusedRowCellValue("INV_FMT", "SGL");
-            GridViewAgy.SetFocusedRowCellValue("TYP", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("AR", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("AP", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ADDR1", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ADDR2", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ADDR3", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("PHONE", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("CONSORT", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("STATE", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("SRT2", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("SRT3", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("DEF_LANG", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("FAX_NUM", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ACTIVE_FLG", "A");
-            GridViewAgy.SetFocusedRowCellValue("IMMED_FLG", "N");
-            GridViewAgy.SetFocusedRowCellValue("INV_FMT", "SGL");
-            GridViewAgy.SetFocusedRowCellValue("SVCDTE_FLG", "N");
-            GridViewAgy.SetFocusedRowCellValue("FAX_ID", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("SUB_ALLOC", "N");
-            GridViewAgy.SetFocusedRowCellValue("REM_CHG", "N");///
-            GridViewAgy.SetFocusedRowCellValue("CONF_PRC", "N");
-            GridViewAgy.SetFocusedRowCellValue("EMAIL", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("EDITHTLS", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("EDITHDRS", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("SIMPLEAVAL", "Y");
-            GridViewAgy.SetFocusedRowCellValue("GMACCTNO", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("REMOTE_VOUCHERS", "N");
-            GridViewAgy.SetFocusedRowCellValue("LOGO_PATH", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("COUNTRY", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("PARENT", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("ZIP", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("CITY", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("WEBSITE", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("Language_Code", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("USER_DEC1", 0);
-            GridViewAgy.SetFocusedRowCellValue("USER_DEC2", 0);
-            GridViewAgy.SetFocusedRowCellValue("USER_INT1", 0);
-            GridViewAgy.SetFocusedRowCellValue("USER_INT2", 0);
-            GridViewAgy.SetFocusedRowCellValue("USER_TXT1", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("USER_TXT2", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("USER_TXT3", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("USER_TXT4", string.Empty);
-            GridViewAgy.SetFocusedRowCellValue("CreditUnlimited", false);
-            GridViewAgy.SetFocusedRowCellValue("RequireCVV2Number", false);
-            GridViewAgy.SetFocusedRowCellValue("CreditLimit", 0);
-            GridViewAgy.SetFocusedRowCellValue("CreditLimitRemainingWarningPct", defaultCreditPct);
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            GridViewAgy.CloseEditor();
-            GridViewAgy.ClearColumnsFilter();
-            TextEditNo.Focus();
-            if (AgyBindingSource.Current == null) {
-                AgyBindingSource.DataSource = from opt in context.AGY where opt.NO == "KJM9" select opt;
-                AgyBindingSource.AddNew();
-                if (GridViewAgy.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewAgy.FocusedRowHandle = GridViewAgy.RowCount - 1;
-                setReadOnly(false);
-                newRec = true;
-                setValues();
-                return;
-            }
-            temp = newRec;
-            ((AGY)AgyBindingSource.Current).ImagesRoot = imagesRoot;
-            if (checkForms()) {
-                newRec = false;
-                modified = false;
-                newRowRec = false;
-                memberNewRowRec = false;
-                newAgyLogRec = false;
-                agyLogModified = false;
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-                AgyBindingSource.AddNew();
-                if (GridViewAgy.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                    GridViewAgy.FocusedRowHandle = GridViewAgy.RowCount - 1;
-                setValues();
-                TextEditNo.Focus();
-                setReadOnly(false);
-                newRec = true;
-            }
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if (AgyBindingSource.Current == null)
-                return;
-            GridViewAgy.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-
-                IEnumerable<CONTACT> contactRecs = from contact in context.CONTACT where contact.LINK_VALUE == TextEditNo.Text select contact;
-                foreach (CONTACT rec in contactRecs)
-                    context.DeleteObject(rec);
-
-                IEnumerable<RptContact> rptContactRecs = from contact in context.RptContact where contact.Code == TextEditNo.Text select contact;
-                foreach (RptContact rec in rptContactRecs)
-                    context.DeleteObject(rec);
-
-
-                modified = false;
-                newRec = false;
-                AgyBindingSource.RemoveCurrent();
-                errorProvider1.Clear();
-                context.SaveChanges();
-                setReadOnly(true);
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Deleted";
-                rowStatusDelete = new Timer();
-                rowStatusDelete.Interval = 3000;
-                rowStatusDelete.Start();
-                rowStatusDelete.Tick += new EventHandler(TimedEventDelete);
-            }
-            currentVal = TextEditNo.Text;
-        }
-
-        private void TimedEventDelete(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusDelete.Stop();
-        }
-
-        private void aGYBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            TextEditNo.Focus();
-            if (AgyBindingSource.Current == null)
-                return;
-            int ID = 0;
-            GridViewAgy.CloseEditor();
-            if (GridViewContacts.RowCount > 0) {
-                ID = (int)GridViewContacts.GetFocusedRowCellValue("ID");
-            }
-            ((AGY)AgyBindingSource.Current).ImagesRoot = imagesRoot;
-            if (((AGY)AgyBindingSource.Current).RequireCVV2Number == null) {
-                ((AGY)AgyBindingSource.Current).RequireCVV2Number = false;
-            }
-            bool require = (bool)((AGY)AgyBindingSource.Current).RequireCVV2Number;
-            bool checkNewRecs = false;
-            //gridViewPaymentProfiles.UpdateCurrentRow();
-            //gridViewPaymentProfiles.MoveFirst();
-            foreach (int val in authorizeCurrentRow) {
-                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewPaymentProfiles.GetRow(val);
-                if (string.IsNullOrWhiteSpace(rec.CardNumber) || string.IsNullOrWhiteSpace(rec.CardExpiration) || (string.IsNullOrWhiteSpace(rec.CardCode) && require))
-                    checkNewRecs = true;
-            }
-            foreach (int val in authorizeCurrentBankRow) {
-                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewBankProfiles.GetRow(val);
-                if (string.IsNullOrWhiteSpace(rec.BankAccountNumber) || string.IsNullOrWhiteSpace(rec.BankName) || string.IsNullOrWhiteSpace(rec.BankNameOnAccount) || string.IsNullOrWhiteSpace(rec.BankRoutingNumber))
-                    checkNewRecs = true;
-            }
-
-            if (gridViewPaymentProfiles.HasColumnErrors || checkNewRecs || gridViewBankProfiles.HasColumnErrors) {
-                MessageBox.Show("Please correct the errors in the payment grids.");
-                gridViewPaymentProfiles.Focus();
-                return;
-            }
-
-            if ((allowElecPayments && reqAgyInfoOnFile) && (currentCust == null || currentCust.PaymentProfiles.Count == 0)) {
-                if (currentCust == null)
-                    MessageBox.Show("WARNING!. You are saving an agency without a payment customer profile.");
-                else if (currentCust.PaymentProfiles.Count == 0)
-                    MessageBox.Show("WARNING!. You are saving an agency without a method of payment for the customer profile.");
-
-            }
-
-            bool temp = newRec;
-            if (checkForms()) {
-                ////////////////////////
-                errorProvider1.Clear();
-                newRec = false;
-                newRowRec = false;
-                memberNewRowRec = false;
-                modified = false;
-                newAgyLogRec = false;
-                agyLogModified = false;
-                setReadOnly(true);
-                //handle authorizeNet save here after succesfully saving the recordif
-
-                if (authorizeCreditMod) {
-                    UpdateButton.Enabled = true;
-                    authorizeCreditMod = false;
-                    foreach (int val in authorizeCurrentRow) {
-                        AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewPaymentProfiles.GetRow(val);
-                        string cardType = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
-                        string creditProfileID = conn.AddCreditCard(currentCust.ProfileID, rec.CardNumber, Convert.ToInt32(rec.CardExpiration.GetLast(2)), Convert.ToInt32(rec.CardExpiration.Substring(0, 4)), rec.CardCode, rec.BillingAddress);
-                        string last4 = rec.CardNumber.GetLast(4);
-                        AgencyPaymentProfile newCredRecord = new AgencyPaymentProfile();
-                        newCredRecord.Agy_No = TextEditNo.Text;
-                        newCredRecord.PaymentProfileID = creditProfileID;
-                        newCredRecord.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
-                        newCredRecord.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
-                        newCredRecord.LastDigits = last4;
-                        newCredRecord.PaymentProvider = cardType;
-                        // newCredRecord.PaymentProfileDesc = rec.CardType + " " + last4 + " " + rec.CardExpiration;
-                        context.AgencyPaymentProfile.AddObject(newCredRecord);
-                        context.SaveChanges();
-                    }
-                    authorizeCurrentRow.Clear();
-                }
-
-                if (authorizeBankMod) {
-                    UpdateButton.Enabled = true;
-                    authorizeBankMod = false;
-                    foreach (int val in authorizeCurrentBankRow) {
-                        AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewBankProfiles.GetRow(val);
-                        string bankprofileID = conn.AddBankAccount(currentCust.ProfileID, rec.BankNameOnAccount, rec.BankAccountNumber, rec.BankRoutingNumber, rec.BankName, rec.AccountType, rec.AccountTypeSpecified, rec.BillingAddress);
-                        string last4 = rec.BankAccountNumber.GetLast(4);
-                        AgencyPaymentProfile newBankRecord = new AgencyPaymentProfile();
-                        newBankRecord.Agy_No = TextEditNo.Text;
-                        newBankRecord.PaymentProfileID = bankprofileID;
-                        //newBankRecord.PaymentProfileDesc = rec.BankName + " " + last4;
-                        newBankRecord.PaymentProvider = rec.BankName;
-                        newBankRecord.LastDigits = last4;
-
-                        context.AgencyPaymentProfile.AddObject(newBankRecord);
-                        context.SaveChanges();
-                    }
-
-                    authorizeCurrentBankRow.Clear();
-                }
-
-                if (currentCust != null) {
-                    ///llp
-                    currentCust.Email = TextEditPaymentProcessorCustProfileEmail.Text;
-                    //foreach (AuthorizeNet.PaymentProfile rec in currentCust.PaymentProfiles)
-                    //    conn.UpdatePaymentProfile(currentCust.ProfileID, rec);                    
-                    conn.UpdateCustomer(currentCust);
-                    currentCust = conn.GetCustomer(currentCust.ProfileID);
-                    loadAuthorize(currentCust);
-                    if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultProfileID.Text) && currentCust.PaymentProfiles.Count > 0)
-                        ImageComboBoxEditDefaultProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
-                }
-
-                //////////////////////////////////end of authoriznet
-
-                if (ID == int.MaxValue) {
-                    int newID = (int)GridViewContacts.GetFocusedRowCellValue("ID");
-                    var values1 = from rec in context.RPTTYPE where rec.RecipientType == "Agy" select new { rec.CODE };
-                    foreach (var result in values1) {
-                        if (globalRptType.Contains(result.CODE)) {
-                            RptContact contact = new RptContact();
-                            contact.Code = TextEditNo.Text;
-                            contact.RptType = result.CODE;
-                            contact.Contact_ID = newID;
-                            context.RptContact.AddObject(contact);
-
-                        }
-                    }
-                    context.SaveChanges();
-                    globalRptType = string.Empty;
-
-                }
-                panelControlStatus.Visible = true;
-                LabelStatus.Text = "Record Saved";
-                //ratePlanNewRec = false;
-                //roomTypNewRec = false;
-                //mappingNewRec = false;
-                rowStatusSave = new Timer();
-                rowStatusSave.Interval = 3000;
-                rowStatusSave.Start();
-                rowStatusSave.Tick += TimedEventSave;
-            }
-
-            if (!temp && !modified)
-                context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-
-        }
-
-        private void TimedEventSave(object sender, EventArgs e)
-        {
-            panelControlStatus.Visible = false;
-            rowStatusSave.Stop();
-        }
-
-
-        void enableAgcyLogNavigator(bool valid)
-        {
-            toolStripButton1.Enabled = valid;
-            toolStripButton2.Enabled = valid;
-            toolStripButton3.Enabled = valid;
-            toolStripButton4.Enabled = valid;
-            TextEditAgtName.Enabled = valid;
-            TextEditPassword.Enabled = valid;
-            TextEditAgtEmail.Enabled = valid;
-            TextEditAgtFax.Enabled = valid;
-            ComboBoxEditResProf.Enabled = valid;
-            //ComboBoxEditMntProf.Enabled = valid;
-            //ComboBoxEditPrtProf.Enabled = valid;
-            //ComboBoxEditAccProf.Enabled = valid;
-        }
-
-        private void aGYBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-            //       authorizeCurrentRow.Clear();
-
-
-            ComboBoxEditSource.Text = string.Empty;
-            ImageComboBoxEditAgency.Text = string.Empty;
-            ButtonEditDate.Text = string.Empty;
-            ImageComboBoxEditDefaultProfileID.Properties.Items.Clear();
-            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
-            ImageComboBoxEditDefaultProfileID.Properties.Items.Add(loadBlank);
-
-            if (AgyBindingSource.Current != null) {
-                AGY rec = (AGY)AgyBindingSource.Current;
-                // context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-                enableNavigator(true);
-                proceed = false;
-                voucherCheckDina();
-                // AgcyLog
-
-                var agentLoad = from c in context.AGCYLOG
-                                where c.AGENCY == rec.NO
-                                select c;
-
-                AgcyLogBindingSource.DataSource = agentLoad;
-
-                if (agentLoad.Count() > 0) {
-                    enableAgcyLogNavigator(true);
-                }
-                else
-                    enableAgcyLogNavigator(false);
-
-                GridControlContacts.DataSource = (from c in context.CONTACT
-                                                  where c.LINK_VALUE == rec.NO && c.LINK_TABLE == "AGY" && c.RECTYPE == "AGYCONTACT"
-                                                  select c);
-                gridControl3.DataSource = from c in context.USERFIELDS
-                                          where c.LINK_TABLE.Equals("AGY")
-                                          select c;
-                GridControlMemberships.DataSource = from c in context.DETAIL where c.LINK_VALUE.TrimEnd() == rec.NO select c;
-
-                // BAW
-                AgencyCurrencyBindingSource.DataSource = (from c in context.AgencyCurrency
-                                                          where c.Agy_No == rec.NO
-                                                          select c);
-                gridControlAgencyCurrency.DataSource = AgencyCurrencyBindingSource;
-                gridControlAgencyCurrency.RefreshDataSource();
-
-                // used to ensure that at least one record is automatically set to default
-                var actualDefaultCurrencyRecord = AgencyCurrencyBindingSource.List.Cast<AgencyCurrency>().Where(a => a.Default == true).FirstOrDefault();
-                actualDefaultCurrencyIndex = AgencyCurrencyBindingSource.IndexOf(actualDefaultCurrencyRecord);
-
-                // this currency record may not be the actual default, but it is determined by sys.Settings.DefaultCurrency and is the fallback default, which cannot be edited or deleted
-                var fixedDefaultCurrencyRecord = AgencyCurrencyBindingSource.List.Cast<AgencyCurrency>().Where(f => f.Currency_Code == fixedDefaultCurrency).FirstOrDefault();
-                fixedDefaultCurrencyIndex = AgencyCurrencyBindingSource.IndexOf(fixedDefaultCurrencyRecord);
-
-                List<ImageComboBoxItem> currencyCodesLookup = (from c in context.Currency
-                                                               select new
-                                                               {
-                                                                   Code = c.Code,
-                                                                   Name = c.Name
-                                                               })
-                                                                .ToList()
-                                                                .Select(l => new ImageComboBoxItem()
-                                                                {
-                                                                    Description = string.Format("{0} - {1}", l.Code, l.Name),
-                                                                    Value = l.Code
-                                                                }).ToList();
-
-
-                agyCurrencyCodeRepository.Items.Clear();
-                agyCurrencyCodeRepository.Items.AddRange(currencyCodesLookup);
-                gridControlAgencyCurrency.RepositoryItems.Clear();
-                gridControlAgencyCurrency.RepositoryItems.Add(agyCurrencyCodeRepository);   //per DX recommendation to avoid memory leaks
-
-                if (string.IsNullOrWhiteSpace(TextBoxTyp.Text)) {
-                    TextBoxTyp.Text = string.Empty;
-                }
-
-                if (rec.DUE_DAY > 0) {
-                    SpinEditDueDays.Enabled = true;
-                    checkEdit9.Checked = true;
-                    SpinEditPmtDays.Enabled = false;
-                }
-                else {
-                    SpinEditDueDays.Enabled = false;
-                    checkEdit9.Checked = false;
-                    SpinEditPmtDays.Enabled = true;
-                }
-                //MessageBox.Show("Step 3");
-                for (int i = 0; i < GridViewCustom.DataRowCount; i++)
-                    GridViewCustom.RefreshRow(i);
-                creditCards.Clear();
-                bankAccnts.Clear();
-                gridCntrlPaymentProfiles.DataSource = null;
-                gridControlBankProfiles.DataSource = null;
-                if (rec.RequireCVV2Number == true)
-                    grdColCVV2.Visible = true;
-                else
-                    grdColCVV2.Visible = false;
-
-                if (allowElecPayments) {
-                    if (!string.IsNullOrWhiteSpace(rec.PaymentProcessorCustProfileId)) {
-                        CreateButton.Enabled = false;
-                        DeleteButton.Enabled = true;
-                        UpdateButton.Enabled = true;
-                        AddBankButton.Enabled = true;
-                        DelBankButton.Enabled = true;
-                        AddCreditButton.Enabled = true;
-                        DelCredButton.Enabled = true;
-                        try {
-                            //following line for testing purposes on apps4 should be able to remove later. Consult MDG
-                            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                            conn = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, paymentTestMode);
-                            currentCust = conn.GetCustomer(rec.PaymentProcessorCustProfileId);
-                        }
-                        catch (Exception ex) {
-                            MessageBox.Show(ex.Message);
-                        }
-
-
-                        if (currentCust != null && currentCust.PaymentProfiles.Count() > 0) {
-                            loadAuthorize(currentCust);
-                        }
-                    }
-                    else {
-                        currentCust = null;
-                        //gridControlBankProfiles.DataSource = null;
-                        //gridCntrlPaymentProfiles.DataSource = null;
-                        CreateButton.Enabled = true;
-                        DeleteButton.Enabled = false;
-                        UpdateButton.Enabled = false;
-                        AddBankButton.Enabled = false;
-                        DelBankButton.Enabled = false;
-                        AddCreditButton.Enabled = false;
-                        DelCredButton.Enabled = false;
-                    }
-                }
-
-                DateTime? day = DateTime.Today;
-                UpdateCommMarkupGrid(TextEditNo.Text, day, "ALL");
-
-
-
-            }
-            else
-                enableNavigator(false);
-
-            if (string.IsNullOrWhiteSpace(TextBoxTyp.Text)) {
-                TextBoxTyp.Text = string.Empty;
-            }
-
-        }
-
-        private void loadAuthorize(AuthorizeNet.Customer cust)
+        private void LoadAuthorize(AuthorizeNet.Customer cust)
         {
             bankAccnts.Clear();
             creditCards.Clear();
-            ImageComboBoxEditDefaultProfileID.Properties.Items.Clear();
+            ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
-            ImageComboBoxEditDefaultProfileID.Properties.Items.Add(loadBlank);
+            ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
             foreach (AuthorizeNet.PaymentProfile profile in cust.PaymentProfiles) {
                 if (!string.IsNullOrWhiteSpace(profile.BankAccountNumber))
                     bankAccnts.Add(profile);
@@ -799,951 +279,366 @@ namespace TraceForms
                 if (!string.IsNullOrWhiteSpace(profile.CardNumber))
                     creditCards.Add(profile);
             }
-            gridCntrlPaymentProfiles.DataSource = creditCards;
-            gridControlBankProfiles.DataSource = bankAccnts;
+            GridControlCreditProfiles.DataSource = creditCards;
+            GridControlBankProfiles.DataSource = bankAccnts;
             ///////////////////////
 
-            var loadDefault = from agyRec in context.AgencyPaymentProfile where agyRec.Agy_No == TextEditNo.Text select agyRec;
+            var loadDefault = from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text select agyRec;
             foreach (var result in loadDefault) {
                 ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.PaymentProfileDesc, Value = result.PaymentProfileID };
-                ImageComboBoxEditDefaultProfileID.Properties.Items.Add(load);
+                ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(load);
             }
             //setDefeaultProfile to first added if none is set
-            if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultProfileID.Text) && currentCust.PaymentProfiles.Count > 0) {
-                ImageComboBoxEditDefaultProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
-                context.SaveChanges();
+            if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultPmtProfileID.Text) && currentCust.PaymentProfiles.Count > 0) {
+                ImageComboBoxEditDefaultPmtProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
+                _context.SaveChanges();
             }
             //  ////////////////
         }
 
 
-        private void gridView3_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        private void GridView3_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             if (e.Column.FieldName == "AgencyValue" && e.IsGetData) {
                 string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
                 desc = desc.Trim();
-                e.Value = GridViewAgy.GetRowCellValue(AgyBindingSource.IndexOf(AgyBindingSource.Current), desc);
+                e.Value = GridViewLookup.GetRowCellValue(BindingSource.IndexOf(BindingSource.Current), desc);
             }
 
             if (e.Column.FieldName == "AgencyValue" && e.IsSetData) {
                 string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
                 desc = desc.Trim();
-                GridViewAgy.SetRowCellValue(AgyBindingSource.IndexOf(AgyBindingSource.Current), desc, e.Value);
-                modified = true;
+                GridViewLookup.SetRowCellValue(BindingSource.IndexOf(BindingSource.Current), desc, e.Value);
+                //modified = true;
             }
-        }
-
-        private void voucherCheckDina()
-        {
-            if (CheckEditRemoteVouchers.Checked) {
-                CheckEditHtlVouchers.Enabled = true;
-                CheckEditHtlVouchers.Checked = true;
-                CheckEditCarVouchers.Enabled = true;
-                CheckEditCruVouchers.Enabled = true;
-                CheckEditAirVouchers.Enabled = true;
-                CheckEditOptVouchers.Enabled = true;
-                CheckEditPkgVouchers.Enabled = true;
-                CheckEditSglResConf.Enabled = true;
-            }
-
-            if (!CheckEditRemoteVouchers.Checked) {
-                CheckEditHtlVouchers.Enabled = false;
-                CheckEditCarVouchers.Enabled = false;
-                CheckEditCruVouchers.Enabled = false;
-                CheckEditAirVouchers.Enabled = false;
-                CheckEditOptVouchers.Enabled = false;
-                CheckEditPkgVouchers.Enabled = false;
-                CheckEditSglResConf.Enabled = false;
-                //CheckEditHtlVouchers.Checked = CheckEditCarVouchers.Checked = CheckEditCruVouchers.Checked = CheckEditAirVouchers.Checked = CheckEditOptVouchers.Checked = CheckEditPkgVouchers.Checked = CheckEditSglResConf.Checked = false;
-            }
-
-            if (TextEditVouchTypes.Text.Contains("OPT"))
-                CheckEditOptVouchers.Checked = true;
-            else
-                CheckEditOptVouchers.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("HTL"))
-                CheckEditHtlVouchers.Checked = true;
-            else
-                CheckEditHtlVouchers.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("SGL"))
-                CheckEditSglResConf.Checked = true;
-            else
-                CheckEditSglResConf.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("CAR"))
-                CheckEditCarVouchers.Checked = true;
-            else
-                CheckEditCarVouchers.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("CRU"))
-                CheckEditCruVouchers.Checked = true;
-            else
-                CheckEditCruVouchers.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("AIR"))
-                CheckEditAirVouchers.Checked = true;
-            else
-                CheckEditAirVouchers.Checked = false;
-
-            if (TextEditVouchTypes.Text.Contains("PKG"))
-                CheckEditPkgVouchers.Checked = true;
-            else
-                CheckEditPkgVouchers.Checked = false;
-        }
-
-        private bool move()
-        {
-            GridViewAgy.CloseEditor();
-            TextEditNo.Focus();
-            //bindingNavigatorPositionItem.Focus();//trigger field leave event
-            temp = newRec;
-            if (checkForms()) {
-                errorProvider1.Clear();
-                if (!temp)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-                TextEditNo.Properties.ReadOnly = true;
-                GridViewAgy.Columns.ColumnByName(col).OptionsColumn.AllowEdit = false;
-                newRec = false;
-                modified = false;
-                newRowRec = false;
-                memberNewRowRec = false;
-                newAgyLogRec = false;
-                agyLogModified = false;
-                return true;
-            }
-            return false;
-        }
-        private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || memberNewRowRec == true) {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                AgyBindingSource.MoveFirst();
-        }
-
-        private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || memberNewRowRec == true) {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                AgyBindingSource.MovePrevious();
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || memberNewRowRec == true) {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                AgyBindingSource.MoveNext();
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            if (newRowRec == true || memberNewRowRec == true) {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-                return;
-            }
-            if (move())
-                AgyBindingSource.MoveLast();
-        }
-
-        private void bindingNavigatorPositionItem_Enter(object sender, EventArgs e)
-        {
-            //temp = newRec;
-            //if (!temp && checkForms())
-            //    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, ( AGY)AgyBindingSource.Current);
-
-            //TextEditNo.Properties.ReadOnly = true;
-            //GridViewAgy.Columns.ColumnByName(col).OptionsColumn.AllowEdit = false;
         }
 
         private void AgencyForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (modified || newRec) {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure you want to exit?", Name, MessageBoxButtons.YesNo);
+            if (IsModified(_selectedRecord)) {
+                DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
                 if (select == DialogResult.Yes) {
                     e.Cancel = false;
-                    this.Dispose();
+                    _context.Dispose();
+                    Dispose();
                 }
-                else if (select == DialogResult.No)
+                else
                     e.Cancel = true;
             }
             else {
                 e.Cancel = false;
-                this.Dispose();
+                _context.Dispose();
+                Dispose();
             }
         }
 
-        private void gridView1_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        private void TextEditCode_Leave(object sender, System.EventArgs e)
         {
-            if (newRowRec == true || memberNewRowRec == true) {
-                if (newRowRec)
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Contacts tab before attempting to navigate to another record.");
-                else
-                    MessageBox.Show("Please save or delete the new record being added in the grid on the Memberships tab before attempting to navigate to another record.");
-
-                e.Allow = false;
-                return;
-            }
-
-            if (AgyBindingSource.Current == null) {
-                e.Allow = true;
-                return;
-            }
-            temp = newRec;
-            bool temp2 = modified;
-            ///////////////
-
-            //if ((allowElecPayments && reqAgyInfoOnFile) && (currentCust == null || currentCust.PaymentProfiles.Count == 0))
-            //{
-            //    if (currentCust == null)
-            //        MessageBox.Show("WARNING!. You are saving an agency without a payment customer profile.");
-            //    else if (currentCust.PaymentProfiles.Count == 0)
-            //        MessageBox.Show("WARNING!. You are saving an agency without a method of payment for the customer profile.");
-            //}
-
-            if (checkForms()) {
-                newRec = false;
-                modified = false;
-                newRowRec = false;
-                memberNewRowRec = false;
-                newAgyLogRec = false;
-                agyLogModified = false;
-                errorProvider1.Clear();
-                e.Allow = true;
-                if ((!temp) && temp2)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-                setReadOnly(true);
-            }
-            else {
-                if (!temp && !modified)
-                    context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, (AGY)AgyBindingSource.Current);
-
-                if (modified || newAgyCurrencyRec)  // if new agency currency was added and it had errors, user needs to correct them first
-                    e.Allow = false;
-                else
-                    e.Allow = true;
-
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateNo, sender);
         }
 
-        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void TextEditName_Leave(object sender, System.EventArgs e)
         {
-            if (!GridViewAgy.IsFilterRow(e.RowHandle))
-                modified = true;
-            labelControl25.Text = DateTime.Today.ToShortDateString();
-            labelControl27.Text = username;
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateName, sender);
         }
 
-        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        private void TextEditType_Leave(object sender, System.EventArgs e)
         {
-            e.ExceptionMode = ExceptionMode.NoAction;
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateType, sender);
         }
 
-        private void nOComboBox_Leave(object sender, System.EventArgs e)
+        private void TextEditAP_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkNo, AgyBindingSource);
-                    TextEditNo.Text = TextEditNo.Text.ToUpper();
-                }
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAP, sender);
         }
 
-        private void nAMETextBox_Leave(object sender, System.EventArgs e)
+        private void TextEditAR_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkName, AgyBindingSource);
-                    TextEditName.Text = TextEditName.Text.ToUpper();
-                }
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAR, sender);
         }
 
-        private void tYPTextBox_Leave(object sender, System.EventArgs e)
+        private void SearchLookupEditDefaultLanguage_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkType, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDefLang, sender);
         }
 
-        private void aPTextBox_Leave(object sender, System.EventArgs e)
+        private void TextEditAddress1_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkAp, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAddress1, sender);
         }
 
-        private void aRTextBox_Leave(object sender, System.EventArgs e)
+        private void TextEditAddress2_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkAr, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAddress2, sender);
         }
 
-        private void defLangSearch_Leave(object sender, System.EventArgs e)
+        private void TextEditAddress3_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkDefLang, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAddress3, sender);
         }
 
-        private void aDDR1TextBox_Leave(object sender, System.EventArgs e)
+        private void TextEditZip_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkAddress1, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateZip, sender);
         }
 
-        private void aDDR2TextBox_Leave(object sender, System.EventArgs e)
+        private void SearchLookupEditCountry_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkAddress2, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCountry, sender);
         }
 
-        private void aDDR3TextBox_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditMailFaxFlg_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkAddress3, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateMailFax, sender);
         }
 
-        private void cITYTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditPhone_Leave(object sender, System.EventArgs e)
         {
-
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidatePhone, sender);
         }
 
-        private void stateSearch_Leave(object sender, System.EventArgs e)
+        private void TextEditFaxNum_Leave(object sender, System.EventArgs e)
         {
-
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateFax, sender);
         }
 
-        private void zIPTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditEmail_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkZip, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEmail, sender);
         }
 
-        private void countrySearch_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditRetReqHtls_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCountry, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateRetReq, sender);
         }
 
-        private void mAILFAX_FLGImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditRetNotAvailHtls_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkMailFax, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateRetNotAvail, sender);
         }
 
-        private void pHONETextBox_Leave(object sender, System.EventArgs e)
+        private void SpinEditRel_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkPhone, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateRel, sender);
         }
 
-        private void fAX_NUMTextBox_Leave(object sender, System.EventArgs e)
+        private void SpinEditArvBkDays_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkFax, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateArvBkDays, sender);
         }
 
-        private void eMAILTextBox_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditTourfaxEmailFormat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkEmail, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateTourfaxEmailFormat, sender);
         }
 
-        private void rETREQHTLSImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditVoucherReprints_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkRetReq, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateVouchReprints, sender);
         }
 
-        private void rETNOTAVALHTLSImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditVoucherDaysPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkRetNotAval, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateVouchDaysPrior, sender);
         }
 
-        private void rELSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditOptDays_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkRel, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateOptDays, sender);
         }
 
-        private void aRVBKDAYSSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditCxlGrace_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkArkBkDays, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateGrace, sender);
         }
 
-        private void tourfaxEmailFormatImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditComm_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkTourEmail, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateComm, sender);
         }
 
-        private void vOUCHER_REPRINTSSpinEdit_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditEditHdrs_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkVoucherReprints, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEditHdr, sender);
         }
 
-        private void vOUCHER_DAYS_PRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void ImageComboBoxEditEditHtls_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkVouchDaysPrior, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateEditHtl, sender);
         }
 
-        private void oPT_DAYSSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditDueDays_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkOptDays, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDueDays, sender);
         }
 
-        private void cXLGRACESpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditPmtDays_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkGrace, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidatePmtDays, sender);
         }
 
-        private void cOMMSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditPriorDays_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkComm, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidatePriorDays, sender);
         }
 
-        private void eDITHDRSImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditDaysSpace_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkEditHdr, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDaysSpace, sender);
         }
 
-        private void eDITHTLSImageComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void ComboBoxEditInvFormat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkEditHtl, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateInvFormat, sender);
         }
 
-        private void consrtSearch_Leave(object sender, System.EventArgs e)
+        private void SpinEditCxl1NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkConsrt, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlNights1, sender);
         }
 
-        private void dUE_DAYSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditCxl2NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkDueDays, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlNights2, sender);
         }
 
-        private void pMT_DAYSSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditCxl3NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkPmtDays, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlNights3, sender);
         }
 
-        private void pRIOR_DAYSSpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditChg1NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkPriorDays, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgNights1, sender);
         }
 
-        private void dAYS_SPACESpinEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditChg2NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkDaysSpace, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgNights2, sender);
         }
 
-        private void lAST_INVDateEdit_Leave(object sender, System.EventArgs e)
+        private void SpinEditChg3NtsPrior_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkLastInv, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgNights3, sender);
         }
 
-        private void iNV_FMTComboBoxEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl1Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkInvFormat, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlPct1, sender);
         }
 
-        private void cXL1_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl2Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlNights1, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlPct2, sender);
         }
 
-        private void cXL2_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl3Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlNights2, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlPct3, sender);
         }
 
-        private void cXL3_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl1Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlNights3, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlFlatFee1, sender);
         }
 
-        private void cHG1_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl2Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgNights1, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlFlatFee2, sender);
         }
 
-        private void cHG2_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditCxl3Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgNights2, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCxlFlatFee3, sender);
         }
 
-        private void cHG3_NTSPRIORSpinEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg1Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgNights3, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgPct1, sender);
         }
 
-        private void cXL1_PCTTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg2Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlPct1, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgPct2, sender);
         }
 
-        private void cXL2_PCTTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg3Pct_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlPct2, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgPct3, sender);
         }
 
-        private void cXL3_PCTTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg1Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCxlPct3, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgFlatFee1, sender);
         }
 
-        private void cXL2_FLATTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg2Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckCxlFlatFee1, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgFlatFee2, sender);
         }
 
-        private void cXL3_FLATTextEdit_Leave(object sender, System.EventArgs e)
+        private void TextEditChg3Flat_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckCxlFlatFee2, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChgFlatFee3, sender);
         }
 
-        private void cXL3_FLATTextEdit1_Leave(object sender, System.EventArgs e)
+        private void SearchLookupEditParentAgy_Leave(object sender, System.EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckCxlFlatFee3, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateParentAgy, sender);
         }
 
-        private void cHG1_PCTTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgPct1, AgyBindingSource);
-            }
-        }
-
-        private void cHG2_PCTTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgPct2, AgyBindingSource);
-            }
-        }
-
-        private void cHG3_PCTTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkChgPct3, AgyBindingSource);
-            }
-        }
-
-        private void cHG1_FLATTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckChgFlatFee1, AgyBindingSource);
-            }
-        }
-
-        private void cHG2_FLATTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckChgFlatFee2, AgyBindingSource);
-            }
-        }
-
-        private void cHG3_FLATTextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).CheckChgFlatFee3, AgyBindingSource);
-            }
-        }
-
-        private void parentAgySearch_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkParentAgy, AgyBindingSource);
-            }
-        }
-
-        private void wEBSITETextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-            }
-        }
-
-        private void sRT2TextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkSrt2, AgyBindingSource);
-            }
-        }
-
-        private void sRT3TextEdit_Leave(object sender, System.EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkSrt3, AgyBindingSource);
-            }
-        }
-
-        private void lOGO_PATHButtonEdit_ButtonPressed(object sender, ButtonPressedEventArgs e)
+        private void ButtonEditLogoPath_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             using (OpenFileDialog dlg = new OpenFileDialog()) {
                 dlg.Title = "Open Image";
@@ -1757,7 +652,7 @@ namespace TraceForms
             }
         }
 
-        private void lOGO_PATHButtonEdit_TextChanged(object sender, EventArgs e)
+        private void ButtonEditLogoPath_TextChanged(object sender, EventArgs e)
         {
             PictureEditPreview.Image = null;
             try {
@@ -1767,7 +662,7 @@ namespace TraceForms
                     PictureEditPreview.Width = Image.FromStream(stream).Width;
                     PictureEditPreview.Image = Image.FromStream(stream);
                     labelControlSize.Text = Image.FromStream(stream).Height + " * " + Image.FromStream(stream).Width;
-                    errorProvider1.SetError(ButtonEditLogoPath, "");
+                    ErrorProvider.SetError(ButtonEditLogoPath, "");
                 }
             }
             catch {
@@ -1777,7 +672,7 @@ namespace TraceForms
                         PictureEditPreview.Width = Image.FromStream(stream).Width;
                         PictureEditPreview.Image = Image.FromStream(stream);
                         labelControlSize.Text = Image.FromStream(stream).Height + " * " + Image.FromStream(stream).Width;
-                        errorProvider1.SetError(ButtonEditLogoPath, "");
+                        ErrorProvider.SetError(ButtonEditLogoPath, "");
                     }
                 }
                 catch {
@@ -1786,244 +681,33 @@ namespace TraceForms
             }
         }
 
-        private void lOGO_PATHButtonEdit_Leave(object sender, EventArgs e)
-        {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkLogo, AgyBindingSource);
-            }
-        }
-
-        private void consrtStartDate_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void consrtEndDate_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void consrtStartDate_TextChanged(object sender, EventArgs e)
-        {
-            ButtonEditConsrtStartDate.Text = validCheck.convertDate(ButtonEditConsrtStartDate.Text);
-        }
-
-        private void consrtEndDate_TextChanged(object sender, EventArgs e)
-        {
-            ButtonEditConsrtEndDate.Text = validCheck.convertDate(ButtonEditConsrtEndDate.Text);
-        }
-
-        private void CheckEditHtlVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CheckEditHtlVouchers.Checked && !TextEditVouchTypes.Text.Contains("HTL")) {
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-                TextEditVouchTypes.Text += "HTL,";
-            }
-
-            if (!CheckEditHtlVouchers.Checked && TextEditVouchTypes.Text.Contains("HTL")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("HTL,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditCarVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditCruVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditAirVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditOptVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditPkgVouchers_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ButtonAddRow_Click(object sender, EventArgs e)
         {
-            if (newRowRec == false) {
-                if (GridViewContacts.RowCount == 0) {
-                    newRowRec = true;
-                    firstLoad = true;
-                    GridViewContacts.AddNewRow();
-                    GridViewContacts.SetFocusedRowCellValue("ID", int.MaxValue);
-                    GridViewContacts.SetFocusedRowCellValue("LINK_TABLE", "AGY");
-                    GridViewContacts.SetFocusedRowCellValue("LINK_VALUE", TextEditNo.Text);
-                    GridViewContacts.SetFocusedRowCellValue("ACTIVE", 1);
-                    GridViewContacts.SetFocusedRowCellValue("ADDRESS1", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("ADDRESS2", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("ADDRESS3", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("CITY", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("STATE", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("ZIP", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("GMACCTNO", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("GMRECID", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("DEPT_HEAD", false);
-                    GridViewContacts.SetFocusedRowCellValue("COUNTRY", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("USER_DEC1", 0);
-                    GridViewContacts.SetFocusedRowCellValue("USER_DEC2", 0);
-                    GridViewContacts.SetFocusedRowCellValue("USER_INT1", 0);
-                    GridViewContacts.SetFocusedRowCellValue("USER_INT2", 0);
-                    GridViewContacts.SetFocusedRowCellValue("USER_TXT1", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("USER_TXT2", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("USER_TXT3", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("USER_TXT4", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("LOGIN_NAME", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("PASSWORD", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("LOGIN_ROLE", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("LOGIN_ACTIVE", false);
-                    GridViewContacts.SetFocusedRowCellValue("RECTYPE", "AGYCONTACT");
-                    GridViewContacts.SetFocusedRowCellValue("PARENT_ID", 0);
-                    GridViewContacts.SetFocusedRowCellValue("TITLE", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("DEAR", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("PHONE", string.Empty);
-                    GridViewContacts.SetFocusedRowCellValue("FAX", string.Empty);
-                    modified = true;
-                    return;
-                }
-                newRowRec = true;
-                firstLoad = true;
-                GridViewContacts.MoveLast();
-                GridViewContacts.AddNewRow();
-                GridViewContacts.SetFocusedRowCellValue("ID", int.MaxValue);
-                GridViewContacts.SetFocusedRowCellValue("LINK_TABLE", "AGY");
-                GridViewContacts.SetFocusedRowCellValue("LINK_VALUE", TextEditNo.Text);
-                GridViewContacts.SetFocusedRowCellValue("ACTIVE", 1);
-                GridViewContacts.SetFocusedRowCellValue("ADDRESS1", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("ADDRESS2", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("ADDRESS3", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("CITY", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("STATE", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("ZIP", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("GMACCTNO", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("GMRECID", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("DEPT_HEAD", false);
-                GridViewContacts.SetFocusedRowCellValue("COUNTRY", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("USER_DEC1", 0);
-                GridViewContacts.SetFocusedRowCellValue("USER_DEC2", 0);
-                GridViewContacts.SetFocusedRowCellValue("USER_INT1", 0);
-                GridViewContacts.SetFocusedRowCellValue("USER_INT2", 0);
-                GridViewContacts.SetFocusedRowCellValue("USER_TXT1", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("USER_TXT2", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("USER_TXT3", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("USER_TXT4", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("LOGIN_NAME", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("PASSWORD", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("LOGIN_ROLE", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("LOGIN_ACTIVE", false);
-                GridViewContacts.SetFocusedRowCellValue("RECTYPE", "AGYCONTACT");
-                GridViewContacts.SetFocusedRowCellValue("PARENT_ID", 0);
-                GridViewContacts.SetFocusedRowCellValue("TITLE", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("DEAR", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("PHONE", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("FAX", string.Empty);
-                GridViewContacts.SetFocusedRowCellValue("ACTIVE", 1);
-                modified = true;
-            }
-            else
-                MessageBox.Show("Please save current record before attempting to add another.");
+            CONTACT contact = new CONTACT() {
+                LINK_TABLE = "AGY",
+                RECTYPE = "IMAGE",
+                LINK_VALUE = TextEditCode.Text
+            };
+            BindingSourceContact.Add(contact);
         }
 
         private void ButtonSaveChanges_Click(object sender, EventArgs e)
-        {
+        {/*
             GridViewContacts.FocusedColumn = GridViewContacts.Columns["LINK_TABLE"];
             if (GridViewContacts.UpdateCurrentRow()) {
-                AgyBindingSource.EndEdit();
+                BindingSource.EndEdit();
                 aGYBindingNavigatorSaveItem_Click(sender, e);
                 newRowRec = false;
                 modified = false;
-            }
+            }*/
         }
 
         private void DelRow_Click(object sender, EventArgs e)
         {
             int handle = GridViewContacts.FocusedRowHandle;
             GridViewContacts.DeleteRow(handle);
-            AgyBindingSource.EndEdit();
-            context.SaveChanges();
-            newRowRec = false;
-            modified = false;
-        }
-
-        private void AddButtonMemberships_Click(object sender, EventArgs e)
-        {
-            if (memberNewRowRec == false) {
-                if (GridViewMemberships.RowCount == 0) {
-                    GridViewMemberships.AddNewRow();
-                    GridViewMemberships.SetFocusedRowCellValue("LINK_TABLE", "AGY");
-                    GridViewMemberships.SetFocusedRowCellValue("RECTYPE", "AGYCLASS");
-                    GridViewMemberships.SetFocusedRowCellValue("LINK_VALUE", TextEditNo.Text);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_DEC1", 0);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_DEC2", 0);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_INT1", 0);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_INT2", 0);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_TXT1", string.Empty);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_TXT2", string.Empty);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_TXT3", string.Empty);
-                    GridViewMemberships.SetFocusedRowCellValue("USER_TXT4", string.Empty);
-                    memberNewRowRec = true;
-                    modified = true;
-                    return;
-                }
-                GridViewMemberships.AddNewRow();
-                GridViewMemberships.SetFocusedRowCellValue("LINK_TABLE", "AGY");
-                GridViewMemberships.SetFocusedRowCellValue("RECTYPE", "AGYCLASS");
-                GridViewMemberships.SetFocusedRowCellValue("LINK_VALUE", TextEditNo.Text);
-                GridViewMemberships.SetFocusedRowCellValue("USER_DEC1", 0);
-                GridViewMemberships.SetFocusedRowCellValue("USER_DEC2", 0);
-                GridViewMemberships.SetFocusedRowCellValue("USER_INT1", 0);
-                GridViewMemberships.SetFocusedRowCellValue("USER_INT2", 0);
-                GridViewMemberships.SetFocusedRowCellValue("USER_TXT1", string.Empty);
-                GridViewMemberships.SetFocusedRowCellValue("USER_TXT2", string.Empty);
-                GridViewMemberships.SetFocusedRowCellValue("USER_TXT3", string.Empty);
-                GridViewMemberships.SetFocusedRowCellValue("USER_TXT4", string.Empty);
-                memberNewRowRec = true;
-                modified = true;
-            }
-            else
-                MessageBox.Show("Please save current record before attempting to add another.");
-        }
-
-        private void DelButtonMemberships_Click(object sender, EventArgs e)
-        {
-            int handle = GridViewMemberships.FocusedRowHandle;
-            GridViewMemberships.DeleteRow(handle);
-            DetailBindingSource.EndEdit();
-            context.SaveChanges();
-            memberNewRowRec = false;
-            modified = false;
-        }
-
-        private void SaveButtonMemberships_Click(object sender, EventArgs e)
-        {
-            GridViewMemberships.FocusedColumn = GridViewMemberships.Columns["LINK_TABLE"];
-            if (GridViewMemberships.UpdateCurrentRow()) {
-                AgyBindingSource.EndEdit();
-                aGYBindingNavigatorSaveItem_Click(sender, e);
-                memberNewRowRec = false;
-                modified = false;
-            }
+            BindingSource.EndEdit();
+            _context.SaveChanges();
         }
 
         private void GridViewContacts_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -2034,7 +718,7 @@ namespace TraceForms
                 string load = String.Empty;
                 if (id == int.MaxValue || id == 0) {
                     if (firstLoad == true) {
-                        var values = from rec in context.RPTTYPE where rec.RecipientType == "Agy" select new { rec.CODE };
+                        var values = from rec in _context.RPTTYPE where rec.RecipientType == "Agy" select new { rec.CODE };
                         foreach (var result in values) {
                             if (!string.IsNullOrWhiteSpace(load))
                                 load += "," + result.CODE;
@@ -2049,7 +733,7 @@ namespace TraceForms
                     }
                 }
                 else {
-                    var val = from rec in context.RptContact where rec.Contact_ID == id && rec.Code == TextEditNo.Text select new { rec.RptType };
+                    var val = from rec in _context.RptContact where rec.Contact_ID == id && rec.Code == TextEditCode.Text select new { rec.RptType };
                     foreach (var result in val) {
                         if (!string.IsNullOrWhiteSpace(load))
                             load += "," + result.RptType;
@@ -2064,117 +748,31 @@ namespace TraceForms
                 int id = conRec.ID;
                 if (id == int.MaxValue || id == 0) {
                     globalRptType = e.Value.ToString();
-                    modified = true;
+                    //modified = true;
                 }
                 else {
                     string value = e.Value.ToString();
-                    var results = from rptRec in context.RptContact where !value.Contains(rptRec.RptType) && rptRec.Code == TextEditNo.Text && rptRec.Contact_ID == id select rptRec;
+                    var results = from rptRec in _context.RptContact where !value.Contains(rptRec.RptType) && rptRec.Code == TextEditCode.Text && rptRec.Contact_ID == id select rptRec;
                     foreach (var result in results) {
-                        context.RptContact.DeleteObject(result);
+                        _context.RptContact.DeleteObject(result);
                     }
-                    var val1 = (from rptRec in context.RPTTYPE
+                    var val1 = (from rptRec in _context.RPTTYPE
                                 where value.Contains(rptRec.CODE)
                                 select new { rptRec.CODE });
                     foreach (var result1 in val1) {
-                        if ((from rptCont in context.RptContact where rptCont.Contact_ID == id && rptCont.Code == TextEditNo.Text && rptCont.RptType == result1.CODE select new { rptCont.Code }).Count() == 0) {
-                            RptContact lol = new RptContact();
-                            lol.Code = TextEditNo.Text;
-                            lol.RptType = result1.CODE;
-                            lol.Contact_ID = id;
-                            context.RptContact.AddObject(lol);
+                        if ((from rptCont in _context.RptContact where rptCont.Contact_ID == id && rptCont.Code == TextEditCode.Text && rptCont.RptType == result1.CODE select new { rptCont.Code }).Count() == 0) {
+                            RptContact lol = new RptContact() {
+                                Code = TextEditCode.Text,
+                                RptType = result1.CODE,
+                                Contact_ID = id
+                            };
+
+                            _context.RptContact.AddObject(lol);
                         }
                     }
-                    context.SaveChanges();
+                    _context.SaveChanges();
                 }
             }
-        }
-
-        private void AgencyForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter && GridViewAgy.IsFilterRow(GridViewAgy.FocusedRowHandle))
-                executeQuery();
-
-        }
-
-        private void executeQuery()
-        {
-            this.Cursor = Cursors.WaitCursor;
-            string colName = GridViewAgy.FocusedColumn.FieldName;
-            string value = String.Empty;
-            if (!string.IsNullOrWhiteSpace(GridViewAgy.GetFocusedDisplayText()))
-                value = GridViewAgy.GetFocusedDisplayText();
-            //  value = "test";
-            if (!string.IsNullOrWhiteSpace(value)) {
-                string query = String.Format("it.NAME like '{0}%'", GridViewAgy.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "NAME"));
-                var special = context.AGY.Where(query);
-                if (!string.IsNullOrWhiteSpace(GridViewAgy.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "NO"))) {
-                    query = String.Format("it.{0} like '{1}%'", "NO", GridViewAgy.GetRowCellDisplayText(GridControl.AutoFilterRowHandle, "NO"));
-                    special = special.Where(query);
-                }
-                int count = special.Count();
-                if (count > 0) {
-                    AgyBindingSource.DataSource = special;
-                    GridViewAgy.SetRowCellValue(GridControl.AutoFilterRowHandle, colName, value);
-                    GridViewAgy.FocusedRowHandle = 0;
-                    GridViewAgy.FocusedColumn.FieldName = colName;
-                    var agentLoad = from c in context.AGCYLOG
-                                    where c.AGENCY == TextEditNo.Text
-                                    select c;
-                    AgcyLogBindingSource.DataSource = agentLoad;
-                    GridViewAgy.ClearColumnsFilter();
-
-                }
-                else {
-                    MessageBox.Show("No records in database.");
-                    GridViewAgy.ClearColumnsFilter();
-                }
-            }
-            this.Cursor = Cursors.Default;
-        }
-
-        private void gridView1_DoubleClick(object sender, EventArgs e)
-        {
-            GridView view = (GridView)sender;
-            Point pt = view.GridControl.PointToClient(Control.MousePosition);
-            DoRowDoubleClick(view, pt);
-        }
-
-        private void repositoryItemPopupContainerEditRptType_QueryResultValue(object sender, DevExpress.XtraEditors.Controls.QueryResultValueEventArgs e)
-        {
-            e.Value += "," + (gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "CODE").ToString());
-        }
-
-        private void OkButton_Click(object sender, EventArgs e)
-        {
-            popupContainerControl1.OwnerEdit.ClosePopup();
-        }
-
-        private void DoRowDoubleClick(GridView view, Point pt)
-        {
-            GridHitInfo info = view.CalcHitInfo(pt);
-            if (info.InRow || info.InRowCell) {
-                popupContainerControl1.OwnerEdit.ClosePopup();
-            }
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            popupContainerControl1.OwnerEdit.CancelPopup();
-        }
-
-        private void CheckEditConfPrc_Modified(object sender, EventArgs e)
-        {
-            //modified = true;
-        }
-
-        private void CheckEditSglResConf_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CheckEditRemoteVouchers_Modified(object sender, EventArgs e)
-        {
-            // modified = true;
         }
 
         private void GridViewContacts_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
@@ -2197,61 +795,27 @@ namespace TraceForms
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
 
-        private void checkEdit9_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkEdit9.Checked) {
-                SpinEditDueDays.Enabled = true;
-                SpinEditPmtDays.Enabled = false;
-                SpinEditPmtDays.Value = 0;
-            }
-            else {
-                SpinEditDueDays.Enabled = false;
-                SpinEditDueDays.Value = 0;
-                SpinEditPmtDays.Enabled = true;
-            }
-        }
-
-        private void ButtonEditLastInvDate_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
-        private void ButtonEditLastInvDate_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(ButtonEditLastInvDate.Text))
-                ButtonEditLastInvDate.Text = validCheck.convertDate(ButtonEditLastInvDate.Text);
-        }
-
-        private void ButtonEditDate_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
         private void ButtonEditDate_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(ButtonEditDate.Text))
-                ButtonEditDate.Text = validCheck.convertDate(ButtonEditDate.Text);
+            if (!string.IsNullOrWhiteSpace(DateEditDate.Text))
+                DateEditDate.Text = validCheck.convertDate(DateEditDate.Text);
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
             DateTime? date;
-            if (ButtonEditDate.Text == "") {
+            if (DateEditDate.Text == "") {
                 date = null;
             }
             else {
-                date = Convert.ToDateTime(ButtonEditDate.Text);
+                date = Convert.ToDateTime(DateEditDate.Text);
             }
-            string agency = string.Empty;
-            string source = string.Empty;
-            if (string.IsNullOrWhiteSpace(ImageComboBoxEditAgency.Text))
-                agency = TextEditNo.Text;
+            string agency;
+            string source;
+            if (string.IsNullOrWhiteSpace(SearchLookupEditAgency.Text))
+                agency = TextEditCode.Text;
             else
-                agency = ImageComboBoxEditAgency.Text;
+                agency = SearchLookupEditAgency.Text;
 
             if (string.IsNullOrWhiteSpace(ComboBoxEditSource.Text))
                 source = "ALL";
@@ -2265,17 +829,17 @@ namespace TraceForms
         private void UpdateCommMarkupGrid(string Agency, DateTime? TheDate, string Source)
         {
             if (TheDate != null) {
-                myCommRecsAgy = (from rec in context.COMPROD2
+                myCommRecsAgy = (from rec in _context.COMPROD2
                                  where (rec.TYPE == "AGY") && (rec.Inactive == false) && ((rec.START_DATE <= TheDate) && (rec.END_DATE >= TheDate))
                                  select rec).ToList<IComprod2>();
             }
             else {
-                myCommRecsAgy = (from rec in context.COMPROD2
+                myCommRecsAgy = (from rec in _context.COMPROD2
                                  where (rec.TYPE == "AGY") && (rec.Inactive == false)
                                  select rec).ToList<IComprod2>();
             }
 
-            myCommLvl = (from rec in context.CommLevel select rec).ToList<ICommLevel>();
+            myCommLvl = (from rec in _context.CommLevel select rec).ToList<ICommLevel>();
             foreach (COMPROD2 rec in myCommRecsAgy) {
                 rec.SetProductRulePosition(myCommLvl);
             }
@@ -2330,41 +894,20 @@ namespace TraceForms
 
         }
 
-        private void panelControl14_Paint(object sender, PaintEventArgs e)
+        private void PanelControl14_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
         private void ImageComboBoxEditCity_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkTown, AgyBindingSource);
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCity, sender);
         }
 
         private void SpinEditDueDays_TextChanged(object sender, EventArgs e)
         {
             if (SpinEditDueDays.Value > 0) {
-                SpinEditDueDays.Enabled = true;
-                SpinEditPmtDays.Enabled = false;
-                checkEdit9.Checked = true;
-            }
-            else {
-                SpinEditDueDays.Enabled = false;
-                SpinEditPmtDays.Enabled = true;
-                checkEdit9.Checked = false;
-            }
-        }
-
-        private void checkEdit9_Click(object sender, EventArgs e)
-        {
-            modified = true;
-            if (checkEdit9.Checked) {
                 SpinEditDueDays.Enabled = true;
                 SpinEditPmtDays.Enabled = false;
             }
@@ -2376,173 +919,8 @@ namespace TraceForms
 
         private void ImageComboBoxEditState_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkState, AgyBindingSource);
-            }
-        }
-
-        private void loadDirectory()
-        {
-            string path = "";
-            var value = Environment.GetCommandLineArgs();
-            foreach (string dir in value) {
-
-                if (dir.StartsWith("/data=")) {
-
-                    path = dir.Substring("/data=".Length, dir.Length - "/data=".Length);
-                    //xDoc.LoadXml(path + "flexlic.dat");
-                }
-            }
-            if (string.IsNullOrEmpty(path))
-                path = "Files";
-            string registry_key = @"SOFTWARE\Flextour\" + path;
-
-            RegistryKey subKey = Registry.LocalMachine.OpenSubKey(registry_key);
-            string sDataDir = subKey.GetValue("Data", "").ToString();
-
-            if (!sDataDir.EndsWith(@"\"))
-                sDataDir += @"\";
-            //string[] allAtb = Directory.GetFiles(sDataDir, "*.atb");
-            string[] resfiles = Directory.GetFiles(sDataDir, "res_*.atb");
-            string[] accfiles = Directory.GetFiles(sDataDir, "acc_*.atb");
-            string[] mntfiles = Directory.GetFiles(sDataDir, "mnt_*.atb");
-            string[] prtfiles = Directory.GetFiles(sDataDir, "rpt_*.atb");
-            foreach (string val in resfiles) {
-                ComboBoxEditResProf.Properties.Items.Add((val.Remove(0, sDataDir.Length + 4)).Replace(".atb", "").Replace(".ATB", ""));
-            }
-            foreach (string val in accfiles) {
-                ComboBoxEditAccProf.Properties.Items.Add((val.Remove(0, sDataDir.Length + 4)).Replace(".atb", "").Replace(".ATB", "").Replace(".ATb", ""));
-            }
-            foreach (string val in mntfiles)
-                ComboBoxEditMntProf.Properties.Items.Add((val.Remove(0, sDataDir.Length + 4)).Replace(".atb", "").Replace(".ATB", "").Replace(".ATb", ""));
-            foreach (string val in prtfiles)
-                ComboBoxEditPrtProf.Properties.Items.Add((val.Remove(0, sDataDir.Length + 4)).Replace(".atb", "").Replace(".ATB", ""));
-
-
-
-        }
-
-        private void g(object sender, EventArgs e)
-        {
-
-        }
-        private void setAgcyLogValues()
-        {
-            GridViewAgcyLog.SetFocusedRowCellValue("AGT_NAME", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("AGENCY", TextEditNo.Text);
-            GridViewAgcyLog.SetFocusedRowCellValue("AGCY_NAME", TextEditName.Text);
-            GridViewAgcyLog.SetFocusedRowCellValue("CUR_BOOK", 0);
-            GridViewAgcyLog.SetFocusedRowCellValue("SUPVR_FLG", "N");
-            GridViewAgcyLog.SetFocusedRowCellValue("RES_PROF", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("MNT_PROF", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("ACC_PROF", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("PRT_PROF", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("AGT_EMAIL", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("AGT_FAX", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("PASSWORD", string.Empty);
-            GridViewAgcyLog.SetFocusedRowCellValue("PHONE", string.Empty);
-
-        }
-
-        void setAgcyLogReadOnly(bool value)
-        {
-            TextEditAgtName.Properties.ReadOnly = value;
-        }
-
-
-        private void agcyLogAddNew_Click(object sender, EventArgs e)
-        {
-            enableAgcyLogNavigator(true);
-            GridViewAgcyLog.CloseEditor();
-            if (!CheckEditActiveFlg.Checked) {
-                if (MessageBox.Show("This agency is no longer active. Proceed?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.No)
-                    return;
-            }
-            TextEditAgtName.Focus();
-            // bindingNavigatorPositionItem.Focus();
-            if (GridViewAgy.RowCount > 0 && !String.IsNullOrWhiteSpace(TextEditName.Text) && !String.IsNullOrWhiteSpace(TextEditNo.Text) && newAgyLogRec == false) {
-                if (AgcyLogBindingSource.Current == null) {
-                    AgcyLogBindingSource.DataSource = from opt in context.AGCYLOG where opt.AGENCY == "KJM9" select opt;
-                    AgcyLogBindingSource.AddNew();
-                    setAgcyLogValues();
-                    newAgyLogRec = true;
-                    agyLogModified = true;
-                    setAgcyLogReadOnly(false);
-
-                    return;
-                }
-                else {
-                    AgcyLogBindingSource.AddNew();
-                    setAgcyLogValues();
-                    newAgyLogRec = true;
-                    agyLogModified = true;
-                    setAgcyLogReadOnly(false);
-                }
-            }
-
-
-        }
-
-        private void AgcyLogDelete_Click(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current == null)
-                return;
-            GridViewAgcyLog.CloseEditor();
-            if (MessageBox.Show("Are you sure you want to delete?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                try {
-                    AgcyLogBindingSource.RemoveCurrent();
-                    context.SaveChanges();
-                    newAgyLogRec = false;
-                    agyLogModified = false;
-                    setAgcyLogReadOnly(true);
-                }
-                catch (Exception ex) {
-                    DisplayHelper.DisplayError(this, ex);
-                }
-
-            }
-            currentVal = TextEditNo.Text;
-        }
-
-        private void AgcyLogSave_Click(object sender, EventArgs e)
-        {
-            TextEditNo.Focus();
-            if (GridViewAgcyLog.UpdateCurrentRow()) {
-                AgcyLogBindingSource.EndEdit();
-                aGYBindingNavigatorSaveItem_Click(sender, e);
-                newAgyLogRec = false;
-                agyLogModified = false;
-                setAgcyLogReadOnly(true);
-            }
-        }
-
-        private void TextEditNo_TextChanged(object sender, EventArgs e)
-        {
-            if (TextEditNo.Text != defAgy) {
-                imageComboBoxEditAgentDelegate.Enabled = false;
-                imageComboBoxEditAgentDelegate.Properties.Items.Clear();
-                CheckEditSuprvrFlg.Enabled = false;
-                ComboBoxEditMntProf.Properties.ReadOnly = true;
-                ComboBoxEditAccProf.Properties.ReadOnly = true;
-                ComboBoxEditPrtProf.Properties.ReadOnly = true;
-            }
-            else {
-                imageComboBoxEditAgentDelegate.Enabled = true;
-                CheckEditSuprvrFlg.Enabled = true;
-                TextEditAgtName.Enabled = true;
-                TextEditPassword.Enabled = true;
-                TextEditAgtEmail.Enabled = true;
-                TextEditAgtFax.Enabled = true;
-                ComboBoxEditResProf.Enabled = true;
-                ComboBoxEditMntProf.Properties.ReadOnly = false;
-                ComboBoxEditAccProf.Properties.ReadOnly = false;
-                ComboBoxEditPrtProf.Properties.ReadOnly = false;
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateState, sender);
         }
 
         private void CheckEditActiveFlg_EditValueChanged(object sender, EventArgs e)
@@ -2574,533 +952,203 @@ namespace TraceForms
             //}
         }
 
-        private void TextEditAgtName_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkName, AgcyLogBindingSource);
-            }
-        }
-
-        private void TextEditPassword_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkPassword, AgcyLogBindingSource);
-            }
-        }
-
-        private void TextEditAgtEmail_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkEmail, AgcyLogBindingSource);
-            }
-
-        }
-
-        private void TextEditAgtFax_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkFax, AgcyLogBindingSource);
-            }
-        }
-
-        private void ComboBoxEditResProf_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkResProf, AgcyLogBindingSource);
-            }
-        }
-
-        private void ComboBoxEditMntProf_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkMntProf, AgcyLogBindingSource);
-            }
-        }
-
-        private void ComboBoxEditPrtProf_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkPrtProf, AgcyLogBindingSource);
-            }
-        }
-
-        private void ComboBoxEditAccProf_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-                validCheck.check(sender, errorProvider1, ((AGCYLOG)AgcyLogBindingSource.Current).checkAccProf, AgcyLogBindingSource);
-            }
-        }
-
-        private void CheckEditSuprvrFlg_Click(object sender, EventArgs e)
-        {
-            modified = true;
-        }
-
-        private void CheckEditActiveFlg_Click(object sender, EventArgs e)
-        {
-            modified = true;
-        }
-
-        private void CheckEditSubAlloc_Click(object sender, EventArgs e)
-        {
-            modified = true;
-        }
-
-        private void CheckEditPkgVouchers_Click(object sender, EventArgs e)
-        {
-            modified = true;
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            if (GridViewAgcyLog.RowCount > 0) {
-                if (newAgyLogRec || agyLogModified) {
-                    MessageBox.Show("Please save or delete the new/modified agent being added on the Agents tab before attempting to navigate to another agent.");
-                    return;
-                }
-                if (move())
-                    AgcyLogBindingSource.MoveNext();
-            }
-        }
-
-        private void GridViewContacts_CellValueChanged(object sender, CellValueChangedEventArgs e)
-        {
-            if (!GridViewContacts.IsFilterRow(e.RowHandle)) {
-                modified = true;
-            }
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            if (GridViewAgcyLog.RowCount > 0) {
-                if (newAgyLogRec || agyLogModified) {
-                    MessageBox.Show("Please save or delete the new/modified agent being added on the Agents tab before attempting to navigate to another agent.");
-                    return;
-                }
-                if (move())
-                    AgcyLogBindingSource.MoveLast();
-            }
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            //previous
-            if (GridViewAgcyLog.RowCount > 0) {
-                if (newAgyLogRec || agyLogModified) {
-                    MessageBox.Show("Please save or delete the new/modified agent being added on the Agents tab before attempting to navigate to another agent.");
-                    return;
-                }
-                if (move())
-                    AgcyLogBindingSource.MovePrevious();
-            }
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            //move first
-            if (GridViewAgcyLog.RowCount > 0) {
-                if (newAgyLogRec || agyLogModified) {
-                    MessageBox.Show("Please save or delete the new/modified agent being added on the Agents tab before attempting to navigate to another agent.");
-                    return;
-                }
-                if (move())
-                    AgcyLogBindingSource.MoveFirst();
-            }
-        }
-
-        private void LookupButtonOk_Click(object sender, EventArgs e)
-        {
-            popupContainerControlLookup.OwnerEdit.ClosePopup();
-        }
-
-        private void LookupButtonCancel_Click(object sender, EventArgs e)
-        {
-            popupContainerControlLookup.OwnerEdit.CancelPopup();
-        }
-
-        private void repositoryItemPopupContainerEdit1_QueryResultValue(object sender, QueryResultValueEventArgs e)
-        {
-            GridViewMemberships.SetFocusedRowCellValue("NOTE", GridViewLookup.GetRowCellValue(GridViewLookup.FocusedRowHandle, "DESC").ToString());
-            e.Value = GridViewLookup.GetRowCellValue(GridViewLookup.FocusedRowHandle, "CODE").ToString();
-
-        }
-
-        private void GridViewLookup_DoubleClick(object sender, EventArgs e)
-        {
-            GridView view = (GridView)sender;
-            Point pt = view.GridControl.PointToClient(Control.MousePosition);
-            RowDoubleClick(view, pt);
-        }
-
-        private void RowDoubleClick(GridView view, Point pt)
-        {
-            GridHitInfo info = view.CalcHitInfo(pt);
-            if (info.InRow || info.InRowCell) {
-                popupContainerControlLookup.OwnerEdit.ClosePopup();
-            }
-        }
-
-        private void CheckEditSuprvrFlg_Click_1(object sender, EventArgs e)
-        {
-            modified = true;
-        }
-
-        private void GridViewMemberships_CellValueChanged(object sender, CellValueChangedEventArgs e)
-        {
-            modified = true;
-
-        }
-
-        private void PanelControlAgentTab_Enter(object sender, EventArgs e)
-        {
-            if (!CheckEditActiveFlg.Checked && !proceed) {
-                if (MessageBox.Show("This agency is no longer active. Proceed?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.No) {
-                    TextEditNo.Focus();
-                }
-                else
-                    proceed = true;
-            }
-        }
-
-        private void CreateButton_Click(object sender, EventArgs e)
+        private void ChangePaymentProfileButton_Click(object sender, EventArgs e)
         {
             //AuthorizeNet.CustomerGateway conn = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, AuthorizeNet.ServiceMode.Test);
-            if (string.IsNullOrWhiteSpace(TextEditPaymentProcessorCustProfileEmail.Text)) {
+            if (string.IsNullOrWhiteSpace(TextEditCustomerProfileEmail.Text)) {
                 MessageBox.Show("Please enter a value for the Customer Email Address");
                 return;
             }
-            currentCust = conn.CreateCustomer(TextEditPaymentProcessorCustProfileEmail.Text, TextEditName.Text);
-            paymentProcessorCustProfileIdLabel1.Text = currentCust.ProfileID;
-            // labelControl22.Text = currentCust.ProfileID;
-            currentCust.ID = TextEditNo.Text;
-            conn.UpdateCustomer(currentCust);
-            CreateButton.Enabled = false;
-            DeleteButton.Enabled = true;
-            UpdateButton.Enabled = true;
-            AddBankButton.Enabled = true;
-            DelBankButton.Enabled = true;
-            AddCreditButton.Enabled = true;
-            DelCredButton.Enabled = true;
-
-            context.SaveChanges();
-        }
-
-        private void UpdateButton_Click(object sender, EventArgs e)
-        {
-            //for (int i = 0; i < currentCust.PaymentProfiles.Count; i++)
-            //{
-            //    if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].CardNumber))
-            //    {
-            //        AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-            //        api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-            //        api.payment.Item = new AuthorizeNet.APICore.creditCardMaskedType();
-            //        api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-            //        api.customerTypeSpecified = true;                    
-            //        AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api);
-            //        rec.BillingAddress = currentCust.PaymentProfiles[i].BillingAddress;
-            //        if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].CardType))
-            //            rec.CardType = currentCust.PaymentProfiles[i].CardType;
-            //        if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].CardCode))
-            //            rec.CardCode = currentCust.PaymentProfiles[i].CardCode;
-
-            //        rec.CardNumber = currentCust.PaymentProfiles[i].CardNumber;
-            //        rec.CardExpiration = currentCust.PaymentProfiles[i].CardExpiration;
-            //        rec.ProfileID = currentCust.PaymentProfiles[i].ProfileID;
-            //        conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-
-            //        if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].CardType))
-            //        {
-            //            string last4 = "XXXX" + "-" + rec.CardNumber.GetLast(4);
-            //            AgencyPaymentProfile updateRec = (from agyRec in context.AgencyPaymentProfile where agyRec.Agy_No == TextEditNo.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-            //            //newCredRecord.Agy_No = TextEditNo.Text;
-            //            //newCredRecord.PaymentProfileID = rec.ProfileID;
-            //            updateRec.PaymentProvider = rec.CardType;
-            //            updateRec.LastDigits = last4;
-            //            updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
-            //            updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
-            //            context.SaveChanges();
-            //        }
-            //       // context.AgencyPaymentProfile.AddObject(newCredRecord);
-            //    }
-            //    else if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].BankAccountNumber))
-            //    {
-            //        AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-            //        api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-            //        api.payment.Item = new AuthorizeNet.APICore.bankAccountMaskedType();
-            //        api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-            //        api.customerTypeSpecified = true;
-            //        AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api);
-            //        rec.BillingAddress = currentCust.PaymentProfiles[i].BillingAddress;
-            //        rec.AccountType = currentCust.PaymentProfiles[i].AccountType;
-            //        rec.AccountTypeSpecified = currentCust.PaymentProfiles[i].AccountTypeSpecified;
-            //        rec.BankAccountNumber = currentCust.PaymentProfiles[i].BankAccountNumber;
-            //        rec.BankName = currentCust.PaymentProfiles[i].BankName;
-            //        rec.BankNameOnAccount = currentCust.PaymentProfiles[i].BankNameOnAccount;
-            //        if (!string.IsNullOrWhiteSpace(currentCust.PaymentProfiles[i].BankRoutingNumber))
-            //            rec.BankRoutingNumber = currentCust.PaymentProfiles[i].BankRoutingNumber;
-            //        rec.IsBusiness = currentCust.PaymentProfiles[i].IsBusiness;
-            //        rec.ProfileID = currentCust.PaymentProfiles[i].ProfileID;
-            //        conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-            //        string last4 = "XXXX" + "-" + rec.BankAccountNumber.GetLast(4);
-            //        AgencyPaymentProfile updateRec = (from agyRec in context.AgencyPaymentProfile where agyRec.Agy_No == TextEditNo.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-            //        //newCredRecord.Agy_No = TextEditNo.Text;
-            //        //newCredRecord.PaymentProfileID = rec.ProfileID;
-
-            //        updateRec.PaymentProvider = rec.BankName;
-            //        updateRec.LastDigits = last4;
-            //        context.SaveChanges();
-            //    }
-
-
-            //}
-            foreach (AuthorizeNet.PaymentProfile rec in creditCards) {
-                //  
-                if (rec.CardNumber.Length > 8 || rec.CardExpiration.Length > 4) {
-                    AgencyPaymentProfile updateRec = (from agyRec in context.AgencyPaymentProfile where agyRec.Agy_No == TextEditNo.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                    if (rec.CardNumber.Length > 8)
-                        updateRec.PaymentProvider = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
-                    updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                    updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
-                    updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
-                    conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                    context.SaveChanges();
+            if (string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) {
+                currentCust = _custGateway.CreateCustomer(TextEditCustomerProfileEmail.Text, TextEditName.Text);
+                LabelPaymentProcessorCustProfileId.Text = currentCust.ProfileID;
+                _selectedRecord.PaymentProcessorCustProfileId = currentCust.ProfileID;
+                // labelControl22.Text = currentCust.ProfileID;
+                currentCust.ID = TextEditCode.Text;
+                _custGateway.UpdateCustomer(currentCust);
+                ChangePaymentProfileButton.Enabled = false;
+                DeleteButton.Enabled = true;
+                GridControlBankProfiles.Enabled = true;
+                AddBankButton.Enabled = true;
+                DelBankButton.Enabled = true;
+                SimpleButtonValidateBankRow.Enabled = true;
+                GridControlCreditProfiles.Enabled = true;
+                AddCreditButton.Enabled = true;
+                DelCreditButton.Enabled = true;
+                SimpleButtonValidateCreditRow.Enabled = true;
+                ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
+            } else {
+                foreach (AuthorizeNet.PaymentProfile rec in creditCards) {
+                    //  
+                    if (rec.CardNumber.Length > 8 || rec.CardExpiration.Length > 4) {
+                        AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                        if (rec.CardNumber.Length > 8)
+                            updateRec.PaymentProvider = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
+                        updateRec.LastDigits = rec.CardNumber.GetLast(4);
+                        updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
+                        updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
+                        if (string.IsNullOrEmpty(rec.ProfileID)) {
+                            updateRec.PaymentProfileID = _custGateway.AddCreditCard(currentCust.ProfileID, rec.CardNumber, (int)updateRec.ExpirationMonth, (int)updateRec.ExpirationYear, rec.CardCode);
+                        }
+                        else {
+                            _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                        }
+                        _context.SaveChanges();
+                    }
                 }
-            }
 
-            foreach (AuthorizeNet.PaymentProfile rec in bankAccnts) {
-                // conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                if (rec.BankAccountNumber.Length > 8) {
-                    AgencyPaymentProfile updateRec = (from agyRec in context.AgencyPaymentProfile where agyRec.Agy_No == TextEditNo.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                    updateRec.PaymentProvider = rec.BankName;
-                    updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                    conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                    context.SaveChanges();
+                foreach (AuthorizeNet.PaymentProfile rec in bankAccnts) {
+                    // conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                    if (rec.BankAccountNumber.Length > 8) {
+                        AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                        updateRec.PaymentProvider = rec.BankName;
+                        updateRec.LastDigits = rec.CardNumber.GetLast(4);
+                        if (string.IsNullOrEmpty(rec.ProfileID)) {
+                            updateRec.PaymentProfileID = _custGateway.AddBankAccount(currentCust.ProfileID, rec.BankNameOnAccount, rec.BankAccountNumber, rec.BankRoutingNumber, rec.BankName, rec.AccountType, true, rec.BillingAddress);
+                        }
+                        else {
+                            _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                        }
+                        _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                    }
                 }
+                currentCust.Email = TextEditCustomerProfileEmail.Text;
+                _custGateway.UpdateCustomer(currentCust);
+                _context.SaveChanges();
+                //currentCust = conn.GetCustomer(labelControl22.Text);
+                if (currentCust.PaymentProfiles.Count() > 0)
+                    LoadAuthorize(currentCust);
             }
-            currentCust.Email = TextEditPaymentProcessorCustProfileEmail.Text;
-            conn.UpdateCustomer(currentCust);
-            context.SaveChanges();
-            //currentCust = conn.GetCustomer(labelControl22.Text);
-            if (currentCust.PaymentProfiles.Count() > 0)
-                loadAuthorize(currentCust);
-
-        }
-
-        private void AddCreditButton_Click(object sender, EventArgs e)
-        {
-            //List<AuthorizePaymentProfile> test = new List<AuthorizePaymentProfile>();
-            //AuthorizePaymentProfile rec = new AuthorizePaymentProfile();
-            //test.Add(rec);
-            //GridControlAuthorizeCredit.DataSource = test;
-
-            if (!authorizeCreditMod) {
-                UpdateButton.Enabled = false;
-                gridCntrlPaymentProfiles.DataSource = null;
-                AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-                api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-                api.payment.Item = new AuthorizeNet.APICore.creditCardMaskedType();
-                api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-                api.customerTypeSpecified = true;
-                AuthorizeNet.Address billing = new AuthorizeNet.Address();
-
-                //apiType.payment.Item is creditCardMaskedType
-                AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api);
-
-                rec.BillingAddress = billing;
-                creditCards.Add(rec);
-
-                gridCntrlPaymentProfiles.DataSource = creditCards;
-                gridViewPaymentProfiles.FocusedRowHandle = creditCards.Count - 1;
-                //gridViewPaymentProfiles.AddNewRow();
-                authorizeCurrentRow.Add(creditCards.Count - 1);
-                authorizeCreditMod = true;
-            }
-            else
-                MessageBox.Show("Please save the current profile before attempting to add another.");
-
-            //GridViewAuthorizeCredit.AddNewRow();
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            //AuthorizePaymentProfile result = (AuthorizePaymentProfile)GridViewAuthorizeCredit.GetRow(0);
-
-
-        }
-
-        private void BtnCreate_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-
             //delete
             if (MessageBox.Show("Are you sure you want to delete the customer profile?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                conn.DeleteCustomer(currentCust.ProfileID);
-                var recs = from payRec in context.AgencyPaymentProfile where payRec.Agy_No == TextEditNo.Text select payRec;
+                _custGateway.DeleteCustomer(currentCust.ProfileID);
+                var recs = from payRec in _context.AgencyPaymentProfile where payRec.Agy_No == TextEditCode.Text select payRec;
                 foreach (AgencyPaymentProfile record in recs)
-                    context.DeleteObject(record);
-                GridViewAgy.SetFocusedRowCellValue("PaymentProcessorCustProfileId", string.Empty);
-                GridViewAgy.SetFocusedRowCellValue("PaymentProcessorCustProfileEmail", string.Empty);
-                GridViewAgy.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                GridViewAgy.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                ImageComboBoxEditDefaultProfileID.Properties.Items.Clear();
+                    _context.DeleteObject(record);
+                GridViewLookup.SetFocusedRowCellValue("PaymentProcessorCustProfileId", string.Empty);
+                GridViewLookup.SetFocusedRowCellValue("PaymentProcessorCustProfileEmail", string.Empty);
+                GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
+                GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
+                ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
                 ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
-                ImageComboBoxEditDefaultProfileID.Properties.Items.Add(loadBlank);
-                context.SaveChanges();
-
+                ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
+                ChangePaymentProfileButton.Text = "Create";
             }
+        }
 
+        void BindCreditPaymentProfiles()
+        {
+            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
+            GridControlCreditProfiles.RefreshDataSource();
+        }
 
+        private void AddCreditButton_Click(object sender, EventArgs e)
+        {
+            AgencyPaymentProfile pmtProfile = new AgencyPaymentProfile {
+                Agy_No = TextEditCode.Text ?? string.Empty
+            };
+            _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
+            BindCreditPaymentProfiles();
+            GridViewCreditProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
+        }
+
+        void BindBankPaymentProfiles()
+        {
+            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
+            GridControlBankProfiles.RefreshDataSource();
         }
 
         private void AddBankButton_Click(object sender, EventArgs e)
         {
-            if (!authorizeBankMod) {
-                UpdateButton.Enabled = false;
-                gridControlBankProfiles.DataSource = null;
-                AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-                api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-                api.payment.Item = new AuthorizeNet.APICore.bankAccountMaskedType();
-                api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-                api.customerTypeSpecified = true;
-                AuthorizeNet.Address billing = new AuthorizeNet.Address();
-
-                //apiType.payment.Item is creditCardMaskedType
-                AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api);
-
-                rec.BillingAddress = billing;
-                bankAccnts.Add(rec);
-
-                gridControlBankProfiles.DataSource = bankAccnts;
-                //gridViewPaymentProfiles.AddNewRow();
-                authorizeCurrentBankRow.Add(bankAccnts.Count - 1);
-                authorizeBankMod = true;
-            }
-            else
-                MessageBox.Show("Please save the current profile before attempting to add another.");
-
+            AgencyPaymentProfile pmtProfile = new AgencyPaymentProfile {
+                Agy_No = TextEditCode.Text ?? string.Empty
+            };
+            _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
+            BindBankPaymentProfiles();
+            GridViewBankProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
         }
-
-
 
         private void TextEditPaymentProcessorCustProfileEmail_EditValueChanged(object sender, EventArgs e)
         {
-
+            ChangePaymentProfileButton.Enabled = true;
         }
 
-        private void DelCredButton_Click_1(object sender, EventArgs e)
+        private void DelCredButton_Click(object sender, EventArgs e)
         {
-            AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewPaymentProfiles.GetFocusedRow();
-            if (rec.ProfileID != null) {
-                AgencyPaymentProfile delRec = (from agyRec in context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                conn.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
-                if (delRec != null) {
-                    if (ImageComboBoxEditDefaultProfileID.Text == delRec.PaymentProfileDesc)
-                        GridViewAgy.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                    context.DeleteObject(delRec);
-                    context.SaveChanges();
+            if (GridViewCreditProfiles.FocusedRowHandle >= 0) {
+                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewCreditProfiles.GetFocusedRow();
+                if (rec.ProfileID != null) {
+                    AgencyPaymentProfile delRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                    _custGateway.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
+                    if (delRec != null) {
+                        if (ImageComboBoxEditDefaultPmtProfileID.Text == delRec.PaymentProfileDesc)
+                            GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
+                        _context.DeleteObject(delRec);
+                        _context.SaveChanges();
+                    }
+                    currentCust = _custGateway.GetCustomer(currentCust.ProfileID);
+                    GridControlCreditProfiles.DataSource = null;
+                    GridControlBankProfiles.DataSource = null;
+                    LoadAuthorize(currentCust);
+                    //authorizeCreditMod = false;
                 }
-                currentCust = conn.GetCustomer(currentCust.ProfileID);
-                gridCntrlPaymentProfiles.DataSource = null;
-                gridControlBankProfiles.DataSource = null;
-                loadAuthorize(currentCust);
-                authorizeCreditMod = false;
-            }
-            else {
-                authorizeCreditMod = false;
-                gridCntrlPaymentProfiles.DataSource = null;
-                gridControlBankProfiles.DataSource = null;
-                creditCards.RemoveAt(creditCards.Count - 1);
-                loadAuthorize(currentCust);
+                else {
+                    //authorizeCreditMod = false;
+                    GridControlCreditProfiles.DataSource = null;
+                    GridControlBankProfiles.DataSource = null;
+                    creditCards.RemoveAt(creditCards.Count - 1);
+                    LoadAuthorize(currentCust);
 
+                }
             }
         }
 
         private void DelBankButton_Click(object sender, EventArgs e)
         {
-            AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)gridViewBankProfiles.GetFocusedRow();
-            if (rec.ProfileID != null) {
-                conn.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
-                currentCust = conn.GetCustomer(currentCust.ProfileID);
-                //remove rec in payment table
-                AgencyPaymentProfile delRec = (from agyRec in context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                if (delRec != null) {
-                    if (ImageComboBoxEditDefaultProfileID.Text == delRec.PaymentProfileDesc)
-                        ImageComboBoxEditDefaultProfileID.Text = string.Empty;
-                    context.AgencyPaymentProfile.DeleteObject(delRec);
-                    context.SaveChanges();
+            if (GridViewBankProfiles.FocusedRowHandle >= 0) {
+                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewBankProfiles.GetFocusedRow();
+                if (rec.ProfileID != null) {
+                    _custGateway.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
+                    currentCust = _custGateway.GetCustomer(currentCust.ProfileID);
+                    //remove rec in payment table
+                    AgencyPaymentProfile delRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                    if (delRec != null) {
+                        if (ImageComboBoxEditDefaultPmtProfileID.Text == delRec.PaymentProfileDesc)
+                            ImageComboBoxEditDefaultPmtProfileID.Text = string.Empty;
+                        _context.AgencyPaymentProfile.DeleteObject(delRec);
+                        _context.SaveChanges();
+                    }
+                    GridControlCreditProfiles.DataSource = null;
+                    GridControlBankProfiles.DataSource = null;
+                    LoadAuthorize(currentCust);
+                    //authorizeBankMod = false;
                 }
-                gridCntrlPaymentProfiles.DataSource = null;
-                gridControlBankProfiles.DataSource = null;
-                loadAuthorize(currentCust);
-                authorizeBankMod = false;
-            }
-            else {
-                authorizeBankMod = false;
-                gridCntrlPaymentProfiles.DataSource = null;
-                gridControlBankProfiles.DataSource = null;
-                bankAccnts.RemoveAt(bankAccnts.Count - 1);
-                loadAuthorize(currentCust);
+                else {
+                    //authorizeBankMod = false;
+                    GridControlCreditProfiles.DataSource = null;
+                    GridControlBankProfiles.DataSource = null;
+                    bankAccnts.RemoveAt(bankAccnts.Count - 1);
+                    LoadAuthorize(currentCust);
 
+                }
             }
         }
 
-        private void gridViewPaymentProfiles_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        private void GridViewPaymentProfiles_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
         }
 
-        private void gridViewPaymentProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
+        private void GridViewPaymentProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
         {
 
             ColumnView view = sender as ColumnView;
             AuthorizeNet.PaymentProfile record = (AuthorizeNet.PaymentProfile)e.Row;
             view.ClearColumnErrors();
-            DateTime Test;
             if (string.IsNullOrWhiteSpace(record.CardExpiration) || string.IsNullOrWhiteSpace(record.CardNumber)) {
                 if (string.IsNullOrWhiteSpace(record.CardExpiration)) {
                     e.Valid = false;
@@ -3235,7 +1283,7 @@ namespace TraceForms
             }
 
             if (record.CardExpiration.Length > 4) {
-                if (!string.IsNullOrWhiteSpace(record.CardExpiration) && (!DateTime.TryParseExact(record.CardExpiration, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out Test) || record.CardExpiration.Length > 7)) {
+                if (!string.IsNullOrWhiteSpace(record.CardExpiration) && (!DateTime.TryParseExact(record.CardExpiration, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime Test) || record.CardExpiration.Length > 7)) {
                     if (record.CardExpiration.Length > 7) {
                         e.Valid = false;
                         view.SetColumnError(view.Columns["CardExpiration"], "The max length of this field is 7.");
@@ -3251,12 +1299,12 @@ namespace TraceForms
 
         }
 
-        private void gridViewBankProfiles_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        private void GridViewBankProfiles_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
         }
 
-        private void gridViewBankProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
+        private void GridViewBankProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
         {
             ColumnView view = sender as ColumnView;
             AuthorizeNet.PaymentProfile record = (AuthorizeNet.PaymentProfile)e.Row;
@@ -3387,85 +1435,42 @@ namespace TraceForms
                     view.SetColumnError(view.Columns["BillingAddress.Phone"], "This field cannot contain symbols.");
                 }
             }
-
-
-
-
         }
-
-
 
         private void TextEditCreditLimit_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkCredLim, AgyBindingSource);
-
-                }
-            }
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCreditLimit, sender);
         }
-
-
 
         private void TextEditCreditLimitRemPct_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    //validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkNo, AgyBindingSource);
-                    //TextEditNo.Text = TextEditNo.Text.ToUpper();
-                }
-            }
-        }
-
-        private void CheckEditActiveFlg_Click_1(object sender, EventArgs e)
-        {
-            modified = true;
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCredLimRemPct, sender);
         }
 
         private void TextEditPaymentProcessorCustProfileEmail_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    //validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkNo, AgyBindingSource);
-                    //TextEditNo.Text = TextEditNo.Text.ToUpper();
-                }
-            }
+
         }
 
         private void ImageComboBoxEditDefaultProfileID_Leave(object sender, EventArgs e)
         {
-            if (AgyBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    modified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                    //validCheck.check(sender, errorProvider1, ((AGY)AgyBindingSource.Current).checkNo, AgyBindingSource);
-                    //TextEditNo.Text = TextEditNo.Text.ToUpper();
-                }
-            }
+
         }
 
         private void AgyBindingSource_PositionChanged(object sender, EventArgs e)
         {
 
-
         }
-        private const string cardRegex = "^(?:(?<Visa>4\\d{3})|(?<JCB>2131|1800|3088|35\\d{3}\\d{11})|(?<MasterCard>5[1-5]\\d{2})|(?<Discover>6011)|(?<DinersClub>(?:3[68]\\d{2})|(?:30[0-5]\\d))|(?<Amex>3[47]\\d{2}))([ -]?)(?(DinersClub)(?:\\d{6}\\1\\d{4})|(?(Amex)(?:\\d{6}\\1\\d{5})|(?:\\d{4}\\1\\d{4}\\1\\d{4})))$";
+
+        private const string _cardRegex = "^(?:(?<Visa>4\\d{3})|(?<JCB>2131|1800|3088|35\\d{3}\\d{11})|(?<MasterCard>5[1-5]\\d{2})|(?<Discover>6011)|(?<DinersClub>(?:3[68]\\d{2})|(?:30[0-5]\\d))|(?<Amex>3[47]\\d{2}))([ -]?)(?(DinersClub)(?:\\d{6}\\1\\d{4})|(?(Amex)(?:\\d{6}\\1\\d{5})|(?:\\d{4}\\1\\d{4}\\1\\d{4})))$";
 
         public static CreditCardTypeType? GetCardTypeFromNumber(string cardNum)
         {
             //Create new instance of Regex comparer with our
             //credit card regex patter
-            Regex cardTest = new Regex(cardRegex);
+            Regex cardTest = new Regex(_cardRegex);
 
             //Compare the supplied card number with the regex
             //pattern and get reference regex named groups
@@ -3512,21 +1517,6 @@ namespace TraceForms
             TestCard
         }
 
-        private void creditUnlimitedCheckEdit_Click(object sender, EventArgs e)
-        {
-            modified = true;
-            if (creditUnlimitedCheckEdit.Checked) {
-                TextEditCreditLimit.Enabled = true;
-                TextEditCreditLimitRemPct.Enabled = true;
-            }
-            else {
-                TextEditCreditLimit.Enabled = false;
-                TextEditCreditLimitRemPct.Enabled = false;
-            }
-
-
-        }
-
         private void AgencyForm_Load(object sender, EventArgs e)
         {
 
@@ -3534,18 +1524,11 @@ namespace TraceForms
 
         private void CheckEditRequireCVV2_Click(object sender, EventArgs e)
         {
-            modified = true;
-            if (CheckEditRequireCVV2.Checked) {
-                grdColCVV2.Visible = false;
-            }
-            else {
-                grdColCVV2.Visible = true;
-            }
+            grdColCVV2.Visible = CheckEditRequireCVV2.Checked;
         }
 
         private void CheckEditHtlVouchers_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditHtlVouchers.Checked && !TextEditVouchTypes.Text.Contains("HTL")) {
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
                 TextEditVouchTypes.Text += "HTL,";
@@ -3559,7 +1542,6 @@ namespace TraceForms
 
         private void CheckEditCarVouchers_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditCarVouchers.Checked && !TextEditVouchTypes.Text.Contains("CAR")) {
                 TextEditVouchTypes.Text += "CAR,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3573,7 +1555,6 @@ namespace TraceForms
 
         private void CheckEditCruVouchers_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditCruVouchers.Checked && !TextEditVouchTypes.Text.Contains("CRU")) {
                 TextEditVouchTypes.Text += "CRU,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3587,7 +1568,6 @@ namespace TraceForms
 
         private void CheckEditAirVouchers_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditAirVouchers.Checked && !TextEditVouchTypes.Text.Contains("AIR")) {
                 TextEditVouchTypes.Text += "AIR,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3601,7 +1581,6 @@ namespace TraceForms
 
         private void CheckEditOptVouchers_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditOptVouchers.Checked && !TextEditVouchTypes.Text.Contains("OPT")) {
                 TextEditVouchTypes.Text += "OPT,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3615,7 +1594,6 @@ namespace TraceForms
 
         private void CheckEditPkgVouchers_Click_1(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditPkgVouchers.Checked && !TextEditVouchTypes.Text.Contains("PKG")) {
                 TextEditVouchTypes.Text += "PKG,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3629,7 +1607,6 @@ namespace TraceForms
 
         private void CheckEditSglResConf_Click(object sender, EventArgs e)
         {
-            modified = true;
             if (!CheckEditSglResConf.Checked && !TextEditVouchTypes.Text.Contains("SGL")) {
                 TextEditVouchTypes.Text += "SGL,";
                 TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
@@ -3641,201 +1618,59 @@ namespace TraceForms
             }
         }
 
-        private void textEditAgentCompany_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-            }
-
-        }
-
-        private void lookUpEditAgentDelegate_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-            }
-        }
-
-        private void imageComboBoxEditAgentDelegate_Leave(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null) {
-                if (currentVal != ((Control)sender).Text) {
-                    agyLogModified = true;
-                    labelControl25.Text = DateTime.Today.ToShortDateString();
-                    labelControl27.Text = username;
-                }
-            }
-        }
-
         private void AgcyLogBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-            if (AgcyLogBindingSource.Current != null && AgyBindingSource.Current != null) {
-                AGY rec = (AGY)AgyBindingSource.Current;
-                if (rec.NO == defAgy) {
-                    ImageComboBoxItem load;
-                    ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
-                    imageComboBoxEditAgentDelegate.Properties.Items.Clear();
-                    imageComboBoxEditAgentDelegate.Properties.Items.Add(loadBlank);
+        {//move to custom row cell edit event for the agcy log grid
+            if (BindingSourceAgcyLog.Current != null && _selectedRecord != null) {
+                if (_selectedRecord.NO == _defAgy) {
+                    //RepositoryItemImageComboBoxEditAgentDelegate.
+                    RepositoryItemImageComboBoxEditAgentDelegate.Items.Clear();
+                    RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(new ImageComboBoxItem() { Description = "", Value = null });
 
-                    var agent = (AGCYLOG)AgcyLogBindingSource.Current;
-                    var agents = (from agentRec in rec.AGCYLOG
+                    var agent = (AGCYLOG)BindingSourceAgcyLog.Current;
+                    var agents = (from agentRec in _selectedRecord.AGCYLOG
                                  where agentRec.AGT_NAME != agent.AGT_NAME && agentRec.AgentCompany == agent.AgentCompany
                                  orderby agentRec.AGT_NAME
                                  select new { Description = agentRec.AGT_NAME, Value = agentRec.AGT_NAME }).ToList();
                     foreach (var agtRec in agents) {
-                        load = new ImageComboBoxItem(agtRec.Description, agtRec.Value);
-                        imageComboBoxEditAgentDelegate.Properties.Items.Add(load);
+                        RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(new ImageComboBoxItem(agtRec.Description, agtRec.Value));
                     }
                 }
             }
         }
 
-        private void gridViewAgencyCurrency_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        private void ButtonAddAgencyCurrency_Click(object sender, EventArgs e)
         {
-            if (e.Column.FieldName == "Currency_Code") {
-                if (e.RowHandle == fixedDefaultCurrencyIndex)
-                    gridViewAgencyCurrency.FocusedRowHandle = -1;   // don't allow user to focus and therefore edit the fixed default currency
-                else
-                    e.RepositoryItem = agyCurrencyCodeRepository;
-            }    
+            AgencyCurrency currency = new AgencyCurrency {
+                Agy_No = TextEditCode.Text ?? string.Empty
+            };
+            _selectedRecord.AgencyCurrency.Add(currency);
+            BindAgencyCurrencies();
+            GridViewAgencyCurrency.FocusedRowHandle = BindingSourceAgencyCurrency.Count - 1;
         }
 
-        private void buttonAddAgencyCurrency_Click(object sender, EventArgs e)
+        private void BindAgencyCurrencies()
         {
-            gridViewAgencyCurrency.ClearColumnsFilter();
-            gridViewAgencyCurrency.ClearSorting();   // otherwise could focus wrong column below
-            newAgyCurrencyRec = true;
-            AgencyCurrencyBindingSource.AddNew();
-            var currentIndex = AgencyCurrencyBindingSource.Count - 1;
-            if (!newAgyCurrencyIndices.Contains(currentIndex)) // don't add twice
-                newAgyCurrencyIndices.Add(currentIndex);
-            gridViewAgencyCurrency.FocusedRowHandle = gridViewAgencyCurrency.RowCount - 1;
-            setReadOnly(false);
+            GridControlAgencyCurrency.DataSource = BindingSourceAgencyCurrency;
+            GridControlAgencyCurrency.RefreshDataSource();
         }
 
         // BAW
         private void SetAgyCurrencyBindings()
         {
-            //if (CurrToExRateBindingSource.Current == null) {
-            //    _selectedExchangeRateRecord = null;
-            //    enableNavigator(false);
-            //    //setReadOnly(true);
+            ////if (CurrToExRateBindingSource.Current == null) {
+            ////    _selectedExchangeRateRecord = null;
+            ////    enableNavigator(false);
+            ////    //setReadOnly(true);
+            ////}
+            ////else {
+            //var selectedRecord = (AgencyCurrency)AgencyCurrencyBindingSource.Current;
+            //// only do this to newly created agency currency records
+            //if (newAgyCurrencyRec && string.IsNullOrEmpty(selectedRecord.Currency_Code)) {
+            //    selectedRecord.Agy_No = ((AGY)BindingSource.Current).NO;
+            //    selectedRecord.Default = false;  // should be false
             //}
-            //else {
-            var selectedRecord = (AgencyCurrency)AgencyCurrencyBindingSource.Current;
-            // only do this to newly created agency currency records
-            if (newAgyCurrencyRec && string.IsNullOrEmpty(selectedRecord.Currency_Code)) {
-                selectedRecord.Agy_No = ((AGY)AgyBindingSource.Current).NO;
-                selectedRecord.Default = false;  // should be false
-            }
-            //enableNavigator(true);
-            //setReadOnly(false);
-        }
-
-        // BAW
-        // Ensure that values in editors are saved and validated.
-        private void FinalizeAgyCurrBindings()
-        {
-            gridViewAgencyCurrency.CloseEditor();
-            gridViewAgencyCurrency.UpdateCurrentRow();
-            AgencyCurrencyBindingSource.EndEdit();
-        }
-
-        // BAW
-        // Reload modified records from the database - such as when saving records fails
-        private void RefreshRecords()
-        {
-            try {
-                modifiedAgyCurrencyIndices.ForEach(i =>
-                {
-                    if (((AgencyCurrency)AgencyCurrencyBindingSource[i]).ID != 0)
-                        context.Refresh(System.Data.Entity.Core.Objects.RefreshMode.StoreWins, AgencyCurrencyBindingSource[i]);
-                    else {
-                        context.DeleteObject(AgencyCurrencyBindingSource[i]);
-                        AgencyCurrencyBindingSource.RemoveAt(i);
-                    }
-                });
-            }
-            catch { }
-        }
-
-        private bool ValidateCurrencies()
-        {
-            try {
-                var currentAgency = (AGY)AgyBindingSource.Current;
-                if (currentAgency == null)
-                    return true;
-
-                FinalizeAgyCurrBindings();
-
-                if (newAgyCurrencyRec || modifiedAgyCurrencyRec) {
-                    List<AgencyCurrency> relevantAgencyCurrencies = new List<AgencyCurrency>();
-                    modifiedAgyCurrencyIndices.ForEach(i => {
-                        relevantAgencyCurrencies.Add((AgencyCurrency)AgencyCurrencyBindingSource[i]);
-                    });
-
-                    newAgyCurrencyIndices.ForEach(i => {
-                        relevantAgencyCurrencies.Add((AgencyCurrency)AgencyCurrencyBindingSource[i]);
-                    });
-
-                    // validate currency entry - will throw on failure
-                    currentAgency.checkCurrency(relevantAgencyCurrencies, context);
-                }
-                return true;
-            }
-            catch (Exception ex) {
-                string message = ex.Message;
-                if (message.Contains("inner exception")) {
-                    message = ex.InnerException.Message;
-                }
-                XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-        }
-
-        // BAW
-        private bool SaveAgencyCurrency()
-        {
-            try {
-                var currentAgency = (AGY)AgyBindingSource.Current;
-                if (currentAgency == null)
-                    return true;
-
-                if (newAgyCurrencyRec || modifiedAgyCurrencyRec) {
-                    newAgyCurrencyIndices.ForEach(i =>
-                    {
-                        context.AgencyCurrency.AddObject((AgencyCurrency)AgencyCurrencyBindingSource[i]);
-                    });
-
-                    context.SaveChanges();
-                    newAgyCurrencyRec = false;
-                    modifiedAgyCurrencyRec = false;
-                    newAgyCurrencyIndices.Clear(); // used to keep track of unsaved, new exchange rates
-                    modifiedAgyCurrencyIndices.Clear(); // used to keep track of unsaved, modified exchange rates
-                    SetAgyCurrencyBindings(); // need to reload currency data from DB - RefreshRecord will not do that for modifications
-                }
-                return true;
-            }
-            catch (Exception ex) {
-                string message = ex.Message;
-                if (message.Contains("inner exception")) {
-                    message = ex.InnerException.Message;
-                }
-                XtraMessageBox.Show(message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                RefreshRecords();       //pull it back from db because that is its current state                
-                modifiedAgyCurrencyIndices.Clear();
-                modifiedAgyCurrencyRec = false;
-                SetNewDefaultCurrency(null, true);   // in case new currency was set to default and now RefreshRecords() has also set previous default currency back to default
-                return false;
-            }
+            ////enableNavigator(true);
+            ////setReadOnly(false);
         }
 
         private void AgencyCurrencyBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -3843,156 +1678,818 @@ namespace TraceForms
             SetAgyCurrencyBindings();
         }
 
-        private void gridViewAgencyCurrency_CellValueChanging(object sender, CellValueChangedEventArgs e)
+        private void ButtonDeleteAgencyCurrency_Click(object sender, EventArgs e)
         {
-            if (e.RowHandle == fixedDefaultCurrencyIndex && e.Column.FieldName == "Currency_Code")
-                gridViewAgencyCurrency.FocusedRowHandle = -1;   // do not allow user to focus on and thereby edit the fixed default currency.
-            else {
-                // add index of row to modifed currencies list
-                var selectedRecord = (AgencyCurrency)AgencyCurrencyBindingSource.Current;
-                if (selectedRecord.ID != 0) {
-                    modifiedAgyCurrencyRec = true;
-                    var currentIndex = AgencyCurrencyBindingSource.IndexOf(selectedRecord);
-                    if (!modifiedAgyCurrencyIndices.Contains(currentIndex))
-                        modifiedAgyCurrencyIndices.Add(currentIndex);
-                }
-                // toggle default currency - this logic ensures that the user has to select exactly one default currency
-                if (e.Column.Name == "colDefault" && e.Value.Equals(true))
-                    SetNewDefaultCurrency(e.RowHandle);
-                else if (e.Column.Name == "colDefault" && e.Value.Equals(false))
-                    SetNewDefaultCurrency();
-            }    
+            if (GridViewAgencyCurrency.FocusedRowHandle >= 0) {
+                AgencyCurrency currency = (AgencyCurrency)GridViewAgencyCurrency.GetFocusedRow();
+                BindingSourceAgencyCurrency.Remove(currency);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                _context.AgencyCurrency.DeleteObject(currency);
+                BindAgencyCurrencies();
+            }
         }
 
-        private void buttonDeleteAgencyCurrency_Click(object sender, EventArgs e)
+        void LoadAndBindAgencyCurrencies()
         {
-            if (gridViewAgencyCurrency.FocusedRowHandle >= 0) {
-                AgencyCurrency currencyToDelete = (AgencyCurrency)gridViewAgencyCurrency.GetFocusedRow();
-
-                // do not remove default currency
-                if (currencyToDelete.Currency_Code != fixedDefaultCurrency) {
-                    if (gridViewAgencyCurrency.FocusedRowHandle == actualDefaultCurrencyIndex)
-                        SetNewDefaultCurrency();
-
-                    AdjustCurrencyIndicesForDeletion(gridViewAgencyCurrency.FocusedRowHandle);
-                    AgencyCurrencyBindingSource.Remove(currencyToDelete);
-                    //Removing from the bindingsource just removes the object from its parent, but does not mark
-                    //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
-                    //To flag for deletion, delete it from the context as well.
-                    if (currencyToDelete.ID != 0)
-                        context.AgencyCurrency.DeleteObject(currencyToDelete);
-
-                    modifiedAgyCurrencyRec = true;
-                }
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != System.Data.Entity.EntityState.Detached) {
+                _selectedRecord.AgencyCurrency.Load(MergeOption.OverwriteChanges);
             }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceAgencyCurrency.DataSource = _selectedRecord.AgencyCurrency;
+            BindAgencyCurrencies();
         }
 
         // BAW
         // Ensures that the user has to select exactly one default currency
-        private void SetNewDefaultCurrency(int? newIndex = null, bool clearNew = false)
-        {
-            // when SaveRecord fails, need to prevent new record from being default together with the record that is default in DB, restored by RefreshRecords()
-            if (clearNew) {
-                newAgyCurrencyIndices.ForEach(i =>
-                {
-                    ((AgencyCurrency)AgencyCurrencyBindingSource[i]).Default = false;
-                });
-                // used to ensure that at least one record is automatically set to default
-                var actualDefaultCurrencyRecord = AgencyCurrencyBindingSource.List.Cast<AgencyCurrency>().Where(a => a.Default == true).FirstOrDefault();
-                actualDefaultCurrencyIndex = AgencyCurrencyBindingSource.IndexOf(actualDefaultCurrencyRecord);
-
-                var fixedDefaultCurrencyRecord = AgencyCurrencyBindingSource.List.Cast<AgencyCurrency>().Where(f => f.Currency_Code == fixedDefaultCurrency).FirstOrDefault();
-                fixedDefaultCurrencyIndex = AgencyCurrencyBindingSource.IndexOf(fixedDefaultCurrencyRecord);
-
-                if (actualDefaultCurrencyIndex == -1) { // if the actual default record was deleted, reinstate fixed default
-                    fixedDefaultCurrencyRecord.Default = true;
-                    modifiedAgyCurrencyRec = true;
-                    modifiedAgyCurrencyIndices.Add(fixedDefaultCurrencyIndex);
-                    actualDefaultCurrencyIndex = fixedDefaultCurrencyIndex;
-                }
-            }
-            // when deleting/modifying existing currency to no longer be default
-            else if (newIndex == null) {
-                var fixedDefaultCurrencyRecord = (AgencyCurrency)AgencyCurrencyBindingSource.List[fixedDefaultCurrencyIndex];
-                if (fixedDefaultCurrencyRecord.Default != true) {   // only if value has changed
-                    fixedDefaultCurrencyRecord.Default = true;
-                    modifiedAgyCurrencyRec = true;
-                    if (!modifiedAgyCurrencyIndices.Contains(fixedDefaultCurrencyIndex))
-                        modifiedAgyCurrencyIndices.Add(fixedDefaultCurrencyIndex);
-                    actualDefaultCurrencyIndex = fixedDefaultCurrencyIndex;
-                }
-            }
-            // when setting new default explicitly - creating/modifying currency to be new default or when recovering from save error
-            else {
-                var actualDefaultCurrencyRecord = (AgencyCurrency)AgencyCurrencyBindingSource.List[actualDefaultCurrencyIndex];
-                actualDefaultCurrencyRecord.Default = false;
-                modifiedAgyCurrencyRec = true;
-                if (!modifiedAgyCurrencyIndices.Contains(actualDefaultCurrencyIndex) && !newAgyCurrencyIndices.Contains(actualDefaultCurrencyIndex))
-                    modifiedAgyCurrencyIndices.Add(actualDefaultCurrencyIndex);
-                actualDefaultCurrencyIndex = (int)newIndex;
-            }
-        }
 
         // BAW
         // When a new/modified currency is deleted, this method adjusts the lists that keep track of new/modified values
-        private void AdjustCurrencyIndicesForDeletion(int rowHandle)
-        {
-            List<int> tmpModifiedRateIndices = new List<int>();
-            List<int> tmpNewRateIndices = new List<int>();
 
-            modifiedAgyCurrencyIndices.ForEach(i =>
-            {
-                if (i < rowHandle)
-                    tmpModifiedRateIndices.Add(i);
-                else if (i > rowHandle)
-                    tmpModifiedRateIndices.Add(i - 1);
-            });
-
-            newAgyCurrencyIndices.ForEach(i =>
-            {
-                if (i < rowHandle)
-                    tmpNewRateIndices.Add(i);
-                else if (i > rowHandle)
-                    tmpNewRateIndices.Add(i - 1);
-            });
-
-            modifiedAgyCurrencyIndices.Clear();
-            newAgyCurrencyIndices.Clear();
-            modifiedAgyCurrencyIndices.AddRange(tmpModifiedRateIndices);
-            newAgyCurrencyIndices.AddRange(tmpNewRateIndices);
-        }
-
-        private void gridViewAgencyCurrency_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        private void GridViewAgencyCurrency_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
         }
 
-        private void checkEditAllowElectronicPayment_Click(object sender, EventArgs e)
+        private void FinalizeBindings()
         {
-            modified = true;
+            BindingSource.EndEdit();
+            GridViewContacts.CloseEditor();
+            GridViewContacts.UpdateCurrentRow();
+            //Set the city code for each mapping just in case
+            for (int rowCtr = 0; rowCtr < GridViewContacts.DataRowCount; rowCtr++) {
+                CONTACT contact = (CONTACT)GridViewContacts.GetRow(rowCtr);
+                contact.LINK_VALUE = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceContact.EndEdit();
+
+            GridViewMemberships.CloseEditor();
+            GridViewMemberships.UpdateCurrentRow();
+            for (int rowCtr = 0; rowCtr < GridViewMemberships.DataRowCount; rowCtr++) {
+                DETAIL detail = (DETAIL)GridViewMemberships.GetRow(rowCtr);
+                detail.LINK_VALUE = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceDetail.EndEdit();
+
+            GridViewDeposits.CloseEditor();
+            GridViewDeposits.UpdateCurrentRow();
+            for (int rowCtr = 0; rowCtr < GridViewDeposits.DataRowCount; rowCtr++) {
+                PaymentTransaction detail = (PaymentTransaction)GridViewDeposits.GetRow(rowCtr);
+                detail.Agency = TextEditCode.Text ?? string.Empty;
+                detail.Agent = _sys.User.Name;
+                detail.Successful = true;
+            }
+            BindingSourcePaymentTransaction.EndEdit();
+
+            GridViewAgcyLog.CloseEditor();
+            GridViewAgcyLog.UpdateCurrentRow();
+            for (int rowCtr = 0; rowCtr < GridViewAgcyLog.DataRowCount; rowCtr++) {
+                AGCYLOG profile = (AGCYLOG)GridViewAgcyLog.GetRow(rowCtr);
+                profile.AGENCY = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceAgcyLog.EndEdit();
         }
 
-        private void checkEditAgentInactive_Click(object sender, EventArgs e)
+        void SetBindings()
         {
-            modified = true;
+            if (BindingSource.Current == null) {
+                ClearBindings();
+            }
+            else {
+                _selectedRecord = ((AGY)BindingSource.Current);
+                LoadAndBindPaymentProfiles();
+                LoadAndBindDetails();
+                LoadAndBindContacts();
+                LoadAndBindAgencyCurrencies();
+                LoadAndBindAgcyLogs();
+                LoadAndBindPaymentTrasactions();
+                SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
+                BarButtonItemDelete.Enabled = true;
+                BarButtonItemSave.Enabled = true;
+            }
+            GridViewAgcyLog.Columns["Agcylog_Agent_Delegate"].Visible = (TextEditCode.Text == _defAgy);
+            GridViewAgcyLog.Columns["SUPVR_FLG"].Visible = (TextEditCode.Text == _defAgy);
+            ErrorProvider.Clear();
         }
 
-        private void ButtonAddDeposit_Click(object sender, EventArgs e) {
-
-        }
-
-        private void ButtonDeleteDeposit_Click(object sender, EventArgs e) {
-
-        }
-    }
-
-    public static class StringExtension
-    {
-        public static string GetLast(this string source, int tail_length)
+        private void LoadAndBindContacts()
         {
-            if (tail_length >= source.Length)
-                return source;
-            return source.Substring(source.Length - tail_length);
+            if (!string.IsNullOrEmpty(_selectedRecord.NO)) {
+                string id = _selectedRecord.NO.ToString();
+                BindingSourceContact.DataSource = _context.CONTACT.Where(c => c.LINK_VALUE == id);
+            }
+        }
+
+        void LoadAndBindPaymentTrasactions()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != System.Data.Entity.EntityState.Detached) {
+                _selectedRecord.PaymentTransaction.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourcePaymentTransaction.DataSource = _selectedRecord.PaymentTransaction;
+            BindPaymentTransactions();
+        }
+
+        void LoadAndBindAgcyLogs()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != System.Data.Entity.EntityState.Detached) {
+                _selectedRecord.AGCYLOG.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceAgcyLog.DataSource = _selectedRecord.AGCYLOG;
+            BindAgencyLogs();
+        }
+
+        void LoadAndBindPaymentProfiles()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != System.Data.Entity.EntityState.Detached) {
+                _selectedRecord.AgencyPaymentProfile.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            if (!string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) { 
+                try {
+                    var cust = _custGateway.GetCustomer(_selectedRecord.PaymentProcessorCustProfileId);
+                    bankAccnts.Clear();
+                    creditCards.Clear();
+                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
+                    ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
+                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
+                    foreach (AuthorizeNet.PaymentProfile profile in cust.PaymentProfiles) {
+                        if (!string.IsNullOrWhiteSpace(profile.BankAccountNumber))
+                            bankAccnts.Add(profile);
+
+                        if (!string.IsNullOrWhiteSpace(profile.CardNumber))
+                            creditCards.Add(profile);
+                    }
+                }
+                catch {
+                    this.DisplayWarning("Customer payment information could not be retrieved from profile manager");
+                }
+
+                //GridControlCreditProfiles.DataSource = creditCards;
+                //GridControlBankProfiles.DataSource = bankAccnts;
+                ///////////////////////
+
+                var loadDefault = from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text select agyRec;
+                foreach (var result in loadDefault) {
+                    ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.PaymentProfileDesc, Value = result.PaymentProfileID };
+                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(load);
+                }
+                //setDefeaultProfile to first added if none is set
+                //if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultPaymentProfileID.Text) && currentCust.PaymentProfiles.Count > 0) {
+                //    ImageComboBoxEditDefaultPaymentProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
+                //    _context.SaveChanges();
+                //}
+                BindingSourceAgencyPaymentProfileCredit.DataSource = _selectedRecord.AgencyPaymentProfile;
+                BindPaymentProfiles();
+            }
+        }
+
+        void BindPaymentProfiles()
+        {
+            GridControlCreditProfiles.DataSource = BindingSourcePaymentProfiles;
+            GridControlCreditProfiles.RefreshDataSource();
+        }
+
+        private void RemoveRecord()
+        {
+            //Note that cascade delete must be set on the FK in the db in order for the related
+            //entities to be deleted.  This is a db function, not an EF function. However in addition
+            //the model must know about the delete, otherwise the relationships in the context will
+            //get messed up.  So after adding the cascade rule to the FK, the model must be updated,
+            //and in order to refresh a relationship the tables must be deleted and re-added
+            //Otherwise, we could do a delete loop
+            //If using DbContext instead of ObjectContext, we could do eg
+            //_context.SupplierCity.RemoveRange(_selectedRecord.SupplierCity)
+            BindingSource.RemoveCurrent();
+        }
+
+        private void RefreshRecord()
+        {
+            //A Detached record has not yet been added to the context
+            //An Added record has been added but not yet saved, most likely because there was
+            //an error in SaveRecord, in which case we should not retrieve it from the db
+            if (_selectedRecord != null && _selectedRecord.EntityState != System.Data.Entity.EntityState.Detached
+                && _selectedRecord.EntityState != System.Data.Entity.EntityState.Added) {
+                _context.Refresh(RefreshMode.StoreWins, _selectedRecord);
+                RefreshContacts();
+                RefreshDetails();
+                SetReadOnlyKeyFields(true);
+            }
+        }
+
+        private void RefreshContacts()
+        {
+            //Refreshing from store can't refresh added but unsaved records, so these have to be manually removed first
+            List<CONTACT> toRemove = new List<CONTACT>();
+            foreach (CONTACT contact  in BindingSourceContact.List) {
+                if (contact.EntityState == System.Data.Entity.EntityState.Added) {
+                    toRemove.Add(contact);
+                }
+            }
+            foreach (CONTACT contact in toRemove) {
+                BindingSourceContact.Remove(contact);
+            }
+            _context.Refresh(RefreshMode.StoreWins, BindingSourceContact.List);
+            LoadAndBindContacts();
+        }
+
+        private void RefreshDetails()
+        {
+            //Refreshing from store can't refresh added but unsaved records, so these have to be manually removed first
+            List<DETAIL> toRemove = new List<DETAIL>();
+            foreach (DETAIL detail in BindingSourceDetail.List) {
+                if (detail.EntityState == System.Data.Entity.EntityState.Added) {
+                    toRemove.Add(detail);
+                }
+            }
+            foreach (DETAIL detail in toRemove) {
+                BindingSourceDetail.Remove(detail);
+            }
+            _context.Refresh(RefreshMode.StoreWins, BindingSourceDetail.List);
+            LoadAndBindDetails();
+        }
+        
+        private void LoadAndBindDetails()
+        {
+            if (!string.IsNullOrEmpty(_selectedRecord.NO)) {
+                BindingSourceDetail.DataSource = _context.DETAIL.Where(c => c.LINK_VALUE == _selectedRecord.NO && c.LINK_TABLE == "AGY" && c.RECTYPE == "AGYCLASS");
+            }
+        }
+
+        private void DeleteRecord()
+        {
+            if (_selectedRecord == null)
+                return;
+
+            try {
+                if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
+                    //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
+                    //We do not want these events to perform their usual code of checking whether there are changes in the active
+                    //record that should be saved before proceeding, because we know we have just deleted the active record.
+                    _ignoreLeaveRow = true;
+                    _ignorePositionChange = true;
+                    RemoveRecord();
+                    if (!_selectedRecord.IsNew()) {
+                        //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
+                        //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
+                        //the EntityState changes for modification. So if this is a deletion and the entity is not flagged for deletion, 
+                        //delete it manually.
+                        if (_selectedRecord != null && (_selectedRecord.EntityState & System.Data.Entity.EntityState.Deleted) != System.Data.Entity.EntityState.Deleted)
+                            _context.AGY.DeleteObject(_selectedRecord);
+                        _context.SaveChanges();
+                    }
+                    if (GridViewLookup.DataRowCount == 0) {
+                        ClearBindings();
+                    }
+                    _ignoreLeaveRow = false;
+                    _ignorePositionChange = false;
+                    SetBindings();
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Deleted");
+                }
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                _ignoreLeaveRow = false;
+                _ignorePositionChange = false;
+                RefreshRecord();        //pull it back from db because that is it's current state
+                //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+            }
+        }
+
+        void ClearBindings()
+        {
+            _ignoreLeaveRow = true;
+            _ignorePositionChange = true;
+            _selectedRecord = null;
+            SetReadOnly(true);
+            BindingSourceDetail.DataSource = typeof(DETAIL);
+            BindingSourceAgcyLog.DataSource = typeof(AGCYLOG);
+            BindingSourcePaymentTransaction.DataSource = typeof(PaymentTransaction);
+            BindingSourceContact.DataSource = typeof(CONTACT);
+            BarButtonItemDelete.Enabled = false;
+            BarButtonItemSave.Enabled = false;
+            BindingSource.DataSource = typeof(AGY);
+            _ignoreLeaveRow = false;
+            _ignorePositionChange = false;
+        }
+
+        private void ButtonAddRow1_Click(object sender, EventArgs e)
+        {
+            DETAIL resource = new DETAIL() {
+                LINK_TABLE = "AGY",
+                RECTYPE = "AGYCLASS",
+                LINK_VALUE = _selectedRecord.NO ?? string.Empty
+            };
+            BindingSourceDetail.Add(resource);
+        }
+
+        private void ButtonDelRow_Click(object sender, EventArgs e)
+        {
+            _detailsModified = true;
+            BindingSourceDetail.RemoveCurrent();
+        }
+
+        private void SetUpdateFields(AGY record)
+        {
+            record.LAST_UPD = DateTime.Now;
+            record.UPD_INIT = _sys.User.Name;
+        }
+
+        private bool SaveRecord(bool prompt)
+        {
+            try {
+                if (_selectedRecord == null)
+                    return true;
+
+                FinalizeBindings();
+                bool newRec = _selectedRecord.IsNew();
+                bool modified = newRec || IsModified(_selectedRecord);
+                bool nameChanged = _selectedRecord.IsModified(_context, "NAME");
+
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            if (newRec) {
+                                RemoveRecord();
+                            }
+                            else {
+                                RefreshRecord();
+                            }
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    if (!ValidateAll())
+                        return false;
+
+                    if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
+                        _context.AGY.AddObject(_selectedRecord);
+                    }
+                    SetUpdateFields(_selectedRecord);
+                    _context.SaveChanges();
+                    if (newRec || nameChanged) {
+                        AccountingAPI.InvokeForAgency(_sys.Settings.TourAccountingURL, _selectedRecord.NO);
+                    }
+                    EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Record Saved");
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecord();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                SetBindings();
+                return false;
+            }
+        }
+
+        private void SetErrorInfo(Func<String> validationMethod, object sender)
+        {
+            BindingSource.EndEdit();
+            if (validationMethod != null) {
+                string error = validationMethod.Invoke();
+                ErrorProvider.SetError((Control)sender, error);
+            }
+        }
+
+        private bool ValidateAll()
+        {
+            bool detailsInvalid = false;
+            if (BindingSourceDetail.List.Count > 0) {
+                detailsInvalid = BindingSourceDetail.List.Cast<DETAIL>().Any(b => !b.Validate());
+            }
+
+            if (!_selectedRecord.Validate()) {
+                ShowMainControlErrors();
+                DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+                return false;
+            }
+            else {
+                ErrorProvider.Clear();
+                return true;
+            }
+        }
+
+        private void ShowMainControlErrors()
+        {
+            //The error indicators inside the grids are handled by binding, but errors on the main form must
+            //be set manually
+            SetErrorInfo(_selectedRecord.ValidateNo, TextEditCode);
+            SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
+            SetErrorInfo(_selectedRecord.ValidateType, TextEditType);
+            SetErrorInfo(_selectedRecord.ValidateAP, TextEditAp);
+            SetErrorInfo(_selectedRecord.ValidateAR, TextEditAr);
+            SetErrorInfo(_selectedRecord.ValidateDefLang, SearchLookupEditDefLanguage);
+            SetErrorInfo(_selectedRecord.ValidateAddress1, TextEditAddr1);
+            SetErrorInfo(_selectedRecord.ValidateAddress2, TextEditAddr2);
+            SetErrorInfo(_selectedRecord.ValidateAddress3, TextEditAddr3);
+            SetErrorInfo(_selectedRecord.ValidateCity, TextEditCity);
+            SetErrorInfo(_selectedRecord.ValidateState, TextEditState);
+            SetErrorInfo(_selectedRecord.ValidateZip, TextEditZip);
+            SetErrorInfo(_selectedRecord.ValidateCountry, SearchLookupEditCountry);
+            SetErrorInfo(_selectedRecord.ValidateMailFax, ImageComboBoxEditMailFaxFlg);
+            SetErrorInfo(_selectedRecord.ValidatePhone, TextEditPhone);
+            SetErrorInfo(_selectedRecord.ValidateEmail, TextEditEmail);
+            SetErrorInfo(_selectedRecord.ValidateFax, TextEditFaxNum);
+            SetErrorInfo(_selectedRecord.ValidateRetNotAvail, ImageComboBoxEditRetNotAvalHtls);
+            SetErrorInfo(_selectedRecord.ValidateRetReq, ImageComboBoxEditRetreqHtls);
+            SetErrorInfo(_selectedRecord.ValidateRel, SpinEditRel);
+            SetErrorInfo(_selectedRecord.ValidateTourfaxEmailFormat, ImageComboBoxEditTourfaxEmailFormat);
+            SetErrorInfo(_selectedRecord.ValidateVouchReprints, SpinEditVoucherReprints);
+            SetErrorInfo(_selectedRecord.ValidateVouchDaysPrior, SpinEditVoucherDaysPrior);
+            SetErrorInfo(_selectedRecord.ValidateOptDays, SpinEditOptDays);
+            SetErrorInfo(_selectedRecord.ValidateGrace, SpinEditCxlGrace);
+            SetErrorInfo(_selectedRecord.ValidateComm, SpinEditComm);
+            SetErrorInfo(_selectedRecord.ValidateEditHdr, ImageComboBoxEditHdrs);
+            SetErrorInfo(_selectedRecord.ValidateEditHtl, ImageComboBoxEditHtls);
+            SetErrorInfo(_selectedRecord.ValidateDueDays, SpinEditDueDays);
+            SetErrorInfo(_selectedRecord.ValidatePmtDays, SpinEditPmtDays);
+            SetErrorInfo(_selectedRecord.ValidateCreditLimit, SpinEditCreditLimit);
+            SetErrorInfo(_selectedRecord.ValidatePriorDays, SpinEditPriorDays);
+            SetErrorInfo(_selectedRecord.ValidateDaysSpace, SpinEditDaysSpace);
+            SetErrorInfo(_selectedRecord.ValidateInvFormat, ComboBoxEditInvFmt);
+            SetErrorInfo(_selectedRecord.ValidateCxlNights1, SpinEditCxlNtsPrior1);
+            SetErrorInfo(_selectedRecord.ValidateCxlNights2, SpinEditCxlNtsPrior2);
+            SetErrorInfo(_selectedRecord.ValidateCxlNights3, SpinEditCxlNtsPrior3);
+            SetErrorInfo(_selectedRecord.ValidateChgNights1, SpinEditChgNtsPrior1);
+            SetErrorInfo(_selectedRecord.ValidateChgNights2, SpinEditChgNtsPrior2);
+            SetErrorInfo(_selectedRecord.ValidateChgNights3, SpinEditChgNtsPrior3);
+            SetErrorInfo(_selectedRecord.ValidateCxlPct1, TextEditCxlPct1);
+            SetErrorInfo(_selectedRecord.ValidateCxlPct2, TextEditCxlPct2);
+            SetErrorInfo(_selectedRecord.ValidateCxlPct3, TextEditCxlPct3);
+            SetErrorInfo(_selectedRecord.ValidateChgPct1, TextEditChgPct1);
+            SetErrorInfo(_selectedRecord.ValidateChgPct2, TextEditChgPct2);
+            SetErrorInfo(_selectedRecord.ValidateChgPct3, TextEditChgPct3);
+            SetErrorInfo(_selectedRecord.ValidateCxlFlatFee1, TextEditCxlFlat1);
+            SetErrorInfo(_selectedRecord.ValidateCxlFlatFee2, TextEditCxlFlat2);
+            SetErrorInfo(_selectedRecord.ValidateCxlFlatFee3, TextEditCxlFlat3);
+            SetErrorInfo(_selectedRecord.ValidateChgFlatFee1, TextEditChgFlat1);
+            SetErrorInfo(_selectedRecord.ValidateChgFlatFee2, TextEditChgFlat2);
+            SetErrorInfo(_selectedRecord.ValidateChgFlatFee3, TextEditChgFlat3);
+            SetErrorInfo(_selectedRecord.ValidateParentAgy, SearchLookupEditParentAgy);
+            SetErrorInfo(_selectedRecord.ValidateSrt2, TextEditSrt2);
+            SetErrorInfo(_selectedRecord.ValidateSrt3, TextEditSrt3);
+            _selectedRecord.Details = BindingSourceDetail.List.Cast<DETAIL>().ToList();
+        }
+
+        private bool IsModified(AGY record)
+        {
+            //Type-specific routine that takes into account relationships that should also be considered
+            //when deciding if there are unsaved changes.  The entity properties also return true if the
+            //record is new or deleted.
+            if (record == null)
+                return false;
+            return record.IsModified(_context) 
+                || _detailsModified 
+                || _contactsModified
+                || record.AgencyCurrency.IsModified(_context)
+                || record.PaymentTransaction.IsModified(_context)
+                || record.AGCYLOG.IsModified(_context);
+        }
+
+        private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
+            if (SaveRecord(true)) {
+                //For some reason when there is no existing record in the binding source the Add method does not
+                //trigger the CurrentChanged event, but AddNew does so use that instead
+                _selectedRecord = (AGY)BindingSource.AddNew();
+                //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                //the focused row to the filter row just so that no other existing row is visually highlighted
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                SetReadOnlyKeyFields(false);
+                TextEditCode.Focus();
+                SetReadOnly(false);
+            }
+            ErrorProvider.Clear();
+            _ignoreLeaveRow = false;
+        }
+
+        private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            FlextourEntities context = new FlextourEntities(Connection.EFConnectionString);
+            e.QueryableSource = context.AGY;
+            e.Tag = context;
+        }
+
+        private void EntityInstantFeedbackSource_DismissQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
+        {
+            ((FlextourEntities)e.Tag).Dispose();
+        }
+
+        private void BarButtonItemDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DeleteRecord();
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (SaveRecord(false))
+                RefreshRecord();
+        }
+
+        void BindAgencyLogs()
+        {
+            GridControlAgcyLog.DataSource = BindingSourceAgcyLog;
+            GridControlAgcyLog.RefreshDataSource();
+        }
+
+        private void ButtonAddMapping_Click(object sender, EventArgs e)
+        {
+            AGCYLOG agcylog = new AGCYLOG {
+                AGENCY = TextEditCode.Text ?? string.Empty
+            };
+            _selectedRecord.AGCYLOG.Add(agcylog);
+            BindAgencyLogs();
+            GridViewAgcyLog.FocusedRowHandle = BindingSourceAgcyLog.Count - 1;
+        }
+
+        private void ButtonDeleteMapping_Click(object sender, EventArgs e)
+        {
+            if (GridViewAgcyLog.FocusedRowHandle >= 0) {
+                AGCYLOG agcylog = (AGCYLOG)GridViewAgcyLog.GetFocusedRow();
+                _selectedRecord.AGCYLOG.Remove(agcylog);
+                //Removing from the collection just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                _context.AGCYLOG.DeleteObject(agcylog);
+                BindAgencyLogs();
+            }
+        }
+
+        private void GridControlAgcyLog_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAgcyLog, sender);
+        }
+
+        private void RadioGroupPaymentDue_EditValueChanged(object sender, EventArgs e)
+        {
+            if (RadioGroupPaymentDue.SelectedIndex == 0) {
+                SpinEditDueDays.Enabled = false;
+                SpinEditPmtDays.Enabled = true;
+                SpinEditDueDays.Value = 0;
+            }
+            else {
+                SpinEditDueDays.Enabled = true;
+                SpinEditPmtDays.Enabled = false;
+                SpinEditPmtDays.Value = 0;
+            }
+        }
+
+        private void SimpleButtonValidateCreditRow_Click(object sender, EventArgs e)
+        {
+            AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
+            api.payment = new AuthorizeNet.APICore.paymentMaskedType();
+            api.payment.Item = new AuthorizeNet.APICore.creditCardMaskedType();
+            api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
+            api.customerTypeSpecified = true;
+            AuthorizeNet.Address billing = new AuthorizeNet.Address();
+
+            //apiType.payment.Item is creditCardMaskedType
+            AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api) {
+                BillingAddress = billing
+            };
+            creditCards.Add(rec);
+
+            if (rec.CardNumber.Length > 8 || rec.CardExpiration.Length > 4) {
+                AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                if (rec.CardNumber.Length > 8)
+                    updateRec.PaymentProvider = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
+                updateRec.LastDigits = rec.CardNumber.GetLast(4);
+                updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
+                updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
+                if (string.IsNullOrEmpty(rec.ProfileID)) {
+                    updateRec.PaymentProfileID = _custGateway.AddCreditCard(currentCust.ProfileID, rec.CardNumber, (int)updateRec.ExpirationMonth, (int)updateRec.ExpirationYear, rec.CardCode);
+                }
+                else {
+                    _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                }
+                _context.SaveChanges();
+            }
+        }
+
+        private void SimpleButtonValidateBankRow_Click(object sender, EventArgs e)
+        {
+            AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
+            api.payment = new AuthorizeNet.APICore.paymentMaskedType();
+            api.payment.Item = new AuthorizeNet.APICore.bankAccountMaskedType();
+            api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
+            api.customerTypeSpecified = true;
+            AuthorizeNet.Address billing = new AuthorizeNet.Address();
+
+            //apiType.payment.Item is creditCardMaskedType
+            AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api) {
+                BillingAddress = billing
+            };
+            bankAccnts.Add(rec);
+
+            if (rec.BankAccountNumber.Length > 8) {
+                AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
+                updateRec.PaymentProvider = rec.BankName;
+                updateRec.LastDigits = rec.CardNumber.GetLast(4);
+                if (string.IsNullOrEmpty(rec.ProfileID)) {
+                    updateRec.PaymentProfileID = _custGateway.AddBankAccount(currentCust.ProfileID, rec.BankNameOnAccount, rec.BankAccountNumber, rec.BankRoutingNumber, rec.BankName, rec.AccountType, true, rec.BillingAddress);
+                }
+                else {
+                    _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                }
+                _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
+                _context.SaveChanges();
+            }
+        }
+
+        private void GridViewMemberships_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            _detailsModified = true;
+        }
+
+        private void CheckEditCreditUnlimited_EditValueChanged(object sender, EventArgs e)
+        {
+            if (CheckEditCreditUnlimited.Checked) {
+                SpinEditCreditLimit.Enabled = false;
+                SpinEditCreditLimit.EditValue = 0;
+                SpinEditCreditLimitRemPct.Enabled = false;
+                SpinEditCreditLimitRemPct.EditValue = 100;
+            }
+            else {
+                SpinEditCreditLimit.Enabled = true;
+                SpinEditCreditLimitRemPct.Enabled = true;
+            }
+        }
+
+        private void GridViewCreditProfiles_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+
+        }
+
+        private void CheckEditAllowElectronicPayment_EditValueChanged(object sender, EventArgs e)
+        {
+            if (CheckEditAllowElectronicPayment.Checked) {
+                TextEditCustomerProfileEmail.Enabled = true;
+                CheckEditRequireCVV2.Enabled = true;
+                ChangePaymentProfileButton.Enabled = true;
+                DeleteButton.Enabled = true;
+                ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
+            } else {
+                TextEditCustomerProfileEmail.Enabled = false;
+                CheckEditRequireCVV2.Enabled = false;
+                ChangePaymentProfileButton.Enabled = false;
+                DeleteButton.Enabled = false;
+                GridControlCreditProfiles.Enabled = false;
+                GridControlBankProfiles.Enabled = false;
+                AddCreditButton.Enabled = false;
+                DelCreditButton.Enabled = false;
+                SimpleButtonValidateCreditRow.Enabled = false;
+                AddBankButton.Enabled = false;
+                DelBankButton.Enabled = false;
+                SimpleButtonValidateBankRow.Enabled = false;
+                ImageComboBoxEditDefaultPmtProfileID.Enabled = false;
+            }
+        }
+
+        private void LabelPaymentProcessorCustProfileId_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(LabelPaymentProcessorCustProfileId.Text)) {
+                ChangePaymentProfileButton.Text = "Create";
+                GridControlCreditProfiles.Enabled = false;
+                GridControlBankProfiles.Enabled = false;
+                AddCreditButton.Enabled = false;
+                DelCreditButton.Enabled = false;
+                SimpleButtonValidateCreditRow.Enabled = false;
+                AddBankButton.Enabled = false;
+                DelBankButton.Enabled = false;
+                SimpleButtonValidateBankRow.Enabled = false;
+            } else {
+                ChangePaymentProfileButton.Text = "Update";
+                GridControlCreditProfiles.Enabled = true;
+                GridControlBankProfiles.Enabled = true;
+                AddCreditButton.Enabled = true;
+                DelCreditButton.Enabled = true;
+                SimpleButtonValidateCreditRow.Enabled = true;
+                AddBankButton.Enabled = true;
+                DelBankButton.Enabled = true;
+                SimpleButtonValidateBankRow.Enabled = true;
+            }
+        }
+
+        private void CheckEditRequireCVV2_EditValueChanged(object sender, EventArgs e)
+        {
+            ChangePaymentProfileButton.Enabled = true;
+        }
+
+        private void BindingSourceAgencyPaymentProfileBank_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
+        {
+
+        }
+
+        private void GridViewContacts_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            _contactsModified = true;
+        }
+
+        private void GridViewAgcyLog_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column == colAgcylog_Agent_Delegate) {
+                if (_selectedRecord.NO == _defAgy) {
+                    var agentName = GridViewAgcyLog.GetRowCellValue(e.RowHandle, colAGT_NAME).ToStringEmptyIfNull();
+                    RepositoryItemImageComboBox editor = new RepositoryItemImageComboBox();
+                    editor.Items.Add(new ImageComboBoxItem() { Description = string.Empty, Value = null });
+                    editor.Items.AddRange(_selectedRecord.AGCYLOG.Where(a => a.AGT_NAME != agentName)
+                        .OrderBy(a => a.AGT_NAME)
+                        .Select(a => new ImageComboBoxItem() { Description = a.AGT_NAME, Value = a.AGT_NAME }).ToArray());
+                    e.RepositoryItem = editor;
+                }
+                else {
+                    e.RepositoryItem = null;
+                }
+            }
+        }
+
+        void BindPaymentTransactions()
+        {
+            GridControlDeposits.DataSource = BindingSourcePaymentTransaction;
+            GridControlDeposits.RefreshDataSource();
+        }
+
+        private void ButtonAddDeposit_Click(object sender, EventArgs e)
+        {
+            PaymentTransaction paymentTransaction = new PaymentTransaction {
+                Agency = TextEditCode.Text ?? string.Empty,
+                Agent = _sys.User.Name
+            };
+            _selectedRecord.PaymentTransaction.Add(paymentTransaction);
+            BindPaymentTransactions();
+            GridViewDeposits.FocusedRowHandle = BindingSourcePaymentTransaction.Count - 1;
+        }
+
+        private void ButtonDeleteDeposit_Click(object sender, EventArgs e)
+        {
+            if (GridViewDeposits.FocusedRowHandle >= 0) {
+                PaymentTransaction paymentTransaction = (PaymentTransaction)GridViewDeposits.GetFocusedRow();
+                _selectedRecord.PaymentTransaction.Remove(paymentTransaction);
+                //Removing from the collection just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                _context.PaymentTransaction.DeleteObject(paymentTransaction);
+                BindPaymentTransactions();
+            }
+        }
+
+        private void AgencyForm_Shown(object sender, EventArgs e)
+        {
+            GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+            GridViewLookup.Focus();
+        }
+
+        private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (!_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                object row = view.GetRow(e.FocusedRowHandle);
+                if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
+                    ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
+                    AGY record = (AGY)proxy.OriginalRow;
+                    BindingSource.DataSource = _context.AGY.Where(c => c.NO == record.NO);
+                }
+                else {
+                    ClearBindings();
+                }
+            }
         }
     }
 
