@@ -98,6 +98,7 @@ namespace TraceForms
             System.Windows.Forms.Label sRT2Label;
             System.Windows.Forms.Label LabelPaymentDue;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgencyForm));
+            this.LabelPaymentProfileStatus = new System.Windows.Forms.Label();
             this.LabelDate = new System.Windows.Forms.Label();
             this.LabelAgency = new System.Windows.Forms.Label();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
@@ -236,8 +237,8 @@ namespace TraceForms
             this.colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.XtraTabPageContacts = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlContactTab = new DevExpress.XtraEditors.PanelControl();
-            this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
-            this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonDeleteContact = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonAddContact = new DevExpress.XtraEditors.SimpleButton();
             this.ImageComboBoxEditMailFaxFlg = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.GridControlContacts = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
@@ -283,6 +284,7 @@ namespace TraceForms
             this.colFAX = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnRptType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemCheckedComboBoxEditReportType = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.RepositoryItemSearchLookUpEditReportType = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -378,23 +380,26 @@ namespace TraceForms
             this.DateEditLastInvDate = new DevExpress.XtraEditors.DateEdit();
             this.XtraTabPagePayments = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.SimpleButtonRetry = new DevExpress.XtraEditors.SimpleButton();
+            this.PanelControlPaymentProfileStatus = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.SimpleButtonValidateBankRow = new DevExpress.XtraEditors.SimpleButton();
             this.SimpleButtonValidateCreditRow = new DevExpress.XtraEditors.SimpleButton();
             this.CheckEditAllowElectronicPayment = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditRequireCVV2 = new DevExpress.XtraEditors.CheckEdit();
             this.LabelDefaultPaymentProfileID = new System.Windows.Forms.Label();
-            this.DelCreditButton = new DevExpress.XtraEditors.SimpleButton();
-            this.DelBankButton = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonDeleteCredit = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonDeleteBank = new DevExpress.XtraEditors.SimpleButton();
             this.LabelPaymentProcessorCustProfileId = new System.Windows.Forms.Label();
-            this.AddBankButton = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonAddBank = new DevExpress.XtraEditors.SimpleButton();
             this.label4 = new System.Windows.Forms.Label();
             this.GridControlBankProfiles = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceAgencyPaymentProfileCredit = new System.Windows.Forms.BindingSource(this.components);
+            this.BindingSourceAgencyPaymentProfile = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewBankProfiles = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.gridColumnBankName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAccountType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemImageComboBoxAccountType = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.gridColumnAccountNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnStreet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCity = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -409,18 +414,21 @@ namespace TraceForms
             this.grdColID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.grdColCardNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColExpDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdColExpirationYear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSpinEditExpYear = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.grdColCVV2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdColCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdColFirst = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdColLast = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdStreet = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColCity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColState = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColZip = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColCountry = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColPhone = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColStreet = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColCity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColState = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColZip = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColCountry = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColAccountType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColPhone = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColExpirationMonth = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemImageComboBoxExpMonth = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.AddCreditButton = new DevExpress.XtraEditors.SimpleButton();
@@ -560,8 +568,8 @@ namespace TraceForms
             this.DateEditDate = new DevExpress.XtraEditors.DateEdit();
             this.XtraTabPageAgents = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlAgentTab = new DevExpress.XtraEditors.PanelControl();
-            this.ButtonDeleteMapping = new DevExpress.XtraEditors.SimpleButton();
-            this.ButtonAddMapping = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonDeleteAgent = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonAddAgent = new DevExpress.XtraEditors.SimpleButton();
             this.GridControlAgcyLog = new DevExpress.XtraGrid.GridControl();
             this.BindingSourceAgcyLog = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewAgcyLog = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -709,6 +717,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridViewContacts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxSendDocs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckedComboBoxEditReportType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditReportType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditEmail.Properties)).BeginInit();
@@ -777,15 +786,19 @@ namespace TraceForms
             this.XtraTabPagePayments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlPaymentProfileStatus)).BeginInit();
+            this.PanelControlPaymentProfileStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowElectronicPayment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlBankProfiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileCredit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewBankProfiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxAccountType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCreditProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCreditProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditExpYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxExpMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCustomerProfileEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditDefaultPmtProfileID.Properties)).BeginInit();
@@ -1554,6 +1567,14 @@ namespace TraceForms
             LabelPaymentDue.TabIndex = 80;
             LabelPaymentDue.Text = "Payment due date based on:";
             // 
+            // LabelPaymentProfileStatus
+            // 
+            this.LabelPaymentProfileStatus.AutoSize = true;
+            this.LabelPaymentProfileStatus.Location = new System.Drawing.Point(21, 5);
+            this.LabelPaymentProfileStatus.Name = "LabelPaymentProfileStatus";
+            this.LabelPaymentProfileStatus.Size = new System.Drawing.Size(0, 13);
+            this.LabelPaymentProfileStatus.TabIndex = 6;
+            // 
             // LabelDate
             // 
             this.LabelDate.AutoSize = true;
@@ -1717,7 +1738,7 @@ namespace TraceForms
             this.GridViewLookup.Name = "GridViewLookup";
             this.GridViewLookup.OptionsMenu.EnableFooterMenu = false;
             this.GridViewLookup.OptionsView.ShowAutoFilterRow = true;
-            this.GridViewLookup.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.GridViewLookup.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
             this.GridViewLookup.OptionsView.ShowGroupPanel = false;
             this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
             // 
@@ -2736,8 +2757,8 @@ namespace TraceForms
             // 
             // PanelControlContactTab
             // 
-            this.PanelControlContactTab.Controls.Add(this.ButtonDelRow);
-            this.PanelControlContactTab.Controls.Add(this.ButtonAddRow);
+            this.PanelControlContactTab.Controls.Add(this.ButtonDeleteContact);
+            this.PanelControlContactTab.Controls.Add(this.ButtonAddContact);
             this.PanelControlContactTab.Controls.Add(this.ImageComboBoxEditMailFaxFlg);
             this.PanelControlContactTab.Controls.Add(this.GridControlContacts);
             this.PanelControlContactTab.Controls.Add(eMAILLabel);
@@ -2754,29 +2775,29 @@ namespace TraceForms
             this.PanelControlContactTab.Size = new System.Drawing.Size(877, 468);
             this.PanelControlContactTab.TabIndex = 0;
             // 
-            // ButtonDelRow
+            // ButtonDeleteContact
             // 
-            this.ButtonDelRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelRow.ImageOptions.Image")));
-            this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(797, 219);
-            this.ButtonDelRow.Name = "ButtonDelRow";
-            this.ButtonDelRow.Size = new System.Drawing.Size(34, 38);
-            this.ButtonDelRow.TabIndex = 38;
-            this.ButtonDelRow.TabStop = false;
-            this.ButtonDelRow.Text = "Delete Contact";
-            this.ButtonDelRow.Click += new System.EventHandler(this.DelRow_Click);
+            this.ButtonDeleteContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteContact.ImageOptions.Image")));
+            this.ButtonDeleteContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDeleteContact.Location = new System.Drawing.Point(797, 219);
+            this.ButtonDeleteContact.Name = "ButtonDeleteContact";
+            this.ButtonDeleteContact.Size = new System.Drawing.Size(34, 38);
+            this.ButtonDeleteContact.TabIndex = 38;
+            this.ButtonDeleteContact.TabStop = false;
+            this.ButtonDeleteContact.Text = "Delete Contact";
+            this.ButtonDeleteContact.Click += new System.EventHandler(this.ButtonDeleteContact_Click);
             // 
-            // ButtonAddRow
+            // ButtonAddContact
             // 
-            this.ButtonAddRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRow.ImageOptions.Image")));
-            this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(797, 174);
-            this.ButtonAddRow.Name = "ButtonAddRow";
-            this.ButtonAddRow.Size = new System.Drawing.Size(34, 38);
-            this.ButtonAddRow.TabIndex = 36;
-            this.ButtonAddRow.TabStop = false;
-            this.ButtonAddRow.Text = "Add Contact";
-            this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
+            this.ButtonAddContact.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddContact.ImageOptions.Image")));
+            this.ButtonAddContact.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddContact.Location = new System.Drawing.Point(797, 174);
+            this.ButtonAddContact.Name = "ButtonAddContact";
+            this.ButtonAddContact.Size = new System.Drawing.Size(34, 38);
+            this.ButtonAddContact.TabIndex = 36;
+            this.ButtonAddContact.TabStop = false;
+            this.ButtonAddContact.Text = "Add Contact";
+            this.ButtonAddContact.Click += new System.EventHandler(this.ButtonAddContact_Click);
             // 
             // ImageComboBoxEditMailFaxFlg
             // 
@@ -2802,7 +2823,8 @@ namespace TraceForms
             this.GridControlContacts.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBoxSendDocs,
             this.repositoryItemComboBoxDept,
-            this.RepositoryItemSearchLookUpEditReportType});
+            this.RepositoryItemSearchLookUpEditReportType,
+            this.RepositoryItemCheckedComboBoxEditReportType});
             this.GridControlContacts.Size = new System.Drawing.Size(758, 195);
             this.GridControlContacts.TabIndex = 10;
             this.GridControlContacts.TabStop = false;
@@ -3176,7 +3198,7 @@ namespace TraceForms
             // gridColumnRptType
             // 
             this.gridColumnRptType.Caption = "Rpt Types";
-            this.gridColumnRptType.ColumnEdit = this.RepositoryItemSearchLookUpEditReportType;
+            this.gridColumnRptType.ColumnEdit = this.RepositoryItemCheckedComboBoxEditReportType;
             this.gridColumnRptType.FieldName = "RptContact";
             this.gridColumnRptType.MinWidth = 12;
             this.gridColumnRptType.Name = "gridColumnRptType";
@@ -3184,6 +3206,15 @@ namespace TraceForms
             this.gridColumnRptType.Visible = true;
             this.gridColumnRptType.VisibleIndex = 3;
             this.gridColumnRptType.Width = 90;
+            // 
+            // RepositoryItemCheckedComboBoxEditReportType
+            // 
+            this.RepositoryItemCheckedComboBoxEditReportType.AutoHeight = false;
+            this.RepositoryItemCheckedComboBoxEditReportType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemCheckedComboBoxEditReportType.DisplayMember = "DisplayName";
+            this.RepositoryItemCheckedComboBoxEditReportType.Name = "RepositoryItemCheckedComboBoxEditReportType";
+            this.RepositoryItemCheckedComboBoxEditReportType.ValueMember = "Code";
             // 
             // RepositoryItemSearchLookUpEditReportType
             // 
@@ -4444,16 +4475,18 @@ namespace TraceForms
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.SimpleButtonRetry);
+            this.panelControl1.Controls.Add(this.PanelControlPaymentProfileStatus);
             this.panelControl1.Controls.Add(this.SimpleButtonValidateBankRow);
             this.panelControl1.Controls.Add(this.SimpleButtonValidateCreditRow);
             this.panelControl1.Controls.Add(this.CheckEditAllowElectronicPayment);
             this.panelControl1.Controls.Add(this.CheckEditRequireCVV2);
             this.panelControl1.Controls.Add(this.LabelDefaultPaymentProfileID);
-            this.panelControl1.Controls.Add(this.DelCreditButton);
-            this.panelControl1.Controls.Add(this.DelBankButton);
+            this.panelControl1.Controls.Add(this.ButtonDeleteCredit);
+            this.panelControl1.Controls.Add(this.ButtonDeleteBank);
             this.panelControl1.Controls.Add(paymentProcessorCustProfileIdLabel);
             this.panelControl1.Controls.Add(this.LabelPaymentProcessorCustProfileId);
-            this.panelControl1.Controls.Add(this.AddBankButton);
+            this.panelControl1.Controls.Add(this.ButtonAddBank);
             this.panelControl1.Controls.Add(this.label4);
             this.panelControl1.Controls.Add(this.GridControlBankProfiles);
             this.panelControl1.Controls.Add(this.GridControlCreditProfiles);
@@ -4470,6 +4503,36 @@ namespace TraceForms
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(877, 468);
             this.panelControl1.TabIndex = 0;
+            // 
+            // SimpleButtonRetry
+            // 
+            this.SimpleButtonRetry.Location = new System.Drawing.Point(670, 14);
+            this.SimpleButtonRetry.Name = "SimpleButtonRetry";
+            this.SimpleButtonRetry.Size = new System.Drawing.Size(75, 23);
+            this.SimpleButtonRetry.TabIndex = 10002;
+            this.SimpleButtonRetry.Text = "Retry";
+            this.SimpleButtonRetry.Click += new System.EventHandler(this.SimpleButtonRetry_Click);
+            // 
+            // PanelControlPaymentProfileStatus
+            // 
+            this.PanelControlPaymentProfileStatus.Appearance.Options.UseTextOptions = true;
+            this.PanelControlPaymentProfileStatus.AutoSize = true;
+            this.PanelControlPaymentProfileStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlPaymentProfileStatus.ContentImage")));
+            this.PanelControlPaymentProfileStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PanelControlPaymentProfileStatus.Controls.Add(this.LabelPaymentProfileStatus);
+            this.PanelControlPaymentProfileStatus.Controls.Add(this.labelControl2);
+            this.PanelControlPaymentProfileStatus.Location = new System.Drawing.Point(217, 12);
+            this.PanelControlPaymentProfileStatus.Name = "PanelControlPaymentProfileStatus";
+            this.PanelControlPaymentProfileStatus.Size = new System.Drawing.Size(145, 25);
+            this.PanelControlPaymentProfileStatus.TabIndex = 10001;
+            this.PanelControlPaymentProfileStatus.Visible = false;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(30, 5);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(0, 13);
+            this.labelControl2.TabIndex = 5;
             // 
             // SimpleButtonValidateBankRow
             // 
@@ -4529,29 +4592,29 @@ namespace TraceForms
             this.LabelDefaultPaymentProfileID.TabIndex = 70;
             this.LabelDefaultPaymentProfileID.Text = "Default Payment Profile ID";
             // 
-            // DelCreditButton
+            // ButtonDeleteCredit
             // 
-            this.DelCreditButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DelCreditButton.ImageOptions.Image")));
-            this.DelCreditButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.DelCreditButton.Location = new System.Drawing.Point(803, 167);
-            this.DelCreditButton.Name = "DelCreditButton";
-            this.DelCreditButton.Size = new System.Drawing.Size(34, 38);
-            this.DelCreditButton.TabIndex = 69;
-            this.DelCreditButton.TabStop = false;
-            this.DelCreditButton.Text = "Delete Credit Card Profile";
-            this.DelCreditButton.Click += new System.EventHandler(this.DelCredButton_Click);
+            this.ButtonDeleteCredit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteCredit.ImageOptions.Image")));
+            this.ButtonDeleteCredit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDeleteCredit.Location = new System.Drawing.Point(803, 167);
+            this.ButtonDeleteCredit.Name = "ButtonDeleteCredit";
+            this.ButtonDeleteCredit.Size = new System.Drawing.Size(34, 38);
+            this.ButtonDeleteCredit.TabIndex = 69;
+            this.ButtonDeleteCredit.TabStop = false;
+            this.ButtonDeleteCredit.Text = "Delete Credit Card Profile";
+            this.ButtonDeleteCredit.Click += new System.EventHandler(this.ButtonDeleteCredit_Click);
             // 
-            // DelBankButton
+            // ButtonDeleteBank
             // 
-            this.DelBankButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DelBankButton.ImageOptions.Image")));
-            this.DelBankButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.DelBankButton.Location = new System.Drawing.Point(803, 329);
-            this.DelBankButton.Name = "DelBankButton";
-            this.DelBankButton.Size = new System.Drawing.Size(34, 38);
-            this.DelBankButton.TabIndex = 68;
-            this.DelBankButton.TabStop = false;
-            this.DelBankButton.Text = "Delete Bank Account Profile";
-            this.DelBankButton.Click += new System.EventHandler(this.DelBankButton_Click);
+            this.ButtonDeleteBank.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteBank.ImageOptions.Image")));
+            this.ButtonDeleteBank.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDeleteBank.Location = new System.Drawing.Point(803, 329);
+            this.ButtonDeleteBank.Name = "ButtonDeleteBank";
+            this.ButtonDeleteBank.Size = new System.Drawing.Size(34, 38);
+            this.ButtonDeleteBank.TabIndex = 68;
+            this.ButtonDeleteBank.TabStop = false;
+            this.ButtonDeleteBank.Text = "Delete Bank Account Profile";
+            this.ButtonDeleteBank.Click += new System.EventHandler(this.ButtonDeleteBank_Click);
             // 
             // LabelPaymentProcessorCustProfileId
             // 
@@ -4563,16 +4626,16 @@ namespace TraceForms
             this.LabelPaymentProcessorCustProfileId.TabIndex = 65;
             this.LabelPaymentProcessorCustProfileId.TextChanged += new System.EventHandler(this.LabelPaymentProcessorCustProfileId_TextChanged);
             // 
-            // AddBankButton
+            // ButtonAddBank
             // 
-            this.AddBankButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("AddBankButton.ImageOptions.Image")));
-            this.AddBankButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.AddBankButton.Location = new System.Drawing.Point(803, 285);
-            this.AddBankButton.Name = "AddBankButton";
-            this.AddBankButton.Size = new System.Drawing.Size(34, 38);
-            this.AddBankButton.TabIndex = 67;
-            this.AddBankButton.Text = "Add Bank Account Profile";
-            this.AddBankButton.Click += new System.EventHandler(this.AddBankButton_Click);
+            this.ButtonAddBank.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddBank.ImageOptions.Image")));
+            this.ButtonAddBank.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddBank.Location = new System.Drawing.Point(803, 285);
+            this.ButtonAddBank.Name = "ButtonAddBank";
+            this.ButtonAddBank.Size = new System.Drawing.Size(34, 38);
+            this.ButtonAddBank.TabIndex = 67;
+            this.ButtonAddBank.Text = "Add Bank Account Profile";
+            this.ButtonAddBank.Click += new System.EventHandler(this.ButtonAddBank_Click);
             // 
             // label4
             // 
@@ -4586,21 +4649,21 @@ namespace TraceForms
             // 
             // GridControlBankProfiles
             // 
-            this.GridControlBankProfiles.DataSource = this.BindingSourceAgencyPaymentProfileCredit;
+            this.GridControlBankProfiles.DataSource = this.BindingSourceAgencyPaymentProfile;
             this.GridControlBankProfiles.Location = new System.Drawing.Point(12, 285);
             this.GridControlBankProfiles.MainView = this.GridViewBankProfiles;
             this.GridControlBankProfiles.Name = "GridControlBankProfiles";
             this.GridControlBankProfiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemComboBox2});
+            this.repositoryItemImageComboBoxAccountType});
             this.GridControlBankProfiles.Size = new System.Drawing.Size(785, 127);
             this.GridControlBankProfiles.TabIndex = 53;
             this.GridControlBankProfiles.TabStop = false;
             this.GridControlBankProfiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewBankProfiles});
             // 
-            // BindingSourceAgencyPaymentProfileCredit
+            // BindingSourceAgencyPaymentProfile
             // 
-            this.BindingSourceAgencyPaymentProfileCredit.DataSource = typeof(FlexModel.AgencyPaymentProfile);
+            this.BindingSourceAgencyPaymentProfile.DataSource = typeof(FlexModel.AgencyPaymentProfile);
             // 
             // GridViewBankProfiles
             // 
@@ -4626,23 +4689,18 @@ namespace TraceForms
             this.GridViewBankProfiles.OptionsView.ShowGroupPanel = false;
             this.GridViewBankProfiles.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewBankProfiles_InvalidRowException);
             this.GridViewBankProfiles.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewBankProfiles_ValidateRow);
+            this.GridViewBankProfiles.CustomRowFilter += new DevExpress.XtraGrid.Views.Base.RowFilterEventHandler(this.GridViewBankProfiles_CustomRowFilter);
+            this.GridViewBankProfiles.SubstituteFilter += new System.EventHandler<DevExpress.Data.SubstituteFilterEventArgs>(this.GridViewBankProfiles_SubstituteFilter);
             // 
             // gridColumnID
             // 
             this.gridColumnID.Caption = "ID";
-            this.gridColumnID.ColumnEdit = this.repositoryItemComboBox2;
             this.gridColumnID.FieldName = "ProfileID";
             this.gridColumnID.MinWidth = 12;
             this.gridColumnID.Name = "gridColumnID";
             this.gridColumnID.Visible = true;
             this.gridColumnID.VisibleIndex = 0;
             this.gridColumnID.Width = 41;
-            // 
-            // repositoryItemComboBox2
-            // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
-            this.repositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // gridColumnBankName
             // 
@@ -4657,12 +4715,24 @@ namespace TraceForms
             // gridColumnAccountType
             // 
             this.gridColumnAccountType.Caption = "Account Type";
+            this.gridColumnAccountType.ColumnEdit = this.repositoryItemImageComboBoxAccountType;
             this.gridColumnAccountType.FieldName = "AccountType";
             this.gridColumnAccountType.MinWidth = 12;
             this.gridColumnAccountType.Name = "gridColumnAccountType";
             this.gridColumnAccountType.Visible = true;
             this.gridColumnAccountType.VisibleIndex = 2;
             this.gridColumnAccountType.Width = 53;
+            // 
+            // repositoryItemImageComboBoxAccountType
+            // 
+            this.repositoryItemImageComboBoxAccountType.AutoHeight = false;
+            this.repositoryItemImageComboBoxAccountType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBoxAccountType.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Checking", ((short)(0)), -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Saving", ((short)(1)), -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Business checking", ((short)(2)), -1)});
+            this.repositoryItemImageComboBoxAccountType.Name = "repositoryItemImageComboBoxAccountType";
             // 
             // gridColumnAccountNo
             // 
@@ -4756,13 +4826,15 @@ namespace TraceForms
             // 
             // GridControlCreditProfiles
             // 
-            this.GridControlCreditProfiles.DataSource = this.BindingSourceAgencyPaymentProfileCredit;
+            this.GridControlCreditProfiles.DataSource = this.BindingSourceAgencyPaymentProfile;
             this.GridControlCreditProfiles.Location = new System.Drawing.Point(12, 123);
             this.GridControlCreditProfiles.MainView = this.GridViewCreditProfiles;
             this.GridControlCreditProfiles.Name = "GridControlCreditProfiles";
             this.GridControlCreditProfiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
-            this.repositoryItemComboBox1});
+            this.repositoryItemComboBox1,
+            this.RepositoryItemImageComboBoxExpMonth,
+            this.RepositoryItemSpinEditExpYear});
             this.GridControlCreditProfiles.Size = new System.Drawing.Size(785, 127);
             this.GridControlCreditProfiles.TabIndex = 52;
             this.GridControlCreditProfiles.TabStop = false;
@@ -4777,18 +4849,19 @@ namespace TraceForms
             this.GridViewCreditProfiles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdColID,
             this.grdColCardNo,
-            this.grdColExpDate,
+            this.grdColExpirationYear,
             this.grdColCVV2,
             this.grdColCompany,
             this.grdColFirst,
             this.grdColLast,
-            this.grdStreet,
-            this.grdColCity,
-            this.grdColState,
-            this.grdColZip,
-            this.grdColCountry,
-            this.grdColPhone,
-            this.gridColumn10});
+            this.gridColStreet,
+            this.gridColCity,
+            this.gridColState,
+            this.gridColZip,
+            this.gridColCountry,
+            this.gridColAccountType,
+            this.gridColPhone,
+            this.gridColExpirationMonth});
             this.GridViewCreditProfiles.DetailHeight = 198;
             this.GridViewCreditProfiles.FixedLineWidth = 1;
             this.GridViewCreditProfiles.GridControl = this.GridControlCreditProfiles;
@@ -4798,6 +4871,8 @@ namespace TraceForms
             this.GridViewCreditProfiles.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewCreditProfiles_CustomRowCellEdit);
             this.GridViewCreditProfiles.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewPaymentProfiles_InvalidRowException);
             this.GridViewCreditProfiles.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewPaymentProfiles_ValidateRow);
+            this.GridViewCreditProfiles.CustomRowFilter += new DevExpress.XtraGrid.Views.Base.RowFilterEventHandler(this.GridViewCreditProfiles_CustomRowFilter);
+            this.GridViewCreditProfiles.SubstituteFilter += new System.EventHandler<DevExpress.Data.SubstituteFilterEventArgs>(this.GridViewCreditProfiles_SubstituteFilter);
             // 
             // grdColID
             // 
@@ -4806,9 +4881,7 @@ namespace TraceForms
             this.grdColID.FieldName = "ProfileID";
             this.grdColID.MinWidth = 12;
             this.grdColID.Name = "grdColID";
-            this.grdColID.Visible = true;
-            this.grdColID.VisibleIndex = 0;
-            this.grdColID.Width = 45;
+            this.grdColID.Width = 84;
             // 
             // repositoryItemComboBox1
             // 
@@ -4823,19 +4896,26 @@ namespace TraceForms
             this.grdColCardNo.MinWidth = 12;
             this.grdColCardNo.Name = "grdColCardNo";
             this.grdColCardNo.Visible = true;
-            this.grdColCardNo.VisibleIndex = 1;
-            this.grdColCardNo.Width = 43;
+            this.grdColCardNo.VisibleIndex = 0;
+            this.grdColCardNo.Width = 135;
             // 
-            // grdColExpDate
+            // grdColExpirationYear
             // 
-            this.grdColExpDate.Caption = "Exp. Date";
-            this.grdColExpDate.FieldName = "CardExpiration";
-            this.grdColExpDate.MaxWidth = 41;
-            this.grdColExpDate.MinWidth = 12;
-            this.grdColExpDate.Name = "grdColExpDate";
-            this.grdColExpDate.Visible = true;
-            this.grdColExpDate.VisibleIndex = 2;
-            this.grdColExpDate.Width = 35;
+            this.grdColExpirationYear.Caption = "Year";
+            this.grdColExpirationYear.ColumnEdit = this.RepositoryItemSpinEditExpYear;
+            this.grdColExpirationYear.FieldName = "CardExpiration";
+            this.grdColExpirationYear.MinWidth = 12;
+            this.grdColExpirationYear.Name = "grdColExpirationYear";
+            this.grdColExpirationYear.Visible = true;
+            this.grdColExpirationYear.VisibleIndex = 1;
+            this.grdColExpirationYear.Width = 66;
+            // 
+            // RepositoryItemSpinEditExpYear
+            // 
+            this.RepositoryItemSpinEditExpYear.AutoHeight = false;
+            this.RepositoryItemSpinEditExpYear.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSpinEditExpYear.Name = "RepositoryItemSpinEditExpYear";
             // 
             // grdColCVV2
             // 
@@ -4845,7 +4925,7 @@ namespace TraceForms
             this.grdColCVV2.Name = "grdColCVV2";
             this.grdColCVV2.Visible = true;
             this.grdColCVV2.VisibleIndex = 3;
-            this.grdColCVV2.Width = 20;
+            this.grdColCVV2.Width = 49;
             // 
             // grdColCompany
             // 
@@ -4853,9 +4933,7 @@ namespace TraceForms
             this.grdColCompany.FieldName = "BillingAddress.Company";
             this.grdColCompany.MinWidth = 12;
             this.grdColCompany.Name = "grdColCompany";
-            this.grdColCompany.Visible = true;
-            this.grdColCompany.VisibleIndex = 4;
-            this.grdColCompany.Width = 33;
+            this.grdColCompany.Width = 62;
             // 
             // grdColFirst
             // 
@@ -4864,8 +4942,8 @@ namespace TraceForms
             this.grdColFirst.MinWidth = 12;
             this.grdColFirst.Name = "grdColFirst";
             this.grdColFirst.Visible = true;
-            this.grdColFirst.VisibleIndex = 5;
-            this.grdColFirst.Width = 35;
+            this.grdColFirst.VisibleIndex = 4;
+            this.grdColFirst.Width = 58;
             // 
             // grdColLast
             // 
@@ -4874,76 +4952,103 @@ namespace TraceForms
             this.grdColLast.MinWidth = 12;
             this.grdColLast.Name = "grdColLast";
             this.grdColLast.Visible = true;
-            this.grdColLast.VisibleIndex = 6;
-            this.grdColLast.Width = 35;
+            this.grdColLast.VisibleIndex = 5;
+            this.grdColLast.Width = 58;
             // 
-            // grdStreet
+            // gridColStreet
             // 
-            this.grdStreet.Caption = "Street";
-            this.grdStreet.FieldName = "BillingAddress.Street";
-            this.grdStreet.MinWidth = 12;
-            this.grdStreet.Name = "grdStreet";
-            this.grdStreet.Visible = true;
-            this.grdStreet.VisibleIndex = 7;
-            this.grdStreet.Width = 46;
+            this.gridColStreet.Caption = "Street";
+            this.gridColStreet.FieldName = "BillingAddress.Street";
+            this.gridColStreet.MinWidth = 12;
+            this.gridColStreet.Name = "gridColStreet";
+            this.gridColStreet.Visible = true;
+            this.gridColStreet.VisibleIndex = 6;
+            this.gridColStreet.Width = 80;
             // 
-            // grdColCity
+            // gridColCity
             // 
-            this.grdColCity.Caption = "City";
-            this.grdColCity.FieldName = "BillingAddress.City";
-            this.grdColCity.MinWidth = 12;
-            this.grdColCity.Name = "grdColCity";
-            this.grdColCity.Visible = true;
-            this.grdColCity.VisibleIndex = 8;
-            this.grdColCity.Width = 35;
+            this.gridColCity.Caption = "City";
+            this.gridColCity.FieldName = "BillingAddress.City";
+            this.gridColCity.MinWidth = 12;
+            this.gridColCity.Name = "gridColCity";
+            this.gridColCity.Visible = true;
+            this.gridColCity.VisibleIndex = 7;
+            this.gridColCity.Width = 58;
             // 
-            // grdColState
+            // gridColState
             // 
-            this.grdColState.Caption = "State";
-            this.grdColState.FieldName = "BillingAddress.State";
-            this.grdColState.MinWidth = 12;
-            this.grdColState.Name = "grdColState";
-            this.grdColState.Visible = true;
-            this.grdColState.VisibleIndex = 9;
-            this.grdColState.Width = 29;
+            this.gridColState.Caption = "State";
+            this.gridColState.FieldName = "BillingAddress.State";
+            this.gridColState.MinWidth = 12;
+            this.gridColState.Name = "gridColState";
+            this.gridColState.Visible = true;
+            this.gridColState.VisibleIndex = 8;
+            this.gridColState.Width = 45;
             // 
-            // grdColZip
+            // gridColZip
             // 
-            this.grdColZip.Caption = "Zip Code";
-            this.grdColZip.FieldName = "BillingAddress.Zip";
-            this.grdColZip.MinWidth = 12;
-            this.grdColZip.Name = "grdColZip";
-            this.grdColZip.Visible = true;
-            this.grdColZip.VisibleIndex = 10;
-            this.grdColZip.Width = 33;
+            this.gridColZip.Caption = "Zip Code";
+            this.gridColZip.FieldName = "BillingAddress.Zip";
+            this.gridColZip.MinWidth = 12;
+            this.gridColZip.Name = "gridColZip";
+            this.gridColZip.Visible = true;
+            this.gridColZip.VisibleIndex = 9;
+            this.gridColZip.Width = 52;
             // 
-            // grdColCountry
+            // gridColCountry
             // 
-            this.grdColCountry.Caption = "Country";
-            this.grdColCountry.FieldName = "BillingAddress.Country";
-            this.grdColCountry.MinWidth = 12;
-            this.grdColCountry.Name = "grdColCountry";
-            this.grdColCountry.Visible = true;
-            this.grdColCountry.VisibleIndex = 11;
-            this.grdColCountry.Width = 35;
+            this.gridColCountry.Caption = "Country";
+            this.gridColCountry.FieldName = "BillingAddress.Country";
+            this.gridColCountry.MinWidth = 12;
+            this.gridColCountry.Name = "gridColCountry";
+            this.gridColCountry.Visible = true;
+            this.gridColCountry.VisibleIndex = 10;
+            this.gridColCountry.Width = 98;
             // 
-            // grdColPhone
+            // gridColAccountType
             // 
-            this.grdColPhone.Caption = "Phone No.";
-            this.grdColPhone.FieldName = "BillingAddress.Phone";
-            this.grdColPhone.MinWidth = 12;
-            this.grdColPhone.Name = "grdColPhone";
-            this.grdColPhone.Visible = true;
-            this.grdColPhone.VisibleIndex = 12;
-            this.grdColPhone.Width = 53;
+            this.gridColAccountType.FieldName = "AccountType";
+            this.gridColAccountType.Name = "gridColAccountType";
             // 
-            // gridColumn10
+            // gridColPhone
             // 
-            this.gridColumn10.Caption = "gridColumn10";
-            this.gridColumn10.FieldName = "IsBusiness";
-            this.gridColumn10.MinWidth = 12;
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Width = 45;
+            this.gridColPhone.Caption = "Phone No.";
+            this.gridColPhone.FieldName = "BillingAddress.Phone";
+            this.gridColPhone.MinWidth = 12;
+            this.gridColPhone.Name = "gridColPhone";
+            this.gridColPhone.Visible = true;
+            this.gridColPhone.VisibleIndex = 11;
+            this.gridColPhone.Width = 196;
+            // 
+            // gridColExpirationMonth
+            // 
+            this.gridColExpirationMonth.Caption = "Month";
+            this.gridColExpirationMonth.ColumnEdit = this.RepositoryItemImageComboBoxExpMonth;
+            this.gridColExpirationMonth.FieldName = "ExpirationMonth";
+            this.gridColExpirationMonth.Name = "gridColExpirationMonth";
+            this.gridColExpirationMonth.Visible = true;
+            this.gridColExpirationMonth.VisibleIndex = 2;
+            this.gridColExpirationMonth.Width = 86;
+            // 
+            // RepositoryItemImageComboBoxExpMonth
+            // 
+            this.RepositoryItemImageComboBoxExpMonth.AutoHeight = false;
+            this.RepositoryItemImageComboBoxExpMonth.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemImageComboBoxExpMonth.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("January", 1, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("February", 2, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("March", 3, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("April", 4, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("May", 5, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("June", 6, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("July", 7, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("August", 8, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Semptember", 9, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("October", 10, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("November", 11, -1),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("December", 12, -1)});
+            this.RepositoryItemImageComboBoxExpMonth.Name = "RepositoryItemImageComboBoxExpMonth";
             // 
             // repositoryItemTextEdit1
             // 
@@ -4967,7 +5072,7 @@ namespace TraceForms
             this.AddCreditButton.Size = new System.Drawing.Size(34, 38);
             this.AddCreditButton.TabIndex = 10;
             this.AddCreditButton.Text = "Add Credit Card Profile";
-            this.AddCreditButton.Click += new System.EventHandler(this.AddCreditButton_Click);
+            this.AddCreditButton.Click += new System.EventHandler(this.ButtonAddCredit_Click);
             // 
             // LblCreditCardProf
             // 
@@ -5404,7 +5509,7 @@ namespace TraceForms
             this.ButtonDeleteMembership.TabIndex = 43;
             this.ButtonDeleteMembership.TabStop = false;
             this.ButtonDeleteMembership.Text = "Delete Membership";
-            this.ButtonDeleteMembership.Click += new System.EventHandler(this.ButtonDelRow_Click);
+            this.ButtonDeleteMembership.Click += new System.EventHandler(this.ButtonDeleteMembership_Click);
             // 
             // ButtonAddMembership
             // 
@@ -5416,7 +5521,7 @@ namespace TraceForms
             this.ButtonAddMembership.TabIndex = 41;
             this.ButtonAddMembership.TabStop = false;
             this.ButtonAddMembership.Text = "Add Membership";
-            this.ButtonAddMembership.Click += new System.EventHandler(this.ButtonAddRow1_Click);
+            this.ButtonAddMembership.Click += new System.EventHandler(this.ButtonAddMembership_Click);
             // 
             // GridControlMemberships
             // 
@@ -5782,7 +5887,7 @@ namespace TraceForms
             this.GridViewCustom.GridControl = this.GridControlCustom;
             this.GridViewCustom.Name = "GridViewCustom";
             this.GridViewCustom.OptionsView.ShowGroupPanel = false;
-            this.GridViewCustom.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.GridView3_CustomUnboundColumnData);
+            this.GridViewCustom.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.GridViewCustom_CustomUnboundColumnData);
             // 
             // colLINK_TABLE1
             // 
@@ -6392,8 +6497,8 @@ namespace TraceForms
             // 
             // PanelControlAgentTab
             // 
-            this.PanelControlAgentTab.Controls.Add(this.ButtonDeleteMapping);
-            this.PanelControlAgentTab.Controls.Add(this.ButtonAddMapping);
+            this.PanelControlAgentTab.Controls.Add(this.ButtonDeleteAgent);
+            this.PanelControlAgentTab.Controls.Add(this.ButtonAddAgent);
             this.PanelControlAgentTab.Controls.Add(this.GridControlAgcyLog);
             this.PanelControlAgentTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAgentTab.Location = new System.Drawing.Point(0, 0);
@@ -6401,32 +6506,32 @@ namespace TraceForms
             this.PanelControlAgentTab.Size = new System.Drawing.Size(877, 468);
             this.PanelControlAgentTab.TabIndex = 0;
             // 
-            // ButtonDeleteMapping
+            // ButtonDeleteAgent
             // 
-            this.ButtonDeleteMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonDeleteMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteMapping.ImageOptions.Image")));
-            this.ButtonDeleteMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteMapping.Location = new System.Drawing.Point(808, 61);
-            this.ButtonDeleteMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.ButtonDeleteMapping.Name = "ButtonDeleteMapping";
-            this.ButtonDeleteMapping.Size = new System.Drawing.Size(34, 38);
-            this.ButtonDeleteMapping.TabIndex = 41;
-            this.ButtonDeleteMapping.TabStop = false;
-            this.ButtonDeleteMapping.Text = "Delete Agent";
-            this.ButtonDeleteMapping.Click += new System.EventHandler(this.ButtonDeleteMapping_Click);
+            this.ButtonDeleteAgent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonDeleteAgent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteAgent.ImageOptions.Image")));
+            this.ButtonDeleteAgent.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonDeleteAgent.Location = new System.Drawing.Point(808, 61);
+            this.ButtonDeleteAgent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ButtonDeleteAgent.Name = "ButtonDeleteAgent";
+            this.ButtonDeleteAgent.Size = new System.Drawing.Size(34, 38);
+            this.ButtonDeleteAgent.TabIndex = 41;
+            this.ButtonDeleteAgent.TabStop = false;
+            this.ButtonDeleteAgent.Text = "Delete Agent";
+            this.ButtonDeleteAgent.Click += new System.EventHandler(this.ButtonDeleteAgent_Click);
             // 
-            // ButtonAddMapping
+            // ButtonAddAgent
             // 
-            this.ButtonAddMapping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonAddMapping.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddMapping.ImageOptions.Image")));
-            this.ButtonAddMapping.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddMapping.Location = new System.Drawing.Point(808, 17);
-            this.ButtonAddMapping.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.ButtonAddMapping.Name = "ButtonAddMapping";
-            this.ButtonAddMapping.Size = new System.Drawing.Size(34, 38);
-            this.ButtonAddMapping.TabIndex = 40;
-            this.ButtonAddMapping.Text = "Add Agent";
-            this.ButtonAddMapping.Click += new System.EventHandler(this.ButtonAddMapping_Click);
+            this.ButtonAddAgent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonAddAgent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddAgent.ImageOptions.Image")));
+            this.ButtonAddAgent.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddAgent.Location = new System.Drawing.Point(808, 17);
+            this.ButtonAddAgent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ButtonAddAgent.Name = "ButtonAddAgent";
+            this.ButtonAddAgent.Size = new System.Drawing.Size(34, 38);
+            this.ButtonAddAgent.TabIndex = 40;
+            this.ButtonAddAgent.Text = "Add Agent";
+            this.ButtonAddAgent.Click += new System.EventHandler(this.ButtonAddAgent_Click);
             // 
             // GridControlAgcyLog
             // 
@@ -6959,6 +7064,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.GridViewContacts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxSendDocs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckedComboBoxEditReportType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditReportType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditEmail.Properties)).EndInit();
@@ -7032,15 +7138,20 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlPaymentProfileStatus)).EndInit();
+            this.PanelControlPaymentProfileStatus.ResumeLayout(false);
+            this.PanelControlPaymentProfileStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowElectronicPayment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlBankProfiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileCredit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewBankProfiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxAccountType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCreditProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCreditProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditExpYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxExpMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCustomerProfileEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditDefaultPmtProfileID.Properties)).EndInit();
@@ -7353,8 +7464,8 @@ namespace TraceForms
         private DevExpress.XtraEditors.CheckEdit CheckEditCruVouchers;
         private DevExpress.XtraEditors.CheckEdit CheckEditCarVouchers;
         private DevExpress.XtraEditors.CheckEdit CheckEditHtlVouchers;
-        private DevExpress.XtraEditors.SimpleButton ButtonAddRow;
-        private DevExpress.XtraEditors.SimpleButton ButtonDelRow;
+        private DevExpress.XtraEditors.SimpleButton ButtonAddContact;
+        private DevExpress.XtraEditors.SimpleButton ButtonDeleteContact;
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteMembership;
         private DevExpress.XtraEditors.SimpleButton ButtonAddMembership;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnRptType;
@@ -7417,17 +7528,17 @@ namespace TraceForms
         private System.Windows.Forms.BindingSource BindingSourcePaymentProfiles;
         private DevExpress.XtraGrid.Columns.GridColumn grdColID;
         private DevExpress.XtraGrid.Columns.GridColumn grdColCardNo;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColExpDate;
+        private DevExpress.XtraGrid.Columns.GridColumn grdColExpirationYear;
         private DevExpress.XtraGrid.Columns.GridColumn grdColCVV2;
         private DevExpress.XtraGrid.Columns.GridColumn grdColCompany;
         private DevExpress.XtraGrid.Columns.GridColumn grdColFirst;
         private DevExpress.XtraGrid.Columns.GridColumn grdColLast;
-        private DevExpress.XtraGrid.Columns.GridColumn grdStreet;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColCity;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColState;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColZip;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColCountry;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColPhone;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColStreet;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColCity;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColState;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColZip;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColCountry;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColPhone;
         private DevExpress.XtraEditors.CheckEdit CheckEditCreditUnlimited;
         private DevExpress.XtraTab.XtraTabPage XtraTabPagePayments;
         private DevExpress.XtraEditors.PanelControl panelControl1;
@@ -7452,12 +7563,11 @@ namespace TraceForms
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnRoutingNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnNameOnAccount;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
-        private DevExpress.XtraEditors.SimpleButton AddBankButton;
+        private DevExpress.XtraEditors.SimpleButton ButtonAddBank;
         private System.Windows.Forms.Label LabelPaymentProcessorCustProfileId;
         private System.Windows.Forms.BindingSource BindingSource;
-        private DevExpress.XtraEditors.SimpleButton DelCreditButton;
-        private DevExpress.XtraEditors.SimpleButton DelBankButton;
+        private DevExpress.XtraEditors.SimpleButton ButtonDeleteCredit;
+        private DevExpress.XtraEditors.SimpleButton ButtonDeleteBank;
         private System.Windows.Forms.Label LabelDefaultPaymentProfileID;
         private DevExpress.XtraEditors.CheckEdit CheckEditRequireCVV2;
         private DevExpress.XtraGrid.Columns.GridColumn colNO;
@@ -7576,7 +7686,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colDisplayName1;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
         private System.Windows.Forms.BindingSource BindingSourceAgencyCurrency;
         private ChineseHosts_FlextourDataSet chineseHosts_FlextourDataSet;
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteAgencyCurrency;
@@ -7625,7 +7734,7 @@ namespace TraceForms
         private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditAgency;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditDefaultPmtProfileID;
-        private System.Windows.Forms.BindingSource BindingSourceAgencyPaymentProfileCredit;
+        private System.Windows.Forms.BindingSource BindingSourceAgencyPaymentProfile;
         private System.Windows.Forms.BindingSource BindingSourceContact;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditReportType;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
@@ -7639,8 +7748,8 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colAgentCompany;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RepositoryItemTextEditAgentCompany;
         private DevExpress.XtraGrid.Columns.GridColumn colAgcylog_Agent_Delegate;
-        private DevExpress.XtraEditors.SimpleButton ButtonDeleteMapping;
-        private DevExpress.XtraEditors.SimpleButton ButtonAddMapping;
+        private DevExpress.XtraEditors.SimpleButton ButtonDeleteAgent;
+        private DevExpress.XtraEditors.SimpleButton ButtonAddAgent;
         private DevExpress.XtraEditors.TextEdit TextEditCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RepositoryItemTextEditAgentName;
         private DevExpress.XtraEditors.RadioGroup RadioGroupPaymentDue;
@@ -7665,5 +7774,15 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colCode5;
         private DevExpress.XtraGrid.Columns.GridColumn colName7;
         private DevExpress.XtraGrid.Columns.GridColumn colAgcylogReadOnly;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColAccountType;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBoxAccountType;
+        private DevExpress.XtraEditors.PanelControl PanelControlPaymentProfileStatus;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.Label LabelPaymentProfileStatus;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonRetry;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColExpirationMonth;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox RepositoryItemImageComboBoxExpMonth;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditExpYear;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit RepositoryItemCheckedComboBoxEditReportType;
     }
 }

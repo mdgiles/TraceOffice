@@ -23,6 +23,7 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraEditors;
 using DevExpress.Data.Async.Helpers;
 using FlexInterfaces.Core;
+using DevExpress.Data.Filtering;
 
 namespace TraceForms
 {
@@ -108,6 +109,7 @@ namespace TraceForms
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             AGY.MaxLengths = Connection.GetMaxLengths(typeof(AGY).GetType().Name);
             AGCYLOG.MaxLengths = Connection.GetMaxLengths(typeof(AGCYLOG).GetType().Name);
+            AgencyPaymentProfile.MaxLengths = Connection.GetMaxLengths(typeof(AgencyPaymentProfile).GetType().Name);
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
             _sys = sys;
             //FlexBObj.FileWatcher watcher = new FlexBObj.FileWatcher(sys.Settings.DataPath, sys.Settings.EFConnectionString);
@@ -141,7 +143,6 @@ namespace TraceForms
                 }
 
                 //conn = new AuthorizeNet.CustomerGateway("", "", AuthorizeNet.ServiceMode.Test);
-                grdColExpDate.Caption = "Exp. Date \n(YYYY-MM)";
             }
             else
                 XtraTabPagePayments.PageVisible = false;
@@ -183,14 +184,14 @@ namespace TraceForms
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
             RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(loadBlank);
 
-            var lang = from langRec in _context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
-            var country = from countryRec in _context.COUNTRY orderby countryRec.CODE ascending select new { countryRec.CODE, countryRec.NAME };
-            var consrt = from consrtRec in _context.CONSRT orderby consrtRec.CODE ascending select new { consrtRec.CODE, consrtRec.NAME };
-            var agency = from agencyRec in _context.AGY orderby agencyRec.NO ascending select new { agencyRec.NO, agencyRec.NAME };
+            //var lang = from langRec in _context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
+            //var country = from countryRec in _context.COUNTRY orderby countryRec.CODE ascending select new { countryRec.CODE, countryRec.NAME };
+            //var consrt = from consrtRec in _context.CONSRT orderby consrtRec.CODE ascending select new { consrtRec.CODE, consrtRec.NAME };
+            //var agency = from agencyRec in _context.AGY orderby agencyRec.NO ascending select new { agencyRec.NO, agencyRec.NAME };
             var dept = from deptRec in _context.Dept orderby deptRec.Code ascending select new { deptRec.Code, deptRec.Desc };
-            var city = from citRec in _context.CITYCOD orderby citRec.CODE ascending select new { citRec.CODE, citRec.NAME };
-            var state = from stateRec in _context.State orderby stateRec.Code ascending select new { stateRec.Code, stateRec.State1 };
-            var agcylog = from agcylogRec in _context.AGCYLOG orderby agcylogRec.AGT_NAME ascending select new { agcylogRec.AGT_NAME };
+            //var city = from citRec in _context.CITYCOD orderby citRec.CODE ascending select new { citRec.CODE, citRec.NAME };
+            //var state = from stateRec in _context.State orderby stateRec.Code ascending select new { stateRec.Code, stateRec.State1 };
+            //var agcylog = from agcylogRec in _context.AGCYLOG orderby agcylogRec.AGT_NAME ascending select new { agcylogRec.AGT_NAME };
 
             foreach (var result in dept) {
                 repositoryItemComboBoxDept.Items.Add(result.Code + " " + result.Desc);
@@ -231,13 +232,14 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
             SearchLookupEditCountry.Properties.DataSource = countries;
 
-            var reporttypes = new List<CodeName> {
-                new CodeName(null)
-            };
+            var reporttypes = new List<CodeName>();
             reporttypes.AddRange(_context.RPTTYPE
+                .Where(r => r.RecipientType == "Agy")
                 .OrderBy(o => o.CODE)
-                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }));
-            RepositoryItemSearchLookUpEditReportType.DataSource = reporttypes;
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            RepositoryItemCheckedComboBoxEditReportType.DataSource = reporttypes;
+            RepositoryItemCheckedComboBoxEditReportType.ValueMember = "Code";
+            RepositoryItemCheckedComboBoxEditReportType.DisplayMember = "Name";
 
             //_supplierCombo.Items.Add(loadBlank);
             //_supplierCombo.Items.AddRange(_context.Supplier
@@ -296,8 +298,7 @@ namespace TraceForms
             //  ////////////////
         }
 
-
-        private void GridView3_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        private void GridViewCustom_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             if (e.Column.FieldName == "AgencyValue" && e.IsGetData) {
                 string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
@@ -309,7 +310,6 @@ namespace TraceForms
                 string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
                 desc = desc.Trim();
                 GridViewLookup.SetRowCellValue(BindingSource.IndexOf(BindingSource.Current), desc, e.Value);
-                //modified = true;
             }
         }
 
@@ -681,11 +681,11 @@ namespace TraceForms
             }
         }
 
-        private void ButtonAddRow_Click(object sender, EventArgs e)
+        private void ButtonAddContact_Click(object sender, EventArgs e)
         {
             CONTACT contact = new CONTACT() {
                 LINK_TABLE = "AGY",
-                RECTYPE = "IMAGE",
+                RECTYPE = "AGYCONTACT",
                 LINK_VALUE = TextEditCode.Text
             };
             BindingSourceContact.Add(contact);
@@ -702,7 +702,7 @@ namespace TraceForms
             }*/
         }
 
-        private void DelRow_Click(object sender, EventArgs e)
+        private void ButtonDeleteContact_Click(object sender, EventArgs e)
         {
             int handle = GridViewContacts.FocusedRowHandle;
             GridViewContacts.DeleteRow(handle);
@@ -715,7 +715,7 @@ namespace TraceForms
             if (e.Column.FieldName == "RptContact" && e.IsGetData) {
                 CONTACT conRec = (CONTACT)e.Row;
                 int id = conRec.ID;
-                string load = String.Empty;
+                string load = string.Empty;
                 if (id == int.MaxValue || id == 0) {
                     if (firstLoad == true) {
                         var values = from rec in _context.RPTTYPE where rec.RecipientType == "Agy" select new { rec.CODE };
@@ -969,12 +969,12 @@ namespace TraceForms
                 ChangePaymentProfileButton.Enabled = false;
                 DeleteButton.Enabled = true;
                 GridControlBankProfiles.Enabled = true;
-                AddBankButton.Enabled = true;
-                DelBankButton.Enabled = true;
+                ButtonAddBank.Enabled = true;
+                ButtonDeleteBank.Enabled = true;
                 SimpleButtonValidateBankRow.Enabled = true;
                 GridControlCreditProfiles.Enabled = true;
                 AddCreditButton.Enabled = true;
-                DelCreditButton.Enabled = true;
+                ButtonDeleteCredit.Enabled = true;
                 SimpleButtonValidateCreditRow.Enabled = true;
                 ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
             } else {
@@ -1042,34 +1042,43 @@ namespace TraceForms
 
         void BindCreditPaymentProfiles()
         {
-            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
+            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfile;
             GridControlCreditProfiles.RefreshDataSource();
         }
 
-        private void AddCreditButton_Click(object sender, EventArgs e)
+        private void ButtonAddCredit_Click(object sender, EventArgs e)
         {
             AgencyPaymentProfile pmtProfile = new AgencyPaymentProfile {
-                Agy_No = TextEditCode.Text ?? string.Empty
+                Agy_No = TextEditCode.Text ?? string.Empty,
+                IsCreditCard = true
             };
             _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
             BindCreditPaymentProfiles();
-            GridViewCreditProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
+            GridViewCreditProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfile.Count - 1;
+        }
+
+        void BindPaymentProfiles()
+        {
+            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlBankProfiles.RefreshDataSource();
+            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlCreditProfiles.RefreshDataSource();
         }
 
         void BindBankPaymentProfiles()
         {
-            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
+            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfile;
             GridControlBankProfiles.RefreshDataSource();
         }
 
-        private void AddBankButton_Click(object sender, EventArgs e)
+        private void ButtonAddBank_Click(object sender, EventArgs e)
         {
             AgencyPaymentProfile pmtProfile = new AgencyPaymentProfile {
                 Agy_No = TextEditCode.Text ?? string.Empty
             };
             _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
             BindBankPaymentProfiles();
-            GridViewBankProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
+            GridViewBankProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfile.Count - 1;
         }
 
         private void TextEditPaymentProcessorCustProfileEmail_EditValueChanged(object sender, EventArgs e)
@@ -1077,7 +1086,7 @@ namespace TraceForms
             ChangePaymentProfileButton.Enabled = true;
         }
 
-        private void DelCredButton_Click(object sender, EventArgs e)
+        private void ButtonDeleteCredit_Click(object sender, EventArgs e)
         {
             if (GridViewCreditProfiles.FocusedRowHandle >= 0) {
                 AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewCreditProfiles.GetFocusedRow();
@@ -1107,7 +1116,7 @@ namespace TraceForms
             }
         }
 
-        private void DelBankButton_Click(object sender, EventArgs e)
+        private void ButtonDeleteBank_Click(object sender, EventArgs e)
         {
             if (GridViewBankProfiles.FocusedRowHandle >= 0) {
                 AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewBankProfiles.GetFocusedRow();
@@ -1783,8 +1792,8 @@ namespace TraceForms
         private void LoadAndBindContacts()
         {
             if (!string.IsNullOrEmpty(_selectedRecord.NO)) {
-                string id = _selectedRecord.NO.ToString();
-                BindingSourceContact.DataSource = _context.CONTACT.Where(c => c.LINK_VALUE == id);
+                BindingSourceContact.DataSource = _context.CONTACT.Where(c => c.LINK_VALUE == _selectedRecord.NO
+                    && c.RECTYPE == "AGYCONTACT" && c.LINK_TABLE == "AGY");
             }
         }
 
@@ -1841,15 +1850,36 @@ namespace TraceForms
                     ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
                     ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
                     foreach (AuthorizeNet.PaymentProfile profile in cust.PaymentProfiles) {
-                        if (!string.IsNullOrWhiteSpace(profile.BankAccountNumber))
-                            bankAccnts.Add(profile);
-
-                        if (!string.IsNullOrWhiteSpace(profile.CardNumber))
-                            creditCards.Add(profile);
+                        var AgyPmtProfile = _selectedRecord.AgencyPaymentProfile.SingleOrDefault(c => c.PaymentProfileID == profile.ProfileID);
+                        if (AgyPmtProfile != null) {
+                            AgyPmtProfile.ProfileID = profile.ProfileID;
+                            AgyPmtProfile.BankAccountNumber = profile.BankAccountNumber;
+                            AgyPmtProfile.BankName = profile.BankName;
+                            AgyPmtProfile.BankNameOnAccount = profile.BankNameOnAccount;
+                            AgyPmtProfile.BankRoutingNumber = profile.BankRoutingNumber;
+                            AgyPmtProfile.AccountType = (AgencyPaymentProfile.bankAccountTypeEnum)(int)profile.AccountType;
+                            AgyPmtProfile.CardNumber = profile.CardNumber;
+                            AgyPmtProfile.CardType = profile.CardType;
+                            AgyPmtProfile.CardCode = profile.CardCode;
+                            AgyPmtProfile.CardExpiration = profile.CardExpiration;
+                            if (profile.BillingAddress != null) {
+                                AgyPmtProfile.BillingAddressCity = profile.BillingAddress.City;
+                                AgyPmtProfile.BillingAddressCompany = profile.BillingAddress.Company;
+                                AgyPmtProfile.BillingAddressCountry = profile.BillingAddress.Country;
+                                AgyPmtProfile.BillingAddressFirst = profile.BillingAddress.First;
+                                AgyPmtProfile.BillingAddressLast = profile.BillingAddress.Last;
+                                AgyPmtProfile.BillingAddressPhone = profile.BillingAddress.Phone;
+                                AgyPmtProfile.BillingAddressState = profile.BillingAddress.State;
+                                AgyPmtProfile.BillingAddressStreet = profile.BillingAddress.Street;
+                                AgyPmtProfile.BillingAddressZip = profile.BillingAddress.Zip;
+                            }
+                        }
                     }
+                    ShowPaymentProfileStatus(false, null);
                 }
                 catch {
-                    this.DisplayWarning("Customer payment information could not be retrieved from profile manager");
+                    ShowPaymentProfileStatus(true, "Customer payment information could not be retrieved from profile manager");
+                    DisableElectronicPayment();
                 }
 
                 //GridControlCreditProfiles.DataSource = creditCards;
@@ -1866,15 +1896,16 @@ namespace TraceForms
                 //    ImageComboBoxEditDefaultPaymentProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
                 //    _context.SaveChanges();
                 //}
-                BindingSourceAgencyPaymentProfileCredit.DataSource = _selectedRecord.AgencyPaymentProfile;
+                BindingSourceAgencyPaymentProfile.DataSource = _selectedRecord.AgencyPaymentProfile;
                 BindPaymentProfiles();
             }
         }
 
-        void BindPaymentProfiles()
+        private void ShowPaymentProfileStatus(bool isError, string error)
         {
-            GridControlCreditProfiles.DataSource = BindingSourcePaymentProfiles;
-            GridControlCreditProfiles.RefreshDataSource();
+            PanelControlPaymentProfileStatus.Visible = isError;
+            LabelPaymentProfileStatus.Text = error;
+            SimpleButtonRetry.Visible = isError;
         }
 
         private void RemoveRecord()
@@ -2003,7 +2034,7 @@ namespace TraceForms
             _ignorePositionChange = false;
         }
 
-        private void ButtonAddRow1_Click(object sender, EventArgs e)
+        private void ButtonAddMembership_Click(object sender, EventArgs e)
         {
             DETAIL resource = new DETAIL() {
                 LINK_TABLE = "AGY",
@@ -2013,7 +2044,7 @@ namespace TraceForms
             BindingSourceDetail.Add(resource);
         }
 
-        private void ButtonDelRow_Click(object sender, EventArgs e)
+        private void ButtonDeleteMembership_Click(object sender, EventArgs e)
         {
             _detailsModified = true;
             BindingSourceDetail.RemoveCurrent();
@@ -2164,6 +2195,11 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateSrt2, TextEditSrt2);
             SetErrorInfo(_selectedRecord.ValidateSrt3, TextEditSrt3);
             _selectedRecord.Details = BindingSourceDetail.List.Cast<DETAIL>().ToList();
+            SetErrorInfo(_selectedRecord.ValidateDetails, GridControlMemberships);
+            _selectedRecord.Contacts = BindingSourceContact.List.Cast<CONTACT>().ToList();
+            SetErrorInfo(_selectedRecord.ValidateContacts, GridControlMemberships);
+            SetErrorInfo(_selectedRecord.ValidateAgcyLog, GridControlAgcyLog);
+            SetErrorInfo(_selectedRecord.ValidateAgencyCurrencies, GridControlAgencyCurrency);
         }
 
         private bool IsModified(AGY record)
@@ -2178,7 +2214,8 @@ namespace TraceForms
                 || _contactsModified
                 || record.AgencyCurrency.IsModified(_context)
                 || record.PaymentTransaction.IsModified(_context)
-                || record.AGCYLOG.IsModified(_context);
+                || record.AGCYLOG.IsModified(_context)
+                || record.AgencyPaymentProfile.IsModified(_context);
         }
 
         private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -2228,7 +2265,7 @@ namespace TraceForms
             GridControlAgcyLog.RefreshDataSource();
         }
 
-        private void ButtonAddMapping_Click(object sender, EventArgs e)
+        private void ButtonAddAgent_Click(object sender, EventArgs e)
         {
             AGCYLOG agcylog = new AGCYLOG {
                 AGENCY = TextEditCode.Text ?? string.Empty
@@ -2238,7 +2275,7 @@ namespace TraceForms
             GridViewAgcyLog.FocusedRowHandle = BindingSourceAgcyLog.Count - 1;
         }
 
-        private void ButtonDeleteMapping_Click(object sender, EventArgs e)
+        private void ButtonDeleteAgent_Click(object sender, EventArgs e)
         {
             if (GridViewAgcyLog.FocusedRowHandle >= 0) {
                 AGCYLOG agcylog = (AGCYLOG)GridViewAgcyLog.GetFocusedRow();
@@ -2366,20 +2403,25 @@ namespace TraceForms
                 DeleteButton.Enabled = true;
                 ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
             } else {
-                TextEditCustomerProfileEmail.Enabled = false;
-                CheckEditRequireCVV2.Enabled = false;
-                ChangePaymentProfileButton.Enabled = false;
-                DeleteButton.Enabled = false;
-                GridControlCreditProfiles.Enabled = false;
-                GridControlBankProfiles.Enabled = false;
-                AddCreditButton.Enabled = false;
-                DelCreditButton.Enabled = false;
-                SimpleButtonValidateCreditRow.Enabled = false;
-                AddBankButton.Enabled = false;
-                DelBankButton.Enabled = false;
-                SimpleButtonValidateBankRow.Enabled = false;
-                ImageComboBoxEditDefaultPmtProfileID.Enabled = false;
+                DisableElectronicPayment();
             }
+        }
+
+        public void DisableElectronicPayment()
+        {
+            TextEditCustomerProfileEmail.Enabled = false;
+            CheckEditRequireCVV2.Enabled = false;
+            ChangePaymentProfileButton.Enabled = false;
+            DeleteButton.Enabled = false;
+            GridControlCreditProfiles.Enabled = false;
+            GridControlBankProfiles.Enabled = false;
+            AddCreditButton.Enabled = false;
+            ButtonDeleteCredit.Enabled = false;
+            SimpleButtonValidateCreditRow.Enabled = false;
+            ButtonAddBank.Enabled = false;
+            ButtonDeleteBank.Enabled = false;
+            SimpleButtonValidateBankRow.Enabled = false;
+            ImageComboBoxEditDefaultPmtProfileID.Enabled = false;
         }
 
         private void LabelPaymentProcessorCustProfileId_TextChanged(object sender, EventArgs e)
@@ -2389,20 +2431,20 @@ namespace TraceForms
                 GridControlCreditProfiles.Enabled = false;
                 GridControlBankProfiles.Enabled = false;
                 AddCreditButton.Enabled = false;
-                DelCreditButton.Enabled = false;
+                ButtonDeleteCredit.Enabled = false;
                 SimpleButtonValidateCreditRow.Enabled = false;
-                AddBankButton.Enabled = false;
-                DelBankButton.Enabled = false;
+                ButtonAddBank.Enabled = false;
+                ButtonDeleteBank.Enabled = false;
                 SimpleButtonValidateBankRow.Enabled = false;
             } else {
                 ChangePaymentProfileButton.Text = "Update";
                 GridControlCreditProfiles.Enabled = true;
                 GridControlBankProfiles.Enabled = true;
                 AddCreditButton.Enabled = true;
-                DelCreditButton.Enabled = true;
+                ButtonDeleteCredit.Enabled = true;
                 SimpleButtonValidateCreditRow.Enabled = true;
-                AddBankButton.Enabled = true;
-                DelBankButton.Enabled = true;
+                ButtonAddBank.Enabled = true;
+                ButtonDeleteBank.Enabled = true;
                 SimpleButtonValidateBankRow.Enabled = true;
             }
         }
@@ -2474,6 +2516,35 @@ namespace TraceForms
         {
             GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
             GridViewLookup.Focus();
+        }
+
+        private void GridViewCreditProfiles_SubstituteFilter(object sender, DevExpress.Data.SubstituteFilterEventArgs e)
+        {
+            e.Filter &= CriteriaOperator.Parse("[IsCreditCard] == True");
+        }
+        
+        private void GridViewBankProfiles_SubstituteFilter(object sender, DevExpress.Data.SubstituteFilterEventArgs e)
+        {
+            e.Filter &= CriteriaOperator.Parse("[IsCreditCard] == False");
+        }
+
+        private void SimpleButtonRetry_Click(object sender, EventArgs e)
+        {
+            LoadAndBindPaymentProfiles();
+        }
+
+        private void GridViewCreditProfiles_CustomRowFilter(object sender, RowFilterEventArgs e)
+        {
+            ColumnView view = sender as ColumnView;
+            bool.TryParse(view.GetListSourceRowCellValue(e.ListSourceRow, "IsCreditCard").ToString(), out bool iscredit);
+            e.Visible = iscredit;
+        }
+
+        private void GridViewBankProfiles_CustomRowFilter(object sender, RowFilterEventArgs e)
+        {
+            ColumnView view = sender as ColumnView;
+            bool.TryParse(view.GetListSourceRowCellValue(e.ListSourceRow, "IsCreditCard").ToString(), out bool iscredit);
+            e.Visible = !iscredit;
         }
 
         private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
