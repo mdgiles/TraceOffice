@@ -29,6 +29,7 @@ namespace TraceForms
 {
     public partial class AgencyForm : DevExpress.XtraEditors.XtraForm
     {
+        List<CodeName> _reportTypes;
         public List<IComprod2> myCommRecs;
         public List<IComprod2> myCommRecsAgy;
         public List<ICommLevel> myCommLvl;
@@ -58,7 +59,7 @@ namespace TraceForms
         bool _contactsModified = false;
 
         FlextourEntities _context;
-        AGY _selectedRecord;
+        AGY _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
 
@@ -232,12 +233,12 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
             SearchLookupEditCountry.Properties.DataSource = countries;
 
-            var reporttypes = new List<CodeName>();
-            reporttypes.AddRange(_context.RPTTYPE
+            _reportTypes = new List<CodeName>();
+            _reportTypes.AddRange(_context.RPTTYPE
                 .Where(r => r.RecipientType == "Agy")
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
-            RepositoryItemCheckedComboBoxEditReportType.DataSource = reporttypes;
+            RepositoryItemCheckedComboBoxEditReportType.DataSource = _reportTypes;
             RepositoryItemCheckedComboBoxEditReportType.ValueMember = "Code";
             RepositoryItemCheckedComboBoxEditReportType.DisplayMember = "Name";
 
@@ -295,7 +296,7 @@ namespace TraceForms
                 ImageComboBoxEditDefaultPmtProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
                 _context.SaveChanges();
             }
-            //  ////////////////
+            ////////////////////
         }
 
         private void GridViewCustom_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -712,87 +713,37 @@ namespace TraceForms
 
         private void GridViewContacts_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
-            if (e.Column.FieldName == "RptContact" && e.IsGetData) {
+            if (e.Column.FieldName == "Reports") {
                 CONTACT conRec = (CONTACT)e.Row;
-                int id = conRec.ID;
-                string load = string.Empty;
-                if (id == int.MaxValue || id == 0) {
-                    if (firstLoad == true) {
-                        var values = from rec in _context.RPTTYPE where rec.RecipientType == "Agy" select new { rec.CODE };
-                        foreach (var result in values) {
-                            if (!string.IsNullOrWhiteSpace(load))
-                                load += "," + result.CODE;
-                            else
-                                load += result.CODE;
-                        }
-                        globalRptType = load;
-                        firstLoad = false;
-                    }
-                    else {
-                        load = globalRptType;
-                    }
+                if (e.IsGetData) {
+                    var selected = string.Join(",", _reportTypes.Where(r => conRec.RptContact.Any(rc => rc.RptType == r.Code)).Select(r => r.Code));
+                    e.Value = selected;
                 }
-                else {
-                    var val = from rec in _context.RptContact where rec.Contact_ID == id && rec.Code == TextEditCode.Text select new { rec.RptType };
-                    foreach (var result in val) {
-                        if (!string.IsNullOrWhiteSpace(load))
-                            load += "," + result.RptType;
-                        else
-                            load += result.RptType;
-                    }
-                }
-                e.Value = load;
-            }
-            if (e.Column.FieldName == "RptContact" && e.IsSetData) {
-                CONTACT conRec = (CONTACT)e.Row;
-                int id = conRec.ID;
-                if (id == int.MaxValue || id == 0) {
-                    globalRptType = e.Value.ToString();
-                    //modified = true;
-                }
-                else {
-                    string value = e.Value.ToString();
-                    var results = from rptRec in _context.RptContact where !value.Contains(rptRec.RptType) && rptRec.Code == TextEditCode.Text && rptRec.Contact_ID == id select rptRec;
+                if (e.IsSetData) {
+                    //The CSV that comes from DevExpress CheckedComboBoxEdit is actually "comma space" delimited
+                    //so don't forget to Trim each member
+                    var results = e.Value.ToString().Split(',');
+                    List<RptContact> toKeep = new List<RptContact>();
                     foreach (var result in results) {
-                        _context.RptContact.DeleteObject(result);
-                    }
-                    var val1 = (from rptRec in _context.RPTTYPE
-                                where value.Contains(rptRec.CODE)
-                                select new { rptRec.CODE });
-                    foreach (var result1 in val1) {
-                        if ((from rptCont in _context.RptContact where rptCont.Contact_ID == id && rptCont.Code == TextEditCode.Text && rptCont.RptType == result1.CODE select new { rptCont.Code }).Count() == 0) {
-                            RptContact lol = new RptContact() {
+                        var rec = conRec.RptContact.SingleOrDefault(c => c.RptType == result.Trim());
+                        if (rec == null) {
+                            rec = new RptContact() {
                                 Code = TextEditCode.Text,
-                                RptType = result1.CODE,
-                                Contact_ID = id
+                                RptType = result.Trim()
                             };
-
-                            _context.RptContact.AddObject(lol);
+                            conRec.RptContact.Add(rec);
+                            _contactsModified = true;
                         }
+                        toKeep.Add(rec);
                     }
-                    _context.SaveChanges();
+                    var toRemove = conRec.RptContact.Except(toKeep).ToList();
+                    foreach (var remove in toRemove) {
+                        conRec.RptContact.Remove(remove);
+                        _context.RptContact.DeleteObject(remove);
+                        _contactsModified = true;
+                    }
                 }
             }
-        }
-
-        private void GridViewContacts_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
-        {
-            ColumnView view = sender as ColumnView;
-            CONTACT record = (CONTACT)e.Row;
-            if (record.COMM_PREF == "E" && string.IsNullOrWhiteSpace(record.EMAIL)) {
-                e.Valid = false;
-                view.SetColumnError(view.Columns["EMAIL"], "Email value must be filled out if preferred communication is selected as email.");
-            }
-
-            if (record.COMM_PREF == "F" && string.IsNullOrWhiteSpace(record.FAX)) {
-                e.Valid = false;
-                view.SetColumnError(view.Columns["FAX"], "Fax value must be filled out if preferred communication is selected as fax.");
-            }
-        }
-
-        private void GridViewContacts_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
-        {
-            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
 
         private void ButtonEditDate_TextChanged(object sender, EventArgs e)
@@ -1778,7 +1729,7 @@ namespace TraceForms
                 LoadAndBindContacts();
                 LoadAndBindAgencyCurrencies();
                 LoadAndBindAgcyLogs();
-                LoadAndBindPaymentTrasactions();
+                LoadAndBindPaymentTransactions();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -1793,11 +1744,11 @@ namespace TraceForms
         {
             if (!string.IsNullOrEmpty(_selectedRecord.NO)) {
                 BindingSourceContact.DataSource = _context.CONTACT.Where(c => c.LINK_VALUE == _selectedRecord.NO
-                    && c.RECTYPE == "AGYCONTACT" && c.LINK_TABLE == "AGY");
+                    && c.RECTYPE == "AGYCONTACT" && c.LINK_TABLE == "AGY").Include(c => c.RptContact);
             }
         }
 
-        void LoadAndBindPaymentTrasactions()
+        void LoadAndBindPaymentTransactions()
         {
             //Load the related entities. DO NOT do another db query using context.whatever because they
             //will not be associated with the parent entity, and new items will not be added to the relationship
@@ -1988,6 +1939,8 @@ namespace TraceForms
                     _ignoreLeaveRow = true;
                     _ignorePositionChange = true;
                     RemoveRecord();
+                    BindingSourceContact.Clear();
+                    BindingSourceDetail.Clear();
                     if (!_selectedRecord.IsNew()) {
                         //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
                         //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
@@ -2004,6 +1957,8 @@ namespace TraceForms
                     _ignorePositionChange = false;
                     SetBindings();
                     EntityInstantFeedbackSource.Refresh();
+                    GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
+                    GridControlLookup.Focus();
                     ShowActionConfirmation("Record Deleted");
                 }
             }
@@ -2011,9 +1966,19 @@ namespace TraceForms
                 DisplayHelper.DisplayError(this, ex);
                 _ignoreLeaveRow = false;
                 _ignorePositionChange = false;
-                RefreshRecord();        //pull it back from db because that is it's current state
+                RefreshRecord();        //pull it back from db because that is its current state
                 //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
                 SetBindings();
+            }
+        }
+
+        private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
+        {
+            //If the user selects a row, edits, then selects the auto-filter row, then selects a different row,
+            //this event will fire for the auto-filter row, so we cannot ignore it because there is still a record
+            //that may need to be saved. 
+            if (!_ignoreLeaveRow && IsModified(_selectedRecord)) {
+                e.Allow = SaveRecord(true);
             }
         }
 
@@ -2082,6 +2047,18 @@ namespace TraceForms
                         else if (result == DialogResult.Cancel) {
                             return false;
                         }
+                        //If we prompted then it's because the user is changing the selected record so we don't need
+                        //to keep track of the previously selected record
+                        _previousRecord = null;
+                    }
+                    else {
+                        //If we didn't prompt then the user has clicked the Save button where the expectation is that
+                        //the currently selected row will remain selected.  However EntityInstantFeebackSource does not have
+                        //a way to refresh a single record and refreshing the data source causes the focused row to be reset
+                        //back to the top row.  Therefore we store the value of the previous selection and set the row focus
+                        //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being
+                        //displayed before being set back to the previously selected row. DevExpress have no way around this.
+                        _previousRecord = _selectedRecord;
                     }
                     if (!ValidateAll())
                         return false;
@@ -2117,6 +2094,12 @@ namespace TraceForms
             }
         }
 
+        private void DisplayCrash(string message)
+        {
+            BindingSource.EndEdit();
+            ErrorProvider.SetError(TextEditCode, message);
+        }
+
         private bool ValidateAll()
         {
             bool detailsInvalid = false;
@@ -2139,6 +2122,14 @@ namespace TraceForms
         {
             //The error indicators inside the grids are handled by binding, but errors on the main form must
             //be set manually
+            var errors = _selectedRecord.Errors;
+            if (errors != null) {
+                if (errors.ContainsKey("CRASH")) {
+                    var message = errors["CRASH"];
+                    DisplayCrash(message);
+                    return;
+                }
+            }
             SetErrorInfo(_selectedRecord.ValidateNo, TextEditCode);
             SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
             SetErrorInfo(_selectedRecord.ValidateType, TextEditType);
@@ -2336,7 +2327,6 @@ namespace TraceForms
                 else {
                     _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
                 }
-                _context.SaveChanges();
             }
         }
 
@@ -2366,7 +2356,6 @@ namespace TraceForms
                     _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
                 }
                 _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                _context.SaveChanges();
             }
         }
 
@@ -2545,6 +2534,33 @@ namespace TraceForms
             ColumnView view = sender as ColumnView;
             bool.TryParse(view.GetListSourceRowCellValue(e.ListSourceRow, "IsCreditCard").ToString(), out bool iscredit);
             e.Visible = !iscredit;
+        }
+
+        private void GridViewLookup_AsyncCompleted(object sender, EventArgs e)
+        {
+            if (_previousRecord != null && _selectedRecord != null && !_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                int rowHandle = view.LocateByValue("NO", _previousRecord.NO, OnRowSearchComplete);
+                if (rowHandle != DevExpress.Data.DataController.OperationInProgress) {
+                    SetFocusedRow(GridViewLookup, rowHandle);
+                }
+            }
+        }
+
+        void OnRowSearchComplete(object rh)
+        {
+            int rowHandle = (int)rh;
+            if (GridViewLookup.IsValidRowHandle(rowHandle)) {
+                SetFocusedRow(GridViewLookup, rowHandle);
+            }
+        }
+
+        void SetFocusedRow(GridView view, int rowHandle)
+        {
+            //precaution to make sure that any subsequent row changes don't try to force the selected
+            //row back to the previously selected one again
+            _previousRecord = null;     
+            view.FocusedRowHandle = rowHandle;
         }
 
         private void GridViewLookup_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
