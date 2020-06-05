@@ -1811,15 +1811,6 @@ namespace TraceForms
             }
         }
 
-        private void SearchLookupEdit_UpdateDisplayFilter(object sender, Custom_SearchLookupEdit.DisplayFilterEventArgs e) {
-            //Users did not like have to type quotes in order to get an exact match of entered terms rather than any word being matched
-            //https://www.devexpress.com/Support/Center/Example/Details/E3135/how-to-implement-an-event-allowing-you-to-customize-a-filter-string-produced-by-the-find
-            //Also requires the custom inherited version of the SearchLookupEdit in the Custom_SearchLookupEdit namespace
-            if (!string.IsNullOrEmpty(e.FilterText)) {
-                e.FilterText = '"' + e.FilterText + '"';
-            }
-        }
-
         private void ImageComboBoxEditOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(SearchLookupEditOperator.Text)) {
