@@ -1,4 +1,9 @@
-﻿using FlexInterfaces.Core;
+﻿using DevExpress.Utils.Win;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.XtraGrid.Views.Grid;
+using FlexInterfaces.Core;
+using FlexModel;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -18,17 +23,45 @@ namespace TraceForms
     public partial class OperationsServiceListForm : DevExpress.XtraEditors.XtraForm
     {
         ICoreSys _sys;
+        FlextourEntities _context;
+        List<CodeName> _hotels, _services;
 
         public OperationsServiceListForm(ICoreSys sys)
         {
             InitializeComponent();
             _sys = sys;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+
             textBoxRecipients.Text = Configurator.OperationsServiceList_Recipients;
             dateEditStart.Text = DateTime.Today.ToString();
             dateEditEnd.Text = DateTime.Today.AddDays(Configurator.OperationsServiceList_FutureDays).ToString();
+
+            var operators = new List<CodeName>() {
+                new CodeName(null, "<all>")
+            };
+            operators.AddRange(_context.OPERATOR
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
+            searchLookUpEditOperator.Properties.DataSource = operators;
+
+            _hotels = new List<CodeName>() {
+                new CodeName(null, "<all>")
+            };
+            _hotels.AddRange(_context.HOTEL
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME, Tag = t.OPER }));
+            searchLookUpEditHotel.Properties.DataSource = _hotels;
+
+            _services = new List<CodeName>() {
+                new CodeName(null, "<all>")
+            };
+            _services.AddRange(_context.COMP
+                .OrderBy(t => t.CODE)
+                .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME, Tag = t.OPER }));
+            searchLookUpEditService.Properties.DataSource = _services;
         }
 
-		private void buttonSend_Click(object sender, EventArgs e)
+        private void buttonSend_Click(object sender, EventArgs e)
 		{
             if (dateEditStart.DateTime == DateTime.MinValue || dateEditEnd.DateTime == DateTime.MinValue) {
                 MessageBox.Show(this, "Please enter a valid start date and end date for the report.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -90,11 +123,23 @@ namespace TraceForms
         private void ExportForHTL(DateTime startDate, DateTime endDate, ExcelPackage xl)
         {
             string dateField = $"[{radioGroupDate.EditValue}]";
+            string oper = searchLookUpEditOperator.EditValue.ToStringEmptyIfNull();
+            int operIsEmpty = string.IsNullOrEmpty(oper) ? 1 : 0;
+            string product = searchLookUpEditHotel.EditValue.ToStringEmptyIfNull();
+            int prodIsEmpty = string.IsNullOrEmpty(product) ? 1 : 0;
+
+            string cxlClause = string.Empty, cxlDatesClause = string.Empty;
+            if (checkEditIncludeCancelled.Checked) {
+                cxlClause = "or resitm.inactive = 1";
+                cxlDatesClause = $"or resitm.[cxl date] between '{startDate}' and '{endDate}'";
+            }
+
             OrderedDictionary columns = new OrderedDictionary()
             {
                 { "strt date", "Service Date" },
                 { "res date", "Booking Date" },
                 { "res no", "Trip #" },
+                { "status", "Status" },
                 { "agy name", "Agency Name" },
                 { "city", "City" },
                 { "reference", "Client\r\nReference" },
@@ -119,13 +164,16 @@ inner join psgrres on psgrres.[client no] = psgrlist.[client no] AND [client lev
 WHERE psgrres.[res no] = resitm.[res no] and ISNULL([phone nbr], '') <> '') as PhoneNbr,
 (select top 1 case when charindex('(' + cat + ')', catdesc) <> 0 then catdesc else catdesc + ' (' + cat + ')' end as catdesc
 from resroom where resroom.[res no] = resitm.[res no] and resroom.item = resitm.item order by resroom.room) as category,
-hotel.[city code] as city, operator.name as operator
+hotel.[city code] as city, operator.name as operator, case when resitm.inactive = 1 then 'Inactive' else 'Active' end as status
 from resitm 
 inner join reshdr on reshdr.[res no] = resitm.[res no]
 inner join hotel on resitm.code = hotel.code
 left outer join resitm pkg on resitm.parentitem = pkg.item and resitm.[res no] = pkg.[res no] 
 left outer join operator on resitm.oper = operator.code
-where resitm.{dateField} between '{startDate}' and '{endDate}' and resitm.inactive = 0 and resitm.type = 'HTL' 
+where (resitm.{dateField} between '{startDate}' and '{endDate}' {cxlDatesClause}) and (resitm.inactive = 0 {cxlClause}) 
+and resitm.type = 'HTL' 
+and (resitm.OPER = '{oper}' OR 1 = {operIsEmpty})
+and (resitm.CODE = '{product}' OR 1 = {prodIsEmpty})
 order by resitm.{dateField}, resitm.[res no], item";
             ExportCommon(columns, sql, xl, "HTL");
         }
@@ -133,11 +181,23 @@ order by resitm.{dateField}, resitm.[res no], item";
         private void ExportForOPT(DateTime startDate, DateTime endDate, ExcelPackage xl)
         {
             string dateField = $"[{radioGroupDate.EditValue}]";
+            string oper = searchLookUpEditOperator.EditValue.ToStringEmptyIfNull();
+            int operIsEmpty = string.IsNullOrEmpty(oper) ? 1 : 0;
+            string product = searchLookUpEditService.EditValue.ToStringEmptyIfNull();
+            int prodIsEmpty = string.IsNullOrEmpty(product) ? 1 : 0;
+
+            string cxlClause = string.Empty, cxlDatesClause = string.Empty;
+            if (checkEditIncludeCancelled.Checked) {
+                cxlClause = "or resitm.inactive = 1";
+                cxlDatesClause = $"or resitm.[cxl date] between '{startDate}' and '{endDate}'";
+            }
+
             OrderedDictionary columns = new OrderedDictionary()
             {
                 { "strt date", "Service Date" },
                 { "res date", "Booking Date" },
                 { "res no", "Trip #" },
+                { "status", "Status" },
                 { "agy name", "Agency Name" },
                 { "city", "City" },
                 { "reference", "Client\r\nReference" },
@@ -167,13 +227,17 @@ inner join psgrres on psgrres.[client no] = psgrlist.[client no] AND [client lev
 WHERE psgrres.[res no] = resitm.[res no] and ISNULL([phone nbr], '') <> '') as PhoneNbr,
 (select top 1 case when charindex('(' + cat + ')', catdesc) <> 0 then catdesc else catdesc + ' (' + cat + ')' end as catdesc
 from resroom where resroom.[res no] = resitm.[res no] and resroom.item = resitm.item order by resroom.room) as category,
-comp.city, comp.[serv type], operator.name as operator, dbo.fn_GetProductDescription(ISNULL(resitm.bus_pup_type, 'WAY'), resitm.[bus pup]) as location
+comp.city, comp.[serv type], operator.name as operator, dbo.fn_GetProductDescription(ISNULL(resitm.bus_pup_type, 'WAY'), resitm.[bus pup]) as location,
+case when resitm.inactive = 1 then 'Inactive' else 'Active' end as status
 from resitm 
 inner join reshdr on reshdr.[res no] = resitm.[res no]
 inner join comp on resitm.code = comp.code
 left outer join resitm pkg on resitm.parentitem = pkg.item and resitm.[res no] = pkg.[res no] 
 left outer join operator on resitm.oper = operator.code
-where resitm.{dateField} between '{startDate}' and '{endDate}' and resitm.inactive = 0 and resitm.type = 'OPT' 
+where (resitm.{dateField} between '{startDate}' and '{endDate}' {cxlDatesClause}) and (resitm.inactive = 0 {cxlClause}) 
+and resitm.type = 'OPT' 
+and (resitm.OPER = '{oper}' OR 1 = {operIsEmpty})
+and (resitm.CODE = '{product}' OR 1 = {prodIsEmpty})
 order by resitm.{dateField}, resitm.[res no], item";
 
             ExportCommon(columns, sql, xl, "OPT");
@@ -233,5 +297,85 @@ order by resitm.{dateField}, resitm.[res no], item";
                 dateEditEnd.Properties.MaxValue = DateTime.MaxValue;
             }
         }
+
+        private void SearchLookupEdit_Popup(object sender, EventArgs e)
+        {
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
+
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            bool gotMatch = false;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter && popupForm != null) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
+                    }
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
+                }
+            }
+        }
+
+        private void searchLookUpEditOperator_EditValueChanged(object sender, EventArgs e)
+        {
+            searchLookUpEditHotel.EditValue = null;
+            searchLookUpEditService.EditValue = null;
+            if (searchLookUpEditOperator.EditValue is null) {
+                searchLookUpEditHotel.Properties.DataSource = _hotels;
+                searchLookUpEditService.Properties.DataSource = _services;
+            }
+            else {
+                string oper = searchLookUpEditOperator.EditValue.ToString();
+                var products = _hotels.Where(h => h.Tag == oper || h.Code == null).ToList();
+                if (products.Any(p => p.Code != null)) {
+                    searchLookUpEditHotel.Properties.DataSource = products;
+                }
+                else {
+                    searchLookUpEditHotel.Properties.DataSource = null;
+                }
+                products = _services.Where(h => h.Tag == oper || h.Code == null).ToList();
+                if (products.Any(p => p.Code != null)) {
+                    searchLookUpEditService.Properties.DataSource = products;
+                }
+                else {
+                    searchLookUpEditService.Properties.DataSource = null;
+                }
+            }
+            searchLookUpEditService.Enabled = (searchLookUpEditService.Properties.DataSource != null);
+            searchLookUpEditHotel.Enabled = (searchLookUpEditHotel.Properties.DataSource != null);
+        }
+
+        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((sender as LookUpEditBase).Properties.DataSource == null)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+        }
+
     }
 }

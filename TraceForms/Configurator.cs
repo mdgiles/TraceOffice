@@ -10,10 +10,6 @@ namespace TraceForms
 {
     internal static class Configurator
     {
-        public static string AzureStorageConnectionString {
-            get { return ConfigurationManager.ConnectionStrings["AzureStorage"]?.ConnectionString ?? string.Empty; }
-        }
-
         internal static string HotelProductionReport_Recipients
         {
             get {

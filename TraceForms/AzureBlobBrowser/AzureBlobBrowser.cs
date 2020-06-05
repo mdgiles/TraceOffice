@@ -10,10 +10,18 @@ using System.Windows.Forms;
 using DevExpress.XtraTreeList.Nodes;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.Storage;
+using DevExpress.XtraEditors.CustomEditor;
+using DevExpress.Utils.Drawing;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
+using System.Reflection;
+using DevExpress.XtraEditors.Registrator;
+using DevExpress.XtraEditors.Drawing;
+using DevExpress.XtraEditors.ViewInfo;
 
 namespace TraceForms.AzureBlobBrowser
 {
-    public partial class AzureBlobBrowser : DevExpress.XtraEditors.XtraUserControl
+    public partial class AzureBlobBrowser : PopupContainerEdit
     {
         public CloudBlobContainer BlobContainer { get; set; }
 
@@ -21,7 +29,7 @@ namespace TraceForms.AzureBlobBrowser
         const int DisplayNameField = 1;
         const int IsFolderField = 2;
 
-        public event EventHandler EditValueChanged;
+        //public event EventHandler EditValueChanged;
 
         private bool MouseDoubleClicked;
 
@@ -32,19 +40,19 @@ namespace TraceForms.AzureBlobBrowser
         }
 
         //https://stackoverflow.com/a/24420145/3610417
-        public object EditValueData { 
-            get {
-                return popupContainerEditBrowser.EditValue;
-            } 
-            set {
-                popupContainerEditBrowser.EditValue = value;
-                //Events are only initialized at runtime, but at design time the data bound properties are set to null
-                // causing a crash in the designer if there is not a null check for the event
-                if (this.EditValueChanged != null) {
-                    this.EditValueChanged(this, new EventArgs());
-                }
-            }
-        }
+        //public object EditValueData { 
+        //    get {
+        //        return popupContainerEditBrowser.EditValue;
+        //    } 
+        //    set {
+        //        popupContainerEditBrowser.EditValue = value;
+        //        //Events are only initialized at runtime, but at design time the data bound properties are set to null
+        //        // causing a crash in the designer if there is not a null check for the event
+        //        //if (this.EditValueChanged != null) {
+        //        //    this.EditValueChanged(this, new EventArgs());
+        //        //}
+        //    }
+        //}
 
         private void ExpandNodeByPath(string value)
         {
@@ -89,7 +97,9 @@ namespace TraceForms.AzureBlobBrowser
             }
             if (isFolder || string.IsNullOrEmpty(prefix)) {
                 var entries = ListBlobsHierarchicalListing(BlobContainer, prefix);
-                e.Children = entries.Select(a => new object[] { a.FullPath, a.DisplayName, a.IsFolder }).ToArray();
+                //Folders show first, then files
+                e.Children = entries.OrderBy(a => !a.IsFolder).ThenBy(a => a.DisplayName)
+                    .Select(a => new object[] { a.FullPath, a.DisplayName, a.IsFolder }).ToArray();
             }
         }
 
@@ -97,16 +107,18 @@ namespace TraceForms.AzureBlobBrowser
         {
             CloudBlobDirectory dir;
             CloudBlob blob;
-            BlobContinuationToken continuationToken;
+            BlobContinuationToken continuationToken = null;
             BlobEntry entry;
             List<BlobEntry> entries = new List<BlobEntry>();
+            bool hasResults;
 
             try {
                 // Call the listing operation and enumerate the result segment.
                 // When the continuation token is null, the last segment has been returned and 
                 // execution can exit the loop.
                 do {
-                    BlobResultSegment resultSegment = container.ListBlobsSegmented(prefix, false, BlobListingDetails.Metadata, null, null, null, null);
+                    BlobResultSegment resultSegment = container.ListBlobsSegmented(prefix, false, BlobListingDetails.Metadata, null, continuationToken, null, null);
+                    hasResults = resultSegment.Results.Any();
                     foreach (var blobItem in resultSegment.Results) {
                         entry = new BlobEntry();
                         // A hierarchical listing may return both virtual directories and blobs.
@@ -128,10 +140,11 @@ namespace TraceForms.AzureBlobBrowser
                         entries.Add(entry);
                     }
 
-                    // Get the continuation token and loop until it is null.
+                    // Get the continuation token and loop until it is null which is the documented way to tell when the blobs have been enumerated
                     continuationToken = resultSegment.ContinuationToken;
 
-                } while (continuationToken != null);
+                //In practice I discovered there can be a non-null continuation token and no results in an endless loop so I check both
+                } while (continuationToken != null && hasResults);
                 return entries;
             }
             catch (StorageException e) {
@@ -173,12 +186,12 @@ namespace TraceForms.AzureBlobBrowser
                 var node = hitInfo.Node;
                 if (!(bool)node[treeListColumnIsFolder]) {
                     MouseDoubleClicked = true;
-                    popupContainerEditBrowser.ClosePopup();
+                    ClosePopup();
                 }
             }
         }
 
-        private void treeListBrowser_MouseUp_1(object sender, MouseEventArgs e)
+        private void treeListBrowser_MouseUp(object sender, MouseEventArgs e)
         {
             base.OnMouseUp(e);
             var hitInfo = treeListBrowser.CalcHitInfo(new Point(e.X, e.Y));
@@ -203,8 +216,8 @@ namespace TraceForms.AzureBlobBrowser
 
         private void popupContainerEditBrowser_Popup(object sender, EventArgs e)
         {
-            if (popupContainerEditBrowser.EditValue != null) {
-                ExpandNodeByPath(popupContainerEditBrowser.EditValue.ToString());
+            if (EditValue != null) {
+                ExpandNodeByPath(EditValue.ToString());
             }
         }
     }
@@ -217,4 +230,43 @@ namespace TraceForms.AzureBlobBrowser
         public bool IsFolder { get; set; }
     }
 
+    [UserRepositoryItem("RegisterCustomPopupContainerEdit")]
+    public class RepositoryItemAzureBlobBrowser : RepositoryItemPopupContainerEdit
+    {
+        static RepositoryItemAzureBlobBrowser() { RegisterCustomEdit(); }
+
+        public RepositoryItemAzureBlobBrowser() { }
+
+        public const string CustomEditName = "AzureBlobBrowser";
+
+        public override string EditorTypeName { get { return CustomEditName; } }
+
+        public static void RegisterCustomEdit()
+        {
+            Image img = null;
+            try {
+                img = (Bitmap)Bitmap.FromStream(Assembly.GetExecutingAssembly().
+                  GetManifestResourceStream("DevExpress.CustomEditors.CustomEdit.bmp"));
+            }
+            catch {
+            }
+            EditorRegistrationInfo.Default.Editors.Add(new EditorClassInfo(CustomEditName,
+              typeof(AzureBlobBrowser), typeof(RepositoryItemAzureBlobBrowser),
+              typeof(PopupContainerEditViewInfo), new ButtonEditPainter(), true, img));
+        }
+
+        public override void Assign(RepositoryItem item)
+        {
+            BeginUpdate();
+            try {
+                base.Assign(item);
+                //RepositoryItemAzureBlobBrowser source = item as RepositoryItemAzureBlobBrowser;
+                //if (source == null)
+                //    return;
+            }
+            finally {
+                EndUpdate();
+            }
+        }
+    }
 }
