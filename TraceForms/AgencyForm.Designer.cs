@@ -520,6 +520,7 @@ namespace TraceForms
             this.colRESTRICT_TO_LKUP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPRECISION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colREQUIRED = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.GridColumnCustomValue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.XtraTabPageCommissions = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlCommTab = new DevExpress.XtraEditors.PanelControl();
             this.LabelMarkups = new System.Windows.Forms.Label();
@@ -618,11 +619,11 @@ namespace TraceForms
             this.colCode3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
+            this.TextEditVouchTypes = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.chineseHosts_FlextourDataSet = new TraceForms.ChineseHosts_FlextourDataSet();
             this.BindingSourceAgencyPaymentProfileBank = new System.Windows.Forms.BindingSource(this.components);
-            this.TextEditVouchTypes = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             eMAILLabel = new System.Windows.Forms.Label();
             fAX_NUMLabel = new System.Windows.Forms.Label();
             pHONELabel = new System.Windows.Forms.Label();
@@ -890,11 +891,11 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDefLanguage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileBank)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // eMAILLabel
@@ -5854,10 +5855,10 @@ namespace TraceForms
             // 
             // GridControlCustom
             // 
-            this.GridControlCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridControlCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.GridControlCustom.DataSource = this.BindingSourceUserfield;
-            this.GridControlCustom.Location = new System.Drawing.Point(23, 83);
+            this.GridControlCustom.Location = new System.Drawing.Point(18, 19);
             this.GridControlCustom.MainView = this.GridViewCustom;
             this.GridControlCustom.Name = "GridControlCustom";
             this.GridControlCustom.Size = new System.Drawing.Size(771, 301);
@@ -5882,7 +5883,8 @@ namespace TraceForms
             this.colMAX,
             this.colRESTRICT_TO_LKUP,
             this.colPRECISION,
-            this.colREQUIRED});
+            this.colREQUIRED,
+            this.GridColumnCustomValue});
             this.GridViewCustom.DetailHeight = 198;
             this.GridViewCustom.FixedLineWidth = 1;
             this.GridViewCustom.GridControl = this.GridControlCustom;
@@ -5998,6 +6000,13 @@ namespace TraceForms
             this.colREQUIRED.MinWidth = 12;
             this.colREQUIRED.Name = "colREQUIRED";
             this.colREQUIRED.Width = 45;
+            // 
+            // GridColumnCustomValue
+            // 
+            this.GridColumnCustomValue.Caption = "Value";
+            this.GridColumnCustomValue.Name = "GridColumnCustomValue";
+            this.GridColumnCustomValue.Visible = true;
+            this.GridColumnCustomValue.VisibleIndex = 1;
             // 
             // XtraTabPageCommissions
             // 
@@ -6980,6 +6989,17 @@ namespace TraceForms
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
+            // TextEditVouchTypes
+            // 
+            this.TextEditVouchTypes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VOUCH_TYPES", true));
+            this.TextEditVouchTypes.Location = new System.Drawing.Point(502, 93);
+            this.TextEditVouchTypes.Name = "TextEditVouchTypes";
+            this.TextEditVouchTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.TextEditVouchTypes.Size = new System.Drawing.Size(100, 20);
+            this.TextEditVouchTypes.TabIndex = 64;
+            this.TextEditVouchTypes.TabStop = false;
+            // 
             // PanelControlStatus
             // 
             this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
@@ -7008,17 +7028,6 @@ namespace TraceForms
             // 
             this.BindingSourceAgencyPaymentProfileBank.DataSource = typeof(FlexModel.AgencyPaymentProfile);
             this.BindingSourceAgencyPaymentProfileBank.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.BindingSourceAgencyPaymentProfileBank_ListChanged);
-            // 
-            // TextEditVouchTypes
-            // 
-            this.TextEditVouchTypes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VOUCH_TYPES", true));
-            this.TextEditVouchTypes.Location = new System.Drawing.Point(502, 93);
-            this.TextEditVouchTypes.Name = "TextEditVouchTypes";
-            this.TextEditVouchTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.TextEditVouchTypes.Size = new System.Drawing.Size(100, 20);
-            this.TextEditVouchTypes.TabIndex = 64;
-            this.TextEditVouchTypes.TabStop = false;
             // 
             // AgencyForm
             // 
@@ -7250,12 +7259,12 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDefLanguage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileBank)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -7787,5 +7796,6 @@ namespace TraceForms
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditExpYear;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit RepositoryItemCheckedComboBoxEditReportType;
         private DevExpress.XtraEditors.CheckedComboBoxEdit TextEditVouchTypes;
+        private DevExpress.XtraGrid.Columns.GridColumn GridColumnCustomValue;
     }
 }

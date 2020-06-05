@@ -178,10 +178,6 @@ namespace TraceForms
             foreach (COMPROD2 rec in myCommRecsAgy) {
                 rec.SetProductRulePosition(myCommLvl);
             }
-            GridColumn columnHotelInfo3 = GridViewCustom.Columns.AddField("AgencyValue");
-            columnHotelInfo3.VisibleIndex = 1;
-            columnHotelInfo3.UnboundType = DevExpress.Data.UnboundColumnType.String;
-            columnHotelInfo3.Visible = true;
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
             RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(loadBlank);
 
@@ -301,16 +297,15 @@ namespace TraceForms
 
         private void GridViewCustom_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
-            if (e.Column.FieldName == "AgencyValue" && e.IsGetData) {
-                string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
-                desc = desc.Trim();
-                e.Value = GridViewLookup.GetRowCellValue(BindingSource.IndexOf(BindingSource.Current), desc);
-            }
-
-            if (e.Column.FieldName == "AgencyValue" && e.IsSetData) {
-                string desc = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
-                desc = desc.Trim();
-                GridViewLookup.SetRowCellValue(BindingSource.IndexOf(BindingSource.Current), desc, e.Value);
+            if (e.Column == GridColumnCustomValue) {
+                string fieldName = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
+                if (e.IsGetData) {
+                    e.Value = _selectedRecord.GetPropertyValue(fieldName);
+                }
+                else if (e.IsSetData && _selectedRecord != null) {
+                    //FinalizeBindings();
+                    _selectedRecord.SetPropertyValue(fieldName, e.Value);
+                }
             }
         }
 
@@ -1730,6 +1725,7 @@ namespace TraceForms
                 LoadAndBindAgencyCurrencies();
                 LoadAndBindAgcyLogs();
                 LoadAndBindPaymentTransactions();
+                GridViewCustom.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to display the custom fields
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -1995,6 +1991,7 @@ namespace TraceForms
             BarButtonItemDelete.Enabled = false;
             BarButtonItemSave.Enabled = false;
             BindingSource.DataSource = typeof(AGY);
+            GridViewCustom.LayoutChanged();     //forces the CustomUnboundColumnData event to fire to display the custom fields
             _ignoreLeaveRow = false;
             _ignorePositionChange = false;
         }
