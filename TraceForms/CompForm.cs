@@ -959,7 +959,7 @@ namespace TraceForms
         }
         #endregion
 
-        private void GridViewComponentss_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        private void GridViewComponents_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box       
         }

@@ -128,7 +128,7 @@ namespace TraceForms
             this.xtraTabPageAdditionalImages = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.GridControlAdditionalImages = new DevExpress.XtraGrid.GridControl();
-            this.ResourceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BindingSourceResource = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewAdditionalImages = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColumnID1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnLinkTable = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -305,7 +305,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlAdditionalImages)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceResource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).BeginInit();
@@ -1591,7 +1591,7 @@ namespace TraceForms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlAdditionalImages.CausesValidation = false;
-            this.GridControlAdditionalImages.DataSource = this.ResourceBindingSource;
+            this.GridControlAdditionalImages.DataSource = this.BindingSourceResource;
             this.GridControlAdditionalImages.Location = new System.Drawing.Point(13, 8);
             this.GridControlAdditionalImages.MainView = this.GridViewAdditionalImages;
             this.GridControlAdditionalImages.Name = "GridControlAdditionalImages";
@@ -1607,9 +1607,9 @@ namespace TraceForms
             this.GridViewAdditionalImages,
             this.gridView1});
             // 
-            // ResourceBindingSource
+            // BindingSourceResource
             // 
-            this.ResourceBindingSource.DataSource = typeof(FlexModel.RESOURCE);
+            this.BindingSourceResource.DataSource = typeof(FlexModel.RESOURCE);
             // 
             // GridViewAdditionalImages
             // 
@@ -2867,7 +2867,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlAdditionalImages)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceResource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).EndInit();
@@ -2959,7 +2959,7 @@ namespace TraceForms
         private DevExpress.XtraEditors.SplitContainerControl SplitContainerControl;
         private DevExpress.XtraEditors.LabelControl LabelChgDate;
         private DevExpress.XtraEditors.LabelControl LabelChangeDate;
-        private System.Windows.Forms.BindingSource ResourceBindingSource;
+        private System.Windows.Forms.BindingSource BindingSourceResource;
         private LabelControl LabelStatus;
         private PanelControl PanelControlStatus;
         private LabelControl labelControl1;

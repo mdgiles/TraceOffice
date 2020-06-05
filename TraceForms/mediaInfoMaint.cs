@@ -424,15 +424,15 @@ namespace TraceForms
         {
             //Refreshing from store can't refresh added but unsaved records, so these have to be manually removed first
             List<RESOURCE> toRemove = new List<RESOURCE>();
-            foreach (RESOURCE resource in ResourceBindingSource.List) {
+            foreach (RESOURCE resource in BindingSourceResource.List) {
                 if (resource.EntityState == EntityState.Added) {
                     toRemove.Add(resource);
                 }
             }
             foreach (RESOURCE resource in toRemove) {
-                ResourceBindingSource.Remove(resource);
+                BindingSourceResource.Remove(resource);
             }
-            _context.Refresh(RefreshMode.StoreWins, ResourceBindingSource.List);
+            _context.Refresh(RefreshMode.StoreWins, BindingSourceResource.List);
             LoadAndBindResources();
         }
 
@@ -471,7 +471,7 @@ namespace TraceForms
                     SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
                     if (newRec) {
-                        foreach (RESOURCE resource in ResourceBindingSource.List.Cast<RESOURCE>()) {
+                        foreach (RESOURCE resource in BindingSourceResource.List.Cast<RESOURCE>()) {
                             resource.LINK_VALUE = _selectedRecord.ID.ToString();
                         }
                         _context.SaveChanges();
@@ -508,8 +508,8 @@ namespace TraceForms
         private bool ValidateAll()
         {
             bool imagesInvalid = false;
-            if (ResourceBindingSource.List.Count > 0) {
-                imagesInvalid = ResourceBindingSource.List.Cast<RESOURCE>().Any(b => !b.Validate() || b.ValidateTag().IsNotNullOrEmpty());
+            if (BindingSourceResource.List.Count > 0) {
+                imagesInvalid = BindingSourceResource.List.Cast<RESOURCE>().Any(b => !b.Validate() || b.ValidateTag().IsNotNullOrEmpty());
             }
 
             if (!_selectedRecord.Validate() || imagesInvalid) {
@@ -538,7 +538,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateResEndDate, DateEditResEndDate);
             SetErrorInfo(_selectedRecord.ValidateTitle, TextEditTitle);
             SetErrorInfo(_selectedRecord.ValidateSubtitle, TextEditSubtitle);
-            _selectedRecord.Resources = ResourceBindingSource.List.Cast<RESOURCE>().ToList();
+            _selectedRecord.Resources = BindingSourceResource.List.Cast<RESOURCE>().ToList();
             SetErrorInfo(_selectedRecord.ValidateImages, GridControlAdditionalImages);
         }
 
@@ -566,6 +566,7 @@ namespace TraceForms
                 _selectedRecord = ((MEDIAINFO)BindingSource.Current);
                 LoadAndBindResources();
                 SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
                 //SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
                 BarSubItemReports.Enabled = true;
@@ -588,7 +589,7 @@ namespace TraceForms
             string id = _selectedRecord.ID.ToString();
             //var foo = _context.RESOURCE.Where(c => c.LINK_VALUE == id).ToList();
             //GridControlAdditionalImages.DataSource = foo;
-            ResourceBindingSource.DataSource = _context.RESOURCE.Where(c => c.LINK_VALUE == id);
+            BindingSourceResource.DataSource = _context.RESOURCE.Where(c => c.LINK_VALUE == id);
         }
 
         private void DeleteRecord()
@@ -605,6 +606,7 @@ namespace TraceForms
                     _ignoreLeaveRow = true;
                     _ignorePositionChange = true;
                     RemoveRecord();
+                    BindingSourceResource.Clear();
                     if (!_selectedRecord.IsNew()) {
                         //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
                         //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
@@ -661,7 +663,7 @@ namespace TraceForms
             _ignorePositionChange = true;
             _selectedRecord = null;
             SetReadOnly(true);
-            ResourceBindingSource.DataSource = typeof(RESOURCE);
+            BindingSourceResource.DataSource = typeof(RESOURCE);
             HtmlEditor.BodyHtml = string.Empty;
             _originalHtml = string.Empty;
             BarButtonItemDelete.Enabled = false;
@@ -937,13 +939,13 @@ namespace TraceForms
                 RECTYPE = "IMAGE",
                 LINK_VALUE = _selectedRecord.ID.ToString()
             };
-            ResourceBindingSource.Add(resource);
+            BindingSourceResource.Add(resource);
         }
 
         private void ButtonDelRow_Click(object sender, EventArgs e)
         {
             _resourcesModified = true;
-            ResourceBindingSource.RemoveCurrent();
+            BindingSourceResource.RemoveCurrent();
         }
 
         private void ImageComboBoxEditLang_Leave(object sender, EventArgs e)
