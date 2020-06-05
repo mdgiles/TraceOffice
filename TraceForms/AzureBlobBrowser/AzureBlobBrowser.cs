@@ -13,12 +13,11 @@ using Microsoft.Azure.Storage;
 using DevExpress.XtraEditors.CustomEditor;
 using DevExpress.Utils.Drawing;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Popup;
-using DevExpress.XtraEditors.Registrator;
 using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraEditors.ViewInfo;
 using System.Reflection;
+using DevExpress.XtraEditors.Registrator;
 using DevExpress.XtraEditors.Drawing;
+using DevExpress.XtraEditors.ViewInfo;
 
 namespace TraceForms.AzureBlobBrowser
 {
@@ -29,47 +28,29 @@ namespace TraceForms.AzureBlobBrowser
         const int FullPathField = 0;
         const int DisplayNameField = 1;
         const int IsFolderField = 2;
-        private RepositoryItemPopupContainerEdit fProperties;
-        private DevExpress.XtraTreeList.TreeList treeListBrowser;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullPath;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnDisplayName;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnIsFolder;
-        private PopupContainerControl popupContainerControl1;
-        private DevExpress.Utils.SvgImageCollection svgImageCollection1;
-        private IContainer components;
 
-        //public new event EventHandler EditValueChanged;
+        //public event EventHandler EditValueChanged;
 
         private bool MouseDoubleClicked;
 
-        public AzureBlobBrowser() {
-             InitializeComponent();
-            treeListBrowser.DataSource = new object[] { };
+        public AzureBlobBrowser()
+        {
+            InitializeComponent();
+            treeListBrowser.DataSource = new object();
         }
 
-        static AzureBlobBrowser() { 
-            RepositoryItemAzureBlobBrowser.RegisterCustomEdit();
-        }
-
-        const string CustomEditName = "AzureBlobBrowser";       //must be the same as the RepositoryItem name
-
-        public override string EditorTypeName => CustomEditName;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public new RepositoryItemAzureBlobBrowser Properties => base.Properties as RepositoryItemAzureBlobBrowser;
-
-        ////https://stackoverflow.com/a/24420145/3610417
+        //https://stackoverflow.com/a/24420145/3610417
         //public object EditValueData { 
         //    get {
-        //        return this.EditValue;
-        //    }
+        //        return popupContainerEditBrowser.EditValue;
+        //    } 
         //    set {
-        //        this.EditValue = value;
+        //        popupContainerEditBrowser.EditValue = value;
         //        //Events are only initialized at runtime, but at design time the data bound properties are set to null
         //        // causing a crash in the designer if there is not a null check for the event
-        //        if (this.EditValueChanged != null) {
-        //            this.EditValueChanged(this, new EventArgs());
-        //        }
+        //        //if (this.EditValueChanged != null) {
+        //        //    this.EditValueChanged(this, new EventArgs());
+        //        //}
         //    }
         //}
 
@@ -184,7 +165,7 @@ namespace TraceForms.AzureBlobBrowser
             }
         }
 
-        private void popupContainerEdit_QueryResultValue(object sender, DevExpress.XtraEditors.Controls.QueryResultValueEventArgs e)
+        private void popupContainerEdit1_Properties_QueryResultValue(object sender, DevExpress.XtraEditors.Controls.QueryResultValueEventArgs e)
         {
             //Only allow selecting a new value by double-clicking a node.  Default functionality is to 
             //select a new value whenever the popup closes but this is not intuitive because the popup can
@@ -205,7 +186,7 @@ namespace TraceForms.AzureBlobBrowser
                 var node = hitInfo.Node;
                 if (!(bool)node[treeListColumnIsFolder]) {
                     MouseDoubleClicked = true;
-                    this.ClosePopup();
+                    ClosePopup();
                 }
             }
         }
@@ -233,133 +214,32 @@ namespace TraceForms.AzureBlobBrowser
             }
         }
 
-        private void popupContainerEdit_Popup(object sender, EventArgs e)
+        private void popupContainerEditBrowser_Popup(object sender, EventArgs e)
         {
-            if (this.EditValue != null) {
-                ExpandNodeByPath(this.EditValue.ToString());
+            if (EditValue != null) {
+                ExpandNodeByPath(EditValue.ToString());
             }
-        }
-
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.fProperties = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
-            this.treeListBrowser = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumnFullPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumnDisplayName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumnIsFolder = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.fProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListBrowser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
-            this.popupContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // fProperties
-            // 
-            this.fProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fProperties.Name = "fProperties";
-            this.fProperties.PopupControl = this.popupContainerControl1;
-            this.fProperties.Popup += new System.EventHandler(this.popupContainerEdit_Popup);
-            // 
-            // treeListBrowser
-            // 
-            this.treeListBrowser.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumnFullPath,
-            this.treeListColumnDisplayName,
-            this.treeListColumnIsFolder});
-            this.treeListBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeListBrowser.FixedLineWidth = 1;
-            this.treeListBrowser.Location = new System.Drawing.Point(0, 0);
-            this.treeListBrowser.Margin = new System.Windows.Forms.Padding(2);
-            this.treeListBrowser.MinWidth = 16;
-            this.treeListBrowser.Name = "treeListBrowser";
-            this.treeListBrowser.OptionsBehavior.Editable = false;
-            this.treeListBrowser.OptionsBehavior.ReadOnly = true;
-            this.treeListBrowser.OptionsView.ShowIndicator = false;
-            this.treeListBrowser.Size = new System.Drawing.Size(396, 225);
-            this.treeListBrowser.TabIndex = 0;
-            this.treeListBrowser.TreeLevelWidth = 12;
-            this.treeListBrowser.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.treeListBrowser_GetStateImage);
-            this.treeListBrowser.VirtualTreeGetChildNodes += new DevExpress.XtraTreeList.VirtualTreeGetChildNodesEventHandler(this.treeList1_VirtualTreeGetChildNodes);
-            this.treeListBrowser.VirtualTreeGetCellValue += new DevExpress.XtraTreeList.VirtualTreeGetCellValueEventHandler(this.treeList1_VirtualTreeGetCellValue);
-            this.treeListBrowser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeListBrowser_MouseDoubleClick);
-            this.treeListBrowser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeListBrowser_MouseUp);
-            // 
-            // treeListColumnFullPath
-            // 
-            this.treeListColumnFullPath.Caption = "Full Path";
-            this.treeListColumnFullPath.FieldName = "Full Path";
-            this.treeListColumnFullPath.MinWidth = 16;
-            this.treeListColumnFullPath.Name = "treeListColumnFullPath";
-            this.treeListColumnFullPath.OptionsColumn.AllowEdit = false;
-            this.treeListColumnFullPath.OptionsColumn.ReadOnly = true;
-            this.treeListColumnFullPath.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.String;
-            this.treeListColumnFullPath.Width = 50;
-            // 
-            // treeListColumnDisplayName
-            // 
-            this.treeListColumnDisplayName.MinWidth = 16;
-            this.treeListColumnDisplayName.Name = "treeListColumnDisplayName";
-            this.treeListColumnDisplayName.OptionsColumn.AllowEdit = false;
-            this.treeListColumnDisplayName.OptionsColumn.ReadOnly = true;
-            this.treeListColumnDisplayName.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.String;
-            this.treeListColumnDisplayName.Visible = true;
-            this.treeListColumnDisplayName.VisibleIndex = 0;
-            this.treeListColumnDisplayName.Width = 50;
-            // 
-            // treeListColumnIsFolder
-            // 
-            this.treeListColumnIsFolder.Caption = "Is Folder";
-            this.treeListColumnIsFolder.FieldName = "Is Folder";
-            this.treeListColumnIsFolder.MinWidth = 16;
-            this.treeListColumnIsFolder.Name = "treeListColumnIsFolder";
-            this.treeListColumnIsFolder.OptionsColumn.AllowEdit = false;
-            this.treeListColumnIsFolder.OptionsColumn.ReadOnly = true;
-            this.treeListColumnIsFolder.UnboundType = DevExpress.XtraTreeList.Data.UnboundColumnType.Boolean;
-            this.treeListColumnIsFolder.Width = 50;
-            // 
-            // popupContainerControl1
-            // 
-            this.popupContainerControl1.Controls.Add(this.treeListBrowser);
-            this.popupContainerControl1.Location = new System.Drawing.Point(2, 25);
-            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(396, 225);
-            this.popupContainerControl1.TabIndex = 1;
-            // 
-            // svgImageCollection1
-            // 
-            this.svgImageCollection1.Add("actions_folderclose", "image://svgimages/icon builder/actions_folderclose.svg");
-            this.svgImageCollection1.Add("open", "image://svgimages/actions/open.svg");
-            this.svgImageCollection1.Add("insertimage", "image://svgimages/richedit/insertimage.svg");
-            // 
-            // AzureBlobBrowser
-            // 
-            this.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(this.popupContainerEdit_QueryResultValue);
-            ((System.ComponentModel.ISupportInitialize)(this.fProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListBrowser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
-            this.popupContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).EndInit();
-            this.ResumeLayout(false);
-
         }
     }
 
-    [UserRepositoryItem("RegisterCustomEdit")]
+    internal class BlobEntry
+    {
+        public List<BlobEntry> Entries { get; set; }
+        public string DisplayName { get; set; }
+        public string FullPath { get; set; }
+        public bool IsFolder { get; set; }
+    }
+
+    [UserRepositoryItem("RegisterCustomPopupContainerEdit")]
     public class RepositoryItemAzureBlobBrowser : RepositoryItemPopupContainerEdit
     {
         static RepositoryItemAzureBlobBrowser() { RegisterCustomEdit(); }
 
         public RepositoryItemAzureBlobBrowser() { }
 
-        const string CustomEditName = "AzureBlobBrowser";       //must be the same as the editor name
+        public const string CustomEditName = "AzureBlobBrowser";
 
-        public override string EditorTypeName => CustomEditName;
+        public override string EditorTypeName { get { return CustomEditName; } }
 
         public static void RegisterCustomEdit()
         {
@@ -380,22 +260,13 @@ namespace TraceForms.AzureBlobBrowser
             BeginUpdate();
             try {
                 base.Assign(item);
-                RepositoryItemAzureBlobBrowser source = item as RepositoryItemAzureBlobBrowser;
-                if (source == null)
-                    return;
+                //RepositoryItemAzureBlobBrowser source = item as RepositoryItemAzureBlobBrowser;
+                //if (source == null)
+                //    return;
             }
             finally {
                 EndUpdate();
             }
         }
     }
-
-    internal class BlobEntry
-    {
-        public List<BlobEntry> Entries { get; set; }
-        public string DisplayName { get; set; }
-        public string FullPath { get; set; }
-        public bool IsFolder { get; set; }
-    }
-
 }

@@ -173,7 +173,7 @@ namespace TraceForms
             SetFieldStates(type);
         }
 
-        private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
+        private void LoadCodeLookupValues(string type, SearchLookUpEdit editor)
         {
             if (!string.IsNullOrEmpty(type) && _productLookups.ContainsKey(type)) {
                 editor.Properties.DataSource = _productLookups[type];

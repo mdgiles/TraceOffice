@@ -301,6 +301,9 @@
     <Compile Include="AzureBlobBrowser\AzureBlobBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AzureBlobBrowser\AzureBlobBrowser.Designer.cs">
+      <DependentUpon>AzureBlobBrowser.cs</DependentUpon>
+    </Compile>
     <Compile Include="BlowFish.cs" />
     <Compile Include="BookSelForm.cs">
       <SubType>Form</SubType>

@@ -154,6 +154,7 @@ namespace TraceForms
             this.ColumnTag = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBoxTag = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.ColumnItem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemAzureBlobBrowser = new TraceForms.AzureBlobBrowser.RepositoryItemAzureBlobBrowser();
             this.ColumnDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserDec1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColumnUserDec2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -171,7 +172,6 @@ namespace TraceForms
             this.popupContainerControlPreview = new DevExpress.XtraEditors.PopupContainerControl();
             this.pictureEditPreviewAddImg = new DevExpress.XtraEditors.PictureEdit();
             this.repositoryItemButtonEdit_Item = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.repositoryItemAzureBlobBrowser = new TraceForms.AzureBlobBrowser.RepositoryItemAzureBlobBrowser();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
@@ -314,13 +314,13 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).BeginInit();
             this.popupContainerControlPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditPreviewAddImg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.xtraTabPageDisplay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDisplay)).BeginInit();
@@ -1230,7 +1230,7 @@ namespace TraceForms
             // 
             this.azureBlobBrowser1LowRes.BlobContainer = null;
             this.azureBlobBrowser1LowRes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE1", true));
-            this.azureBlobBrowser1LowRes.Location = new System.Drawing.Point(67, 49);
+            this.azureBlobBrowser1LowRes.Location = new System.Drawing.Point(67, 50);
             this.azureBlobBrowser1LowRes.Margin = new System.Windows.Forms.Padding(2);
             this.azureBlobBrowser1LowRes.MenuManager = this.BarManager;
             this.azureBlobBrowser1LowRes.Name = "azureBlobBrowser1LowRes";
@@ -1891,12 +1891,20 @@ namespace TraceForms
             // ColumnItem
             // 
             this.ColumnItem.Caption = "File";
+            this.ColumnItem.ColumnEdit = this.repositoryItemAzureBlobBrowser;
             this.ColumnItem.FieldName = "ITEM";
             this.ColumnItem.MinWidth = 10;
             this.ColumnItem.Name = "ColumnItem";
             this.ColumnItem.Visible = true;
             this.ColumnItem.VisibleIndex = 1;
             this.ColumnItem.Width = 215;
+            // 
+            // repositoryItemAzureBlobBrowser
+            // 
+            this.repositoryItemAzureBlobBrowser.AutoHeight = false;
+            this.repositoryItemAzureBlobBrowser.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemAzureBlobBrowser.Name = "repositoryItemAzureBlobBrowser";
             // 
             // ColumnDesc
             // 
@@ -2037,13 +2045,6 @@ namespace TraceForms
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit_Item.Name = "repositoryItemButtonEdit_Item";
             this.repositoryItemButtonEdit_Item.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemButtonEdit_Item_ButtonClick);
-            // 
-            // repositoryItemAzureBlobBrowser
-            // 
-            this.repositoryItemAzureBlobBrowser.AutoHeight = false;
-            this.repositoryItemAzureBlobBrowser.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemAzureBlobBrowser.Name = "repositoryItemAzureBlobBrowser";
             // 
             // gridView1
             // 
@@ -2901,13 +2902,13 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ResourceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAdditionalImages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxTag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxImagePurpose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEditPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControlPreview)).EndInit();
             this.popupContainerControlPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEditPreviewAddImg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_Item)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemAzureBlobBrowser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.xtraTabPageDisplay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDisplay)).EndInit();
