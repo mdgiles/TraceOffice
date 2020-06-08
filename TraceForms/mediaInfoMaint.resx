@@ -178,10 +178,10 @@
     <value>False</value>
   </metadata>
   <metadata name="BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>688, 17</value>
+    <value>17, 134</value>
   </metadata>
   <metadata name="ErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>818, 17</value>
+    <value>17, 173</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>63</value>
@@ -204,7 +204,7 @@
 </value>
   </data>
   <metadata name="EntityInstantFeedbackSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1473, 17</value>
+    <value>17, 329</value>
   </metadata>
   <data name="HtmlEditor.BtnAlignCenter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -620,22 +620,22 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="HtmlEditor.WinFormHtmlEditor_Toolbar2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>231, 17</value>
+    <value>17, 56</value>
   </metadata>
   <metadata name="HtmlEditor.WinFormHtmlEditor_ToolbarFooter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>445, 17</value>
+    <value>17, 95</value>
   </metadata>
   <metadata name="ResourceBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>941, 17</value>
+    <value>17, 212</value>
   </metadata>
   <metadata name="BindingSourceCodeName.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1681, 17</value>
+    <value>17, 368</value>
   </metadata>
   <metadata name="bindingSourceCodeNameProduct.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1121, 17</value>
+    <value>17, 251</value>
   </metadata>
   <metadata name="BarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1355, 17</value>
+    <value>17, 290</value>
   </metadata>
   <data name="BarButtonItemNew.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

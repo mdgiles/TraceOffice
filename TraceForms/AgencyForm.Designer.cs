@@ -503,7 +503,7 @@ namespace TraceForms
             this.XtraTabPageCustom = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlCustomTab = new DevExpress.XtraEditors.PanelControl();
             this.GridControlCustom = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceUserfield = new System.Windows.Forms.BindingSource(this.components);
+            this.BindingSourceUserFields = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewCustom = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colLINK_TABLE1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLINK_COLUMN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -846,7 +846,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlCustomTab)).BeginInit();
             this.PanelControlCustomTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCustom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceUserfield)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceUserFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCustom)).BeginInit();
             this.XtraTabPageCommissions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlCommTab)).BeginInit();
@@ -2632,10 +2632,10 @@ namespace TraceForms
             this.TextEditCity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CITY", true));
             this.TextEditCity.EditValue = " ";
             this.TextEditCity.EnterMoveNextControl = true;
-            this.TextEditCity.Location = new System.Drawing.Point(90, 187);
+            this.TextEditCity.Location = new System.Drawing.Point(89, 187);
             this.TextEditCity.Name = "TextEditCity";
             this.TextEditCity.Properties.MaxLength = 30;
-            this.TextEditCity.Size = new System.Drawing.Size(430, 20);
+            this.TextEditCity.Size = new System.Drawing.Size(431, 20);
             this.TextEditCity.TabIndex = 11;
             this.TextEditCity.Leave += new System.EventHandler(this.ImageComboBoxEditCity_Leave);
             // 
@@ -2643,10 +2643,10 @@ namespace TraceForms
             // 
             this.TextEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "STATE", true));
             this.TextEditState.EnterMoveNextControl = true;
-            this.TextEditState.Location = new System.Drawing.Point(90, 227);
+            this.TextEditState.Location = new System.Drawing.Point(89, 227);
             this.TextEditState.Name = "TextEditState";
             this.TextEditState.Properties.MaxLength = 20;
-            this.TextEditState.Size = new System.Drawing.Size(257, 20);
+            this.TextEditState.Size = new System.Drawing.Size(258, 20);
             this.TextEditState.TabIndex = 12;
             this.TextEditState.Leave += new System.EventHandler(this.ImageComboBoxEditState_Leave);
             // 
@@ -2665,10 +2665,10 @@ namespace TraceForms
             // 
             this.TextEditAddr3.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ADDR3", true));
             this.TextEditAddr3.EnterMoveNextControl = true;
-            this.TextEditAddr3.Location = new System.Drawing.Point(90, 142);
+            this.TextEditAddr3.Location = new System.Drawing.Point(89, 142);
             this.TextEditAddr3.Name = "TextEditAddr3";
             this.TextEditAddr3.Properties.MaxLength = 30;
-            this.TextEditAddr3.Size = new System.Drawing.Size(430, 20);
+            this.TextEditAddr3.Size = new System.Drawing.Size(431, 20);
             this.TextEditAddr3.TabIndex = 10;
             this.TextEditAddr3.Leave += new System.EventHandler(this.TextEditAddress3_Leave);
             // 
@@ -5857,7 +5857,7 @@ namespace TraceForms
             // 
             this.GridControlCustom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.GridControlCustom.DataSource = this.BindingSourceUserfield;
+            this.GridControlCustom.DataSource = this.BindingSourceUserFields;
             this.GridControlCustom.Location = new System.Drawing.Point(18, 19);
             this.GridControlCustom.MainView = this.GridViewCustom;
             this.GridControlCustom.Name = "GridControlCustom";
@@ -6004,7 +6004,9 @@ namespace TraceForms
             // GridColumnCustomValue
             // 
             this.GridColumnCustomValue.Caption = "Value";
+            this.GridColumnCustomValue.FieldName = "GridColumnCustomValue";
             this.GridColumnCustomValue.Name = "GridColumnCustomValue";
+            this.GridColumnCustomValue.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.GridColumnCustomValue.Visible = true;
             this.GridColumnCustomValue.VisibleIndex = 1;
             // 
@@ -7213,7 +7215,7 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlCustomTab)).EndInit();
             this.PanelControlCustomTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCustom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceUserfield)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceUserFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCustom)).EndInit();
             this.XtraTabPageCommissions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlCommTab)).EndInit();
@@ -7402,7 +7404,7 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colPHONE;
         private DevExpress.XtraGrid.Columns.GridColumn colFAX;
         private DevExpress.XtraGrid.Columns.GridColumn colEMAIL;
-        private System.Windows.Forms.BindingSource BindingSourceUserfield;
+        private System.Windows.Forms.BindingSource BindingSourceUserFields;
         private DevExpress.XtraGrid.Columns.GridColumn colLINK_TABLE1;
         private DevExpress.XtraGrid.Columns.GridColumn colLINK_COLUMN;
         private DevExpress.XtraGrid.Columns.GridColumn colRECTYPE1;

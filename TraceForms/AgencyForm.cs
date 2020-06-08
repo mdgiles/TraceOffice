@@ -238,6 +238,10 @@ namespace TraceForms
             RepositoryItemCheckedComboBoxEditReportType.ValueMember = "Code";
             RepositoryItemCheckedComboBoxEditReportType.DisplayMember = "Name";
 
+            BindingSourceUserFields.DataSource = _context.USERFIELDS
+                .Where(u => (u.VISIBLE ?? false) && u.LINK_TABLE == "AGY")
+                .OrderBy(u => u.POSITION);
+
             //_supplierCombo.Items.Add(loadBlank);
             //_supplierCombo.Items.AddRange(_context.Supplier
             //                .OrderBy(o => o.Name).AsEnumerable()
@@ -297,12 +301,12 @@ namespace TraceForms
 
         private void GridViewCustom_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
-            if (e.Column == GridColumnCustomValue) {
+            if (e.Column == GridColumnCustomValue && _selectedRecord != null) {
                 string fieldName = GridViewCustom.GetRowCellValue(e.ListSourceRowIndex, "LINK_COLUMN").ToString();
                 if (e.IsGetData) {
                     e.Value = _selectedRecord.GetPropertyValue(fieldName);
                 }
-                else if (e.IsSetData && _selectedRecord != null) {
+                else if (e.IsSetData) {
                     //FinalizeBindings();
                     _selectedRecord.SetPropertyValue(fieldName, e.Value);
                 }
@@ -832,11 +836,6 @@ namespace TraceForms
                 CheckEditSglResConf.Enabled = false;
                 CheckEditSglResConf.Checked = false;
             }
-
-        }
-
-        private void GridViewContacts_CellValueChanging(object sender, CellValueChangedEventArgs e)
-        {
 
         }
 

@@ -495,6 +495,9 @@
   <metadata name="BarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>685, 56</value>
   </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>72</value>
+  </metadata>
   <data name="BarButtonItemNew.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAD10RVh0VGl0
@@ -664,25 +667,6 @@
         GNGKdaFN0JHsg6a4EatFe7DKfzc+99mF5RoO+EzDnmO5ilf//JdJPmmpWzLOABvsF+aItcvsmWSHhKXp
         Tfz9DfzjR7A1u/9MfD796sEW6kyw7WBf+CVgQaojX2BAPdQf/NLMjSVL/gMGC1sK0EICNQAAAABJRU5E
         rkJggg==
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>72</value>
-  </metadata>
-  <data name="PanelControlStatus.ContentImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAAkxJREFUOE9j+P//P0UYQ0BTe7mEsdmFZnunyxcDQ65/A2EQGySmpbtWAl09CsfQ
-        5GSYl+/ljy1tD//PnfccBYPEQHKGJqfCkPUgNBsfCQuPuvx34uRH/ydNefR/4qR7/79//wHGU6c9hIgB
-        5UBqDE2OwQ0BE2qaUyVcPU58bG2//b+t4w4Yd3ReAmv+/fv3/xkzb8HFQWpAajV1FoC9A7HdZE9LRtb5
-        /5XVVxC46sr/6TOu/V+y9Nb/quqrKHIgtSA9cAPMrXZezM498x8ZZ2af/L9n79X/hw7f+Z+TdxpFDoRB
-        euAGWFht+RYRdeB/UMi+/+6eO/9b2W79b2u/5v/Pnz/BXvD13w4WA8mB1IDUgvTADTAwXv0NiP8jY1v7
-        Zf9//foFNWATihwUIwzQN1p6Ud9k2X890+VwbO2wGG6AT+B6FDmQWpAeJAMWtOhYLvuv4bzhvzoUm/qu
-        hhvgFrsNLg5SA1KrbzQfEYjKqiUSuqbzPir5bfsvF37gv1zEgf+68TvhYWCXdwQsBpIDqQGpVdOoRUQj
-        COvqTwzTtFn4Vzrm8H+xjAv/pbLO/r9w5+X/Ry/e/VcrvgQWA8mB1OgaTEFNSDBsYNwcpm0186N88Pb/
-        4uln/ksXXfmvWHoVzAaJgeRAapD1wBnW1tZs1nbO2rouBTlKzvOPqdktfKVpO+cXCIPYykAxPZfcHBs7
-        Jx1bW1s2DAOMjY2ZbewcpQxd4i1VvRu9Ff36Q+UDpkTJ+0+JUvTrC1Xzrvc2co61tLFzkDY1NWWB6PvP
-        AACf6Hb7VlcI+AAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="ButtonDeleteDeposit.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1136,7 +1120,7 @@
   <metadata name="BindingSourceDetail.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>400, 56</value>
   </metadata>
-  <metadata name="BindingSourceUserfield.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="BindingSourceUserFields.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1125, 17</value>
   </metadata>
   <data name="ButtonDeleteAgent.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1236,6 +1220,22 @@
   <metadata name="ErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>562, 56</value>
   </metadata>
+  <data name="PanelControlStatus.ContentImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAkxJREFUOE9j+P//P0UYQ0BTe7mEsdmFZnunyxcDQ65/A2EQGySmpbtWAl09CsfQ
+        5GSYl+/ljy1tD//PnfccBYPEQHKGJqfCkPUgNBsfCQuPuvx34uRH/ydNefR/4qR7/79//wHGU6c9hIgB
+        5UBqDE2OwQ0BE2qaUyVcPU58bG2//b+t4w4Yd3ReAmv+/fv3/xkzb8HFQWpAajV1FoC9A7HdZE9LRtb5
+        /5XVVxC46sr/6TOu/V+y9Nb/quqrKHIgtSA9cAPMrXZezM498x8ZZ2af/L9n79X/hw7f+Z+TdxpFDoRB
+        euAGWFht+RYRdeB/UMi+/+6eO/9b2W79b2u/5v/Pnz/BXvD13w4WA8mB1IDUgvTADTAwXv0NiP8jY1v7
+        Zf9//foFNWATihwUIwzQN1p6Ud9k2X890+VwbO2wGG6AT+B6FDmQWpAeJAMWtOhYLvuv4bzhvzoUm/qu
+        hhvgFrsNLg5SA1KrbzQfEYjKqiUSuqbzPir5bfsvF37gv1zEgf+68TvhYWCXdwQsBpIDqQGpVdOoRUQj
+        COvqTwzTtFn4Vzrm8H+xjAv/pbLO/r9w5+X/Ry/e/VcrvgQWA8mB1OgaTEFNSDBsYNwcpm0186N88Pb/
+        4uln/ksXXfmvWHoVzAaJgeRAapD1wBnW1tZs1nbO2rouBTlKzvOPqdktfKVpO+cXCIPYykAxPZfcHBs7
+        Jx1bW1s2DAOMjY2ZbewcpQxd4i1VvRu9Ff36Q+UDpkTJ+0+JUvTrC1Xzrvc2co61tLFzkDY1NWWB6PvP
+        AACf6Hb7VlcI+AAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="chineseHosts_FlextourDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>803, 56</value>
   </metadata>
