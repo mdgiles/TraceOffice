@@ -28,43 +28,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.popupContainerEditBrowser = new DevExpress.XtraEditors.PopupContainerEdit();
-            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
+            this.fProperties = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
+            this.popupContainerControl = new DevExpress.XtraEditors.PopupContainerControl();
             this.treeListBrowser = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumnFullPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnDisplayName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumnIsFolder = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerEditBrowser.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
-            this.popupContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl)).BeginInit();
+            this.popupContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListBrowser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
             this.SuspendLayout();
             // 
-            // popupContainerEditBrowser
+            // fProperties
             // 
-            this.popupContainerEditBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.popupContainerEditBrowser.Location = new System.Drawing.Point(0, 2);
-            this.popupContainerEditBrowser.Margin = new System.Windows.Forms.Padding(2);
-            this.popupContainerEditBrowser.Name = "popupContainerEditBrowser";
-            this.popupContainerEditBrowser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.fProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.popupContainerEditBrowser.Properties.PopupControl = this.popupContainerControl1;
-            this.popupContainerEditBrowser.Properties.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(this.popupContainerEdit1_Properties_QueryResultValue);
-            this.popupContainerEditBrowser.Size = new System.Drawing.Size(398, 20);
-            this.popupContainerEditBrowser.TabIndex = 0;
-            this.popupContainerEditBrowser.Popup += new System.EventHandler(this.popupContainerEditBrowser_Popup);
+            this.fProperties.Name = "fProperties";
+            this.fProperties.PopupControl = this.popupContainerControl;
             // 
-            // popupContainerControl1
+            // popupContainerControl
             // 
-            this.popupContainerControl1.Controls.Add(this.treeListBrowser);
-            this.popupContainerControl1.Location = new System.Drawing.Point(2, 25);
-            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(396, 225);
-            this.popupContainerControl1.TabIndex = 1;
+            this.popupContainerControl.Controls.Add(this.treeListBrowser);
+            this.popupContainerControl.Location = new System.Drawing.Point(2, 25);
+            this.popupContainerControl.Margin = new System.Windows.Forms.Padding(2);
+            this.popupContainerControl.Name = "popupContainerControl";
+            this.popupContainerControl.Size = new System.Drawing.Size(396, 225);
+            this.popupContainerControl.TabIndex = 1;
             // 
             // treeListBrowser
             // 
@@ -89,7 +81,7 @@
             this.treeListBrowser.VirtualTreeGetChildNodes += new DevExpress.XtraTreeList.VirtualTreeGetChildNodesEventHandler(this.treeList1_VirtualTreeGetChildNodes);
             this.treeListBrowser.VirtualTreeGetCellValue += new DevExpress.XtraTreeList.VirtualTreeGetCellValueEventHandler(this.treeList1_VirtualTreeGetCellValue);
             this.treeListBrowser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeListBrowser_MouseDoubleClick);
-            this.treeListBrowser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeListBrowser_MouseUp_1);
+            this.treeListBrowser.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeListBrowser_MouseUp);
             // 
             // treeListColumnFullPath
             // 
@@ -132,16 +124,14 @@
             // 
             // AzureBlobBrowser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.popupContainerControl1);
-            this.Controls.Add(this.popupContainerEditBrowser);
+            this.Controls.Add(this.popupContainerControl);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "AzureBlobBrowser";
-            this.Size = new System.Drawing.Size(399, 27);
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerEditBrowser.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
-            this.popupContainerControl1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(399, 20);
+            this.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(this.popupContainerEdit1_Properties_QueryResultValue);
+            this.Popup += new System.EventHandler(this.popupContainerEditBrowser_Popup);
+            ((System.ComponentModel.ISupportInitialize)(this.fProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl)).EndInit();
+            this.popupContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListBrowser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).EndInit();
             this.ResumeLayout(false);
@@ -149,13 +139,12 @@
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.PopupContainerEdit popupContainerEditBrowser;
-        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl;
         private DevExpress.XtraTreeList.TreeList treeListBrowser;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnDisplayName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnFullPath;
         private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnIsFolder;
         private DevExpress.Utils.SvgImageCollection svgImageCollection1;
+        private new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit fProperties;
     }
 }

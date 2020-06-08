@@ -1038,7 +1038,7 @@
             // LabelStreet
             // 
             LabelStreet.AutoSize = true;
-            LabelStreet.Location = new System.Drawing.Point(67, 27);
+            LabelStreet.Location = new System.Drawing.Point(69, 26);
             LabelStreet.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelStreet.Name = "LabelStreet";
             LabelStreet.Size = new System.Drawing.Size(37, 13);
@@ -1048,7 +1048,7 @@
             // LabelMilesTo
             // 
             LabelMilesTo.AutoSize = true;
-            LabelMilesTo.Location = new System.Drawing.Point(730, 37);
+            LabelMilesTo.Location = new System.Drawing.Point(730, 50);
             LabelMilesTo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelMilesTo.Name = "LabelMilesTo";
             LabelMilesTo.Size = new System.Drawing.Size(43, 13);
@@ -1068,7 +1068,7 @@
             // LabelLong
             // 
             LabelLong.AutoSize = true;
-            LabelLong.Location = new System.Drawing.Point(149, 376);
+            LabelLong.Location = new System.Drawing.Point(145, 402);
             LabelLong.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelLong.Name = "LabelLong";
             LabelLong.Size = new System.Drawing.Size(58, 13);
@@ -1078,7 +1078,7 @@
             // LabelLat
             // 
             LabelLat.AutoSize = true;
-            LabelLat.Location = new System.Drawing.Point(149, 362);
+            LabelLat.Location = new System.Drawing.Point(145, 388);
             LabelLat.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelLat.Name = "LabelLat";
             LabelLat.Size = new System.Drawing.Size(50, 13);
@@ -1207,7 +1207,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(72, 278);
+            label1.Location = new System.Drawing.Point(69, 278);
             label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(40, 13);
@@ -1481,7 +1481,7 @@
             this.GridViewLookup.OptionsView.ShowIndicator = false;
             this.GridViewLookup.PreviewIndent = 0;
             this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
-            this.GridViewLookup.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewComponentss_InvalidRowException);
+            this.GridViewLookup.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewComponents_InvalidRowException);
             this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
             // 
             // colDisplayName1
@@ -2228,7 +2228,7 @@
             // 
             // LabelControlLon
             // 
-            this.LabelControlLon.Location = new System.Drawing.Point(216, 377);
+            this.LabelControlLon.Location = new System.Drawing.Point(212, 403);
             this.LabelControlLon.Margin = new System.Windows.Forms.Padding(2);
             this.LabelControlLon.Name = "LabelControlLon";
             this.LabelControlLon.Size = new System.Drawing.Size(0, 13);
@@ -2236,7 +2236,7 @@
             // 
             // LabelControlLat
             // 
-            this.LabelControlLat.Location = new System.Drawing.Point(216, 362);
+            this.LabelControlLat.Location = new System.Drawing.Point(212, 388);
             this.LabelControlLat.Margin = new System.Windows.Forms.Padding(2);
             this.LabelControlLat.Name = "LabelControlLat";
             this.LabelControlLat.Size = new System.Drawing.Size(0, 13);
@@ -2245,7 +2245,7 @@
             // SimpleButtonPlot
             // 
             this.SimpleButtonPlot.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPlot.ImageOptions.Image")));
-            this.SimpleButtonPlot.Location = new System.Drawing.Point(74, 349);
+            this.SimpleButtonPlot.Location = new System.Drawing.Point(70, 375);
             this.SimpleButtonPlot.Margin = new System.Windows.Forms.Padding(2);
             this.SimpleButtonPlot.Name = "SimpleButtonPlot";
             this.SimpleButtonPlot.Size = new System.Drawing.Size(66, 41);
@@ -2282,7 +2282,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(74, 328);
+            this.labelControl1.Location = new System.Drawing.Point(72, 346);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(181, 13);
@@ -2292,7 +2292,7 @@
             // CheckEditProximitySearch
             // 
             this.CheckEditProximitySearch.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ProximitySearch", true));
-            this.CheckEditProximitySearch.Location = new System.Drawing.Point(72, 301);
+            this.CheckEditProximitySearch.Location = new System.Drawing.Point(70, 311);
             this.CheckEditProximitySearch.Margin = new System.Windows.Forms.Padding(2);
             this.CheckEditProximitySearch.Name = "CheckEditProximitySearch";
             this.CheckEditProximitySearch.Properties.Caption = "Enable proximity search for this item on a map";
@@ -2310,7 +2310,7 @@
             0,
             0});
             this.SpinEditDistance.Enabled = false;
-            this.SpinEditDistance.Location = new System.Drawing.Point(306, 324);
+            this.SpinEditDistance.Location = new System.Drawing.Point(300, 343);
             this.SpinEditDistance.Margin = new System.Windows.Forms.Padding(2);
             this.SpinEditDistance.Name = "SpinEditDistance";
             this.SpinEditDistance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2345,7 +2345,7 @@
             // 
             // LabelCity
             // 
-            this.LabelCity.Location = new System.Drawing.Point(434, 76);
+            this.LabelCity.Location = new System.Drawing.Point(424, 81);
             this.LabelCity.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelCity.Name = "LabelCity";
             this.LabelCity.Size = new System.Drawing.Size(19, 13);
@@ -2354,7 +2354,7 @@
             // 
             // LabelAirport
             // 
-            this.LabelAirport.Location = new System.Drawing.Point(434, 10);
+            this.LabelAirport.Location = new System.Drawing.Point(424, 26);
             this.LabelAirport.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelAirport.Name = "LabelAirport";
             this.LabelAirport.Size = new System.Drawing.Size(33, 13);
@@ -2365,7 +2365,7 @@
             // 
             this.TextEditAirportMiles.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "AIR_MI", true));
             this.TextEditAirportMiles.EnterMoveNextControl = true;
-            this.TextEditAirportMiles.Location = new System.Drawing.Point(778, 33);
+            this.TextEditAirportMiles.Location = new System.Drawing.Point(778, 46);
             this.TextEditAirportMiles.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextEditAirportMiles.Name = "TextEditAirportMiles";
             this.TextEditAirportMiles.Size = new System.Drawing.Size(44, 20);
@@ -2373,7 +2373,7 @@
             // 
             // LabelAirportCode
             // 
-            this.LabelAirportCode.Location = new System.Drawing.Point(428, 36);
+            this.LabelAirportCode.Location = new System.Drawing.Point(428, 49);
             this.LabelAirportCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelAirportCode.Name = "LabelAirportCode";
             this.LabelAirportCode.Size = new System.Drawing.Size(25, 13);
@@ -2418,7 +2418,7 @@
             // 
             // LabelAddressCity
             // 
-            this.LabelAddressCity.Location = new System.Drawing.Point(70, 131);
+            this.LabelAddressCity.Location = new System.Drawing.Point(72, 130);
             this.LabelAddressCity.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelAddressCity.Name = "LabelAddressCity";
             this.LabelAddressCity.Size = new System.Drawing.Size(19, 13);
@@ -2427,7 +2427,7 @@
             // 
             // LabelCountry
             // 
-            this.LabelCountry.Location = new System.Drawing.Point(72, 241);
+            this.LabelCountry.Location = new System.Drawing.Point(72, 240);
             this.LabelCountry.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelCountry.Name = "LabelCountry";
             this.LabelCountry.Size = new System.Drawing.Size(39, 13);
@@ -2448,7 +2448,7 @@
             // 
             // LabelState
             // 
-            this.LabelState.Location = new System.Drawing.Point(70, 168);
+            this.LabelState.Location = new System.Drawing.Point(72, 171);
             this.LabelState.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelState.Name = "LabelState";
             this.LabelState.Size = new System.Drawing.Size(26, 13);
@@ -2611,7 +2611,7 @@
             // SearchLookupEditAirportCode
             // 
             this.SearchLookupEditAirportCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "AIRPORT", true));
-            this.SearchLookupEditAirportCode.Location = new System.Drawing.Point(458, 34);
+            this.SearchLookupEditAirportCode.Location = new System.Drawing.Point(458, 47);
             this.SearchLookupEditAirportCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.SearchLookupEditAirportCode.Name = "SearchLookupEditAirportCode";
             this.SearchLookupEditAirportCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -4645,7 +4645,9 @@
             // GridColumnCustomValue
             // 
             this.GridColumnCustomValue.Caption = "Value";
+            this.GridColumnCustomValue.FieldName = "GridColumnCustomValue";
             this.GridColumnCustomValue.Name = "GridColumnCustomValue";
+            this.GridColumnCustomValue.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.GridColumnCustomValue.Visible = true;
             this.GridColumnCustomValue.VisibleIndex = 1;
             // 

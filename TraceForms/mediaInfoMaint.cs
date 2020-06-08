@@ -64,7 +64,7 @@ namespace TraceForms
         private void SetImageSources()
         {
             if (!string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(Configurator.AzureStorageConnectionString);
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse(_sys.Settings.AzureStorageConnectionString);
                 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
                 _container = blobClient.GetContainerReference(_sys.Settings.ImagesContainer);
                 //CloudBlobContainer container = blobClient.GetContainerReference("images");
@@ -173,7 +173,7 @@ namespace TraceForms
             SetFieldStates(type);
         }
 
-        private void LoadCodeLookupValues(string type, CustomSearchLookUpEdit editor)
+        private void LoadCodeLookupValues(string type, SearchLookUpEdit editor)
         {
             if (!string.IsNullOrEmpty(type) && _productLookups.ContainsKey(type)) {
                 editor.Properties.DataSource = _productLookups[type];
@@ -424,15 +424,15 @@ namespace TraceForms
         {
             //Refreshing from store can't refresh added but unsaved records, so these have to be manually removed first
             List<RESOURCE> toRemove = new List<RESOURCE>();
-            foreach (RESOURCE resource in ResourceBindingSource.List) {
+            foreach (RESOURCE resource in BindingSourceResource.List) {
                 if (resource.EntityState == EntityState.Added) {
                     toRemove.Add(resource);
                 }
             }
             foreach (RESOURCE resource in toRemove) {
-                ResourceBindingSource.Remove(resource);
+                BindingSourceResource.Remove(resource);
             }
-            _context.Refresh(RefreshMode.StoreWins, ResourceBindingSource.List);
+            _context.Refresh(RefreshMode.StoreWins, BindingSourceResource.List);
             LoadAndBindResources();
         }
 
@@ -471,7 +471,7 @@ namespace TraceForms
                     SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
                     if (newRec) {
-                        foreach (RESOURCE resource in ResourceBindingSource.List.Cast<RESOURCE>()) {
+                        foreach (RESOURCE resource in BindingSourceResource.List.Cast<RESOURCE>()) {
                             resource.LINK_VALUE = _selectedRecord.ID.ToString();
                         }
                         _context.SaveChanges();
@@ -508,8 +508,8 @@ namespace TraceForms
         private bool ValidateAll()
         {
             bool imagesInvalid = false;
-            if (ResourceBindingSource.List.Count > 0) {
-                imagesInvalid = ResourceBindingSource.List.Cast<RESOURCE>().Any(b => !b.Validate() || b.ValidateTag().IsNotNullOrEmpty());
+            if (BindingSourceResource.List.Count > 0) {
+                imagesInvalid = BindingSourceResource.List.Cast<RESOURCE>().Any(b => !b.Validate() || b.ValidateTag().IsNotNullOrEmpty());
             }
 
             if (!_selectedRecord.Validate() || imagesInvalid) {
@@ -538,7 +538,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateResEndDate, DateEditResEndDate);
             SetErrorInfo(_selectedRecord.ValidateTitle, TextEditTitle);
             SetErrorInfo(_selectedRecord.ValidateSubtitle, TextEditSubtitle);
-            _selectedRecord.Resources = ResourceBindingSource.List.Cast<RESOURCE>().ToList();
+            _selectedRecord.Resources = BindingSourceResource.List.Cast<RESOURCE>().ToList();
             SetErrorInfo(_selectedRecord.ValidateImages, GridControlAdditionalImages);
         }
 
@@ -566,6 +566,7 @@ namespace TraceForms
                 _selectedRecord = ((MEDIAINFO)BindingSource.Current);
                 LoadAndBindResources();
                 SetReadOnly(false);
+                SetReadOnlyKeyFields(true);
                 //SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
                 BarSubItemReports.Enabled = true;
@@ -588,7 +589,7 @@ namespace TraceForms
             string id = _selectedRecord.ID.ToString();
             //var foo = _context.RESOURCE.Where(c => c.LINK_VALUE == id).ToList();
             //GridControlAdditionalImages.DataSource = foo;
-            ResourceBindingSource.DataSource = _context.RESOURCE.Where(c => c.LINK_VALUE == id);
+            BindingSourceResource.DataSource = _context.RESOURCE.Where(c => c.LINK_VALUE == id);
         }
 
         private void DeleteRecord()
@@ -605,6 +606,7 @@ namespace TraceForms
                     _ignoreLeaveRow = true;
                     _ignorePositionChange = true;
                     RemoveRecord();
+                    BindingSourceResource.Clear();
                     if (!_selectedRecord.IsNew()) {
                         //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
                         //(the EntityState remains unchanged).  It seems like it is not tracked by the context even though it is, because
@@ -661,7 +663,7 @@ namespace TraceForms
             _ignorePositionChange = true;
             _selectedRecord = null;
             SetReadOnly(true);
-            ResourceBindingSource.DataSource = typeof(RESOURCE);
+            BindingSourceResource.DataSource = typeof(RESOURCE);
             HtmlEditor.BodyHtml = string.Empty;
             _originalHtml = string.Empty;
             BarButtonItemDelete.Enabled = false;
@@ -937,13 +939,13 @@ namespace TraceForms
                 RECTYPE = "IMAGE",
                 LINK_VALUE = _selectedRecord.ID.ToString()
             };
-            ResourceBindingSource.Add(resource);
+            BindingSourceResource.Add(resource);
         }
 
         private void ButtonDelRow_Click(object sender, EventArgs e)
         {
             _resourcesModified = true;
-            ResourceBindingSource.RemoveCurrent();
+            BindingSourceResource.RemoveCurrent();
         }
 
         private void ImageComboBoxEditLang_Leave(object sender, EventArgs e)
@@ -1084,15 +1086,21 @@ namespace TraceForms
             pictureEditPreviewAddImg.Image = null;
             string path = GridViewAdditionalImages.GetFocusedRowCellDisplayText(ColumnItem);
             try {
-                if (path.Contains(":") || path.StartsWith("\\")) {
-                    using (var stream = new MemoryStream(File.ReadAllBytes(path))) {
-                        pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                    if (path.Contains(":") || path.StartsWith("\\")) {
+                        using (var stream = new MemoryStream(File.ReadAllBytes(path))) {
+                            pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                        }
+                    }
+                    else {
+                        using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + path))) {
+                            pictureEditPreviewAddImg.Image = Image.FromStream(stream);
+                        }
                     }
                 }
                 else {
-                    using (var stream = new MemoryStream(File.ReadAllBytes(_imagesRoot + path))) {
-                        pictureEditPreviewAddImg.Image = Image.FromStream(stream);
-                    }
+                    path = _sys.Settings.StorageRoot + _sys.Settings.ImagesContainer + '/' + path.Replace("\\", "/");
+                    pictureEditPreviewAddImg.LoadAsync(path);
                 }
             }
             catch { }
@@ -1242,40 +1250,85 @@ namespace TraceForms
             _resourcesModified = true;
         }
 
-        private void SetPreviewImage(string url, PictureEdit previewControl, LabelControl sizeLabel)
+        private void SetPreviewImage(string url, PictureEdit previewControl, LabelControl sizeLabel, SimpleButton thumbnailButton)
         {
-            if (string.IsNullOrEmpty(url)) {
+            if (!string.IsNullOrEmpty(url)) {
+                url = _sys.Settings.StorageRoot + _sys.Settings.ImagesContainer + '/' + url.Replace("\\","/");
                 previewControl.LoadAsync(url);
-                sizeLabel.Text = previewControl.Image.Height + " * " + previewControl.Image.Width;
             }
             else {
                 previewControl.Image = null;
                 sizeLabel.Text = string.Empty;
             }
+
+            if (thumbnailButton != null) {
+                thumbnailButton.Enabled = !string.IsNullOrEmpty(url);
+            }
         }
 
         private void azureBlobBrowser1LowRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage1LowRes, labelControlSizeDisplay1LowRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage1LowRes, labelControlSizeDisplay1LowRes, ButtonCreateThumbnailLowRes);
         }
 
         private void azureBlobBrowser4Thumb_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage2MedRes, labelControlSizeDisplay2MedRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage4Thumb, labelControlSizeDisplay4Thumb, null);
         }
 
         private void azureBlobBrowser3HighRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage3HighRes, labelControlSizeDisplay3HighRes);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage3HighRes, labelControlSizeDisplay3HighRes, ButtonCreateThumbNailHighRes);
         }
 
         private void azureBlobBrowser2MedRes_EditValueChanged(object sender, EventArgs e)
         {
-            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValueData.ToStringEmptyIfNull();
-            SetPreviewImage(url, PictureEditPreviewImage4Thumb, labelControlSizeDisplay4Thumb);
+            string url = ((AzureBlobBrowser.AzureBlobBrowser)sender).EditValue.ToStringEmptyIfNull();
+            SetPreviewImage(url, PictureEditPreviewImage2MedRes, labelControlSizeDisplay2MedRes, ButtonCreateThumbnailMedRes);
+        }
+
+        private void PictureEditPreviewImage1LowRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay1LowRes.Text = PictureEditPreviewImage1LowRes.Image.Height + " * " + PictureEditPreviewImage1LowRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage2MedRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay2MedRes.Text = PictureEditPreviewImage2MedRes.Image.Height + " * " + PictureEditPreviewImage2MedRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage3HighRes_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay3HighRes.Text = PictureEditPreviewImage3HighRes.Image.Height + " * " + PictureEditPreviewImage3HighRes.Image.Width;
+        }
+
+        private void PictureEditPreviewImage4Thumb_LoadCompleted(object sender, EventArgs e)
+        {
+            labelControlSizeDisplay4Thumb.Text = PictureEditPreviewImage4Thumb.Image.Height + " * " + PictureEditPreviewImage4Thumb.Image.Width;
+        }
+
+        private void GridViewAdditionalImages_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column.FieldName == "ITEM") {
+                if (string.IsNullOrEmpty(_sys.Settings.ImagesContainer)) {
+                    e.RepositoryItem = repositoryItemButtonEdit_Item;
+                }
+                else {
+                    e.RepositoryItem = repositoryItemAzureBlobBrowser;
+                }
+            }
+        }
+
+        private void GridViewAdditionalImages_ShownEditor(object sender, EventArgs e)
+        {
+            ColumnView view = (ColumnView)sender;
+            if (view.FocusedColumn.FieldName == "ITEM" && _container != null) {
+                AzureBlobBrowser.AzureBlobBrowser browser = (AzureBlobBrowser.AzureBlobBrowser)view.ActiveEditor;
+                browser.BlobContainer = _container;
+            }
         }
 
         private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
