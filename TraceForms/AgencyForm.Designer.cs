@@ -5553,6 +5553,7 @@ namespace TraceForms
             // 
             // labelControlSize
             // 
+            this.labelControlSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControlSize.Location = new System.Drawing.Point(67, 357);
             this.labelControlSize.Name = "labelControlSize";
             this.labelControlSize.Size = new System.Drawing.Size(0, 13);
@@ -5596,7 +5597,9 @@ namespace TraceForms
             // PictureEditPreview
             // 
             this.PictureEditPreview.Location = new System.Drawing.Point(31, 104);
+            this.PictureEditPreview.MaximumSize = new System.Drawing.Size(238, 247);
             this.PictureEditPreview.Name = "PictureEditPreview";
+            this.PictureEditPreview.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
             this.PictureEditPreview.Size = new System.Drawing.Size(238, 247);
             this.PictureEditPreview.TabIndex = 0;
             // 
