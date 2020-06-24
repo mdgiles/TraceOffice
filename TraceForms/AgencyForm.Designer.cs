@@ -38,12 +38,8 @@ namespace TraceForms
             System.Windows.Forms.Label rELLabel;
             System.Windows.Forms.Label rETNOTAVALHTLSLabel;
             System.Windows.Forms.Label rETREQHTLSLabel;
-            System.Windows.Forms.Label sUB_ALLOCLabel;
             System.Windows.Forms.Label vOUCHER_DAYS_PRIORLabel;
             System.Windows.Forms.Label vOUCHER_REPRINTSLabel;
-            System.Windows.Forms.Label rEMOTE_VOUCHERSLabel;
-            System.Windows.Forms.Label aLLOW_ATTACHMENTSLabel;
-            System.Windows.Forms.Label cONF_PRCLabel;
             System.Windows.Forms.Label eDITHTLSLabel;
             System.Windows.Forms.Label eDITHDRSLabel;
             System.Windows.Forms.Label cOMMLabel;
@@ -76,7 +72,7 @@ namespace TraceForms
             System.Windows.Forms.Label aDDR1Label;
             System.Windows.Forms.Label tourfaxEmailFormatLabel;
             System.Windows.Forms.Label lOGO_PATHLabel;
-            System.Windows.Forms.Label vOUCH_TYPESLabel;
+            System.Windows.Forms.Label LabelVoucherTypes;
             System.Windows.Forms.Label label18;
             System.Windows.Forms.Label label19;
             System.Windows.Forms.Label label20;
@@ -98,7 +94,7 @@ namespace TraceForms
             System.Windows.Forms.Label sRT2Label;
             System.Windows.Forms.Label LabelPaymentDue;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgencyForm));
-            this.LabelPaymentProfileStatus = new System.Windows.Forms.Label();
+            this.LabelCustomerProfileStatus = new System.Windows.Forms.Label();
             this.LabelDate = new System.Windows.Forms.Label();
             this.LabelAgency = new System.Windows.Forms.Label();
             this.GridControlLookup = new DevExpress.XtraGrid.GridControl();
@@ -302,21 +298,14 @@ namespace TraceForms
             this.SpinEditRel = new DevExpress.XtraEditors.SpinEdit();
             this.XtraTabPageReporting = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlReportTab = new DevExpress.XtraEditors.PanelControl();
-            this.CheckEditPkgVouchers = new DevExpress.XtraEditors.CheckEdit();
-            this.CheckEditOptVouchers = new DevExpress.XtraEditors.CheckEdit();
-            this.CheckEditAirVouchers = new DevExpress.XtraEditors.CheckEdit();
-            this.CheckEditCruVouchers = new DevExpress.XtraEditors.CheckEdit();
-            this.CheckEditCarVouchers = new DevExpress.XtraEditors.CheckEdit();
-            this.CheckEditHtlVouchers = new DevExpress.XtraEditors.CheckEdit();
             this.ImageComboBoxEditTourfaxEmailFormat = new DevExpress.XtraEditors.ImageComboBoxEdit();
-            this.CheckEditSglResConf = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit8 = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditRemoteVouchers = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditAllowAttachments = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditConfPrc = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditVoucherDaysPrior = new DevExpress.XtraEditors.SpinEdit();
             this.SpinEditVoucherReprints = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.CheckedComboBoxEditVouchTypes = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.XtraTabPagePolicies = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlPoliciesTab = new DevExpress.XtraEditors.PanelControl();
             this.ButtonDeleteAgencyCurrency = new DevExpress.XtraEditors.SimpleButton();
@@ -355,6 +344,7 @@ namespace TraceForms
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPmtCode_PmtCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CheckEditCreditUnlimited = new DevExpress.XtraEditors.CheckEdit();
             this.SpinEditDaysSpace = new DevExpress.XtraEditors.SpinEdit();
             this.SpinEditPriorDays = new DevExpress.XtraEditors.SpinEdit();
@@ -367,8 +357,6 @@ namespace TraceForms
             this.LabelControlLastInvDate = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlPriorDays = new DevExpress.XtraEditors.LabelControl();
-            this.LabelControlPmtDays = new DevExpress.XtraEditors.LabelControl();
-            this.LabelControlDueDays = new DevExpress.XtraEditors.LabelControl();
             this.CheckEditSvcDateFlg = new DevExpress.XtraEditors.CheckEdit();
             this.ComboBoxEditInvFmt = new DevExpress.XtraEditors.ComboBoxEdit();
             this.CheckEditImmedFlg = new DevExpress.XtraEditors.CheckEdit();
@@ -381,10 +369,8 @@ namespace TraceForms
             this.XtraTabPagePayments = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.SimpleButtonRetry = new DevExpress.XtraEditors.SimpleButton();
-            this.PanelControlPaymentProfileStatus = new DevExpress.XtraEditors.PanelControl();
+            this.PanelControlCustomerProfileStatus = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.SimpleButtonValidateBankRow = new DevExpress.XtraEditors.SimpleButton();
-            this.SimpleButtonValidateCreditRow = new DevExpress.XtraEditors.SimpleButton();
             this.CheckEditAllowElectronicPayment = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditRequireCVV2 = new DevExpress.XtraEditors.CheckEdit();
             this.LabelDefaultPaymentProfileID = new System.Windows.Forms.Label();
@@ -394,7 +380,7 @@ namespace TraceForms
             this.ButtonAddBank = new DevExpress.XtraEditors.SimpleButton();
             this.label4 = new System.Windows.Forms.Label();
             this.GridControlBankProfiles = new DevExpress.XtraGrid.GridControl();
-            this.BindingSourceAgencyPaymentProfile = new System.Windows.Forms.BindingSource(this.components);
+            this.BindingSourceAgencyPaymentProfileCredit = new System.Windows.Forms.BindingSource(this.components);
             this.GridViewBankProfiles = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnBankName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -411,29 +397,28 @@ namespace TraceForms
             this.gridColumnNameOnAccount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.GridControlCreditProfiles = new DevExpress.XtraGrid.GridControl();
             this.GridViewCreditProfiles = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.grdColID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.grdColCardNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColExpirationYear = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.RepositoryItemSpinEditExpYear = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.grdColCVV2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColCompany = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColFirst = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdColLast = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColCardNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColExpirationYear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemComboBoxExpYear = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.gridColCVV2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColCompany = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColFirst = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColLast = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColStreet = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColCity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColZip = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColCountry = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColAccountType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColPhone = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColExpirationMonth = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemImageComboBoxExpMonth = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.AddCreditButton = new DevExpress.XtraEditors.SimpleButton();
+            this.ButtonAddCredit = new DevExpress.XtraEditors.SimpleButton();
             this.LblCreditCardProf = new System.Windows.Forms.Label();
-            this.DeleteButton = new DevExpress.XtraEditors.SimpleButton();
+            this.SimpleButtonDelete = new DevExpress.XtraEditors.SimpleButton();
             this.ChangePaymentProfileButton = new DevExpress.XtraEditors.SimpleButton();
             this.TextEditCustomerProfileEmail = new DevExpress.XtraEditors.TextEdit();
             this.ImageComboBoxEditDefaultPmtProfileID = new DevExpress.XtraEditors.ImageComboBoxEdit();
@@ -601,7 +586,6 @@ namespace TraceForms
             this.RepositoryItemImageComboBoxEditAgentDelegate = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.colAgcylogReadOnly = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BindingSourcePaymentProfiles = new System.Windows.Forms.BindingSource(this.components);
-            this.BindingSourceCreditCardInfo = new System.Windows.Forms.BindingSource(this.components);
             this.TextEditAr = new DevExpress.XtraEditors.TextEdit();
             this.TextEditAp = new DevExpress.XtraEditors.TextEdit();
             this.TextEditType = new DevExpress.XtraEditors.TextEdit();
@@ -619,7 +603,6 @@ namespace TraceForms
             this.colCode3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
-            this.TextEditVouchTypes = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.chineseHosts_FlextourDataSet = new TraceForms.ChineseHosts_FlextourDataSet();
@@ -632,12 +615,8 @@ namespace TraceForms
             rELLabel = new System.Windows.Forms.Label();
             rETNOTAVALHTLSLabel = new System.Windows.Forms.Label();
             rETREQHTLSLabel = new System.Windows.Forms.Label();
-            sUB_ALLOCLabel = new System.Windows.Forms.Label();
             vOUCHER_DAYS_PRIORLabel = new System.Windows.Forms.Label();
             vOUCHER_REPRINTSLabel = new System.Windows.Forms.Label();
-            rEMOTE_VOUCHERSLabel = new System.Windows.Forms.Label();
-            aLLOW_ATTACHMENTSLabel = new System.Windows.Forms.Label();
-            cONF_PRCLabel = new System.Windows.Forms.Label();
             eDITHTLSLabel = new System.Windows.Forms.Label();
             eDITHDRSLabel = new System.Windows.Forms.Label();
             cOMMLabel = new System.Windows.Forms.Label();
@@ -670,7 +649,7 @@ namespace TraceForms
             aDDR1Label = new System.Windows.Forms.Label();
             tourfaxEmailFormatLabel = new System.Windows.Forms.Label();
             lOGO_PATHLabel = new System.Windows.Forms.Label();
-            vOUCH_TYPESLabel = new System.Windows.Forms.Label();
+            LabelVoucherTypes = new System.Windows.Forms.Label();
             label18 = new System.Windows.Forms.Label();
             label19 = new System.Windows.Forms.Label();
             label20 = new System.Windows.Forms.Label();
@@ -735,20 +714,14 @@ namespace TraceForms
             this.XtraTabPageReporting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlReportTab)).BeginInit();
             this.PanelControlReportTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditPkgVouchers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditOptVouchers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAirVouchers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditCruVouchers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditCarVouchers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditHtlVouchers.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTourfaxEmailFormat.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditSglResConf.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit8.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRemoteVouchers.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowAttachments.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditConfPrc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditVoucherDaysPrior.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditVoucherReprints.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckedComboBoxEditVouchTypes.Properties)).BeginInit();
             this.XtraTabPagePolicies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPoliciesTab)).BeginInit();
             this.PanelControlPoliciesTab.SuspendLayout();
@@ -787,18 +760,18 @@ namespace TraceForms
             this.XtraTabPagePayments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PanelControlPaymentProfileStatus)).BeginInit();
-            this.PanelControlPaymentProfileStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlCustomerProfileStatus)).BeginInit();
+            this.PanelControlCustomerProfileStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowElectronicPayment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlBankProfiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileCredit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewBankProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxAccountType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCreditProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCreditProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditExpYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemComboBoxExpYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxExpMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCustomerProfileEmail.Properties)).BeginInit();
@@ -879,7 +852,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditAgentCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxEditAgentDelegate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourcePaymentProfiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCreditCardInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditType.Properties)).BeginInit();
@@ -891,7 +863,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDefLanguage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chineseHosts_FlextourDataSet)).BeginInit();
@@ -978,21 +949,11 @@ namespace TraceForms
             rETREQHTLSLabel.TabIndex = 0;
             rETREQHTLSLabel.Text = "Availability check returns request products";
             // 
-            // sUB_ALLOCLabel
-            // 
-            sUB_ALLOCLabel.AutoSize = true;
-            sUB_ALLOCLabel.BackColor = System.Drawing.Color.Transparent;
-            sUB_ALLOCLabel.Location = new System.Drawing.Point(43, 51);
-            sUB_ALLOCLabel.Name = "sUB_ALLOCLabel";
-            sUB_ALLOCLabel.Size = new System.Drawing.Size(180, 13);
-            sUB_ALLOCLabel.TabIndex = 0;
-            sUB_ALLOCLabel.Text = "Agency has inventory sub-allotment";
-            // 
             // vOUCHER_DAYS_PRIORLabel
             // 
             vOUCHER_DAYS_PRIORLabel.AutoSize = true;
             vOUCHER_DAYS_PRIORLabel.BackColor = System.Drawing.Color.Transparent;
-            vOUCHER_DAYS_PRIORLabel.Location = new System.Drawing.Point(38, 307);
+            vOUCHER_DAYS_PRIORLabel.Location = new System.Drawing.Point(38, 246);
             vOUCHER_DAYS_PRIORLabel.Name = "vOUCHER_DAYS_PRIORLabel";
             vOUCHER_DAYS_PRIORLabel.Size = new System.Drawing.Size(213, 13);
             vOUCHER_DAYS_PRIORLabel.TabIndex = 0;
@@ -1002,41 +963,11 @@ namespace TraceForms
             // 
             vOUCHER_REPRINTSLabel.AutoSize = true;
             vOUCHER_REPRINTSLabel.BackColor = System.Drawing.Color.Transparent;
-            vOUCHER_REPRINTSLabel.Location = new System.Drawing.Point(38, 255);
+            vOUCHER_REPRINTSLabel.Location = new System.Drawing.Point(38, 197);
             vOUCHER_REPRINTSLabel.Name = "vOUCHER_REPRINTSLabel";
             vOUCHER_REPRINTSLabel.Size = new System.Drawing.Size(207, 13);
             vOUCHER_REPRINTSLabel.TabIndex = 0;
             vOUCHER_REPRINTSLabel.Text = "Nbr voucher reprints without services chg";
-            // 
-            // rEMOTE_VOUCHERSLabel
-            // 
-            rEMOTE_VOUCHERSLabel.AutoSize = true;
-            rEMOTE_VOUCHERSLabel.BackColor = System.Drawing.Color.Transparent;
-            rEMOTE_VOUCHERSLabel.Location = new System.Drawing.Point(38, 152);
-            rEMOTE_VOUCHERSLabel.Name = "rEMOTE_VOUCHERSLabel";
-            rEMOTE_VOUCHERSLabel.Size = new System.Drawing.Size(157, 13);
-            rEMOTE_VOUCHERSLabel.TabIndex = 0;
-            rEMOTE_VOUCHERSLabel.Text = "Agency can generate vouchers";
-            // 
-            // aLLOW_ATTACHMENTSLabel
-            // 
-            aLLOW_ATTACHMENTSLabel.AutoSize = true;
-            aLLOW_ATTACHMENTSLabel.BackColor = System.Drawing.Color.Transparent;
-            aLLOW_ATTACHMENTSLabel.Location = new System.Drawing.Point(38, 104);
-            aLLOW_ATTACHMENTSLabel.Name = "aLLOW_ATTACHMENTSLabel";
-            aLLOW_ATTACHMENTSLabel.Size = new System.Drawing.Size(191, 13);
-            aLLOW_ATTACHMENTSLabel.TabIndex = 0;
-            aLLOW_ATTACHMENTSLabel.Text = "Agency can receive email attachments";
-            // 
-            // cONF_PRCLabel
-            // 
-            cONF_PRCLabel.AutoSize = true;
-            cONF_PRCLabel.BackColor = System.Drawing.Color.Transparent;
-            cONF_PRCLabel.Location = new System.Drawing.Point(38, 52);
-            cONF_PRCLabel.Name = "cONF_PRCLabel";
-            cONF_PRCLabel.Size = new System.Drawing.Size(156, 13);
-            cONF_PRCLabel.TabIndex = 0;
-            cONF_PRCLabel.Text = "Print net price on confirmations";
             // 
             // eDITHTLSLabel
             // 
@@ -1052,7 +983,7 @@ namespace TraceForms
             // 
             eDITHDRSLabel.AutoSize = true;
             eDITHDRSLabel.BackColor = System.Drawing.Color.Transparent;
-            eDITHDRSLabel.Location = new System.Drawing.Point(38, 253);
+            eDITHDRSLabel.Location = new System.Drawing.Point(39, 253);
             eDITHDRSLabel.Name = "eDITHDRSLabel";
             eDITHDRSLabel.Size = new System.Drawing.Size(167, 13);
             eDITHDRSLabel.TabIndex = 0;
@@ -1062,7 +993,7 @@ namespace TraceForms
             // 
             cOMMLabel.AutoSize = true;
             cOMMLabel.BackColor = System.Drawing.Color.Transparent;
-            cOMMLabel.Location = new System.Drawing.Point(38, 207);
+            cOMMLabel.Location = new System.Drawing.Point(39, 207);
             cOMMLabel.Name = "cOMMLabel";
             cOMMLabel.Size = new System.Drawing.Size(120, 13);
             cOMMLabel.TabIndex = 0;
@@ -1072,7 +1003,7 @@ namespace TraceForms
             // 
             cXLGRACELabel.AutoSize = true;
             cXLGRACELabel.BackColor = System.Drawing.Color.Transparent;
-            cXLGRACELabel.Location = new System.Drawing.Point(38, 156);
+            cXLGRACELabel.Location = new System.Drawing.Point(39, 156);
             cXLGRACELabel.Name = "cXLGRACELabel";
             cXLGRACELabel.Size = new System.Drawing.Size(94, 13);
             cXLGRACELabel.TabIndex = 0;
@@ -1082,7 +1013,7 @@ namespace TraceForms
             // 
             oPT_DAYSLabel.AutoSize = true;
             oPT_DAYSLabel.BackColor = System.Drawing.Color.Transparent;
-            oPT_DAYSLabel.Location = new System.Drawing.Point(38, 107);
+            oPT_DAYSLabel.Location = new System.Drawing.Point(39, 106);
             oPT_DAYSLabel.Name = "oPT_DAYSLabel";
             oPT_DAYSLabel.Size = new System.Drawing.Size(185, 13);
             oPT_DAYSLabel.TabIndex = 0;
@@ -1150,6 +1081,7 @@ namespace TraceForms
             // 
             // wEBSITELabel
             // 
+            wEBSITELabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             wEBSITELabel.AutoSize = true;
             wEBSITELabel.BackColor = System.Drawing.Color.Transparent;
             wEBSITELabel.Location = new System.Drawing.Point(28, 408);
@@ -1342,11 +1274,11 @@ namespace TraceForms
             // 
             tourfaxEmailFormatLabel.AutoSize = true;
             tourfaxEmailFormatLabel.BackColor = System.Drawing.Color.Transparent;
-            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(399, 104);
+            tourfaxEmailFormatLabel.Location = new System.Drawing.Point(430, 104);
             tourfaxEmailFormatLabel.Name = "tourfaxEmailFormatLabel";
-            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(109, 13);
+            tourfaxEmailFormatLabel.Size = new System.Drawing.Size(68, 13);
             tourfaxEmailFormatLabel.TabIndex = 0;
-            tourfaxEmailFormatLabel.Text = "Tourfax Email Format";
+            tourfaxEmailFormatLabel.Text = "Email Format";
             // 
             // lOGO_PATHLabel
             // 
@@ -1358,14 +1290,14 @@ namespace TraceForms
             lOGO_PATHLabel.TabIndex = 0;
             lOGO_PATHLabel.Text = "Logo";
             // 
-            // vOUCH_TYPESLabel
+            // LabelVoucherTypes
             // 
-            vOUCH_TYPESLabel.AutoSize = true;
-            vOUCH_TYPESLabel.Location = new System.Drawing.Point(417, 98);
-            vOUCH_TYPESLabel.Name = "vOUCH_TYPESLabel";
-            vOUCH_TYPESLabel.Size = new System.Drawing.Size(79, 13);
-            vOUCH_TYPESLabel.TabIndex = 0;
-            vOUCH_TYPESLabel.Text = "VOUCH TYPES:";
+            LabelVoucherTypes.AutoSize = true;
+            LabelVoucherTypes.Location = new System.Drawing.Point(430, 149);
+            LabelVoucherTypes.Name = "LabelVoucherTypes";
+            LabelVoucherTypes.Size = new System.Drawing.Size(78, 13);
+            LabelVoucherTypes.TabIndex = 0;
+            LabelVoucherTypes.Text = "Voucher Types";
             // 
             // label18
             // 
@@ -1429,6 +1361,7 @@ namespace TraceForms
             // 
             // LabelSize
             // 
+            LabelSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             LabelSize.AutoSize = true;
             LabelSize.BackColor = System.Drawing.Color.Transparent;
             LabelSize.Location = new System.Drawing.Point(28, 357);
@@ -1562,19 +1495,19 @@ namespace TraceForms
             LabelPaymentDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             LabelPaymentDue.AutoSize = true;
             LabelPaymentDue.BackColor = System.Drawing.Color.Transparent;
-            LabelPaymentDue.Location = new System.Drawing.Point(395, 252);
+            LabelPaymentDue.Location = new System.Drawing.Point(397, 280);
             LabelPaymentDue.Name = "LabelPaymentDue";
             LabelPaymentDue.Size = new System.Drawing.Size(146, 13);
             LabelPaymentDue.TabIndex = 80;
             LabelPaymentDue.Text = "Payment due date based on:";
             // 
-            // LabelPaymentProfileStatus
+            // LabelCustomerProfileStatus
             // 
-            this.LabelPaymentProfileStatus.AutoSize = true;
-            this.LabelPaymentProfileStatus.Location = new System.Drawing.Point(21, 5);
-            this.LabelPaymentProfileStatus.Name = "LabelPaymentProfileStatus";
-            this.LabelPaymentProfileStatus.Size = new System.Drawing.Size(0, 13);
-            this.LabelPaymentProfileStatus.TabIndex = 6;
+            this.LabelCustomerProfileStatus.AutoSize = true;
+            this.LabelCustomerProfileStatus.Location = new System.Drawing.Point(21, 5);
+            this.LabelCustomerProfileStatus.Name = "LabelCustomerProfileStatus";
+            this.LabelCustomerProfileStatus.Size = new System.Drawing.Size(0, 13);
+            this.LabelCustomerProfileStatus.TabIndex = 6;
             // 
             // LabelDate
             // 
@@ -2556,7 +2489,6 @@ namespace TraceForms
             // 
             this.BindingSource.DataSource = typeof(FlexModel.AGY);
             this.BindingSource.CurrentChanged += new System.EventHandler(this.BindingSource_CurrentChanged);
-            this.BindingSource.PositionChanged += new System.EventHandler(this.AgyBindingSource_PositionChanged);
             // 
             // CheckEditActiveFlg
             // 
@@ -2571,7 +2503,6 @@ namespace TraceForms
             this.CheckEditActiveFlg.Properties.ValueUnchecked = "I";
             this.CheckEditActiveFlg.Size = new System.Drawing.Size(56, 19);
             this.CheckEditActiveFlg.TabIndex = 7;
-            this.CheckEditActiveFlg.EditValueChanged += new System.EventHandler(this.CheckEditActiveFlg_EditValueChanged);
             // 
             // XtraTabControlAgency
             // 
@@ -2581,7 +2512,7 @@ namespace TraceForms
             this.XtraTabControlAgency.Location = new System.Drawing.Point(21, 120);
             this.XtraTabControlAgency.Name = "XtraTabControlAgency";
             this.XtraTabControlAgency.SelectedTabPage = this.XtraTabPageLocation;
-            this.XtraTabControlAgency.Size = new System.Drawing.Size(883, 527);
+            this.XtraTabControlAgency.Size = new System.Drawing.Size(883, 558);
             this.XtraTabControlAgency.TabIndex = 31;
             this.XtraTabControlAgency.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.XtraTabPageLocation,
@@ -2603,7 +2534,7 @@ namespace TraceForms
             // 
             this.XtraTabPageLocation.Controls.Add(this.PanelControlLocationTab);
             this.XtraTabPageLocation.Name = "XtraTabPageLocation";
-            this.XtraTabPageLocation.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageLocation.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageLocation.Text = "Location";
             // 
             // PanelControlLocationTab
@@ -2624,7 +2555,7 @@ namespace TraceForms
             this.PanelControlLocationTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlLocationTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlLocationTab.Name = "PanelControlLocationTab";
-            this.PanelControlLocationTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlLocationTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlLocationTab.TabIndex = 0;
             // 
             // TextEditCity
@@ -2755,7 +2686,7 @@ namespace TraceForms
             // 
             this.XtraTabPageContacts.Controls.Add(this.PanelControlContactTab);
             this.XtraTabPageContacts.Name = "XtraTabPageContacts";
-            this.XtraTabPageContacts.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageContacts.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageContacts.Text = "Contacts";
             // 
             // PanelControlContactTab
@@ -2775,7 +2706,7 @@ namespace TraceForms
             this.PanelControlContactTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlContactTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlContactTab.Name = "PanelControlContactTab";
-            this.PanelControlContactTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlContactTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlContactTab.TabIndex = 0;
             // 
             // ButtonDeleteContact
@@ -3302,7 +3233,7 @@ namespace TraceForms
             // 
             this.XtraTabPageAvailability.Controls.Add(this.PanelControlAvailabilityTab);
             this.XtraTabPageAvailability.Name = "XtraTabPageAvailability";
-            this.XtraTabPageAvailability.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageAvailability.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageAvailability.Text = "Availability";
             // 
             // PanelControlAvailabilityTab
@@ -3316,11 +3247,10 @@ namespace TraceForms
             this.PanelControlAvailabilityTab.Controls.Add(rELLabel);
             this.PanelControlAvailabilityTab.Controls.Add(rETNOTAVALHTLSLabel);
             this.PanelControlAvailabilityTab.Controls.Add(rETREQHTLSLabel);
-            this.PanelControlAvailabilityTab.Controls.Add(sUB_ALLOCLabel);
             this.PanelControlAvailabilityTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAvailabilityTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlAvailabilityTab.Name = "PanelControlAvailabilityTab";
-            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlAvailabilityTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlAvailabilityTab.TabIndex = 0;
             // 
             // ImageComboBoxEditRetNotAvalHtls
@@ -3361,12 +3291,13 @@ namespace TraceForms
             // 
             this.CheckEditSubAlloc.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SUB_ALLOC", true));
             this.CheckEditSubAlloc.EnterMoveNextControl = true;
-            this.CheckEditSubAlloc.Location = new System.Drawing.Point(279, 49);
+            this.CheckEditSubAlloc.Location = new System.Drawing.Point(44, 49);
             this.CheckEditSubAlloc.Name = "CheckEditSubAlloc";
-            this.CheckEditSubAlloc.Properties.Caption = "";
+            this.CheckEditSubAlloc.Properties.Caption = "Agency has inventory sub-allotment";
+            this.CheckEditSubAlloc.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditSubAlloc.Properties.ValueChecked = "Y";
             this.CheckEditSubAlloc.Properties.ValueUnchecked = "N";
-            this.CheckEditSubAlloc.Size = new System.Drawing.Size(18, 19);
+            this.CheckEditSubAlloc.Size = new System.Drawing.Size(251, 19);
             this.CheckEditSubAlloc.TabIndex = 19;
             // 
             // SpinEditArvBkDays
@@ -3414,19 +3345,12 @@ namespace TraceForms
             this.XtraTabPageReporting.AutoScroll = true;
             this.XtraTabPageReporting.Controls.Add(this.PanelControlReportTab);
             this.XtraTabPageReporting.Name = "XtraTabPageReporting";
-            this.XtraTabPageReporting.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageReporting.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageReporting.Text = "Reporting";
             // 
             // PanelControlReportTab
             // 
-            this.PanelControlReportTab.Controls.Add(this.CheckEditPkgVouchers);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditOptVouchers);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditAirVouchers);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditCruVouchers);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditCarVouchers);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditHtlVouchers);
             this.PanelControlReportTab.Controls.Add(this.ImageComboBoxEditTourfaxEmailFormat);
-            this.PanelControlReportTab.Controls.Add(this.CheckEditSglResConf);
             this.PanelControlReportTab.Controls.Add(this.checkEdit8);
             this.PanelControlReportTab.Controls.Add(this.CheckEditRemoteVouchers);
             this.PanelControlReportTab.Controls.Add(this.CheckEditAllowAttachments);
@@ -3434,101 +3358,15 @@ namespace TraceForms
             this.PanelControlReportTab.Controls.Add(tourfaxEmailFormatLabel);
             this.PanelControlReportTab.Controls.Add(this.SpinEditVoucherDaysPrior);
             this.PanelControlReportTab.Controls.Add(this.SpinEditVoucherReprints);
+            this.PanelControlReportTab.Controls.Add(LabelVoucherTypes);
             this.PanelControlReportTab.Controls.Add(vOUCHER_DAYS_PRIORLabel);
             this.PanelControlReportTab.Controls.Add(vOUCHER_REPRINTSLabel);
-            this.PanelControlReportTab.Controls.Add(this.labelControl1);
-            this.PanelControlReportTab.Controls.Add(rEMOTE_VOUCHERSLabel);
-            this.PanelControlReportTab.Controls.Add(aLLOW_ATTACHMENTSLabel);
-            this.PanelControlReportTab.Controls.Add(cONF_PRCLabel);
+            this.PanelControlReportTab.Controls.Add(this.CheckedComboBoxEditVouchTypes);
             this.PanelControlReportTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlReportTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlReportTab.Name = "PanelControlReportTab";
-            this.PanelControlReportTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlReportTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlReportTab.TabIndex = 0;
-            // 
-            // CheckEditPkgVouchers
-            // 
-            this.CheckEditPkgVouchers.EnterMoveNextControl = true;
-            this.CheckEditPkgVouchers.Location = new System.Drawing.Point(375, 198);
-            this.CheckEditPkgVouchers.Name = "CheckEditPkgVouchers";
-            this.CheckEditPkgVouchers.Properties.Caption = "Pkg";
-            this.CheckEditPkgVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditPkgVouchers.Properties.ValueChecked = " PKG,";
-            this.CheckEditPkgVouchers.Properties.ValueGrayed = "";
-            this.CheckEditPkgVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditPkgVouchers.Size = new System.Drawing.Size(40, 19);
-            this.CheckEditPkgVouchers.TabIndex = 34;
-            this.CheckEditPkgVouchers.Click += new System.EventHandler(this.CheckEditPkgVouchers_Click_1);
-            // 
-            // CheckEditOptVouchers
-            // 
-            this.CheckEditOptVouchers.EnterMoveNextControl = true;
-            this.CheckEditOptVouchers.Location = new System.Drawing.Point(289, 198);
-            this.CheckEditOptVouchers.Name = "CheckEditOptVouchers";
-            this.CheckEditOptVouchers.Properties.Caption = "Services";
-            this.CheckEditOptVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditOptVouchers.Properties.ValueChecked = " OPT,";
-            this.CheckEditOptVouchers.Properties.ValueGrayed = "";
-            this.CheckEditOptVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditOptVouchers.Size = new System.Drawing.Size(63, 19);
-            this.CheckEditOptVouchers.TabIndex = 33;
-            this.CheckEditOptVouchers.Click += new System.EventHandler(this.CheckEditOptVouchers_Click);
-            // 
-            // CheckEditAirVouchers
-            // 
-            this.CheckEditAirVouchers.EnterMoveNextControl = true;
-            this.CheckEditAirVouchers.Location = new System.Drawing.Point(595, 198);
-            this.CheckEditAirVouchers.Name = "CheckEditAirVouchers";
-            this.CheckEditAirVouchers.Properties.Caption = "Air";
-            this.CheckEditAirVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditAirVouchers.Properties.ValueChecked = " AIR,";
-            this.CheckEditAirVouchers.Properties.ValueGrayed = "";
-            this.CheckEditAirVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditAirVouchers.Size = new System.Drawing.Size(35, 19);
-            this.CheckEditAirVouchers.TabIndex = 32;
-            this.CheckEditAirVouchers.Click += new System.EventHandler(this.CheckEditAirVouchers_Click);
-            // 
-            // CheckEditCruVouchers
-            // 
-            this.CheckEditCruVouchers.EnterMoveNextControl = true;
-            this.CheckEditCruVouchers.Location = new System.Drawing.Point(512, 198);
-            this.CheckEditCruVouchers.Name = "CheckEditCruVouchers";
-            this.CheckEditCruVouchers.Properties.Caption = "Cruises";
-            this.CheckEditCruVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditCruVouchers.Properties.ValueChecked = " CRU,";
-            this.CheckEditCruVouchers.Properties.ValueGrayed = "";
-            this.CheckEditCruVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditCruVouchers.Size = new System.Drawing.Size(61, 19);
-            this.CheckEditCruVouchers.TabIndex = 31;
-            this.CheckEditCruVouchers.Click += new System.EventHandler(this.CheckEditCruVouchers_Click);
-            // 
-            // CheckEditCarVouchers
-            // 
-            this.CheckEditCarVouchers.EnterMoveNextControl = true;
-            this.CheckEditCarVouchers.Location = new System.Drawing.Point(441, 198);
-            this.CheckEditCarVouchers.Name = "CheckEditCarVouchers";
-            this.CheckEditCarVouchers.Properties.Caption = "Cars";
-            this.CheckEditCarVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditCarVouchers.Properties.ValueChecked = " CAR,";
-            this.CheckEditCarVouchers.Properties.ValueGrayed = "";
-            this.CheckEditCarVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditCarVouchers.Size = new System.Drawing.Size(49, 19);
-            this.CheckEditCarVouchers.TabIndex = 30;
-            this.CheckEditCarVouchers.Click += new System.EventHandler(this.CheckEditCarVouchers_Click);
-            // 
-            // CheckEditHtlVouchers
-            // 
-            this.CheckEditHtlVouchers.EnterMoveNextControl = true;
-            this.CheckEditHtlVouchers.Location = new System.Drawing.Point(211, 198);
-            this.CheckEditHtlVouchers.Name = "CheckEditHtlVouchers";
-            this.CheckEditHtlVouchers.Properties.Caption = "Hotels";
-            this.CheckEditHtlVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditHtlVouchers.Properties.ValueChecked = "HTL,";
-            this.CheckEditHtlVouchers.Properties.ValueGrayed = "";
-            this.CheckEditHtlVouchers.Properties.ValueUnchecked = "";
-            this.CheckEditHtlVouchers.Size = new System.Drawing.Size(56, 19);
-            this.CheckEditHtlVouchers.TabIndex = 29;
-            this.CheckEditHtlVouchers.Click += new System.EventHandler(this.CheckEditHtlVouchers_Click);
             // 
             // ImageComboBoxEditTourfaxEmailFormat
             // 
@@ -3546,19 +3384,6 @@ namespace TraceForms
             this.ImageComboBoxEditTourfaxEmailFormat.TabIndex = 27;
             this.ImageComboBoxEditTourfaxEmailFormat.Leave += new System.EventHandler(this.ImageComboBoxEditTourfaxEmailFormat_Leave);
             // 
-            // CheckEditSglResConf
-            // 
-            this.CheckEditSglResConf.EnterMoveNextControl = true;
-            this.CheckEditSglResConf.Location = new System.Drawing.Point(474, 252);
-            this.CheckEditSglResConf.Name = "CheckEditSglResConf";
-            this.CheckEditSglResConf.Properties.Caption = "Single Res Confirmations";
-            this.CheckEditSglResConf.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditSglResConf.Properties.ValueChecked = " SGL,";
-            this.CheckEditSglResConf.Properties.ValueUnchecked = "";
-            this.CheckEditSglResConf.Size = new System.Drawing.Size(141, 19);
-            this.CheckEditSglResConf.TabIndex = 36;
-            this.CheckEditSglResConf.Click += new System.EventHandler(this.CheckEditSglResConf_Click);
-            // 
             // checkEdit8
             // 
             this.checkEdit8.Location = new System.Drawing.Point(500, -71);
@@ -3573,13 +3398,14 @@ namespace TraceForms
             // 
             this.CheckEditRemoteVouchers.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "REMOTE_VOUCHERS", true));
             this.CheckEditRemoteVouchers.EnterMoveNextControl = true;
-            this.CheckEditRemoteVouchers.Location = new System.Drawing.Point(250, 149);
+            this.CheckEditRemoteVouchers.Location = new System.Drawing.Point(39, 146);
             this.CheckEditRemoteVouchers.Name = "CheckEditRemoteVouchers";
-            this.CheckEditRemoteVouchers.Properties.Caption = "";
+            this.CheckEditRemoteVouchers.Properties.Caption = "Agency can generate vouchers";
+            this.CheckEditRemoteVouchers.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditRemoteVouchers.Properties.ValueChecked = "Y";
             this.CheckEditRemoteVouchers.Properties.ValueGrayed = "  ";
             this.CheckEditRemoteVouchers.Properties.ValueUnchecked = "N";
-            this.CheckEditRemoteVouchers.Size = new System.Drawing.Size(27, 19);
+            this.CheckEditRemoteVouchers.Size = new System.Drawing.Size(226, 19);
             this.CheckEditRemoteVouchers.TabIndex = 28;
             this.CheckEditRemoteVouchers.CheckStateChanged += new System.EventHandler(this.CheckEditRemoteVouchers_CheckStateChanged);
             // 
@@ -3587,25 +3413,27 @@ namespace TraceForms
             // 
             this.CheckEditAllowAttachments.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ALLOW_ATTACHMENTS", true));
             this.CheckEditAllowAttachments.EnterMoveNextControl = true;
-            this.CheckEditAllowAttachments.Location = new System.Drawing.Point(250, 101);
+            this.CheckEditAllowAttachments.Location = new System.Drawing.Point(39, 101);
             this.CheckEditAllowAttachments.Name = "CheckEditAllowAttachments";
-            this.CheckEditAllowAttachments.Properties.Caption = "";
+            this.CheckEditAllowAttachments.Properties.Caption = "Agency can receive email attachments";
+            this.CheckEditAllowAttachments.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditAllowAttachments.Properties.ValueChecked = "Y";
             this.CheckEditAllowAttachments.Properties.ValueGrayed = " ";
             this.CheckEditAllowAttachments.Properties.ValueUnchecked = "N";
-            this.CheckEditAllowAttachments.Size = new System.Drawing.Size(24, 19);
+            this.CheckEditAllowAttachments.Size = new System.Drawing.Size(226, 19);
             this.CheckEditAllowAttachments.TabIndex = 26;
             // 
             // CheckEditConfPrc
             // 
             this.CheckEditConfPrc.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CONF_PRC", true));
             this.CheckEditConfPrc.EnterMoveNextControl = true;
-            this.CheckEditConfPrc.Location = new System.Drawing.Point(250, 49);
+            this.CheckEditConfPrc.Location = new System.Drawing.Point(39, 54);
             this.CheckEditConfPrc.Name = "CheckEditConfPrc";
-            this.CheckEditConfPrc.Properties.Caption = "";
+            this.CheckEditConfPrc.Properties.Caption = "Print net price on confirmations";
+            this.CheckEditConfPrc.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.CheckEditConfPrc.Properties.ValueChecked = "Y";
             this.CheckEditConfPrc.Properties.ValueUnchecked = "N";
-            this.CheckEditConfPrc.Size = new System.Drawing.Size(73, 19);
+            this.CheckEditConfPrc.Size = new System.Drawing.Size(226, 19);
             this.CheckEditConfPrc.TabIndex = 25;
             // 
             // SpinEditVoucherDaysPrior
@@ -3617,7 +3445,7 @@ namespace TraceForms
             0,
             0});
             this.SpinEditVoucherDaysPrior.EnterMoveNextControl = true;
-            this.SpinEditVoucherDaysPrior.Location = new System.Drawing.Point(250, 304);
+            this.SpinEditVoucherDaysPrior.Location = new System.Drawing.Point(261, 243);
             this.SpinEditVoucherDaysPrior.Name = "SpinEditVoucherDaysPrior";
             this.SpinEditVoucherDaysPrior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -3636,7 +3464,7 @@ namespace TraceForms
             0,
             0});
             this.SpinEditVoucherReprints.EnterMoveNextControl = true;
-            this.SpinEditVoucherReprints.Location = new System.Drawing.Point(250, 252);
+            this.SpinEditVoucherReprints.Location = new System.Drawing.Point(261, 194);
             this.SpinEditVoucherReprints.Name = "SpinEditVoucherReprints";
             this.SpinEditVoucherReprints.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -3646,19 +3474,27 @@ namespace TraceForms
             this.SpinEditVoucherReprints.TabIndex = 35;
             this.SpinEditVoucherReprints.Leave += new System.EventHandler(this.SpinEditVoucherReprints_Leave);
             // 
-            // labelControl1
+            // CheckedComboBoxEditVouchTypes
             // 
-            this.labelControl1.Location = new System.Drawing.Point(41, 201);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(124, 13);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Service types to voucher:";
+            this.CheckedComboBoxEditVouchTypes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VOUCH_TYPES", true));
+            this.CheckedComboBoxEditVouchTypes.EditValue = "";
+            this.CheckedComboBoxEditVouchTypes.Location = new System.Drawing.Point(514, 146);
+            this.CheckedComboBoxEditVouchTypes.Name = "CheckedComboBoxEditVouchTypes";
+            this.CheckedComboBoxEditVouchTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.CheckedComboBoxEditVouchTypes.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("HTL", "Hotel"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("PKG", "Package"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("OPT", "Optional Component")});
+            this.CheckedComboBoxEditVouchTypes.Size = new System.Drawing.Size(100, 20);
+            this.CheckedComboBoxEditVouchTypes.TabIndex = 64;
+            this.CheckedComboBoxEditVouchTypes.TabStop = false;
             // 
             // XtraTabPagePolicies
             // 
             this.XtraTabPagePolicies.Controls.Add(this.PanelControlPoliciesTab);
             this.XtraTabPagePolicies.Name = "XtraTabPagePolicies";
-            this.XtraTabPagePolicies.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPagePolicies.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPagePolicies.Text = "Policies";
             // 
             // PanelControlPoliciesTab
@@ -3681,7 +3517,7 @@ namespace TraceForms
             this.PanelControlPoliciesTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlPoliciesTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlPoliciesTab.Name = "PanelControlPoliciesTab";
-            this.PanelControlPoliciesTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlPoliciesTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlPoliciesTab.TabIndex = 0;
             // 
             // ButtonDeleteAgencyCurrency
@@ -3723,7 +3559,6 @@ namespace TraceForms
             // BindingSourceAgencyCurrency
             // 
             this.BindingSourceAgencyCurrency.DataSource = typeof(FlexModel.AgencyCurrency);
-            this.BindingSourceAgencyCurrency.CurrentChanged += new System.EventHandler(this.AgencyCurrencyBindingSource_CurrentChanged);
             // 
             // GridViewAgencyCurrency
             // 
@@ -3795,7 +3630,7 @@ namespace TraceForms
             // 
             this.CheckEditRemChg.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "REM_CHG", true));
             this.CheckEditRemChg.EnterMoveNextControl = true;
-            this.CheckEditRemChg.Location = new System.Drawing.Point(41, 50);
+            this.CheckEditRemChg.Location = new System.Drawing.Point(39, 50);
             this.CheckEditRemChg.Name = "CheckEditRemChg";
             this.CheckEditRemChg.Properties.Caption = "Allow remotes to modify in-house bookings";
             this.CheckEditRemChg.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -3874,7 +3709,7 @@ namespace TraceForms
             // 
             this.XtraTabPageAccounting.Controls.Add(this.PanelControlAccountTab);
             this.XtraTabPageAccounting.Name = "XtraTabPageAccounting";
-            this.XtraTabPageAccounting.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageAccounting.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageAccounting.Text = "Accounting";
             // 
             // PanelControlAccountTab
@@ -3903,8 +3738,6 @@ namespace TraceForms
             this.PanelControlAccountTab.Controls.Add(this.LabelControlLastInvDate);
             this.PanelControlAccountTab.Controls.Add(this.labelControl5);
             this.PanelControlAccountTab.Controls.Add(this.LabelControlPriorDays);
-            this.PanelControlAccountTab.Controls.Add(this.LabelControlPmtDays);
-            this.PanelControlAccountTab.Controls.Add(this.LabelControlDueDays);
             this.PanelControlAccountTab.Controls.Add(this.CheckEditSvcDateFlg);
             this.PanelControlAccountTab.Controls.Add(this.ComboBoxEditInvFmt);
             this.PanelControlAccountTab.Controls.Add(this.CheckEditImmedFlg);
@@ -3917,14 +3750,14 @@ namespace TraceForms
             this.PanelControlAccountTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAccountTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlAccountTab.Name = "PanelControlAccountTab";
-            this.PanelControlAccountTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlAccountTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlAccountTab.TabIndex = 0;
             // 
             // RadioGroupPaymentDue
             // 
             this.RadioGroupPaymentDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RadioGroupPaymentDue.EditValue = true;
-            this.RadioGroupPaymentDue.Location = new System.Drawing.Point(398, 268);
+            this.RadioGroupPaymentDue.Location = new System.Drawing.Point(398, 296);
             this.RadioGroupPaymentDue.MenuManager = this.BarManager;
             this.RadioGroupPaymentDue.Name = "RadioGroupPaymentDue";
             this.RadioGroupPaymentDue.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -3933,7 +3766,7 @@ namespace TraceForms
             this.RadioGroupPaymentDue.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Specific day of month"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Number of days after booking")});
-            this.RadioGroupPaymentDue.Size = new System.Drawing.Size(173, 45);
+            this.RadioGroupPaymentDue.Size = new System.Drawing.Size(173, 61);
             this.RadioGroupPaymentDue.TabIndex = 79;
             this.RadioGroupPaymentDue.EditValueChanged += new System.EventHandler(this.RadioGroupPaymentDue_EditValueChanged);
             // 
@@ -4031,7 +3864,7 @@ namespace TraceForms
             this.ButtonDeleteDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDeleteDeposit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteDeposit.ImageOptions.Image")));
             this.ButtonDeleteDeposit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteDeposit.Location = new System.Drawing.Point(819, 109);
+            this.ButtonDeleteDeposit.Location = new System.Drawing.Point(819, 140);
             this.ButtonDeleteDeposit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDeleteDeposit.Name = "ButtonDeleteDeposit";
             this.ButtonDeleteDeposit.Size = new System.Drawing.Size(34, 38);
@@ -4045,7 +3878,7 @@ namespace TraceForms
             this.ButtonAddDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddDeposit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddDeposit.ImageOptions.Image")));
             this.ButtonAddDeposit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddDeposit.Location = new System.Drawing.Point(819, 65);
+            this.ButtonAddDeposit.Location = new System.Drawing.Point(819, 96);
             this.ButtonAddDeposit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddDeposit.Name = "ButtonAddDeposit";
             this.ButtonAddDeposit.Size = new System.Drawing.Size(34, 38);
@@ -4064,7 +3897,7 @@ namespace TraceForms
             this.GridControlDeposits.MainView = this.GridViewDeposits;
             this.GridControlDeposits.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.GridControlDeposits.Name = "GridControlDeposits";
-            this.GridControlDeposits.Size = new System.Drawing.Size(415, 204);
+            this.GridControlDeposits.Size = new System.Drawing.Size(415, 235);
             this.GridControlDeposits.TabIndex = 74;
             this.GridControlDeposits.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewDeposits});
@@ -4081,7 +3914,8 @@ namespace TraceForms
             this.colType,
             this.colDate,
             this.colAmount,
-            this.colDescription});
+            this.colDescription,
+            this.colPmtCode_PmtCode});
             this.GridViewDeposits.DetailHeight = 198;
             this.GridViewDeposits.FixedLineWidth = 1;
             this.GridViewDeposits.GridControl = this.GridControlDeposits;
@@ -4090,6 +3924,8 @@ namespace TraceForms
             this.GridViewDeposits.Name = "GridViewDeposits";
             this.GridViewDeposits.OptionsView.ShowGroupPanel = false;
             this.GridViewDeposits.OptionsView.ShowIndicator = false;
+            this.GridViewDeposits.CustomRowFilter += new DevExpress.XtraGrid.Views.Base.RowFilterEventHandler(this.GridViewDeposits_CustomRowFilter);
+            this.GridViewDeposits.SubstituteFilter += new System.EventHandler<DevExpress.Data.SubstituteFilterEventArgs>(this.GridViewDeposits_SubstituteFilter);
             // 
             // colID2
             // 
@@ -4138,6 +3974,11 @@ namespace TraceForms
             this.colDescription.Visible = true;
             this.colDescription.VisibleIndex = 2;
             this.colDescription.Width = 79;
+            // 
+            // colPmtCode_PmtCode
+            // 
+            this.colPmtCode_PmtCode.FieldName = "PmtCode_PmtCode";
+            this.colPmtCode_PmtCode.Name = "colPmtCode_PmtCode";
             // 
             // CheckEditCreditUnlimited
             // 
@@ -4197,8 +4038,9 @@ namespace TraceForms
             0,
             0,
             0});
+            this.SpinEditPmtDays.Enabled = false;
             this.SpinEditPmtDays.EnterMoveNextControl = true;
-            this.SpinEditPmtDays.Location = new System.Drawing.Point(688, 342);
+            this.SpinEditPmtDays.Location = new System.Drawing.Point(595, 331);
             this.SpinEditPmtDays.Name = "SpinEditPmtDays";
             this.SpinEditPmtDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4227,9 +4069,8 @@ namespace TraceForms
             0,
             0,
             0});
-            this.SpinEditDueDays.Enabled = false;
             this.SpinEditDueDays.EnterMoveNextControl = true;
-            this.SpinEditDueDays.Location = new System.Drawing.Point(688, 316);
+            this.SpinEditDueDays.Location = new System.Drawing.Point(595, 302);
             this.SpinEditDueDays.Name = "SpinEditDueDays";
             this.SpinEditDueDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -4300,24 +4141,6 @@ namespace TraceForms
             this.LabelControlPriorDays.TabIndex = 0;
             this.LabelControlPriorDays.Text = "Number of days prior to services date for invoicing";
             // 
-            // LabelControlPmtDays
-            // 
-            this.LabelControlPmtDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LabelControlPmtDays.Location = new System.Drawing.Point(398, 346);
-            this.LabelControlPmtDays.Name = "LabelControlPmtDays";
-            this.LabelControlPmtDays.Size = new System.Drawing.Size(233, 13);
-            this.LabelControlPmtDays.TabIndex = 0;
-            this.LabelControlPmtDays.Text = "Number of allowable days for final payment date";
-            // 
-            // LabelControlDueDays
-            // 
-            this.LabelControlDueDays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LabelControlDueDays.Location = new System.Drawing.Point(398, 320);
-            this.LabelControlDueDays.Name = "LabelControlDueDays";
-            this.LabelControlDueDays.Size = new System.Drawing.Size(265, 13);
-            this.LabelControlDueDays.TabIndex = 0;
-            this.LabelControlDueDays.Text = "Payment due on specific day of month following service";
-            // 
             // CheckEditSvcDateFlg
             // 
             this.CheckEditSvcDateFlg.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVCDTE_FLG", true));
@@ -4361,7 +4184,7 @@ namespace TraceForms
             // 
             // TextEditFundBalance
             // 
-            this.TextEditFundBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CreditLimit", true));
+            this.TextEditFundBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FundsOnAccount", true));
             this.TextEditFundBalance.EditValue = new decimal(new int[] {
             0,
             0,
@@ -4418,12 +4241,12 @@ namespace TraceForms
             // 
             // SpinEditCreditBalance
             // 
-            this.SpinEditCreditBalance.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "FundsOnAccount", true));
             this.SpinEditCreditBalance.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
+            this.SpinEditCreditBalance.Enabled = false;
             this.SpinEditCreditBalance.Location = new System.Drawing.Point(284, 91);
             this.SpinEditCreditBalance.Name = "SpinEditCreditBalance";
             this.SpinEditCreditBalance.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -4434,12 +4257,12 @@ namespace TraceForms
             // 
             // TextEditAmountPaid
             // 
-            this.TextEditAmountPaid.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CreditLimit", true));
             this.TextEditAmountPaid.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
+            this.TextEditAmountPaid.Enabled = false;
             this.TextEditAmountPaid.Location = new System.Drawing.Point(284, 141);
             this.TextEditAmountPaid.Name = "TextEditAmountPaid";
             this.TextEditAmountPaid.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -4472,15 +4295,13 @@ namespace TraceForms
             // 
             this.XtraTabPagePayments.Controls.Add(this.panelControl1);
             this.XtraTabPagePayments.Name = "XtraTabPagePayments";
-            this.XtraTabPagePayments.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPagePayments.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPagePayments.Text = "Payments";
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.SimpleButtonRetry);
-            this.panelControl1.Controls.Add(this.PanelControlPaymentProfileStatus);
-            this.panelControl1.Controls.Add(this.SimpleButtonValidateBankRow);
-            this.panelControl1.Controls.Add(this.SimpleButtonValidateCreditRow);
+            this.panelControl1.Controls.Add(this.PanelControlCustomerProfileStatus);
             this.panelControl1.Controls.Add(this.CheckEditAllowElectronicPayment);
             this.panelControl1.Controls.Add(this.CheckEditRequireCVV2);
             this.panelControl1.Controls.Add(this.LabelDefaultPaymentProfileID);
@@ -4493,9 +4314,9 @@ namespace TraceForms
             this.panelControl1.Controls.Add(this.GridControlBankProfiles);
             this.panelControl1.Controls.Add(this.GridControlCreditProfiles);
             this.panelControl1.Controls.Add(this.simpleButton1);
-            this.panelControl1.Controls.Add(this.AddCreditButton);
+            this.panelControl1.Controls.Add(this.ButtonAddCredit);
             this.panelControl1.Controls.Add(this.LblCreditCardProf);
-            this.panelControl1.Controls.Add(this.DeleteButton);
+            this.panelControl1.Controls.Add(this.SimpleButtonDelete);
             this.panelControl1.Controls.Add(this.ChangePaymentProfileButton);
             this.panelControl1.Controls.Add(paymentProcessorCustProfileEmailLabel);
             this.panelControl1.Controls.Add(this.TextEditCustomerProfileEmail);
@@ -4503,31 +4324,34 @@ namespace TraceForms
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(877, 499);
+            this.panelControl1.Size = new System.Drawing.Size(877, 530);
             this.panelControl1.TabIndex = 0;
             // 
             // SimpleButtonRetry
             // 
-            this.SimpleButtonRetry.Location = new System.Drawing.Point(670, 14);
+            this.SimpleButtonRetry.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonRetry.ImageOptions.Image")));
+            this.SimpleButtonRetry.Location = new System.Drawing.Point(670, 70);
             this.SimpleButtonRetry.Name = "SimpleButtonRetry";
             this.SimpleButtonRetry.Size = new System.Drawing.Size(75, 23);
             this.SimpleButtonRetry.TabIndex = 10002;
             this.SimpleButtonRetry.Text = "Retry";
+            this.SimpleButtonRetry.ToolTip = "Retry loading payment profiles";
+            this.SimpleButtonRetry.Visible = false;
             this.SimpleButtonRetry.Click += new System.EventHandler(this.SimpleButtonRetry_Click);
             // 
-            // PanelControlPaymentProfileStatus
+            // PanelControlCustomerProfileStatus
             // 
-            this.PanelControlPaymentProfileStatus.Appearance.Options.UseTextOptions = true;
-            this.PanelControlPaymentProfileStatus.AutoSize = true;
-            this.PanelControlPaymentProfileStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlPaymentProfileStatus.ContentImage")));
-            this.PanelControlPaymentProfileStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PanelControlPaymentProfileStatus.Controls.Add(this.LabelPaymentProfileStatus);
-            this.PanelControlPaymentProfileStatus.Controls.Add(this.labelControl2);
-            this.PanelControlPaymentProfileStatus.Location = new System.Drawing.Point(217, 12);
-            this.PanelControlPaymentProfileStatus.Name = "PanelControlPaymentProfileStatus";
-            this.PanelControlPaymentProfileStatus.Size = new System.Drawing.Size(145, 25);
-            this.PanelControlPaymentProfileStatus.TabIndex = 10001;
-            this.PanelControlPaymentProfileStatus.Visible = false;
+            this.PanelControlCustomerProfileStatus.Appearance.Options.UseTextOptions = true;
+            this.PanelControlCustomerProfileStatus.AutoSize = true;
+            this.PanelControlCustomerProfileStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlCustomerProfileStatus.ContentImage")));
+            this.PanelControlCustomerProfileStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PanelControlCustomerProfileStatus.Controls.Add(this.LabelCustomerProfileStatus);
+            this.PanelControlCustomerProfileStatus.Controls.Add(this.labelControl2);
+            this.PanelControlCustomerProfileStatus.Location = new System.Drawing.Point(269, 70);
+            this.PanelControlCustomerProfileStatus.Name = "PanelControlCustomerProfileStatus";
+            this.PanelControlCustomerProfileStatus.Size = new System.Drawing.Size(145, 25);
+            this.PanelControlCustomerProfileStatus.TabIndex = 10001;
+            this.PanelControlCustomerProfileStatus.Visible = false;
             // 
             // labelControl2
             // 
@@ -4535,28 +4359,6 @@ namespace TraceForms
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(0, 13);
             this.labelControl2.TabIndex = 5;
-            // 
-            // SimpleButtonValidateBankRow
-            // 
-            this.SimpleButtonValidateBankRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonValidateBankRow.ImageOptions.Image")));
-            this.SimpleButtonValidateBankRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.SimpleButtonValidateBankRow.Location = new System.Drawing.Point(803, 373);
-            this.SimpleButtonValidateBankRow.Name = "SimpleButtonValidateBankRow";
-            this.SimpleButtonValidateBankRow.Size = new System.Drawing.Size(34, 38);
-            this.SimpleButtonValidateBankRow.TabIndex = 74;
-            this.SimpleButtonValidateBankRow.Text = "Validate Current Row";
-            this.SimpleButtonValidateBankRow.Click += new System.EventHandler(this.SimpleButtonValidateBankRow_Click);
-            // 
-            // SimpleButtonValidateCreditRow
-            // 
-            this.SimpleButtonValidateCreditRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonValidateCreditRow.ImageOptions.Image")));
-            this.SimpleButtonValidateCreditRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.SimpleButtonValidateCreditRow.Location = new System.Drawing.Point(803, 212);
-            this.SimpleButtonValidateCreditRow.Name = "SimpleButtonValidateCreditRow";
-            this.SimpleButtonValidateCreditRow.Size = new System.Drawing.Size(34, 38);
-            this.SimpleButtonValidateCreditRow.TabIndex = 73;
-            this.SimpleButtonValidateCreditRow.Text = "Validate Current Row";
-            this.SimpleButtonValidateCreditRow.Click += new System.EventHandler(this.SimpleButtonValidateCreditRow_Click);
             // 
             // CheckEditAllowElectronicPayment
             // 
@@ -4574,7 +4376,7 @@ namespace TraceForms
             // 
             this.CheckEditRequireCVV2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "RequireCVV2Number", true));
             this.CheckEditRequireCVV2.EnterMoveNextControl = true;
-            this.CheckEditRequireCVV2.Location = new System.Drawing.Point(285, 72);
+            this.CheckEditRequireCVV2.Location = new System.Drawing.Point(193, 18);
             this.CheckEditRequireCVV2.Name = "CheckEditRequireCVV2";
             this.CheckEditRequireCVV2.Properties.Caption = "Require CVV2 Number";
             this.CheckEditRequireCVV2.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -4588,7 +4390,7 @@ namespace TraceForms
             // 
             this.LabelDefaultPaymentProfileID.AutoSize = true;
             this.LabelDefaultPaymentProfileID.BackColor = System.Drawing.Color.Transparent;
-            this.LabelDefaultPaymentProfileID.Location = new System.Drawing.Point(14, 423);
+            this.LabelDefaultPaymentProfileID.Location = new System.Drawing.Point(27, 422);
             this.LabelDefaultPaymentProfileID.Name = "LabelDefaultPaymentProfileID";
             this.LabelDefaultPaymentProfileID.Size = new System.Drawing.Size(134, 13);
             this.LabelDefaultPaymentProfileID.TabIndex = 70;
@@ -4598,7 +4400,7 @@ namespace TraceForms
             // 
             this.ButtonDeleteCredit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteCredit.ImageOptions.Image")));
             this.ButtonDeleteCredit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteCredit.Location = new System.Drawing.Point(803, 167);
+            this.ButtonDeleteCredit.Location = new System.Drawing.Point(818, 167);
             this.ButtonDeleteCredit.Name = "ButtonDeleteCredit";
             this.ButtonDeleteCredit.Size = new System.Drawing.Size(34, 38);
             this.ButtonDeleteCredit.TabIndex = 69;
@@ -4610,7 +4412,7 @@ namespace TraceForms
             // 
             this.ButtonDeleteBank.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteBank.ImageOptions.Image")));
             this.ButtonDeleteBank.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteBank.Location = new System.Drawing.Point(803, 329);
+            this.ButtonDeleteBank.Location = new System.Drawing.Point(818, 323);
             this.ButtonDeleteBank.Name = "ButtonDeleteBank";
             this.ButtonDeleteBank.Size = new System.Drawing.Size(34, 38);
             this.ButtonDeleteBank.TabIndex = 68;
@@ -4632,7 +4434,7 @@ namespace TraceForms
             // 
             this.ButtonAddBank.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddBank.ImageOptions.Image")));
             this.ButtonAddBank.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddBank.Location = new System.Drawing.Point(803, 285);
+            this.ButtonAddBank.Location = new System.Drawing.Point(818, 279);
             this.ButtonAddBank.Name = "ButtonAddBank";
             this.ButtonAddBank.Size = new System.Drawing.Size(34, 38);
             this.ButtonAddBank.TabIndex = 67;
@@ -4651,8 +4453,8 @@ namespace TraceForms
             // 
             // GridControlBankProfiles
             // 
-            this.GridControlBankProfiles.DataSource = this.BindingSourceAgencyPaymentProfile;
-            this.GridControlBankProfiles.Location = new System.Drawing.Point(12, 285);
+            this.GridControlBankProfiles.DataSource = this.BindingSourceAgencyPaymentProfileCredit;
+            this.GridControlBankProfiles.Location = new System.Drawing.Point(27, 279);
             this.GridControlBankProfiles.MainView = this.GridViewBankProfiles;
             this.GridControlBankProfiles.Name = "GridControlBankProfiles";
             this.GridControlBankProfiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -4662,10 +4464,11 @@ namespace TraceForms
             this.GridControlBankProfiles.TabStop = false;
             this.GridControlBankProfiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewBankProfiles});
+            this.GridControlBankProfiles.Leave += new System.EventHandler(this.GridControlBankProfiles_Leave);
             // 
-            // BindingSourceAgencyPaymentProfile
+            // BindingSourceAgencyPaymentProfileCredit
             // 
-            this.BindingSourceAgencyPaymentProfile.DataSource = typeof(FlexModel.AgencyPaymentProfile);
+            this.BindingSourceAgencyPaymentProfileCredit.DataSource = typeof(FlexModel.AgencyPaymentProfile);
             // 
             // GridViewBankProfiles
             // 
@@ -4690,7 +4493,6 @@ namespace TraceForms
             this.GridViewBankProfiles.Name = "GridViewBankProfiles";
             this.GridViewBankProfiles.OptionsView.ShowGroupPanel = false;
             this.GridViewBankProfiles.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewBankProfiles_InvalidRowException);
-            this.GridViewBankProfiles.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewBankProfiles_ValidateRow);
             this.GridViewBankProfiles.CustomRowFilter += new DevExpress.XtraGrid.Views.Base.RowFilterEventHandler(this.GridViewBankProfiles_CustomRowFilter);
             this.GridViewBankProfiles.SubstituteFilter += new System.EventHandler<DevExpress.Data.SubstituteFilterEventArgs>(this.GridViewBankProfiles_SubstituteFilter);
             // 
@@ -4700,8 +4502,6 @@ namespace TraceForms
             this.gridColumnID.FieldName = "ProfileID";
             this.gridColumnID.MinWidth = 12;
             this.gridColumnID.Name = "gridColumnID";
-            this.gridColumnID.Visible = true;
-            this.gridColumnID.VisibleIndex = 0;
             this.gridColumnID.Width = 41;
             // 
             // gridColumnBankName
@@ -4711,7 +4511,7 @@ namespace TraceForms
             this.gridColumnBankName.MinWidth = 12;
             this.gridColumnBankName.Name = "gridColumnBankName";
             this.gridColumnBankName.Visible = true;
-            this.gridColumnBankName.VisibleIndex = 1;
+            this.gridColumnBankName.VisibleIndex = 0;
             this.gridColumnBankName.Width = 53;
             // 
             // gridColumnAccountType
@@ -4722,7 +4522,7 @@ namespace TraceForms
             this.gridColumnAccountType.MinWidth = 12;
             this.gridColumnAccountType.Name = "gridColumnAccountType";
             this.gridColumnAccountType.Visible = true;
-            this.gridColumnAccountType.VisibleIndex = 2;
+            this.gridColumnAccountType.VisibleIndex = 1;
             this.gridColumnAccountType.Width = 53;
             // 
             // repositoryItemImageComboBoxAccountType
@@ -4730,20 +4530,16 @@ namespace TraceForms
             this.repositoryItemImageComboBoxAccountType.AutoHeight = false;
             this.repositoryItemImageComboBoxAccountType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageComboBoxAccountType.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Checking", ((short)(0)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Saving", ((short)(1)), -1),
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("Business checking", ((short)(2)), -1)});
             this.repositoryItemImageComboBoxAccountType.Name = "repositoryItemImageComboBoxAccountType";
             // 
             // gridColumnAccountNo
             // 
-            this.gridColumnAccountNo.Caption = "Account Nbr";
+            this.gridColumnAccountNo.Caption = "Account Number";
             this.gridColumnAccountNo.FieldName = "BankAccountNumber";
             this.gridColumnAccountNo.MinWidth = 12;
             this.gridColumnAccountNo.Name = "gridColumnAccountNo";
             this.gridColumnAccountNo.Visible = true;
-            this.gridColumnAccountNo.VisibleIndex = 3;
+            this.gridColumnAccountNo.VisibleIndex = 2;
             this.gridColumnAccountNo.Width = 48;
             // 
             // gridColumnStreet
@@ -4752,8 +4548,6 @@ namespace TraceForms
             this.gridColumnStreet.FieldName = "BillingAddress.Street";
             this.gridColumnStreet.MinWidth = 12;
             this.gridColumnStreet.Name = "gridColumnStreet";
-            this.gridColumnStreet.Visible = true;
-            this.gridColumnStreet.VisibleIndex = 6;
             this.gridColumnStreet.Width = 53;
             // 
             // gridColumnCity
@@ -4762,8 +4556,6 @@ namespace TraceForms
             this.gridColumnCity.FieldName = "BillingAddress.City";
             this.gridColumnCity.MinWidth = 12;
             this.gridColumnCity.Name = "gridColumnCity";
-            this.gridColumnCity.Visible = true;
-            this.gridColumnCity.VisibleIndex = 7;
             this.gridColumnCity.Width = 43;
             // 
             // gridColumnState
@@ -4772,8 +4564,6 @@ namespace TraceForms
             this.gridColumnState.FieldName = "BillingAddress.State";
             this.gridColumnState.MinWidth = 12;
             this.gridColumnState.Name = "gridColumnState";
-            this.gridColumnState.Visible = true;
-            this.gridColumnState.VisibleIndex = 8;
             this.gridColumnState.Width = 26;
             // 
             // gridColumnZipCode
@@ -4782,8 +4572,6 @@ namespace TraceForms
             this.gridColumnZipCode.FieldName = "BillingAddress.Zip";
             this.gridColumnZipCode.MinWidth = 12;
             this.gridColumnZipCode.Name = "gridColumnZipCode";
-            this.gridColumnZipCode.Visible = true;
-            this.gridColumnZipCode.VisibleIndex = 9;
             this.gridColumnZipCode.Width = 38;
             // 
             // gridColumnCountry
@@ -4792,8 +4580,6 @@ namespace TraceForms
             this.gridColumnCountry.FieldName = "BillingAddress.Country";
             this.gridColumnCountry.MinWidth = 12;
             this.gridColumnCountry.Name = "gridColumnCountry";
-            this.gridColumnCountry.Visible = true;
-            this.gridColumnCountry.VisibleIndex = 10;
             this.gridColumnCountry.Width = 28;
             // 
             // gridColumnPhone
@@ -4802,46 +4588,45 @@ namespace TraceForms
             this.gridColumnPhone.FieldName = "BillingAddress.Phone";
             this.gridColumnPhone.MinWidth = 12;
             this.gridColumnPhone.Name = "gridColumnPhone";
-            this.gridColumnPhone.Visible = true;
-            this.gridColumnPhone.VisibleIndex = 11;
             this.gridColumnPhone.Width = 69;
             // 
             // gridColumnRoutingNo
             // 
-            this.gridColumnRoutingNo.Caption = "Routing Nbr";
+            this.gridColumnRoutingNo.Caption = "Routing Number";
             this.gridColumnRoutingNo.FieldName = "BankRoutingNumber";
             this.gridColumnRoutingNo.MinWidth = 12;
             this.gridColumnRoutingNo.Name = "gridColumnRoutingNo";
             this.gridColumnRoutingNo.Visible = true;
-            this.gridColumnRoutingNo.VisibleIndex = 4;
+            this.gridColumnRoutingNo.VisibleIndex = 3;
             this.gridColumnRoutingNo.Width = 45;
             // 
             // gridColumnNameOnAccount
             // 
-            this.gridColumnNameOnAccount.Caption = "Name on Acct";
+            this.gridColumnNameOnAccount.Caption = "Name on Account";
             this.gridColumnNameOnAccount.FieldName = "BankNameOnAccount";
             this.gridColumnNameOnAccount.MinWidth = 12;
             this.gridColumnNameOnAccount.Name = "gridColumnNameOnAccount";
             this.gridColumnNameOnAccount.Visible = true;
-            this.gridColumnNameOnAccount.VisibleIndex = 5;
+            this.gridColumnNameOnAccount.VisibleIndex = 4;
             this.gridColumnNameOnAccount.Width = 54;
             // 
             // GridControlCreditProfiles
             // 
-            this.GridControlCreditProfiles.DataSource = this.BindingSourceAgencyPaymentProfile;
-            this.GridControlCreditProfiles.Location = new System.Drawing.Point(12, 123);
+            this.GridControlCreditProfiles.DataSource = this.BindingSourceAgencyPaymentProfileCredit;
+            this.GridControlCreditProfiles.Location = new System.Drawing.Point(27, 123);
             this.GridControlCreditProfiles.MainView = this.GridViewCreditProfiles;
             this.GridControlCreditProfiles.Name = "GridControlCreditProfiles";
             this.GridControlCreditProfiles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemComboBox1,
             this.RepositoryItemImageComboBoxExpMonth,
-            this.RepositoryItemSpinEditExpYear});
+            this.RepositoryItemComboBoxExpYear});
             this.GridControlCreditProfiles.Size = new System.Drawing.Size(785, 127);
             this.GridControlCreditProfiles.TabIndex = 52;
             this.GridControlCreditProfiles.TabStop = false;
             this.GridControlCreditProfiles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewCreditProfiles});
+            this.GridControlCreditProfiles.Leave += new System.EventHandler(this.GridControlCreditProfiles_Leave);
             // 
             // GridViewCreditProfiles
             // 
@@ -4849,19 +4634,18 @@ namespace TraceForms
             this.GridViewCreditProfiles.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.GridViewCreditProfiles.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.GridViewCreditProfiles.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.grdColID,
-            this.grdColCardNo,
-            this.grdColExpirationYear,
-            this.grdColCVV2,
-            this.grdColCompany,
-            this.grdColFirst,
-            this.grdColLast,
+            this.gridColID,
+            this.gridColCardNo,
+            this.gridColExpirationYear,
+            this.gridColCVV2,
+            this.gridColCompany,
+            this.gridColFirst,
+            this.gridColLast,
             this.gridColStreet,
             this.gridColCity,
             this.gridColState,
             this.gridColZip,
             this.gridColCountry,
-            this.gridColAccountType,
             this.gridColPhone,
             this.gridColExpirationMonth});
             this.GridViewCreditProfiles.DetailHeight = 198;
@@ -4872,18 +4656,17 @@ namespace TraceForms
             this.GridViewCreditProfiles.OptionsView.ShowGroupPanel = false;
             this.GridViewCreditProfiles.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewCreditProfiles_CustomRowCellEdit);
             this.GridViewCreditProfiles.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewPaymentProfiles_InvalidRowException);
-            this.GridViewCreditProfiles.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewPaymentProfiles_ValidateRow);
             this.GridViewCreditProfiles.CustomRowFilter += new DevExpress.XtraGrid.Views.Base.RowFilterEventHandler(this.GridViewCreditProfiles_CustomRowFilter);
             this.GridViewCreditProfiles.SubstituteFilter += new System.EventHandler<DevExpress.Data.SubstituteFilterEventArgs>(this.GridViewCreditProfiles_SubstituteFilter);
             // 
-            // grdColID
+            // gridColID
             // 
-            this.grdColID.Caption = "ID";
-            this.grdColID.ColumnEdit = this.repositoryItemComboBox1;
-            this.grdColID.FieldName = "ProfileID";
-            this.grdColID.MinWidth = 12;
-            this.grdColID.Name = "grdColID";
-            this.grdColID.Width = 84;
+            this.gridColID.Caption = "ID";
+            this.gridColID.ColumnEdit = this.repositoryItemComboBox1;
+            this.gridColID.FieldName = "PaymentProfileID";
+            this.gridColID.MinWidth = 12;
+            this.gridColID.Name = "gridColID";
+            this.gridColID.Width = 84;
             // 
             // repositoryItemComboBox1
             // 
@@ -4891,71 +4674,67 @@ namespace TraceForms
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
-            // grdColCardNo
+            // gridColCardNo
             // 
-            this.grdColCardNo.Caption = "Card No";
-            this.grdColCardNo.FieldName = "CardNumber";
-            this.grdColCardNo.MinWidth = 12;
-            this.grdColCardNo.Name = "grdColCardNo";
-            this.grdColCardNo.Visible = true;
-            this.grdColCardNo.VisibleIndex = 0;
-            this.grdColCardNo.Width = 135;
+            this.gridColCardNo.Caption = "Card Number";
+            this.gridColCardNo.FieldName = "CardNumber";
+            this.gridColCardNo.MinWidth = 12;
+            this.gridColCardNo.Name = "gridColCardNo";
+            this.gridColCardNo.Visible = true;
+            this.gridColCardNo.VisibleIndex = 0;
+            this.gridColCardNo.Width = 135;
             // 
-            // grdColExpirationYear
+            // gridColExpirationYear
             // 
-            this.grdColExpirationYear.Caption = "Year";
-            this.grdColExpirationYear.ColumnEdit = this.RepositoryItemSpinEditExpYear;
-            this.grdColExpirationYear.FieldName = "CardExpiration";
-            this.grdColExpirationYear.MinWidth = 12;
-            this.grdColExpirationYear.Name = "grdColExpirationYear";
-            this.grdColExpirationYear.Visible = true;
-            this.grdColExpirationYear.VisibleIndex = 1;
-            this.grdColExpirationYear.Width = 66;
+            this.gridColExpirationYear.Caption = "Year";
+            this.gridColExpirationYear.ColumnEdit = this.RepositoryItemComboBoxExpYear;
+            this.gridColExpirationYear.FieldName = "ExpirationYear";
+            this.gridColExpirationYear.MinWidth = 12;
+            this.gridColExpirationYear.Name = "gridColExpirationYear";
+            this.gridColExpirationYear.Visible = true;
+            this.gridColExpirationYear.VisibleIndex = 1;
+            this.gridColExpirationYear.Width = 66;
             // 
-            // RepositoryItemSpinEditExpYear
+            // RepositoryItemComboBoxExpYear
             // 
-            this.RepositoryItemSpinEditExpYear.AutoHeight = false;
-            this.RepositoryItemSpinEditExpYear.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemComboBoxExpYear.AutoHeight = false;
+            this.RepositoryItemComboBoxExpYear.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemSpinEditExpYear.Name = "RepositoryItemSpinEditExpYear";
+            this.RepositoryItemComboBoxExpYear.Name = "RepositoryItemComboBoxExpYear";
             // 
-            // grdColCVV2
+            // gridColCVV2
             // 
-            this.grdColCVV2.Caption = "CVV2";
-            this.grdColCVV2.FieldName = "CardCode";
-            this.grdColCVV2.MinWidth = 12;
-            this.grdColCVV2.Name = "grdColCVV2";
-            this.grdColCVV2.Visible = true;
-            this.grdColCVV2.VisibleIndex = 3;
-            this.grdColCVV2.Width = 49;
+            this.gridColCVV2.Caption = "CVV2";
+            this.gridColCVV2.FieldName = "CardCode";
+            this.gridColCVV2.MinWidth = 12;
+            this.gridColCVV2.Name = "gridColCVV2";
+            this.gridColCVV2.Visible = true;
+            this.gridColCVV2.VisibleIndex = 3;
+            this.gridColCVV2.Width = 49;
             // 
-            // grdColCompany
+            // gridColCompany
             // 
-            this.grdColCompany.Caption = "Company";
-            this.grdColCompany.FieldName = "BillingAddress.Company";
-            this.grdColCompany.MinWidth = 12;
-            this.grdColCompany.Name = "grdColCompany";
-            this.grdColCompany.Width = 62;
+            this.gridColCompany.Caption = "Company";
+            this.gridColCompany.FieldName = "BillingAddress.Company";
+            this.gridColCompany.MinWidth = 12;
+            this.gridColCompany.Name = "gridColCompany";
+            this.gridColCompany.Width = 62;
             // 
-            // grdColFirst
+            // gridColFirst
             // 
-            this.grdColFirst.Caption = "First";
-            this.grdColFirst.FieldName = "BillingAddress.First";
-            this.grdColFirst.MinWidth = 12;
-            this.grdColFirst.Name = "grdColFirst";
-            this.grdColFirst.Visible = true;
-            this.grdColFirst.VisibleIndex = 4;
-            this.grdColFirst.Width = 58;
+            this.gridColFirst.Caption = "First";
+            this.gridColFirst.FieldName = "BillingAddress.First";
+            this.gridColFirst.MinWidth = 12;
+            this.gridColFirst.Name = "gridColFirst";
+            this.gridColFirst.Width = 58;
             // 
-            // grdColLast
+            // gridColLast
             // 
-            this.grdColLast.Caption = "Last";
-            this.grdColLast.FieldName = "BillingAddress.Last";
-            this.grdColLast.MinWidth = 12;
-            this.grdColLast.Name = "grdColLast";
-            this.grdColLast.Visible = true;
-            this.grdColLast.VisibleIndex = 5;
-            this.grdColLast.Width = 58;
+            this.gridColLast.Caption = "Last";
+            this.gridColLast.FieldName = "BillingAddress.Last";
+            this.gridColLast.MinWidth = 12;
+            this.gridColLast.Name = "gridColLast";
+            this.gridColLast.Width = 58;
             // 
             // gridColStreet
             // 
@@ -4963,8 +4742,6 @@ namespace TraceForms
             this.gridColStreet.FieldName = "BillingAddress.Street";
             this.gridColStreet.MinWidth = 12;
             this.gridColStreet.Name = "gridColStreet";
-            this.gridColStreet.Visible = true;
-            this.gridColStreet.VisibleIndex = 6;
             this.gridColStreet.Width = 80;
             // 
             // gridColCity
@@ -4973,8 +4750,6 @@ namespace TraceForms
             this.gridColCity.FieldName = "BillingAddress.City";
             this.gridColCity.MinWidth = 12;
             this.gridColCity.Name = "gridColCity";
-            this.gridColCity.Visible = true;
-            this.gridColCity.VisibleIndex = 7;
             this.gridColCity.Width = 58;
             // 
             // gridColState
@@ -4983,8 +4758,6 @@ namespace TraceForms
             this.gridColState.FieldName = "BillingAddress.State";
             this.gridColState.MinWidth = 12;
             this.gridColState.Name = "gridColState";
-            this.gridColState.Visible = true;
-            this.gridColState.VisibleIndex = 8;
             this.gridColState.Width = 45;
             // 
             // gridColZip
@@ -4993,8 +4766,6 @@ namespace TraceForms
             this.gridColZip.FieldName = "BillingAddress.Zip";
             this.gridColZip.MinWidth = 12;
             this.gridColZip.Name = "gridColZip";
-            this.gridColZip.Visible = true;
-            this.gridColZip.VisibleIndex = 9;
             this.gridColZip.Width = 52;
             // 
             // gridColCountry
@@ -5003,14 +4774,7 @@ namespace TraceForms
             this.gridColCountry.FieldName = "BillingAddress.Country";
             this.gridColCountry.MinWidth = 12;
             this.gridColCountry.Name = "gridColCountry";
-            this.gridColCountry.Visible = true;
-            this.gridColCountry.VisibleIndex = 10;
             this.gridColCountry.Width = 98;
-            // 
-            // gridColAccountType
-            // 
-            this.gridColAccountType.FieldName = "AccountType";
-            this.gridColAccountType.Name = "gridColAccountType";
             // 
             // gridColPhone
             // 
@@ -5018,8 +4782,6 @@ namespace TraceForms
             this.gridColPhone.FieldName = "BillingAddress.Phone";
             this.gridColPhone.MinWidth = 12;
             this.gridColPhone.Name = "gridColPhone";
-            this.gridColPhone.Visible = true;
-            this.gridColPhone.VisibleIndex = 11;
             this.gridColPhone.Width = 196;
             // 
             // gridColExpirationMonth
@@ -5065,16 +4827,16 @@ namespace TraceForms
             this.simpleButton1.TabIndex = 11;
             this.simpleButton1.Text = "Delete";
             // 
-            // AddCreditButton
+            // ButtonAddCredit
             // 
-            this.AddCreditButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("AddCreditButton.ImageOptions.Image")));
-            this.AddCreditButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.AddCreditButton.Location = new System.Drawing.Point(803, 123);
-            this.AddCreditButton.Name = "AddCreditButton";
-            this.AddCreditButton.Size = new System.Drawing.Size(34, 38);
-            this.AddCreditButton.TabIndex = 10;
-            this.AddCreditButton.Text = "Add Credit Card Profile";
-            this.AddCreditButton.Click += new System.EventHandler(this.ButtonAddCredit_Click);
+            this.ButtonAddCredit.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddCredit.ImageOptions.Image")));
+            this.ButtonAddCredit.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.ButtonAddCredit.Location = new System.Drawing.Point(818, 123);
+            this.ButtonAddCredit.Name = "ButtonAddCredit";
+            this.ButtonAddCredit.Size = new System.Drawing.Size(34, 38);
+            this.ButtonAddCredit.TabIndex = 10;
+            this.ButtonAddCredit.Text = "Add Credit Card Profile";
+            this.ButtonAddCredit.Click += new System.EventHandler(this.ButtonAddCredit_Click);
             // 
             // LblCreditCardProf
             // 
@@ -5086,22 +4848,24 @@ namespace TraceForms
             this.LblCreditCardProf.TabIndex = 4;
             this.LblCreditCardProf.Text = "Credit Card Profiles";
             // 
-            // DeleteButton
+            // SimpleButtonDelete
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(670, 70);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteButton.TabIndex = 5;
-            this.DeleteButton.Text = "Delete";
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            this.SimpleButtonDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDelete.ImageOptions.Image")));
+            this.SimpleButtonDelete.Location = new System.Drawing.Point(803, 36);
+            this.SimpleButtonDelete.Name = "SimpleButtonDelete";
+            this.SimpleButtonDelete.Size = new System.Drawing.Size(39, 36);
+            this.SimpleButtonDelete.TabIndex = 5;
+            this.SimpleButtonDelete.ToolTip = "Delete customer payment profile";
+            this.SimpleButtonDelete.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // ChangePaymentProfileButton
             // 
-            this.ChangePaymentProfileButton.Location = new System.Drawing.Point(570, 70);
+            this.ChangePaymentProfileButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ChangePaymentProfileButton.ImageOptions.Image")));
+            this.ChangePaymentProfileButton.Location = new System.Drawing.Point(758, 36);
             this.ChangePaymentProfileButton.Name = "ChangePaymentProfileButton";
-            this.ChangePaymentProfileButton.Size = new System.Drawing.Size(75, 23);
+            this.ChangePaymentProfileButton.Size = new System.Drawing.Size(39, 36);
             this.ChangePaymentProfileButton.TabIndex = 4;
-            this.ChangePaymentProfileButton.Text = "Create";
+            this.ChangePaymentProfileButton.ToolTip = "Create or update customer payment profile";
             this.ChangePaymentProfileButton.Click += new System.EventHandler(this.ChangePaymentProfileButton_Click);
             // 
             // TextEditCustomerProfileEmail
@@ -5112,24 +4876,23 @@ namespace TraceForms
             this.TextEditCustomerProfileEmail.Size = new System.Drawing.Size(579, 20);
             this.TextEditCustomerProfileEmail.TabIndex = 50;
             this.TextEditCustomerProfileEmail.EditValueChanged += new System.EventHandler(this.TextEditPaymentProcessorCustProfileEmail_EditValueChanged);
-            this.TextEditCustomerProfileEmail.Leave += new System.EventHandler(this.TextEditPaymentProcessorCustProfileEmail_Leave);
+            this.TextEditCustomerProfileEmail.Leave += new System.EventHandler(this.TextEditCustomerProfileEmail_Leave);
             // 
             // ImageComboBoxEditDefaultPmtProfileID
             // 
             this.ImageComboBoxEditDefaultPmtProfileID.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "DefaultPaymentProfileId", true));
-            this.ImageComboBoxEditDefaultPmtProfileID.Location = new System.Drawing.Point(151, 420);
+            this.ImageComboBoxEditDefaultPmtProfileID.Location = new System.Drawing.Point(166, 419);
             this.ImageComboBoxEditDefaultPmtProfileID.Name = "ImageComboBoxEditDefaultPmtProfileID";
             this.ImageComboBoxEditDefaultPmtProfileID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ImageComboBoxEditDefaultPmtProfileID.Size = new System.Drawing.Size(218, 20);
             this.ImageComboBoxEditDefaultPmtProfileID.TabIndex = 54;
-            this.ImageComboBoxEditDefaultPmtProfileID.Leave += new System.EventHandler(this.ImageComboBoxEditDefaultProfileID_Leave);
             // 
             // XtraTabPageAdministrativeFees
             // 
             this.XtraTabPageAdministrativeFees.Controls.Add(this.PanelControlAdminTab);
             this.XtraTabPageAdministrativeFees.Name = "XtraTabPageAdministrativeFees";
-            this.XtraTabPageAdministrativeFees.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageAdministrativeFees.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageAdministrativeFees.Text = "Administrative Fees";
             // 
             // PanelControlAdminTab
@@ -5178,7 +4941,7 @@ namespace TraceForms
             this.PanelControlAdminTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAdminTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlAdminTab.Name = "PanelControlAdminTab";
-            this.PanelControlAdminTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlAdminTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlAdminTab.TabIndex = 0;
             // 
             // TextEditChgFlat2
@@ -5461,7 +5224,7 @@ namespace TraceForms
             // 
             this.XtraTabPageMemberships.Controls.Add(this.PanelControlMemberTab);
             this.XtraTabPageMemberships.Name = "XtraTabPageMemberships";
-            this.XtraTabPageMemberships.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageMemberships.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageMemberships.Text = "Memberships";
             // 
             // PanelControlMemberTab
@@ -5478,7 +5241,7 @@ namespace TraceForms
             this.PanelControlMemberTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlMemberTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlMemberTab.Name = "PanelControlMemberTab";
-            this.PanelControlMemberTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlMemberTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlMemberTab.TabIndex = 0;
             // 
             // TextEditSrt3
@@ -5769,7 +5532,7 @@ namespace TraceForms
             this.XtraTabPageResources.AutoScroll = true;
             this.XtraTabPageResources.Controls.Add(this.PanelControlResourceTab);
             this.XtraTabPageResources.Name = "XtraTabPageResources";
-            this.XtraTabPageResources.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageResources.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageResources.Text = "Resources";
             // 
             // PanelControlResourceTab
@@ -5785,9 +5548,8 @@ namespace TraceForms
             this.PanelControlResourceTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlResourceTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlResourceTab.Name = "PanelControlResourceTab";
-            this.PanelControlResourceTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlResourceTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlResourceTab.TabIndex = 0;
-            this.PanelControlResourceTab.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelControl14_Paint);
             // 
             // labelControlSize
             // 
@@ -5812,6 +5574,7 @@ namespace TraceForms
             // 
             // TextEditWebsite
             // 
+            this.TextEditWebsite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TextEditWebsite.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "WEBSITE", true));
             this.TextEditWebsite.EnterMoveNextControl = true;
             this.TextEditWebsite.Location = new System.Drawing.Point(80, 406);
@@ -5841,7 +5604,7 @@ namespace TraceForms
             // 
             this.XtraTabPageCustom.Controls.Add(this.PanelControlCustomTab);
             this.XtraTabPageCustom.Name = "XtraTabPageCustom";
-            this.XtraTabPageCustom.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageCustom.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageCustom.Text = "Custom";
             // 
             // PanelControlCustomTab
@@ -5850,7 +5613,7 @@ namespace TraceForms
             this.PanelControlCustomTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlCustomTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlCustomTab.Name = "PanelControlCustomTab";
-            this.PanelControlCustomTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlCustomTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlCustomTab.TabIndex = 0;
             // 
             // GridControlCustom
@@ -5861,7 +5624,7 @@ namespace TraceForms
             this.GridControlCustom.Location = new System.Drawing.Point(18, 19);
             this.GridControlCustom.MainView = this.GridViewCustom;
             this.GridControlCustom.Name = "GridControlCustom";
-            this.GridControlCustom.Size = new System.Drawing.Size(771, 301);
+            this.GridControlCustom.Size = new System.Drawing.Size(771, 332);
             this.GridControlCustom.TabIndex = 4;
             this.GridControlCustom.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewCustom});
@@ -6014,7 +5777,7 @@ namespace TraceForms
             // 
             this.XtraTabPageCommissions.Controls.Add(this.PanelControlCommTab);
             this.XtraTabPageCommissions.Name = "XtraTabPageCommissions";
-            this.XtraTabPageCommissions.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageCommissions.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageCommissions.Text = "Commissions";
             // 
             // PanelControlCommTab
@@ -6033,7 +5796,7 @@ namespace TraceForms
             this.PanelControlCommTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlCommTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlCommTab.Name = "PanelControlCommTab";
-            this.PanelControlCommTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlCommTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlCommTab.TabIndex = 0;
             // 
             // LabelMarkups
@@ -6504,7 +6267,7 @@ namespace TraceForms
             // 
             this.XtraTabPageAgents.Controls.Add(this.PanelControlAgentTab);
             this.XtraTabPageAgents.Name = "XtraTabPageAgents";
-            this.XtraTabPageAgents.Size = new System.Drawing.Size(877, 499);
+            this.XtraTabPageAgents.Size = new System.Drawing.Size(877, 530);
             this.XtraTabPageAgents.Text = "Agents";
             // 
             // PanelControlAgentTab
@@ -6515,7 +6278,7 @@ namespace TraceForms
             this.PanelControlAgentTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelControlAgentTab.Location = new System.Drawing.Point(0, 0);
             this.PanelControlAgentTab.Name = "PanelControlAgentTab";
-            this.PanelControlAgentTab.Size = new System.Drawing.Size(877, 499);
+            this.PanelControlAgentTab.Size = new System.Drawing.Size(877, 530);
             this.PanelControlAgentTab.TabIndex = 0;
             // 
             // ButtonDeleteAgent
@@ -6523,7 +6286,7 @@ namespace TraceForms
             this.ButtonDeleteAgent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDeleteAgent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDeleteAgent.ImageOptions.Image")));
             this.ButtonDeleteAgent.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDeleteAgent.Location = new System.Drawing.Point(808, 92);
+            this.ButtonDeleteAgent.Location = new System.Drawing.Point(808, 123);
             this.ButtonDeleteAgent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDeleteAgent.Name = "ButtonDeleteAgent";
             this.ButtonDeleteAgent.Size = new System.Drawing.Size(34, 38);
@@ -6537,7 +6300,7 @@ namespace TraceForms
             this.ButtonAddAgent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddAgent.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddAgent.ImageOptions.Image")));
             this.ButtonAddAgent.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddAgent.Location = new System.Drawing.Point(808, 48);
+            this.ButtonAddAgent.Location = new System.Drawing.Point(808, 79);
             this.ButtonAddAgent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddAgent.Name = "ButtonAddAgent";
             this.ButtonAddAgent.Size = new System.Drawing.Size(34, 38);
@@ -6562,7 +6325,7 @@ namespace TraceForms
             this.RepositoryItemTextEditAgentCompany,
             this.RepositoryItemTextEditAgentName,
             this.RepositoryItemImageComboBoxEditAgentDelegate});
-            this.GridControlAgcyLog.Size = new System.Drawing.Size(782, 467);
+            this.GridControlAgcyLog.Size = new System.Drawing.Size(782, 498);
             this.GridControlAgcyLog.TabIndex = 34;
             this.GridControlAgcyLog.TabStop = false;
             this.GridControlAgcyLog.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -6889,7 +6652,6 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.Controls.Add(aRLabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.XtraTabControlAgency);
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditName);
-            this.SplitContainerControl.Panel2.Controls.Add(vOUCH_TYPESLabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditAr);
             this.SplitContainerControl.Panel2.Controls.Add(nAMELabel);
             this.SplitContainerControl.Panel2.Controls.Add(aPLabel);
@@ -6899,7 +6661,6 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.Controls.Add(dEF_LANGLabel);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditDefLanguage);
             this.SplitContainerControl.Panel2.Controls.Add(this.TextEditCode);
-            this.SplitContainerControl.Panel2.Controls.Add(this.TextEditVouchTypes);
             this.SplitContainerControl.Panel2.Text = "Panel2";
             this.SplitContainerControl.Size = new System.Drawing.Size(1183, 642);
             this.SplitContainerControl.SplitterPosition = 190;
@@ -6991,17 +6752,6 @@ namespace TraceForms
             this.TextEditCode.TabIndex = 1;
             this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
-            // TextEditVouchTypes
-            // 
-            this.TextEditVouchTypes.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "VOUCH_TYPES", true));
-            this.TextEditVouchTypes.Location = new System.Drawing.Point(502, 93);
-            this.TextEditVouchTypes.Name = "TextEditVouchTypes";
-            this.TextEditVouchTypes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.TextEditVouchTypes.Size = new System.Drawing.Size(100, 20);
-            this.TextEditVouchTypes.TabIndex = 64;
-            this.TextEditVouchTypes.TabStop = false;
-            // 
             // PanelControlStatus
             // 
             this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
@@ -7029,7 +6779,6 @@ namespace TraceForms
             // BindingSourceAgencyPaymentProfileBank
             // 
             this.BindingSourceAgencyPaymentProfileBank.DataSource = typeof(FlexModel.AgencyPaymentProfile);
-            this.BindingSourceAgencyPaymentProfileBank.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.BindingSourceAgencyPaymentProfileBank_ListChanged);
             // 
             // AgencyForm
             // 
@@ -7047,7 +6796,6 @@ namespace TraceForms
             this.Name = "AgencyForm";
             this.Text = "Agency Information";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AgencyForm_FormClosing);
-            this.Load += new System.EventHandler(this.AgencyForm_Load);
             this.Shown += new System.EventHandler(this.AgencyForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
@@ -7097,20 +6845,14 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlReportTab)).EndInit();
             this.PanelControlReportTab.ResumeLayout(false);
             this.PanelControlReportTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditPkgVouchers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditOptVouchers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAirVouchers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditCruVouchers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditCarVouchers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditHtlVouchers.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditTourfaxEmailFormat.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CheckEditSglResConf.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit8.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRemoteVouchers.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowAttachments.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditConfPrc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditVoucherDaysPrior.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpinEditVoucherReprints.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckedComboBoxEditVouchTypes.Properties)).EndInit();
             this.XtraTabPagePolicies.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlPoliciesTab)).EndInit();
             this.PanelControlPoliciesTab.ResumeLayout(false);
@@ -7152,19 +6894,19 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PanelControlPaymentProfileStatus)).EndInit();
-            this.PanelControlPaymentProfileStatus.ResumeLayout(false);
-            this.PanelControlPaymentProfileStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlCustomerProfileStatus)).EndInit();
+            this.PanelControlCustomerProfileStatus.ResumeLayout(false);
+            this.PanelControlCustomerProfileStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllowElectronicPayment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequireCVV2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlBankProfiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceAgencyPaymentProfileCredit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewBankProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBoxAccountType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlCreditProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewCreditProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditExpYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemComboBoxExpYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxExpMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCustomerProfileEmail.Properties)).EndInit();
@@ -7249,7 +6991,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEditAgentCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemImageComboBoxEditAgentDelegate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourcePaymentProfiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCreditCardInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditAp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditType.Properties)).EndInit();
@@ -7261,7 +7002,6 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditDefLanguage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextEditVouchTypes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
@@ -7287,7 +7027,6 @@ namespace TraceForms
         private DevExpress.XtraEditors.PanelControl PanelControlAvailabilityTab;
         private DevExpress.XtraTab.XtraTabPage XtraTabPageReporting;
         private DevExpress.XtraEditors.PanelControl PanelControlReportTab;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraTab.XtraTabPage XtraTabPagePolicies;
         private DevExpress.XtraEditors.PanelControl PanelControlPoliciesTab;
         private DevExpress.XtraTab.XtraTabPage XtraTabPageAccounting;
@@ -7299,8 +7038,6 @@ namespace TraceForms
         private DevExpress.XtraEditors.LabelControl LabelControlLastInvDate;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl LabelControlPriorDays;
-        private DevExpress.XtraEditors.LabelControl LabelControlPmtDays;
-        private DevExpress.XtraEditors.LabelControl LabelControlDueDays;
         private DevExpress.XtraEditors.CheckEdit CheckEditSvcDateFlg;
         private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditInvFmt;
         private DevExpress.XtraEditors.CheckEdit CheckEditImmedFlg;
@@ -7454,7 +7191,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colUSER_DTE22;
         private DevExpress.XtraEditors.CheckEdit CheckEditActiveFlg;
         private DevExpress.XtraEditors.CheckEdit CheckEditSubAlloc;
-        private DevExpress.XtraEditors.CheckEdit CheckEditSglResConf;
         private DevExpress.XtraEditors.CheckEdit CheckEditRemoteVouchers;
         private DevExpress.XtraEditors.CheckEdit CheckEditAllowAttachments;
         private DevExpress.XtraEditors.CheckEdit CheckEditConfPrc;
@@ -7471,12 +7207,6 @@ namespace TraceForms
         private DevExpress.XtraEditors.LabelControl LabelControlLastUpdatedBy;
         private DevExpress.XtraEditors.LabelControl labelControl25;
         private DevExpress.XtraEditors.ButtonEdit ButtonEditLogoPath;
-        private DevExpress.XtraEditors.CheckEdit CheckEditPkgVouchers;
-        private DevExpress.XtraEditors.CheckEdit CheckEditOptVouchers;
-        private DevExpress.XtraEditors.CheckEdit CheckEditAirVouchers;
-        private DevExpress.XtraEditors.CheckEdit CheckEditCruVouchers;
-        private DevExpress.XtraEditors.CheckEdit CheckEditCarVouchers;
-        private DevExpress.XtraEditors.CheckEdit CheckEditHtlVouchers;
         private DevExpress.XtraEditors.SimpleButton ButtonAddContact;
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteContact;
         private DevExpress.XtraEditors.SimpleButton ButtonDeleteMembership;
@@ -7539,13 +7269,13 @@ namespace TraceForms
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewCreditProfiles;
         private System.Windows.Forms.Label LblCreditCardProf;
         private System.Windows.Forms.BindingSource BindingSourcePaymentProfiles;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColID;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColCardNo;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColExpirationYear;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColCVV2;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColCompany;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColFirst;
-        private DevExpress.XtraGrid.Columns.GridColumn grdColLast;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColID;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColCardNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColExpirationYear;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColCVV2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColCompany;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColFirst;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColLast;
         private DevExpress.XtraGrid.Columns.GridColumn gridColStreet;
         private DevExpress.XtraGrid.Columns.GridColumn gridColCity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColState;
@@ -7556,10 +7286,9 @@ namespace TraceForms
         private DevExpress.XtraTab.XtraTabPage XtraTabPagePayments;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.TextEdit TextEditCustomerProfileEmail;
-        private System.Windows.Forms.BindingSource BindingSourceCreditCardInfo;
-        private DevExpress.XtraEditors.SimpleButton DeleteButton;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonDelete;
         private DevExpress.XtraEditors.SimpleButton ChangePaymentProfileButton;
-        private DevExpress.XtraEditors.SimpleButton AddCreditButton;
+        private DevExpress.XtraEditors.SimpleButton ButtonAddCredit;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraGrid.GridControl GridControlBankProfiles;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewBankProfiles;
@@ -7747,7 +7476,7 @@ namespace TraceForms
         private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditAgency;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraEditors.ImageComboBoxEdit ImageComboBoxEditDefaultPmtProfileID;
-        private System.Windows.Forms.BindingSource BindingSourceAgencyPaymentProfile;
+        private System.Windows.Forms.BindingSource BindingSourceAgencyPaymentProfileCredit;
         private System.Windows.Forms.BindingSource BindingSourceContact;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditReportType;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
@@ -7777,8 +7506,6 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colName6;
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditClass;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton SimpleButtonValidateCreditRow;
-        private DevExpress.XtraEditors.SimpleButton SimpleButtonValidateBankRow;
         private DevExpress.XtraEditors.DateEdit DateEditDate;
         private System.Windows.Forms.Label LabelMarkups;
         private System.Windows.Forms.Label LabelCommissions;
@@ -7787,17 +7514,17 @@ namespace TraceForms
         private DevExpress.XtraGrid.Columns.GridColumn colCode5;
         private DevExpress.XtraGrid.Columns.GridColumn colName7;
         private DevExpress.XtraGrid.Columns.GridColumn colAgcylogReadOnly;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColAccountType;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBoxAccountType;
-        private DevExpress.XtraEditors.PanelControl PanelControlPaymentProfileStatus;
+        private DevExpress.XtraEditors.PanelControl PanelControlCustomerProfileStatus;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.Label LabelPaymentProfileStatus;
+        private System.Windows.Forms.Label LabelCustomerProfileStatus;
         private DevExpress.XtraEditors.SimpleButton SimpleButtonRetry;
         private DevExpress.XtraGrid.Columns.GridColumn gridColExpirationMonth;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox RepositoryItemImageComboBoxExpMonth;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit RepositoryItemSpinEditExpYear;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit RepositoryItemCheckedComboBoxEditReportType;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit TextEditVouchTypes;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit CheckedComboBoxEditVouchTypes;
         private DevExpress.XtraGrid.Columns.GridColumn GridColumnCustomValue;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox RepositoryItemComboBoxExpYear;
+        private DevExpress.XtraGrid.Columns.GridColumn colPmtCode_PmtCode;
     }
 }

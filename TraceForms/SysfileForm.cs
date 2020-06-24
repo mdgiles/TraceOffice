@@ -285,37 +285,37 @@ namespace TraceForms
 
         private void SysfileForm_Load(object sender, EventArgs e)
         {
-            ComboBoxItemCollection coll = ComboBoxEditDriveSearch.Properties.Items;
-            coll.BeginUpdate();
-            try
-            {
-                var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_LogicalDisk");//Find all drives
-                foreach (ManagementObject queryObj in searcher.Get())
-                {
-                    try
-                    {
-                        coll.Add(queryObj["Name"].ToString() + " [" + queryObj["ProviderName"].ToString()+"]");//network drive
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            if (string.IsNullOrWhiteSpace(queryObj["VolumeName"].ToString()))//Blank name
-                                throw new Exception();
-                            coll.Add(queryObj["Name"].ToString() + " [" + queryObj["VolumeName"].ToString() + "]");//Named local drive
-                        }
-                        catch
-                        {
-                            coll.Add(queryObj["Name"].ToString() + " [" + queryObj["Description"].ToString() + "]");//Unnamed local drive
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("An error occured while checking system drives");
-            }
-            coll.EndUpdate();
+            //ComboBoxItemCollection coll = ComboBoxEditDriveSearch.Properties.Items;
+            //coll.BeginUpdate();
+            //try
+            //{
+            //    var searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_LogicalDisk");//Find all drives
+            //    foreach (ManagementObject queryObj in searcher.Get())
+            //    {
+            //        try
+            //        {
+            //            coll.Add(queryObj["Name"].ToString() + " [" + queryObj["ProviderName"].ToString()+"]");//network drive
+            //        }
+            //        catch
+            //        {
+            //            try
+            //            {
+            //                if (string.IsNullOrWhiteSpace(queryObj["VolumeName"].ToString()))//Blank name
+            //                    throw new Exception();
+            //                coll.Add(queryObj["Name"].ToString() + " [" + queryObj["VolumeName"].ToString() + "]");//Named local drive
+            //            }
+            //            catch
+            //            {
+            //                coll.Add(queryObj["Name"].ToString() + " [" + queryObj["Description"].ToString() + "]");//Unnamed local drive
+            //            }
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("An error occured while checking system drives");
+            //}
+            //coll.EndUpdate();
 
             if (string.IsNullOrWhiteSpace(TextEditCompanyName.Text))
                 TextEditCompanyName.Properties.ReadOnly = false;

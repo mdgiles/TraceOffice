@@ -24,56 +24,50 @@ using DevExpress.XtraEditors;
 using DevExpress.Data.Async.Helpers;
 using FlexInterfaces.Core;
 using DevExpress.Data.Filtering;
+using AuthorizeNet.APICore;
+using System.Diagnostics;
+using DevExpress.XtraPrinting.Native;
 
 namespace TraceForms
 {
     public partial class AgencyForm : DevExpress.XtraEditors.XtraForm
     {
+        List<string> _profilesToDelete;
         List<CodeName> _reportTypes;
         public List<IComprod2> myCommRecs;
         public List<IComprod2> myCommRecsAgy;
         public List<ICommLevel> myCommLvl;
+        const string _paymentProfileError = "Customer payment information could not be retrieved from profile manager";
         ICoreSys _sys;
-        public string imagesRoot;
-        const string col = "colNO";
-        public bool firstLoad = false;
-        public string globalRptType = string.Empty;
-        public string username;
-        public string _defAgy = string.Empty;
-        public string apiLogin;
-        public string transactionKey;
         public AuthorizeNet.CustomerGateway _custGateway;
-        public AuthorizeNet.Customer currentCust;
-        public List<int> authorizeCurrentRow;
-        public List<int> authorizeCurrentBankRow;
-        public List<AuthorizeNet.PaymentProfile> creditCards;
-        public List<AuthorizeNet.PaymentProfile> bankAccnts;
-        public float defaultCreditPct;
-        public bool allowElecPayments;
-        public bool reqAgyInfoOnFile;
-        public bool paymentTestMode;
-        public FileSystemWatcher fsw;
-        string _accountingURL;
-        RepositoryItemImageComboBox agyCurrencyCodeRepository = new RepositoryItemImageComboBox();
         bool _detailsModified = false;
         bool _contactsModified = false;
-
         FlextourEntities _context;
         AGY _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
+
+        private const string _cardRegex = "^(?:(?<Visa>4\\d{3})|(?<JCB>2131|1800|3088|35\\d{3}\\d{11})|(?<MasterCard>5[1-5]\\d{2})|(?<Discover>6011)|(?<DinersClub>(?:3[68]\\d{2})|(?:30[0-5]\\d))|(?<Amex>3[47]\\d{2}))([ -]?)(?(DinersClub)(?:\\d{6}\\1\\d{4})|(?(Amex)(?:\\d{6}\\1\\d{5})|(?:\\d{4}\\1\\d{4}\\1\\d{4})))$";
+
+        public enum CreditCardTypeType
+        {
+            Visa,
+            DinersClub,
+            MasterCard,
+            Discover,
+            Amex,
+            Switch,
+            Solo,
+            JCB,
+            TestCard
+        }
 
         public AgencyForm(ICoreSys sys)
         {
             InitializeComponent();
             Connect(sys);
             LoadLookups();
-            creditCards = new List<AuthorizeNet.PaymentProfile>();
-            bankAccnts = new List<AuthorizeNet.PaymentProfile>();
-            authorizeCurrentRow = new List<int>();
-            authorizeCurrentBankRow = new List<int>();
             _sys = sys;
-            CheckEditAllowAttachments.Checked = true;
         }
 
         void SetReadOnly(bool value)
@@ -113,58 +107,21 @@ namespace TraceForms
             AgencyPaymentProfile.MaxLengths = Connection.GetMaxLengths(typeof(AgencyPaymentProfile).GetType().Name);
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
             _sys = sys;
-            //FlexBObj.FileWatcher watcher = new FlexBObj.FileWatcher(sys.Settings.DataPath, sys.Settings.EFConnectionString);
-            username = sys.User.Name;
-            imagesRoot = sys.Settings.ImagesRoot;
-            _defAgy = sys.Settings.DefaultAgency;
-            _accountingURL = sys.Settings.TourAccountingURL;
-
-            var defCredit = _context.AGY.First(a => a.NO == _defAgy).CreditLimitRemainingWarningPct;
-            defaultCreditPct = (defCredit == null ? 0 : (float)defCredit);
-            allowElecPayments = sys.Settings.AllowElectronicPayments;
-            reqAgyInfoOnFile = sys.Settings.RequireAgyPaymentInfoOnFile;
-            paymentTestMode = sys.Settings.PaymentProcessorTestMode;
+            bool allowElecPayments = sys.Settings.AllowElectronicPayments && !string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorLoginId) && 
+                !string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorTxKey);
             if (allowElecPayments) {
-                if (string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorLoginId) || string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorTxKey)) {
-                    MessageBox.Show("You are not currently setup to enter payment info please enter your credentials in the Company File form.");
-                    XtraTabPagePayments.PageVisible = false;
-                    return;
-
-                }
                 XtraTabPagePayments.PageVisible = true;
-                if (!string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorLoginId) && !string.IsNullOrWhiteSpace(sys.Settings.PaymentProcessorTxKey)) {
-                    apiLogin = sys.Settings.PaymentProcessorLoginId;
-                    transactionKey = sys.Settings.PaymentProcessorTxKey;
-                    try {
-                        _custGateway = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, paymentTestMode);
-                    }
-                    catch (Exception ex) {
-                        MessageBox.Show(ex.Message);
-                    }
+                try {
+                    _custGateway = new AuthorizeNet.CustomerGateway(sys.Settings.PaymentProcessorLoginId, sys.Settings.PaymentProcessorTxKey, 
+                        sys.Settings.PaymentProcessorTestMode);
                 }
-
-                //conn = new AuthorizeNet.CustomerGateway("", "", AuthorizeNet.ServiceMode.Test);
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
                 XtraTabPagePayments.PageVisible = false;
 
-            var agentLoad = from c in _context.AGCYLOG
-                            where c.AGENCY == "KJM"
-                            select c;
-            BindingSourceAgcyLog.DataSource = agentLoad;
-            //file watcher demo
-            //fsw = new FileSystemWatcher();
-            ////fsw.Path = sys.Settings.DataPath;
-            //fsw.Path = sys.Settings.DataPath;
-            //fsw.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite |
-            //                   NotifyFilters.DirectoryName | NotifyFilters.FileName;
-            //fsw.IncludeSubdirectories = true;
-            //fsw.EnableRaisingEvents = true;
-            //fsw.Filter = "*.*";
-            //fsw.Changed += new FileSystemEventHandler(OnChanged);
-            //fsw.Created += new FileSystemEventHandler(OnCreated);
-            //fsw.Deleted += new FileSystemEventHandler(OnChanged);
-            //fsw.Renamed += new RenamedEventHandler(OnRenamed);
         }
 
         private void LoadLookups()
@@ -175,26 +132,20 @@ namespace TraceForms
                              select rec).ToList<IComprod2>();
             myCommLvl = (from rec in _context.CommLevel select rec).ToList<ICommLevel>();
 
+            repositoryItemImageComboBoxAccountType.AddEnum(typeof(AgencyPaymentProfile.bankAccountTypeEnum));
+
             foreach (COMPROD2 rec in myCommRecsAgy) {
                 rec.SetProductRulePosition(myCommLvl);
             }
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
             RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(loadBlank);
 
-            //var lang = from langRec in _context.LANGUAGE orderby langRec.CODE ascending select new { langRec.CODE, langRec.NAME };
-            //var country = from countryRec in _context.COUNTRY orderby countryRec.CODE ascending select new { countryRec.CODE, countryRec.NAME };
-            //var consrt = from consrtRec in _context.CONSRT orderby consrtRec.CODE ascending select new { consrtRec.CODE, consrtRec.NAME };
-            //var agency = from agencyRec in _context.AGY orderby agencyRec.NO ascending select new { agencyRec.NO, agencyRec.NAME };
             var dept = from deptRec in _context.Dept orderby deptRec.Code ascending select new { deptRec.Code, deptRec.Desc };
-            //var city = from citRec in _context.CITYCOD orderby citRec.CODE ascending select new { citRec.CODE, citRec.NAME };
-            //var state = from stateRec in _context.State orderby stateRec.Code ascending select new { stateRec.Code, stateRec.State1 };
-            //var agcylog = from agcylogRec in _context.AGCYLOG orderby agcylogRec.AGT_NAME ascending select new { agcylogRec.AGT_NAME };
 
             foreach (var result in dept) {
                 repositoryItemComboBoxDept.Items.Add(result.Code + " " + result.Desc);
             }
             SetReadOnly(true);
-            //DetailBindingSource.DataSource = from c in context.DETAIL where c.CODE == "KJM9" select c;
 
             var lookup = new List<CodeName> {
                 new CodeName(null)
@@ -241,21 +192,6 @@ namespace TraceForms
             BindingSourceUserFields.DataSource = _context.USERFIELDS
                 .Where(u => (u.VISIBLE ?? false) && u.LINK_TABLE == "AGY")
                 .OrderBy(u => u.POSITION);
-
-            //_supplierCombo.Items.Add(loadBlank);
-            //_supplierCombo.Items.AddRange(_context.Supplier
-            //                .OrderBy(o => o.Name).AsEnumerable()
-            //                .Select(s => new ImageComboBoxItem() { Description = s.Name, Value = s.GUID })
-            //                .ToList());
-            //GridControlSupplierCity.RepositoryItems.Add(_supplierCombo);        //per DX recommendation to avoid memory leaks
-
-            //lookup = new List<CodeName> {
-            //    new CodeName(null)
-            //};
-            //lookup.AddRange(_context.OPERATOR
-            //                .OrderBy(o => o.CODE)
-            //                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }));
-            //RepositoryItemCustomSearchLookUpEditOperator.DataSource = lookup;
         }
 
         private void BindingSource_CurrentChanged(object sender, EventArgs e)
@@ -268,35 +204,15 @@ namespace TraceForms
                 SetBindings();
         }
 
-        private void LoadAuthorize(AuthorizeNet.Customer cust)
+        private void LoadDefaultPaymentProfileList()
         {
-            bankAccnts.Clear();
-            creditCards.Clear();
             ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
             ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
-            foreach (AuthorizeNet.PaymentProfile profile in cust.PaymentProfiles) {
-                if (!string.IsNullOrWhiteSpace(profile.BankAccountNumber))
-                    bankAccnts.Add(profile);
-
-                if (!string.IsNullOrWhiteSpace(profile.CardNumber))
-                    creditCards.Add(profile);
-            }
-            GridControlCreditProfiles.DataSource = creditCards;
-            GridControlBankProfiles.DataSource = bankAccnts;
-            ///////////////////////
-
-            var loadDefault = from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text select agyRec;
-            foreach (var result in loadDefault) {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.PaymentProfileDesc, Value = result.PaymentProfileID };
+            foreach (var profile in _selectedRecord.AgencyPaymentProfile) {
+                ImageComboBoxItem load = new ImageComboBoxItem() { Description = profile.PaymentProfileDesc, Value = profile.PaymentProfileID };
                 ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(load);
             }
-            //setDefeaultProfile to first added if none is set
-            if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultPmtProfileID.Text) && currentCust.PaymentProfiles.Count > 0) {
-                ImageComboBoxEditDefaultPmtProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
-                _context.SaveChanges();
-            }
-            ////////////////////
         }
 
         private void GridViewCustom_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
@@ -640,16 +556,15 @@ namespace TraceForms
 
         private void ButtonEditLogoPath_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
-            using (OpenFileDialog dlg = new OpenFileDialog()) {
-                dlg.Title = "Open Image";
-                dlg.InitialDirectory = imagesRoot;
-                if (dlg.ShowDialog() == DialogResult.OK) {
-                    if (dlg.FileName.ToLower().IndexOf(imagesRoot.ToLower()) != -1)
-                        ButtonEditLogoPath.Text = dlg.FileName.Substring(imagesRoot.Length);
-                    else
-                        ButtonEditLogoPath.Text = dlg.FileName;
-                }
-            }
+            using OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Open Image";
+            dlg.InitialDirectory = _sys.Settings.ImagesRoot;
+            if (dlg.ShowDialog() == DialogResult.OK) {
+                if (dlg.FileName.ToLower().IndexOf(_sys.Settings.ImagesRoot.ToLower()) != -1)
+                    ButtonEditLogoPath.Text = dlg.FileName.Substring(_sys.Settings.ImagesRoot.Length);
+                else
+                    ButtonEditLogoPath.Text = dlg.FileName;
+            }            
         }
 
         private void ButtonEditLogoPath_TextChanged(object sender, EventArgs e)
@@ -657,7 +572,7 @@ namespace TraceForms
             PictureEditPreview.Image = null;
             try {
 
-                using (var stream = new MemoryStream(File.ReadAllBytes(imagesRoot + ButtonEditLogoPath.Text))) {
+                using (var stream = new MemoryStream(File.ReadAllBytes(_sys.Settings.ImagesRoot + ButtonEditLogoPath.Text))) {
                     PictureEditPreview.Height = Image.FromStream(stream).Height;
                     PictureEditPreview.Width = Image.FromStream(stream).Width;
                     PictureEditPreview.Image = Image.FromStream(stream);
@@ -689,17 +604,6 @@ namespace TraceForms
                 LINK_VALUE = TextEditCode.Text
             };
             BindingSourceContact.Add(contact);
-        }
-
-        private void ButtonSaveChanges_Click(object sender, EventArgs e)
-        {/*
-            GridViewContacts.FocusedColumn = GridViewContacts.Columns["LINK_TABLE"];
-            if (GridViewContacts.UpdateCurrentRow()) {
-                BindingSource.EndEdit();
-                aGYBindingNavigatorSaveItem_Click(sender, e);
-                newRowRec = false;
-                modified = false;
-            }*/
         }
 
         private void ButtonDeleteContact_Click(object sender, EventArgs e)
@@ -773,7 +677,6 @@ namespace TraceForms
                 source = ComboBoxEditSource.Text;
 
             UpdateCommMarkupGrid(agency, date, source);
-            //UpdateCommMarkupGrid(ImageComboBoxEditAgency.EditValue.ToString(), date, ComboBoxEditSource.EditValue);       
         }
 
         private void UpdateCommMarkupGrid(string Agency, DateTime? TheDate, string Source)
@@ -795,53 +698,24 @@ namespace TraceForms
             }
 
 
-            using (FlextourEntities context2 = new FlextourEntities(Connection.EFConnectionString)) {
-                IList<FlexCommissions.Commission> commQuery1 = new List<FlexCommissions.Commission>();
-                IList<FlexCommissions.Commission> commQuery2 = new List<FlexCommissions.Commission>();
-                commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "C", myCommRecsAgy, myCommLvl, Agency, TheDate, null, null, Source);
-                IList<FlexCommissions.Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
-                GridControlCommissions.DataSource = mergedList;
-                commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "M", myCommRecsAgy, myCommLvl, Agency, TheDate, null, null, Source);
-                mergedList = (commQuery1.Union(commQuery2)).ToList();
-                GridControlMarkups.DataSource = mergedList;
-            }
+            using FlextourEntities context2 = new FlextourEntities(Connection.EFConnectionString);
+            IList<FlexCommissions.Commission> commQuery1 = new List<FlexCommissions.Commission>();
+            IList<FlexCommissions.Commission> commQuery2 = new List<FlexCommissions.Commission>();
+            commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "C", myCommRecsAgy, myCommLvl, Agency, TheDate, null, null, Source);
+            IList<FlexCommissions.Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
+            GridControlCommissions.DataSource = mergedList;
+            commQuery2 = FlexCommissions.Commissions.GetAgencyCommissions(context2, "M", myCommRecsAgy, myCommLvl, Agency, TheDate, null, null, Source);
+            mergedList = (commQuery1.Union(commQuery2)).ToList();
+            GridControlMarkups.DataSource = mergedList;
         }
 
         private void CheckEditRemoteVouchers_CheckStateChanged(object sender, EventArgs e)
         {
             if (CheckEditRemoteVouchers.Checked) {
-                CheckEditHtlVouchers.Enabled = true;
-                //CheckEditHtlVouchers.Checked = true;
-                CheckEditCarVouchers.Enabled = true;
-                CheckEditCruVouchers.Enabled = true;
-                CheckEditAirVouchers.Enabled = true;
-                CheckEditOptVouchers.Enabled = true;
-                CheckEditPkgVouchers.Enabled = true;
-                CheckEditSglResConf.Enabled = true;
+                CheckedComboBoxEditVouchTypes.Enabled = true;
+            } else {
+                CheckedComboBoxEditVouchTypes.Enabled = false;
             }
-
-            if (!CheckEditRemoteVouchers.Checked) {
-                CheckEditHtlVouchers.Enabled = false;
-                CheckEditHtlVouchers.Checked = false;
-                CheckEditCarVouchers.Enabled = false;
-                CheckEditCarVouchers.Checked = false;
-                CheckEditCruVouchers.Enabled = false;
-                CheckEditCruVouchers.Checked = false;
-                CheckEditAirVouchers.Enabled = false;
-                CheckEditAirVouchers.Checked = false;
-                CheckEditOptVouchers.Enabled = false;
-                CheckEditOptVouchers.Checked = false;
-                CheckEditPkgVouchers.Enabled = false;
-                CheckEditPkgVouchers.Checked = false;
-                CheckEditSglResConf.Enabled = false;
-                CheckEditSglResConf.Checked = false;
-            }
-
-        }
-
-        private void PanelControl14_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void ImageComboBoxEditCity_Leave(object sender, EventArgs e)
@@ -868,126 +742,68 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateState, sender);
         }
 
-        private void CheckEditActiveFlg_EditValueChanged(object sender, EventArgs e)
-        {
-            //string value =  CheckEditActiveFlg.EditValue.ToString();
-            //if (value == "I")
-            //{
-            //    TextEditAgtEmail.Properties.ReadOnly = true;
-            //    TextEditAgtFax.Properties.ReadOnly = true;
-            //    TextEditAgtName.Properties.ReadOnly = true;
-            //    TextEditPassword.Properties.ReadOnly = true;
-            //    CheckEditSuprvrFlg.Properties.ReadOnly = true;
-            //    ComboBoxEditResProf.Properties.ReadOnly = true;
-            //    ComboBoxEditMntProf.Properties.ReadOnly = true;
-            //    ComboBoxEditAccProf.Properties.ReadOnly = true;
-            //    ComboBoxEditPrtProf.Properties.ReadOnly = true;
-            //}
-            //else
-            //{
-            //    TextEditAgtEmail.Properties.ReadOnly = false;
-            //    TextEditAgtFax.Properties.ReadOnly = false;
-            //    TextEditAgtName.Properties.ReadOnly = false;
-            //    TextEditPassword.Properties.ReadOnly = false;
-            //    CheckEditSuprvrFlg.Properties.ReadOnly = false;
-            //    ComboBoxEditResProf.Properties.ReadOnly = false;
-            //    ComboBoxEditMntProf.Properties.ReadOnly = false;
-            //    ComboBoxEditAccProf.Properties.ReadOnly = false;
-            //    ComboBoxEditPrtProf.Properties.ReadOnly = false;
-            //}
-        }
-
         private void ChangePaymentProfileButton_Click(object sender, EventArgs e)
         {
-            //AuthorizeNet.CustomerGateway conn = new AuthorizeNet.CustomerGateway(apiLogin, transactionKey, AuthorizeNet.ServiceMode.Test);
-            if (string.IsNullOrWhiteSpace(TextEditCustomerProfileEmail.Text)) {
-                MessageBox.Show("Please enter a value for the Customer Email Address");
-                return;
+            if (string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId) || PanelControlCustomerProfileStatus.Visible) {
+                CreateCustomerProfile();
             }
-            if (string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) {
-                currentCust = _custGateway.CreateCustomer(TextEditCustomerProfileEmail.Text, TextEditName.Text);
+            else {
+                if (LabelCustomerProfileStatus.Text == _paymentProfileError) {
+                    CreateCustomerProfile();
+                }
+                AuthorizeNet.Customer cust = new AuthorizeNet.Customer() {
+                    ProfileID = LabelPaymentProcessorCustProfileId.Text,
+                    Email = TextEditCustomerProfileEmail.Text,
+                    ID = string.Empty
+                };
+                _custGateway.UpdateCustomer(cust);
+            }
+        }
+
+        private void CreateCustomerProfile()
+        {
+            try {
+                var currentCust = _custGateway.CreateCustomer(TextEditCustomerProfileEmail.Text, TextEditName.Text);
+                PanelControlCustomerProfileStatus.Visible = string.IsNullOrEmpty(currentCust.ProfileID);
+                if (string.IsNullOrEmpty(currentCust.ProfileID)) {
+                    LabelCustomerProfileStatus.Text = "Creating customer profile failed";
+                }
                 LabelPaymentProcessorCustProfileId.Text = currentCust.ProfileID;
                 _selectedRecord.PaymentProcessorCustProfileId = currentCust.ProfileID;
-                // labelControl22.Text = currentCust.ProfileID;
-                currentCust.ID = TextEditCode.Text;
-                _custGateway.UpdateCustomer(currentCust);
-                ChangePaymentProfileButton.Enabled = false;
-                DeleteButton.Enabled = true;
-                GridControlBankProfiles.Enabled = true;
-                ButtonAddBank.Enabled = true;
-                ButtonDeleteBank.Enabled = true;
-                SimpleButtonValidateBankRow.Enabled = true;
-                GridControlCreditProfiles.Enabled = true;
-                AddCreditButton.Enabled = true;
-                ButtonDeleteCredit.Enabled = true;
-                SimpleButtonValidateCreditRow.Enabled = true;
-                ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
-            } else {
-                foreach (AuthorizeNet.PaymentProfile rec in creditCards) {
-                    //  
-                    if (rec.CardNumber.Length > 8 || rec.CardExpiration.Length > 4) {
-                        AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                        if (rec.CardNumber.Length > 8)
-                            updateRec.PaymentProvider = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
-                        updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                        updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
-                        updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
-                        if (string.IsNullOrEmpty(rec.ProfileID)) {
-                            updateRec.PaymentProfileID = _custGateway.AddCreditCard(currentCust.ProfileID, rec.CardNumber, (int)updateRec.ExpirationMonth, (int)updateRec.ExpirationYear, rec.CardCode);
-                        }
-                        else {
-                            _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                        }
-                        _context.SaveChanges();
-                    }
+                ShowCustomerProfileStatus(false, null);
+            }
+            catch (Exception ex) {//Authorize.Net does not give us a way to find what the existing ID is if a create fails because of a duplicate ID,
+                string error = "E00039 - A duplicate record with ID ";//so in order to obtain it, we must manually extract it from the error message.
+                if (ex.Message.StartsWith(error)) {
+                    string message = ex.Message.Substring(error.Length, ex.Message.Length - error.Length);
+                    string[] parts = message.Split(' ');
+                    _selectedRecord.PaymentProcessorCustProfileId = parts[0];
+                    LabelPaymentProcessorCustProfileId.Text = parts[0];
+                    LoadPaymentProfiles();
+                    SetBankAndCreditCardState(true);
                 }
-
-                foreach (AuthorizeNet.PaymentProfile rec in bankAccnts) {
-                    // conn.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                    if (rec.BankAccountNumber.Length > 8) {
-                        AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                        updateRec.PaymentProvider = rec.BankName;
-                        updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                        if (string.IsNullOrEmpty(rec.ProfileID)) {
-                            updateRec.PaymentProfileID = _custGateway.AddBankAccount(currentCust.ProfileID, rec.BankNameOnAccount, rec.BankAccountNumber, rec.BankRoutingNumber, rec.BankName, rec.AccountType, true, rec.BillingAddress);
-                        }
-                        else {
-                            _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                        }
-                        _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                    }
+                else {
+                    ShowCustomerProfileStatus(true, ex.Message);
                 }
-                currentCust.Email = TextEditCustomerProfileEmail.Text;
-                _custGateway.UpdateCustomer(currentCust);
-                _context.SaveChanges();
-                //currentCust = conn.GetCustomer(labelControl22.Text);
-                if (currentCust.PaymentProfiles.Count() > 0)
-                    LoadAuthorize(currentCust);
             }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             //delete
-            if (MessageBox.Show("Are you sure you want to delete the customer profile?", "CONFIRM", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                _custGateway.DeleteCustomer(currentCust.ProfileID);
-                var recs = from payRec in _context.AgencyPaymentProfile where payRec.Agy_No == TextEditCode.Text select payRec;
-                foreach (AgencyPaymentProfile record in recs)
-                    _context.DeleteObject(record);
-                GridViewLookup.SetFocusedRowCellValue("PaymentProcessorCustProfileId", string.Empty);
-                GridViewLookup.SetFocusedRowCellValue("PaymentProcessorCustProfileEmail", string.Empty);
-                GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
-                ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = string.Empty };
-                ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
-                ChangePaymentProfileButton.Text = "Create";
+            DialogResult result = DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete the customer profile? This cannot be undone.");
+            if (result == DialogResult.Yes) {
+                _custGateway.DeleteCustomer(LabelPaymentProcessorCustProfileId.Text);
+                BindingSourceAgencyPaymentProfileCredit.Clear();
+                BindingSourceAgencyPaymentProfileBank.Clear();
+                LabelPaymentProcessorCustProfileId.Text = string.Empty;
+                TextEditCustomerProfileEmail.Text = string.Empty;
             }
         }
 
         void BindCreditPaymentProfiles()
         {
-            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
             GridControlCreditProfiles.RefreshDataSource();
         }
 
@@ -999,20 +815,20 @@ namespace TraceForms
             };
             _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
             BindCreditPaymentProfiles();
-            GridViewCreditProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfile.Count - 1;
+            GridViewCreditProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
         }
 
         void BindPaymentProfiles()
         {
-            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
             GridControlBankProfiles.RefreshDataSource();
-            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlCreditProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
             GridControlCreditProfiles.RefreshDataSource();
         }
 
         void BindBankPaymentProfiles()
         {
-            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfile;
+            GridControlBankProfiles.DataSource = BindingSourceAgencyPaymentProfileCredit;
             GridControlBankProfiles.RefreshDataSource();
         }
 
@@ -1023,7 +839,7 @@ namespace TraceForms
             };
             _selectedRecord.AgencyPaymentProfile.Add(pmtProfile);
             BindBankPaymentProfiles();
-            GridViewBankProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfile.Count - 1;
+            GridViewBankProfiles.FocusedRowHandle = BindingSourceAgencyPaymentProfileCredit.Count - 1;
         }
 
         private void TextEditPaymentProcessorCustProfileEmail_EditValueChanged(object sender, EventArgs e)
@@ -1034,61 +850,22 @@ namespace TraceForms
         private void ButtonDeleteCredit_Click(object sender, EventArgs e)
         {
             if (GridViewCreditProfiles.FocusedRowHandle >= 0) {
-                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewCreditProfiles.GetFocusedRow();
-                if (rec.ProfileID != null) {
-                    AgencyPaymentProfile delRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                    _custGateway.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
-                    if (delRec != null) {
-                        if (ImageComboBoxEditDefaultPmtProfileID.Text == delRec.PaymentProfileDesc)
-                            GridViewLookup.SetFocusedRowCellValue("DefaultPaymentProfileId", string.Empty);
-                        _context.DeleteObject(delRec);
-                        _context.SaveChanges();
-                    }
-                    currentCust = _custGateway.GetCustomer(currentCust.ProfileID);
-                    GridControlCreditProfiles.DataSource = null;
-                    GridControlBankProfiles.DataSource = null;
-                    LoadAuthorize(currentCust);
-                    //authorizeCreditMod = false;
+                AgencyPaymentProfile rec = (AgencyPaymentProfile)GridViewCreditProfiles.GetFocusedRow();
+                if (!string.IsNullOrWhiteSpace(rec.PaymentProfileID)) {
+                    _profilesToDelete.Add(rec.PaymentProfileID);
                 }
-                else {
-                    //authorizeCreditMod = false;
-                    GridControlCreditProfiles.DataSource = null;
-                    GridControlBankProfiles.DataSource = null;
-                    creditCards.RemoveAt(creditCards.Count - 1);
-                    LoadAuthorize(currentCust);
-
-                }
+                BindingSourceAgencyPaymentProfileCredit.Remove(rec);
             }
         }
 
         private void ButtonDeleteBank_Click(object sender, EventArgs e)
         {
             if (GridViewBankProfiles.FocusedRowHandle >= 0) {
-                AuthorizeNet.PaymentProfile rec = (AuthorizeNet.PaymentProfile)GridViewBankProfiles.GetFocusedRow();
-                if (rec.ProfileID != null) {
-                    _custGateway.DeletePaymentProfile(currentCust.ProfileID, rec.ProfileID);
-                    currentCust = _custGateway.GetCustomer(currentCust.ProfileID);
-                    //remove rec in payment table
-                    AgencyPaymentProfile delRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                    if (delRec != null) {
-                        if (ImageComboBoxEditDefaultPmtProfileID.Text == delRec.PaymentProfileDesc)
-                            ImageComboBoxEditDefaultPmtProfileID.Text = string.Empty;
-                        _context.AgencyPaymentProfile.DeleteObject(delRec);
-                        _context.SaveChanges();
-                    }
-                    GridControlCreditProfiles.DataSource = null;
-                    GridControlBankProfiles.DataSource = null;
-                    LoadAuthorize(currentCust);
-                    //authorizeBankMod = false;
+                AgencyPaymentProfile rec = (AgencyPaymentProfile)GridViewBankProfiles.GetFocusedRow();
+                if (!string.IsNullOrWhiteSpace(rec.PaymentProfileID)) {
+                    _profilesToDelete.Add(rec.PaymentProfileID);
                 }
-                else {
-                    //authorizeBankMod = false;
-                    GridControlCreditProfiles.DataSource = null;
-                    GridControlBankProfiles.DataSource = null;
-                    bankAccnts.RemoveAt(bankAccnts.Count - 1);
-                    LoadAuthorize(currentCust);
-
-                }
+                BindingSourceAgencyPaymentProfileBank.Remove(rec);
             }
         }
 
@@ -1097,298 +874,9 @@ namespace TraceForms
             e.ExceptionMode = ExceptionMode.NoAction;
         }
 
-        private void GridViewPaymentProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
-        {
-
-            ColumnView view = sender as ColumnView;
-            AuthorizeNet.PaymentProfile record = (AuthorizeNet.PaymentProfile)e.Row;
-            view.ClearColumnErrors();
-            if (string.IsNullOrWhiteSpace(record.CardExpiration) || string.IsNullOrWhiteSpace(record.CardNumber)) {
-                if (string.IsNullOrWhiteSpace(record.CardExpiration)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["CardExpiration"], "Please enter the expiration date (YYYY-MM).");
-                }
-
-                if (string.IsNullOrWhiteSpace(record.CardNumber)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["CardNumber"], "Please enter the card number.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.CardCode) && !validCheck.IsNumeric(record.CardCode)) {
-                e.Valid = false;
-                view.SetColumnError(view.Columns["CardCode"], "The card code must be numeric.");
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.First) && (record.BillingAddress.First.Length > 50 || !record.BillingAddress.First.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.First.Length > 50) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.First"], "The max length of this field is 50.");
-                }
-                //if (!record.BillingAddress.First.All(Char.IsLetterOrDigit))
-                //{
-                //    e.Valid = false;
-                //    view.SetColumnError(view.Columns["BillingAddress.First"], "This field cannot contain symbols.");
-                //}
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Last) && (record.BillingAddress.Last.Length > 50 || !record.BillingAddress.Last.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Last.Length > 50) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Last"], "The max length of this field is 50.");
-                }
-                //if (!record.BillingAddress.Last.All(Char.IsLetterOrDigit))
-                //{
-                //    e.Valid = false;
-                //    view.SetColumnError(view.Columns["BillingAddress.Last"], "This field cannot contain symbols.");
-                //}
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Company)) {
-                if (record.BillingAddress.Company.Length > 50) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Company"], "The max length of this field is 50.");
-                }
-                if (!record.BillingAddress.Company.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Company"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Street) && (record.BillingAddress.Street.Length > 60 || !record.BillingAddress.Street.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Street.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Street"], "The max length of this field is 60.");
-                }
-                if (!record.BillingAddress.Street.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Street"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.City) && (record.BillingAddress.City.Length > 40 || !record.BillingAddress.City.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.City.Length > 40) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.City"], "The max length of this field is 40.");
-                }
-                if (!record.BillingAddress.City.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.City"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.State) && (record.BillingAddress.State.Length > 40 || !record.BillingAddress.State.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.State.Length > 40) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.State"], "The max length of this field is 40.");
-                }
-                if (!record.BillingAddress.State.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.State"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Zip) && (record.BillingAddress.Zip.Length > 20 || !record.BillingAddress.Zip.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Zip.Length > 20) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Zip"], "The max length of this field is 20.");
-                }
-                if (!record.BillingAddress.Zip.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Zip"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Country) && (record.BillingAddress.Country.Length > 60 || !record.BillingAddress.Country.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Country.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Country"], "The max length of this field is 60.");
-                }
-                if (!record.BillingAddress.Country.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Country"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Phone) && (record.BillingAddress.Phone.Length > 60 || !record.BillingAddress.Phone.All(Char.IsDigit))) {
-                if (record.BillingAddress.Phone.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Phone"], "The max length of this field is 25.");
-                }
-                if (!record.BillingAddress.Phone.All(Char.IsDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Phone"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.CardNumber) && (record.CardNumber.Length > 16 || (record.CardNumber.Length < 16 && validCheck.IsNumeric(record.CardNumber)) || (record.CardNumber.Length > 8 && !record.CardNumber.All(Char.IsDigit)))) {
-                if (record.CardNumber.Length > 16) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["CardNumber"], "The max length of this field is 16.");
-                }
-                if (record.CardNumber.Length < 16) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["CardNumber"], "The length of this field is 16, please add remaining numbers.");
-                }
-                if (!record.CardNumber.All(Char.IsDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["CardNumber"], "The Card Number cannot contain letters.");
-                }
-            }
-
-            if (record.CardExpiration.Length > 4) {
-                if (!string.IsNullOrWhiteSpace(record.CardExpiration) && (!DateTime.TryParseExact(record.CardExpiration, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime Test) || record.CardExpiration.Length > 7)) {
-                    if (record.CardExpiration.Length > 7) {
-                        e.Valid = false;
-                        view.SetColumnError(view.Columns["CardExpiration"], "The max length of this field is 7.");
-                    }
-
-                    if (!DateTime.TryParseExact(record.CardExpiration, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out Test)) {
-                        e.Valid = false;
-                        view.SetColumnError(view.Columns["CardExpiration"], "Please enter the date in the YYYY-MM format.");
-                    }
-                }
-            }
-
-
-        }
-
         private void GridViewBankProfiles_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction;
-        }
-
-        private void GridViewBankProfiles_ValidateRow(object sender, ValidateRowEventArgs e)
-        {
-            ColumnView view = sender as ColumnView;
-            AuthorizeNet.PaymentProfile record = (AuthorizeNet.PaymentProfile)e.Row;
-            view.ClearColumnErrors();
-            if (string.IsNullOrWhiteSpace(record.BankAccountNumber) || string.IsNullOrWhiteSpace(record.BankNameOnAccount) || string.IsNullOrWhiteSpace(record.BankRoutingNumber)) {
-                if (string.IsNullOrWhiteSpace(record.BankAccountNumber)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankAccountNumber"], "Please enter the acount number.");
-                }
-
-                if (string.IsNullOrWhiteSpace(record.BankNameOnAccount)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankNameOnAccount"], "Please enter the name on the account.");
-                }
-                if (string.IsNullOrWhiteSpace(record.BankRoutingNumber)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankRoutingNumber"], "Please enter the routing number.");
-                }
-
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BankAccountNumber) && record.BankAccountNumber.Length > 17) {
-                if (record.BankAccountNumber.Length > 17) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankAccountNumber"], "The max length of this field is 17.");
-                }
-            }
-
-            if (record.BankRoutingNumber.Length != 9) {
-                e.Valid = false;
-                view.SetColumnError(view.Columns["BankRoutingNumber"], "The routing number should be nine digits long.");
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BankNameOnAccount) && (record.BankNameOnAccount.Length > 22 || !record.BankNameOnAccount.All(Char.IsLetterOrDigit))) {
-                if (record.BankNameOnAccount.Length > 22) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankNameOnAccount"], "The max length of this field is 22.");
-                }
-                if (!record.BankNameOnAccount.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankNameOnAccount"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BankName) && (record.BankName.Length > 50 || !record.BankName.All(Char.IsLetterOrDigit))) {
-                if (record.BankName.Length > 50) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankName"], "The max length of this field is 50.");
-                }
-                if (!record.BankName.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BankName"], "This field cannot contain symbols or spaces.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Company) && (record.BillingAddress.Company.Length > 50 || !record.BillingAddress.Company.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Company.Length > 50) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Company"], "The max length of this field is 50.");
-                }
-                if (!record.BillingAddress.Company.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Company"], "This field cannot contain symbols.");
-                }
-            }
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Street) && (record.BillingAddress.Street.Length > 60 || !record.BillingAddress.Street.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Street.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Street"], "The max length of this field is 60.");
-                }
-                if (!record.BillingAddress.Street.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Street"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.City) && (record.BillingAddress.City.Length > 40 || !record.BillingAddress.City.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.City.Length > 40) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.City"], "The max length of this field is 40.");
-                }
-                if (!record.BillingAddress.City.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.City"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.State) && (record.BillingAddress.State.Length > 40 || !record.BillingAddress.State.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.State.Length > 40) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.State"], "The max length of this field is 40.");
-                }
-                if (!record.BillingAddress.State.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.State"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Zip)) {
-                if (record.BillingAddress.Zip.Length > 20) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Zip"], "The max length of this field is 20.");
-                }
-                if (!record.BillingAddress.Zip.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Zip"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Country) && (record.BillingAddress.Country.Length > 60 || !record.BillingAddress.Country.All(Char.IsLetterOrDigit))) {
-                if (record.BillingAddress.Country.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Country"], "The max length of this field is 60.");
-                }
-                if (!record.BillingAddress.Country.All(Char.IsLetterOrDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Country"], "This field cannot contain symbols.");
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(record.BillingAddress.Phone) && (record.BillingAddress.Phone.Length > 60 || !record.BillingAddress.Phone.All(Char.IsDigit))) {
-                if (record.BillingAddress.Phone.Length > 60) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Phone"], "The max length of this field is 25.");
-                }
-                if (!record.BillingAddress.Phone.All(Char.IsDigit)) {
-                    e.Valid = false;
-                    view.SetColumnError(view.Columns["BillingAddress.Phone"], "This field cannot contain symbols.");
-                }
-            }
         }
 
         private void TextEditCreditLimit_Leave(object sender, EventArgs e)
@@ -1402,23 +890,6 @@ namespace TraceForms
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateCredLimRemPct, sender);
         }
-
-        private void TextEditPaymentProcessorCustProfileEmail_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ImageComboBoxEditDefaultProfileID_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AgyBindingSource_PositionChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private const string _cardRegex = "^(?:(?<Visa>4\\d{3})|(?<JCB>2131|1800|3088|35\\d{3}\\d{11})|(?<MasterCard>5[1-5]\\d{2})|(?<Discover>6011)|(?<DinersClub>(?:3[68]\\d{2})|(?:30[0-5]\\d))|(?<Amex>3[47]\\d{2}))([ -]?)(?(DinersClub)(?:\\d{6}\\1\\d{4})|(?(Amex)(?:\\d{6}\\1\\d{5})|(?:\\d{4}\\1\\d{4}\\1\\d{4})))$";
 
         public static CreditCardTypeType? GetCardTypeFromNumber(string cardNum)
         {
@@ -1458,124 +929,15 @@ namespace TraceForms
             }
         }
 
-        public enum CreditCardTypeType
-        {
-            Visa,
-            DinersClub,
-            MasterCard,
-            Discover,
-            Amex,
-            Switch,
-            Solo,
-            JCB,
-            TestCard
-        }
-
-        private void AgencyForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CheckEditRequireCVV2_Click(object sender, EventArgs e)
         {
-            grdColCVV2.Visible = CheckEditRequireCVV2.Checked;
-        }
-
-        private void CheckEditHtlVouchers_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditHtlVouchers.Checked && !TextEditVouchTypes.Text.Contains("HTL")) {
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-                TextEditVouchTypes.Text += "HTL,";
-            }
-
-            if (CheckEditHtlVouchers.Checked && TextEditVouchTypes.Text.Contains("HTL")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("HTL,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditCarVouchers_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditCarVouchers.Checked && !TextEditVouchTypes.Text.Contains("CAR")) {
-                TextEditVouchTypes.Text += "CAR,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditCarVouchers.Checked && TextEditVouchTypes.Text.Contains("CAR")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("CAR,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditCruVouchers_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditCruVouchers.Checked && !TextEditVouchTypes.Text.Contains("CRU")) {
-                TextEditVouchTypes.Text += "CRU,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditCruVouchers.Checked && TextEditVouchTypes.Text.Contains("CRU")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("CRU,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditAirVouchers_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditAirVouchers.Checked && !TextEditVouchTypes.Text.Contains("AIR")) {
-                TextEditVouchTypes.Text += "AIR,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditAirVouchers.Checked && TextEditVouchTypes.Text.Contains("AIR")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("AIR,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditOptVouchers_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditOptVouchers.Checked && !TextEditVouchTypes.Text.Contains("OPT")) {
-                TextEditVouchTypes.Text += "OPT,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditOptVouchers.Checked && TextEditVouchTypes.Text.Contains("OPT")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("OPT,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditPkgVouchers_Click_1(object sender, EventArgs e)
-        {
-            if (!CheckEditPkgVouchers.Checked && !TextEditVouchTypes.Text.Contains("PKG")) {
-                TextEditVouchTypes.Text += "PKG,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditPkgVouchers.Checked && TextEditVouchTypes.Text.Contains("PKG")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("PKG,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
-        }
-
-        private void CheckEditSglResConf_Click(object sender, EventArgs e)
-        {
-            if (!CheckEditSglResConf.Checked && !TextEditVouchTypes.Text.Contains("SGL")) {
-                TextEditVouchTypes.Text += "SGL,";
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Trim();
-            }
-
-            if (CheckEditSglResConf.Checked && TextEditVouchTypes.Text.Contains("SGL")) {
-                int loc = TextEditVouchTypes.Text.IndexOf("SGL,");
-                TextEditVouchTypes.Text = TextEditVouchTypes.Text.Remove(loc, 4);
-            }
+            gridColCVV2.Visible = CheckEditRequireCVV2.Checked;
         }
 
         private void AgcyLogBindingSource_CurrentChanged(object sender, EventArgs e)
         {//move to custom row cell edit event for the agcy log grid
             if (BindingSourceAgcyLog.Current != null && _selectedRecord != null) {
-                if (_selectedRecord.NO == _defAgy) {
+                if (_selectedRecord.NO == _sys.Settings.DefaultAgency) {
                     //RepositoryItemImageComboBoxEditAgentDelegate.
                     RepositoryItemImageComboBoxEditAgentDelegate.Items.Clear();
                     RepositoryItemImageComboBoxEditAgentDelegate.Items.Add(new ImageComboBoxItem() { Description = "", Value = null });
@@ -1609,28 +971,6 @@ namespace TraceForms
         }
 
         // BAW
-        private void SetAgyCurrencyBindings()
-        {
-            ////if (CurrToExRateBindingSource.Current == null) {
-            ////    _selectedExchangeRateRecord = null;
-            ////    enableNavigator(false);
-            ////    //setReadOnly(true);
-            ////}
-            ////else {
-            //var selectedRecord = (AgencyCurrency)AgencyCurrencyBindingSource.Current;
-            //// only do this to newly created agency currency records
-            //if (newAgyCurrencyRec && string.IsNullOrEmpty(selectedRecord.Currency_Code)) {
-            //    selectedRecord.Agy_No = ((AGY)BindingSource.Current).NO;
-            //    selectedRecord.Default = false;  // should be false
-            //}
-            ////enableNavigator(true);
-            ////setReadOnly(false);
-        }
-
-        private void AgencyCurrencyBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-            SetAgyCurrencyBindings();
-        }
 
         private void ButtonDeleteAgencyCurrency_Click(object sender, EventArgs e)
         {
@@ -1709,6 +1049,22 @@ namespace TraceForms
                 profile.AGENCY = TextEditCode.Text ?? string.Empty;
             }
             BindingSourceAgcyLog.EndEdit();
+
+            GridViewCreditProfiles.CloseEditor();
+            GridViewCreditProfiles.UpdateCurrentRow();
+            for (int rowCtr = 0; rowCtr < GridViewCreditProfiles.DataRowCount; rowCtr++) {
+                AgencyPaymentProfile profile = (AgencyPaymentProfile)GridViewCreditProfiles.GetRow(rowCtr);
+                profile.Agy_No = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceAgencyPaymentProfileCredit.EndEdit();
+
+            GridViewBankProfiles.CloseEditor();
+            GridViewBankProfiles.UpdateCurrentRow();
+            for (int rowCtr = 0; rowCtr < GridViewBankProfiles.DataRowCount; rowCtr++) {
+                AgencyPaymentProfile profile = (AgencyPaymentProfile)GridViewBankProfiles.GetRow(rowCtr);
+                profile.Agy_No = TextEditCode.Text ?? string.Empty;
+            }
+            BindingSourceAgencyPaymentProfileBank.EndEdit();
         }
 
         void SetBindings()
@@ -1730,8 +1086,8 @@ namespace TraceForms
                 BarButtonItemDelete.Enabled = true;
                 BarButtonItemSave.Enabled = true;
             }
-            GridViewAgcyLog.Columns["Agcylog_Agent_Delegate"].Visible = (TextEditCode.Text == _defAgy);
-            GridViewAgcyLog.Columns["SUPVR_FLG"].Visible = (TextEditCode.Text == _defAgy);
+            GridViewAgcyLog.Columns["Agcylog_Agent_Delegate"].Visible = (TextEditCode.Text == _sys.Settings.DefaultAgency);
+            GridViewAgcyLog.Columns["SUPVR_FLG"].Visible = (TextEditCode.Text == _sys.Settings.DefaultAgency);
             ErrorProvider.Clear();
         }
 
@@ -1784,21 +1140,26 @@ namespace TraceForms
             if (_selectedRecord.EntityState != System.Data.Entity.EntityState.Detached) {
                 _selectedRecord.AgencyPaymentProfile.Load(MergeOption.OverwriteChanges);
             }
+
+            LoadPaymentProfiles();
+
             //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
             //it appears to bind as unassociated with the context and you have to manually add/delete
             //rows from the bindingsource to the context (but changes work fine)
-            if (!string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) { 
+            BindingSourceAgencyPaymentProfileCredit.DataSource = _selectedRecord.AgencyPaymentProfile;
+            BindPaymentProfiles();
+
+            _profilesToDelete = new List<string>();
+        }
+
+        private void LoadPaymentProfiles()
+        {
+            if (!string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) {
                 try {
                     var cust = _custGateway.GetCustomer(_selectedRecord.PaymentProcessorCustProfileId);
-                    bankAccnts.Clear();
-                    creditCards.Clear();
-                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Clear();
-                    ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = string.Empty, Value = string.Empty };
-                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(loadBlank);
                     foreach (AuthorizeNet.PaymentProfile profile in cust.PaymentProfiles) {
                         var AgyPmtProfile = _selectedRecord.AgencyPaymentProfile.SingleOrDefault(c => c.PaymentProfileID == profile.ProfileID);
                         if (AgyPmtProfile != null) {
-                            AgyPmtProfile.ProfileID = profile.ProfileID;
                             AgyPmtProfile.BankAccountNumber = profile.BankAccountNumber;
                             AgyPmtProfile.BankName = profile.BankName;
                             AgyPmtProfile.BankNameOnAccount = profile.BankNameOnAccount;
@@ -1807,7 +1168,6 @@ namespace TraceForms
                             AgyPmtProfile.CardNumber = profile.CardNumber;
                             AgyPmtProfile.CardType = profile.CardType;
                             AgyPmtProfile.CardCode = profile.CardCode;
-                            AgyPmtProfile.CardExpiration = profile.CardExpiration;
                             if (profile.BillingAddress != null) {
                                 AgyPmtProfile.BillingAddressCity = profile.BillingAddress.City;
                                 AgyPmtProfile.BillingAddressCompany = profile.BillingAddress.Company;
@@ -1821,36 +1181,22 @@ namespace TraceForms
                             }
                         }
                     }
-                    ShowPaymentProfileStatus(false, null);
+                    _selectedRecord.PaymentProfileFailedToLoad = false;
+                    ShowCustomerProfileStatus(false, null);
+                    LoadDefaultPaymentProfileList();
                 }
                 catch {
-                    ShowPaymentProfileStatus(true, "Customer payment information could not be retrieved from profile manager");
-                    DisableElectronicPayment();
+                    _selectedRecord.PaymentProfileFailedToLoad = true;
+                    ShowCustomerProfileStatus(true, _paymentProfileError);
+                    SetBankAndCreditCardState(false);
                 }
-
-                //GridControlCreditProfiles.DataSource = creditCards;
-                //GridControlBankProfiles.DataSource = bankAccnts;
-                ///////////////////////
-
-                var loadDefault = from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text select agyRec;
-                foreach (var result in loadDefault) {
-                    ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.PaymentProfileDesc, Value = result.PaymentProfileID };
-                    ImageComboBoxEditDefaultPmtProfileID.Properties.Items.Add(load);
-                }
-                //setDefeaultProfile to first added if none is set
-                //if (string.IsNullOrWhiteSpace(ImageComboBoxEditDefaultPaymentProfileID.Text) && currentCust.PaymentProfiles.Count > 0) {
-                //    ImageComboBoxEditDefaultPaymentProfileID.EditValue = currentCust.PaymentProfiles[0].ProfileID;
-                //    _context.SaveChanges();
-                //}
-                BindingSourceAgencyPaymentProfile.DataSource = _selectedRecord.AgencyPaymentProfile;
-                BindPaymentProfiles();
             }
         }
 
-        private void ShowPaymentProfileStatus(bool isError, string error)
+        private void ShowCustomerProfileStatus(bool isError, string error)
         {
-            PanelControlPaymentProfileStatus.Visible = isError;
-            LabelPaymentProfileStatus.Text = error;
+            PanelControlCustomerProfileStatus.Visible = isError;
+            LabelCustomerProfileStatus.Text = error;
             SimpleButtonRetry.Visible = isError;
         }
 
@@ -1927,6 +1273,16 @@ namespace TraceForms
 
             try {
                 if (DisplayHelper.QuestionYesNo(this, "Are you sure you want to delete this record?") == DialogResult.Yes) {
+                    if (!string.IsNullOrEmpty(_selectedRecord.PaymentProcessorCustProfileId)) {
+                        var answer = DisplayHelper.QuestionYesNoCancel(this, "Do you wish to delete the customer payment profile and all associated payment methods? " +
+                            " If you are unsure, please check with the accounting department.");
+                        if (answer == DialogResult.Cancel)
+                            return;
+                        if (answer == DialogResult.Yes) {
+                            _custGateway.DeleteCustomer(_selectedRecord.PaymentProcessorCustProfileId);
+                        }
+                    }
+
                     //ignoreLeaveRow and ignorePositionChange are set because when removing a record, the bindingsource_currentchanged 
                     //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
                     //We do not want these events to perform their usual code of checking whether there are changes in the active
@@ -2059,6 +1415,10 @@ namespace TraceForms
                     if (!ValidateAll())
                         return false;
 
+                    if (!SavePaymentProfiles()) {
+                        return false;
+                    }
+
                     if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
                         _context.AGY.AddObject(_selectedRecord);
                     }
@@ -2108,10 +1468,80 @@ namespace TraceForms
                 DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
                 return false;
             }
-            else {
-                ErrorProvider.Clear();
-                return true;
+            ErrorProvider.Clear();
+            return true;
+        }
+
+        public bool SavePaymentProfiles()
+        {
+            if (GridControlBankProfiles.Enabled && GridControlCreditProfiles.Enabled) {
+                AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
+                foreach (AgencyPaymentProfile AgyPmtProfile in _selectedRecord.AgencyPaymentProfile) {
+                    if (string.IsNullOrEmpty(AgyPmtProfile.PaymentProfileID)) {
+                        if (AgyPmtProfile.IsCreditCard) {
+                            int expMonth = (int)AgyPmtProfile.ExpirationMonth;
+                            int expYear = (int)AgyPmtProfile.ExpirationYear;
+                            AgyPmtProfile.PaymentProfileID = _custGateway.AddCreditCard(_selectedRecord.PaymentProcessorCustProfileId, AgyPmtProfile.CardNumber, expMonth, expYear);
+                        }
+                        else {
+                            var billingAddr = CreateAndPopulateBillingAddress(AgyPmtProfile);
+                            var accntType = (AuthorizeNet.APICore.bankAccountTypeEnum)AgyPmtProfile.AccountType;
+                            AgyPmtProfile.PaymentProfileID = _custGateway.AddBankAccount(_selectedRecord.PaymentProcessorCustProfileId, AgyPmtProfile.BankNameOnAccount, AgyPmtProfile.BankAccountNumber,
+                                AgyPmtProfile.BankRoutingNumber, AgyPmtProfile.BankName, accntType, false, billingAddr);
+                        }
+                    }
+                    else {
+                        var profile = new AuthorizeNet.PaymentProfile(api) {
+                            ProfileID = AgyPmtProfile.PaymentProfileID,
+                        };
+                        if (AgyPmtProfile.IsCreditCard) {
+                            profile.CardType = AgyPmtProfile.CardType;
+                            profile.CardCode = AgyPmtProfile.CardCode;
+                            profile.CardExpiration = AgyPmtProfile.CardExpiration;
+                        }
+                        else {
+                            profile.BankAccountNumber = AgyPmtProfile.BankAccountNumber;
+                            profile.BankName = AgyPmtProfile.BankName;
+                            profile.BankNameOnAccount = AgyPmtProfile.BankNameOnAccount;
+                            profile.BankRoutingNumber = AgyPmtProfile.BankRoutingNumber;
+                            profile.AccountType = (AuthorizeNet.APICore.bankAccountTypeEnum)AgyPmtProfile.AccountType;
+                            profile.BillingAddress = CreateAndPopulateBillingAddress(AgyPmtProfile);
+                        }
+                        _custGateway.UpdatePaymentProfile(_selectedRecord.PaymentProcessorCustProfileId, profile);
+                    }
+                    if (AgyPmtProfile.IsCreditCard) {
+                        AgyPmtProfile.LastDigits = AgyPmtProfile.CardNumber.GetLast(4);
+                        AgyPmtProfile.PaymentProvider = (GetCardTypeFromNumber(AgyPmtProfile.CardNumber)).ToString();
+                    }
+                    else {
+                        AgyPmtProfile.LastDigits = AgyPmtProfile.BankAccountNumber.GetLast(4);
+                        AgyPmtProfile.PaymentProvider = AgyPmtProfile.BankName;
+                    }
+                }
+                //Here we delete everything in the list of profiles to delete.  Authorize.Net does not return an indication of whether or not the delete succeeded,
+                //so we just do nothing about it either way.
+                foreach (string paymentID in _profilesToDelete) {
+                    _custGateway.DeletePaymentProfile(_selectedRecord.PaymentProcessorCustProfileId, paymentID);
+                }
+                _profilesToDelete.Clear();
             }
+            return true;
+        }
+
+        private AuthorizeNet.Address CreateAndPopulateBillingAddress(AgencyPaymentProfile agyPmtProfile)
+        {
+            AuthorizeNet.Address addr = new AuthorizeNet.Address() {
+                City = agyPmtProfile.BillingAddressCity,
+                Company = agyPmtProfile.BillingAddressCompany,
+                Country = agyPmtProfile.BillingAddressCountry,
+                First = agyPmtProfile.BillingAddressFirst,
+                Last = agyPmtProfile.BillingAddressLast,
+                Phone = agyPmtProfile.BillingAddressPhone,
+                State = agyPmtProfile.BillingAddressState,
+                Street = agyPmtProfile.BillingAddressStreet,
+                Zip = agyPmtProfile.BillingAddressZip
+            };
+            return addr;
         }
 
         private void ShowMainControlErrors()
@@ -2187,6 +1617,11 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateContacts, GridControlMemberships);
             SetErrorInfo(_selectedRecord.ValidateAgcyLog, GridControlAgcyLog);
             SetErrorInfo(_selectedRecord.ValidateAgencyCurrencies, GridControlAgencyCurrency);
+            if (GridControlCreditProfiles.Enabled && GridControlBankProfiles.Enabled) {
+                SetErrorInfo(_selectedRecord.ValidateAgencyPaymentProfilesCredit, GridControlCreditProfiles);
+                SetErrorInfo(_selectedRecord.ValidateAgencyPaymentProfilesBank, GridControlBankProfiles);
+            }
+            SetErrorInfo(_selectedRecord.ValidatePaymentEmail, TextEditCustomerProfileEmail);
         }
 
         private bool IsModified(AGY record)
@@ -2283,7 +1718,7 @@ namespace TraceForms
 
         private void RadioGroupPaymentDue_EditValueChanged(object sender, EventArgs e)
         {
-            if (RadioGroupPaymentDue.SelectedIndex == 0) {
+            if (RadioGroupPaymentDue.SelectedIndex == 1) {
                 SpinEditDueDays.Enabled = false;
                 SpinEditPmtDays.Enabled = true;
                 SpinEditDueDays.Value = 0;
@@ -2292,66 +1727,6 @@ namespace TraceForms
                 SpinEditDueDays.Enabled = true;
                 SpinEditPmtDays.Enabled = false;
                 SpinEditPmtDays.Value = 0;
-            }
-        }
-
-        private void SimpleButtonValidateCreditRow_Click(object sender, EventArgs e)
-        {
-            AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-            api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-            api.payment.Item = new AuthorizeNet.APICore.creditCardMaskedType();
-            api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-            api.customerTypeSpecified = true;
-            AuthorizeNet.Address billing = new AuthorizeNet.Address();
-
-            //apiType.payment.Item is creditCardMaskedType
-            AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api) {
-                BillingAddress = billing
-            };
-            creditCards.Add(rec);
-
-            if (rec.CardNumber.Length > 8 || rec.CardExpiration.Length > 4) {
-                AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                if (rec.CardNumber.Length > 8)
-                    updateRec.PaymentProvider = (GetCardTypeFromNumber(rec.CardNumber)).ToString();
-                updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                updateRec.ExpirationMonth = Convert.ToInt32(rec.CardExpiration.GetLast(2));
-                updateRec.ExpirationYear = Convert.ToInt32(rec.CardExpiration.Substring(0, 4));
-                if (string.IsNullOrEmpty(rec.ProfileID)) {
-                    updateRec.PaymentProfileID = _custGateway.AddCreditCard(currentCust.ProfileID, rec.CardNumber, (int)updateRec.ExpirationMonth, (int)updateRec.ExpirationYear, rec.CardCode);
-                }
-                else {
-                    _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                }
-            }
-        }
-
-        private void SimpleButtonValidateBankRow_Click(object sender, EventArgs e)
-        {
-            AuthorizeNet.APICore.customerPaymentProfileMaskedType api = new AuthorizeNet.APICore.customerPaymentProfileMaskedType();
-            api.payment = new AuthorizeNet.APICore.paymentMaskedType();
-            api.payment.Item = new AuthorizeNet.APICore.bankAccountMaskedType();
-            api.customerType = AuthorizeNet.APICore.customerTypeEnum.business;
-            api.customerTypeSpecified = true;
-            AuthorizeNet.Address billing = new AuthorizeNet.Address();
-
-            //apiType.payment.Item is creditCardMaskedType
-            AuthorizeNet.PaymentProfile rec = new AuthorizeNet.PaymentProfile(api) {
-                BillingAddress = billing
-            };
-            bankAccnts.Add(rec);
-
-            if (rec.BankAccountNumber.Length > 8) {
-                AgencyPaymentProfile updateRec = (from agyRec in _context.AgencyPaymentProfile where agyRec.Agy_No == TextEditCode.Text && agyRec.PaymentProfileID == rec.ProfileID select agyRec).FirstOrDefault();
-                updateRec.PaymentProvider = rec.BankName;
-                updateRec.LastDigits = rec.CardNumber.GetLast(4);
-                if (string.IsNullOrEmpty(rec.ProfileID)) {
-                    updateRec.PaymentProfileID = _custGateway.AddBankAccount(currentCust.ProfileID, rec.BankNameOnAccount, rec.BankAccountNumber, rec.BankRoutingNumber, rec.BankName, rec.AccountType, true, rec.BillingAddress);
-                }
-                else {
-                    _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
-                }
-                _custGateway.UpdatePaymentProfile(currentCust.ProfileID, rec);
             }
         }
 
@@ -2374,74 +1749,54 @@ namespace TraceForms
             }
         }
 
-        private void GridViewCreditProfiles_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
-        {
-
-        }
-
         private void CheckEditAllowElectronicPayment_EditValueChanged(object sender, EventArgs e)
         {
             if (CheckEditAllowElectronicPayment.Checked) {
-                TextEditCustomerProfileEmail.Enabled = true;
-                CheckEditRequireCVV2.Enabled = true;
-                ChangePaymentProfileButton.Enabled = true;
-                DeleteButton.Enabled = true;
-                ImageComboBoxEditDefaultPmtProfileID.Enabled = true;
+                SetCustomerPaymentProfileState(true);
+                if (!string.IsNullOrWhiteSpace(LabelPaymentProcessorCustProfileId.Text) && string.IsNullOrEmpty(LabelCustomerProfileStatus.Text)) {
+                    SetElectronicPaymentState(true);
+                }
             } else {
-                DisableElectronicPayment();
+                SetElectronicPaymentState(false);
             }
         }
 
-        public void DisableElectronicPayment()
+        private void SetCustomerPaymentProfileState(bool enabled)
         {
-            TextEditCustomerProfileEmail.Enabled = false;
-            CheckEditRequireCVV2.Enabled = false;
-            ChangePaymentProfileButton.Enabled = false;
-            DeleteButton.Enabled = false;
-            GridControlCreditProfiles.Enabled = false;
-            GridControlBankProfiles.Enabled = false;
-            AddCreditButton.Enabled = false;
-            ButtonDeleteCredit.Enabled = false;
-            SimpleButtonValidateCreditRow.Enabled = false;
-            ButtonAddBank.Enabled = false;
-            ButtonDeleteBank.Enabled = false;
-            SimpleButtonValidateBankRow.Enabled = false;
-            ImageComboBoxEditDefaultPmtProfileID.Enabled = false;
+            CheckEditRequireCVV2.Enabled = enabled;
+            TextEditCustomerProfileEmail.Enabled = enabled;
+            ChangePaymentProfileButton.Enabled = enabled;
+        }
+
+        public void SetElectronicPaymentState(bool enabled)
+        {
+            SetCustomerPaymentProfileState(enabled);
+            SetBankAndCreditCardState(enabled);
+            SimpleButtonDelete.Enabled = enabled;
+        }
+
+        private void SetBankAndCreditCardState(bool enabled)
+        {
+            GridControlCreditProfiles.Enabled = enabled;
+            GridControlBankProfiles.Enabled = enabled;
+            ButtonAddCredit.Enabled = enabled;
+            ButtonDeleteCredit.Enabled = enabled;
+            ButtonAddBank.Enabled = enabled;
+            ButtonDeleteBank.Enabled = enabled;
+            ImageComboBoxEditDefaultPmtProfileID.Enabled = enabled;
         }
 
         private void LabelPaymentProcessorCustProfileId_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(LabelPaymentProcessorCustProfileId.Text)) {
-                ChangePaymentProfileButton.Text = "Create";
-                GridControlCreditProfiles.Enabled = false;
-                GridControlBankProfiles.Enabled = false;
-                AddCreditButton.Enabled = false;
-                ButtonDeleteCredit.Enabled = false;
-                SimpleButtonValidateCreditRow.Enabled = false;
-                ButtonAddBank.Enabled = false;
-                ButtonDeleteBank.Enabled = false;
-                SimpleButtonValidateBankRow.Enabled = false;
-            } else {
-                ChangePaymentProfileButton.Text = "Update";
-                GridControlCreditProfiles.Enabled = true;
-                GridControlBankProfiles.Enabled = true;
-                AddCreditButton.Enabled = true;
-                ButtonDeleteCredit.Enabled = true;
-                SimpleButtonValidateCreditRow.Enabled = true;
-                ButtonAddBank.Enabled = true;
-                ButtonDeleteBank.Enabled = true;
-                SimpleButtonValidateBankRow.Enabled = true;
-            }
+            bool hasProfile = !string.IsNullOrEmpty(LabelPaymentProcessorCustProfileId.Text) && !PanelControlCustomerProfileStatus.Visible;
+            SimpleButtonDelete.Enabled = hasProfile;
+            SetBankAndCreditCardState(hasProfile);
         }
 
         private void CheckEditRequireCVV2_EditValueChanged(object sender, EventArgs e)
         {
             ChangePaymentProfileButton.Enabled = true;
-        }
-
-        private void BindingSourceAgencyPaymentProfileBank_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
-        {
-
+            gridColCVV2.Visible = CheckEditRequireCVV2.Checked;
         }
 
         private void GridViewContacts_CellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -2452,7 +1807,7 @@ namespace TraceForms
         private void GridViewAgcyLog_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
             if (e.Column == colAgcylog_Agent_Delegate) {
-                if (_selectedRecord.NO == _defAgy) {
+                if (_selectedRecord.NO == _sys.Settings.DefaultAgency) {
                     var agentName = GridViewAgcyLog.GetRowCellValue(e.RowHandle, colAGT_NAME).ToStringEmptyIfNull();
                     RepositoryItemImageComboBox editor = new RepositoryItemImageComboBox();
                     editor.Items.Add(new ImageComboBoxItem() { Description = string.Empty, Value = null });
@@ -2477,11 +1832,12 @@ namespace TraceForms
         {
             PaymentTransaction paymentTransaction = new PaymentTransaction {
                 Agency = TextEditCode.Text ?? string.Empty,
-                Agent = _sys.User.Name
+                Agent = _sys.User.Name,
+                PmtCode_PmtCode = "D"   //D for deposit - TODO: move this somewhere configurable
             };
             _selectedRecord.PaymentTransaction.Add(paymentTransaction);
             BindPaymentTransactions();
-            GridViewDeposits.FocusedRowHandle = BindingSourcePaymentTransaction.Count - 1;
+            GridViewDeposits.FocusedRowHandle = GridViewDeposits.RowCount - 1;
         }
 
         private void ButtonDeleteDeposit_Click(object sender, EventArgs e)
@@ -2551,6 +1907,43 @@ namespace TraceForms
             }
         }
 
+        private void TextEditCustomerProfileEmail_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidatePaymentEmail, sender);
+        }
+
+        private void GridViewCreditProfiles_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            for(int i = DateTime.Now.Year; i <= DateTime.Now.Year + 10; i++) {
+                RepositoryItemComboBoxExpYear.Items.Add(i);
+            }
+        }
+
+        private void GridViewDeposits_CustomRowFilter(object sender, RowFilterEventArgs e)
+        {
+            ColumnView view = sender as ColumnView;
+            string pmtCode = view.GetListSourceRowCellValue(e.ListSourceRow, "PmtCode_PmtCode").ToStringEmptyIfNull();
+            e.Visible = (pmtCode == "D");     //D for deposit - TODO: move this somewhere configurable
+        }
+
+        private void GridViewDeposits_SubstituteFilter(object sender, DevExpress.Data.SubstituteFilterEventArgs e)
+        {
+            e.Filter &= CriteriaOperator.Parse("[PmtCode_PmtCode] == 'D'");
+        }
+
+        private void GridControlCreditProfiles_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAgencyPaymentProfilesCredit, sender);
+        }
+
+        private void GridControlBankProfiles_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateAgencyPaymentProfilesBank, sender);
+        }
+
         void SetFocusedRow(GridView view, int rowHandle)
         {
             //precaution to make sure that any subsequent row changes don't try to force the selected
@@ -2575,28 +1968,4 @@ namespace TraceForms
             }
         }
     }
-
-    public class AuthorizePaymentProfile
-    {
-        public string ID { get; set; }
-        public string CardNo { get; set; }
-        public DateTime ExpDate { get; set; }
-        public string CVV2 { get; set; }
-        public string Street { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public string Zip { get; set; }
-        public string Company { get; set; }
-        public string Fax { get; set; }
-        public string First { get; set; }
-        public string Last { get; set; }
-        public string Phone { get; set; }
-
-        public AuthorizePaymentProfile()
-        {
-
-        }
-    }
-
 }
