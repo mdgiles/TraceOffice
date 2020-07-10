@@ -31,35 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label cODELabel;
             System.Windows.Forms.Label iMAGELabel;
-            System.Windows.Forms.Label hEADERLabel;
-            System.Windows.Forms.Label rEQUIRE_ENTRYLabel;
-            System.Windows.Forms.Label sUPPLIER_ENTRYLabel;
-            System.Windows.Forms.Label sEARCHABLELabel;
             System.Windows.Forms.Label iTEM_FORMAT2Label;
-            System.Windows.Forms.Label iTEM_DESC2Label;
-            System.Windows.Forms.Label iTEM_FORMAT1Label;
-            System.Windows.Forms.Label iTEM_DESC1Label;
+            System.Windows.Forms.Label LabelItemDesc2;
+            System.Windows.Forms.Label LabelItemFormat1;
             System.Windows.Forms.Label sVC_TYPELabel;
+            System.Windows.Forms.Label LabelUseFields;
+            System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AmenityForm));
-            this.AmenityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.AmenityBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.aMENITYBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.propogateOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.propogateDeletionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LabelItemDesc1 = new System.Windows.Forms.Label();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TextEditCode = new DevExpress.XtraEditors.TextEdit();
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.TreeListAmenities = new DevExpress.XtraTreeList.TreeList();
             this.colSVC_TYPE = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colITEM_DESC1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colITEM_FORMAT1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -83,8 +65,8 @@
             this.colIMAGE = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDescription = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colImagesRoot = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.LabelControlUp = new DevExpress.XtraEditors.LabelControl();
+            this.LabelControlDown = new DevExpress.XtraEditors.LabelControl();
             this.CheckEditHeader = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditRequire_Entry = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditSupplier_Entry = new DevExpress.XtraEditors.CheckEdit();
@@ -93,15 +75,20 @@
             this.TextEditItem_Desc2 = new DevExpress.XtraEditors.TextEdit();
             this.ComboBoxEditItem_Format1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.TextEditItem_Desc1 = new DevExpress.XtraEditors.TextEdit();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.ComboBoxEditSvcType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.CheckEditUseNumber = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditUseDistanceFields = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditUseAgeFields = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditUseTimeFields = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditUseDateFields = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditUseFeeFields = new DevExpress.XtraEditors.CheckEdit();
             this.ButtonEditImage = new DevExpress.XtraEditors.ButtonEdit();
-            this.sVC_TYPETextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.sORT_ORDERSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.SortOrderSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.pARENT_CODETextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.sVCComboBoxEdit = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.ComboBoxEditFilterBySvcType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSVC_TYPE1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -130,25 +117,30 @@
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colImagesRoot1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControlStatus = new DevExpress.XtraEditors.PanelControl();
+            this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             cODELabel = new System.Windows.Forms.Label();
             iMAGELabel = new System.Windows.Forms.Label();
-            hEADERLabel = new System.Windows.Forms.Label();
-            rEQUIRE_ENTRYLabel = new System.Windows.Forms.Label();
-            sUPPLIER_ENTRYLabel = new System.Windows.Forms.Label();
-            sEARCHABLELabel = new System.Windows.Forms.Label();
             iTEM_FORMAT2Label = new System.Windows.Forms.Label();
-            iTEM_DESC2Label = new System.Windows.Forms.Label();
-            iTEM_FORMAT1Label = new System.Windows.Forms.Label();
-            iTEM_DESC1Label = new System.Windows.Forms.Label();
+            LabelItemDesc2 = new System.Windows.Forms.Label();
+            LabelItemFormat1 = new System.Windows.Forms.Label();
             sVC_TYPELabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.AmenityBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AmenityBindingNavigator)).BeginInit();
-            this.AmenityBindingNavigator.SuspendLayout();
+            LabelUseFields = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeListAmenities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditHeader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequire_Entry.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplier_Entry.Properties)).BeginInit();
@@ -157,24 +149,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.TextEditItem_Desc2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditItem_Format1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditItem_Desc1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.xtraScrollableControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDistanceFields.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseAgeFields.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseTimeFields.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDateFields.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseFeeFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sVC_TYPETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sORT_ORDERSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SortOrderSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pARENT_CODETextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sVCComboBoxEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditFilterBySvcType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).BeginInit();
-            this.panelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
+            this.PanelControlStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             this.SuspendLayout();
             // 
             // cODELabel
             // 
             cODELabel.AutoSize = true;
-            cODELabel.Location = new System.Drawing.Point(501, 91);
+            cODELabel.Location = new System.Drawing.Point(483, 67);
             cODELabel.Name = "cODELabel";
             cODELabel.Size = new System.Drawing.Size(32, 13);
             cODELabel.TabIndex = 2;
@@ -183,271 +182,96 @@
             // iMAGELabel
             // 
             iMAGELabel.AutoSize = true;
-            iMAGELabel.Location = new System.Drawing.Point(470, 364);
+            iMAGELabel.Location = new System.Drawing.Point(483, 340);
             iMAGELabel.Name = "iMAGELabel";
-            iMAGELabel.Size = new System.Drawing.Size(29, 13);
+            iMAGELabel.Size = new System.Drawing.Size(62, 13);
             iMAGELabel.TabIndex = 22;
-            iMAGELabel.Text = "Path";
-            // 
-            // hEADERLabel
-            // 
-            hEADERLabel.AutoSize = true;
-            hEADERLabel.Location = new System.Drawing.Point(577, 100);
-            hEADERLabel.Name = "hEADERLabel";
-            hEADERLabel.Size = new System.Drawing.Size(42, 13);
-            hEADERLabel.TabIndex = 40;
-            hEADERLabel.Text = "Header";
-            // 
-            // rEQUIRE_ENTRYLabel
-            // 
-            rEQUIRE_ENTRYLabel.AutoSize = true;
-            rEQUIRE_ENTRYLabel.Location = new System.Drawing.Point(724, 312);
-            rEQUIRE_ENTRYLabel.Name = "rEQUIRE_ENTRYLabel";
-            rEQUIRE_ENTRYLabel.Size = new System.Drawing.Size(73, 13);
-            rEQUIRE_ENTRYLabel.TabIndex = 38;
-            rEQUIRE_ENTRYLabel.Text = "Require Entry";
-            // 
-            // sUPPLIER_ENTRYLabel
-            // 
-            sUPPLIER_ENTRYLabel.AutoSize = true;
-            sUPPLIER_ENTRYLabel.Location = new System.Drawing.Point(611, 313);
-            sUPPLIER_ENTRYLabel.Name = "sUPPLIER_ENTRYLabel";
-            sUPPLIER_ENTRYLabel.Size = new System.Drawing.Size(74, 13);
-            sUPPLIER_ENTRYLabel.TabIndex = 36;
-            sUPPLIER_ENTRYLabel.Text = "Supplier Entry";
-            // 
-            // sEARCHABLELabel
-            // 
-            sEARCHABLELabel.AutoSize = true;
-            sEARCHABLELabel.Location = new System.Drawing.Point(495, 312);
-            sEARCHABLELabel.Name = "sEARCHABLELabel";
-            sEARCHABLELabel.Size = new System.Drawing.Size(60, 13);
-            sEARCHABLELabel.TabIndex = 34;
-            sEARCHABLELabel.Text = "Searchable";
+            iMAGELabel.Text = "Image Path";
             // 
             // iTEM_FORMAT2Label
             // 
             iTEM_FORMAT2Label.AutoSize = true;
-            iTEM_FORMAT2Label.Location = new System.Drawing.Point(495, 262);
+            iTEM_FORMAT2Label.Location = new System.Drawing.Point(483, 256);
             iTEM_FORMAT2Label.Name = "iTEM_FORMAT2Label";
             iTEM_FORMAT2Label.Size = new System.Drawing.Size(101, 13);
             iTEM_FORMAT2Label.TabIndex = 32;
             iTEM_FORMAT2Label.Text = "Item 2 Data Format";
             // 
-            // iTEM_DESC2Label
+            // LabelItemDesc2
             // 
-            iTEM_DESC2Label.AutoSize = true;
-            iTEM_DESC2Label.Location = new System.Drawing.Point(495, 219);
-            iTEM_DESC2Label.Name = "iTEM_DESC2Label";
-            iTEM_DESC2Label.Size = new System.Drawing.Size(94, 13);
-            iTEM_DESC2Label.TabIndex = 30;
-            iTEM_DESC2Label.Text = "Item 2 Description";
+            LabelItemDesc2.AutoSize = true;
+            LabelItemDesc2.Location = new System.Drawing.Point(483, 212);
+            LabelItemDesc2.Name = "LabelItemDesc2";
+            LabelItemDesc2.Size = new System.Drawing.Size(94, 13);
+            LabelItemDesc2.TabIndex = 30;
+            LabelItemDesc2.Text = "Item 2 Description";
             // 
-            // iTEM_FORMAT1Label
+            // LabelItemFormat1
             // 
-            iTEM_FORMAT1Label.AutoSize = true;
-            iTEM_FORMAT1Label.Location = new System.Drawing.Point(495, 177);
-            iTEM_FORMAT1Label.Name = "iTEM_FORMAT1Label";
-            iTEM_FORMAT1Label.Size = new System.Drawing.Size(101, 13);
-            iTEM_FORMAT1Label.TabIndex = 28;
-            iTEM_FORMAT1Label.Text = "Item 1 Data Format";
-            // 
-            // iTEM_DESC1Label
-            // 
-            iTEM_DESC1Label.AutoSize = true;
-            iTEM_DESC1Label.Location = new System.Drawing.Point(495, 141);
-            iTEM_DESC1Label.Name = "iTEM_DESC1Label";
-            iTEM_DESC1Label.Size = new System.Drawing.Size(98, 13);
-            iTEM_DESC1Label.TabIndex = 26;
-            iTEM_DESC1Label.Text = "Header Description";
+            LabelItemFormat1.AutoSize = true;
+            LabelItemFormat1.Location = new System.Drawing.Point(483, 171);
+            LabelItemFormat1.Name = "LabelItemFormat1";
+            LabelItemFormat1.Size = new System.Drawing.Size(101, 13);
+            LabelItemFormat1.TabIndex = 28;
+            LabelItemFormat1.Text = "Item 1 Data Format";
             // 
             // sVC_TYPELabel
             // 
             sVC_TYPELabel.AutoSize = true;
-            sVC_TYPELabel.Location = new System.Drawing.Point(483, 22);
+            sVC_TYPELabel.Location = new System.Drawing.Point(2, 9);
             sVC_TYPELabel.Name = "sVC_TYPELabel";
-            sVC_TYPELabel.Size = new System.Drawing.Size(51, 13);
+            sVC_TYPELabel.Size = new System.Drawing.Size(115, 13);
             sVC_TYPELabel.TabIndex = 5;
-            sVC_TYPELabel.Text = "Svc Type";
+            sVC_TYPELabel.Text = "Filter By Service Type:";
             // 
-            // AmenityBindingSource
+            // LabelUseFields
             // 
-            this.AmenityBindingSource.DataSource = typeof(FlexModel.AMENITY);
-            this.AmenityBindingSource.CurrentChanged += new System.EventHandler(this.AmenityBindingSource_CurrentChanged);
+            LabelUseFields.AutoSize = true;
+            LabelUseFields.Location = new System.Drawing.Point(483, 538);
+            LabelUseFields.Name = "LabelUseFields";
+            LabelUseFields.Size = new System.Drawing.Size(55, 13);
+            LabelUseFields.TabIndex = 54;
+            LabelUseFields.Text = "Use Fields";
             // 
-            // AmenityBindingNavigator
+            // label1
             // 
-            this.AmenityBindingNavigator.AddNewItem = null;
-            this.AmenityBindingNavigator.BindingSource = this.AmenityBindingSource;
-            this.AmenityBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.AmenityBindingNavigator.DeleteItem = null;
-            this.AmenityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.aMENITYBindingNavigatorSaveItem,
-            this.toolStripDropDownButton1});
-            this.AmenityBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.AmenityBindingNavigator.MoveFirstItem = null;
-            this.AmenityBindingNavigator.MoveLastItem = null;
-            this.AmenityBindingNavigator.MoveNextItem = null;
-            this.AmenityBindingNavigator.MovePreviousItem = null;
-            this.AmenityBindingNavigator.Name = "AmenityBindingNavigator";
-            this.AmenityBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.AmenityBindingNavigator.Size = new System.Drawing.Size(990, 25);
-            this.AmenityBindingNavigator.TabIndex = 1;
-            this.AmenityBindingNavigator.Text = "bindingNavigator1";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(483, 32);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(51, 13);
+            label1.TabIndex = 55;
+            label1.Text = "Svc Type";
             // 
-            // bindingNavigatorCountItem
+            // LabelItemDesc1
             // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            this.LabelItemDesc1.AutoSize = true;
+            this.LabelItemDesc1.Location = new System.Drawing.Point(483, 135);
+            this.LabelItemDesc1.Name = "LabelItemDesc1";
+            this.LabelItemDesc1.Size = new System.Drawing.Size(94, 13);
+            this.LabelItemDesc1.TabIndex = 26;
+            this.LabelItemDesc1.Text = "Item 1 Description";
             // 
-            // bindingNavigatorMoveFirstItem
+            // BindingSource
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            this.bindingNavigatorPositionItem.Enter += new System.EventHandler(this.bindingNavigatorPositionItem_Enter);
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
-            // 
-            // aMENITYBindingNavigatorSaveItem
-            // 
-            this.aMENITYBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.aMENITYBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("aMENITYBindingNavigatorSaveItem.Image")));
-            this.aMENITYBindingNavigatorSaveItem.Name = "aMENITYBindingNavigatorSaveItem";
-            this.aMENITYBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.aMENITYBindingNavigatorSaveItem.Text = "Save Data";
-            this.aMENITYBindingNavigatorSaveItem.Click += new System.EventHandler(this.aMENITYBindingNavigatorSaveItem_Click);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.propogateOrderToolStripMenuItem,
-            this.propogateDeletionsToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(45, 22);
-            this.toolStripDropDownButton1.Text = "View";
-            // 
-            // propogateOrderToolStripMenuItem
-            // 
-            this.propogateOrderToolStripMenuItem.Name = "propogateOrderToolStripMenuItem";
-            this.propogateOrderToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.propogateOrderToolStripMenuItem.Text = "Propogate Order";
-            this.propogateOrderToolStripMenuItem.Click += new System.EventHandler(this.propogateOrderToolStripMenuItem_Click);
-            // 
-            // propogateDeletionsToolStripMenuItem
-            // 
-            this.propogateDeletionsToolStripMenuItem.Name = "propogateDeletionsToolStripMenuItem";
-            this.propogateDeletionsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.propogateDeletionsToolStripMenuItem.Text = "Propogate Deletions";
-            this.propogateDeletionsToolStripMenuItem.Click += new System.EventHandler(this.propogateDeletionsToolStripMenuItem_Click);
+            this.BindingSource.DataSource = typeof(FlexModel.AMENITY);
+            this.BindingSource.Sort = "SORT_ORDER ";
+            this.BindingSource.CurrentChanged += new System.EventHandler(this.AmenityBindingSource_CurrentChanged);
             // 
             // TextEditCode
             // 
-            this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "CODE", true));
-            this.TextEditCode.Location = new System.Drawing.Point(546, 88);
+            this.TextEditCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CODE", true));
+            this.TextEditCode.Location = new System.Drawing.Point(546, 64);
             this.TextEditCode.Name = "TextEditCode";
             this.TextEditCode.Size = new System.Drawing.Size(100, 20);
             this.TextEditCode.TabIndex = 3;
-            this.TextEditCode.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditCode.Leave += new System.EventHandler(this.cODETextEdit_Leave);
+            this.TextEditCode.Leave += new System.EventHandler(this.TextEditCode_Leave);
             // 
-            // treeList1
+            // TreeListAmenities
             // 
-            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TreeListAmenities.AllowDrop = true;
+            this.TreeListAmenities.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.TreeListAmenities.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colSVC_TYPE,
             this.colITEM_DESC1,
             this.colITEM_FORMAT1,
@@ -471,23 +295,22 @@
             this.colIMAGE,
             this.colDescription,
             this.colImagesRoot});
-            this.treeList1.DataSource = this.AmenityBindingSource;
-            this.treeList1.KeyFieldName = "CODE";
-            this.treeList1.Location = new System.Drawing.Point(0, 45);
-            this.treeList1.Name = "treeList1";
-            this.treeList1.OptionsBehavior.DragNodes = true;
-            this.treeList1.OptionsBehavior.Editable = false;
-            this.treeList1.OptionsBehavior.EnableFiltering = true;
-            this.treeList1.OptionsView.ShowHorzLines = false;
-            this.treeList1.OptionsView.ShowIndicator = false;
-            this.treeList1.ParentFieldName = "PARENT_CODE";
-            this.treeList1.Size = new System.Drawing.Size(400, 697);
-            this.treeList1.TabIndex = 4;
-            this.treeList1.GetSelectImage += new DevExpress.XtraTreeList.GetSelectImageEventHandler(this.treeList1_GetSelectImage);
-            this.treeList1.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.treeList1_NodeCellStyle);
-            this.treeList1.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.treeList1_BeforeFocusNode);
-            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
-            this.treeList1.CustomFilterDisplayText += new DevExpress.XtraEditors.Controls.ConvertEditValueEventHandler(this.treeList1_CustomFilterDisplayText);
+            this.TreeListAmenities.DataSource = this.BindingSource;
+            this.TreeListAmenities.KeyFieldName = "CODE";
+            this.TreeListAmenities.Location = new System.Drawing.Point(0, 32);
+            this.TreeListAmenities.Name = "TreeListAmenities";
+            this.TreeListAmenities.OptionsBehavior.Editable = false;
+            this.TreeListAmenities.OptionsDragAndDrop.DragNodesMode = DevExpress.XtraTreeList.DragNodesMode.Single;
+            this.TreeListAmenities.OptionsDragAndDrop.DropNodesMode = DevExpress.XtraTreeList.DropNodesMode.Standard;
+            this.TreeListAmenities.OptionsView.ShowAutoFilterRow = true;
+            this.TreeListAmenities.OptionsView.ShowHorzLines = false;
+            this.TreeListAmenities.ParentFieldName = "PARENT_CODE";
+            this.TreeListAmenities.Size = new System.Drawing.Size(400, 697);
+            this.TreeListAmenities.TabIndex = 4;
+            this.TreeListAmenities.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeList1_NodeCellStyle);
+            this.TreeListAmenities.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.TreeList1_BeforeFocusNode);
+            this.TreeListAmenities.BeforeDropNode += new DevExpress.XtraTreeList.BeforeDropNodeEventHandler(this.TreeList_BeforeDropNode);
+            this.TreeListAmenities.CalcNodeDragImageIndex += new DevExpress.XtraTreeList.CalcNodeDragImageIndexEventHandler(this.TreeList_CalcNodeDragImageIndex);
             // 
             // colSVC_TYPE
             // 
@@ -635,70 +458,73 @@
             this.colImagesRoot.Name = "colImagesRoot";
             this.colImagesRoot.Width = 20;
             // 
-            // labelControl1
+            // LabelControlUp
             // 
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.labelControl1.Location = new System.Drawing.Point(406, 333);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(12, 13);
-            this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "▲";
-            this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
+            this.LabelControlUp.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.LabelControlUp.Appearance.Options.UseForeColor = true;
+            this.LabelControlUp.Location = new System.Drawing.Point(406, 333);
+            this.LabelControlUp.Name = "LabelControlUp";
+            this.LabelControlUp.Size = new System.Drawing.Size(11, 13);
+            this.LabelControlUp.TabIndex = 6;
+            this.LabelControlUp.Text = "▲";
+            this.LabelControlUp.Click += new System.EventHandler(this.LabelControlUp_Click);
             // 
-            // labelControl2
+            // LabelControlDown
             // 
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.labelControl2.Location = new System.Drawing.Point(406, 361);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(12, 13);
-            this.labelControl2.TabIndex = 7;
-            this.labelControl2.Text = "▼";
-            this.labelControl2.Click += new System.EventHandler(this.labelControl2_Click);
+            this.LabelControlDown.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.LabelControlDown.Appearance.Options.UseForeColor = true;
+            this.LabelControlDown.Location = new System.Drawing.Point(406, 361);
+            this.LabelControlDown.Name = "LabelControlDown";
+            this.LabelControlDown.Size = new System.Drawing.Size(11, 13);
+            this.LabelControlDown.TabIndex = 7;
+            this.LabelControlDown.Text = "▼";
+            this.LabelControlDown.Click += new System.EventHandler(this.LabelControlDown_Click);
             // 
             // CheckEditHeader
             // 
-            this.CheckEditHeader.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "HEADER", true));
-            this.CheckEditHeader.Location = new System.Drawing.Point(546, 97);
+            this.CheckEditHeader.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "HEADER", true));
+            this.CheckEditHeader.Location = new System.Drawing.Point(484, 100);
             this.CheckEditHeader.Name = "CheckEditHeader";
-            this.CheckEditHeader.Properties.Caption = "";
-            this.CheckEditHeader.Size = new System.Drawing.Size(28, 19);
+            this.CheckEditHeader.Properties.Caption = "Header";
+            this.CheckEditHeader.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditHeader.Size = new System.Drawing.Size(79, 19);
             this.CheckEditHeader.TabIndex = 41;
-            this.CheckEditHeader.Click += new System.EventHandler(this.CheckEditSearchable_Click);
+            this.CheckEditHeader.Click += new System.EventHandler(this.CheckEditHeader_Click);
             // 
             // CheckEditRequire_Entry
             // 
-            this.CheckEditRequire_Entry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "REQUIRE_ENTRY", true));
-            this.CheckEditRequire_Entry.Location = new System.Drawing.Point(799, 310);
+            this.CheckEditRequire_Entry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "REQUIRE_ENTRY", true));
+            this.CheckEditRequire_Entry.Location = new System.Drawing.Point(711, 296);
             this.CheckEditRequire_Entry.Name = "CheckEditRequire_Entry";
-            this.CheckEditRequire_Entry.Properties.Caption = "";
-            this.CheckEditRequire_Entry.Size = new System.Drawing.Size(20, 19);
+            this.CheckEditRequire_Entry.Properties.Caption = "Require Entry";
+            this.CheckEditRequire_Entry.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditRequire_Entry.Size = new System.Drawing.Size(92, 19);
             this.CheckEditRequire_Entry.TabIndex = 39;
-            this.CheckEditRequire_Entry.Click += new System.EventHandler(this.CheckEditSearchable_Click);
             // 
             // CheckEditSupplier_Entry
             // 
-            this.CheckEditSupplier_Entry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "SUPPLIER_ENTRY", true));
-            this.CheckEditSupplier_Entry.Location = new System.Drawing.Point(687, 310);
+            this.CheckEditSupplier_Entry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SUPPLIER_ENTRY", true));
+            this.CheckEditSupplier_Entry.Location = new System.Drawing.Point(591, 296);
             this.CheckEditSupplier_Entry.Name = "CheckEditSupplier_Entry";
-            this.CheckEditSupplier_Entry.Properties.Caption = "";
-            this.CheckEditSupplier_Entry.Size = new System.Drawing.Size(24, 19);
+            this.CheckEditSupplier_Entry.Properties.Caption = "Supplier Entry";
+            this.CheckEditSupplier_Entry.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditSupplier_Entry.Size = new System.Drawing.Size(97, 19);
             this.CheckEditSupplier_Entry.TabIndex = 37;
-            this.CheckEditSupplier_Entry.Click += new System.EventHandler(this.CheckEditSearchable_Click);
             // 
             // CheckEditSearchable
             // 
-            this.CheckEditSearchable.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "SEARCHABLE", true));
-            this.CheckEditSearchable.Location = new System.Drawing.Point(560, 310);
+            this.CheckEditSearchable.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SEARCHABLE", true));
+            this.CheckEditSearchable.Location = new System.Drawing.Point(484, 296);
             this.CheckEditSearchable.Name = "CheckEditSearchable";
-            this.CheckEditSearchable.Properties.Caption = "";
-            this.CheckEditSearchable.Size = new System.Drawing.Size(24, 19);
+            this.CheckEditSearchable.Properties.Caption = "Searchable";
+            this.CheckEditSearchable.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditSearchable.Size = new System.Drawing.Size(79, 19);
             this.CheckEditSearchable.TabIndex = 35;
-            this.CheckEditSearchable.Click += new System.EventHandler(this.CheckEditSearchable_Click);
             // 
             // ComboBoxEditItem_Format2
             // 
-            this.ComboBoxEditItem_Format2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "ITEM_FORMAT2", true));
-            this.ComboBoxEditItem_Format2.Location = new System.Drawing.Point(599, 259);
+            this.ComboBoxEditItem_Format2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ITEM_FORMAT2", true));
+            this.ComboBoxEditItem_Format2.Location = new System.Drawing.Point(614, 253);
             this.ComboBoxEditItem_Format2.Name = "ComboBoxEditItem_Format2";
             this.ComboBoxEditItem_Format2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -713,23 +539,21 @@
             "Decimal"});
             this.ComboBoxEditItem_Format2.Size = new System.Drawing.Size(100, 20);
             this.ComboBoxEditItem_Format2.TabIndex = 33;
-            this.ComboBoxEditItem_Format2.Enter += new System.EventHandler(this.enterControl);
-            this.ComboBoxEditItem_Format2.Leave += new System.EventHandler(this.iTEM_FORMAT2ComboBoxEdit_Leave);
+            this.ComboBoxEditItem_Format2.Leave += new System.EventHandler(this.ComboBoxEditItem_Format2_Leave);
             // 
             // TextEditItem_Desc2
             // 
-            this.TextEditItem_Desc2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "ITEM_DESC2", true));
-            this.TextEditItem_Desc2.Location = new System.Drawing.Point(599, 216);
+            this.TextEditItem_Desc2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ITEM_DESC2", true));
+            this.TextEditItem_Desc2.Location = new System.Drawing.Point(614, 210);
             this.TextEditItem_Desc2.Name = "TextEditItem_Desc2";
             this.TextEditItem_Desc2.Size = new System.Drawing.Size(318, 20);
             this.TextEditItem_Desc2.TabIndex = 31;
-            this.TextEditItem_Desc2.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditItem_Desc2.Leave += new System.EventHandler(this.iTEM_DESC2TextEdit_Leave);
+            this.TextEditItem_Desc2.Leave += new System.EventHandler(this.TextEditItem_Desc2_Leave);
             // 
             // ComboBoxEditItem_Format1
             // 
-            this.ComboBoxEditItem_Format1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "ITEM_FORMAT1", true));
-            this.ComboBoxEditItem_Format1.Location = new System.Drawing.Point(599, 174);
+            this.ComboBoxEditItem_Format1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ITEM_FORMAT1", true));
+            this.ComboBoxEditItem_Format1.Location = new System.Drawing.Point(614, 168);
             this.ComboBoxEditItem_Format1.Name = "ComboBoxEditItem_Format1";
             this.ComboBoxEditItem_Format1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -744,137 +568,196 @@
             "Decimal"});
             this.ComboBoxEditItem_Format1.Size = new System.Drawing.Size(100, 20);
             this.ComboBoxEditItem_Format1.TabIndex = 29;
-            this.ComboBoxEditItem_Format1.Enter += new System.EventHandler(this.enterControl);
-            this.ComboBoxEditItem_Format1.Leave += new System.EventHandler(this.iTEM_FORMAT1ComboBoxEdit_Leave);
+            this.ComboBoxEditItem_Format1.Leave += new System.EventHandler(this.ComboBoxEditItem_Format1_Leave);
             // 
             // TextEditItem_Desc1
             // 
-            this.TextEditItem_Desc1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "ITEM_DESC1", true));
-            this.TextEditItem_Desc1.Location = new System.Drawing.Point(599, 138);
+            this.TextEditItem_Desc1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "ITEM_DESC1", true));
+            this.TextEditItem_Desc1.Location = new System.Drawing.Point(614, 132);
             this.TextEditItem_Desc1.Name = "TextEditItem_Desc1";
             this.TextEditItem_Desc1.Size = new System.Drawing.Size(318, 20);
             this.TextEditItem_Desc1.TabIndex = 27;
-            this.TextEditItem_Desc1.Enter += new System.EventHandler(this.enterControl);
-            this.TextEditItem_Desc1.Leave += new System.EventHandler(this.iTEM_DESC1TextEdit_Leave);
+            this.TextEditItem_Desc1.Leave += new System.EventHandler(this.TextEditItem_Desc1_Leave);
             // 
-            // pictureEdit1
+            // PictureEdit1
             // 
-            this.pictureEdit1.Location = new System.Drawing.Point(527, 400);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Size = new System.Drawing.Size(196, 138);
-            this.pictureEdit1.TabIndex = 25;
+            this.PictureEdit1.Location = new System.Drawing.Point(486, 375);
+            this.PictureEdit1.Name = "PictureEdit1";
+            this.PictureEdit1.Size = new System.Drawing.Size(196, 138);
+            this.PictureEdit1.TabIndex = 25;
             // 
-            // labelControl3
+            // ErrorProvider
             // 
-            this.labelControl3.Location = new System.Drawing.Point(473, 400);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(42, 13);
-            this.labelControl3.TabIndex = 26;
-            this.labelControl3.Text = "Preview:";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.ErrorProvider.ContainerControl = this;
             // 
             // xtraScrollableControl1
             // 
+            this.xtraScrollableControl1.Controls.Add(label1);
+            this.xtraScrollableControl1.Controls.Add(this.ComboBoxEditSvcType);
+            this.xtraScrollableControl1.Controls.Add(LabelUseFields);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseNumber);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseDistanceFields);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseAgeFields);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseTimeFields);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseDateFields);
+            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseFeeFields);
             this.xtraScrollableControl1.Controls.Add(this.ButtonEditImage);
-            this.xtraScrollableControl1.Controls.Add(this.sVC_TYPETextEdit);
-            this.xtraScrollableControl1.Controls.Add(this.sORT_ORDERSpinEdit);
+            this.xtraScrollableControl1.Controls.Add(this.TreeListAmenities);
+            this.xtraScrollableControl1.Controls.Add(iMAGELabel);
+            this.xtraScrollableControl1.Controls.Add(this.PictureEdit1);
+            this.xtraScrollableControl1.Controls.Add(this.SortOrderSpinEdit);
             this.xtraScrollableControl1.Controls.Add(this.pARENT_CODETextEdit);
-            this.xtraScrollableControl1.Controls.Add(hEADERLabel);
             this.xtraScrollableControl1.Controls.Add(sVC_TYPELabel);
             this.xtraScrollableControl1.Controls.Add(this.CheckEditHeader);
-            this.xtraScrollableControl1.Controls.Add(this.sVCComboBoxEdit);
-            this.xtraScrollableControl1.Controls.Add(rEQUIRE_ENTRYLabel);
+            this.xtraScrollableControl1.Controls.Add(cODELabel);
+            this.xtraScrollableControl1.Controls.Add(this.ComboBoxEditFilterBySvcType);
+            this.xtraScrollableControl1.Controls.Add(this.TextEditCode);
             this.xtraScrollableControl1.Controls.Add(this.CheckEditRequire_Entry);
-            this.xtraScrollableControl1.Controls.Add(sUPPLIER_ENTRYLabel);
             this.xtraScrollableControl1.Controls.Add(this.ComboBoxEditItem_Format2);
             this.xtraScrollableControl1.Controls.Add(this.CheckEditSupplier_Entry);
             this.xtraScrollableControl1.Controls.Add(this.TextEditItem_Desc1);
-            this.xtraScrollableControl1.Controls.Add(sEARCHABLELabel);
-            this.xtraScrollableControl1.Controls.Add(iTEM_DESC1Label);
+            this.xtraScrollableControl1.Controls.Add(this.LabelItemDesc1);
             this.xtraScrollableControl1.Controls.Add(this.CheckEditSearchable);
             this.xtraScrollableControl1.Controls.Add(this.ComboBoxEditItem_Format1);
             this.xtraScrollableControl1.Controls.Add(iTEM_FORMAT2Label);
-            this.xtraScrollableControl1.Controls.Add(iTEM_FORMAT1Label);
+            this.xtraScrollableControl1.Controls.Add(LabelItemFormat1);
             this.xtraScrollableControl1.Controls.Add(this.TextEditItem_Desc2);
-            this.xtraScrollableControl1.Controls.Add(iTEM_DESC2Label);
+            this.xtraScrollableControl1.Controls.Add(LabelItemDesc2);
             this.xtraScrollableControl1.Controls.Add(this.gridControl1);
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 25);
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(990, 717);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(990, 688);
             this.xtraScrollableControl1.TabIndex = 27;
+            // 
+            // ComboBoxEditSvcType
+            // 
+            this.ComboBoxEditSvcType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_TYPE", true));
+            this.ComboBoxEditSvcType.Location = new System.Drawing.Point(546, 29);
+            this.ComboBoxEditSvcType.Name = "ComboBoxEditSvcType";
+            this.ComboBoxEditSvcType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ComboBoxEditSvcType.Properties.Items.AddRange(new object[] {
+            "HTL",
+            "OPT",
+            "PKG"});
+            this.ComboBoxEditSvcType.Size = new System.Drawing.Size(100, 20);
+            this.ComboBoxEditSvcType.TabIndex = 56;
+            this.ComboBoxEditSvcType.Leave += new System.EventHandler(this.ComboBoxEditSvcType_Leave);
+            // 
+            // CheckEditUseNumber
+            // 
+            this.CheckEditUseNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseNumber", true));
+            this.CheckEditUseNumber.Location = new System.Drawing.Point(777, 618);
+            this.CheckEditUseNumber.Name = "CheckEditUseNumber";
+            this.CheckEditUseNumber.Properties.Caption = "Use Number";
+            this.CheckEditUseNumber.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseNumber.Size = new System.Drawing.Size(81, 19);
+            this.CheckEditUseNumber.TabIndex = 53;
+            // 
+            // CheckEditUseDistanceFields
+            // 
+            this.CheckEditUseDistanceFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDistanceFields", true));
+            this.CheckEditUseDistanceFields.Location = new System.Drawing.Point(621, 618);
+            this.CheckEditUseDistanceFields.Name = "CheckEditUseDistanceFields";
+            this.CheckEditUseDistanceFields.Properties.Caption = "Use Distance Fields";
+            this.CheckEditUseDistanceFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseDistanceFields.Size = new System.Drawing.Size(114, 19);
+            this.CheckEditUseDistanceFields.TabIndex = 52;
+            // 
+            // CheckEditUseAgeFields
+            // 
+            this.CheckEditUseAgeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseAgeFields", true));
+            this.CheckEditUseAgeFields.Location = new System.Drawing.Point(504, 618);
+            this.CheckEditUseAgeFields.Name = "CheckEditUseAgeFields";
+            this.CheckEditUseAgeFields.Properties.Caption = "Use Age Fields";
+            this.CheckEditUseAgeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseAgeFields.Size = new System.Drawing.Size(93, 19);
+            this.CheckEditUseAgeFields.TabIndex = 51;
+            // 
+            // CheckEditUseTimeFields
+            // 
+            this.CheckEditUseTimeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseTimeFields", true));
+            this.CheckEditUseTimeFields.Location = new System.Drawing.Point(767, 572);
+            this.CheckEditUseTimeFields.Name = "CheckEditUseTimeFields";
+            this.CheckEditUseTimeFields.Properties.Caption = "Use Time Fields";
+            this.CheckEditUseTimeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseTimeFields.Size = new System.Drawing.Size(101, 19);
+            this.CheckEditUseTimeFields.TabIndex = 50;
+            // 
+            // CheckEditUseDateFields
+            // 
+            this.CheckEditUseDateFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDateFields", true));
+            this.CheckEditUseDateFields.Location = new System.Drawing.Point(627, 572);
+            this.CheckEditUseDateFields.Name = "CheckEditUseDateFields";
+            this.CheckEditUseDateFields.Properties.Caption = "Use Date Fields";
+            this.CheckEditUseDateFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseDateFields.Size = new System.Drawing.Size(102, 19);
+            this.CheckEditUseDateFields.TabIndex = 49;
+            // 
+            // CheckEditUseFeeFields
+            // 
+            this.CheckEditUseFeeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseFeeFields", true));
+            this.CheckEditUseFeeFields.Location = new System.Drawing.Point(504, 572);
+            this.CheckEditUseFeeFields.Name = "CheckEditUseFeeFields";
+            this.CheckEditUseFeeFields.Properties.Caption = "Use Fee Fields";
+            this.CheckEditUseFeeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseFeeFields.Size = new System.Drawing.Size(93, 19);
+            this.CheckEditUseFeeFields.TabIndex = 48;
             // 
             // ButtonEditImage
             // 
-            this.ButtonEditImage.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "IMAGE", true));
-            this.ButtonEditImage.Location = new System.Drawing.Point(527, 336);
+            this.ButtonEditImage.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "IMAGE", true));
+            this.ButtonEditImage.Location = new System.Drawing.Point(614, 337);
             this.ButtonEditImage.Name = "ButtonEditImage";
             this.ButtonEditImage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.ButtonEditImage.Size = new System.Drawing.Size(327, 20);
+            this.ButtonEditImage.Size = new System.Drawing.Size(318, 20);
             this.ButtonEditImage.TabIndex = 46;
-            this.ButtonEditImage.TextChanged += new System.EventHandler(this.iMAGETextEdit_TextChanged);
-            this.ButtonEditImage.Click += new System.EventHandler(this.iMAGEButtonEdit_Click);
-            this.ButtonEditImage.Enter += new System.EventHandler(this.enterControl);
-            this.ButtonEditImage.Leave += new System.EventHandler(this.iMAGETextEdit_Leave);
+            this.ButtonEditImage.TextChanged += new System.EventHandler(this.ButtonEditImage_TextChanged);
+            this.ButtonEditImage.Click += new System.EventHandler(this.ButtonEditImage_Click);
+            this.ButtonEditImage.Leave += new System.EventHandler(this.ButtonEditImage_Leave);
             // 
-            // sVC_TYPETextEdit
+            // SortOrderSpinEdit
             // 
-            this.sVC_TYPETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "SVC_TYPE", true));
-            this.sVC_TYPETextEdit.Location = new System.Drawing.Point(192, 199);
-            this.sVC_TYPETextEdit.Name = "sVC_TYPETextEdit";
-            this.sVC_TYPETextEdit.Size = new System.Drawing.Size(100, 20);
-            this.sVC_TYPETextEdit.TabIndex = 45;
-            // 
-            // sORT_ORDERSpinEdit
-            // 
-            this.sORT_ORDERSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "SORT_ORDER", true));
-            this.sORT_ORDERSpinEdit.EditValue = new decimal(new int[] {
+            this.SortOrderSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SORT_ORDER", true));
+            this.SortOrderSpinEdit.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.sORT_ORDERSpinEdit.Location = new System.Drawing.Point(192, 170);
-            this.sORT_ORDERSpinEdit.Name = "sORT_ORDERSpinEdit";
-            this.sORT_ORDERSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SortOrderSpinEdit.Location = new System.Drawing.Point(192, 170);
+            this.SortOrderSpinEdit.Name = "SortOrderSpinEdit";
+            this.SortOrderSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.sORT_ORDERSpinEdit.Size = new System.Drawing.Size(100, 20);
-            this.sORT_ORDERSpinEdit.TabIndex = 44;
+            this.SortOrderSpinEdit.Size = new System.Drawing.Size(100, 20);
+            this.SortOrderSpinEdit.TabIndex = 44;
             // 
             // pARENT_CODETextEdit
             // 
-            this.pARENT_CODETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.AmenityBindingSource, "PARENT_CODE", true));
+            this.pARENT_CODETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "PARENT_CODE", true));
             this.pARENT_CODETextEdit.Location = new System.Drawing.Point(86, 170);
             this.pARENT_CODETextEdit.Name = "pARENT_CODETextEdit";
             this.pARENT_CODETextEdit.Size = new System.Drawing.Size(100, 20);
             this.pARENT_CODETextEdit.TabIndex = 43;
             // 
-            // sVCComboBoxEdit
+            // ComboBoxEditFilterBySvcType
             // 
-            this.sVCComboBoxEdit.Location = new System.Drawing.Point(546, 19);
-            this.sVCComboBoxEdit.Name = "sVCComboBoxEdit";
-            this.sVCComboBoxEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ComboBoxEditFilterBySvcType.Location = new System.Drawing.Point(123, 6);
+            this.ComboBoxEditFilterBySvcType.Name = "ComboBoxEditFilterBySvcType";
+            this.ComboBoxEditFilterBySvcType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sVCComboBoxEdit.Properties.Items.AddRange(new object[] {
-            "",
+            this.ComboBoxEditFilterBySvcType.Properties.Items.AddRange(new object[] {
             "HTL",
             "OPT",
-            "PKG",
-            "CAR",
-            "CRU",
-            "AIR"});
-            this.sVCComboBoxEdit.Size = new System.Drawing.Size(100, 20);
-            this.sVCComboBoxEdit.TabIndex = 6;
-            this.sVCComboBoxEdit.TextChanged += new System.EventHandler(this.sVC_TYPEComboBoxEdit_TextChanged);
-            this.sVCComboBoxEdit.Enter += new System.EventHandler(this.enterControl);
-            this.sVCComboBoxEdit.Leave += new System.EventHandler(this.sVC_TYPEComboBoxEdit_Leave);
+            "PKG"});
+            this.ComboBoxEditFilterBySvcType.Size = new System.Drawing.Size(100, 20);
+            this.ComboBoxEditFilterBySvcType.TabIndex = 6;
+            this.ComboBoxEditFilterBySvcType.TextChanged += new System.EventHandler(this.sVC_TYPEComboBoxEdit_TextChanged);
             // 
             // gridControl1
             // 
-            this.gridControl1.DataSource = this.AmenityBindingSource;
+            this.gridControl1.DataSource = this.BindingSource;
             this.gridControl1.Location = new System.Drawing.Point(35, 157);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -1098,17 +981,17 @@
             this.colImagesRoot1.Visible = true;
             this.colImagesRoot1.VisibleIndex = 25;
             // 
-            // panelControlStatus
+            // PanelControlStatus
             // 
-            this.panelControlStatus.Appearance.Options.UseTextOptions = true;
-            this.panelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("panelControlStatus.ContentImage")));
-            this.panelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.panelControlStatus.Controls.Add(this.LabelStatus);
-            this.panelControlStatus.Location = new System.Drawing.Point(345, 0);
-            this.panelControlStatus.Name = "panelControlStatus";
-            this.panelControlStatus.Size = new System.Drawing.Size(120, 23);
-            this.panelControlStatus.TabIndex = 265;
-            this.panelControlStatus.Visible = false;
+            this.PanelControlStatus.Appearance.Options.UseTextOptions = true;
+            this.PanelControlStatus.ContentImage = ((System.Drawing.Image)(resources.GetObject("PanelControlStatus.ContentImage")));
+            this.PanelControlStatus.ContentImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PanelControlStatus.Controls.Add(this.LabelStatus);
+            this.PanelControlStatus.Location = new System.Drawing.Point(345, 0);
+            this.PanelControlStatus.Name = "PanelControlStatus";
+            this.PanelControlStatus.Size = new System.Drawing.Size(120, 23);
+            this.PanelControlStatus.TabIndex = 265;
+            this.PanelControlStatus.Visible = false;
             // 
             // LabelStatus
             // 
@@ -1117,22 +1000,122 @@
             this.LabelStatus.Size = new System.Drawing.Size(0, 13);
             this.LabelStatus.TabIndex = 5;
             // 
+            // BarManager
+            // 
+            this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1,
+            this.bar3});
+            this.BarManager.DockControls.Add(this.barDockControlTop);
+            this.BarManager.DockControls.Add(this.barDockControlBottom);
+            this.BarManager.DockControls.Add(this.barDockControlLeft);
+            this.BarManager.DockControls.Add(this.barDockControlRight);
+            this.BarManager.Form = this;
+            this.BarManager.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.BarButtonItemNew,
+            this.BarButtonItemDelete,
+            this.BarButtonItemSave});
+            this.BarManager.MaxItemId = 3;
+            this.BarManager.StatusBar = this.bar3;
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemNew),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Tools";
+            // 
+            // BarButtonItemNew
+            // 
+            this.BarButtonItemNew.Caption = "New";
+            this.BarButtonItemNew.Id = 0;
+            this.BarButtonItemNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.Image")));
+            this.BarButtonItemNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemNew.ImageOptions.LargeImage")));
+            this.BarButtonItemNew.Name = "BarButtonItemNew";
+            this.BarButtonItemNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemNew_ItemClick);
+            // 
+            // BarButtonItemDelete
+            // 
+            this.BarButtonItemDelete.Caption = "Delete";
+            this.BarButtonItemDelete.Id = 1;
+            this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
+            this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
+            this.BarButtonItemDelete.Name = "BarButtonItemDelete";
+            this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemDelete_ItemClick);
+            // 
+            // BarButtonItemSave
+            // 
+            this.BarButtonItemSave.Caption = "Save";
+            this.BarButtonItemSave.Id = 2;
+            this.BarButtonItemSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.Image")));
+            this.BarButtonItemSave.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemSave.ImageOptions.LargeImage")));
+            this.BarButtonItemSave.Name = "BarButtonItemSave";
+            this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.BarManager;
+            this.barDockControlTop.Size = new System.Drawing.Size(990, 31);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 719);
+            this.barDockControlBottom.Manager = this.BarManager;
+            this.barDockControlBottom.Size = new System.Drawing.Size(990, 23);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Manager = this.BarManager;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 688);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(990, 31);
+            this.barDockControlRight.Manager = this.BarManager;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 688);
+            // 
             // AmenityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 742);
-            this.Controls.Add(this.panelControlStatus);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.pictureEdit1);
-            this.Controls.Add(iMAGELabel);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.treeList1);
-            this.Controls.Add(cODELabel);
-            this.Controls.Add(this.TextEditCode);
+            this.Controls.Add(this.PanelControlStatus);
+            this.Controls.Add(this.LabelControlDown);
+            this.Controls.Add(this.LabelControlUp);
             this.Controls.Add(this.xtraScrollableControl1);
-            this.Controls.Add(this.AmenityBindingNavigator);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.MinimizeBox = false;
             this.Name = "AmenityForm";
             this.ShowInTaskbar = false;
@@ -1140,12 +1123,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AmenityForm_FormClosing);
             this.Load += new System.EventHandler(this.AmenityForm_Load);
             this.Shown += new System.EventHandler(this.AmenityForm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.AmenityBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AmenityBindingNavigator)).EndInit();
-            this.AmenityBindingNavigator.ResumeLayout(false);
-            this.AmenityBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeListAmenities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditHeader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditRequire_Entry.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditSupplier_Entry.Properties)).EndInit();
@@ -1154,20 +1134,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.TextEditItem_Desc2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditItem_Format1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditItem_Desc1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.xtraScrollableControl1.ResumeLayout(false);
             this.xtraScrollableControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDistanceFields.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseAgeFields.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseTimeFields.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDateFields.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseFeeFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sVC_TYPETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sORT_ORDERSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SortOrderSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pARENT_CODETextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sVCComboBoxEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditFilterBySvcType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControlStatus)).EndInit();
-            this.panelControlStatus.ResumeLayout(false);
-            this.panelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
+            this.PanelControlStatus.ResumeLayout(false);
+            this.PanelControlStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1175,24 +1162,11 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource AmenityBindingSource;
-        private System.Windows.Forms.BindingNavigator AmenityBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton aMENITYBindingNavigatorSaveItem;
+        private System.Windows.Forms.BindingSource BindingSource;
         private DevExpress.XtraEditors.TextEdit TextEditCode;
-        private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraTreeList.TreeList TreeListAmenities;
+        private DevExpress.XtraEditors.LabelControl LabelControlUp;
+        private DevExpress.XtraEditors.LabelControl LabelControlDown;
         private DevExpress.XtraEditors.CheckEdit CheckEditHeader;
         private DevExpress.XtraEditors.CheckEdit CheckEditRequire_Entry;
         private DevExpress.XtraEditors.CheckEdit CheckEditSupplier_Entry;
@@ -1201,15 +1175,13 @@
         private DevExpress.XtraEditors.TextEdit TextEditItem_Desc2;
         private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditItem_Format1;
         private DevExpress.XtraEditors.TextEdit TextEditItem_Desc1;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private DevExpress.XtraEditors.PictureEdit PictureEdit1;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
-        private DevExpress.XtraEditors.ComboBoxEdit sVCComboBoxEdit;
-        private DevExpress.XtraEditors.TextEdit sVC_TYPETextEdit;
-        private DevExpress.XtraEditors.SpinEdit sORT_ORDERSpinEdit;
+        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditFilterBySvcType;
+        private DevExpress.XtraEditors.SpinEdit SortOrderSpinEdit;
         private DevExpress.XtraEditors.TextEdit pARENT_CODETextEdit;
-        private DevExpress.XtraEditors.PanelControl panelControlStatus;
+        private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colSVC_TYPE;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colITEM_DESC1;
@@ -1234,9 +1206,6 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colIMAGE;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDescription;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colImagesRoot;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem propogateOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem propogateDeletionsToolStripMenuItem;
         private DevExpress.XtraEditors.ButtonEdit ButtonEditImage;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -1267,5 +1236,23 @@
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription1;
         private DevExpress.XtraGrid.Columns.GridColumn colImagesRoot1;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarManager BarManager;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseNumber;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseDistanceFields;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseAgeFields;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseTimeFields;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseDateFields;
+        private DevExpress.XtraEditors.CheckEdit CheckEditUseFeeFields;
+        private System.Windows.Forms.Label LabelItemDesc1;
+        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditSvcType;
     }
 }

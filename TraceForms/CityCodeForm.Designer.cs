@@ -53,11 +53,7 @@
             this.gridColumnLookupState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnLookupRegion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnLookupCountry = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditRegion = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
             this.BindingSourceCodeName = new System.Windows.Forms.BindingSource(this.components);
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LabelControlLon = new DevExpress.XtraEditors.LabelControl();
             this.LabelControlLat = new DevExpress.XtraEditors.LabelControl();
             this.SimpleButtonPlot = new DevExpress.XtraEditors.SimpleButton();
@@ -87,19 +83,6 @@
             this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ButtonDeleteMapping = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonAddMapping = new DevExpress.XtraEditors.SimpleButton();
-            this.SearchLookupEditLinkCode = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.SearchLookUpEditViewSearchCity = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDisplayName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditState = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.customSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SearchLookupEditCountry = new Custom_SearchLookupEdit.CustomSearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
@@ -113,6 +96,27 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.bingMapDataProvider2 = new DevExpress.XtraMap.BingMapDataProvider();
             this.bingMapDataProvider3 = new DevExpress.XtraMap.BingMapDataProvider();
+            this.SearchLookupEditLinkCode = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditState = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditRegion = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditCountry = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSearchLookUpEditOperator = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             LabelCode = new System.Windows.Forms.Label();
             LabelName = new System.Windows.Forms.Label();
             LabelLinkCode = new System.Windows.Forms.Label();
@@ -130,9 +134,7 @@
             this.SplitContainerControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditRegion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MapControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlMappings)).BeginInit();
             this.PanelControlMappings.SuspendLayout();
@@ -143,15 +145,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEdit50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCustomSearchLookUpEditOperator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLinkCode.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookUpEditViewSearchCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditState.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCountry.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLinkCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditState.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditRegion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCountry.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOperator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelCode
@@ -288,7 +294,6 @@
             this.SplitContainerControl.Panel1.Text = "Panel1";
             this.SplitContainerControl.Panel2.AutoScroll = true;
             this.SplitContainerControl.Panel2.Controls.Add(label1);
-            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditRegion);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelControlLon);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelControlLat);
             this.SplitContainerControl.Panel2.Controls.Add(this.SimpleButtonPlot);
@@ -305,6 +310,7 @@
             this.SplitContainerControl.Panel2.Controls.Add(LabelName);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditLinkCode);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditState);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditRegion);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCountry);
             this.SplitContainerControl.Panel2.Text = "Panel2";
             this.SplitContainerControl.Size = new System.Drawing.Size(1224, 547);
@@ -412,59 +418,14 @@
             this.gridColumnLookupCountry.Name = "gridColumnLookupCountry";
             this.gridColumnLookupCountry.Width = 44;
             // 
-            // SearchLookupEditRegion
-            // 
-            this.SearchLookupEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Region_Code", true));
-            this.SearchLookupEditRegion.Location = new System.Drawing.Point(100, 128);
-            this.SearchLookupEditRegion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.SearchLookupEditRegion.Name = "SearchLookupEditRegion";
-            this.SearchLookupEditRegion.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.SearchLookupEditRegion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditRegion.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditRegion.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditRegion.Properties.NullText = "";
-            this.SearchLookupEditRegion.Properties.PopupView = this.gridView2;
-            this.SearchLookupEditRegion.Properties.ValueMember = "Code";
-            this.SearchLookupEditRegion.Size = new System.Drawing.Size(202, 20);
-            this.SearchLookupEditRegion.TabIndex = 274;
-            this.SearchLookupEditRegion.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditRegion.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditRegion.Leave += new System.EventHandler(this.SearchLookUpEditRegion_Leave);
-            // 
             // BindingSourceCodeName
             // 
             this.BindingSourceCodeName.DataSource = typeof(TraceForms.CodeName);
             // 
-            // gridView2
-            // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.OptionsView.ShowIndicator = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.FieldName = "Code";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.FieldName = "Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
             // LabelControlLon
             // 
             this.LabelControlLon.Location = new System.Drawing.Point(170, 198);
-            this.LabelControlLon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LabelControlLon.Margin = new System.Windows.Forms.Padding(2);
             this.LabelControlLon.Name = "LabelControlLon";
             this.LabelControlLon.Size = new System.Drawing.Size(0, 13);
             this.LabelControlLon.TabIndex = 273;
@@ -472,7 +433,7 @@
             // LabelControlLat
             // 
             this.LabelControlLat.Location = new System.Drawing.Point(170, 184);
-            this.LabelControlLat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LabelControlLat.Margin = new System.Windows.Forms.Padding(2);
             this.LabelControlLat.Name = "LabelControlLat";
             this.LabelControlLat.Size = new System.Drawing.Size(0, 13);
             this.LabelControlLat.TabIndex = 272;
@@ -481,7 +442,7 @@
             // 
             this.SimpleButtonPlot.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPlot.ImageOptions.Image")));
             this.SimpleButtonPlot.Location = new System.Drawing.Point(34, 184);
-            this.SimpleButtonPlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SimpleButtonPlot.Margin = new System.Windows.Forms.Padding(2);
             this.SimpleButtonPlot.Name = "SimpleButtonPlot";
             this.SimpleButtonPlot.Size = new System.Drawing.Size(66, 24);
             this.SimpleButtonPlot.TabIndex = 271;
@@ -497,7 +458,7 @@
             this.MapControl.Layers.Add(this.VectorItemsLayer);
             this.MapControl.Layers.Add(this.InformationLayer);
             this.MapControl.Location = new System.Drawing.Point(348, 22);
-            this.MapControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MapControl.Margin = new System.Windows.Forms.Padding(2);
             this.MapControl.Name = "MapControl";
             this.MapControl.ShowSearchPanel = false;
             this.MapControl.Size = new System.Drawing.Size(570, 192);
@@ -545,7 +506,8 @@
             this.GridControlSupplierCity.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.RepositoryItemTextEdit12,
             this.RepositoryItemTextEdit50,
-            this.RepositoryItemCustomSearchLookUpEditOperator});
+            this.RepositoryItemCustomSearchLookUpEditOperator,
+            this.RepositoryItemSearchLookUpEditOperator});
             this.GridControlSupplierCity.Size = new System.Drawing.Size(798, 213);
             this.GridControlSupplierCity.TabIndex = 84;
             this.GridControlSupplierCity.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -648,7 +610,7 @@
             // gridColumnOperator
             // 
             this.gridColumnOperator.Caption = "Operator";
-            this.gridColumnOperator.ColumnEdit = this.RepositoryItemCustomSearchLookUpEditOperator;
+            this.gridColumnOperator.ColumnEdit = this.RepositoryItemSearchLookUpEditOperator;
             this.gridColumnOperator.FieldName = "Operator_Code";
             this.gridColumnOperator.MinWidth = 12;
             this.gridColumnOperator.Name = "gridColumnOperator";
@@ -720,151 +682,6 @@
             this.ButtonAddMapping.Size = new System.Drawing.Size(40, 36);
             this.ButtonAddMapping.TabIndex = 34;
             this.ButtonAddMapping.Click += new System.EventHandler(this.ButtonAddMapping_Click);
-            // 
-            // SearchLookupEditLinkCode
-            // 
-            this.SearchLookupEditLinkCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LINKCODE", true));
-            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(100, 81);
-            this.SearchLookupEditLinkCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.SearchLookupEditLinkCode.Name = "SearchLookupEditLinkCode";
-            this.SearchLookupEditLinkCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.SearchLookupEditLinkCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditLinkCode.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditLinkCode.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditLinkCode.Properties.NullText = "";
-            this.SearchLookupEditLinkCode.Properties.PopupView = this.SearchLookUpEditViewSearchCity;
-            this.SearchLookupEditLinkCode.Properties.ValueMember = "Code";
-            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(202, 20);
-            this.SearchLookupEditLinkCode.TabIndex = 3;
-            this.SearchLookupEditLinkCode.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditLinkCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditLinkCode.Leave += new System.EventHandler(this.TextEditLinkCode_Leave);
-            // 
-            // SearchLookUpEditViewSearchCity
-            // 
-            this.SearchLookUpEditViewSearchCity.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode,
-            this.colName,
-            this.colDisplayName});
-            this.SearchLookUpEditViewSearchCity.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.SearchLookUpEditViewSearchCity.Name = "SearchLookUpEditViewSearchCity";
-            this.SearchLookUpEditViewSearchCity.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.SearchLookUpEditViewSearchCity.OptionsView.ShowGroupPanel = false;
-            this.SearchLookUpEditViewSearchCity.OptionsView.ShowIndicator = false;
-            // 
-            // colCode
-            // 
-            this.colCode.FieldName = "Code";
-            this.colCode.Name = "colCode";
-            this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 0;
-            this.colCode.Width = 227;
-            // 
-            // colName
-            // 
-            this.colName.FieldName = "Name";
-            this.colName.Name = "colName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
-            this.colName.Width = 945;
-            // 
-            // colDisplayName
-            // 
-            this.colDisplayName.FieldName = "DisplayName";
-            this.colDisplayName.Name = "colDisplayName";
-            this.colDisplayName.OptionsColumn.ReadOnly = true;
-            // 
-            // SearchLookupEditState
-            // 
-            this.SearchLookupEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "State_Code", true));
-            this.SearchLookupEditState.Location = new System.Drawing.Point(100, 105);
-            this.SearchLookupEditState.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.SearchLookupEditState.Name = "SearchLookupEditState";
-            this.SearchLookupEditState.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.SearchLookupEditState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditState.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditState.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditState.Properties.NullText = "";
-            this.SearchLookupEditState.Properties.PopupView = this.customSearchLookUpEdit1View;
-            this.SearchLookupEditState.Properties.ValueMember = "Code";
-            this.SearchLookupEditState.Size = new System.Drawing.Size(202, 20);
-            this.SearchLookupEditState.TabIndex = 21;
-            this.SearchLookupEditState.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditState.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditState.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookupEditState_Closed);
-            this.SearchLookupEditState.Leave += new System.EventHandler(this.SearchLookupEditState_Leave);
-            // 
-            // customSearchLookUpEdit1View
-            // 
-            this.customSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode2,
-            this.colName2});
-            this.customSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.customSearchLookUpEdit1View.Name = "customSearchLookUpEdit1View";
-            this.customSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.customSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.customSearchLookUpEdit1View.OptionsView.ShowIndicator = false;
-            // 
-            // colCode2
-            // 
-            this.colCode2.FieldName = "Code";
-            this.colCode2.Name = "colCode2";
-            this.colCode2.Visible = true;
-            this.colCode2.VisibleIndex = 0;
-            // 
-            // colName2
-            // 
-            this.colName2.FieldName = "Name";
-            this.colName2.Name = "colName2";
-            this.colName2.Visible = true;
-            this.colName2.VisibleIndex = 1;
-            // 
-            // SearchLookupEditCountry
-            // 
-            this.SearchLookupEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Country_Code", true));
-            this.SearchLookupEditCountry.Location = new System.Drawing.Point(100, 152);
-            this.SearchLookupEditCountry.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.SearchLookupEditCountry.Name = "SearchLookupEditCountry";
-            this.SearchLookupEditCountry.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.SearchLookupEditCountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SearchLookupEditCountry.Properties.DataSource = this.BindingSourceCodeName;
-            this.SearchLookupEditCountry.Properties.DisplayMember = "DisplayName";
-            this.SearchLookupEditCountry.Properties.NullText = "";
-            this.SearchLookupEditCountry.Properties.PopupView = this.gridView1;
-            this.SearchLookupEditCountry.Properties.ValueMember = "Code";
-            this.SearchLookupEditCountry.Size = new System.Drawing.Size(202, 20);
-            this.SearchLookupEditCountry.TabIndex = 23;
-            this.SearchLookupEditCountry.UpdateDisplayFilter += new Custom_SearchLookupEdit.UpdateDisplayFilterHandler(this.SearchLookupEdit_UpdateDisplayFilter);
-            this.SearchLookupEditCountry.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
-            this.SearchLookupEditCountry.Leave += new System.EventHandler(this.SearchLookupEditCountry_Leave);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode3,
-            this.colName3});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
-            // 
-            // colCode3
-            // 
-            this.colCode3.FieldName = "Code";
-            this.colCode3.Name = "colCode3";
-            this.colCode3.Visible = true;
-            this.colCode3.VisibleIndex = 0;
-            // 
-            // colName3
-            // 
-            this.colName3.FieldName = "Name";
-            this.colName3.Name = "colName3";
-            this.colName3.Visible = true;
-            this.colName3.VisibleIndex = 1;
             // 
             // PanelControlStatus
             // 
@@ -952,7 +769,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControlTop.Size = new System.Drawing.Size(1224, 31);
             // 
             // barDockControlBottom
@@ -961,7 +778,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 578);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControlBottom.Size = new System.Drawing.Size(1224, 0);
             // 
             // barDockControlLeft
@@ -970,7 +787,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 547);
             // 
             // barDockControlRight
@@ -979,10 +796,232 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1224, 31);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 547);
             this.bingMapDataProvider2.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
             this.bingMapDataProvider3.BingKey = "ArYMvmMLXeYiBI4-c2wJpjLIpm6FIRez7llCbbZPJDoIBXiO9m8pf5H_oiZPEBrR";
+            // 
+            // SearchLookupEditLinkCode
+            // 
+            this.SearchLookupEditLinkCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "LINKCODE", true));
+            this.SearchLookupEditLinkCode.Location = new System.Drawing.Point(100, 81);
+            this.SearchLookupEditLinkCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SearchLookupEditLinkCode.Name = "SearchLookupEditLinkCode";
+            this.SearchLookupEditLinkCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditLinkCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditLinkCode.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditLinkCode.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditLinkCode.Properties.NullText = "";
+            this.SearchLookupEditLinkCode.Properties.PopupView = this.searchLookUpEdit1View;
+            this.SearchLookupEditLinkCode.Properties.ValueMember = "Code";
+            this.SearchLookupEditLinkCode.Size = new System.Drawing.Size(202, 20);
+            this.SearchLookupEditLinkCode.TabIndex = 3;
+            this.SearchLookupEditLinkCode.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditLinkCode.Leave += new System.EventHandler(this.TextEditLinkCode_Leave);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.FieldName = "Code";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 227;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.FieldName = "Name";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.Width = 945;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.FieldName = "DisplayName";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.ReadOnly = true;
+            // 
+            // SearchLookupEditState
+            // 
+            this.SearchLookupEditState.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "State_Code", true));
+            this.SearchLookupEditState.Location = new System.Drawing.Point(100, 105);
+            this.SearchLookupEditState.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SearchLookupEditState.Name = "SearchLookupEditState";
+            this.SearchLookupEditState.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditState.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditState.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditState.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditState.Properties.NullText = "";
+            this.SearchLookupEditState.Properties.PopupView = this.gridView3;
+            this.SearchLookupEditState.Properties.ValueMember = "Code";
+            this.SearchLookupEditState.Size = new System.Drawing.Size(202, 20);
+            this.SearchLookupEditState.TabIndex = 21;
+            this.SearchLookupEditState.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditState.Closed += new DevExpress.XtraEditors.Controls.ClosedEventHandler(this.SearchLookupEditState_Closed);
+            this.SearchLookupEditState.Leave += new System.EventHandler(this.SearchLookupEditState_Leave);
+            // 
+            // gridView3
+            // 
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn6,
+            this.gridColumn7});
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.FieldName = "Code";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.FieldName = "Name";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 1;
+            // 
+            // SearchLookupEditRegion
+            // 
+            this.SearchLookupEditRegion.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Region_Code", true));
+            this.SearchLookupEditRegion.Location = new System.Drawing.Point(100, 128);
+            this.SearchLookupEditRegion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SearchLookupEditRegion.Name = "SearchLookupEditRegion";
+            this.SearchLookupEditRegion.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditRegion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditRegion.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditRegion.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditRegion.Properties.NullText = "";
+            this.SearchLookupEditRegion.Properties.PopupView = this.gridView4;
+            this.SearchLookupEditRegion.Properties.ValueMember = "Code";
+            this.SearchLookupEditRegion.Size = new System.Drawing.Size(202, 20);
+            this.SearchLookupEditRegion.TabIndex = 274;
+            this.SearchLookupEditRegion.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditRegion.Leave += new System.EventHandler(this.SearchLookUpEditRegion_Leave);
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn8,
+            this.gridColumn9});
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.FieldName = "Code";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 0;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.FieldName = "Name";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 1;
+            // 
+            // SearchLookupEditCountry
+            // 
+            this.SearchLookupEditCountry.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Country_Code", true));
+            this.SearchLookupEditCountry.Location = new System.Drawing.Point(100, 152);
+            this.SearchLookupEditCountry.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SearchLookupEditCountry.Name = "SearchLookupEditCountry";
+            this.SearchLookupEditCountry.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.SearchLookupEditCountry.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SearchLookupEditCountry.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditCountry.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditCountry.Properties.NullText = "";
+            this.SearchLookupEditCountry.Properties.PopupView = this.gridView2;
+            this.SearchLookupEditCountry.Properties.ValueMember = "Code";
+            this.SearchLookupEditCountry.Size = new System.Drawing.Size(202, 20);
+            this.SearchLookupEditCountry.TabIndex = 23;
+            this.SearchLookupEditCountry.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCountry.Leave += new System.EventHandler(this.SearchLookupEditCountry_Leave);
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // RepositoryItemSearchLookUpEditOperator
+            // 
+            this.RepositoryItemSearchLookUpEditOperator.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditOperator.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSearchLookUpEditOperator.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditOperator.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditOperator.Name = "RepositoryItemSearchLookUpEditOperator";
+            this.RepositoryItemSearchLookUpEditOperator.PopupView = this.repositoryItemSearchLookUpEdit1View;
+            this.RepositoryItemSearchLookUpEditOperator.ValueMember = "Code";
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode,
+            this.colName});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // colCode
+            // 
+            this.colCode.FieldName = "Code";
+            this.colCode.Name = "colCode";
+            this.colCode.Visible = true;
+            this.colCode.VisibleIndex = 0;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
             // 
             // CityCodeForm
             // 
@@ -1011,9 +1050,7 @@
             this.SplitContainerControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridControlLookup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewLookup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditRegion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceCodeName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MapControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlMappings)).EndInit();
             this.PanelControlMappings.ResumeLayout(false);
@@ -1025,16 +1062,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTextEdit50)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCustomSearchLookUpEditOperator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLinkCode.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookUpEditViewSearchCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditState.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customSearchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCountry.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditLinkCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditState.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditRegion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCountry.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOperator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1064,12 +1105,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCitycodCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnInactive;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnOperator;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditLinkCode;
-        private DevExpress.XtraGrid.Views.Grid.GridView SearchLookUpEditViewSearchCity;
         private System.Windows.Forms.BindingSource BindingSourceCodeName;
-        private DevExpress.XtraGrid.Columns.GridColumn colCode;
-        private DevExpress.XtraGrid.Columns.GridColumn colName;
-        private DevExpress.XtraGrid.Columns.GridColumn colDisplayName;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarManager BarManager;
         private DevExpress.XtraBars.Bar BarTools;
@@ -1079,14 +1115,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditState;
-        private DevExpress.XtraGrid.Views.Grid.GridView customSearchLookUpEdit1View;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditCountry;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colCode2;
-        private DevExpress.XtraGrid.Columns.GridColumn colName2;
-        private DevExpress.XtraGrid.Columns.GridColumn colCode3;
-        private DevExpress.XtraGrid.Columns.GridColumn colName3;
         private Custom_SearchLookupEdit.RepositoryItemCustomSearchLookUpEdit RepositoryItemCustomSearchLookUpEditOperator;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemCustomSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn colCode1;
@@ -1104,10 +1132,6 @@
         private DevExpress.XtraEditors.SimpleButton SimpleButtonPlot;
         private DevExpress.XtraEditors.LabelControl LabelControlLon;
         private DevExpress.XtraEditors.LabelControl LabelControlLat;
-        private Custom_SearchLookupEdit.CustomSearchLookUpEdit SearchLookupEditRegion;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.GridControl GridControlLookup;
         private DevExpress.XtraGrid.Views.Grid.GridView GridViewLookup;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCode;
@@ -1116,5 +1140,26 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupState;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupRegion;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnLookupCountry;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditLinkCode;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditState;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditRegion;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditCountry;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditOperator;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
     }
 }
