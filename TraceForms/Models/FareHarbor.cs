@@ -69,6 +69,7 @@ namespace TraceForms.Models.FareHarbor
 
     public class Item
     {
+        public bool Exists { get; set; }
         public bool Selected { get; set; }
         public string InternalCode { get; set; }
         public string Image_cdn_url { get; set; }

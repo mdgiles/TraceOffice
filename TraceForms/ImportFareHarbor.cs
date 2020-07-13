@@ -128,6 +128,7 @@ namespace TraceForms
                       && sp.Supplier_GUID == _supplierConnection.Supplier_GUID);
                     if (mapping != null) {
                         item.InternalCode = mapping.Product_Code_Internal;
+                        item.Exists = true;
                     }
                 }
                 bindingSourceItems.DataSource = items;
@@ -191,6 +192,10 @@ namespace TraceForms
             if (bindingSourceItems.DataSource != null && bindingSourceItems.List.Count > 0) {
                 var items = (List<Item>)bindingSourceItems.List;
                 if (items.Any(i => i.Selected && string.IsNullOrEmpty(i.InternalCode))) {
+                    this.DisplayError("Please enter a valid TourTrace product code for the new products to be imported");
+                    return;
+                }
+                if (items.Any(i => i.Selected && !i.Exists)) {
                     if (searchLookUpEditCity.EditValue == null) {
                         this.DisplayError("Please select a valid city for the new products to be imported");
                         return;
@@ -255,6 +260,13 @@ namespace TraceForms
                         CITY = searchLookUpEditCity.EditValue.ToString()
                     };
                     _context.COMP.AddObject(comp);
+                }
+                else {
+                    if (comp.AdminClosed || comp.Inactive == "Y")
+                        return;
+                }
+                //If item is flagged as Exists it's because a SupplierProduct record was found 
+                if (!item.Exists) {
                     SupplierProduct suppProd = new SupplierProduct() {
                         Product_Type = "OPT",
                         Product_Code_Internal = item.InternalCode,
@@ -262,14 +274,11 @@ namespace TraceForms
                         Supplier_GUID = _supplierConnection.Supplier_GUID,
                         Inactive = false,
                         SupplierCommPct = spinEditCommPct.Value,
-                        SupplierCommFlat = spinEditCommFlat.Value
+                        SupplierCommFlat = spinEditCommFlat.Value,
+                        Custom1 = imageComboBoxEditCompanies.EditValue.ToString()
                     };
                     suppProd.COMP = comp;
                     _context.SupplierProduct.AddObject(suppProd);
-                }
-                else {
-                    if (comp.AdminClosed || comp.Inactive == "Y")
-                        return;
                 }
                 if (comp.NAME != item.Name) {
                     productAddedOrNameChanged = true;
