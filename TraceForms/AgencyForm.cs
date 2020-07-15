@@ -27,6 +27,8 @@ using DevExpress.Data.Filtering;
 using AuthorizeNet.APICore;
 using System.Diagnostics;
 using DevExpress.XtraPrinting.Native;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.Utils.Win;
 
 namespace TraceForms
 {
@@ -1198,6 +1200,48 @@ namespace TraceForms
             PanelControlCustomerProfileStatus.Visible = isError;
             LabelCustomerProfileStatus.Text = error;
             SimpleButtonRetry.Visible = isError;
+        }
+
+        private void SearchLookupEdit_Popup(object sender, EventArgs e)
+        {
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
+
+            //SearchLookUpEdit currentSearch = (SearchLookUpEdit)sender;
+        }
+
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            bool gotMatch = false;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
+                    }
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
+                }
+            }
         }
 
         private void RemoveRecord()

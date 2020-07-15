@@ -287,9 +287,9 @@ namespace TraceForms
             //otherwise updating _selectedRecord will cause the entity framework to fire a property changed notification
             //which will undo edits on any unposted controls
             BindingSource.EndEdit();
-            _selectedRecord.CAT1 = GridLookupEditItemCategory.Text;
+            GridLookupEditItemCategory.DataBindings[0].WriteValue();
             SetItemCategoryLookup(GridLookupEditItemCategory.Text);
-            _selectedRecord.SpecialValue_Code_Item = GridLookupEditItemSpecialValue.Text;
+            GridLookupEditItemSpecialValue.DataBindings[0].WriteValue();
             SetItemSpecialValueLookup(GridLookupEditItemSpecialValue.Text);
         }
 
