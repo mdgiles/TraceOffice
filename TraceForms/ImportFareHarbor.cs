@@ -346,7 +346,7 @@ namespace TraceForms
         private void ImportProduct(Item item, BackgroundWorker worker)
         {
             try {
-                SupplierProduct suppProd;
+                SupplierProduct suppProd = null;
                 //Set up the main COMP record
                 bool productAddedOrNameChanged = false;
                 var comp = _context.COMP
@@ -376,20 +376,6 @@ namespace TraceForms
                         CITY = searchLookUpEditCity.EditValue.ToString()
                     };
                     _context.COMP.AddObject(comp);
-                    suppProd = new SupplierProduct() {
-                        Product_Type = "OPT",
-                        Product_Code_Internal = item.InternalCode,
-                        ProductCodeSupplier = item.Pk.ToString(),
-                        Supplier_GUID = _supplierConnection.Supplier_GUID,
-                        Custom1 = _company,
-                        Inactive = false,
-                        SupplierCommPct = spinEditCommPct.Value,
-                        SupplierCommFlat = spinEditCommFlat.Value,
-                        MarkupPct = spinEditMarkupPct.Value,
-                        MarkupFlat = spinEditMarkupFlat.Value
-                    };
-                    suppProd.COMP = comp;
-                    _context.SupplierProduct.AddObject(suppProd);
                 }
                 else {
                     if (comp.AdminClosed || comp.Inactive == "Y")
@@ -397,6 +383,23 @@ namespace TraceForms
                     suppProd = comp.SupplierProduct.FirstOrDefault(sp => sp.Supplier_GUID == _supplierConnection.Supplier_GUID
                       && sp.ProductCodeSupplier == item.Pk.ToString());
                 }
+                if (suppProd == null) {
+                    suppProd = new SupplierProduct() {
+                        Product_Type = "OPT",
+                        Product_Code_Internal = item.InternalCode,
+                        ProductCodeSupplier = item.Pk.ToString(),
+                        Supplier_GUID = _supplierConnection.Supplier_GUID,
+                        Inactive = false,
+                    };
+                    suppProd.COMP = comp;
+                    _context.SupplierProduct.AddObject(suppProd);
+                }
+                suppProd.Custom1 = _company;
+                suppProd.SupplierCommPct = spinEditCommPct.Value;
+                suppProd.SupplierCommFlat = spinEditCommFlat.Value;
+                suppProd.MarkupPct = spinEditMarkupPct.Value;
+                suppProd.MarkupFlat = spinEditMarkupFlat.Value;
+
                 if (comp.NAME != item.Name) {
                     productAddedOrNameChanged = true;
                 }
