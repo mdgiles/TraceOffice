@@ -94,6 +94,7 @@ namespace TraceForms
                 { "2625068382", "Musement" },
                 { "8556648235", "GYG" },
                 { "7027495698", "Viator" },
+                { "HOTELBEDS", "HotelBeds" },
                 { "REZDY", "Rezdy" },
             };
             string agencyList = string.Join(",", agencies.Select(x => $"'{x.Key}'"));
@@ -120,6 +121,7 @@ namespace TraceForms
                 { "start date", "Service Date" },
                 { "res date", "Booking Date" },
                 { "cancelled", "Cancelled" },
+                { "net", "Amount" },
             };
             string[] keys = new string[columns.Count];
             columns.Keys.CopyTo(keys, 0);
@@ -141,7 +143,7 @@ namespace TraceForms
             endDate = endDate.AddDays(1).AddSeconds(-1);
             string sql = $@"SELECT reshdr.[Res No], resitm.Item, resitm.[Res Agt], reshdr.InternalRemarks as TripRemarks, resitm.InternalRemarks as ItemRemarks, 
  reshdr.Reference, psgrlist.[Doc Nbr], psgrlist.[Last Name], psgrlist.[First Name], Code, CAT AS Category, DESCRIP AS Description, [Strt Date] AS [Start Date], resitm.[Res Date],
- CASE WHEN resitm.Inactive = 1 THEN 'Yes' ELSE 'No' END AS Cancelled, resitm.agency FROM resitm
+ CASE WHEN resitm.Inactive = 1 THEN 'Yes' ELSE 'No' END AS Cancelled, resitm.agency, resitm.Net FROM resitm
  INNER JOIN reshdr ON resitm.[res no] = reshdr.[res no]
  INNER JOIN psgrres ON reshdr.[res no] = psgrres.[res no]
  INNER JOIN psgrlist ON psgrres.[CLIENT NO] = psgrlist.[CLIENT NO]

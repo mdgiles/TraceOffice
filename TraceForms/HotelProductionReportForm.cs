@@ -95,12 +95,13 @@ namespace TraceForms
             {
                 { "Code", "Code" },
                 { "Name", "Name" },
-                { "Chain", "Agency Name" },
-                { "Rooms", "City" },
+                { "Chain", "Chain" },
+                { "Rooms", "Rooms" },
                 { "Start Date", "Start Date" },
                 { "Nights", "Nights" },
                 { "Room Nights", "Room Nights" },
                 { "Res Date", "Res Date" },
+                { "Res No", "Trip #" },
             };
 
             string sql = $@"select * from v_HotelRoomNights where {dateField} >= '{startDate}' and {dateField} <= '{endDate}' order by [start date], code";
@@ -133,8 +134,9 @@ namespace TraceForms
                 conn.Close();
             }
 
-            ws.Cells["A1:G1"].AutoFilter = true;
+            ws.Cells["A1:H1"].AutoFilter = true;
             ws.Column(5).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
+            ws.Column(8).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
 
             for (colIndex = 1; colIndex <= columns.Count; colIndex++) {
                 ws.Cells[1, colIndex].Value = columns[colIndex - 1];
