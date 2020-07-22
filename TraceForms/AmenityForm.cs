@@ -35,16 +35,11 @@ namespace TraceForms
     public partial class AmenityForm : DevExpress.XtraEditors.XtraForm
     {
         public string imagesRoot;
-        public string currentVal;
-        public bool modified = false;
-        public bool newRec = false;
-        public bool temp = false;
         public Timer rowStatusDelete;
         public Timer rowStatusSave;
         FlextourEntities _context;
         AMENITY _selectedRecord;
         Timer _actionConfirmation;
-        bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         int? _imageIndex;
 
         public AmenityForm(FlexCore.CoreSys _sys)
@@ -56,10 +51,8 @@ namespace TraceForms
             _sys.Connect("");
             imagesRoot = _sys.Settings.ImagesRoot;
             _sys.Disconnect();
-            modified = false;
-            newRec = false;
             
-            setreadonly(true);
+            SetReadOnly(true);
             ComboBoxEditFilterBySvcType.Focus();
         }
 
@@ -68,6 +61,8 @@ namespace TraceForms
             foreach (Control control in xtraScrollableControl1.Controls) {
                 control.Enabled = !value;
             }
+            ComboBoxEditFilterBySvcType.Enabled = true;
+            TreeListAmenities.Enabled = true;
         }
 
         void SetReadOnlyKeyFields(bool value)
@@ -92,12 +87,7 @@ namespace TraceForms
             _actionConfirmation.Stop();
         }
 
-        void setreadonly(bool valid)
-        {
-            TextEditCode.Properties.ReadOnly = valid;
-        }
-
-        void setItems(bool valid)
+        void SetItems(bool valid)
         {
             TextEditItem_Desc1.Properties.ReadOnly = valid;
             TextEditItem_Desc2.Properties.ReadOnly = valid;
@@ -116,11 +106,8 @@ namespace TraceForms
             ComboBoxEditFilterBySvcType.Focus();
         }
 
-        private void sVC_TYPEComboBoxEdit_TextChanged(object sender, EventArgs e)
+        private void ComboBoxEditFilterBySvcType_TextChanged(object sender, EventArgs e)
         {
-            if (newRec == true)
-                return;
-
             if (ComboBoxEditFilterBySvcType.Text == "HTL")
             {
                 TreeListAmenities.ResetAutoFilterConditions();
@@ -147,18 +134,6 @@ namespace TraceForms
                 ComboBoxEditFilterBySvcType.Focus();
                 TreeListAmenities.MoveFirst();
             }
-            //if (sVCComboBoxEdit.Text == "CAR")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" orderby c.SORT_ORDER select c;
-            //    //treeList1.BeginSort();
-            //    colITEM_DESC1.Caption = "CAR AMENITIES";
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    // treeList1.EndSort();
-            //    treeList1.ExpandAll();
-            //    sVCComboBoxEdit.Focus();
-            //    treeList1.MoveFirst();
-            //}
             if (ComboBoxEditFilterBySvcType.Text == "OPT")
             {
                 TreeListAmenities.ResetAutoFilterConditions();
@@ -172,31 +147,8 @@ namespace TraceForms
                 ComboBoxEditFilterBySvcType.Focus();
                 TreeListAmenities.MoveFirst();
             }
-            //if (sVCComboBoxEdit.Text == "CRU")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" orderby c.SORT_ORDER  select c;
-            //    //treeList1.BeginSort();
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    //treeList1.EndSort();
-            //    colITEM_DESC1.Caption = "CRUISE AMENITIES";
-            //    treeList1.ExpandAll();
-            //    sVCComboBoxEdit.Focus();
-            //    treeList1.MoveFirst();
-            //}
-            //if (sVCComboBoxEdit.Text == "AIR")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" orderby c.SORT_ORDER select c;
-            //    //treeList1.BeginSort();
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    //treeList1.EndSort();
-            //    treeList1.ExpandAll();
-            //    colITEM_DESC1.Caption = "AIR AMENITIES";
-            //    sVCComboBoxEdit.Focus();
-            //    treeList1.MoveFirst();
-            //}
             ComboBoxEditFilterBySvcType.Focus();
+            SetReadOnly(false);
         }
 
         private void LabelControlUp_Click(object sender, EventArgs e)
@@ -437,12 +389,12 @@ namespace TraceForms
             {
                 if (CheckEditHeader.Checked)
                 {
-                    setItems(true);
+                    SetItems(true);
                     TextEditItem_Desc1.Properties.ReadOnly = false;
                 }
                 else
                 {
-                    setItems(false);
+                    SetItems(false);
 
                 }
             }
@@ -543,15 +495,11 @@ namespace TraceForms
 
         void ClearBindings()
         {
-            _ignoreLeaveRow = true;
-            _ignorePositionChange = true;
             _selectedRecord = null;
             SetReadOnly(true);
             BarButtonItemDelete.Enabled = false;
             BarButtonItemSave.Enabled = false;
             BindingSource.DataSource = typeof(AMENITY);
-            _ignoreLeaveRow = false;
-            _ignorePositionChange = false;
         }
 
         private bool ValidateAll()
@@ -604,20 +552,38 @@ namespace TraceForms
 
         private void TreeList_BeforeDropNode(object sender, BeforeDropNodeEventArgs e)
         {
-            //TreeList tree = sender as TreeList;
-            //Point point = tree.PointToClient(MousePosition);
-            //TreeListHitInfo hitInfo = tree.CalcHitInfo(point);
-            //AMENITY amenity = (AMENITY)tree.GetRow(e.SourceNode.Id);
-            ////if (e.DestinationNode != null) {
-            ////    cust.SORT_ORDER = ((Customer)tree.GetRow(e.DestinationNode.Id)).SORT_ORDER;
-            ////}
-            ////else 
-            //amenity.SORT_ORDER = ((AMENITY)tree.GetRow(hitInfo.Node.Id)).SORT_ORDER;
+            TreeList tree = sender as TreeList;
+            Point point = tree.PointToClient(MousePosition);
+            TreeListHitInfo hitInfo = tree.CalcHitInfo(point);
+            AMENITY amenity = (AMENITY)tree.GetRow(e.SourceNode.Id);
+            //if (e.DestinationNode != null) {
+            //    cust.SORT_ORDER = ((Customer)tree.GetRow(e.DestinationNode.Id)).SORT_ORDER;
+            //}
+            //else
+            if (_imageIndex == 0) {//If the index is 0, then the node is being attached to a parent node as a sub-node.  Add it below all of the parent's
+                                   //sub-nodes, as this way we don't have to cascade changes to SORT_ORDER on two levels, just on the upper level.
+                AMENITY hitInfoNodeAmenity = (AMENITY)tree.GetRow(hitInfo.Node.Id);
+                if (!hitInfo.Node.HasAsParent(hitInfo.Node)) {//Don't allow child nodes to have children.
+                    decimal parentSortOrder = hitInfoNodeAmenity.SORT_ORDER ?? 0;//If this is 0 then either hitInfoNode or SORT_ORDER is null, bc SORT_ORDER starts at 1.
+                    if (parentSortOrder != 0) {
+                        if (hitInfo.Node.HasChildren) {
+                            amenity.SORT_ORDER = ((AMENITY)tree.GetRow(hitInfo.Node.Nodes.LastNode.Id)).SORT_ORDER + 0.001M;
+                        } else {
+                            amenity.SORT_ORDER = parentSortOrder + 0.001M;
+                        }
+                    }
+                }
+            }
+            else if (_imageIndex == 1) {//If the index is 1, the node is being inserted below.
+
+            }
+            else if (_imageIndex == 2) {//If the index is 2, the node is being inserted above.
+
+            }
         }
 
         private void BarButtonItemNew_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
                 //For some reason when there is no existing record in the binding source the Add method does not
                 //trigger the CurrentChanged event, but AddNew does so use that instead
@@ -630,7 +596,6 @@ namespace TraceForms
                 SetReadOnly(false);
             }
             ErrorProvider.Clear();
-            _ignoreLeaveRow = false;
         }
 
         private void FinalizeBindings()
@@ -673,7 +638,8 @@ namespace TraceForms
 
         private void TreeList_CalcNodeDragImageIndex(object sender, CalcNodeDragImageIndexEventArgs e)
         {
-
+            _imageIndex = TreeListAmenities.FocusedNode.ImageIndex;
+            Console.WriteLine("Index = " + e.ImageIndex);
         }
 
         private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -698,8 +664,6 @@ namespace TraceForms
                     //and gridview_beforeleaverow events will fire as the current record is removed out from under them.
                     //We do not want these events to perform their usual code of checking whether there are changes in the active
                     //record that should be saved before proceeding, because we know we have just deleted the active record.
-                    _ignoreLeaveRow = true;
-                    _ignorePositionChange = true;
                     RemoveRecord();
                     if (!_selectedRecord.IsNew()) {
                         //Apparently a record which has just been added is not flagged for deletion by BindingSource.RemoveCurrent,
@@ -713,8 +677,6 @@ namespace TraceForms
                     if (TreeListAmenities.Nodes.Count == 0) {
                         ClearBindings();
                     }
-                    _ignoreLeaveRow = false;
-                    _ignorePositionChange = false;
                     SetBindings();
                     TreeListAmenities.Focus();
                     ShowActionConfirmation("Record Deleted");
@@ -722,8 +684,6 @@ namespace TraceForms
             }
             catch (Exception ex) {
                 DisplayHelper.DisplayError(this, ex);
-                _ignoreLeaveRow = false;
-                _ignorePositionChange = false;
                 RefreshRecord();        //pull it back from db because that is its current state
                 //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
                 SetBindings();
@@ -740,6 +700,11 @@ namespace TraceForms
                 _context.Refresh(RefreshMode.StoreWins, _selectedRecord);
                 SetReadOnlyKeyFields(true);
             }
+        }
+
+        private void TreeListAmenities_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
+        {
+            _selectedRecord = ((AMENITY)BindingSource.Current);
         }
     }
 }

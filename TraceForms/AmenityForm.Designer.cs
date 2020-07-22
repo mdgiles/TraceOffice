@@ -125,7 +125,6 @@
             this.BarButtonItemNew = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -305,10 +304,11 @@
             this.TreeListAmenities.OptionsView.ShowAutoFilterRow = true;
             this.TreeListAmenities.OptionsView.ShowHorzLines = false;
             this.TreeListAmenities.ParentFieldName = "PARENT_CODE";
-            this.TreeListAmenities.Size = new System.Drawing.Size(400, 697);
+            this.TreeListAmenities.Size = new System.Drawing.Size(400, 720);
             this.TreeListAmenities.TabIndex = 4;
             this.TreeListAmenities.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeList1_NodeCellStyle);
             this.TreeListAmenities.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.TreeList1_BeforeFocusNode);
+            this.TreeListAmenities.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListAmenities_FocusedNodeChanged);
             this.TreeListAmenities.BeforeDropNode += new DevExpress.XtraTreeList.BeforeDropNodeEventHandler(this.TreeList_BeforeDropNode);
             this.TreeListAmenities.CalcNodeDragImageIndex += new DevExpress.XtraTreeList.CalcNodeDragImageIndexEventHandler(this.TreeList_CalcNodeDragImageIndex);
             // 
@@ -627,7 +627,7 @@
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(990, 688);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(990, 711);
             this.xtraScrollableControl1.TabIndex = 27;
             // 
             // ComboBoxEditSvcType
@@ -753,7 +753,7 @@
             "PKG"});
             this.ComboBoxEditFilterBySvcType.Size = new System.Drawing.Size(100, 20);
             this.ComboBoxEditFilterBySvcType.TabIndex = 6;
-            this.ComboBoxEditFilterBySvcType.TextChanged += new System.EventHandler(this.sVC_TYPEComboBoxEdit_TextChanged);
+            this.ComboBoxEditFilterBySvcType.TextChanged += new System.EventHandler(this.ComboBoxEditFilterBySvcType_TextChanged);
             // 
             // gridControl1
             // 
@@ -1003,8 +1003,7 @@
             // BarManager
             // 
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar1,
-            this.bar3});
+            this.bar1});
             this.BarManager.DockControls.Add(this.barDockControlTop);
             this.BarManager.DockControls.Add(this.barDockControlBottom);
             this.BarManager.DockControls.Add(this.barDockControlLeft);
@@ -1015,7 +1014,6 @@
             this.BarButtonItemDelete,
             this.BarButtonItemSave});
             this.BarManager.MaxItemId = 3;
-            this.BarManager.StatusBar = this.bar3;
             // 
             // bar1
             // 
@@ -1059,18 +1057,6 @@
             this.BarButtonItemSave.Name = "BarButtonItemSave";
             this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -1083,9 +1069,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 719);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(990, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(990, 0);
             // 
             // barDockControlLeft
             // 
@@ -1093,7 +1079,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 688);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
             // 
             // barDockControlRight
             // 
@@ -1101,7 +1087,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(990, 31);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 688);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
             // 
             // AmenityForm
             // 
@@ -1240,7 +1226,6 @@
         private DevExpress.XtraBars.BarManager BarManager;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemNew;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;

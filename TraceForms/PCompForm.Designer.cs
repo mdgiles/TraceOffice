@@ -360,7 +360,7 @@ namespace TraceForms
             // 
             this.ImageComboBoxEditUpdateInvt.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "INV_UPD", true));
             this.ImageComboBoxEditUpdateInvt.EnterMoveNextControl = true;
-            this.ImageComboBoxEditUpdateInvt.Location = new System.Drawing.Point(121, 203);
+            this.ImageComboBoxEditUpdateInvt.Location = new System.Drawing.Point(121, 201);
             this.ImageComboBoxEditUpdateInvt.Name = "ImageComboBoxEditUpdateInvt";
             this.ImageComboBoxEditUpdateInvt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -896,7 +896,7 @@ namespace TraceForms
             // 
             this.GridLookupEditItemSpecialValue.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SpecialValue_Code_Item", true));
             this.GridLookupEditItemSpecialValue.Enabled = false;
-            this.GridLookupEditItemSpecialValue.Location = new System.Drawing.Point(122, 250);
+            this.GridLookupEditItemSpecialValue.Location = new System.Drawing.Point(121, 250);
             this.GridLookupEditItemSpecialValue.Name = "GridLookupEditItemSpecialValue";
             this.GridLookupEditItemSpecialValue.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.GridLookupEditItemSpecialValue.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -1402,7 +1402,7 @@ namespace TraceForms
             // 
             this.ComboBoxEditItemType.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "TYPE", true));
             this.ComboBoxEditItemType.EnterMoveNextControl = true;
-            this.ComboBoxEditItemType.Location = new System.Drawing.Point(122, 108);
+            this.ComboBoxEditItemType.Location = new System.Drawing.Point(121, 105);
             this.ComboBoxEditItemType.Name = "ComboBoxEditItemType";
             this.ComboBoxEditItemType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.ComboBoxEditItemType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1701,7 +1701,7 @@ namespace TraceForms
             0});
             this.SpinEditNights.Enabled = false;
             this.SpinEditNights.EnterMoveNextControl = true;
-            this.SpinEditNights.Location = new System.Drawing.Point(122, 226);
+            this.SpinEditNights.Location = new System.Drawing.Point(121, 225);
             this.SpinEditNights.Name = "SpinEditNights";
             this.SpinEditNights.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});

@@ -79,6 +79,13 @@ namespace TraceForms
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
             SearchLookupEditCategory.Properties.DataSource = lookup;
+
+            lookup = new List<CodeName>();
+            lookup.AddRange(_context.SpecialValue
+                .Where(t => t.Type == "OPT")
+                .OrderBy(t => t.Code)
+                .Select(t => new CodeName() { Code = t.Code, Name = t.Name }));
+            SearchLookupEditSpecialValue.Properties.DataSource = lookup;
         }
 
         void SetReadOnly(bool value)
@@ -926,7 +933,6 @@ namespace TraceForms
             //is useful to let the user know the purpose of the filter field, because it has no label
             //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
             //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
             PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
             popupForm.KeyPreview = true;
             popupForm.KeyUp -= PopupForm_KeyUp;

@@ -2651,6 +2651,7 @@ namespace TraceForms
             this.SearchLookupEditCountry.Properties.ValueMember = "Code";
             this.SearchLookupEditCountry.Size = new System.Drawing.Size(226, 20);
             this.SearchLookupEditCountry.TabIndex = 14;
+            this.SearchLookupEditCountry.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditCountry.Leave += new System.EventHandler(this.SearchLookupEditCountry_Leave);
             // 
             // BindingSourceCodeName
@@ -5500,6 +5501,7 @@ namespace TraceForms
             this.SearchLookupEditParentAgy.Properties.ValueMember = "Code";
             this.SearchLookupEditParentAgy.Size = new System.Drawing.Size(237, 20);
             this.SearchLookupEditParentAgy.TabIndex = 82;
+            this.SearchLookupEditParentAgy.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditParentAgy.Leave += new System.EventHandler(this.SearchLookupEditParentAgy_Leave);
             // 
             // gridView4
@@ -6220,6 +6222,7 @@ namespace TraceForms
             this.SearchLookupEditAgency.Properties.ValueMember = "Code";
             this.SearchLookupEditAgency.Size = new System.Drawing.Size(250, 20);
             this.SearchLookupEditAgency.TabIndex = 88;
+            this.SearchLookupEditAgency.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView5
             // 
@@ -6717,6 +6720,7 @@ namespace TraceForms
             this.SearchLookupEditDefLanguage.Properties.ValueMember = "Code";
             this.SearchLookupEditDefLanguage.Size = new System.Drawing.Size(218, 20);
             this.SearchLookupEditDefLanguage.TabIndex = 6;
+            this.SearchLookupEditDefLanguage.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             this.SearchLookupEditDefLanguage.Leave += new System.EventHandler(this.SearchLookupEditDefaultLanguage_Leave);
             // 
             // searchLookUpEdit1View
