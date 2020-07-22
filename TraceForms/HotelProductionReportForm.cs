@@ -51,6 +51,11 @@ namespace TraceForms
                 if (endDate.Equals(DateTime.MinValue)) {
                     endDate = DateTime.Today.AddDays(days);
                 }
+
+                //Yes, it really is this hard to get the tag property of the selected radio option. 
+                //They should have a radioGroupDate.SelectedItem property
+                string dateType = radioGroupDate.Properties.Items[radioGroupDate.SelectedIndex].Tag.ToString();
+
                 using (ExcelPackage xl = new ExcelPackage()) {
                     ExportReport(startDate, endDate, xl);
                     using (MemoryStream stream = new MemoryStream()) {
@@ -64,12 +69,9 @@ namespace TraceForms
                         using (SmtpClient smtp = new SmtpClient(_sys.Settings.MailServer, _sys.Settings.EmailPort)) {
                             smtp.Credentials = new System.Net.NetworkCredential(_sys.Settings.EmailUser, _sys.Settings.EmailPassword);
                             using (MailMessage message = new MailMessage(_sys.Settings.UnmonitoredEmail, recipients)) {
-                                message.Subject = string.Format("Hotel Production Report {0:dd-MMM-yy} to {1:dd-MMM-yy}",
-                                    DateTime.Today, endDate);
-                                message.Body = string.Format("The hotel production report is attached for dates beginning {0:dd-MMM-yy} and ending {1:dd-MMM-yy}.",
-                                    DateTime.Today, endDate);
-                                message.Attachments.Add(new Attachment(stream, string.Format("HotelProductionReport {0:dd-MMM-yy} to {1:dd-MMM-yy}.xlsx",
-                                    DateTime.Today, endDate),
+                                message.Subject = $"Hotel Production Report {startDate:dd-MMM-yyyy} to {endDate:dd-MMM-yyyy}";
+                                message.Body = $"The hotel production report is attached for {dateType} dates beginning {startDate:dd-MMM-yyyy} and ending {endDate:dd-MMM-yyyy}.";
+                                message.Attachments.Add(new Attachment(stream, $"HotelProductionReport {startDate:dd-MMM-yyyy} to {endDate:dd-MMM-yyyy}.xlsx",
                                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
                                 smtp.Send(message);
                             }
@@ -88,19 +90,21 @@ namespace TraceForms
 
         private void ExportReport(DateTime startDate, DateTime endDate, ExcelPackage xl)
         {
+            string dateField = $"[{radioGroupDate.EditValue}]";
             OrderedDictionary columns = new OrderedDictionary()
             {
                 { "Code", "Code" },
                 { "Name", "Name" },
-                { "Chain", "Agency Name" },
-                { "Rooms", "City" },
+                { "Chain", "Chain" },
+                { "Rooms", "Rooms" },
                 { "Start Date", "Start Date" },
                 { "Nights", "Nights" },
                 { "Room Nights", "Room Nights" },
+                { "Res Date", "Res Date" },
+                { "Res No", "Trip #" },
             };
 
-            string sql = $@"select * from v_HotelRoomNights where [start date] >= '{startDate}' and [start date] <= '{endDate}'
-order by [start date], code";
+            string sql = $@"select * from v_HotelRoomNights where {dateField} >= '{startDate}' and {dateField} <= '{endDate}' order by [start date], code";
             ExportCommon(columns, sql, xl, "Hotel Production");
         }
 
@@ -130,8 +134,9 @@ order by [start date], code";
                 conn.Close();
             }
 
-            ws.Cells["A1:G1"].AutoFilter = true;
+            ws.Cells["A1:H1"].AutoFilter = true;
             ws.Column(5).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
+            ws.Column(8).Style.Numberformat.Format = "MM/dd/yyyy";      //TODO: put this in the config file
 
             for (colIndex = 1; colIndex <= columns.Count; colIndex++) {
                 ws.Cells[1, colIndex].Value = columns[colIndex - 1];
@@ -143,6 +148,19 @@ order by [start date], code";
         private void HotelProductionReportForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             _sys.Dispose();
+        }
+
+        private void radioGroupDate_EditValueChanged(object sender, EventArgs e)
+        {
+            if (radioGroupDate.SelectedIndex == 1) {
+                dateEditEnd.Properties.MaxValue = DateTime.Today;
+                if (dateEditEnd.DateTime > DateTime.Today) {
+                    dateEditEnd.DateTime = DateTime.Today;
+                }
+            }
+            else {
+                dateEditEnd.Properties.MaxValue = DateTime.MaxValue;
+            }
         }
     }
 }
