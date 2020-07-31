@@ -33,6 +33,8 @@ namespace TraceForms
         ICoreSys _sys;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
+        Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
+        private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
 
         public packForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -64,6 +66,23 @@ namespace TraceForms
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
+            _locationLookups.Add("CTY", cities);
+
+            var hotels = new List<CodeName> {
+                new CodeName(null)
+            };
+            hotels.AddRange(_context.HOTEL
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _locationLookups.Add("HTL", hotels);
+
+            var waypoints = new List<CodeName> {
+                new CodeName(null)
+            };
+            waypoints.AddRange(_context.WAYPOINT
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            _locationLookups.Add("WAY", waypoints);
 
             var depcities = new List<CodeName> {
                 new CodeName(null)
@@ -96,6 +115,14 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditOperator.Properties.DataSource = operators;
+
+            var categories = new List<CodeName> {
+                new CodeName(null)
+            };
+            categories.AddRange(_context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            RepositoryItemSearchLookUpEditDefaultCat.DataSource = categories;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -795,7 +822,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierProduct.DeleteObject(suppProduct);
+                if (!suppProduct.IsNew()) {
+                    _context.SupplierProduct.DeleteObject(suppProduct);
+                }
                 BindSupplierProducts();
             }
         }
@@ -815,6 +844,24 @@ namespace TraceForms
         {
             if (e.Column == gridColumnSupplierGuid) {
                 e.RepositoryItem = _supplierCombo;
+            }
+            else if (e.Column == colPickup_Location_Default) {
+                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
+                if (_locationLookups.ContainsKey(type)) {
+                    RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
+                }
+                else {
+                    RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = null;
+                }
+            }
+            else if (e.Column == colDropoff_Location_Default) {
+                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
+                if (_locationLookups.ContainsKey(type)) {
+                    RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
+                }
+                else {
+                    RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = null;
+                }
             }
         }
 
@@ -864,10 +911,11 @@ namespace TraceForms
         private void SimpleButtonAddSupplierCategory_Click(object sender, EventArgs e)
         {
             SupplierCategory cat = new SupplierCategory {
-                Product_Code = TextEditCode.Text,
+                Product_Code = TextEditCode.Text ?? string.Empty,
                 Product_Type = "PKG"
             };
             _selectedRecord.SupplierCategory.Add(cat);
+            _context.SupplierCategory.AddObject(cat);//Added this so that the delete routine doesn't crash when attempting to delete an unsaved mapping
             BindSupplierCategories();
             GridViewSupplierCategory.FocusedRowHandle = BindingSourceSupplierCategory.Count - 1;
         }
@@ -979,6 +1027,14 @@ namespace TraceForms
             _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
                 _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
             ShowActionConfirmation("Website Updated");
+        }
+
+        private void RepositoryItemTimeEditDefault_EditValueChanged(object sender, EventArgs e)
+        {
+            TimeEdit edit = sender as TimeEdit;
+            DateTime dt = (DateTime)edit.EditValue;
+            dt = new DateTime(_baseDate.Year, _baseDate.Month, _baseDate.Day, dt.Hour, dt.Minute, dt.Second);
+            edit.EditValue = dt;
         }
 
         private void GridViewSupplierCategory_ValidateRow(object sender, ValidateRowEventArgs e)

@@ -110,6 +110,20 @@ namespace TraceForms
 
         private void RemoveRecord()
         {
+            if (_selectedRecord.IsNew()) {
+                //If you clear the bindingsource for child records where the parent entity is tracked by
+                //the context, it will lose tracking for the child entities and cascade operations like
+                //delete will fail
+                BindingSourceSupplierProduct.Clear();
+            }
+            //Note that cascade delete must be set on the FK in the db in order for the related
+            //entities to be deleted.  This is a db function, not an EF function. However in addition
+            //the model must know about the delete, otherwise the relationships in the context will
+            //get messed up.  So after adding the cascade rule to the FK, the model must be updated,
+            //and in order to refresh a relationship the tables must be deleted and re-added
+            //Otherwise, we could do a delete loop
+            //If using DbContext instead of ObjectContext, we could do eg
+            //_context.SupplierCity.RemoveRange(_selectedRecord.SupplierCity)
             BindingSource.RemoveCurrent();
         }
 
@@ -268,7 +282,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierProduct.DeleteObject(suppProduct);
+                if (!suppProduct.IsNew()) {
+                    _context.SupplierProduct.DeleteObject(suppProduct);
+                }
                 BindSupplierProducts();
             }
         }

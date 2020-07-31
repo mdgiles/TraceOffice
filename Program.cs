@@ -61,7 +61,11 @@ namespace FlexOffice
                     }
 
                     if (string.IsNullOrEmpty(startupForm)) {
-                        Application.Run(new MainMenu(sys));
+                        try {
+                            Application.Run(new MainMenu(sys));
+                        } catch (Exception ex) {
+                            Console.WriteLine(ex.StackTrace);
+                        }
                     }
                     else {
                         Type t = Type.GetType("TraceForms." + startupForm + ", TraceForms");
