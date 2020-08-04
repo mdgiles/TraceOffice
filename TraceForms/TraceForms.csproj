@@ -299,11 +299,11 @@
     <Compile Include="AmenityForm.Designer.cs">
       <DependentUpon>AmenityForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AzureBlobBrowser\AzureBlobBrowser.cs">
-      <SubType>Component</SubType>
+    <Compile Include="AzureBlobBrowser\XtraForm1.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AzureBlobBrowser\AzureBlobBrowser.Designer.cs">
-      <DependentUpon>AzureBlobBrowser.cs</DependentUpon>
+    <Compile Include="AzureBlobBrowser\XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="BlowFish.cs" />
     <Compile Include="BookSelForm.cs">
@@ -373,6 +373,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChineseHosts_FlextourDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSearchLookupEdit\CustomPopupSearchLookUpEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomSearchLookupEdit\CustomSearchLookupEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomSearchLookupEdit\DisplayFilterEventArgs.cs" />
+    <Compile Include="CustomSearchLookupEdit\RepositoryItemCustomSearchLookupEdit.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpers\MediaHelper.cs" />
     <Compile Include="ImportFareHarbor.cs">
@@ -985,8 +995,8 @@
     <EmbeddedResource Include="AmenityForm.resx">
       <DependentUpon>AmenityForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AzureBlobBrowser\AzureBlobBrowser.resx">
-      <DependentUpon>AzureBlobBrowser.cs</DependentUpon>
+    <EmbeddedResource Include="AzureBlobBrowser\XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookSelForm.resx">
       <DependentUpon>BookSelForm.cs</DependentUpon>
@@ -1513,14 +1523,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomSearchLookupEdit\CustomPopupSearchLookUpEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomSearchLookupEdit\CustomSearchLookupEdit.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomSearchLookupEdit\DisplayFilterEventArgs.cs" />
-    <Compile Include="CustomSearchLookupEdit\RepositoryItemCustomSearchLookupEdit.cs">
+    <Compile Include="AzureBlobBrowser\AzureBlobBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
     <Content Include="FlexRes.ico" />

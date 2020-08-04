@@ -18,7 +18,6 @@ using System.Reflection;
 using DevExpress.XtraEditors.Registrator;
 using DevExpress.XtraEditors.Drawing;
 using DevExpress.XtraEditors.ViewInfo;
-using DevExpress.XtraEditors.Popup;
 
 namespace TraceForms.AzureBlobBrowser
 {
@@ -144,7 +143,7 @@ namespace TraceForms.AzureBlobBrowser
                     // Get the continuation token and loop until it is null which is the documented way to tell when the blobs have been enumerated
                     continuationToken = resultSegment.ContinuationToken;
 
-                    //In practice I discovered there can be a non-null continuation token and no results in an endless loop so I check both
+                //In practice I discovered there can be a non-null continuation token and no results in an endless loop so I check both
                 } while (continuationToken != null && hasResults);
                 return entries;
             }
@@ -220,11 +219,6 @@ namespace TraceForms.AzureBlobBrowser
             if (EditValue != null) {
                 ExpandNodeByPath(EditValue.ToString());
             }
-        }
-
-        protected override DevExpress.XtraEditors.Popup.PopupBaseForm CreatePopupForm()
-        {
-            return new AzureBlobBrowserForm(this);
         }
     }
 
