@@ -31,7 +31,7 @@ namespace TraceForms
     public partial class CompForm : DevExpress.XtraEditors.XtraForm
     {
         FlextourEntities _context;
-        COMP _selectedRecord;
+        COMP _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         string _pupDrp = "";
@@ -557,18 +557,27 @@ namespace TraceForms
                         else if (result == DialogResult.Cancel) {
                             return false;
                         }
+                        //If we prompted then it's because the user is changing the selected record so we don't need
+                        //to keep track of the previously selected record
+                        _previousRecord = null;
+                    }
+                    else {
+                        //If we didn't prompt then the user has clicked the Save button where the expectation is that
+                        //the currently selected row will remain selected.  However EntityInstantFeedbackSource does not have
+                        //a way to refresh a single record and refreshing the data source causes the focused row to be reset
+                        //back to the top row.  Therefore we store the value of the previous selection and set the row focus
+                        //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being
+                        //displayed before being set back to the previously selected row. DevExpress have no way around this.
+                        _previousRecord = _selectedRecord;
                     }
                     if (!ValidateAll())
                         return false;
 
-                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                    if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
                         _context.COMP.AddObject(_selectedRecord);
                     }
                     SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
-                    if (newRec || nameChanged) {
-                        AccountingAPI.InvokeForProduct(_sys.Settings.TourAccountingURL, "OPT", _selectedRecord.CODE);
-                    }
                     EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Saved");
                 }
@@ -1095,12 +1104,6 @@ namespace TraceForms
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
-        }
-
-        private void GridViewTransferPoints_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
-        {
-            if (e.Column.FieldName == "DATE" || e.Column.FieldName == "EndDate" && !string.IsNullOrWhiteSpace(e.DisplayText))
-                e.DisplayText = validCheck.convertDate(e.DisplayText); 
         }
 
         private void TextEditVendorCode_Leave(object sender, EventArgs e)
@@ -2134,7 +2137,18 @@ namespace TraceForms
             edit.EditValue = dt;
         }
 
-        private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
+        private void SimpleButtonCopyTransfers_Click(object sender, EventArgs e)
+        {
+            GridControlTransferPoints.FocusedView.CopyToClipboard();
+        }
+
+        private void SimpleButtonPasteTransfers_Click(object sender, EventArgs e)
+        {
+            GridViewTransferPoints.PasteFromClipboard();
+        }
+
+        private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
     }

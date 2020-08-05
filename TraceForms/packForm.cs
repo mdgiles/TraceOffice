@@ -24,7 +24,7 @@ using FlexCommissions;
 
 namespace TraceForms
 {
-    public partial class packForm : DevExpress.XtraEditors.XtraForm
+    public partial class PackForm : DevExpress.XtraEditors.XtraForm
     {
         FlextourEntities _context;
         PACK _selectedRecord;
@@ -36,7 +36,7 @@ namespace TraceForms
         Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
         private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
 
-        public packForm(FlexInterfaces.Core.ICoreSys sys)
+        public PackForm(FlexInterfaces.Core.ICoreSys sys)
         {
             try {
                 InitializeComponent();

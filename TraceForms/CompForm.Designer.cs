@@ -293,6 +293,8 @@
             this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPageTransferPoints = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.SimpleButtonPasteTransfers = new DevExpress.XtraEditors.SimpleButton();
+            this.SimpleButtonCopyTransfers = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
             this.GridControlTransferPoints = new DevExpress.XtraGrid.GridControl();
@@ -3761,6 +3763,8 @@
             // 
             this.panelControl4.AutoSize = true;
             this.panelControl4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelControl4.Controls.Add(this.SimpleButtonPasteTransfers);
+            this.panelControl4.Controls.Add(this.SimpleButtonCopyTransfers);
             this.panelControl4.Controls.Add(this.ButtonDelRow);
             this.panelControl4.Controls.Add(this.ButtonAddRow);
             this.panelControl4.Controls.Add(this.GridControlTransferPoints);
@@ -3771,18 +3775,46 @@
             this.panelControl4.Size = new System.Drawing.Size(905, 587);
             this.panelControl4.TabIndex = 0;
             // 
+            // SimpleButtonPasteTransfers
+            // 
+            this.SimpleButtonPasteTransfers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonPasteTransfers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPasteTransfers.ImageOptions.Image")));
+            this.SimpleButtonPasteTransfers.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonPasteTransfers.Location = new System.Drawing.Point(854, 188);
+            this.SimpleButtonPasteTransfers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonPasteTransfers.Name = "SimpleButtonPasteTransfers";
+            this.SimpleButtonPasteTransfers.Size = new System.Drawing.Size(36, 46);
+            this.SimpleButtonPasteTransfers.TabIndex = 108;
+            this.SimpleButtonPasteTransfers.TabStop = false;
+            this.SimpleButtonPasteTransfers.ToolTip = "Paste Transfer(s)";
+            this.SimpleButtonPasteTransfers.Click += new System.EventHandler(this.SimpleButtonPasteTransfers_Click);
+            // 
+            // SimpleButtonCopyTransfers
+            // 
+            this.SimpleButtonCopyTransfers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonCopyTransfers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonCopyTransfers.ImageOptions.Image")));
+            this.SimpleButtonCopyTransfers.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonCopyTransfers.Location = new System.Drawing.Point(854, 136);
+            this.SimpleButtonCopyTransfers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonCopyTransfers.Name = "SimpleButtonCopyTransfers";
+            this.SimpleButtonCopyTransfers.Size = new System.Drawing.Size(36, 46);
+            this.SimpleButtonCopyTransfers.TabIndex = 107;
+            this.SimpleButtonCopyTransfers.TabStop = false;
+            this.SimpleButtonCopyTransfers.ToolTip = "Copy Selected Transfer(s)";
+            this.SimpleButtonCopyTransfers.Click += new System.EventHandler(this.SimpleButtonCopyTransfers_Click);
+            // 
             // ButtonDelRow
             // 
             this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDelRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelRow.ImageOptions.Image")));
             this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(854, 240);
+            this.ButtonDelRow.Location = new System.Drawing.Point(854, 84);
             this.ButtonDelRow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDelRow.Name = "ButtonDelRow";
             this.ButtonDelRow.Size = new System.Drawing.Size(36, 46);
             this.ButtonDelRow.TabIndex = 106;
             this.ButtonDelRow.TabStop = false;
-            this.ButtonDelRow.Text = "simpleButton4";
+            this.ButtonDelRow.Text = "Delete Transfer";
             this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
             // 
             // ButtonAddRow
@@ -3790,13 +3822,13 @@
             this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRow.ImageOptions.Image")));
             this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(854, 190);
+            this.ButtonAddRow.Location = new System.Drawing.Point(854, 32);
             this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddRow.Name = "ButtonAddRow";
             this.ButtonAddRow.Size = new System.Drawing.Size(36, 46);
             this.ButtonAddRow.TabIndex = 0;
             this.ButtonAddRow.TabStop = false;
-            this.ButtonAddRow.Text = "simpleButton3";
+            this.ButtonAddRow.Text = "Add Transfer";
             this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
             // 
             // GridControlTransferPoints
@@ -3853,17 +3885,19 @@
             this.GridViewTransferPoints.DetailHeight = 182;
             this.GridViewTransferPoints.FixedLineWidth = 1;
             this.GridViewTransferPoints.GridControl = this.GridControlTransferPoints;
+            this.GridViewTransferPoints.IndicatorWidth = 10;
             this.GridViewTransferPoints.LevelIndent = 0;
             this.GridViewTransferPoints.Name = "GridViewTransferPoints";
+            this.GridViewTransferPoints.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.GridViewTransferPoints.OptionsClipboard.PasteMode = DevExpress.Export.PasteMode.Append;
+            this.GridViewTransferPoints.OptionsSelection.MultiSelect = true;
             this.GridViewTransferPoints.OptionsView.ShowGroupPanel = false;
-            this.GridViewTransferPoints.OptionsView.ShowIndicator = false;
             this.GridViewTransferPoints.PreviewIndent = 0;
             this.GridViewTransferPoints.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewTransferPoints_CustomRowCellEdit);
             this.GridViewTransferPoints.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewTransferPoints_FocusedRowChanged);
             this.GridViewTransferPoints.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewTransferPoints_CellValueChanged);
             this.GridViewTransferPoints.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewTransferPoints_InvalidRowException);
             this.GridViewTransferPoints.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewTransferPoints_ValidateRow);
-            this.GridViewTransferPoints.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.GridViewTransferPoints_CustomColumnDisplayText);
             // 
             // colDisplayName
             // 
@@ -7802,5 +7836,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditReadOnly;
         private DevExpress.XtraEditors.TextEdit TextEditDefaultTime;
         private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonPasteTransfers;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonCopyTransfers;
     }
 }

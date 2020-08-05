@@ -24,7 +24,7 @@ namespace TraceForms
     public partial class WaypointForm : DevExpress.XtraEditors.XtraForm
     {
         FlextourEntities _context;
-        WAYPOINT _selectedRecord;
+        WAYPOINT _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
@@ -164,11 +164,23 @@ namespace TraceForms
                         else if (result == DialogResult.Cancel) {
                             return false;
                         }
+                        //If we prompted then it's because the user is changing the selected record so we don't need
+                        //to keep track of the previously selected record
+                        _previousRecord = null;
+                    }
+                    else {
+                        //If we didn't prompt then the user has clicked the Save button where the expectation is that
+                        //the currently selected row will remain selected.  However EntityInstantFeedbackSource does not have
+                        //a way to refresh a single record and refreshing the data source causes the focused row to be reset
+                        //back to the top row.  Therefore we store the value of the previous selection and set the row focus
+                        //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being
+                        //displayed before being set back to the previously selected row. DevExpress have no way around this.
+                        _previousRecord = _selectedRecord;
                     }
                     if (!ValidateAll())
                         return false;
 
-                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                    if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
                         _context.WAYPOINT.AddObject(_selectedRecord);
                     }
                     _context.SaveChanges();
@@ -508,11 +520,14 @@ namespace TraceForms
         {
             _ignoreLeaveRow = true;       //so that when the grid row changes it doesn't try to save again
             if (SaveRecord(true)) {
-                GridViewLookup.ClearColumnsFilter();    //so that the new record will show even if it doesn't match the filter
-                BindingSource.AddNew();
-                //if (GridViewRoute.FocusedRowHandle == GridControl.AutoFilterRowHandle)
-                GridViewLookup.FocusedRowHandle = GridViewLookup.RowCount - 1;
+                //For some reason when there is no existing record in the binding source the Add method does not
+                //trigger the CurrentChanged event, but AddNew does so use that instead
+                _selectedRecord = (WAYPOINT)BindingSource.AddNew();
+                //With the instant feedback data source, the new row is not immediately added to the grid, so move
+                //the focused row to the filter row just so that no other existing row is visually highlighted
+                GridViewLookup.FocusedRowHandle = DevExpress.Data.BaseListSourceDataController.FilterRow;
                 SetReadOnlyKeyFields(false);
+                TextEditCode.Focus();
                 SetReadOnly(false);
             }
             ErrorProvider.Clear();

@@ -642,7 +642,7 @@ namespace TraceForms
 
         private void barButtonPkgGenInfo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            packForm xform1 = new packForm(_FlexSys) { };
+            PackForm xform1 = new PackForm(_FlexSys) { };
             xform1.Show();
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace TraceForms
 {
-    partial class packForm
+    partial class PackForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.Label LabelDate;
             System.Windows.Forms.Label LabelAgency;
             System.Windows.Forms.Label LabelRanking;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(packForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackForm));
             this.repositoryItemCheckEditExclusionComm = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEditInactiveComm = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.ColumnPack1 = new DevExpress.XtraGrid.Columns.GridColumn();

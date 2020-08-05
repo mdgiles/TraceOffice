@@ -761,7 +761,7 @@ namespace FlexOffice
 
         private void barButtonPkgGenInfo_ItemClick(object sender, ItemClickEventArgs e)
         {
-            packForm xform1 = new packForm(_FlexSys) { MdiParent = this };
+            PackForm xform1 = new PackForm(_FlexSys) { MdiParent = this };
             xform1.Show();
         }
 
