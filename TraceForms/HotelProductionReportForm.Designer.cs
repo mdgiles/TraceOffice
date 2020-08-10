@@ -147,7 +147,7 @@
             this.radioGroupDate.Properties.Appearance.Options.UseBackColor = true;
             this.radioGroupDate.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.radioGroupDate.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("strt date", "By Service Date", true, "service"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("start date", "By Service Date", true, "service"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("res date", "By Booking Date", true, "booking")});
             this.radioGroupDate.Size = new System.Drawing.Size(223, 23);
             this.radioGroupDate.TabIndex = 16;

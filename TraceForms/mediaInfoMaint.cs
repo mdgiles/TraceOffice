@@ -906,7 +906,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage1, MediaInfoBindingSource);
+                //validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage1, MediaInfoBindingSource);
                 TextEditCaption.Focus();
             }
         }
@@ -919,7 +919,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage2, MediaInfoBindingSource);
+                //validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage2, MediaInfoBindingSource);
                 TextEditCaption.Focus();
             }
         }
@@ -932,7 +932,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage3, MediaInfoBindingSource);
+                //validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage3, MediaInfoBindingSource);
                 TextEditCaption.Focus();
             }
         }
@@ -945,7 +945,7 @@ namespace TraceForms
                 {
                     Modified = true;
                 }
-                validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage4, MediaInfoBindingSource);
+                //validCheck.check(sender, errorProvider1, ((MEDIAINFO)MediaInfoBindingSource.Current).checkImage4, MediaInfoBindingSource);
                 TextEditCaption.Focus();
             }
         }
