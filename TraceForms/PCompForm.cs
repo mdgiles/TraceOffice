@@ -15,6 +15,7 @@ using DevExpress.XtraGrid.Columns;
 using FlexModel;
 using Custom_SearchLookupEdit;
 using DevExpress.Data;
+using System.Diagnostics;
 
 namespace TraceForms
 {
@@ -320,31 +321,37 @@ namespace TraceForms
             }
         }
 
-        private void SetItemCategoryLookup(string itemCat)
+        private void SetItemCategoryLookup(object itemCat)
         {
-            if (string.IsNullOrEmpty(itemCat) || _categories.Any(c => c.Code == itemCat)) {
+            string cat = itemCat.ToStringEmptyIfNull();
+
+            if (string.IsNullOrEmpty(cat) || _categories.Any(c => c.Code == cat)) {
                 GridLookupEditItemCategory.Properties.DataSource = _categories;
             }
             else {
                 //If the value of category isn't in ROOMCOD, add it to the list
                 //We allow non-matching categories so that API products can be booked
-                var cats = new List<CodeName>(_categories);
-                cats.Add(new CodeName(itemCat));
-                GridLookupEditItemCategory.Properties.DataSource = cats;
+                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
+                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
+                var newCat = new CodeName(cat);
+                _categories.Add(newCat);
             }
         }
 
-        private void SetItemSpecialValueLookup(string itemVal)
+        private void SetItemSpecialValueLookup(object itemVal)
         {
-            if (string.IsNullOrEmpty(itemVal) || _specialVals.Any(c => c.Code == itemVal)) {
+            string val = itemVal.ToStringEmptyIfNull();
+
+            if (string.IsNullOrEmpty(val) || _specialVals.Any(c => c.Code == val)) {
                 GridLookupEditItemSpecialValue.Properties.DataSource = _specialVals;
             }
             else {
                 //If the value of rate plan isn't in SpecialValue, add it to the list
                 //We allow non-matching rate plans so that API products can be booked
-                var vals = new List<CodeName>(_specialVals);
-                vals.Add(new CodeName(itemVal));
-                GridLookupEditItemSpecialValue.Properties.DataSource = vals;
+                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
+                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
+                var newVal = new CodeName(val);
+                _specialVals.Add(newVal);
             }
         }
 
@@ -869,8 +876,10 @@ namespace TraceForms
             SearchLookupEditItemCode.EditValue = null;
             switch (type) {
                 case "":
+                    PanelControlPickupDropoff.Visible = false;
                     TimeEditServiceTime.EditValue = null;
                     TimeEditServiceTime.Enabled = false;
+                    TimeEditServiceTime.Visible = false;
                     ComboBoxEditRoom.Enabled = true;
                     SpinEditNights.Enabled = true;
                     SpinEditNights.Enabled = false;
@@ -881,9 +890,11 @@ namespace TraceForms
                     SetDepartureInfoState(false);
                     break;
                 case "HTL":
+                    PanelControlPickupDropoff.Visible = false;
                     SearchLookupEditItemCode.Properties.DataSource = _hotels;
                     TimeEditServiceTime.EditValue = null;
                     TimeEditServiceTime.Enabled = false;
+                    TimeEditServiceTime.Visible = false;
                     ComboBoxEditRoom.Enabled = true;
                     SpinEditNights.Enabled = true;
                     SetPickupInfoState(false);
@@ -892,6 +903,8 @@ namespace TraceForms
                     SetDepartureInfoState(false);
                     break;
                 case "OPT":
+                    PanelControlPickupDropoff.Visible = true;
+                    TimeEditServiceTime.Visible = true;
                     SearchLookupEditItemCode.Properties.DataSource = _services;
                     TimeEditServiceTime.Enabled = true;
                     ComboBoxEditRoom.Enabled = false;
@@ -1018,7 +1031,11 @@ namespace TraceForms
         private void SearchLookupEditItemCode_EditValueChanged(object sender, EventArgs e)
         {
             string code = SearchLookupEditItemCode.EditValue?.ToString();
-            ItemChanged(code);
+            //This event fires before BindingSource.CurrentChanged (gahhhh!), but associated lookups can't change until
+            //after BindingSource.CurrentChanged otherwise _selectedRecord isn't set to the right value
+            if (_selectedRecord.CODE1 == code) {
+                ItemChanged(code);
+            }
         }
 
         private void SpinEditNights_Leave(object sender, EventArgs e)

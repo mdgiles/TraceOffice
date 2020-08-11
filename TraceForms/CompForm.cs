@@ -31,7 +31,7 @@ namespace TraceForms
     public partial class CompForm : DevExpress.XtraEditors.XtraForm
     {
         FlextourEntities _context;
-        COMP _selectedRecord;
+        COMP _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         string _pupDrp = "";
@@ -43,6 +43,7 @@ namespace TraceForms
         Dictionary<String, List<CodeName>> _passLookups = new Dictionary<String, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
         Dictionary<String, List<CodeName>> _ServPackTypeLookups = new Dictionary<String, List<CodeName>>();
+        private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
 
         public CompForm(FlexInterfaces.Core.ICoreSys sys)
         {
@@ -152,6 +153,7 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             RepositoryItemSearchLookUpEditCat.DataSource = categories;
+            RepositoryItemSearchLookUpEditDefaultCat.DataSource = categories;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -293,7 +295,8 @@ namespace TraceForms
                 if (row != null && row.GetType() != typeof(DevExpress.Data.NotLoadedObject)) {
                     ReadonlyThreadSafeProxyForObjectFromAnotherThread proxy = (ReadonlyThreadSafeProxyForObjectFromAnotherThread)view.GetRow(e.FocusedRowHandle);
                     COMP record = (COMP)proxy.OriginalRow;
-                    BindingSource.DataSource = _context.COMP.Where(c => c.CODE == record.CODE);
+                    BindingSource.DataSource = _context.COMP.Where(c => c.CODE == record.CODE)
+                        .Include(c => c.GeoCode);
                     TextEditCode.ReadOnly = false;
                 }
                 else {
@@ -554,18 +557,27 @@ namespace TraceForms
                         else if (result == DialogResult.Cancel) {
                             return false;
                         }
+                        //If we prompted then it's because the user is changing the selected record so we don't need
+                        //to keep track of the previously selected record
+                        _previousRecord = null;
+                    }
+                    else {
+                        //If we didn't prompt then the user has clicked the Save button where the expectation is that
+                        //the currently selected row will remain selected.  However EntityInstantFeedbackSource does not have
+                        //a way to refresh a single record and refreshing the data source causes the focused row to be reset
+                        //back to the top row.  Therefore we store the value of the previous selection and set the row focus
+                        //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being
+                        //displayed before being set back to the previously selected row. DevExpress have no way around this.
+                        _previousRecord = _selectedRecord;
                     }
                     if (!ValidateAll())
                         return false;
 
-                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                    if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
                         _context.COMP.AddObject(_selectedRecord);
                     }
                     SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
-                    if (newRec || nameChanged) {
-                        AccountingAPI.InvokeForProduct(_sys.Settings.TourAccountingURL, "OPT", _selectedRecord.CODE);
-                    }
                     EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Saved");
                 }
@@ -672,6 +684,12 @@ namespace TraceForms
                 //the context, it will lose tracking for the child entities and cascade operations like
                 //delete will fail
                 BindingSourceSupplierProduct.Clear();
+                BindingSourceSupplierCategory.Clear();
+                BindingSourceCompBusRoutes.Clear();
+                BindingSourceRelatedProduct.Clear();
+                BindingSourceBusTable.Clear();
+                BindingSourceSupplements.Clear();
+                BindingSourceDetail.Clear();
             }
             //Note that cascade delete must be set on the FK in the db in order for the related
             //entities to be deleted.  This is a db function, not an EF function. However in addition
@@ -1069,7 +1087,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.BUSTABLE.DeleteObject(transfer);                
+                if (!transfer.IsNew()) {
+                    _context.BUSTABLE.DeleteObject(transfer);
+                }
             }
         }
 
@@ -1084,12 +1104,6 @@ namespace TraceForms
             CalendarForm xform = new CalendarForm(sender) { };
             xform.StartPosition = FormStartPosition.CenterScreen;
             xform.Show();
-        }
-
-        private void GridViewTransferPoints_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
-        {
-            if (e.Column.FieldName == "DATE" || e.Column.FieldName == "EndDate" && !string.IsNullOrWhiteSpace(e.DisplayText))
-                e.DisplayText = validCheck.convertDate(e.DisplayText); 
         }
 
         private void TextEditVendorCode_Leave(object sender, EventArgs e)
@@ -1535,11 +1549,13 @@ namespace TraceForms
 			if (GridViewRoutes.FocusedRowHandle >= 0) {
 				CompBusRoute route = (CompBusRoute)GridViewRoutes.GetFocusedRow();
 				BindingSourceCompBusRoutes.Remove(route);
-				//Removing from the bindingsource just removes the object from its parent, but does not mark
-				//it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
-				//To flag for deletion, delete it from the context as well.
-                    _context.CompBusRoute.DeleteObject(route);               
-				BindCompBusRoutes();
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (!route.IsNew()) {
+                    _context.CompBusRoute.DeleteObject(route);
+                }
+                BindCompBusRoutes();
 			}
 		}
 
@@ -1618,7 +1634,9 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.DETAIL.DeleteObject(detail);            
+                if (!detail.IsNew()) {
+                    _context.DETAIL.DeleteObject(detail);
+                }
                 BindMemberships();
             }
         }
@@ -1642,7 +1660,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierProduct.DeleteObject(suppProduct);
+                if (!suppProduct.IsNew()) {
+                    _context.SupplierProduct.DeleteObject(suppProduct);
+                }
                 BindSupplierProducts();
             }
         }
@@ -1663,19 +1683,19 @@ namespace TraceForms
             else if (e.Column == colPickup_Location_Default) {
                 string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
-                    repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
+                    RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
                 }
                 else {
-                    repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DataSource = null;
+                    RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = null;
                 }
             }
             else if (e.Column == colDropoff_Location_Default) {
                 string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
-                    repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
+                    RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
                 }
                 else {
-                    repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = null;
+                    RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = null;
                 }
             }
         }
@@ -1759,7 +1779,7 @@ namespace TraceForms
 
         private void SimpleButtonAddSupplierCategory_Click(object sender, EventArgs e) {
             SupplierCategory cat = new SupplierCategory {
-                Product_Code = TextEditCode.Text,
+                Product_Code = TextEditCode.Text ?? string.Empty,
                 Product_Type = "OPT"
             };
             _selectedRecord.SupplierCategory.Add(cat);
@@ -1774,7 +1794,9 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierCategory.DeleteObject(cat);
+                if (!cat.IsNew()) {
+                    _context.SupplierCategory.DeleteObject(cat);
+                }
                 BindSupplierCategories();
             }
         }
@@ -1971,7 +1993,7 @@ namespace TraceForms
         private void SimpleButtonAddSupplement_Click(object sender, EventArgs e)
         {
             ProductSupplement sup = new ProductSupplement {
-                Product_Code = TextEditCode.Text,
+                Product_Code = TextEditCode.Text ?? string.Empty,
                 Product_Type = "OPT"
             };
             _selectedRecord.ProductSupplement.Add(sup);
@@ -1987,7 +2009,9 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.ProductSupplement.DeleteObject(sup);
+                if (!sup.IsNew()) {
+                    _context.ProductSupplement.DeleteObject(sup);
+                }
                 BindSupplements();
             }
         }
@@ -2023,7 +2047,7 @@ namespace TraceForms
         private void SimpleButtonAddRelatedProduct_Click(object sender, EventArgs e)
         {
             RelatedProduct rel = new RelatedProduct {
-                Product_Code = TextEditCode.Text,
+                Product_Code = TextEditCode.Text ?? string.Empty,
                 Product_Type = "OPT",
                 IsPassComponent = _isPass
             };
@@ -2040,7 +2064,9 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.RelatedProduct.DeleteObject(rel);
+                if (!rel.IsNew()) {
+                    _context.RelatedProduct.DeleteObject(rel);
+                }
                 BindRelatedProducts();
             }
         }
@@ -2103,7 +2129,26 @@ namespace TraceForms
                 SetErrorInfo(_selectedRecord.ValidateMaxDuration, sender);
         }
 
-        private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e) {
+        private void RepositoryItemTimeEditDefault_EditValueChanged(object sender, EventArgs e)
+        {
+            TimeEdit edit = sender as TimeEdit;
+            DateTime dt = (DateTime)edit.EditValue;
+            dt = new DateTime(_baseDate.Year, _baseDate.Month, _baseDate.Day, dt.Hour, dt.Minute, dt.Second);
+            edit.EditValue = dt;
+        }
+
+        private void SimpleButtonCopyTransfers_Click(object sender, EventArgs e)
+        {
+            GridControlTransferPoints.FocusedView.CopyToClipboard();
+        }
+
+        private void SimpleButtonPasteTransfers_Click(object sender, EventArgs e)
+        {
+            GridViewTransferPoints.PasteFromClipboard();
+        }
+
+        private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
         }
     }

@@ -293,6 +293,8 @@
             this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPageTransferPoints = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.SimpleButtonPasteTransfers = new DevExpress.XtraEditors.SimpleButton();
+            this.SimpleButtonCopyTransfers = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonDelRow = new DevExpress.XtraEditors.SimpleButton();
             this.ButtonAddRow = new DevExpress.XtraEditors.SimpleButton();
             this.GridControlTransferPoints = new DevExpress.XtraGrid.GridControl();
@@ -441,18 +443,18 @@
             this.gridColumnMappingResStart = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingResEnd = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colServiceTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTimeEditDefault = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.RepositoryItemTimeEditDefault = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.gridColumnMappingDesc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnMappingOperator = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRoomcod_Code_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.RepositoryItemSearchLookUpEditDefaultCat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemCustomSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPickup_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBoxDefaultPupLocType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colPickup_Location_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -460,7 +462,7 @@
             this.colDropoff_LocationType_Default = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBoxDefaultDrpLocType = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colDropoff_Location_Default = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -796,14 +798,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControlSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTimeEditDefault)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultPUpLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultDropLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupPct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).BeginInit();
@@ -3761,6 +3763,8 @@
             // 
             this.panelControl4.AutoSize = true;
             this.panelControl4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelControl4.Controls.Add(this.SimpleButtonPasteTransfers);
+            this.panelControl4.Controls.Add(this.SimpleButtonCopyTransfers);
             this.panelControl4.Controls.Add(this.ButtonDelRow);
             this.panelControl4.Controls.Add(this.ButtonAddRow);
             this.panelControl4.Controls.Add(this.GridControlTransferPoints);
@@ -3771,18 +3775,46 @@
             this.panelControl4.Size = new System.Drawing.Size(905, 587);
             this.panelControl4.TabIndex = 0;
             // 
+            // SimpleButtonPasteTransfers
+            // 
+            this.SimpleButtonPasteTransfers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonPasteTransfers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonPasteTransfers.ImageOptions.Image")));
+            this.SimpleButtonPasteTransfers.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonPasteTransfers.Location = new System.Drawing.Point(854, 188);
+            this.SimpleButtonPasteTransfers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonPasteTransfers.Name = "SimpleButtonPasteTransfers";
+            this.SimpleButtonPasteTransfers.Size = new System.Drawing.Size(36, 46);
+            this.SimpleButtonPasteTransfers.TabIndex = 108;
+            this.SimpleButtonPasteTransfers.TabStop = false;
+            this.SimpleButtonPasteTransfers.ToolTip = "Paste Transfer(s)";
+            this.SimpleButtonPasteTransfers.Click += new System.EventHandler(this.SimpleButtonPasteTransfers_Click);
+            // 
+            // SimpleButtonCopyTransfers
+            // 
+            this.SimpleButtonCopyTransfers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonCopyTransfers.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonCopyTransfers.ImageOptions.Image")));
+            this.SimpleButtonCopyTransfers.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonCopyTransfers.Location = new System.Drawing.Point(854, 136);
+            this.SimpleButtonCopyTransfers.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonCopyTransfers.Name = "SimpleButtonCopyTransfers";
+            this.SimpleButtonCopyTransfers.Size = new System.Drawing.Size(36, 46);
+            this.SimpleButtonCopyTransfers.TabIndex = 107;
+            this.SimpleButtonCopyTransfers.TabStop = false;
+            this.SimpleButtonCopyTransfers.ToolTip = "Copy Selected Transfer(s)";
+            this.SimpleButtonCopyTransfers.Click += new System.EventHandler(this.SimpleButtonCopyTransfers_Click);
+            // 
             // ButtonDelRow
             // 
             this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonDelRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonDelRow.ImageOptions.Image")));
             this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(854, 240);
+            this.ButtonDelRow.Location = new System.Drawing.Point(854, 84);
             this.ButtonDelRow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonDelRow.Name = "ButtonDelRow";
             this.ButtonDelRow.Size = new System.Drawing.Size(36, 46);
             this.ButtonDelRow.TabIndex = 106;
             this.ButtonDelRow.TabStop = false;
-            this.ButtonDelRow.Text = "simpleButton4";
+            this.ButtonDelRow.Text = "Delete Transfer";
             this.ButtonDelRow.Click += new System.EventHandler(this.ButtonDelRow_Click);
             // 
             // ButtonAddRow
@@ -3790,13 +3822,13 @@
             this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAddRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ButtonAddRow.ImageOptions.Image")));
             this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(854, 190);
+            this.ButtonAddRow.Location = new System.Drawing.Point(854, 32);
             this.ButtonAddRow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ButtonAddRow.Name = "ButtonAddRow";
             this.ButtonAddRow.Size = new System.Drawing.Size(36, 46);
             this.ButtonAddRow.TabIndex = 0;
             this.ButtonAddRow.TabStop = false;
-            this.ButtonAddRow.Text = "simpleButton3";
+            this.ButtonAddRow.Text = "Add Transfer";
             this.ButtonAddRow.Click += new System.EventHandler(this.ButtonAddRow_Click);
             // 
             // GridControlTransferPoints
@@ -3853,17 +3885,19 @@
             this.GridViewTransferPoints.DetailHeight = 182;
             this.GridViewTransferPoints.FixedLineWidth = 1;
             this.GridViewTransferPoints.GridControl = this.GridControlTransferPoints;
+            this.GridViewTransferPoints.IndicatorWidth = 10;
             this.GridViewTransferPoints.LevelIndent = 0;
             this.GridViewTransferPoints.Name = "GridViewTransferPoints";
+            this.GridViewTransferPoints.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            this.GridViewTransferPoints.OptionsClipboard.PasteMode = DevExpress.Export.PasteMode.Append;
+            this.GridViewTransferPoints.OptionsSelection.MultiSelect = true;
             this.GridViewTransferPoints.OptionsView.ShowGroupPanel = false;
-            this.GridViewTransferPoints.OptionsView.ShowIndicator = false;
             this.GridViewTransferPoints.PreviewIndent = 0;
             this.GridViewTransferPoints.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridViewTransferPoints_CustomRowCellEdit);
             this.GridViewTransferPoints.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewTransferPoints_FocusedRowChanged);
             this.GridViewTransferPoints.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridViewTransferPoints_CellValueChanged);
             this.GridViewTransferPoints.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.GridViewTransferPoints_InvalidRowException);
             this.GridViewTransferPoints.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.GridViewTransferPoints_ValidateRow);
-            this.GridViewTransferPoints.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.GridViewTransferPoints_CustomColumnDisplayText);
             // 
             // colDisplayName
             // 
@@ -4708,7 +4742,7 @@
             // LabelMarkups
             // 
             this.LabelMarkups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LabelMarkups.Location = new System.Drawing.Point(14, 388);
+            this.LabelMarkups.Location = new System.Drawing.Point(14, 229);
             this.LabelMarkups.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.LabelMarkups.Name = "LabelMarkups";
             this.LabelMarkups.Size = new System.Drawing.Size(40, 13);
@@ -4729,7 +4763,7 @@
             this.GridControlMarkups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridControlMarkups.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.GridControlMarkups.Location = new System.Drawing.Point(14, 405);
+            this.GridControlMarkups.Location = new System.Drawing.Point(14, 248);
             this.GridControlMarkups.MainView = this.gridViewMarkups;
             this.GridControlMarkups.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.GridControlMarkups.Name = "GridControlMarkups";
@@ -5196,18 +5230,18 @@
             this.GridControlSupplierProduct.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEditMax50,
             this.repositoryItemComboBoxDefaultPupLocType,
-            this.repositoryItemCustomSearchLookUpEditDefaultCat,
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc,
+            this.RepositoryItemSearchLookUpEditDefaultCat,
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc,
             this.repositoryItemComboBoxDefaultDrpLocType,
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc,
-            this.repositoryItemTimeEditDefault,
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc,
+            this.RepositoryItemTimeEditDefault,
             this.RepositoryItemSpinEditMarkupPct,
             this.RepositoryItemSpinEditSupplierCommPct,
             this.RepositoryItemSpinEditRetailMarkupPct,
             this.RepositoryItemSpinEditMarkupFlat,
             this.RepositoryItemSpinEditSupplierCommFlat,
             this.RepositoryItemSpinEditRetailMarkupFlat});
-            this.GridControlSupplierProduct.Size = new System.Drawing.Size(822, 536);
+            this.GridControlSupplierProduct.Size = new System.Drawing.Size(822, 415);
             this.GridControlSupplierProduct.TabIndex = 100;
             this.GridControlSupplierProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewSupplierProduct});
@@ -5363,21 +5397,22 @@
             // 
             // colServiceTime
             // 
-            this.colServiceTime.ColumnEdit = this.repositoryItemTimeEditDefault;
+            this.colServiceTime.ColumnEdit = this.RepositoryItemTimeEditDefault;
             this.colServiceTime.FieldName = "ServiceTime";
             this.colServiceTime.Name = "colServiceTime";
             this.colServiceTime.Visible = true;
             this.colServiceTime.VisibleIndex = 9;
             // 
-            // repositoryItemTimeEditDefault
+            // RepositoryItemTimeEditDefault
             // 
-            this.repositoryItemTimeEditDefault.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.repositoryItemTimeEditDefault.AutoHeight = false;
-            this.repositoryItemTimeEditDefault.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemTimeEditDefault.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.RepositoryItemTimeEditDefault.AutoHeight = false;
+            this.RepositoryItemTimeEditDefault.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemTimeEditDefault.Mask.EditMask = "h:mm tt";
-            this.repositoryItemTimeEditDefault.Name = "repositoryItemTimeEditDefault";
-            this.repositoryItemTimeEditDefault.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.RepositoryItemTimeEditDefault.Mask.EditMask = "h:mm tt";
+            this.RepositoryItemTimeEditDefault.Name = "RepositoryItemTimeEditDefault";
+            this.RepositoryItemTimeEditDefault.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            this.RepositoryItemTimeEditDefault.EditValueChanged += new System.EventHandler(this.RepositoryItemTimeEditDefault_EditValueChanged);
             // 
             // gridColumnMappingDesc
             // 
@@ -5402,7 +5437,7 @@
             // colRoomcod_Code_Default
             // 
             this.colRoomcod_Code_Default.Caption = "Default Cat";
-            this.colRoomcod_Code_Default.ColumnEdit = this.repositoryItemCustomSearchLookUpEditDefaultCat;
+            this.colRoomcod_Code_Default.ColumnEdit = this.RepositoryItemSearchLookUpEditDefaultCat;
             this.colRoomcod_Code_Default.FieldName = "Roomcod_Code_Default";
             this.colRoomcod_Code_Default.MinWidth = 21;
             this.colRoomcod_Code_Default.Name = "colRoomcod_Code_Default";
@@ -5410,19 +5445,20 @@
             this.colRoomcod_Code_Default.VisibleIndex = 12;
             this.colRoomcod_Code_Default.Width = 78;
             // 
-            // repositoryItemCustomSearchLookUpEditDefaultCat
+            // RepositoryItemSearchLookUpEditDefaultCat
             // 
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.AutoHeight = false;
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemSearchLookUpEditDefaultCat.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditDefaultCat.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.RepositoryItemSearchLookUpEditDefaultCat.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.DataSource = this.BindingSourceCodeName;
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.DisplayMember = "DisplayName";
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.Name = "repositoryItemCustomSearchLookUpEditDefaultCat";
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.NullText = "";
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.PopupView = this.repositoryItemCustomSearchLookUpEdit1View;
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultCat.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.RepositoryItemSearchLookUpEditDefaultCat.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditDefaultCat.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditDefaultCat.Name = "RepositoryItemSearchLookUpEditDefaultCat";
+            this.RepositoryItemSearchLookUpEditDefaultCat.NullText = "";
+            this.RepositoryItemSearchLookUpEditDefaultCat.PopupView = this.repositoryItemCustomSearchLookUpEdit1View;
+            this.RepositoryItemSearchLookUpEditDefaultCat.ValueMember = "Code";
+            this.RepositoryItemSearchLookUpEditDefaultCat.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.RepositoryItemSearchLookUpEditDefaultCat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             // 
             // repositoryItemCustomSearchLookUpEdit1View
             // 
@@ -5476,7 +5512,7 @@
             // colPickup_Location_Default
             // 
             this.colPickup_Location_Default.Caption = "Pickup Location";
-            this.colPickup_Location_Default.ColumnEdit = this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc;
+            this.colPickup_Location_Default.ColumnEdit = this.RepositoryItemSearchLookUpEditDefaultPUpLoc;
             this.colPickup_Location_Default.FieldName = "Pickup_Location_Default";
             this.colPickup_Location_Default.MinWidth = 21;
             this.colPickup_Location_Default.Name = "colPickup_Location_Default";
@@ -5484,19 +5520,19 @@
             this.colPickup_Location_Default.VisibleIndex = 14;
             this.colPickup_Location_Default.Width = 137;
             // 
-            // repositoryItemCustomSearchLookUpEditDefaultPUpLoc
+            // RepositoryItemSearchLookUpEditDefaultPUpLoc
             // 
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.AutoHeight = false;
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DataSource = this.BindingSourceCodeName;
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.DisplayMember = "DisplayName";
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Name = "repositoryItemCustomSearchLookUpEditDefaultPUpLoc";
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.NullText = "";
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.PopupView = this.gridView1;
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.Name = "RepositoryItemSearchLookUpEditDefaultPUpLoc";
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.NullText = "";
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.PopupView = this.gridView1;
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.ValueMember = "Code";
+            this.RepositoryItemSearchLookUpEditDefaultPUpLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView1
             // 
@@ -5526,7 +5562,7 @@
             // colPickup_Time_Default
             // 
             this.colPickup_Time_Default.Caption = "Pickup Time";
-            this.colPickup_Time_Default.ColumnEdit = this.repositoryItemTimeEditDefault;
+            this.colPickup_Time_Default.ColumnEdit = this.RepositoryItemTimeEditDefault;
             this.colPickup_Time_Default.FieldName = "Pickup_Time_Default";
             this.colPickup_Time_Default.MinWidth = 21;
             this.colPickup_Time_Default.Name = "colPickup_Time_Default";
@@ -5561,7 +5597,7 @@
             // colDropoff_Location_Default
             // 
             this.colDropoff_Location_Default.Caption = "Dropoff Location";
-            this.colDropoff_Location_Default.ColumnEdit = this.repositoryItemCustomSearchLookUpEditDefaultDropLoc;
+            this.colDropoff_Location_Default.ColumnEdit = this.RepositoryItemSearchLookUpEditDefaultDropLoc;
             this.colDropoff_Location_Default.FieldName = "Dropoff_Location_Default";
             this.colDropoff_Location_Default.MinWidth = 21;
             this.colDropoff_Location_Default.Name = "colDropoff_Location_Default";
@@ -5569,19 +5605,19 @@
             this.colDropoff_Location_Default.VisibleIndex = 17;
             this.colDropoff_Location_Default.Width = 158;
             // 
-            // repositoryItemCustomSearchLookUpEditDefaultDropLoc
+            // RepositoryItemSearchLookUpEditDefaultDropLoc
             // 
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.AutoHeight = false;
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.DataSource = this.BindingSourceCodeName;
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.DisplayMember = "DisplayName";
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Name = "repositoryItemCustomSearchLookUpEditDefaultDropLoc";
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.NullText = "";
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.PopupView = this.gridView3;
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.ValueMember = "Code";
-            this.repositoryItemCustomSearchLookUpEditDefaultDropLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.Name = "RepositoryItemSearchLookUpEditDefaultDropLoc";
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.NullText = "";
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.PopupView = this.gridView3;
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.ValueMember = "Code";
+            this.RepositoryItemSearchLookUpEditDefaultDropLoc.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView3
             // 
@@ -5611,7 +5647,7 @@
             // colDropoff_Time_Default
             // 
             this.colDropoff_Time_Default.Caption = "Dropoff Time";
-            this.colDropoff_Time_Default.ColumnEdit = this.repositoryItemTimeEditDefault;
+            this.colDropoff_Time_Default.ColumnEdit = this.RepositoryItemTimeEditDefault;
             this.colDropoff_Time_Default.FieldName = "Dropoff_Time_Default";
             this.colDropoff_Time_Default.MinWidth = 21;
             this.colDropoff_Time_Default.Name = "colDropoff_Time_Default";
@@ -7184,14 +7220,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridControlSupplierProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSupplierProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditMax50)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEditDefault)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultCat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemTimeEditDefault)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultPupLocType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultPUpLoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultPUpLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDefaultDrpLocType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustomSearchLookUpEditDefaultDropLoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditDefaultDropLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditMarkupPct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSpinEditSupplierCommPct)).EndInit();
@@ -7612,23 +7648,23 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnMappingDesc;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnMappingOperator;
         private DevExpress.XtraGrid.Columns.GridColumn colRoomcod_Code_Default;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultCat;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditDefaultCat;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemCustomSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn colCode4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn colPickup_LocationType_Default;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDefaultPupLocType;
         private DevExpress.XtraGrid.Columns.GridColumn colPickup_Location_Default;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultPUpLoc;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditDefaultPUpLoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colCode2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn colPickup_Time_Default;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEditDefault;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit RepositoryItemTimeEditDefault;
         private DevExpress.XtraGrid.Columns.GridColumn colDropoff_LocationType_Default;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDefaultDrpLocType;
         private DevExpress.XtraGrid.Columns.GridColumn colDropoff_Location_Default;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemCustomSearchLookUpEditDefaultDropLoc;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditDefaultDropLoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn colCode6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
@@ -7800,5 +7836,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEditReadOnly;
         private DevExpress.XtraEditors.TextEdit TextEditDefaultTime;
         private DevExpress.XtraWaitForm.ProgressPanel progressPanel1;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonPasteTransfers;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonCopyTransfers;
     }
 }

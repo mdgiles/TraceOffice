@@ -33,7 +33,7 @@ namespace TraceForms
     {
         public void Show(FlexInterfaces.Core.ICoreSys sys)
         {
-            packForm xform1 = new packForm(sys);
+            PackForm xform1 = new PackForm(sys);
             xform1.ShowDialog();
         }
     }

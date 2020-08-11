@@ -1449,7 +1449,7 @@ namespace TraceForms
                     }
                     else {
                         //If we didn't prompt then the user has clicked the Save button where the expectation is that
-                        //the currently selected row will remain selected.  However EntityInstantFeebackSource does not have
+                        //the currently selected row will remain selected.  However EntityInstantFeedbackSource does not have
                         //a way to refresh a single record and refreshing the data source causes the focused row to be reset
                         //back to the top row.  Therefore we store the value of the previous selection and set the row focus
                         //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being

@@ -480,7 +480,9 @@ namespace TraceForms
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
                 _selectedRecord.SupplierCity.Remove(suppCity);
-                _context.SupplierCity.DeleteObject(suppCity);                
+                if (!suppCity.IsNew()) {
+                    _context.SupplierCity.DeleteObject(suppCity);
+                }
                 BindSupplierCities();
             }
         }
