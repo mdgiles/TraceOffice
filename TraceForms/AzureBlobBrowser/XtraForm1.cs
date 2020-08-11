@@ -12,12 +12,12 @@ using DevExpress.XtraEditors.Popup;
 
 namespace TraceForms.AzureBlobBrowser
 {
-    public class AzureBlobBrowserForm : XtraForm
+    public class AzureBlobBrowserForm : PopupContainerForm
     {
-        //public AzureBlobBrowserForm(PopupContainerEdit edit) : base(edit) { }
+        public AzureBlobBrowserForm(PopupContainerEdit edit) : base(edit) { }
 
-        //public new RepositoryItemAzureBlobBrowser Properties {
-        //    get { return base.Properties as RepositoryItemAzureBlobBrowser; }
-        //}
+        public new RepositoryItemAzureBlobBrowser Properties {
+            get { return base.Properties as RepositoryItemAzureBlobBrowser; }
+        }
     }
 }

@@ -287,5 +287,25 @@ namespace TraceForms
             xform1.ShowDialog();
         }
     }
+
+    [ClassInterface(ClassInterfaceType.None)]
+    public class AmenityWrapper : FlexInterfaces.Office.IFlexForm
+    {
+        public void Show(FlexInterfaces.Core.ICoreSys sys)
+        {
+            AmenityForm xform1 = new AmenityForm(sys);
+            xform1.ShowDialog();
+        }
+    }
+
+    [ClassInterface(ClassInterfaceType.None)]
+    public class AmenAssignWrapper : FlexInterfaces.Office.IFlexForm
+    {
+        public void Show(FlexInterfaces.Core.ICoreSys sys)
+        {
+            AmenAssignForm xform1 = new AmenAssignForm(sys);
+            xform1.ShowDialog();
+        }
+    }
 }
 
