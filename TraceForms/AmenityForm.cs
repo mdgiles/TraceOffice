@@ -42,16 +42,12 @@ namespace TraceForms
         Timer _actionConfirmation;
         int? _imageIndex;
 
-        public AmenityForm(FlexCore.CoreSys _sys)
+        public AmenityForm(FlexInterfaces.Core.ICoreSys sys)
         {
             InitializeComponent();
-
-            Connection.EFConnectionString = _sys.Settings.EFConnectionString;
-            _context = new FlextourEntities(_sys.Settings.EFConnectionString);
-            _sys.Connect("");
-            imagesRoot = _sys.Settings.ImagesRoot;
-            _sys.Disconnect();
-            
+            Connection.EFConnectionString = sys.Settings.EFConnectionString;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            imagesRoot = sys.Settings.ImagesRoot;
             SetReadOnly(true);
             ComboBoxEditFilterBySvcType.Focus();
         }
