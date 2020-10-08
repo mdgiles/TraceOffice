@@ -35,7 +35,6 @@
             System.Windows.Forms.Label LabelItemDesc2;
             System.Windows.Forms.Label LabelItemFormat1;
             System.Windows.Forms.Label sVC_TYPELabel;
-            System.Windows.Forms.Label LabelUseFields;
             System.Windows.Forms.Label label1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AmenityForm));
             this.LabelItemDesc1 = new System.Windows.Forms.Label();
@@ -78,13 +77,14 @@
             this.PictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.ComboBoxEditSvcType = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.CheckEditUseNumber = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditUseDistanceFields = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditUseAgeFields = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditUseTimeFields = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditUseDateFields = new DevExpress.XtraEditors.CheckEdit();
             this.CheckEditUseFeeFields = new DevExpress.XtraEditors.CheckEdit();
+            this.ComboBoxEditSvcType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.ButtonEditImage = new DevExpress.XtraEditors.ButtonEdit();
             this.SortOrderSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.pARENT_CODETextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -135,7 +135,6 @@
             LabelItemDesc2 = new System.Windows.Forms.Label();
             LabelItemFormat1 = new System.Windows.Forms.Label();
             sVC_TYPELabel = new System.Windows.Forms.Label();
-            LabelUseFields = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextEditCode.Properties)).BeginInit();
@@ -151,13 +150,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.xtraScrollableControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDistanceFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseAgeFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseTimeFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDateFields.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseFeeFields.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SortOrderSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pARENT_CODETextEdit.Properties)).BeginInit();
@@ -192,45 +193,36 @@
             iTEM_FORMAT2Label.AutoSize = true;
             iTEM_FORMAT2Label.Location = new System.Drawing.Point(483, 256);
             iTEM_FORMAT2Label.Name = "iTEM_FORMAT2Label";
-            iTEM_FORMAT2Label.Size = new System.Drawing.Size(101, 13);
+            iTEM_FORMAT2Label.Size = new System.Drawing.Size(117, 13);
             iTEM_FORMAT2Label.TabIndex = 32;
-            iTEM_FORMAT2Label.Text = "Item 2 Data Format";
+            iTEM_FORMAT2Label.Text = "Additional Data Format";
             // 
             // LabelItemDesc2
             // 
             LabelItemDesc2.AutoSize = true;
             LabelItemDesc2.Location = new System.Drawing.Point(483, 212);
             LabelItemDesc2.Name = "LabelItemDesc2";
-            LabelItemDesc2.Size = new System.Drawing.Size(94, 13);
+            LabelItemDesc2.Size = new System.Drawing.Size(80, 13);
             LabelItemDesc2.TabIndex = 30;
-            LabelItemDesc2.Text = "Item 2 Description";
+            LabelItemDesc2.Text = "Additional Data";
             // 
             // LabelItemFormat1
             // 
             LabelItemFormat1.AutoSize = true;
             LabelItemFormat1.Location = new System.Drawing.Point(483, 171);
             LabelItemFormat1.Name = "LabelItemFormat1";
-            LabelItemFormat1.Size = new System.Drawing.Size(101, 13);
+            LabelItemFormat1.Size = new System.Drawing.Size(67, 13);
             LabelItemFormat1.TabIndex = 28;
-            LabelItemFormat1.Text = "Item 1 Data Format";
+            LabelItemFormat1.Text = "Data Format";
             // 
             // sVC_TYPELabel
             // 
             sVC_TYPELabel.AutoSize = true;
             sVC_TYPELabel.Location = new System.Drawing.Point(2, 9);
             sVC_TYPELabel.Name = "sVC_TYPELabel";
-            sVC_TYPELabel.Size = new System.Drawing.Size(115, 13);
+            sVC_TYPELabel.Size = new System.Drawing.Size(117, 13);
             sVC_TYPELabel.TabIndex = 5;
-            sVC_TYPELabel.Text = "Filter By Service Type:";
-            // 
-            // LabelUseFields
-            // 
-            LabelUseFields.AutoSize = true;
-            LabelUseFields.Location = new System.Drawing.Point(483, 538);
-            LabelUseFields.Name = "LabelUseFields";
-            LabelUseFields.Size = new System.Drawing.Size(55, 13);
-            LabelUseFields.TabIndex = 54;
-            LabelUseFields.Text = "Use Fields";
+            sVC_TYPELabel.Text = "Filter By Product Type:";
             // 
             // label1
             // 
@@ -246,9 +238,9 @@
             this.LabelItemDesc1.AutoSize = true;
             this.LabelItemDesc1.Location = new System.Drawing.Point(483, 135);
             this.LabelItemDesc1.Name = "LabelItemDesc1";
-            this.LabelItemDesc1.Size = new System.Drawing.Size(94, 13);
+            this.LabelItemDesc1.Size = new System.Drawing.Size(34, 13);
             this.LabelItemDesc1.TabIndex = 26;
-            this.LabelItemDesc1.Text = "Item 1 Description";
+            this.LabelItemDesc1.Text = "Name";
             // 
             // BindingSource
             // 
@@ -304,7 +296,7 @@
             this.TreeListAmenities.OptionsView.ShowAutoFilterRow = true;
             this.TreeListAmenities.OptionsView.ShowHorzLines = false;
             this.TreeListAmenities.ParentFieldName = "PARENT_CODE";
-            this.TreeListAmenities.Size = new System.Drawing.Size(400, 720);
+            this.TreeListAmenities.Size = new System.Drawing.Size(400, 669);
             this.TreeListAmenities.TabIndex = 4;
             this.TreeListAmenities.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeList1_NodeCellStyle);
             this.TreeListAmenities.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.TreeList1_BeforeFocusNode);
@@ -592,15 +584,9 @@
             // 
             // xtraScrollableControl1
             // 
+            this.xtraScrollableControl1.Controls.Add(this.groupControl1);
             this.xtraScrollableControl1.Controls.Add(label1);
             this.xtraScrollableControl1.Controls.Add(this.ComboBoxEditSvcType);
-            this.xtraScrollableControl1.Controls.Add(LabelUseFields);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseNumber);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseDistanceFields);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseAgeFields);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseTimeFields);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseDateFields);
-            this.xtraScrollableControl1.Controls.Add(this.CheckEditUseFeeFields);
             this.xtraScrollableControl1.Controls.Add(this.ButtonEditImage);
             this.xtraScrollableControl1.Controls.Add(this.TreeListAmenities);
             this.xtraScrollableControl1.Controls.Add(iMAGELabel);
@@ -627,8 +613,82 @@
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 31);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(990, 711);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(963, 701);
             this.xtraScrollableControl1.TabIndex = 27;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.CheckEditUseNumber);
+            this.groupControl1.Controls.Add(this.CheckEditUseDistanceFields);
+            this.groupControl1.Controls.Add(this.CheckEditUseAgeFields);
+            this.groupControl1.Controls.Add(this.CheckEditUseTimeFields);
+            this.groupControl1.Controls.Add(this.CheckEditUseDateFields);
+            this.groupControl1.Controls.Add(this.CheckEditUseFeeFields);
+            this.groupControl1.Location = new System.Drawing.Point(484, 532);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(448, 66);
+            this.groupControl1.TabIndex = 57;
+            this.groupControl1.Text = "Use Fields";
+            // 
+            // CheckEditUseNumber
+            // 
+            this.CheckEditUseNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseNumber", true));
+            this.CheckEditUseNumber.Location = new System.Drawing.Point(372, 33);
+            this.CheckEditUseNumber.Name = "CheckEditUseNumber";
+            this.CheckEditUseNumber.Properties.Caption = "Number";
+            this.CheckEditUseNumber.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseNumber.Size = new System.Drawing.Size(60, 19);
+            this.CheckEditUseNumber.TabIndex = 59;
+            // 
+            // CheckEditUseDistanceFields
+            // 
+            this.CheckEditUseDistanceFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDistanceFields", true));
+            this.CheckEditUseDistanceFields.Location = new System.Drawing.Point(284, 33);
+            this.CheckEditUseDistanceFields.Name = "CheckEditUseDistanceFields";
+            this.CheckEditUseDistanceFields.Properties.Caption = "Distance";
+            this.CheckEditUseDistanceFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseDistanceFields.Size = new System.Drawing.Size(72, 19);
+            this.CheckEditUseDistanceFields.TabIndex = 58;
+            // 
+            // CheckEditUseAgeFields
+            // 
+            this.CheckEditUseAgeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseAgeFields", true));
+            this.CheckEditUseAgeFields.Location = new System.Drawing.Point(75, 33);
+            this.CheckEditUseAgeFields.Name = "CheckEditUseAgeFields";
+            this.CheckEditUseAgeFields.Properties.Caption = "Ages";
+            this.CheckEditUseAgeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseAgeFields.Size = new System.Drawing.Size(45, 19);
+            this.CheckEditUseAgeFields.TabIndex = 57;
+            // 
+            // CheckEditUseTimeFields
+            // 
+            this.CheckEditUseTimeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseTimeFields", true));
+            this.CheckEditUseTimeFields.Location = new System.Drawing.Point(213, 33);
+            this.CheckEditUseTimeFields.Name = "CheckEditUseTimeFields";
+            this.CheckEditUseTimeFields.Properties.Caption = "Times";
+            this.CheckEditUseTimeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseTimeFields.Size = new System.Drawing.Size(49, 19);
+            this.CheckEditUseTimeFields.TabIndex = 56;
+            // 
+            // CheckEditUseDateFields
+            // 
+            this.CheckEditUseDateFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDateFields", true));
+            this.CheckEditUseDateFields.Location = new System.Drawing.Point(144, 33);
+            this.CheckEditUseDateFields.Name = "CheckEditUseDateFields";
+            this.CheckEditUseDateFields.Properties.Caption = "Dates";
+            this.CheckEditUseDateFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseDateFields.Size = new System.Drawing.Size(52, 19);
+            this.CheckEditUseDateFields.TabIndex = 55;
+            // 
+            // CheckEditUseFeeFields
+            // 
+            this.CheckEditUseFeeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseFeeFields", true));
+            this.CheckEditUseFeeFields.Location = new System.Drawing.Point(7, 33);
+            this.CheckEditUseFeeFields.Name = "CheckEditUseFeeFields";
+            this.CheckEditUseFeeFields.Properties.Caption = "Fee";
+            this.CheckEditUseFeeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CheckEditUseFeeFields.Size = new System.Drawing.Size(43, 19);
+            this.CheckEditUseFeeFields.TabIndex = 54;
             // 
             // ComboBoxEditSvcType
             // 
@@ -644,66 +704,6 @@
             this.ComboBoxEditSvcType.Size = new System.Drawing.Size(100, 20);
             this.ComboBoxEditSvcType.TabIndex = 56;
             this.ComboBoxEditSvcType.Leave += new System.EventHandler(this.ComboBoxEditSvcType_Leave);
-            // 
-            // CheckEditUseNumber
-            // 
-            this.CheckEditUseNumber.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseNumber", true));
-            this.CheckEditUseNumber.Location = new System.Drawing.Point(777, 618);
-            this.CheckEditUseNumber.Name = "CheckEditUseNumber";
-            this.CheckEditUseNumber.Properties.Caption = "Use Number";
-            this.CheckEditUseNumber.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseNumber.Size = new System.Drawing.Size(81, 19);
-            this.CheckEditUseNumber.TabIndex = 53;
-            // 
-            // CheckEditUseDistanceFields
-            // 
-            this.CheckEditUseDistanceFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDistanceFields", true));
-            this.CheckEditUseDistanceFields.Location = new System.Drawing.Point(621, 618);
-            this.CheckEditUseDistanceFields.Name = "CheckEditUseDistanceFields";
-            this.CheckEditUseDistanceFields.Properties.Caption = "Use Distance Fields";
-            this.CheckEditUseDistanceFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseDistanceFields.Size = new System.Drawing.Size(114, 19);
-            this.CheckEditUseDistanceFields.TabIndex = 52;
-            // 
-            // CheckEditUseAgeFields
-            // 
-            this.CheckEditUseAgeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseAgeFields", true));
-            this.CheckEditUseAgeFields.Location = new System.Drawing.Point(504, 618);
-            this.CheckEditUseAgeFields.Name = "CheckEditUseAgeFields";
-            this.CheckEditUseAgeFields.Properties.Caption = "Use Age Fields";
-            this.CheckEditUseAgeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseAgeFields.Size = new System.Drawing.Size(93, 19);
-            this.CheckEditUseAgeFields.TabIndex = 51;
-            // 
-            // CheckEditUseTimeFields
-            // 
-            this.CheckEditUseTimeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseTimeFields", true));
-            this.CheckEditUseTimeFields.Location = new System.Drawing.Point(767, 572);
-            this.CheckEditUseTimeFields.Name = "CheckEditUseTimeFields";
-            this.CheckEditUseTimeFields.Properties.Caption = "Use Time Fields";
-            this.CheckEditUseTimeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseTimeFields.Size = new System.Drawing.Size(101, 19);
-            this.CheckEditUseTimeFields.TabIndex = 50;
-            // 
-            // CheckEditUseDateFields
-            // 
-            this.CheckEditUseDateFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseDateFields", true));
-            this.CheckEditUseDateFields.Location = new System.Drawing.Point(627, 572);
-            this.CheckEditUseDateFields.Name = "CheckEditUseDateFields";
-            this.CheckEditUseDateFields.Properties.Caption = "Use Date Fields";
-            this.CheckEditUseDateFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseDateFields.Size = new System.Drawing.Size(102, 19);
-            this.CheckEditUseDateFields.TabIndex = 49;
-            // 
-            // CheckEditUseFeeFields
-            // 
-            this.CheckEditUseFeeFields.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "UseFeeFields", true));
-            this.CheckEditUseFeeFields.Location = new System.Drawing.Point(504, 572);
-            this.CheckEditUseFeeFields.Name = "CheckEditUseFeeFields";
-            this.CheckEditUseFeeFields.Properties.Caption = "Use Fee Fields";
-            this.CheckEditUseFeeFields.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CheckEditUseFeeFields.Size = new System.Drawing.Size(93, 19);
-            this.CheckEditUseFeeFields.TabIndex = 48;
             // 
             // ButtonEditImage
             // 
@@ -1063,15 +1063,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager;
-            this.barDockControlTop.Size = new System.Drawing.Size(990, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(963, 31);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 732);
             this.barDockControlBottom.Manager = this.BarManager;
-            this.barDockControlBottom.Size = new System.Drawing.Size(990, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(963, 0);
             // 
             // barDockControlLeft
             // 
@@ -1079,21 +1079,21 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             this.barDockControlLeft.Manager = this.BarManager;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 711);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 701);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(990, 31);
+            this.barDockControlRight.Location = new System.Drawing.Point(963, 31);
             this.barDockControlRight.Manager = this.BarManager;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 701);
             // 
             // AmenityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 742);
+            this.ClientSize = new System.Drawing.Size(963, 732);
             this.Controls.Add(this.PanelControlStatus);
             this.Controls.Add(this.LabelControlDown);
             this.Controls.Add(this.LabelControlUp);
@@ -1124,13 +1124,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.xtraScrollableControl1.ResumeLayout(false);
             this.xtraScrollableControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDistanceFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseAgeFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseTimeFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseDateFields.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEditUseFeeFields.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ButtonEditImage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SortOrderSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pARENT_CODETextEdit.Properties)).EndInit();
@@ -1231,13 +1233,14 @@
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
+        private System.Windows.Forms.Label LabelItemDesc1;
+        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditSvcType;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseNumber;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseDistanceFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseAgeFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseTimeFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseDateFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseFeeFields;
-        private System.Windows.Forms.Label LabelItemDesc1;
-        private DevExpress.XtraEditors.ComboBoxEdit ComboBoxEditSvcType;
     }
 }

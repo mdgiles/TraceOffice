@@ -129,5 +129,14 @@ namespace TraceForms
             return (((entity.EntityState & System.Data.Entity.EntityState.Added) == System.Data.Entity.EntityState.Added)
                 || ((entity.EntityState & System.Data.Entity.EntityState.Detached) == System.Data.Entity.EntityState.Detached));
         }
+
+        public static bool IsDetached(this EntityObject entity)
+        {
+            if (entity == null)
+                return false;
+
+            //Detached means the entity is not attached to the context
+            return (entity.EntityState & System.Data.Entity.EntityState.Detached) == System.Data.Entity.EntityState.Detached;
+        }
     }
 }

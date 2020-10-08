@@ -899,24 +899,24 @@ namespace TraceForms
 
         private void SetFieldStates(string type)
         {
-            SearchLookupEditProduct.Enabled = true;
-            SearchLookupEditCategory.Enabled = true;
-            CheckEditAllCategory.Enabled = true;
-            DateEditSvcStartDate.Enabled = true;
-            DateEditSvcEndDate.Enabled = true;
+            SearchLookupEditProduct.ReadOnly = true;
+            SearchLookupEditCategory.ReadOnly = true;
+            CheckEditAllCategory.ReadOnly = true;
+            DateEditSvcStartDate.ReadOnly = true;
+            DateEditSvcEndDate.ReadOnly = true;
 
             LoadCodeLookupValues(type, SearchLookupEditProduct);
 
             if (type == "AGY") {
-                SearchLookupEditProduct.Enabled = false;
+                SearchLookupEditProduct.ReadOnly = false;
                 SearchLookupEditCategory.Text = string.Empty;
-                SearchLookupEditCategory.Enabled = false;
+                SearchLookupEditCategory.ReadOnly = false;
                 CheckEditAllCategory.Checked = false;
-                CheckEditAllCategory.Enabled = false;
+                CheckEditAllCategory.ReadOnly = false;
                 DateEditSvcStartDate.Text = string.Empty;
-                DateEditSvcStartDate.Enabled = false;
+                DateEditSvcStartDate.ReadOnly = false;
                 DateEditSvcEndDate.Text = string.Empty;
-                DateEditSvcEndDate.Enabled = false;
+                DateEditSvcEndDate.ReadOnly = false;
             }
         }
 

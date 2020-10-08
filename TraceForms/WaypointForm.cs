@@ -158,7 +158,7 @@ namespace TraceForms
                             }
                             else {
                                 RefreshRecord();
-                            }
+                            }  
                             return true;
                         }
                         else if (result == DialogResult.Cancel) {

@@ -27,7 +27,7 @@ namespace TraceForms
     public partial class PackForm : DevExpress.XtraEditors.XtraForm
     {
         FlextourEntities _context;
-        PACK _selectedRecord;
+        PACK _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         ICoreSys _sys;
@@ -123,6 +123,7 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             RepositoryItemSearchLookUpEditDefaultCat.DataSource = categories;
+            RepositoryItemSearchLookUpEditMappingCat.DataSource = categories;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -255,18 +256,27 @@ namespace TraceForms
                         else if (result == DialogResult.Cancel) {
                             return false;
                         }
+                        //If we prompted then it's because the user is changing the selected record so we don't need
+                        //to keep track of the previously selected record
+                        _previousRecord = null;
+                    }
+                    else {
+                        //If we didn't prompt then the user has clicked the Save button where the expectation is that
+                        //the currently selected row will remain selected.  However EntityInstantFeedbackSource does not have
+                        //a way to refresh a single record and refreshing the data source causes the focused row to be reset
+                        //back to the top row.  Therefore we store the value of the previous selection and set the row focus
+                        //back in GridView AsyncCompleted.  This means there will be a flash of the incorrect top row being
+                        //displayed before being set back to the previously selected row. DevExpress have no way around this.
+                        _previousRecord = _selectedRecord;
                     }
                     if (!ValidateAll())
                         return false;
 
-                    if (_selectedRecord.EntityState == EntityState.Detached) {
+                    if (_selectedRecord.EntityState == System.Data.Entity.EntityState.Detached) {
                         _context.PACK.AddObject(_selectedRecord);
                     }
                     SetUpdateFields(_selectedRecord);
                     _context.SaveChanges();
-                    if (newRec || nameChanged) {
-                        AccountingAPI.InvokeForProduct(_sys.Settings.TourAccountingURL, "PKG", _selectedRecord.CODE);
-                    }
                     EntityInstantFeedbackSource.Refresh();
                     ShowActionConfirmation("Record Saved");
                 }
@@ -279,6 +289,33 @@ namespace TraceForms
                 SetBindings();
                 return false;
             }
+        }
+
+        private void GridViewLookup_AsyncCompleted(object sender, EventArgs e)
+        {
+            if (_previousRecord != null && _selectedRecord != null && !_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                int rowHandle = view.LocateByValue("CODE", _previousRecord.CODE, OnRowSearchComplete);
+                if (rowHandle != DevExpress.Data.DataController.OperationInProgress) {
+                    SetFocusedRow(GridViewLookup, rowHandle);
+                }
+            }
+        }
+
+        void OnRowSearchComplete(object rh)
+        {
+            int rowHandle = (int)rh;
+            if (GridViewLookup.IsValidRowHandle(rowHandle)) {
+                SetFocusedRow(GridViewLookup, rowHandle);
+            }
+        }
+
+        void SetFocusedRow(GridView view, int rowHandle)
+        {
+            //precaution to make sure that any subsequent row changes don't try to force the selected
+            //row back to the previously selected one again
+            _previousRecord = null;
+            view.FocusedRowHandle = rowHandle;
         }
 
         private void SetUpdateFields(PACK record)
@@ -822,7 +859,7 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!suppProduct.IsNew()) {
+                if (!suppProduct.IsDetached()) {
                     _context.SupplierProduct.DeleteObject(suppProduct);
                 }
                 BindSupplierProducts();
@@ -842,11 +879,12 @@ namespace TraceForms
 
         void GridViewSupplierProduct_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == gridColumnSupplierGuid) {
+            GridView view = (GridView)sender;
+            if (e.Column.FieldName == gridColumnSupplierGuid.FieldName) {
                 e.RepositoryItem = _supplierCombo;
             }
-            else if (e.Column == colPickup_Location_Default) {
-                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
+            else if (e.Column.FieldName == colPickup_Location_Default.FieldName) {
+                string type = view.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
                     RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
                 }
@@ -854,8 +892,8 @@ namespace TraceForms
                     RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = null;
                 }
             }
-            else if (e.Column == colDropoff_Location_Default) {
-                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
+            else if (e.Column.FieldName == colDropoff_Location_Default.FieldName) {
+                string type = view.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
                     RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
                 }
@@ -915,7 +953,6 @@ namespace TraceForms
                 Product_Type = "PKG"
             };
             _selectedRecord.SupplierCategory.Add(cat);
-            _context.SupplierCategory.AddObject(cat);//Added this so that the delete routine doesn't crash when attempting to delete an unsaved mapping
             BindSupplierCategories();
             GridViewSupplierCategory.FocusedRowHandle = BindingSourceSupplierCategory.Count - 1;
         }
@@ -928,14 +965,16 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.SupplierCategory.DeleteObject(cat);
+                if (!cat.IsDetached()) {
+                    _context.SupplierCategory.DeleteObject(cat);
+                }
                 BindSupplierCategories();
             }
         }
 
         private void GridViewSupplierCategory_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == colSupplierCategory_Supplier_GUID) {
+            if (e.Column.FieldName == colSupplierCategory_Supplier_GUID.FieldName) {
                 e.RepositoryItem = _supplierCombo;
             }
         }

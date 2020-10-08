@@ -948,6 +948,7 @@
             this.GridViewLookup.PreviewIndent = 0;
             this.GridViewLookup.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridViewLookup_FocusedRowChanged);
             this.GridViewLookup.BeforeLeaveRow += new DevExpress.XtraGrid.Views.Base.RowAllowEventHandler(this.GridViewLookup_BeforeLeaveRow);
+            this.GridViewLookup.AsyncCompleted += new System.EventHandler(this.GridViewLookup_AsyncCompleted);
             // 
             // ColumnCodePkg
             // 
@@ -4326,7 +4327,7 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 527);
             // 
-            // packForm
+            // PackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -4341,7 +4342,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MinimizeBox = false;
-            this.Name = "packForm";
+            this.Name = "PackForm";
             this.ShowInTaskbar = false;
             this.Text = "Package General Information";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.packForm_FormClosing);
