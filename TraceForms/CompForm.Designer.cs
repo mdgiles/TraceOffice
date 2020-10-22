@@ -2165,6 +2165,7 @@
             this.SearchLookUpEditRegion.Properties.ValueMember = "Code";
             this.SearchLookUpEditRegion.Size = new System.Drawing.Size(260, 20);
             this.SearchLookUpEditRegion.TabIndex = 282;
+            this.SearchLookUpEditRegion.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
             // 
             // gridView16
             // 

@@ -92,6 +92,13 @@ namespace TraceForms
         //    return entities.IsModified(context);
         //}
 
+        /// <summary>
+        /// Determines whether a collection of entities or any of the entities in the collection have been modified
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static bool IsModified<TEntity>(this IEnumerable<TEntity> entities, ObjectContext context) where TEntity : EntityObject
         {
             //Deleted entities are no longer in the collection directly, but are still tracked by the object state manager

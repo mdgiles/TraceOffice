@@ -280,6 +280,13 @@ namespace TraceForms
             BindingSourceBusRoutes.DataSource = _context.BusRoute
                 .OrderBy(r => r.Name);
 
+            var regions = new List<CodeName> {
+                new CodeName(null)
+            };
+            regions.AddRange(_context.REGION
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            SearchLookUpEditRegion.Properties.DataSource = regions;
         }
 
         private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)

@@ -53,10 +53,9 @@
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.BarManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
+            this.BarButtonItemUnassign = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemAssign = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemDelete = new DevExpress.XtraBars.BarButtonItem();
             this.BarButtonItemSave = new DevExpress.XtraBars.BarButtonItem();
-            this.BarButtonItemUses = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -103,6 +102,12 @@
             this.colName1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SimpleButtonUnassign2 = new DevExpress.XtraEditors.SimpleButton();
             this.SimpleButtonAssign2 = new DevExpress.XtraEditors.SimpleButton();
+            this.LabelControlAttributes = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.GridLookUpEditRatePlan = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             sVC_TYPELabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditSvcType.Properties)).BeginInit();
@@ -124,6 +129,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditRatePlan.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // sVC_TYPELabel
@@ -160,6 +167,9 @@
             // 
             // TreeListAssigned
             // 
+            this.TreeListAssigned.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TreeListAssigned.Caption = "Assigned amenities";
             this.TreeListAssigned.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colAmenityCode,
@@ -172,7 +182,7 @@
             this.columnItem1,
             this.colItemDesc1d});
             this.TreeListAssigned.KeyFieldName = "";
-            this.TreeListAssigned.Location = new System.Drawing.Point(758, 52);
+            this.TreeListAssigned.Location = new System.Drawing.Point(757, 52);
             this.TreeListAssigned.Name = "TreeListAssigned";
             this.TreeListAssigned.OptionsBehavior.Editable = false;
             this.TreeListAssigned.OptionsView.ShowHorzLines = false;
@@ -180,7 +190,7 @@
             this.TreeListAssigned.ParentFieldName = "";
             this.TreeListAssigned.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.TreeListAssigned.Size = new System.Drawing.Size(346, 648);
+            this.TreeListAssigned.Size = new System.Drawing.Size(346, 423);
             this.TreeListAssigned.TabIndex = 5;
             this.TreeListAssigned.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeListAssigned_NodeCellStyle);
             this.TreeListAssigned.AfterFocusNode += new DevExpress.XtraTreeList.NodeEventHandler(this.TreeListAssigned_AfterFocusNode);
@@ -257,7 +267,7 @@
             // 
             // SimpleButtonSearch
             // 
-            this.SimpleButtonSearch.Location = new System.Drawing.Point(515, 149);
+            this.SimpleButtonSearch.Location = new System.Drawing.Point(530, 173);
             this.SimpleButtonSearch.Name = "SimpleButtonSearch";
             this.SimpleButtonSearch.Size = new System.Drawing.Size(75, 23);
             this.SimpleButtonSearch.TabIndex = 8;
@@ -266,7 +276,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(400, 124);
+            this.labelControl3.Location = new System.Drawing.Point(400, 120);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(45, 13);
             this.labelControl3.TabIndex = 11;
@@ -306,9 +316,8 @@
             this.BarManager1.Form = this;
             this.BarManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.BarButtonItemAssign,
-            this.BarButtonItemDelete,
-            this.BarButtonItemSave,
-            this.BarButtonItemUses});
+            this.BarButtonItemUnassign,
+            this.BarButtonItemSave});
             this.BarManager1.MaxItemId = 4;
             // 
             // bar1
@@ -318,32 +327,29 @@
             this.bar1.DockRow = 0;
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemUnassign),
             new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemAssign),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave),
-            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemUses)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.BarButtonItemSave)});
             this.bar1.OptionsBar.AllowQuickCustomization = false;
             this.bar1.OptionsBar.DrawDragBorder = false;
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
             // 
+            // BarButtonItemUnassign
+            // 
+            this.BarButtonItemUnassign.Caption = "Unassign selected amenity";
+            this.BarButtonItemUnassign.Id = 1;
+            this.BarButtonItemUnassign.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BarButtonItemUnassign.ImageOptions.SvgImage")));
+            this.BarButtonItemUnassign.Name = "BarButtonItemUnassign";
+            this.BarButtonItemUnassign.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUnassign_ItemClick);
+            // 
             // BarButtonItemAssign
             // 
             this.BarButtonItemAssign.Caption = " ";
             this.BarButtonItemAssign.Id = 0;
-            this.BarButtonItemAssign.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemAssign.ImageOptions.Image")));
-            this.BarButtonItemAssign.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemAssign.ImageOptions.LargeImage")));
+            this.BarButtonItemAssign.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BarButtonItemAssign.ImageOptions.SvgImage")));
             this.BarButtonItemAssign.Name = "BarButtonItemAssign";
             this.BarButtonItemAssign.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemAssign_ItemClick);
-            // 
-            // BarButtonItemDelete
-            // 
-            this.BarButtonItemDelete.Caption = "Unassign selected amenity";
-            this.BarButtonItemDelete.Id = 1;
-            this.BarButtonItemDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.Image")));
-            this.BarButtonItemDelete.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemDelete.ImageOptions.LargeImage")));
-            this.BarButtonItemDelete.Name = "BarButtonItemDelete";
-            this.BarButtonItemDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUnassign_ItemClick);
             // 
             // BarButtonItemSave
             // 
@@ -354,23 +360,13 @@
             this.BarButtonItemSave.Name = "BarButtonItemSave";
             this.BarButtonItemSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemSave_ItemClick);
             // 
-            // BarButtonItemUses
-            // 
-            this.BarButtonItemUses.Caption = "Show Amenity Uses";
-            this.BarButtonItemUses.Id = 3;
-            this.BarButtonItemUses.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUses.ImageOptions.Image")));
-            this.BarButtonItemUses.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BarButtonItemUses.ImageOptions.LargeImage")));
-            this.BarButtonItemUses.Name = "BarButtonItemUses";
-            this.BarButtonItemUses.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.BarButtonItemUses.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemUses_ItemClick);
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.BarManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1553, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(1103, 31);
             // 
             // barDockControlBottom
             // 
@@ -378,7 +374,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 712);
             this.barDockControlBottom.Manager = this.BarManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1553, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1103, 0);
             // 
             // barDockControlLeft
             // 
@@ -392,12 +388,14 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1553, 31);
+            this.barDockControlRight.Location = new System.Drawing.Point(1103, 31);
             this.barDockControlRight.Manager = this.BarManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 681);
             // 
             // TreeListUnassigned
             // 
+            this.TreeListUnassigned.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.TreeListUnassigned.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colITEM_DESC1,
             this.colCode,
@@ -456,7 +454,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(482, 178);
+            this.labelControl4.Location = new System.Drawing.Point(497, 202);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(28, 14);
             this.labelControl4.TabIndex = 42;
@@ -468,7 +466,7 @@
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Appearance.Options.UseForeColor = true;
-            this.labelControl5.Location = new System.Drawing.Point(513, 198);
+            this.labelControl5.Location = new System.Drawing.Point(528, 222);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(95, 14);
             this.labelControl5.TabIndex = 43;
@@ -480,7 +478,7 @@
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl6.Appearance.Options.UseFont = true;
             this.labelControl6.Appearance.Options.UseForeColor = true;
-            this.labelControl6.Location = new System.Drawing.Point(513, 178);
+            this.labelControl6.Location = new System.Drawing.Point(528, 202);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(120, 14);
             this.labelControl6.TabIndex = 44;
@@ -541,10 +539,12 @@
             // 
             // PropertyGridControlAmenityData
             // 
+            this.PropertyGridControlAmenityData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PropertyGridControlAmenityData.AutoGenerateRows = false;
             this.PropertyGridControlAmenityData.DefaultEditors.AddRange(new DevExpress.XtraVerticalGrid.Rows.DefaultEditor[] {
             new DevExpress.XtraVerticalGrid.Rows.DefaultEditor(typeof(bool), this.repositoryItemCheckEdit2)});
-            this.PropertyGridControlAmenityData.Location = new System.Drawing.Point(758, 500);
+            this.PropertyGridControlAmenityData.Location = new System.Drawing.Point(757, 500);
             this.PropertyGridControlAmenityData.Name = "PropertyGridControlAmenityData";
             this.PropertyGridControlAmenityData.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
@@ -570,6 +570,7 @@
             this.rowIsPresent});
             this.PropertyGridControlAmenityData.Size = new System.Drawing.Size(346, 200);
             this.PropertyGridControlAmenityData.TabIndex = 50;
+            this.PropertyGridControlAmenityData.Visible = false;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -711,7 +712,7 @@
             // GridLookupEditCategory
             // 
             this.GridLookupEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_CAT", true));
-            this.GridLookupEditCategory.Location = new System.Drawing.Point(451, 121);
+            this.GridLookupEditCategory.Location = new System.Drawing.Point(451, 117);
             this.GridLookupEditCategory.Name = "GridLookupEditCategory";
             this.GridLookupEditCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.GridLookupEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -730,6 +731,7 @@
             this.GridLookupEditCategory.TabIndex = 14;
             this.GridLookupEditCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditItemCategory_ProcessNewValue);
             this.GridLookupEditCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            this.GridLookupEditCategory.EditValueChanged += new System.EventHandler(this.GridLookupEditCategory_EditValueChanged);
             // 
             // gridLookUpEdit1View
             // 
@@ -758,30 +760,103 @@
             // 
             // SimpleButtonUnassign2
             // 
-            this.SimpleButtonUnassign2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonUnassign2.ImageOptions.Image")));
-            this.SimpleButtonUnassign2.Location = new System.Drawing.Point(712, 245);
+            this.SimpleButtonUnassign2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.SimpleButtonUnassign2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SimpleButtonUnassign2.ImageOptions.SvgImage")));
+            this.SimpleButtonUnassign2.Location = new System.Drawing.Point(662, 245);
             this.SimpleButtonUnassign2.Name = "SimpleButtonUnassign2";
-            this.SimpleButtonUnassign2.Size = new System.Drawing.Size(40, 40);
+            this.SimpleButtonUnassign2.Size = new System.Drawing.Size(89, 40);
             this.SimpleButtonUnassign2.TabIndex = 55;
+            this.SimpleButtonUnassign2.Text = "Unassign";
             this.SimpleButtonUnassign2.ToolTip = "Unassign selected amenity";
             this.SimpleButtonUnassign2.Click += new System.EventHandler(this.SimpleButtonUnassign2_Click);
             // 
             // SimpleButtonAssign2
             // 
-            this.SimpleButtonAssign2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonAssign2.ImageOptions.Image")));
+            this.SimpleButtonAssign2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.RightCenter;
+            this.SimpleButtonAssign2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("SimpleButtonAssign2.ImageOptions.SvgImage")));
             this.SimpleButtonAssign2.Location = new System.Drawing.Point(352, 245);
             this.SimpleButtonAssign2.Name = "SimpleButtonAssign2";
-            this.SimpleButtonAssign2.Size = new System.Drawing.Size(40, 40);
+            this.SimpleButtonAssign2.Size = new System.Drawing.Size(89, 40);
             this.SimpleButtonAssign2.TabIndex = 56;
+            this.SimpleButtonAssign2.Text = "Assign";
             this.SimpleButtonAssign2.ToolTip = "Assign selected amenity";
             this.SimpleButtonAssign2.Click += new System.EventHandler(this.SimpleButtonAssign2_Click);
+            // 
+            // LabelControlAttributes
+            // 
+            this.LabelControlAttributes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LabelControlAttributes.Location = new System.Drawing.Point(757, 481);
+            this.LabelControlAttributes.Name = "LabelControlAttributes";
+            this.LabelControlAttributes.Size = new System.Drawing.Size(89, 13);
+            this.LabelControlAttributes.TabIndex = 61;
+            this.LabelControlAttributes.Text = "Amenity attributes";
+            this.LabelControlAttributes.Visible = false;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(400, 146);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(46, 13);
+            this.labelControl1.TabIndex = 66;
+            this.labelControl1.Text = "Rate plan";
+            // 
+            // GridLookUpEditRatePlan
+            // 
+            this.GridLookUpEditRatePlan.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_ROOM", true));
+            this.GridLookUpEditRatePlan.Location = new System.Drawing.Point(451, 143);
+            this.GridLookUpEditRatePlan.Name = "GridLookUpEditRatePlan";
+            this.GridLookUpEditRatePlan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.GridLookUpEditRatePlan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.GridLookUpEditRatePlan.Properties.DataSource = this.BindingSourceCodeName;
+            this.GridLookUpEditRatePlan.Properties.DisplayMember = "DisplayName";
+            this.GridLookUpEditRatePlan.Properties.ImmediatePopup = true;
+            this.GridLookUpEditRatePlan.Properties.MaxLength = 16;
+            this.GridLookUpEditRatePlan.Properties.NullText = "";
+            this.GridLookUpEditRatePlan.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.GridLookUpEditRatePlan.Properties.PopupSizeable = false;
+            this.GridLookUpEditRatePlan.Properties.PopupView = this.gridView1;
+            this.GridLookUpEditRatePlan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.GridLookUpEditRatePlan.Properties.ValueMember = "Code";
+            this.GridLookUpEditRatePlan.Size = new System.Drawing.Size(260, 20);
+            this.GridLookUpEditRatePlan.TabIndex = 67;
+            this.GridLookUpEditRatePlan.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditRatePlan_ProcessNewValue);
+            this.GridLookUpEditRatePlan.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "Code";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
             // 
             // AmenAssignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1553, 712);
+            this.ClientSize = new System.Drawing.Size(1103, 712);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.GridLookUpEditRatePlan);
+            this.Controls.Add(this.LabelControlAttributes);
             this.Controls.Add(this.SimpleButtonAssign2);
             this.Controls.Add(this.SimpleButtonUnassign2);
             this.Controls.Add(this.PanelControlStatus);
@@ -829,6 +904,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditRatePlan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -866,14 +943,13 @@
         private DevExpress.XtraBars.BarManager BarManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemAssign;
-        private DevExpress.XtraBars.BarButtonItem BarButtonItemDelete;
+        private DevExpress.XtraBars.BarButtonItem BarButtonItemUnassign;
         private DevExpress.XtraBars.BarButtonItem BarButtonItemSave;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraBars.BarAndDockingController barAndDockingController1;
-        private DevExpress.XtraBars.BarButtonItem BarButtonItemUses;
         private System.Windows.Forms.BindingSource BindingSourceCodeName;
         private DevExpress.XtraVerticalGrid.PropertyGridControl PropertyGridControlAmenityData;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
@@ -908,5 +984,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName1;
         private DevExpress.XtraEditors.SimpleButton SimpleButtonAssign2;
         private DevExpress.XtraEditors.SimpleButton SimpleButtonUnassign2;
+        private DevExpress.XtraEditors.LabelControl LabelControlAttributes;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.GridLookUpEdit GridLookUpEditRatePlan;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }
