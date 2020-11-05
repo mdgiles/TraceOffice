@@ -39,8 +39,9 @@ namespace TraceForms
         bool _isPass = false;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
-        Dictionary<String, List<CodeName>> _locationLookups = new Dictionary<String, List<CodeName>>();
-        Dictionary<String, List<CodeName>> _passLookups = new Dictionary<String, List<CodeName>>();
+        Dictionary<string, List<CodeName>> _locationLookups = new Dictionary<string, List<CodeName>>();
+        Dictionary<string, RepositoryItemSearchLookUpEdit> _repos = new Dictionary<string, RepositoryItemSearchLookUpEdit>();
+        Dictionary<string, List<CodeName>> _passLookups = new Dictionary<string, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
         Dictionary<String, List<CodeName>> _ServPackTypeLookups = new Dictionary<String, List<CodeName>>();
         private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
@@ -110,6 +111,8 @@ namespace TraceForms
             SearchLookupEditCity.Properties.DataSource = cities;
             SearchLookupEditDepCity.Properties.DataSource = cities;
             _locationLookups.Add("CTY", cities);
+            RepositoryItemSearchLookUpEditCty.DataSource = _locationLookups["CTY"];
+            _repos.Add("CTY", RepositoryItemSearchLookUpEditCty);
             //repositoryItemImageComboboxLocation.DataSource = cities;
 
 
@@ -203,6 +206,8 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             _locationLookups.Add("HTL", hotels);
+            RepositoryItemSearchLookUpEditHtl.DataSource = _locationLookups["HTL"];
+            _repos.Add("HTL", RepositoryItemSearchLookUpEditHtl);
             _passLookups.Add("HTL", hotels);
 
             //repositoryItemImageComboboxLocation.DataSource = hotels;
@@ -214,6 +219,8 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             _locationLookups.Add("WAY", waypoints);
+            RepositoryItemSearchLookUpEditWay.DataSource = _locationLookups["WAY"];
+            _repos.Add("WAY", RepositoryItemSearchLookUpEditWay);
             //repositoryItemImageComboboxLocation.DataSource = waypoints;
 
             var components = new List<CodeName>();
@@ -273,6 +280,13 @@ namespace TraceForms
             BindingSourceBusRoutes.DataSource = _context.BusRoute
                 .OrderBy(r => r.Name);
 
+            var regions = new List<CodeName> {
+                new CodeName(null)
+            };
+            regions.AddRange(_context.REGION
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            SearchLookUpEditRegion.Properties.DataSource = regions;
         }
 
         private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
@@ -331,6 +345,7 @@ namespace TraceForms
                 _selectedRecord = ((COMP)BindingSource.Current);
                 _pupDrp = _selectedRecord.PUDRP_REQ;
                 SetPupDrpCheckboxes();
+                EnableTransferPointsTab(_selectedRecord.TRSFR_TYP);
                 LoadAndBindSupplierProducts();
                 LoadAndBindSupplierCategories();
                 LoadAndBindMemberships();
@@ -596,6 +611,33 @@ namespace TraceForms
                 SetBindings();
                 return false;
             }
+        }
+
+        private void GridViewLookup_AsyncCompleted(object sender, EventArgs e)
+        {
+            if (_previousRecord != null && _selectedRecord != null && !_ignoreLeaveRow) {
+                GridView view = (GridView)sender;
+                int rowHandle = view.LocateByValue("CODE", _previousRecord.CODE, OnRowSearchComplete);
+                if (rowHandle != DevExpress.Data.DataController.OperationInProgress) {
+                    SetFocusedRow(GridViewLookup, rowHandle);
+                }
+            }
+        }
+
+        void OnRowSearchComplete(object rh)
+        {
+            int rowHandle = (int)rh;
+            if (GridViewLookup.IsValidRowHandle(rowHandle)) {
+                SetFocusedRow(GridViewLookup, rowHandle);
+            }
+        }
+
+        void SetFocusedRow(GridView view, int rowHandle)
+        {
+            //precaution to make sure that any subsequent row changes don't try to force the selected
+            //row back to the previously selected one again
+            _previousRecord = null;
+            view.FocusedRowHandle = rowHandle;
         }
 
         private void DeleteRecord()
@@ -1099,13 +1141,6 @@ namespace TraceForms
             GridControlTransferPoints.RefreshDataSource();
         }
 
-        private void RepositoryItemButtonEditDate_ButtonClick(object sender, ButtonPressedEventArgs e)
-        {
-            CalendarForm xform = new CalendarForm(sender) { };
-            xform.StartPosition = FormStartPosition.CenterScreen;
-            xform.Show();
-        }
-
         private void TextEditVendorCode_Leave(object sender, EventArgs e)
         {
             if (_selectedRecord != null)
@@ -1287,15 +1322,13 @@ namespace TraceForms
         }
 
         private void GridViewTransferPoints_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
-        {           
-            if (e.Column == ColumnLocation)
+        {
+            GridView view = (GridView)sender;
+            if (e.Column.FieldName == ColumnLocation.FieldName)
             {
-                string type = GridViewTransferPoints.GetRowCellDisplayText(e.RowHandle, "LocationType");
-                if (_locationLookups.ContainsKey(type)) {
-                    RepositoryItemSearchLookupEditLocation.DataSource = _locationLookups[type];
-                }
-                else {
-                    RepositoryItemSearchLookupEditLocation.DataSource = null;
+                string type = view.GetRowCellDisplayText(e.RowHandle, "LocationType");
+                if (_repos.ContainsKey(type)) {
+                    e.RepositoryItem = _repos[type];
                 }
             }
 			if (e.Column.FieldName == "CompBusRoute_ID") {
@@ -1433,18 +1466,17 @@ namespace TraceForms
                 rec.SetProductRulePosition(commLevel);
             }
 
-            using (FlextourEntities context2 = new FlextourEntities(Connection.EFConnectionString)) {
-                IList<Commission> commQuery1 = new List<Commission>();
-                IList<Commission> commQuery2 = new List<Commission>();
-                commQuery1 = Commissions.GetProductCommissions(context2, "C", TextEditCode.Text.TrimEnd(), "OPT", commRecs, commLevel, null, date, null, null, agency, source);
-                commQuery2 = Commissions.GetAgencyCommissions(context2, "C", commRecsAgy, commLevel, agency, date, null, null, source);
-                IList<Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
-                GridControlCommissions.DataSource = mergedList;
-                commQuery1 = Commissions.GetProductCommissions(context2, "M", TextEditCode.Text.TrimEnd(), "OPT", commRecs, commLevel, null, date, null, null, agency, source);
-                commQuery2 = Commissions.GetAgencyCommissions(context2, "M", commRecsAgy, commLevel, agency, date, null, null, source);
-                mergedList = (commQuery1.Union(commQuery2)).ToList();
-                GridControlMarkups.DataSource = mergedList;
-            }
+            using FlextourEntities context2 = new FlextourEntities(Connection.EFConnectionString);
+            IList<Commission> commQuery1 = new List<Commission>();
+            IList<Commission> commQuery2 = new List<Commission>();
+            commQuery1 = Commissions.GetProductCommissions(context2, "C", TextEditCode.Text.TrimEnd(), "OPT", commRecs, commLevel, null, date, null, null, agency, source);
+            commQuery2 = Commissions.GetAgencyCommissions(context2, "C", commRecsAgy, commLevel, agency, date, null, null, source);
+            IList<Commission> mergedList = (commQuery1.Union(commQuery2)).ToList();
+            GridControlCommissions.DataSource = mergedList;
+            commQuery1 = Commissions.GetProductCommissions(context2, "M", TextEditCode.Text.TrimEnd(), "OPT", commRecs, commLevel, null, date, null, null, agency, source);
+            commQuery2 = Commissions.GetAgencyCommissions(context2, "M", commRecsAgy, commLevel, agency, date, null, null, source);
+            mergedList = (commQuery1.Union(commQuery2)).ToList();
+            GridControlMarkups.DataSource = mergedList;
         }
 
         private void ImageComboBoxEditLanguage_Leave(object sender, EventArgs e)
@@ -1674,14 +1706,15 @@ namespace TraceForms
 
         void GridViewSupplierProduct_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == gridColumnSupplierGuid) {
+            GridView view = (GridView)sender;
+            if (e.Column.FieldName == gridColumnSupplierGuid.FieldName) {
                 e.RepositoryItem = _supplierCombo;
             }
-            else if (e.Column == gridColumnMappingOperator) {
+            else if (e.Column.FieldName == gridColumnMappingOperator.FieldName) {
                 e.RepositoryItem = _operatorCombo;
             }
-            else if (e.Column == colPickup_Location_Default) {
-                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
+            else if (e.Column.FieldName == colPickup_Location_Default.FieldName) {
+                string type = view.GetRowCellDisplayText(e.RowHandle, "Pickup_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
                     RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = _locationLookups[type];
                 }
@@ -1689,8 +1722,8 @@ namespace TraceForms
                     RepositoryItemSearchLookUpEditDefaultPUpLoc.DataSource = null;
                 }
             }
-            else if (e.Column == colDropoff_Location_Default) {
-                string type = GridViewSupplierProduct.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
+            else if (e.Column.FieldName == colDropoff_Location_Default.FieldName) {
+                string type = view.GetRowCellDisplayText(e.RowHandle, "Dropoff_LocationType_Default");
                 if (_locationLookups.ContainsKey(type)) {
                     RepositoryItemSearchLookUpEditDefaultDropLoc.DataSource = _locationLookups[type];
                 }
@@ -1732,9 +1765,10 @@ namespace TraceForms
 
         private void GridViewRoutes_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == gridColumnFromStop || e.Column == gridColumnToStop) {
+            GridView view = (GridView)sender;
+            if (e.Column.FieldName == gridColumnFromStop.FieldName || e.Column.FieldName == gridColumnToStop.FieldName) {
                 var busStopsCombo = new RepositoryItemImageComboBox();
-                int? routeId = GridViewRoutes.GetRowCellValue(e.RowHandle, colBusRoute_ID) as int?;
+                int? routeId = view.GetRowCellValue(e.RowHandle, colBusRoute_ID) as int?;
                 if (routeId != null) {
                     List<ImageComboBoxItem> lookup = new List<ImageComboBoxItem>();
                     lookup.AddRange(_context.BusRouteStop.Where(brs => brs.BusRoute_ID == routeId)
@@ -1794,7 +1828,7 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                if (!cat.IsNew()) {
+                if (!cat.IsDetached()) {
                     _context.SupplierCategory.DeleteObject(cat);
                 }
                 BindSupplierCategories();
@@ -1802,7 +1836,7 @@ namespace TraceForms
         }
 
         private void GridViewSupplierCategory_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e) {
-            if (e.Column == colCatMappingSupplier) {
+            if (e.Column.FieldName == colCatMappingSupplier.FieldName) {
                 e.RepositoryItem = _supplierCombo;
             }
         }
@@ -2073,9 +2107,10 @@ namespace TraceForms
 
         private void GridViewRelatedProducts_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
+            GridView view = (GridView)sender;
             if (e.RowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle) {
-                if (e.Column == colRelatedCode) {
-                    string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
+                if (e.Column.FieldName == colRelatedCode.FieldName) {
+                    string type = view.GetRowCellDisplayText(e.RowHandle, "Type");
                     if (_passLookups.ContainsKey(type)) {
                         RepositoryItemSearchLookUpEditRelatedProductCode.DataSource = _passLookups[type];
                     }
@@ -2084,7 +2119,7 @@ namespace TraceForms
                     }
                 }
                 else if (e.Column == colServPackType) {
-                    string type = GridViewRelatedProducts.GetRowCellDisplayText(e.RowHandle, "Type");
+                    string type = view.GetRowCellDisplayText(e.RowHandle, "Type");
                     if (_ServPackTypeLookups.ContainsKey(type)) {
                         RepositoryItemSearchLookUpEditServPackType.DataSource = _ServPackTypeLookups[type];
                     }
@@ -2116,10 +2151,16 @@ namespace TraceForms
 
         private void ImageComboBoxEditTransType_EditValueChanged(object sender, EventArgs e)
         {
-            if (ImageComboBoxEditTransType.EditValue.IsNullOrEmpty()) {
+            EnableTransferPointsTab(ImageComboBoxEditTransType.EditValue.ToStringEmptyIfNull());
+        }
+
+        private void EnableTransferPointsTab(string transfertype)
+        {
+            if (transfertype.IsNullOrEmpty()) {
                 xtraTabPageTransferPoints.PageEnabled = false;
-            } else {
-                xtraTabPageTransferPoints.PageEnabled = "IO".Contains(ImageComboBoxEditTransType.EditValue.ToString());
+            }
+            else {
+                xtraTabPageTransferPoints.PageEnabled = "IO".Contains(transfertype);
             }
         }
 
@@ -2140,6 +2181,20 @@ namespace TraceForms
         private void SimpleButtonCopyTransfers_Click(object sender, EventArgs e)
         {
             GridControlTransferPoints.FocusedView.CopyToClipboard();
+            ShowActionConfirmation("Row(s) copied");
+        }
+
+        private void GridViewTransferPoints_ClipboardRowPasting(object sender, ClipboardRowPastingEventArgs e)
+        {
+            GridView view = sender as GridView;
+            GridColumn columnLocation = view.Columns["LOCATION"];
+            GridColumn columnLocType = view.Columns["LocationType"];
+            if (e.Values[columnLocType].ToString() == "HTL")
+                e.Values[columnLocation] = _locationLookups["HTL"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
+            else if (e.Values[columnLocType].ToString() == "WAY")
+                e.Values[columnLocation] = _locationLookups["WAY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
+            else if (e.Values[columnLocType].ToString() == "CTY")
+                e.Values[columnLocation] = _locationLookups["CTY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
         }
 
         private void SimpleButtonPasteTransfers_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -13,458 +14,494 @@ using DevExpress.XtraTreeList.Nodes;
 using System.Collections;
 using DevExpress.XtraEditors.Repository;
 using System.Runtime.InteropServices;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Linq;
-using DevExpress.XtraEditors;
-using FlexModel;
 using DevExpress.XtraEditors.Controls;
-using System.Runtime.InteropServices;
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
-using FlexModel;
-using DevExpress.XtraEditors.Controls;
-using System.Linq;
 using DevExpress.XtraGrid.Columns;
-using System.Runtime.InteropServices;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views;
-using DevExpress.XtraEditors.Repository;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using DevExpress.UserSkins;
-using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
+using FlexInterfaces.Core;
+using System.Data.Entity.Core.Objects;
+using DevExpress.XtraEditors.Popup;
+using DevExpress.Utils.Win;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraVerticalGrid.Rows;
+
 namespace TraceForms
 {
      
     public partial class AmenAssignForm : DevExpress.XtraEditors.XtraForm
     {
+        FlextourEntities _context;
+        AMENASSGN _selectedRecord;
+        Timer _actionConfirmation;
+        ICoreSys _sys;
+        IList<AMENASSGN> _assigned = new List<AMENASSGN>();
+        IList<AMENASSGN> _unassigned = new List<AMENASSGN>();
+        IEnumerable<AMENITY> _amenities;
+        List<CodeName> _roomcodCats = new List<CodeName>();
+        List<CodeName> _allCats = new List<CodeName>();
+        List<CodeName> _assignedCats;
+        List<CodeName> _allTypedRatePlans = new List<CodeName>();
+        List<CodeName> _assignedRatePlans;
+        List<CodeName> _assignedRatePlansFirst;
         public ImageComboBoxItemCollection hotelVals;
         public ImageComboBoxItemCollection pkgVals;
         public ImageComboBoxItemCollection compVals;
-        public ImageComboBoxItemCollection airVals;
-        public ImageComboBoxItemCollection cruVals;
-        public ImageComboBoxItemCollection carVals;
-        public bool modified = false;
-        public FlextourEntities context;
         public Timer rowStatusSave;
         public List<string> modifiedRecs;
         public string modifiedSvcCode;
+        Dictionary<string, List<CodeName>> _lookups = new Dictionary<string, List<CodeName>>();
+        Dictionary<string, List<CodeName>> _allRatePlans = new Dictionary<string, List<CodeName>>();
+
         public AmenAssignForm(FlexInterfaces.Core.ICoreSys sys)
         {
-            InitializeComponent();
-            Connection.EFConnectionString = sys.Settings.EFConnectionString;
-            context = new FlextourEntities(sys.Settings.EFConnectionString);
-            //treeList2.ParentFieldName = "PARENT_CODE";
-            //treeList2.KeyFieldName = "CODE";
-            //treeList1.KeyFieldName = "CODE";
-            //treeList1.ParentFieldName = "PARENT_CODE";
-            LoadLookups();
-            modifiedRecs = new System.Collections.Generic.List<string>();
-            
+            try {
+                InitializeComponent();
+                Connect(sys);
+                LoadLookups();
+                EnableAssign(false);
+                EnableUnassign(false);
+                SetReadOnly(true);
+                if (GridLookupEditCategory.Properties.PopupView is GridView view) {
+                    view.RowStyle += GridLookupEditCategory_RowStyle;
+                }
+                if (GridLookUpEditRatePlan.Properties.PopupView is GridView view2) {
+                    view2.RowStyle += GridLookUpEditRatePlan_RowStyle;
+                }
+
+                //treeList2.ParentFieldName = "PARENT_CODE";
+                //treeList2.KeyFieldName = "CODE";
+                //treeList1.KeyFieldName = "CODE";
+                //treeList1.ParentFieldName = "PARENT_CODE";
+                modifiedRecs = new List<string>();
+            } catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+            }           
         }
+
+        private void Connect(FlexInterfaces.Core.ICoreSys sys)
+        {
+            Connection.EFConnectionString = sys.Settings.EFConnectionString;
+            _context = new FlextourEntities(sys.Settings.EFConnectionString);
+            _sys = sys;
+        }
+
+        private void ShowActionConfirmation(string confirmation)
+        {
+            PanelControlStatus.Visible = true;
+            LabelStatus.Text = confirmation;
+            _actionConfirmation = new Timer {
+                Interval = 3000
+            };
+            _actionConfirmation.Start();
+            _actionConfirmation.Tick += TimedEvent;
+        }
+
+        private void TimedEvent(object sender, EventArgs e)
+        {
+            PanelControlStatus.Visible = false;
+            _actionConfirmation.Stop();
+        }
+
+        private void EnableAssign(bool enabled)
+        {
+            BarButtonItemAssign.Enabled = enabled;
+            SimpleButtonAssign2.Enabled = enabled;
+        }
+
+        private void EnableUnassign(bool enabled)
+        {
+            BarButtonItemUnassign.Enabled = enabled;
+            SimpleButtonUnassign2.Enabled = enabled;
+        }
+
         private void LoadLookups()
         {
-            hotelVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            compVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            pkgVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            airVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            carVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
-            cruVals = new ImageComboBoxItemCollection(ImageComboBoxEditCode.Properties);
+            BarButtonItemAssign.Enabled = false;
+            _roomcodCats = _context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList();
+            _allCats.AddRange(_roomcodCats);
+
+            var rpHotels = new List<CodeName> {
+                new CodeName(null)
+            };
+            rpHotels.AddRange(_context.SpecialValue
+                .OrderBy(o => o.Code)
+                .Where(r => r.Type == "HTL")
+                .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
+            _allRatePlans.Add("HTL", rpHotels);
+
+            var rpPkgs = new List<CodeName> {
+                new CodeName(null)
+            };
+            rpPkgs.AddRange(_context.SpecialValue
+                .OrderBy(o => o.Code)
+                .Where(r => r.Type == "PKG")
+                .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
+            _allRatePlans.Add("PKG", rpPkgs);
+
+            var rpComps = new List<CodeName> {
+                new CodeName(null)
+            };
+            rpComps.AddRange(_context.SpecialValue
+                .OrderBy(o => o.Code)
+                .Where(r => r.Type == "OPT")
+                .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
+            _allRatePlans.Add("OPT", rpComps);
+
+            var hotels = new List<CodeName> {
+                new CodeName(null)
+            };
+            hotels.AddRange(_context.HOTEL
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _lookups.Add("HTL", hotels);
+
+            var comps = new List<CodeName> {
+                new CodeName(null)
+            };
+            comps.AddRange(_context.COMP
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _lookups.Add("OPT", comps);
+
+            var pkgs = new List<CodeName> {
+                new CodeName(null)
+            };
+            pkgs.AddRange(_context.PACK
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _lookups.Add("PKG", pkgs);
             //lockGrid(true);
-            var cats = from catRec in context.ROOMCOD orderby catRec.CODE ascending select new { catRec.CODE, catRec.DESC };
-            var comps = from compRec in context.COMP orderby compRec.CODE ascending select new { compRec.CODE, compRec.NAME };
-            var hotels = from hotRec in context.HOTEL orderby hotRec.CODE ascending select new { hotRec.CODE, hotRec.NAME };
-            var pkgs = from pkgRec in context.PACK orderby pkgRec.CODE ascending select new { pkgRec.CODE, pkgRec.NAME };
-            var airs = from airRec in context.AIR orderby airRec.CODE ascending select new { airRec.CODE, airRec.NAME };
-            var cars = from carRec in context.CARINFO orderby carRec.CODE ascending select new { carRec.CODE, carRec.NAME };
-            var crus = from cruRec in context.CRU orderby cruRec.CODE ascending select new { cruRec.CODE, cruRec.NAME };
-            ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
-            ImageComboBoxEditCategory.Properties.Items.Add(loadBlank);
-            ImageComboBoxEditCode.Properties.Items.Add(loadBlank);
-         
-            foreach (var result in cats)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.DESC.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                ImageComboBoxEditCategory.Properties.Items.Add(load);
-            }
-            foreach (var result in comps)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditCode.Properties.Items.Add(load);
-                compVals.Add(load);
-            }
-            foreach (var result in hotels)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                hotelVals.Add(load);
-            }
-
-            foreach (var result in pkgs)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                pkgVals.Add(load);
-            }
-
-            foreach (var result in cars)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                carVals.Add(load);
-            }
-
-            foreach (var result in crus)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                cruVals.Add(load);
-            }
-
-            foreach (var result in airs)
-            {
-                ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
-                //ImageComboBoxEditAgency.Properties.Items.Add(load);
-                airVals.Add(load);
-            }
-
-
         }
-        private void sVC_TYPEComboBoxEdit_TextChanged(object sender, EventArgs e)
-        {
-            ImageComboBoxEditCode.Properties.Items.Clear();
-           
-            if (sVC_TYPEComboBoxEdit.Text == "HTL")
-            {
-                treeList1.ResetAutoFilterConditions();
-                //treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "HTL" select c;
-                colITEM_DESC1.Caption = "HOTEL AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(hotelVals);
-                treeList1.MoveFirst();
 
+        void SetReadOnly(bool value)
+        {
+            GridLookUpEditRatePlan.Enabled = !value;
+            GridLookupEditCategory.Enabled = !value;
+            SearchLookupEditCode.Enabled = !value;
+        }
+
+        void SetReadOnlyKeyFields(bool value)
+        {
+            SearchLookupEditCode.Enabled = !value;
+        }
+
+        private void ComboBoxEditSvcType_TextChanged(object sender, EventArgs e)
+        {
+            SearchLookupEditCode.Properties.DataSource = null;
+            string type = ComboBoxEditSvcType.Text;
+
+            if (_lookups.ContainsKey(type)) {
+                SearchLookupEditCode.Enabled = true;
+                SearchLookupEditCode.Properties.DataSource = _lookups[type];
             }
-            if (sVC_TYPEComboBoxEdit.Text == "PKG")
-            {
-                treeList1.ResetAutoFilterConditions();
-                //treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "PKG" select c;
-                colITEM_DESC1.Caption = "PACKAGE AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(pkgVals);
-                treeList1.MoveFirst();
+            else {
+                SearchLookupEditCode.Properties.DataSource = null;
             }
-            //if (sVC_TYPEComboBoxEdit.Text == "CAR")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CAR" select c;
-            //    colITEM_DESC1.Caption = "CAR AMENITIES";
-            //    treeList1.BeginSort();
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    treeList1.EndSort();
-            //    treeList1.ExpandAll();
-            //    ImageComboBoxEditCode.Properties.Items.AddRange(carVals);
-            //    treeList1.MoveFirst();
-            //}
-            if (sVC_TYPEComboBoxEdit.Text == "OPT")
-            {
-                treeList1.ResetAutoFilterConditions();
-                //treeList1.FilterConditions.Clear();
-                AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "OPT" select c;
-                colITEM_DESC1.Caption = "OPTIONAL SERVICE AMENITIES";
-                treeList1.BeginSort();
-                treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-                treeList1.EndSort();
-                treeList1.ExpandAll();
-                ImageComboBoxEditCode.Properties.Items.AddRange(compVals);
-                treeList1.MoveFirst();
+
+            if (_allRatePlans.ContainsKey(type)) {
+                _allTypedRatePlans = _allRatePlans[type];
             }
-            //if (sVC_TYPEComboBoxEdit.Text == "CRU")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "CRU" select c;
-            //    colITEM_DESC1.Caption = "CRUISE AMENITIES";
-            //    treeList1.BeginSort();
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    treeList1.EndSort();
-            //    treeList1.ExpandAll();
-            //    ImageComboBoxEditCode.Properties.Items.AddRange(cruVals);
-            //    treeList1.MoveFirst();
-            //}
-            //if (sVC_TYPEComboBoxEdit.Text == "AIR")
-            //{
-            //    treeList1.FilterConditions.Clear();
-            //    AmenityBindingSource.DataSource = from c in context.AMENITY where c.SVC_TYPE == "AIR" select c;
-            //    colITEM_DESC1.Caption = "AIR AMENITIES";
-            //    treeList1.BeginSort();
-            //    treeList1.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            //    treeList1.EndSort();
-            //    treeList1.ExpandAll();
-            //    ImageComboBoxEditCode.Properties.Items.AddRange(airVals);
-            //    treeList1.MoveFirst();
-            //}
+
+            GridLookUpEditRatePlan.Properties.DataSource = null;
+
+            _amenities = _context.AMENITY.Where(a => a.SVC_TYPE == type).OrderBy(a => a.SORT_ORDER);
+            TreeListUnassigned.DataSource = _amenities;
+            AmenityBindingSource.DataSource = _amenities;
+
+            if ("HTLPKGOPT".Contains(type)) {
+                TreeListUnassigned.ResetAutoFilterConditions();
+                TreeListUnassigned.BeginSort();
+                TreeListUnassigned.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
+                TreeListUnassigned.EndSort();
+                TreeListUnassigned.ExpandAll();
+                TreeListUnassigned.MoveFirst();
+
+                if (type == "HTL") {
+                    colITEM_DESC1.Caption = "Hotel Amenities";
+                }
+                if (type == "PKG") {
+                    colITEM_DESC1.Caption = "Package Amenities";
+                }
+                if (type == "OPT") {
+                    colITEM_DESC1.Caption = "Optional Service Amenities";
+                }
+            }
         }
 
         private void AmenAssignForm_Load(object sender, EventArgs e)
         {
             //AmenityBindingSource.DataSource = context.AMENITY;
-            //AmenAssgnBindingSource.DataSource = context.AMENASSGN;
-           
+            //AmenAssgnBindingSource.DataSource = context.AMENASSGN;          
         }
 
-       
-
-      
-
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void SimpleButtonSearch_Click(object sender, EventArgs e)
         {
-            if (modified)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to confirm these changes?", Name, MessageBoxButtons.YesNoCancel);
-               
-                if (select == DialogResult.Yes)////keep changes
-                {
-                    modified = false;
-                    modifiedSvcCode = string.Empty;
-                    modifiedRecs.Clear();
+            if (_assigned.IsModified(_context)) {
+                if (SaveRecords(true)) {
+                    DisplayAssigned();
+                } else {
+                    return;
                 }
-                else if (select == DialogResult.No)
-                {
-                    modified = false;
-                    foreach (string val in modifiedRecs)
-                    {
-                        var unwanted = from amen in context.AMENASSGN where amen.SVC_CODE == modifiedSvcCode && amen.CODE == val select amen;
-                        foreach (AMENASSGN record in unwanted)
-                            context.AMENASSGN.DeleteObject(record);
-                    }
-                    context.SaveChanges();
-                    modifiedSvcCode = string.Empty;
-                    modifiedRecs.Clear();
-                }               
+            } else {
+                DisplayAssigned();
             }
-            string code = string.Empty;
-            if(!string.IsNullOrWhiteSpace(ImageComboBoxEditCode.Text))
-                code = ImageComboBoxEditCode.EditValue.ToString();
-            string cat = string.Empty;
-            if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-                cat = ImageComboBoxEditCategory.EditValue.ToString();
-
-            checkRequired(code, cat);
-            loadTreelist(code, cat);
         }
 
-        private void checkRequired(string code, string cat)
+        private void DisplayAssigned()
         {
-            bool missing = false;
-            var collection = from amenRec in context.AMENITY
-                             where amenRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenRec.REQUIRE_ENTRY == true 
-                             select new { amenRec.PARENT_CODE, amenRec.CODE, amenRec.SORT_ORDER };
-           
-            foreach (var value in collection)
-            {
-                if ((from amenAssn in context.AMENASSGN where amenAssn.SVC_CODE == code && amenAssn.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssn.CODE == value.CODE select amenAssn).Count() == 0)
-                    missing = true;
-            }
+            string code = SearchLookupEditCode.EditValue.ToString();
+            string cat = GridLookupEditCategory.EditValue.ToStringNullIfNull();
+            string ratePlan = GridLookUpEditRatePlan.EditValue.ToStringNullIfNull();
+            string displayText = SearchLookupEditCode.Properties.GetDisplayText(code);
 
-            if (missing)
+            LoadAssigned(code, cat, ratePlan);
+            AssignRequired(code, cat, displayText, ratePlan);
+            OrderTreeListAssigned(displayText);
+            EnableUnassign(_assigned.Any());
+        }
+
+        private bool SaveRecords(bool prompt)
+        {
+            try {
+                if (_selectedRecord == null)
+                    return true;
+
+                FinalizeBindings();
+                var newRecs = _assigned.Where(a => a.IsNew());
+                bool modified = _assigned.IsModified(_context);
+
+                if (modified) {
+                    if (prompt) {
+                        DialogResult result = DisplayHelper.QuestionYesNoCancel(this, "Do you want to save these changes?");
+                        if (result == DialogResult.No) {
+                            RefreshRecords();
+                            return true;
+                        }
+                        else if (result == DialogResult.Cancel) {
+                            return false;
+                        }
+                    }
+                    //if (!ValidateAll())Not sure AmenAssign needs any model validation
+                    //    return false;
+
+                    _context.SaveChanges();
+                    //EntityInstantFeedbackSource.Refresh();
+                    ShowActionConfirmation("Changes Saved");
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+                RefreshRecords();        //pull it back from db because that is its current state
+                                        //We must also Load and rebind the related entities from the db because context.Refresh doesn't do that
+                return false;
+            }
+        }
+
+        private void RefreshRecords()
+        {
+            //A Detached record has not yet been added to the context
+            //An Added record has been added but not yet saved, most likely because there was
+            //an error in SaveRecord, in which case we should not retrieve it from the db
+            if (_selectedRecord != null && _selectedRecord.EntityState != System.Data.Entity.EntityState.Detached
+                && _selectedRecord.EntityState != System.Data.Entity.EntityState.Added) {
+                //var newAssignments = _assigned.Where(a => a.IsNew());//Make a collection of everything that IsNew, and delete it
+                //foreach (var newAssign in newAssignments) {
+                //    _assigned.Remove(newAssign);
+                //}
+                //_context.Refresh(RefreshMode.StoreWins, _unassigned);
+
+                //_context.Dispose();
+                //_context = new FlextourEntities(_sys.Settings.EFConnectionString);
+
+                UndoingChangesObjectContext(_context);
+            }
+        }
+
+        public static void UndoingChangesObjectContext(ObjectContext Context)
+        {
+            IEnumerable<object> collection = from e in Context.ObjectStateManager.GetObjectStateEntries
+                                        (System.Data.Entity.EntityState.Modified | System.Data.Entity.EntityState.Deleted)
+                                             select e.Entity;
+            Context.Refresh(RefreshMode.StoreWins, collection);
+
+            IEnumerable<object> AddedCollection = from e in Context.ObjectStateManager.GetObjectStateEntries
+                                                        (System.Data.Entity.EntityState.Added)
+                                                  select e.Entity;
+            foreach (object addedEntity in AddedCollection) {
+                if (addedEntity != null) {
+                    Context.Detach(addedEntity);
+                }
+            }
+        }
+
+        private void BarButtonItemSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SaveRecords(false);
+        }
+
+        private void FinalizeBindings()
+        {
+            BindingSource.EndEdit();
+            GridLookupEditCategory.DataBindings[0].WriteValue();
+            SetItemCategoryLookup(GridLookupEditCategory.Text);
+        }
+
+        private void AssignRequired(string code, string cat, string displayText, string ratePlan)
+        {
+            string svcType = ComboBoxEditSvcType.Text;
+            bool bothBlank = string.IsNullOrEmpty(cat) && string.IsNullOrEmpty(ratePlan);
+            List<AMENITY> missingBlankCatOrRatePlan = new List<AMENITY>();
+            if (!bothBlank) {
+                //This is where we put all the required amenities that are not assigned to blank category AND blank rate plan
+                missingBlankCatOrRatePlan = _context.AMENITY.Where(a => a.SVC_TYPE == svcType && a.REQUIRE_ENTRY == true
+                        && !a.AMENASSGN.Any(aa => aa.SVC_CODE == code && aa.CODE == a.CODE && string.IsNullOrEmpty(aa.SVC_CAT) && string.IsNullOrEmpty(aa.SVC_ROOM)))
+                        .ToList();
+            }
+            
+            List<AMENITY> required = new List<AMENITY>();
+            try {//Collect all the required amenities that are not assigned already
+                required = _amenities.Where(a => a.SVC_TYPE == svcType && a.REQUIRE_ENTRY == true
+                                                && (missingBlankCatOrRatePlan.Any(r => r.CODE == a.CODE) || bothBlank)
+                                                && !_assigned.Any(aa => aa.CODE == a.CODE)).ToList();
+            }
+            catch (Exception ex) {
+                DisplayHelper.DisplayError(this, ex);
+            }
+            
+            if (required.Any())
             {
-                DialogResult select = MessageBox.Show("There are required amenities which are not currently to this service.  Would you like to automatically assign them now ?", Name, MessageBoxButtons.YesNo);
+                DialogResult select = MessageBox.Show("There are required amenities which are not currently assigned to this product.  Would you like to automatically assign them now?", Name, MessageBoxButtons.YesNo);
 
                 if (select == DialogResult.Yes)
                 {
-                    foreach (var value in collection)
+                    foreach (var value in required)
                     {
-                        int sort = (int)value.SORT_ORDER;
-                        if ((from amenAssn in context.AMENASSGN where amenAssn.SVC_CODE == code && amenAssn.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssn.CODE == value.CODE select amenAssn).Count() == 0)
-                        {
-                            AssignNode(value.CODE, code, cat, sort);
-                            loadTreelist(code, cat);
-                        }
+                        //int sort = (int)value.SORT_ORDER;
+
+                        //if ((from amenAssn in context.AMENASSGN where amenAssn.SVC_CODE == code && amenAssn.SVC_TYPE == ComboBoxEditSvcType.Text && amenAssn.CODE == value.CODE select amenAssn).Count() == 0)
+                        AssignNode(code, cat, value, ratePlan);
                     }
+                    OrderTreeListAssigned(displayText);
                 }
-            }//if (collection.Count() > 0)
-            //    MessageBox.Show("This works");
-           // AssignNode(parentNode, currentCode, itemCode, cat);
+            }
         }
-        private void gridLoad()
+
+        private void DisplayAdditionalAttributes()
         {
-            string code = string.Empty;
-            if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCode.Text))
-                code = ImageComboBoxEditCode.EditValue.ToString();
-            string cat = string.Empty;
-            if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-                cat = ImageComboBoxEditCategory.EditValue.ToString();
-            string value = (treeList2.FocusedNode.GetValue(colAmenityCode)).ToString();
-            AmenAssgnBindingSource.DataSource = from oa in context.AMENASSGN
-                                      where oa.SVC_CODE == code && oa.SVC_CAT == cat && oa.CODE == value
-                                      select oa;
-            
-            //gridControl1.DataSource = from c in context.AMENITY
-            //                          join oa in context.AMENASSGN on c.CODE equals oa.CODE
-            //                          where oa.SVC_CODE == code && oa.SVC_CAT == cat && oa.CODE == value
-            //                          select oa;
+            _selectedRecord = (AMENASSGN)TreeListAssigned.GetFocusedRow();
 
-            string val = (treeList2.FocusedNode.GetValue(colItemDesc1d)).ToString();
-            var case1 = (from c in context.AMENITY where c.ITEM_DESC1 == val select new { c.ITEM_FORMAT1} );
-            foreach(var val1 in case1)
-            {
-                switch (val1.ITEM_FORMAT1)
-                {
-                    case "Yes/No":
-                        gridControl1.Visible = true;
-                        RepositoryItemCheckEdit check = new RepositoryItemCheckEdit();
-                        check.ValueUnchecked = "False";
-                        check.ValueChecked = "True";
-                        check.ValueGrayed = string.Empty;                        
-                        gridControl1.RepositoryItems.Add(check);
-                        colITEM1.ColumnEdit = check;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Date":
-                        gridControl1.Visible = true;
-                        RepositoryItemDateEdit date = new RepositoryItemDateEdit();
-                        gridControl1.RepositoryItems.Add(date);
-                        colITEM1.ColumnEdit = date;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Time":
-                        gridControl1.Visible = true;
-                        RepositoryItemTimeEdit time = new RepositoryItemTimeEdit();
-                        gridControl1.RepositoryItems.Add(time);
-                        colITEM1.ColumnEdit = time;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Text":
-                        gridControl1.Visible = true;
-                        RepositoryItemTextEdit text = new RepositoryItemTextEdit();
-                        gridControl1.RepositoryItems.Add(text);
-                        colITEM1.ColumnEdit = text;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Currency":
-                        gridControl1.Visible = true;
-                        RepositoryItemSpinEdit spin = new RepositoryItemSpinEdit();
-                        gridControl1.RepositoryItems.Add(spin);
-                        colITEM1.ColumnEdit = spin;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Integer":
-                        gridControl1.Visible = true;
-                        RepositoryItemTextEdit integer = new RepositoryItemTextEdit();
-                        gridControl1.RepositoryItems.Add(integer);
-                        colITEM1.ColumnEdit = integer;
-                        colITEM1.Caption = val;
-                        break;
-                    case "Decimal":
-                        gridControl1.Visible = true;
-                        RepositoryItemTextEdit decimal1 = new RepositoryItemTextEdit();
-                        gridControl1.RepositoryItems.Add(decimal1);
-                        colITEM1.ColumnEdit = decimal1;
-                        colITEM1.Caption = val;
-                        break;               
-                    case "":
-                        gridControl1.Visible = false;
-                        break;
-                }
-
+            if (_selectedRecord == null || _selectedRecord.AMENITY == null) {
+                PropertyGridControlAmenityData.Visible = false;
+                LabelControlAttributes.Visible = false;
+                return;
             }
 
+            SetCustomDataFormat("rowItem1", _selectedRecord.AMENITY.ITEM_DESC1, _selectedRecord.AMENITY.ITEM_FORMAT1);
+            SetCustomDataFormat("rowItem2", _selectedRecord.AMENITY.ITEM_DESC2, _selectedRecord.AMENITY.ITEM_FORMAT2);
+
+            PropertyGridControlAmenityData.SelectedObject = _selectedRecord;
+            PropertyGridControlAmenityData.Visible = true;
+            LabelControlAttributes.Visible = true;
+            rowAgeFrom.Visible = _selectedRecord.AMENITY.UseAgeFields;
+            rowAgeTo.Visible = _selectedRecord.AMENITY.UseAgeFields;
+            rowFromDate.Visible = _selectedRecord.AMENITY.UseDateFields;
+            rowToDate.Visible = _selectedRecord.AMENITY.UseDateFields;
+            rowHasFee.Visible = _selectedRecord.AMENITY.UseFeeFields;
+            rowFeeType.Visible = _selectedRecord.AMENITY.UseFeeFields;
+            rowFeeAmount.Visible = _selectedRecord.AMENITY.UseFeeFields;
+            rowFeeCurrency_Code.Visible = _selectedRecord.AMENITY.UseFeeFields;
+            rowDistance.Visible = _selectedRecord.AMENITY.UseDistanceFields;
+            rowDistanceUnits.Visible = _selectedRecord.AMENITY.UseDistanceFields;
+            rowNumber.Visible = _selectedRecord.AMENITY.UseNumber;
+            rowToTime.Visible = _selectedRecord.AMENITY.UseTimeFields;
+            rowFromTime.Visible = _selectedRecord.AMENITY.UseTimeFields;
         }
 
-
-        //private void CheckedChanged(object sender, System.EventArgs e)
-        //{
-        //    CheckEdit edit = sender as CheckEdit;
-        //    if (edit.Checked)
-        //    {
-        //        gridView1.SetFocusedRowCellValue("ITEM1", true);
-       
-        //    }
-        //}
-        private void treeList2_AfterFocusNode(object sender, NodeEventArgs e)
+        private void SetCustomDataFormat(string key, string name, string format)
         {
-            gridLoad();
+            var row = PropertyGridControlAmenityData.Rows[key];
+            row.Properties.Caption = name;
+            row.Visible = !string.IsNullOrEmpty(format);
+            if (row.Visible == false) {
+                return;
+            }
+            switch (format) {
+                case "Yes/No":
+                    RepositoryItemCheckEdit check = new RepositoryItemCheckEdit {
+                        ValueUnchecked = "False",
+                        ValueChecked = "True",
+                        ValueGrayed = string.Empty
+                    };
+                    //PropertyGridControlAmenityData.RepositoryItems.Add(check);
+                    row.Properties.RowEdit = check;
+                    break;
+                case "Date":
+                    RepositoryItemDateEdit date = new RepositoryItemDateEdit();
+                    row.Properties.RowEdit = date;
+                    break;
+                case "Time":
+                    RepositoryItemTimeEdit time = new RepositoryItemTimeEdit();
+                    row.Properties.RowEdit = time;
+                    break;
+                case "Text":
+                    RepositoryItemTextEdit text = new RepositoryItemTextEdit();
+                    row.Properties.RowEdit = text;
+                    break;
+                case "Currency":
+                    RepositoryItemSpinEdit spin = new RepositoryItemSpinEdit {
+                        IsFloatValue = true,
+                        EditMask = "f"
+                    };
+                    row.Properties.RowEdit = spin;
+                    break;
+                case "Integer":
+                    RepositoryItemSpinEdit integerSpin = new RepositoryItemSpinEdit();
+                    row.Properties.RowEdit = integerSpin;
+                    break;
+                case "Decimal":
+                    RepositoryItemSpinEdit decimalSpin = new RepositoryItemSpinEdit { 
+                        IsFloatValue = true,
+                        EditMask = "f"
+                    };
+                    row.Properties.RowEdit = decimalSpin;
+                    break;
+                case "":
+                    break;
+            }
+        }
+
+        private void TreeListAssigned_AfterFocusNode(object sender, NodeEventArgs e)
+        {
+            DisplayAdditionalAttributes();
         }
 
         private void AmenAssignForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (modified)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to confirm these changes?", Name, MessageBoxButtons.YesNoCancel);
-
-                if (select == DialogResult.Yes)////keep changes
-                {
+            if (_assigned.IsModified(_context)) {
+                DialogResult select = DisplayHelper.QuestionYesNo(this, "There are unsaved changes. Are you sure want to exit?");
+                if (select == DialogResult.Yes) {
                     e.Cancel = false;
-                    this.Dispose();
+                    _context.Dispose();
+                    Dispose();
                 }
-                else if (select == DialogResult.No)
-                {
-                    foreach (string val in modifiedRecs)
-                    {
-                        var unwanted = from amen in context.AMENASSGN where amen.SVC_CODE == modifiedSvcCode && amen.CODE == val select amen;
-                        foreach (AMENASSGN record in unwanted)
-                            context.AMENASSGN.DeleteObject(record);
-                    }
-                    context.SaveChanges();
-                    modified = false;
-                    modifiedSvcCode = string.Empty;
-                    modifiedRecs.Clear();
-                    e.Cancel = false;
-                    this.Dispose();
-                }
-            }
-            else
-            {
-                e.Cancel = false;
-                this.Dispose();
-            }
-             
-             
-
-
-
-            //////////////////////////////////
-            //////////////////////////////////////
-            ///////////////////////////////
-            if (modified)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("There are unsaved changes. Are you sure want to exit?", Name, MessageBoxButtons.YesNo);
-                if (select == DialogResult.Yes)
-                {
-                    e.Cancel = false;
-                    this.Dispose();
-                }
-                else if (select == DialogResult.No)
+                else
                     e.Cancel = true;
             }
-            else
-            {
+            else {
                 e.Cancel = false;
-                this.Dispose();
+                _context.Dispose();
+                Dispose();
             }
         }
 
-        private void treeList2_NodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
+        private void TreeListAssigned_NodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
         {
             if (e.Column.FieldName == "ITEM_DESC1")
             {
@@ -476,12 +513,12 @@ namespace TraceForms
                 if (Convert.ToBoolean(e.Node.GetValue(colReqEntry)))
                     e.Appearance.ForeColor = Color.Red;
 
-                if (!string.IsNullOrWhiteSpace(Convert.ToString(e.Node.GetValue(columnItem1))))
+                if (!string.IsNullOrWhiteSpace(e.Node.GetValue(columnItem1).ToStringEmptyIfNull()))
                     e.Appearance.ForeColor = Color.Blue;
             }
         }
 
-        private void treeList1_NodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
+        private void TreeListUnassigned_NodeCellStyle(object sender, GetCustomNodeCellStyleEventArgs e)
         {
             if (e.Column.FieldName == "ITEM_DESC1")
             {
@@ -495,347 +532,335 @@ namespace TraceForms
             }
         }
 
-        private void treeList1_DoubleClick(object sender, System.EventArgs e)
+        private void TreeListUnassigned_DoubleClick(object sender, System.EventArgs e)
         {
-            TreeList tree = sender as TreeList;
-            TreeListHitInfo hi = tree.CalcHitInfo(tree.PointToClient(Control.MousePosition));
-            if (treeList1.FocusedNode != null)
+            if (TreeListUnassigned.FocusedNode != null)
             {
-                //process hi.Node here
-               // string parentNode = treeList1.FocusedNode.RootNode.GetDisplayText(colParentCodes);
-                string currentCode = treeList1.FocusedNode.GetDisplayText(colCode);
-                string itemCode = ImageComboBoxEditCode.EditValue.ToString();
-                string cat = string.Empty;
-                if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-                    cat = ImageComboBoxEditCategory.EditValue.ToString();
-                int sort = Convert.ToInt32(treeList1.FocusedNode.RootNode.GetDisplayText(colSORT_ORDER));
-                modified = true;
-                AssignNode( currentCode, itemCode, cat, sort);
-                loadTreelist(itemCode, cat);
-            }
+                var row = (AMENITY)TreeListUnassigned.GetFocusedRow();
+                string itemCode = SearchLookupEditCode.EditValue.ToString();
+                string cat = GridLookupEditCategory.EditValue.ToStringNullIfNull();
+                string ratePlan = GridLookUpEditRatePlan.EditValue.ToStringNullIfNull();
 
-            //string parentNode = treeList1.FocusedNode.RootNode.GetDisplayText(colCode);
-            //string currentCode = treeList1.FocusedNode.GetDisplayText(colCode);
-            //string itemCode = ImageComboBoxEditCode.EditValue.ToString();
-            //string cat = string.Empty;
-            //if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-            //    cat = ImageComboBoxEditCategory.EditValue.ToString();
-
-            //if ((from amenRec in context.AMENASSGN where amenRec.CODE == parentNode && amenRec.SVC_CODE == itemCode && amenRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenRec.SVC_CAT == cat select amenRec).Count() == 0)
-            //{
-            //    int? sort = Convert.ToInt32(treeList1.FocusedNode.RootNode.GetDisplayText(colSORT_ORDER));
-            //    AddNode(parentNode, itemCode, cat, sort);
-            //} 
-            //int? order = Convert.ToInt32(treeList1.FocusedNode.GetDisplayText(colSORT_ORDER));
-            //AddNode(currentCode, itemCode, cat, order);
-            //loadTreelist(itemCode, cat);
-          
+                AssignNode(itemCode, cat, row, ratePlan);
+            }          
         }
 
-        private void AddNode(string amenCode, string item, string category, int? sortOrder)
+        private void SearchLookupEdit_Popup(object sender, EventArgs e)
         {
-            AMENASSGN rec = new FlexModel.AMENASSGN();
-            rec.CODE = amenCode;
-            rec.SVC_CODE = item;
-            rec.SVC_TYPE = sVC_TYPEComboBoxEdit.Text;
-            rec.SVC_CAT = category;
-            rec.SVC_ROOM = string.Empty;
-            rec.SORT_ORDER = sortOrder;
-            rec.ITEM2 = string.Empty;
-            rec.ITEM1 = string.Empty;
-            if ((from amenRec in context.AMENASSGN where amenRec.CODE == rec.CODE && amenRec.SVC_CODE == rec.SVC_CODE && amenRec.SVC_TYPE == rec.SVC_TYPE && amenRec.SVC_CAT == rec.SVC_CAT && amenRec.SVC_ROOM == rec.SVC_ROOM select amenRec).Count() == 0)
-                context.AMENASSGN.AddObject(rec);
-            else
-            {
-                MessageBox.Show("You are attempting to add a an amenity that has already been added.");
-                return;
-            }
-            context.SaveChanges();
-            
+            //Hide the Find button because it doesn't do anything when auto - filtering, except it
+            //is useful to let the user know the purpose of the filter field, because it has no label
+            //LayoutControl lc = ((sender as IPopupControl).PopupWindow.Controls[2].Controls[0] as LayoutControl);
+            //((lc.Items[0] as LayoutControlGroup).Items[1] as LayoutControlGroup).Items[1].Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
+            PopupSearchLookUpEditForm popupForm = (sender as IPopupControl).PopupWindow as PopupSearchLookUpEditForm;
+            popupForm.KeyPreview = true;
+            popupForm.KeyUp -= PopupForm_KeyUp;
+            popupForm.KeyUp += PopupForm_KeyUp;
         }
 
-        private void loadTreelist(string code, string cat)
+        private void PopupForm_KeyUp(object sender, KeyEventArgs e)
         {
-            treeList2.ResetAutoFilterConditions();
-            //treeList2.FilterConditions.Clear();
-            treeList2.DataSource = from c in context.AMENITY
-                                   from oa in context.AMENASSGN
-                                   where oa.SVC_CODE == code && oa.SVC_CAT == cat && c.CODE == oa.CODE && c.SVC_TYPE == sVC_TYPEComboBoxEdit.Text &&  oa.SVC_TYPE == sVC_TYPEComboBoxEdit.Text
-                                   select new { c.SVC_TYPE, oa.CODE, oa.SVC_CODE, c.PARENT_CODE, c.ITEM_DESC1, oa.SORT_ORDER, c.ITEM_FORMAT1, c.REQUIRE_ENTRY, oa.ITEM1 };
-
-            treeList2.ParentFieldName = "PARENT_CODE";
-            treeList2.KeyFieldName = "CODE";
-            treeList2.BeginSort();
-            treeList2.Columns["SORT_ORDER"].SortOrder = SortOrder.Ascending;
-            treeList2.EndSort();
-            treeList2.ExpandAll();
-            colItemDesc1d.Caption = code + " AMENITIES";
-            treeList2.MoveFirst();
-        }
-
-        private void treeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
-        {
-
-        }
-
-        private void viewMatchingToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {   
-            string code = treeList1.FocusedNode.GetDisplayText(colCode);
-            if(sVC_TYPEComboBoxEdit.Text == "HTL")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from hotelRec in context.HOTEL
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && hotelRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby hotelRec.CODE
-                                          select new { hotelRec.CODE, hotelRec.NAME, amenAssignRec.SVC_CAT };
-                                    
-            }
-            if (sVC_TYPEComboBoxEdit.Text == "OPT")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from compRec in context.COMP
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && compRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby compRec.CODE
-                                          select new { compRec.CODE, compRec.NAME, amenAssignRec.SVC_CAT };
-            }
-
-            if (sVC_TYPEComboBoxEdit.Text == "PKG")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from packRec in context.PACK
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && packRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby packRec.CODE
-                                          select new { packRec.CODE, packRec.NAME, amenAssignRec.SVC_CAT };
-            }
-            if (sVC_TYPEComboBoxEdit.Text == "CAR")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from carRec in context.CARINFO
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && carRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby carRec.CODE
-                                          select new { carRec.CODE, carRec.NAME, amenAssignRec.SVC_CAT };
-            }
-            if (sVC_TYPEComboBoxEdit.Text == "AIR")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from airRec in context.AIR
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && airRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby airRec.CODE
-                                          select new { airRec.CODE, airRec.NAME, amenAssignRec.SVC_CAT };
-            }
-            if (sVC_TYPEComboBoxEdit.Text == "CRU")
-            {
-                gridControl2.DataSource = from amenAssignRec in context.AMENASSGN
-                                          from cruRec in context.CRU
-                                          where amenAssignRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenAssignRec.CODE == code && cruRec.CODE == amenAssignRec.SVC_CODE
-                                          orderby cruRec.CODE
-                                          select new { cruRec.CODE, cruRec.NAME, amenAssignRec.SVC_CAT };
-            }
-
-            gridView2.MoveFirst();
-            //Point p = new System.Drawing.Point(CenterToScreen);
-            //popupControlContainer1.ShowPopup(CenterToScreen);
-            popupControlContainer1.Location = new System.Drawing.Point(329, 126);
-            popupControlContainer1.Show();
-        }
-
-        private bool checkForms()
-        {
-            if (!modified)
-                return true;
-            bool ok1 = validCheck.checkAll(Controls, errorProvider1, ((AMENASSGN)AmenAssgnBindingSource.Current).checkAll, AmenAssgnBindingSource);
-            if (ok1)
-                return validCheck.saveRec(ref modified, true, ref modified, context, AmenAssgnBindingSource, this.Name, errorProvider1, Cursor);
-            else
-            {
-                validCheck.saveRec(ref modified, false, ref modified, context, AmenAssgnBindingSource, this.Name, errorProvider1, Cursor);
-                return false;
-            }
-        }
-
-
-        private void aMENASSGNBindingNavigatorSaveItem_Click(object sender, System.EventArgs e)
-        {
-
-            //if (checkForms())
-            //{
-            //    modified = false;
-            //    panelControlStatus.Visible = true;
-            //    LabelStatus.Text = "Record Saved";
-            //    rowStatusSave = new Timer();
-            //    rowStatusSave.Interval = 3000;
-            //    rowStatusSave.Start();
-            //    rowStatusSave.Tick += TimedEventSave;
-            //}
-        }
-
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            modified = true;
-        }
-
-
-        private void TimedEventSave(object sender, EventArgs e)
-        {
-            if (sender == rowStatusSave)
-                panelControlStatus.Visible = false;
-            //LabelStatus.Text = "";
-            rowStatusSave.Stop();
-        }
-
-        private void DelRow_Click(object sender, System.EventArgs e)
-        {
-            string code = treeList2.FocusedNode.GetDisplayText(colCode);
-            string itemCode = ImageComboBoxEditCode.EditValue.ToString();
-            string cat = string.Empty;
-            if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-                cat = ImageComboBoxEditCategory.EditValue.ToString();
-
-            AMENASSGN rec = (from amenRec in context.AMENASSGN where amenRec.SVC_CODE == itemCode && amenRec.CODE == code && amenRec.SVC_CAT == cat && amenRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text select amenRec).FirstOrDefault();
-            context.AMENASSGN.DeleteObject(rec);
-            context.SaveChanges();
-            loadTreelist(itemCode, cat);
-        }
-
-        private void OkButton_Click(object sender, System.EventArgs e)
-        {
-            if (modified)
-            {
-                DialogResult select = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to confirm these changes?", Name, MessageBoxButtons.YesNoCancel);
-
-                if (select == DialogResult.Yes)////keep changes
-                {
-                    modified = false;
-                    modifiedSvcCode = string.Empty;
-                    modifiedRecs.Clear();
-                }
-                else if (select == DialogResult.No)
-                {
-                    foreach (string val in modifiedRecs)
-                    {
-                        var unwanted = from amen in context.AMENASSGN where amen.SVC_CODE == modifiedSvcCode && amen.CODE == val select amen;
-                        foreach (AMENASSGN record in unwanted)
-                            context.AMENASSGN.DeleteObject(record);
+            bool gotMatch = false;
+            PopupSearchLookUpEditForm popupForm = sender as PopupSearchLookUpEditForm;
+            if (e.KeyData == Keys.Enter) {
+                string searchText = popupForm.Properties.View.FindFilterText;
+                if (!string.IsNullOrEmpty(searchText)) {
+                    GridView view = popupForm.OwnerEdit.Properties.View;
+                    //If there is a match is on the ValueMember (Code) column, that should take precedence
+                    //This needs to be case insensitive, but there is no case insensitive lookup, so we have to iterate the rows
+                    //int row = view.LocateByValue(popupForm.OwnerEdit.Properties.ValueMember, searchText);
+                    for (int row = 0; row < view.DataRowCount; row++) {
+                        CodeName codeName = (CodeName)view.GetRow(row);
+                        if (codeName.Code.Equals(searchText.Trim('"'), StringComparison.OrdinalIgnoreCase)) {
+                            view.FocusedRowHandle = row;
+                            gotMatch = true;
+                            break;
+                        }
                     }
-                    context.SaveChanges();
-                    modified = false;
-                    modifiedSvcCode = string.Empty;
-                    modifiedRecs.Clear();
+                    if (!gotMatch) {
+                        view.FocusedRowHandle = 0;
+                    }
+                    popupForm.OwnerEdit.ClosePopup();
                 }
             }
-            string code = string.Empty;
-            code = gridView2.GetFocusedRowCellDisplayText("CODE");
-           
-            string cat = string.Empty;
-            cat = gridView2.GetFocusedRowCellDisplayText("SVC_CAT");
-
-            popupControlContainer1.Hide();
-            ImageComboBoxEditCode.EditValue = code;
-            loadTreelist(code, cat);
         }
 
-        private void CancelButton_Click(object sender, System.EventArgs e)
+        private void OrderTreeListAssigned(string displayText)
         {
-            popupControlContainer1.Hide();
+            TreeListAssigned.ResetAutoFilterConditions();
+            TreeListAssigned.ParentFieldName = "AMENITY.PARENT_CODE";
+            TreeListAssigned.KeyFieldName = "CODE";
+            TreeListAssigned.BeginSort();
+            TreeListAssigned.Columns["AMENITY.SORT_ORDER"].SortOrder = SortOrder.Ascending;
+            TreeListAssigned.EndSort();
+            TreeListAssigned.ExpandAll();
+            colItemDesc1d.Caption = "Amenities for " + displayText;
+            TreeListAssigned.MoveFirst();
+        }
+
+        private void LoadAssigned(string code, string cat, string ratePlan)
+        {
+            _assigned = _context.AMENASSGN.Include(aa => aa.AMENITY)
+                .Where(aa => aa.SVC_CODE == code && aa.SVC_TYPE == ComboBoxEditSvcType.Text && aa.SVC_CAT == cat && aa.SVC_ROOM == ratePlan).ToList();
+            TreeListAssigned.DataSource = _assigned;
+        }
+
+        private void TreeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
+        {//Leaving this event here even though it does nothing so that I have something to put a breakpoint on
 
         }
 
-        private void treeList1_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void SearchLookupEditCode_EditValueChanged(object sender, EventArgs e)
         {
-            //TreeList tree = sender as TreeList;
-            //TreeListHitInfo hi = tree.CalcHitInfo(tree.PointToClient(Control.MousePosition));
-            //if (treeList1.FocusedNode != null)
-            //{
-            //    //process hi.Node here
-            //    string parentNode = treeList1.FocusedNode.RootNode.GetDisplayText(colCode);
-            //    string currentCode = treeList1.FocusedNode.GetDisplayText(colCode);
-            //    string itemCode = ImageComboBoxEditCode.EditValue.ToString();
-            //    string cat = string.Empty;
-            //    if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-            //        cat = ImageComboBoxEditCategory.EditValue.ToString();
+            string code = SearchLookupEditCode.EditValue.ToStringEmptyIfNull();
+            GridLookupEditCategory.Enabled = !string.IsNullOrEmpty(code);
+            GridLookUpEditRatePlan.Enabled = !string.IsNullOrEmpty(code);
 
-            //    if ((from amenRec in context.AMENASSGN where amenRec.CODE == parentNode && amenRec.SVC_CODE == itemCode && amenRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenRec.SVC_CAT == cat select amenRec).Count() == 0)
-            //    {
-            //        int? sort = Convert.ToInt32(treeList1.FocusedNode.RootNode.GetDisplayText(colSORT_ORDER));
-            //        AddNode(parentNode, itemCode, cat, sort);
-            //    }
-            //    int? order = Convert.ToInt32(treeList1.FocusedNode.GetDisplayText(colSORT_ORDER));
-            //    AddNode(currentCode, itemCode, cat, order);
-            //    loadTreelist(itemCode, cat);
+            //We want the categories which have amenities assigned at the top of the list
+            _assignedCats = _context.AMENASSGN
+                .Include(aa => aa.ROOMCOD).DefaultIfEmpty()
+                .Where(c => c.SVC_CODE == code)
+                .GroupBy(c => new { Cat = c.SVC_CAT, CatName = (c.ROOMCOD != null) ? c.ROOMCOD.DESC : "" })
+                .OrderBy(o => o.Key.Cat)
+                .Select(s => new CodeName() { Code = string.IsNullOrEmpty(s.Key.Cat) ? null : s.Key.Cat, Name = s.Key.CatName }).ToList();
+            //The first one of all should be the blank cat, which should be there whether there
+            //are amenities assigned to it or not, so we add it manually
+            _allCats = new List<CodeName> {
+                new CodeName(null, "No category")
+            };
+            //Now add the categories which have amenities assigned
+            _allCats.AddRange(_assignedCats.Where(a => a.Code != null));
+            //Now add all the other categories from ROOMCOD 
+            _allCats.AddRange(_roomcodCats.Except(_assignedCats.Where(a => a.Code != null)));
+            GridLookupEditCategory.Properties.DataSource = _allCats;
 
-            //}
+
+            //We want the rate plans which have amenities assigned at the top of the list
+            QueryRatePlan(code, null, ComboBoxEditSvcType.Text);
+
+            _allTypedRatePlans = _allRatePlans[ComboBoxEditSvcType.Text];
+            //The first one of all should be the blank rate plan, which should be there whether there
+            //are amenities assigned to it or not, so we add it manually
+            _assignedRatePlansFirst = new List<CodeName> {
+                new CodeName(null, "No rate plan")
+            };
+            //Now add the rate plans which have amenities assigned
+            _assignedRatePlansFirst.AddRange(_assignedRatePlans.Where(a => a.Code != null));
+            //Now add all the other rate plans with the same type
+            _assignedRatePlansFirst.AddRange(_allTypedRatePlans.Except(_assignedRatePlans.Where(a => a.Code != null)));
+            GridLookUpEditRatePlan.Properties.DataSource = _assignedRatePlansFirst;
         }
 
-        private void AssignButton_Click(object sender, System.EventArgs e)
+        private void QueryRatePlan(string code, string cat, string type)
         {
-            if (treeList1.FocusedNode != null)
-            {
+            _assignedRatePlans = _context.AMENASSGN
+                .Include(aa => aa.SpecialValue).DefaultIfEmpty()
+                .Where(c => c.SVC_CODE == code && c.SVC_CAT == cat && c.SVC_TYPE == type)
+                .GroupBy(c => new { Rate = c.SVC_ROOM, RateName = (c.SpecialValue != null) ? c.SpecialValue.Name : "" })
+                .OrderBy(o => o.Key.Rate)
+                .Select(s => new CodeName() { Code = string.IsNullOrEmpty(s.Key.Rate) ? null : s.Key.Rate, Name = s.Key.RateName }).ToList();
+        }
+
+        private void GridLookupEditRatePlan_ProcessNewValue(object sender, ProcessNewValueEventArgs e) 
+        {
+            SetRatePlanLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void SetRatePlanLookup(object ratePlan)
+        {
+            string plan = ratePlan.ToStringEmptyIfNull();
+            string type = ComboBoxEditSvcType.EditValue.ToStringEmptyIfNull();
+
+            if (string.IsNullOrEmpty(plan) || _allRatePlans[type].Any(c => c.Code == plan)) {
+                GridLookupEditCategory.Properties.DataSource = _allRatePlans["type"];
+            }
+            else {
+                //If the value of category isn't in the list, add it to the list
+                //We allow non-matching categories so that API products can be booked
+                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
+                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
+                var listNewPlan = new List<CodeName> {
+                    new CodeName(null)
+                };
+                _allRatePlans.Add("", listNewPlan);
+            }
+        }
+
+        private void GridLookupEditItemCategory_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        {
+            SetItemCategoryLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void SetItemCategoryLookup(object itemCat)
+        {
+            string cat = itemCat.ToStringNullIfNull();
+
+            if (string.IsNullOrEmpty(cat) || _allCats.Any(c => c.Code == cat)) {
+                GridLookupEditCategory.Properties.DataSource = _allCats;
+            }
+            else {
+                //If the value of category isn't in the list, add it to the list
+                //We allow non-matching categories so that API products can be booked
+                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
+                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
+                var newCat = new CodeName(cat);
+                _allCats.Add(newCat);
+            }
+        }
+
+        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((sender as LookUpEditBase).Properties.DataSource == null)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+        }
+
+        private void BarButtonItemUnassign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            UnassignNode();
+        }
+
+        private void BarButtonItemAssign_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (TreeListUnassigned.FocusedNode != null) {
                 //process hi.Node here
-                string parentNode = treeList1.FocusedNode.RootNode.GetDisplayText(colCode);
-                string currentCode = treeList1.FocusedNode.GetDisplayText(colCode);
-                string itemCode = ImageComboBoxEditCode.EditValue.ToString();
-                string cat = string.Empty;
-                if (!string.IsNullOrWhiteSpace(ImageComboBoxEditCategory.Text))
-                    cat = ImageComboBoxEditCategory.EditValue.ToString();
-                int sort = Convert.ToInt32(treeList1.FocusedNode.RootNode.GetDisplayText(colSORT_ORDER));
-                modified = true;
-                AssignNode(currentCode, itemCode, cat, sort);
-                loadTreelist(itemCode, cat);
+                var amenity = (AMENITY)TreeListUnassigned.GetFocusedRow();
+                string itemCode = SearchLookupEditCode.EditValue.ToStringNullIfNull();
+                string cat = GridLookupEditCategory.EditValue.ToStringNullIfNull();
+                string ratePlan = GridLookUpEditRatePlan.EditValue.ToStringNullIfNull();
+
+                AssignNode(itemCode, cat, amenity, ratePlan);
             }
             else
                 MessageBox.Show("Please select a node to assign.");
         }
 
-        private void AssignNode(string currentCode, string itemCode, string cat, int sort)
+        private void AssignNode(string itemCode, string cat, AMENITY amenity, string ratePlan)
         {
-           
-            
-            var parentNode = (from amen in context.AMENITY where amen.CODE == currentCode select new { amen.PARENT_CODE, amen.SORT_ORDER }).FirstOrDefault();
-            int sorts = (int)parentNode.SORT_ORDER;
+            //var parentCode = _amenities.Where(a => a.CODE == currentCode).Select(a => a.PARENT_CODE).FirstOrDefault();
+            //var parentNode = (from amen in context.AMENITY where amen.CODE == currentCode select new { amen.PARENT_CODE, amen.SORT_ORDER }).FirstOrDefault();
+            //int sorts = (int)parentNode.SORT_ORDER;
 
-            if ((from amenRec in context.AMENASSGN where amenRec.CODE == parentNode.PARENT_CODE && amenRec.SVC_CODE == itemCode && amenRec.SVC_TYPE == sVC_TYPEComboBoxEdit.Text && amenRec.SVC_CAT == cat select amenRec).Count() == 0)
-            {
-                //int? sort = Convert.ToInt32(treeList1.FocusedNode.RootNode.GetDisplayText(colSORT_ORDER));
-                // string newParent = (from amen in context.AMENITY where amen.CODE == parentNode select new { amen.PARENT_CODE }).First().ToString();
-                //(string amenCode, string item, string category, int? sortOrder)
-                //AddNode(currentCode, itemCode, cat, sort);
-                AssignNode(parentNode.PARENT_CODE, itemCode, cat, sorts);
-               
 
+            //Parent node needs to be assigned when a child node is assigned
+            //Check if parent node is already assigned
+            var parent = _amenities.FirstOrDefault(r => r.CODE == amenity.PARENT_CODE);
+            if (parent != null && !_assigned.Any(a => a.CODE == parent.CODE)) {
+                AssignNode(itemCode, cat, parent, ratePlan);
             }
-            
-                AMENASSGN rec = new FlexModel.AMENASSGN();
-                rec.CODE = currentCode;
-                rec.SVC_CODE = itemCode;
-                rec.SVC_TYPE = sVC_TYPEComboBoxEdit.Text;
-                rec.SVC_CAT = cat;
-                rec.SVC_ROOM = string.Empty;
-                rec.SORT_ORDER = sort;
-                rec.ITEM2 = string.Empty;
-                rec.ITEM1 = string.Empty;
-                if ((from amenRec in context.AMENASSGN where amenRec.CODE == rec.CODE && amenRec.SVC_CODE == rec.SVC_CODE && amenRec.SVC_TYPE == rec.SVC_TYPE && amenRec.SVC_CAT == rec.SVC_CAT && amenRec.SVC_ROOM == rec.SVC_ROOM select amenRec).Count() == 0)
-                {
-                    context.AMENASSGN.AddObject(rec);
-                    modifiedRecs.Add(rec.CODE);
-                    modifiedSvcCode = rec.SVC_CODE;
-                }
-                else
-                {
-                    // MessageBox.Show("You are attempting to add a an amenity that has already been added.");
-                    // return;
-                }
-                context.SaveChanges();
+            AMENASSGN rec = new AMENASSGN {
+                CODE = amenity.CODE,
+                SVC_CODE = itemCode,
+                SVC_TYPE = ComboBoxEditSvcType.Text,
+                SVC_CAT = cat,
+                SVC_ROOM = ratePlan,
+                ITEM2 = string.Empty,
+                ITEM1 = string.Empty,
+                AMENITY = amenity
+            };
 
-            
-               // int? order = Convert.ToInt32(treeList1.FocusedNode.GetDisplayText(colSORT_ORDER));
-                
-                //return true;
-               //return AssignNode(currentCode, itemCode, cat, sort);
-            
-            
-            
+            if (!_assigned.Any(a => a.CODE == rec.CODE)) {
+                _assigned.Add(rec);
+                TreeListAssigned.RefreshDataSource();
+            }
+            else
+            {
+                // MessageBox.Show("You are attempting to add a an amenity that has already been added.");
+                // return;
+            }
+            //context.SaveChanges();
+            // int? order = Convert.ToInt32(treeList1.FocusedNode.GetDisplayText(colSORT_ORDER));                
+            //return true;
+            //return AssignNode(currentCode, itemCode, cat, sort);
+        }
 
+        private void SimpleButtonUnassign2_Click(object sender, EventArgs e)
+        {
+            UnassignNode();
+        }
+
+        private void UnassignNode()
+        {
+            if (TreeListAssigned.FocusedNode != null) {
+                var node = TreeListAssigned.FocusedNode;
+
+                if (node.HasChildren) {
+                    var children = node.Nodes;
+                    foreach (TreeListNode child in children) {
+                        var row = (AMENASSGN)TreeListAssigned.GetRow(child.Id);
+                        Unassign(row);
+                    }
+                }
+
+                var amenity = (AMENASSGN)TreeListAssigned.GetFocusedRow();
+
+                Unassign(amenity);
+            }
+            if (TreeListAssigned.Nodes.Count == 0) {
+                EnableUnassign(false);
+            }
+            else if (TreeListAssigned.FocusedNode != null) {
+                MessageBox.Show("Please select a node to unassign.");
+            }
+        }
+
+        private void Unassign(AMENASSGN amenity)
+        {
+            if (amenity != null && (amenity.EntityState & System.Data.Entity.EntityState.Deleted) != System.Data.Entity.EntityState.Deleted) {
+                _context.AMENASSGN.DeleteObject(amenity);
+                _unassigned.Add(amenity);
+            }
+
+            _assigned.Remove(amenity);
+            TreeListAssigned.RefreshDataSource();
+        }
+
+        private void GridLookupEditCategory_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            if (e.RowHandle != GridControl.InvalidRowHandle) {
+                var row = (CodeName)GridLookupEditCategory.Properties.View.GetRow(e.RowHandle);
+                if (row != null && _assignedCats.Any(c => c.Code == row.Code)) {
+                    e.Appearance.Font = new Font(GridLookupEditCategory.Properties.View.Appearance.Row.Font, System.Drawing.FontStyle.Bold);
+                }
+                else {
+                    e.Appearance.Font = new Font(GridLookupEditCategory.Properties.View.Appearance.Row.Font, System.Drawing.FontStyle.Regular);
+                }
+            }
+        }
+
+        private void GridLookUpEditRatePlan_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            if (e.RowHandle != GridControl.InvalidRowHandle) {
+                var row = (CodeName)GridLookUpEditRatePlan.Properties.View.GetRow(e.RowHandle);
+                if (row != null && _assignedRatePlans.Any(c => c.Code == row.Code)) {
+                    e.Appearance.Font = new Font(GridLookUpEditRatePlan.Properties.View.Appearance.Row.Font, System.Drawing.FontStyle.Bold);
+                }
+                else {
+                    e.Appearance.Font = new Font(GridLookUpEditRatePlan.Properties.View.Appearance.Row.Font, System.Drawing.FontStyle.Regular);
+                }
+            }
+        }
+
+        private void SimpleButtonAssign2_Click(object sender, EventArgs e)
+        {
+            if (TreeListUnassigned.FocusedNode != null) {
+                var amenity = (AMENITY)TreeListUnassigned.GetFocusedRow();
+                string itemCode = SearchLookupEditCode.EditValue.ToString();
+                string cat = GridLookupEditCategory.EditValue.ToStringNullIfNull();
+                string ratePlan = GridLookUpEditRatePlan.EditValue.ToStringNullIfNull();
+
+                AssignNode(itemCode, cat, amenity, ratePlan);
+            }
+            else
+                MessageBox.Show("Please select a node to assign.");
+        }
+
+        private void GridLookupEditCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            QueryRatePlan(SearchLookupEditCode.EditValue.ToStringEmptyIfNull(), GridLookupEditCategory.EditValue.ToStringEmptyIfNull(), ComboBoxEditSvcType.Text);
         }
     }
 }

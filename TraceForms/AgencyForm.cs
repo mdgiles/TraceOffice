@@ -982,7 +982,9 @@ namespace TraceForms
                 //Removing from the bindingsource just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.AgencyCurrency.DeleteObject(currency);
+                if (!currency.IsDetached()) {
+                    _context.AgencyCurrency.DeleteObject(currency);
+                }
                 BindAgencyCurrencies();
             }
         }
@@ -1749,7 +1751,9 @@ namespace TraceForms
                 //Removing from the collection just removes the object from its parent, but does not mark
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
-                _context.AGCYLOG.DeleteObject(agcylog);
+                if (!agcylog.IsDetached()) {
+                    _context.AGCYLOG.DeleteObject(agcylog);
+                }
                 BindAgencyLogs();
             }
         }

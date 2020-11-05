@@ -480,7 +480,7 @@ namespace TraceForms
                 //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
                 //To flag for deletion, delete it from the context as well.
                 _selectedRecord.SupplierCity.Remove(suppCity);
-                if (!suppCity.IsNew()) {
+                if (!suppCity.IsDetached()) {
                     _context.SupplierCity.DeleteObject(suppCity);
                 }
                 BindSupplierCities();
@@ -513,7 +513,7 @@ namespace TraceForms
 
         private void GridViewSupplierCity_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column == gridColumnSupplierGuid) {
+            if (e.Column.FieldName == gridColumnSupplierGuid.FieldName) {
                 e.RepositoryItem = _supplierCombo;
             }
             //else if (e.Column == gridColumnOperator) {

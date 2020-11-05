@@ -92,6 +92,13 @@ namespace TraceForms
         //    return entities.IsModified(context);
         //}
 
+        /// <summary>
+        /// Determines whether a collection of entities or any of the entities in the collection have been modified
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static bool IsModified<TEntity>(this IEnumerable<TEntity> entities, ObjectContext context) where TEntity : EntityObject
         {
             //Deleted entities are no longer in the collection directly, but are still tracked by the object state manager
@@ -128,6 +135,15 @@ namespace TraceForms
             //Detached or added means the entity is not committed to the db
             return (((entity.EntityState & System.Data.Entity.EntityState.Added) == System.Data.Entity.EntityState.Added)
                 || ((entity.EntityState & System.Data.Entity.EntityState.Detached) == System.Data.Entity.EntityState.Detached));
+        }
+
+        public static bool IsDetached(this EntityObject entity)
+        {
+            if (entity == null)
+                return false;
+
+            //Detached means the entity is not attached to the context
+            return (entity.EntityState & System.Data.Entity.EntityState.Detached) == System.Data.Entity.EntityState.Detached;
         }
     }
 }

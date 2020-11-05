@@ -69,6 +69,16 @@ namespace TraceForms
             }
         }
 
+        public static string ToStringNullIfNull(this object obj)
+        {
+            if (obj == null) {
+                return null;
+            }
+            else {
+                return obj.ToString();
+            }
+        }
+
         public static int ToIntZeroIfNull(this object obj)
         {
             string val = obj.ToStringEmptyIfNull();

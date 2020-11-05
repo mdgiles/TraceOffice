@@ -85,6 +85,7 @@ namespace TraceForms
 
         void SetItems(bool valid)
         {
+            SetBindings();
             TextEditItem_Desc1.Properties.ReadOnly = valid;
             TextEditItem_Desc2.Properties.ReadOnly = valid;
             ComboBoxEditItem_Format1.Properties.ReadOnly = valid;
@@ -391,7 +392,6 @@ namespace TraceForms
                 else
                 {
                     SetItems(false);
-
                 }
             }
         }
@@ -434,7 +434,6 @@ namespace TraceForms
                 FinalizeBindings();
                 bool newRec = _selectedRecord.IsNew();
                 bool modified = newRec || IsModified(_selectedRecord);
-                bool nameChanged = _selectedRecord.IsModified(_context, "NAME");
 
                 if (modified) {
                     if (prompt) {
@@ -511,7 +510,7 @@ namespace TraceForms
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
         {
-            BindingSource.EndEdit();
+            BindingSource.EndEdit();//This is where the program crashes from a null reference exception when clicking off of Service Type in a new amenity
             if (validationMethod != null) {
                 string error = validationMethod.Invoke();
                 ErrorProvider.SetError((Control)sender, error);
@@ -588,7 +587,7 @@ namespace TraceForms
                 //the focused row to the filter row just so that no other existing row is visually highlighted
                 
                 SetReadOnlyKeyFields(false);
-                TextEditCode.Focus();
+                ComboBoxEditSvcType.Focus();
                 SetReadOnly(false);
             }
             ErrorProvider.Clear();
