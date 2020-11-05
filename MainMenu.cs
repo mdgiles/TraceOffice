@@ -422,7 +422,7 @@ namespace FlexOffice
 				case "Bus Manifest":
 					button2.ItemClick += BarButtonBusAssignmentForm_ItemClick;
 					break;
-                case "Import MGM Rates":
+                case "Import Rates":
                     button2.ItemClick += BarButtonMGMRatesImportForm_ItemClick;
                     break;
                 case "Hotel Production Report":

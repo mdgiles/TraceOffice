@@ -124,7 +124,12 @@ namespace TraceForms
             _company = string.Empty;
             if (imageComboBoxEditCompanies.EditValue != null) {
                 _company = imageComboBoxEditCompanies.EditValue.ToString();
-                await LoadProductsForCompany();
+                try {
+                    await LoadProductsForCompany();
+                }
+                catch (Exception ex) {
+                    this.DisplayError(ex);
+                }
             }
         }
 
@@ -228,7 +233,7 @@ namespace TraceForms
                 }
                 else if (remainingString.IndexOf("and under", 0) == 0
                   || remainingString.IndexOf("and below", 0) == 0
-                  || priorString.IndexOf("up to", matchPos - "up to".Length) != -1) {
+                  || (matchPos - "up to".Length >= 0 && priorString.IndexOf("up to", matchPos - "up to".Length) != -1)) {
                     custType.ToAge = Convert.ToInt16(numberMatch.Value);
                 }
             }
@@ -358,6 +363,7 @@ namespace TraceForms
                     productAddedOrNameChanged = true;
                     comp = new COMP() {
                         CODE = item.InternalCode,
+                        NAME = item.Name,
                         RSTR_CDE = "O",
                         Inactive = "N",
                         AdminClosed = false,
@@ -400,10 +406,11 @@ namespace TraceForms
                 suppProd.MarkupPct = spinEditMarkupPct.Value;
                 suppProd.MarkupFlat = spinEditMarkupFlat.Value;
 
-                if (comp.NAME != item.Name) {
-                    productAddedOrNameChanged = true;
-                }
-                comp.NAME = item.Name;
+                //Don't overwrite name because staff change it manually
+                //if (comp.NAME != item.Name) {
+                //    productAddedOrNameChanged = true;
+                //}
+                //comp.NAME = item.Name;
                 if (item.Is_pickup_ever_available) {
                     comp.PUDRP_REQ = "P";
                     comp.TRSFR_TYP = "O";
@@ -429,15 +436,17 @@ namespace TraceForms
                     comp.ZIP = address.Postal_code;
                     comp.STATE = address.Province;
                     comp.TOWN = address.City;
-                    var geo = comp.GeoCode;
-                    if (geo == null) {
-                        geo = new GeoCode();
-                        _context.GeoCode.AddObject(geo);
-                        comp.GeoCode = geo;
+                    if (mainLocation.Latitude != null && mainLocation.Longitude != null) {
+                        var geo = comp.GeoCode;
+                        if (geo == null) {
+                            geo = new GeoCode();
+                            _context.GeoCode.AddObject(geo);
+                            comp.GeoCode = geo;
+                        }
+                        geo.AgentInitials = _sys.User.Name;
+                        geo.PushLat = (double)mainLocation.Latitude;
+                        geo.PushLong = (double)mainLocation.Longitude;
                     }
-                    geo.AgentInitials = _sys.User.Name;
-                    geo.PushLat = mainLocation.Latitude;
-                    geo.PushLong = mainLocation.Longitude;
                 }
 
                 if (Configurator.ImportCancellationPolicies) {

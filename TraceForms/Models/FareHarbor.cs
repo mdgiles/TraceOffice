@@ -49,11 +49,11 @@ namespace TraceForms.Models.FareHarbor
     {
         public string Google_place_id { get; set; }
         public string Note_safe_html { get; set; }
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
         public string Note { get; set; }
         public string Tripadvisor_url { get; set; }
         public Address Address { get; set; }
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
         public int Pk { get; set; }
         public string Type { get; set; }
     }
