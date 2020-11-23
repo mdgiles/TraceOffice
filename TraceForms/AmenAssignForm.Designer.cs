@@ -41,10 +41,10 @@
             this.colItemFormat1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSvcCode = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSvcType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colReqEntry = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colReqEntryAssgn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.columnItem1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.colItemDesc1d = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colItemDesc1Assgn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.SimpleButtonSearch = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -79,6 +79,10 @@
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemCurrencySpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.repositoryItemSpinEditDecimal = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.rowItem1 = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowItem2 = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.rowHasFee = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -127,6 +131,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCurrencySpinEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDecimal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditRatePlan.Properties)).BeginInit();
@@ -178,13 +187,14 @@
             this.colItemFormat1,
             this.colSvcCode,
             this.colSvcType,
-            this.colReqEntry,
+            this.colReqEntryAssgn,
             this.columnItem1,
-            this.colItemDesc1d});
+            this.colItemDesc1Assgn});
             this.TreeListAssigned.KeyFieldName = "";
             this.TreeListAssigned.Location = new System.Drawing.Point(757, 52);
             this.TreeListAssigned.Name = "TreeListAssigned";
             this.TreeListAssigned.OptionsBehavior.Editable = false;
+            this.TreeListAssigned.OptionsCustomization.AllowSort = false;
             this.TreeListAssigned.OptionsView.ShowHorzLines = false;
             this.TreeListAssigned.OptionsView.ShowIndicator = false;
             this.TreeListAssigned.ParentFieldName = "";
@@ -193,7 +203,9 @@
             this.TreeListAssigned.Size = new System.Drawing.Size(346, 423);
             this.TreeListAssigned.TabIndex = 5;
             this.TreeListAssigned.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeListAssigned_NodeCellStyle);
+            this.TreeListAssigned.BeforeFocusNode += new DevExpress.XtraTreeList.BeforeFocusNodeEventHandler(this.TreeListAssigned_BeforeFocusNode);
             this.TreeListAssigned.AfterFocusNode += new DevExpress.XtraTreeList.NodeEventHandler(this.TreeListAssigned_AfterFocusNode);
+            this.TreeListAssigned.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListAssigned_FocusedNodeChanged);
             // 
             // colAmenityCode
             // 
@@ -231,12 +243,12 @@
             this.colSvcType.FieldName = "SVC_TYPE";
             this.colSvcType.Name = "colSvcType";
             // 
-            // colReqEntry
+            // colReqEntryAssgn
             // 
-            this.colReqEntry.Caption = "Require Entry";
-            this.colReqEntry.ColumnEdit = this.repositoryItemCheckEdit1;
-            this.colReqEntry.FieldName = "REQUIRE_ENTRY";
-            this.colReqEntry.Name = "colReqEntry";
+            this.colReqEntryAssgn.Caption = "Require Entry";
+            this.colReqEntryAssgn.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colReqEntryAssgn.FieldName = "AMENITY.REQUIRE_ENTRY";
+            this.colReqEntryAssgn.Name = "colReqEntryAssgn";
             // 
             // repositoryItemCheckEdit1
             // 
@@ -249,13 +261,13 @@
             this.columnItem1.FieldName = "ITEM1";
             this.columnItem1.Name = "columnItem1";
             // 
-            // colItemDesc1d
+            // colItemDesc1Assgn
             // 
-            this.colItemDesc1d.Caption = "Assigned amenities";
-            this.colItemDesc1d.FieldName = "AMENITY.ITEM_DESC1";
-            this.colItemDesc1d.Name = "colItemDesc1d";
-            this.colItemDesc1d.Visible = true;
-            this.colItemDesc1d.VisibleIndex = 0;
+            this.colItemDesc1Assgn.Caption = "Assigned amenities";
+            this.colItemDesc1Assgn.FieldName = "AMENITY.ITEM_DESC1";
+            this.colItemDesc1Assgn.Name = "colItemDesc1Assgn";
+            this.colItemDesc1Assgn.Visible = true;
+            this.colItemDesc1Assgn.VisibleIndex = 0;
             // 
             // labelControl2
             // 
@@ -407,13 +419,14 @@
             this.TreeListUnassigned.Name = "TreeListUnassigned";
             this.TreeListUnassigned.OptionsBehavior.AllowExpandOnDblClick = false;
             this.TreeListUnassigned.OptionsBehavior.Editable = false;
+            this.TreeListUnassigned.OptionsCustomization.AllowSort = false;
             this.TreeListUnassigned.OptionsView.ShowHorzLines = false;
             this.TreeListUnassigned.OptionsView.ShowIndicator = false;
             this.TreeListUnassigned.ParentFieldName = "PARENT_CODE";
             this.TreeListUnassigned.Size = new System.Drawing.Size(346, 648);
             this.TreeListUnassigned.TabIndex = 4;
             this.TreeListUnassigned.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.TreeListUnassigned_NodeCellStyle);
-            this.TreeListUnassigned.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeList1_FocusedNodeChanged);
+            this.TreeListUnassigned.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.TreeListUnassigned_FocusedNodeChanged);
             this.TreeListUnassigned.DoubleClick += new System.EventHandler(this.TreeListUnassigned_DoubleClick);
             // 
             // colITEM_DESC1
@@ -549,7 +562,11 @@
             this.PropertyGridControlAmenityData.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemCheckEdit2,
-            this.repositoryItemSpinEdit1});
+            this.repositoryItemSpinEdit1,
+            this.repositoryItemCurrencySpinEdit,
+            this.repositoryItemDateEdit1,
+            this.repositoryItemTimeEdit1,
+            this.repositoryItemSpinEditDecimal});
             this.PropertyGridControlAmenityData.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.rowItem1,
             this.rowItem2,
@@ -589,6 +606,37 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
+            // repositoryItemCurrencySpinEdit
+            // 
+            this.repositoryItemCurrencySpinEdit.AutoHeight = false;
+            this.repositoryItemCurrencySpinEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCurrencySpinEdit.Mask.EditMask = "f";
+            this.repositoryItemCurrencySpinEdit.Name = "repositoryItemCurrencySpinEdit";
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            // 
+            // repositoryItemTimeEdit1
+            // 
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
+            // 
+            // repositoryItemSpinEditDecimal
+            // 
+            this.repositoryItemSpinEditDecimal.AutoHeight = false;
+            this.repositoryItemSpinEditDecimal.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEditDecimal.Name = "repositoryItemSpinEditDecimal";
+            // 
             // rowItem1
             // 
             this.rowItem1.Name = "rowItem1";
@@ -608,6 +656,7 @@
             this.rowHasFee.Name = "rowHasFee";
             this.rowHasFee.Properties.Caption = "Has fee";
             this.rowHasFee.Properties.FieldName = "HasFee";
+            this.rowHasFee.Properties.RowEdit = this.repositoryItemCheckEdit2;
             this.rowHasFee.Visible = false;
             // 
             // rowFeeAmount
@@ -615,7 +664,7 @@
             this.rowFeeAmount.Name = "rowFeeAmount";
             this.rowFeeAmount.Properties.Caption = "Fee amount";
             this.rowFeeAmount.Properties.FieldName = "FeeAmount";
-            this.rowFeeAmount.Properties.RowEdit = this.repositoryItemSpinEdit1;
+            this.rowFeeAmount.Properties.RowEdit = this.repositoryItemCurrencySpinEdit;
             this.rowFeeAmount.Visible = false;
             // 
             // rowFeeType
@@ -637,6 +686,7 @@
             this.rowFromDate.Name = "rowFromDate";
             this.rowFromDate.Properties.Caption = "Start date";
             this.rowFromDate.Properties.FieldName = "FromDate";
+            this.rowFromDate.Properties.RowEdit = this.repositoryItemDateEdit1;
             this.rowFromDate.Visible = false;
             // 
             // rowToDate
@@ -644,6 +694,7 @@
             this.rowToDate.Name = "rowToDate";
             this.rowToDate.Properties.Caption = "End date";
             this.rowToDate.Properties.FieldName = "ToDate";
+            this.rowToDate.Properties.RowEdit = this.repositoryItemDateEdit1;
             this.rowToDate.Visible = false;
             // 
             // rowFromTime
@@ -651,6 +702,7 @@
             this.rowFromTime.Name = "rowFromTime";
             this.rowFromTime.Properties.Caption = "Start time";
             this.rowFromTime.Properties.FieldName = "FromTime";
+            this.rowFromTime.Properties.RowEdit = this.repositoryItemTimeEdit1;
             this.rowFromTime.Visible = false;
             // 
             // rowToTime
@@ -658,6 +710,7 @@
             this.rowToTime.Name = "rowToTime";
             this.rowToTime.Properties.Caption = "End time";
             this.rowToTime.Properties.FieldName = "ToTime";
+            this.rowToTime.Properties.RowEdit = this.repositoryItemTimeEdit1;
             this.rowToTime.Visible = false;
             // 
             // rowDistance
@@ -665,6 +718,7 @@
             this.rowDistance.Name = "rowDistance";
             this.rowDistance.Properties.Caption = "Distance";
             this.rowDistance.Properties.FieldName = "Distance";
+            this.rowDistance.Properties.RowEdit = this.repositoryItemSpinEditDecimal;
             this.rowDistance.Visible = false;
             // 
             // rowDistanceUnits
@@ -679,6 +733,7 @@
             this.rowAgeFrom.Name = "rowAgeFrom";
             this.rowAgeFrom.Properties.Caption = "Minimum age";
             this.rowAgeFrom.Properties.FieldName = "AgeFrom";
+            this.rowAgeFrom.Properties.RowEdit = this.repositoryItemSpinEdit1;
             this.rowAgeFrom.Visible = false;
             // 
             // rowAgeTo
@@ -686,6 +741,7 @@
             this.rowAgeTo.Name = "rowAgeTo";
             this.rowAgeTo.Properties.Caption = "Maximum age";
             this.rowAgeTo.Properties.FieldName = "AgeTo";
+            this.rowAgeTo.Properties.RowEdit = this.repositoryItemSpinEdit1;
             this.rowAgeTo.Visible = false;
             // 
             // rowNumber
@@ -693,6 +749,7 @@
             this.rowNumber.Name = "rowNumber";
             this.rowNumber.Properties.Caption = "Number";
             this.rowNumber.Properties.FieldName = "Number";
+            this.rowNumber.Properties.RowEdit = this.repositoryItemSpinEditDecimal;
             this.rowNumber.Visible = false;
             // 
             // rowNotes
@@ -700,6 +757,7 @@
             this.rowNotes.Name = "rowNotes";
             this.rowNotes.Properties.Caption = "Notes";
             this.rowNotes.Properties.FieldName = "Notes";
+            this.rowNotes.Properties.RowEdit = this.repositoryItemTextEdit1;
             this.rowNotes.Visible = false;
             // 
             // rowIsPresent
@@ -707,6 +765,7 @@
             this.rowIsPresent.Name = "rowIsPresent";
             this.rowIsPresent.Properties.Caption = "Is present";
             this.rowIsPresent.Properties.FieldName = "IsPresent";
+            this.rowIsPresent.Properties.RowEdit = this.repositoryItemCheckEdit2;
             this.rowIsPresent.Visible = false;
             // 
             // GridLookupEditCategory
@@ -714,7 +773,7 @@
             this.GridLookupEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_CAT", true));
             this.GridLookupEditCategory.Location = new System.Drawing.Point(451, 117);
             this.GridLookupEditCategory.Name = "GridLookupEditCategory";
-            this.GridLookupEditCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.GridLookupEditCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.GridLookupEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.GridLookupEditCategory.Properties.DataSource = this.BindingSourceCodeName;
@@ -805,7 +864,7 @@
             this.GridLookUpEditRatePlan.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_ROOM", true));
             this.GridLookUpEditRatePlan.Location = new System.Drawing.Point(451, 143);
             this.GridLookUpEditRatePlan.Name = "GridLookUpEditRatePlan";
-            this.GridLookUpEditRatePlan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.GridLookUpEditRatePlan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.GridLookUpEditRatePlan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.GridLookUpEditRatePlan.Properties.DataSource = this.BindingSourceCodeName;
@@ -902,6 +961,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCurrencySpinEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditDecimal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookupEditCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditRatePlan.Properties)).EndInit();
@@ -926,7 +990,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colItemFormat1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colSvcCode;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colSvcType;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colReqEntry;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colReqEntryAssgn;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.PanelControl PanelControlStatus;
         private DevExpress.XtraEditors.LabelControl LabelStatus;
@@ -937,7 +1001,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraTreeList.TreeList TreeListUnassigned;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colItemDesc1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colItemDesc1d;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colItemDesc1Assgn;
         private DevExpress.XtraEditors.SearchLookUpEdit SearchLookupEditCode;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraBars.BarManager BarManager1;
@@ -990,5 +1054,9 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemCurrencySpinEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditDecimal;
     }
 }

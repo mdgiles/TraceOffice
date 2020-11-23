@@ -129,6 +129,8 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.dragDropEvents1 = new DevExpress.Utils.DragDrop.DragDropEvents(this.components);
             cODELabel = new System.Windows.Forms.Label();
             iMAGELabel = new System.Windows.Forms.Label();
             iTEM_FORMAT2Label = new System.Windows.Forms.Label();
@@ -168,6 +170,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // cODELabel
@@ -259,9 +262,10 @@
             // 
             // TreeListAmenities
             // 
-            this.TreeListAmenities.AllowDrop = true;
             this.TreeListAmenities.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.behaviorManager1.SetBehaviors(this.TreeListAmenities, new DevExpress.Utils.Behaviors.Behavior[] {
+            ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.DragDrop.DragDropBehavior.Create(typeof(DevExpress.XtraTreeList.TreeListDragDropSource), true, true, true, true, this.dragDropEvents1)))});
             this.TreeListAmenities.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colSVC_TYPE,
             this.colITEM_DESC1,
@@ -291,8 +295,7 @@
             this.TreeListAmenities.Location = new System.Drawing.Point(0, 32);
             this.TreeListAmenities.Name = "TreeListAmenities";
             this.TreeListAmenities.OptionsBehavior.Editable = false;
-            this.TreeListAmenities.OptionsDragAndDrop.DragNodesMode = DevExpress.XtraTreeList.DragNodesMode.Single;
-            this.TreeListAmenities.OptionsDragAndDrop.DropNodesMode = DevExpress.XtraTreeList.DropNodesMode.Standard;
+            this.TreeListAmenities.OptionsCustomization.AllowSort = false;
             this.TreeListAmenities.OptionsView.ShowAutoFilterRow = true;
             this.TreeListAmenities.OptionsView.ShowHorzLines = false;
             this.TreeListAmenities.ParentFieldName = "PARENT_CODE";
@@ -1143,6 +1146,7 @@
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1242,5 +1246,7 @@
         private DevExpress.XtraEditors.CheckEdit CheckEditUseTimeFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseDateFields;
         private DevExpress.XtraEditors.CheckEdit CheckEditUseFeeFields;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.Utils.DragDrop.DragDropEvents dragDropEvents1;
     }
 }
