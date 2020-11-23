@@ -102,14 +102,18 @@ namespace TraceForms
         private void LoadLookups()
         {
             ImageComboBoxItem loadBlank = new ImageComboBoxItem() { Description = "", Value = "" };
-            var cities = new List<CodeName> {
+            var cities = new List<CodeName>();
+            var depCities = new List<CodeName> {
                 new CodeName(null)
             };
             cities.AddRange(_context.CITYCOD
                 .OrderBy(o => o.NAME)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            depCities.AddRange(_context.CITYCOD
+                .OrderBy(o => o.NAME)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             SearchLookupEditCity.Properties.DataSource = cities;
-            SearchLookupEditDepCity.Properties.DataSource = cities;
+            SearchLookupEditDepCity.Properties.DataSource = depCities;
             _locationLookups.Add("CTY", cities);
             RepositoryItemSearchLookUpEditCty.DataSource = _locationLookups["CTY"];
             _repos.Add("CTY", RepositoryItemSearchLookUpEditCty);
@@ -199,9 +203,7 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             _ServPackTypeLookups.Add("PKG", packtypes);
 
-            var hotels = new List<CodeName> {
-                new CodeName(null)
-            };
+            var hotels = new List<CodeName>();
             hotels.AddRange(_context.HOTEL
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
@@ -212,9 +214,7 @@ namespace TraceForms
 
             //repositoryItemImageComboboxLocation.DataSource = hotels;
 
-            var waypoints = new List<CodeName> {
-                new CodeName(null)
-            };
+            var waypoints = new List<CodeName>();
             waypoints.AddRange(_context.WAYPOINT
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
@@ -1309,9 +1309,8 @@ namespace TraceForms
         private void GridViewTransferPoints_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {  
             if (e.Column.FieldName == "LocationType")
-            {               
+            {//If location type changes, clear the columns
                 GridViewTransferPoints.SetFocusedRowCellValue("LOCATION", "");
-                GridViewTransferPoints.SetFocusedRowCellValue("CarOffice", "");
                 GridViewTransferPoints.SetFocusedRowCellValue("Exclusion", "0");
             }
         }
@@ -2189,6 +2188,7 @@ namespace TraceForms
             GridView view = sender as GridView;
             GridColumn columnLocation = view.Columns["LOCATION"];
             GridColumn columnLocType = view.Columns["LocationType"];
+            var foo = e.OriginalValues;
             if (e.Values[columnLocType].ToString() == "HTL")
                 e.Values[columnLocation] = _locationLookups["HTL"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
             else if (e.Values[columnLocType].ToString() == "WAY")
