@@ -2395,7 +2395,7 @@ namespace TraceForms
         private void BarButtonItemUpdateWebsite_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string reportType = string.Join(",", _sys.Settings.MainMediaReport, _sys.Settings.WarningMediaReport);
-            _context.usp_RefreshSingleProduct("OPT", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
+            _context.usp_RefreshSingleProduct("HTL", TextEditCode.Text, reportType, _sys.Settings.FeaturedMediaSection,
                 _sys.Settings.MainMediaReport, _sys.Settings.MainMediaSection);
             panelControlStatus.Visible = true;
             LabelStatus.Text = "Website Updated";

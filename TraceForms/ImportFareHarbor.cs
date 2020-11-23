@@ -370,7 +370,7 @@ namespace TraceForms
                         ProximitySearch = false,
                         WeightRequired = false,
                         DOBRequired = false,
-                        Allow_Freesell = true,
+                        Allow_Freesell = false,
                         Multiple_Times = "0",
                         SERV_TYPE = searchLookUpEditServiceType.EditValue.ToString(),
                         CITY = searchLookUpEditCity.EditValue.ToString()
