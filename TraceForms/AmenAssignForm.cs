@@ -124,52 +124,40 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList();
             _allCats.AddRange(_roomcodCats);
 
-            var rpHotels = new List<CodeName> {
-                new CodeName(null)
-            };
+            var rpHotels = new List<CodeName>();
             rpHotels.AddRange(_context.SpecialValue
                 .OrderBy(o => o.Code)
                 .Where(r => r.Type == "HTL")
                 .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
             _allTypedRatePlans.Add("HTL", rpHotels);
 
-            var rpPkgs = new List<CodeName> {
-                new CodeName(null)
-            };
+            var rpPkgs = new List<CodeName>();
             rpPkgs.AddRange(_context.SpecialValue
                 .OrderBy(o => o.Code)
                 .Where(r => r.Type == "PKG")
                 .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
             _allTypedRatePlans.Add("PKG", rpPkgs);
 
-            var rpComps = new List<CodeName> {
-                new CodeName(null)
-            };
+            var rpComps = new List<CodeName>();
             rpComps.AddRange(_context.SpecialValue
                 .OrderBy(o => o.Code)
                 .Where(r => r.Type == "OPT")
                 .Select(s => new CodeName() { Code = s.Code, Name = s.Name }).ToList());
             _allTypedRatePlans.Add("OPT", rpComps);
 
-            var hotels = new List<CodeName> {
-                new CodeName(null)
-            };
+            var hotels = new List<CodeName>();
             hotels.AddRange(_context.HOTEL
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             _lookups.Add("HTL", hotels);
 
-            var comps = new List<CodeName> {
-                new CodeName(null)
-            };
+            var comps = new List<CodeName>();
             comps.AddRange(_context.COMP
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
             _lookups.Add("OPT", comps);
 
-            var pkgs = new List<CodeName> {
-                new CodeName(null)
-            };
+            var pkgs = new List<CodeName>();
             pkgs.AddRange(_context.PACK
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
@@ -182,6 +170,7 @@ namespace TraceForms
             GridLookUpEditRatePlan.Enabled = !value;
             GridLookupEditCategory.Enabled = !value;
             SearchLookupEditCode.Enabled = !value;
+            SimpleButtonSearch.Enabled = !value;
         }
 
         void SetReadOnlyKeyFields(bool value)
@@ -282,8 +271,8 @@ namespace TraceForms
                             return false;
                         }
                     }
-                    //if (!ValidateAll())Not sure AmenAssign needs any model validation
-                    //    return false;
+                    if (!ValidateAll())
+                        return false;
 
                     _context.SaveChanges();
                     //EntityInstantFeedbackSource.Refresh();
@@ -299,49 +288,28 @@ namespace TraceForms
             }
         }
 
+        private bool ValidateAll()
+        {
+            if (!_selectedRecord.Validate()) {
+                ShowMainControlErrors();
+                DisplayHelper.DisplayWarning(this, "Errors were found. Please resolve them and try again.");
+                return false;
+            }
+            else {
+                ErrorProvider.Clear();
+                return true;
+            }
+        }
+
         private void ShowMainControlErrors()
         {
             //The error indicators inside the grids are handled by binding, but errors on the main form must
             //be set manually
 
-            //SetErrorInfo(_selectedRecord.ValidateCode, TextEditCode);
-            //SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
-            //SetErrorInfo(_selectedRecord.ValidateLanguage, SearchLookupEditLanguage);
-            //SetErrorInfo(_selectedRecord.ValidateVendorCode, TextEditVendorCode);
-            //SetErrorInfo(_selectedRecord.ValidateDefaultTime, TextEditDefaultTime);
-            //SetErrorInfo(_selectedRecord.ValidateDifficulty, SearchLookupEditDifficulty);
-            //SetErrorInfo(_selectedRecord.ValidateOperator, SearchLookupEditOperator);
-            //SetErrorInfo(_selectedRecord.ValidateVoucherType, ImageComboBoxEditVoucherTypes);
-            //SetErrorInfo(_selectedRecord.ValidateRateBasis, ImageComboBoxEditRateBasis);
-            //SetErrorInfo(_selectedRecord.ValidateRestricCode, ImageComboBoxEditRestrictionsCode);
-            //SetErrorInfo(_selectedRecord.ValidateTransferType, GridControlTransferPoints);
-            //SetErrorInfo(_selectedRecord.ValidateTransfers, GridControlTransferPoints);
-            //SetErrorInfo(_selectedRecord.ValidateServType, SearchLookupEditServiceType);
-            //SetErrorInfo(_selectedRecord.ValidateVouch, SpinEditDayPrior);
-            //SetErrorInfo(_selectedRecord.ValidateDistance, SpinEditDistance);
-            //SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditCity);
-            //SetErrorInfo(_selectedRecord.ValidateState, SearchLookupEditState);
-            //SetErrorInfo(_selectedRecord.ValidateAddress1, TextEditAddr1);
-            //SetErrorInfo(_selectedRecord.ValidateAddress2, TextEditAddr2);
-            //SetErrorInfo(_selectedRecord.ValidateAddress3, TextEditAddr3);
-            //SetErrorInfo(_selectedRecord.ValidateZip, TextEditZip);
-            //SetErrorInfo(_selectedRecord.ValidateCountry, SearchLookupEditCountry);
-            //SetErrorInfo(_selectedRecord.ValidateAirport, SearchLookupEditAirportCode);
-            //SetErrorInfo(_selectedRecord.ValidateAirMi, TextEditAirportMiles);
-            //SetErrorInfo(_selectedRecord.ValidateCityMi, TextEditCityMilesTo);
-            //SetErrorInfo(_selectedRecord.ValidateInclude1, TextEditIncl1);
-            //SetErrorInfo(_selectedRecord.ValidateInclude2, TextEditIncl2);
-            //SetErrorInfo(_selectedRecord.ValidateInclude3, TextEditIncl3);
-            //SetErrorInfo(_selectedRecord.ValidateInclude4, TextEditIncl4);
-            //SetErrorInfo(_selectedRecord.ValidateInclude5, TextEditIncl5);
-            //SetErrorInfo(_selectedRecord.ValidateInclude6, TextEditIncl6);
-            //SetErrorInfo(_selectedRecord.ValidateDuration, SpinEditDuration);
-            //SetErrorInfo(_selectedRecord.ValidateMaxDuration, SpinEditMaxDuration);
-            //SetErrorInfo(_selectedRecord.ValidateSupplierProducts, GridControlSupplierProduct);
-            //SetErrorInfo(_selectedRecord.ValidateSupplierCategories, GridControlSupplierCategory);
-            //SetErrorInfo(_selectedRecord.ValidateSupplements, GridControlSupplements);
-            //SetErrorInfo(_selectedRecord.ValidateRelatedProducts, GridControlRelatedProducts);
-            //SetErrorInfo(_selectedRecord.ValidateDepartureCity, SearchLookupEditDepCity);
+            SetErrorInfo(_selectedRecord.ValidateSvcType, ComboBoxEditSvcType);
+            SetErrorInfo(_selectedRecord.ValidateRequireEntry, PropertyGridControlAmenityData);
+            SetErrorInfo(_selectedRecord.ValidateSvcCat, GridLookupEditCategory);
+            SetErrorInfo(_selectedRecord.ValidateSvcRoom, GridLookUpEditRatePlan);
         }
 
         private void SetErrorInfo(Func<String> validationMethod, object sender)
@@ -692,11 +660,19 @@ namespace TraceForms
             _allCats.AddRange(_roomcodCats.Except(_assignedCats.Where(a => a.Code != null)));
             GridLookupEditCategory.Properties.DataSource = _allCats;
 
+            SetRatePlanDataSource(code);
+        }
 
+        private void SetRatePlanDataSource(string code)
+        {
             //We want the rate plans which have amenities assigned at the top of the list
             QueryRatePlan(code, null, ComboBoxEditSvcType.Text);
 
-            _allRatePlans = _allTypedRatePlans[ComboBoxEditSvcType.Text];
+            if (_allTypedRatePlans.ContainsKey("")) {
+                _allRatePlans = _allTypedRatePlans[""];
+            }
+            _allRatePlans.AddRange(_allTypedRatePlans[ComboBoxEditSvcType.Text]);
+
             //The first one of all should be the blank rate plan, which should be there whether there
             //are amenities assigned to it or not, so we add it manually
             _assignedRatePlansFirst = new List<CodeName> {
@@ -721,16 +697,16 @@ namespace TraceForms
 
         private void GridLookupEditRatePlan_ProcessNewValue(object sender, ProcessNewValueEventArgs e) 
         {
-            SetRatePlanLookup(e.DisplayValue.ToString());
+            SetRatePlanLookup(e.DisplayValue.ToStringEmptyIfNull());
             e.Handled = true;
+            SetRatePlanDataSource(SearchLookupEditCode.EditValue.ToString());
         }
 
-        private void SetRatePlanLookup(object ratePlan)
+        private void SetRatePlanLookup(string ratePlan)
         {
-            string plan = ratePlan.ToStringEmptyIfNull();
             string type = ComboBoxEditSvcType.EditValue.ToStringEmptyIfNull();
 
-            if (string.IsNullOrEmpty(plan) || _allTypedRatePlans[type].Any(c => c.Code == plan)) {
+            if (string.IsNullOrEmpty(ratePlan) || _allTypedRatePlans[type].Any(c => c.Code == ratePlan)) {
                 GridLookUpEditRatePlan.Properties.DataSource = _assignedRatePlansFirst;
             }
             else {
@@ -738,10 +714,16 @@ namespace TraceForms
                 //We allow non-matching categories so that API products can be booked
                 //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
                 //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
-                var listNewPlan = new List<CodeName> {
-                    new CodeName(null)
+
+                var listNewPlan = new List<CodeName> {                    
+                    new CodeName(ratePlan, ratePlan)
                 };
-                _allTypedRatePlans.Add("", listNewPlan);
+                if (!_allTypedRatePlans.ContainsKey("")) {
+                    _allTypedRatePlans.Add("", listNewPlan);
+                }
+                else {
+                    _allTypedRatePlans[""] = listNewPlan;
+                }
             }
         }
 
@@ -924,11 +906,33 @@ namespace TraceForms
         private void TreeListAssigned_BeforeFocusNode(object sender, BeforeFocusNodeEventArgs e)
         {
             if (TreeListAssigned.FocusedNode != null) {
-                var row = (AMENASSGN)TreeListAssigned.GetRow(TreeListAssigned.FocusedNode.Id);
-                if (row.AMENITY.REQUIRE_ENTRY) {
-
-                }
+                if (_selectedRecord != null)
+                    SetErrorInfo(_selectedRecord.ValidateRequireEntry, PropertyGridControlAmenityData);
             }
+        }
+
+        private void GridLookupEditCategory_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSvcCat, sender);
+        }
+
+        private void GridLookUpEditRatePlan_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSvcRoom, sender);
+        }
+
+        private void ComboBoxEditSvcType_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSvcType, sender);
+        }
+
+        private void PropertyGridControlAmenityData_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateRequireEntry, sender);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.IO;
 using FlexModel;
+using FlexInterfaces.Core;
 using System.Security.Permissions;
 using Microsoft.Win32;
 using System.Windows.Forms;
@@ -43,7 +44,7 @@ namespace TraceForms
         IList<AMENITY> _amenities;
         int? _imageIndex;
 
-        public AmenityForm(FlexCore.CoreSys _sys)
+        public AmenityForm(ICoreSys _sys)
         {
             InitializeComponent();
 

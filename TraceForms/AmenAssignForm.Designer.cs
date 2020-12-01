@@ -162,13 +162,13 @@
             this.ComboBoxEditSvcType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ComboBoxEditSvcType.Properties.Items.AddRange(new object[] {
-            "",
             "HTL",
             "OPT",
             "PKG"});
             this.ComboBoxEditSvcType.Size = new System.Drawing.Size(100, 20);
             this.ComboBoxEditSvcType.TabIndex = 2;
             this.ComboBoxEditSvcType.TextChanged += new System.EventHandler(this.ComboBoxEditSvcType_TextChanged);
+            this.ComboBoxEditSvcType.Leave += new System.EventHandler(this.ComboBoxEditSvcType_Leave);
             // 
             // AmenityBindingSource
             // 
@@ -588,6 +588,7 @@
             this.PropertyGridControlAmenityData.Size = new System.Drawing.Size(346, 200);
             this.PropertyGridControlAmenityData.TabIndex = 50;
             this.PropertyGridControlAmenityData.Visible = false;
+            this.PropertyGridControlAmenityData.Leave += new System.EventHandler(this.PropertyGridControlAmenityData_Leave);
             // 
             // repositoryItemCheckEdit2
             // 
@@ -791,6 +792,7 @@
             this.GridLookupEditCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditItemCategory_ProcessNewValue);
             this.GridLookupEditCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
             this.GridLookupEditCategory.EditValueChanged += new System.EventHandler(this.GridLookupEditCategory_EditValueChanged);
+            this.GridLookupEditCategory.Leave += new System.EventHandler(this.GridLookupEditCategory_Leave);
             // 
             // gridLookUpEdit1View
             // 
@@ -881,6 +883,7 @@
             this.GridLookUpEditRatePlan.TabIndex = 67;
             this.GridLookUpEditRatePlan.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookupEditRatePlan_ProcessNewValue);
             this.GridLookUpEditRatePlan.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
+            this.GridLookUpEditRatePlan.Leave += new System.EventHandler(this.GridLookUpEditRatePlan_Leave);
             // 
             // gridView1
             // 
