@@ -700,6 +700,9 @@ namespace TraceForms
             SetRatePlanLookup(e.DisplayValue.ToStringEmptyIfNull());
             e.Handled = true;
             SetRatePlanDataSource(SearchLookupEditCode.EditValue.ToString());
+            if(_allTypedRatePlans[""].Count == 1) {
+                //GridLookUpEditRatePlan.
+            }
         }
 
         private void SetRatePlanLookup(string ratePlan)
