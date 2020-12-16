@@ -1353,6 +1353,7 @@
     <None Include="Properties\DataSources\FlexModel.ImportMapping.datasource" />
     <None Include="Properties\DataSources\FlexModel.PaymentTransaction.datasource" />
     <None Include="Properties\DataSources\FlexModel.ProductSupplement.datasource" />
+    <None Include="Properties\DataSources\FlexModel.ProductTime.datasource" />
     <None Include="Properties\DataSources\FlexModel.RelatedProduct.datasource" />
     <None Include="Properties\DataSources\FlexModel.RESOURCE.datasource" />
     <None Include="Properties\DataSources\FlexModel.RptContact.datasource" />

@@ -156,33 +156,19 @@ namespace TraceForms
             //_locationLookups.Add("WAY", waypoints);
             //RepositoryItemSearchLookUpEditWay.DataSource = _locationLookups["WAY"];
             //_repos.Add("WAY", RepositoryItemSearchLookUpEditWay);
-            ////repositoryItemImageComboboxLocation.DataSource = waypoints;
-
-            //var memberships = new List<CodeName> {
-            //    new CodeName(null)
-            //};
-            //memberships.AddRange(_context.LOOKUP.Where(c => c.LINK_TABLE == "DETAIL" && c.LINK_COLUMN == "CODE" && c.RECTYPE == "OPTCLASS")
-            //    .OrderBy(o => o.CODE)
-            //    .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
-            //repositoryItemSearchLookUpEditClass.DataSource = memberships;
-
-            //_roomcodCats = new List<CodeName> {
-            //    new CodeName(null)
-            //};
-            //_roomcodCats.AddRange(_context.ROOMCOD
-            //    .OrderBy(o => o.CODE)
-            //    .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
-            //_allCats.AddRange(_roomcodCats);
-
-            //BindingSourceUserFields.DataSource = _context.USERFIELDS
-            //    .Where(u => (u.VISIBLE ?? false) && u.LINK_TABLE == "COMP")
-            //    .OrderBy(u => u.POSITION);
-
-            //BindingSourceBusRoutes.DataSource = _context.BusRoute
-            //    .OrderBy(r => r.Name);
+            //repositoryItemImageComboboxLocation.DataSource = waypoints;
 
 
             //uncomment above
+
+            _roomcodCats = new List<CodeName> {
+                new CodeName(null)
+            };
+            _roomcodCats.AddRange(_context.ROOMCOD
+                .OrderBy(o => o.CODE)
+                .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
+            _allCats.AddRange(_roomcodCats);
+
 
             //Divider between old and new code
 

@@ -713,8 +713,8 @@ namespace TraceForms
                 GridLookUpEditRatePlan.Properties.DataSource = _assignedRatePlansFirst;
             }
             else {
-                //If the value of category isn't in the list, add it to the list
-                //We allow non-matching categories so that API products can be booked
+                //If the value of rate plan isn't in the list, add it to the list
+                //We allow non-matching rate plans so that API products can be booked
                 //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
                 //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
 

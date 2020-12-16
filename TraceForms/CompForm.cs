@@ -30,6 +30,16 @@ namespace TraceForms
 {
     public partial class CompForm : DevExpress.XtraEditors.XtraForm
     {
+        enum WeekDays : byte
+        {
+            Sunday = 1,
+            Monday = 2,
+            Tuesday = 4,
+            Wednesday = 8,
+            Thursday = 16,
+            Friday = 32,
+            Saturday = 64,
+        }
         FlextourEntities _context;
         COMP _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
@@ -39,10 +49,12 @@ namespace TraceForms
         bool _isPass = false;
         RepositoryItemImageComboBox _supplierCombo = new RepositoryItemImageComboBox();
         RepositoryItemImageComboBox _operatorCombo = new RepositoryItemImageComboBox();
+        List<CodeName> _allCats = new List<CodeName>();
         Dictionary<string, List<CodeName>> _locationLookups = new Dictionary<string, List<CodeName>>();
         Dictionary<string, RepositoryItemSearchLookUpEdit> _repos = new Dictionary<string, RepositoryItemSearchLookUpEdit>();
         Dictionary<string, List<CodeName>> _passLookups = new Dictionary<string, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
+        List<CodeName> _daysOfWeek;
         Dictionary<String, List<CodeName>> _ServPackTypeLookups = new Dictionary<String, List<CodeName>>();
         private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
 
@@ -161,6 +173,8 @@ namespace TraceForms
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             RepositoryItemSearchLookUpEditCat.DataSource = categories;
             RepositoryItemSearchLookUpEditDefaultCat.DataSource = categories;
+            _allCats.AddRange(categories);
+            RepositoryItemGridLookUpEditRoomcod.DataSource = _allCats;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -287,6 +301,11 @@ namespace TraceForms
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.DESC }).ToList());
             SearchLookUpEditRegion.Properties.DataSource = regions;
+
+            var timeZones = TimeZoneInfo.GetSystemTimeZones();
+            SearchLookUpEditTimeZone.Properties.DataSource = timeZones;
+            SearchLookUpEditOriginTimeZone.Properties.DataSource = timeZones;
+            RepositoryItemCheckedComboBoxEditDaysOfWeek.SetFlags(typeof(WeekDays));
         }
 
         private void EntityInstantFeedbackSource_GetQueryable(object sender, DevExpress.Data.Linq.GetQueryableEventArgs e)
@@ -353,6 +372,7 @@ namespace TraceForms
                 LoadAndBindBusRoutes();
                 LoadAndBindSupplements();
                 LoadAndBindRelatedProducts();
+                LoadAndBindProductTimes();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -386,6 +406,8 @@ namespace TraceForms
             GridViewTransferPoints.UpdateCurrentRow();
             GridViewRelatedProducts.CloseEditor();
             GridViewRelatedProducts.UpdateCurrentRow();
+            GridViewProductTime.CloseEditor();
+            GridViewProductTime.UpdateCurrentRow();
             _selectedRecord.PUDRP_REQ = _pupDrp;
             //Set the  code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierCategory.DataRowCount; rowCtr++) {
@@ -415,6 +437,14 @@ namespace TraceForms
                 }
             }
             BindingSourceRelatedProduct.EndEdit();
+
+            for (int rowCtr = 0; rowCtr < GridViewProductTime.DataRowCount; rowCtr++) {
+                ProductTime prodTime = (ProductTime)GridViewProductTime.GetRow(rowCtr);
+                prodTime.Product_Type = "OPT";
+                prodTime.Product_Code = TextEditCode.Text ?? string.Empty;
+                SetItemCategoryLookup(prodTime.Roomcod_Code);
+            }
+            BindingSourceProductTime.EndEdit();
 
             //Set the code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierProduct.DataRowCount; rowCtr++) {
@@ -716,6 +746,7 @@ namespace TraceForms
                 || record.CompBusRoute.IsModified(_context)
                 || record.DETAIL.IsModified(_context)
                 || record.RelatedProduct1.IsModified(_context)
+                || record.ProductTime.IsModified(_context)
                 || record.GeoCode.IsModified(_context);     //Mapping
         }
 
@@ -729,6 +760,7 @@ namespace TraceForms
                 BindingSourceSupplierCategory.Clear();
                 BindingSourceCompBusRoutes.Clear();
                 BindingSourceRelatedProduct.Clear();
+                BindingSourceProductTime.Clear();
                 BindingSourceBusTable.Clear();
                 BindingSourceSupplements.Clear();
                 BindingSourceDetail.Clear();
@@ -1302,8 +1334,8 @@ namespace TraceForms
 
         private void TextEditDefaultTime_Leave(object sender, EventArgs e)
         {
-            //if (_selectedRecord != null) 
-            //    SetErrorInfo(_selectedRecord.ValidateDefaultTime, sender);
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateDefaultTime, sender);
         }
 
         private void GridViewTransferPoints_CellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -2155,11 +2187,19 @@ namespace TraceForms
 
         private void EnableTransferPointsTab(string transfertype)
         {
-            if (transfertype.IsNullOrEmpty()) {
-                xtraTabPageTransferPoints.PageEnabled = false;
+            if (!transfertype.IsNullOrEmpty()) {
+                if ("IO".Contains(transfertype)) {
+                    GridControlTransferPoints.Enabled = true;
+                    SimpleButtonAddTransfer.Enabled = true;
+                    SimpleButtonPasteTransfers.Enabled = true;
+                }
             }
             else {
-                xtraTabPageTransferPoints.PageEnabled = "IO".Contains(transfertype);
+                GridControlTransferPoints.Enabled = false;
+                SimpleButtonAddTransfer.Enabled = false;
+                SimpleButtonDeleteTransfer.Enabled = false;
+                SimpleButtonCopyTransfers.Enabled = false;
+                SimpleButtonPasteTransfers.Enabled = false;
             }
         }
 
@@ -2195,6 +2235,93 @@ namespace TraceForms
                 e.Values[columnLocation] = _locationLookups["WAY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
             else if (e.Values[columnLocType].ToString() == "CTY")
                 e.Values[columnLocation] = _locationLookups["CTY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
+        }
+
+        void LoadAndBindProductTimes()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.ProductTime.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceProductTime.DataSource = _selectedRecord.ProductTime;
+            BindProductTimes();
+        }
+
+        void BindProductTimes()
+        {
+            GridControlProductTime.DataSource = BindingSourceProductTime;
+            GridControlProductTime.RefreshDataSource();
+        }
+
+        private void SimpleButtonAddProductTime_Click(object sender, EventArgs e)
+        {
+            ProductTime time = new ProductTime {
+                Product_Code = TextEditCode.Text ?? string.Empty,
+                Product_Type = "OPT"
+            };
+            _selectedRecord.ProductTime.Add(time);
+            BindProductTimes();
+            GridViewProductTime.FocusedRowHandle = BindingSourceProductTime.Count - 1;
+        }
+
+        private void SimpleButtonDeleteProductTime_Click(object sender, EventArgs e)
+        {
+            if (GridViewProductTime.FocusedRowHandle >= 0) {
+                ProductTime time = (ProductTime)GridViewProductTime.GetFocusedRow();
+                BindingSourceProductTime.Remove(time);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (!time.IsNew()) {
+                    _context.ProductTime.DeleteObject(time);
+                }
+                BindProductTimes();
+            }
+        }
+
+        private void RepositoryItemGridLookUpEditRoomcod_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        {
+            SetItemCategoryLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void SetItemCategoryLookup(object itemCat)
+        {
+            string cat = itemCat.ToStringNullIfNull();
+
+            if (string.IsNullOrEmpty(cat) || _allCats.Any(c => c.Code == cat)) {
+                RepositoryItemGridLookUpEditRoomcod.DataSource = _allCats;
+            }
+            else {
+                //If the value of category isn't in the list, add it to the list
+                //We allow non-matching categories so that API products can be booked
+                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
+                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
+                var newCat = new CodeName(cat);
+                _allCats.Add(newCat);
+            }
+        }
+
+        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((sender as LookUpEditBase).Properties.DataSource == null)
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+        }
+
+        private void RepositoryItemCheckedComboBoxEditDaysOfWeek_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckedComboBoxEdit edit = sender as CheckedComboBoxEdit;
+            byte value = (byte)edit.EditValue;
+            ProductTime row = (ProductTime)GridViewProductTime.GetFocusedRow();
+            row.DaysOfWeek = value;
         }
 
         private void SimpleButtonPasteTransfers_Click(object sender, EventArgs e)
