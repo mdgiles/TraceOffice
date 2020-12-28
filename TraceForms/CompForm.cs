@@ -2212,10 +2212,12 @@ namespace TraceForms
         private void EnableTransferPointsTab(string transfertype)
         {
             if (!transfertype.IsNullOrEmpty()) {
-                if ("IO".Contains(transfertype)) {
+                if ("IOR".Contains(transfertype)) {
                     GridControlTransferPoints.Enabled = true;
                     SimpleButtonAddTransfer.Enabled = true;
                     SimpleButtonPasteTransfers.Enabled = true;
+                    SimpleButtonCopyTransfers.Enabled = true;
+                    SimpleButtonDeleteTransfer.Enabled = true;
                 }
             }
             else {
