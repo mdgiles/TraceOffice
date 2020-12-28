@@ -839,7 +839,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateVoucherType, ImageComboBoxEditVoucherTypes);
             SetErrorInfo(_selectedRecord.ValidateRateBasis, ImageComboBoxEditRateBasis);
             SetErrorInfo(_selectedRecord.ValidateRestricCode, ImageComboBoxEditRestrictionsCode);
-            SetErrorInfo(_selectedRecord.ValidateTransferType, GridControlTransferPoints);
+            SetErrorInfo(_selectedRecord.ValidateTransferType, ImageComboBoxEditTransType);
             SetErrorInfo(_selectedRecord.ValidateTransfers, GridControlTransferPoints);
             SetErrorInfo(_selectedRecord.ValidateServType, SearchLookupEditServiceType);
             SetErrorInfo(_selectedRecord.ValidateVouch, SpinEditDayPrior);
