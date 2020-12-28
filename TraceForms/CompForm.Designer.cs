@@ -390,6 +390,11 @@
             this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemSearchLookUpEditOpt = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDisplayName3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabPageMemberships = new DevExpress.XtraTab.XtraTabPage();
             this.PanelControlMemberships = new DevExpress.XtraEditors.PanelControl();
@@ -715,11 +720,6 @@
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
-            this.RepositoryItemSearchLookUpEditOpt = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.repositoryItemSearchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDisplayName3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colName20 = new DevExpress.XtraGrid.Columns.GridColumn();
             LabelCode = new System.Windows.Forms.Label();
             LabelRateBasis = new System.Windows.Forms.Label();
             LabelRestrictions = new System.Windows.Forms.Label();
@@ -941,6 +941,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             this.xtraTabPageMemberships.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlMemberships)).BeginInit();
@@ -1076,8 +1078,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelCode
@@ -2879,7 +2879,7 @@
             this.MapControl.Name = "MapControl";
             this.MapControl.NavigationPanelOptions.Height = 200;
             this.MapControl.ShowSearchPanel = false;
-            this.MapControl.Size = new System.Drawing.Size(358, 43);
+            this.MapControl.Size = new System.Drawing.Size(400, 144);
             this.MapControl.TabIndex = 272;
             this.MapControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseDown);
             this.MapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseMove);
@@ -5062,6 +5062,47 @@
             this.colName18.Name = "colName18";
             this.colName18.Visible = true;
             this.colName18.VisibleIndex = 1;
+            // 
+            // RepositoryItemSearchLookUpEditOpt
+            // 
+            this.RepositoryItemSearchLookUpEditOpt.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditOpt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSearchLookUpEditOpt.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditOpt.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditOpt.Name = "RepositoryItemSearchLookUpEditOpt";
+            this.RepositoryItemSearchLookUpEditOpt.PopupView = this.repositoryItemSearchLookUpEdit2View;
+            this.RepositoryItemSearchLookUpEditOpt.ValueMember = "Code";
+            // 
+            // repositoryItemSearchLookUpEdit2View
+            // 
+            this.repositoryItemSearchLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode25,
+            this.colDisplayName3,
+            this.colName20});
+            this.repositoryItemSearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit2View.Name = "repositoryItemSearchLookUpEdit2View";
+            this.repositoryItemSearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colCode25
+            // 
+            this.colCode25.FieldName = "Code";
+            this.colCode25.Name = "colCode25";
+            this.colCode25.Visible = true;
+            this.colCode25.VisibleIndex = 0;
+            // 
+            // colDisplayName3
+            // 
+            this.colDisplayName3.FieldName = "DisplayName";
+            this.colDisplayName3.Name = "colDisplayName3";
+            // 
+            // colName20
+            // 
+            this.colName20.FieldName = "Name";
+            this.colName20.Name = "colName20";
+            this.colName20.Visible = true;
+            this.colName20.VisibleIndex = 1;
             // 
             // gridView12
             // 
@@ -8517,47 +8558,6 @@
             this.progressPanel1.Text = "progressPanel1";
             this.progressPanel1.Visible = false;
             // 
-            // RepositoryItemSearchLookUpEditOpt
-            // 
-            this.RepositoryItemSearchLookUpEditOpt.AutoHeight = false;
-            this.RepositoryItemSearchLookUpEditOpt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemSearchLookUpEditOpt.DataSource = this.BindingSourceCodeName;
-            this.RepositoryItemSearchLookUpEditOpt.DisplayMember = "DisplayName";
-            this.RepositoryItemSearchLookUpEditOpt.Name = "RepositoryItemSearchLookUpEditOpt";
-            this.RepositoryItemSearchLookUpEditOpt.PopupView = this.repositoryItemSearchLookUpEdit2View;
-            this.RepositoryItemSearchLookUpEditOpt.ValueMember = "Code";
-            // 
-            // repositoryItemSearchLookUpEdit2View
-            // 
-            this.repositoryItemSearchLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode25,
-            this.colDisplayName3,
-            this.colName20});
-            this.repositoryItemSearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemSearchLookUpEdit2View.Name = "repositoryItemSearchLookUpEdit2View";
-            this.repositoryItemSearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemSearchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
-            // 
-            // colCode25
-            // 
-            this.colCode25.FieldName = "Code";
-            this.colCode25.Name = "colCode25";
-            this.colCode25.Visible = true;
-            this.colCode25.VisibleIndex = 0;
-            // 
-            // colDisplayName3
-            // 
-            this.colDisplayName3.FieldName = "DisplayName";
-            this.colDisplayName3.Name = "colDisplayName3";
-            // 
-            // colName20
-            // 
-            this.colName20.FieldName = "Name";
-            this.colName20.Name = "colName20";
-            this.colName20.Visible = true;
-            this.colName20.VisibleIndex = 1;
-            // 
             // CompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8772,6 +8772,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditCty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             this.xtraTabPageMemberships.ResumeLayout(false);
             this.xtraTabPageMemberships.PerformLayout();
@@ -8917,8 +8919,6 @@
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
