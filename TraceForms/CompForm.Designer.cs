@@ -48,7 +48,7 @@
             System.Windows.Forms.Label LabelLong;
             System.Windows.Forms.Label LabelLat;
             System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label LabelEndOfDay;
             System.Windows.Forms.Label LabelTransferType;
             System.Windows.Forms.Label LabelMaxDuration;
             System.Windows.Forms.Label LabelMinDuration;
@@ -79,7 +79,7 @@
             this.repositoryItemDateEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.RepositoryItemCheckedComboBoxEditDaysOfWeek = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.RepositoryItemGridLookUpEditRoomcod = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.RepositoryItemGridLookUpEditRoomcodTime = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.ImageComboBoxEditRestrictionsCode = new DevExpress.XtraEditors.ImageComboBoxEdit();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -373,6 +373,9 @@
             this.gridColumnAgy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemSearchLookUpEditAgy = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView25 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDisplayName2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RepositoryItemButtonEditDate = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemCheckEditReadOnly = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.RepositoryItemSearchLookUpEditHtl = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
@@ -658,6 +661,36 @@
             this.colEndTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCreateAvailOptions = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView27 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraTabPageProductTaxes = new DevExpress.XtraTab.XtraTabPage();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.SimpleButtonDeleteProductTax = new DevExpress.XtraEditors.SimpleButton();
+            this.SimpleButtonAddProductTax = new DevExpress.XtraEditors.SimpleButton();
+            this.GridControlProductTax = new DevExpress.XtraGrid.GridControl();
+            this.BindingSourceProductTax = new System.Windows.Forms.BindingSource(this.components);
+            this.GridViewProductTax = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProduct_Type2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProduct_Code3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTax_Id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSearchLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView29 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPercentage = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFlat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colServiceStart2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.colServiceEnd2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBookingStart1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBookingEnd1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRoomcod_Code1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RepositoryItemGridLookUpEditRoomcodTax = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.repositoryItemCheckEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemTimeEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.gridView30 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.default_TimeTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.SearchLookupEditOperator = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -682,6 +715,11 @@
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.progressPanel1 = new DevExpress.XtraWaitForm.ProgressPanel();
+            this.RepositoryItemSearchLookUpEditOpt = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCode25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDisplayName3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName20 = new DevExpress.XtraGrid.Columns.GridColumn();
             LabelCode = new System.Windows.Forms.Label();
             LabelRateBasis = new System.Windows.Forms.Label();
             LabelRestrictions = new System.Windows.Forms.Label();
@@ -701,7 +739,7 @@
             LabelLong = new System.Windows.Forms.Label();
             LabelLat = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
+            LabelEndOfDay = new System.Windows.Forms.Label();
             LabelTransferType = new System.Windows.Forms.Label();
             LabelMaxDuration = new System.Windows.Forms.Label();
             LabelMinDuration = new System.Windows.Forms.Label();
@@ -732,7 +770,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckedComboBoxEditDaysOfWeek)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcodTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditRestrictionsCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
@@ -1007,6 +1045,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceProductTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewProductTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView27)).BeginInit();
+            this.xtraTabPageProductTaxes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlProductTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceProductTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewProductTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit4.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcodTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.default_TimeTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -1021,6 +1076,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelCode
@@ -1214,15 +1271,15 @@
             label1.TabIndex = 283;
             label1.Text = "Region";
             // 
-            // label3
+            // LabelEndOfDay
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(20, 15);
-            label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(60, 13);
-            label3.TabIndex = 112;
-            label3.Text = "End of Day";
+            LabelEndOfDay.AutoSize = true;
+            LabelEndOfDay.Location = new System.Drawing.Point(20, 15);
+            LabelEndOfDay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            LabelEndOfDay.Name = "LabelEndOfDay";
+            LabelEndOfDay.Size = new System.Drawing.Size(60, 13);
+            LabelEndOfDay.TabIndex = 112;
+            LabelEndOfDay.Text = "End of Day";
             // 
             // LabelTransferType
             // 
@@ -1510,17 +1567,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
-            // RepositoryItemGridLookUpEditRoomcod
+            // RepositoryItemGridLookUpEditRoomcodTime
             // 
-            this.RepositoryItemGridLookUpEditRoomcod.AcceptEditorTextAsNewValue = DevExpress.Utils.DefaultBoolean.True;
-            this.RepositoryItemGridLookUpEditRoomcod.AutoHeight = false;
-            this.RepositoryItemGridLookUpEditRoomcod.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.RepositoryItemGridLookUpEditRoomcodTime.AcceptEditorTextAsNewValue = DevExpress.Utils.DefaultBoolean.True;
+            this.RepositoryItemGridLookUpEditRoomcodTime.AutoHeight = false;
+            this.RepositoryItemGridLookUpEditRoomcodTime.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.RepositoryItemGridLookUpEditRoomcod.DisplayMember = "DisplayName";
-            this.RepositoryItemGridLookUpEditRoomcod.Name = "RepositoryItemGridLookUpEditRoomcod";
-            this.RepositoryItemGridLookUpEditRoomcod.NullText = "";
-            this.RepositoryItemGridLookUpEditRoomcod.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.RepositoryItemGridLookUpEditRoomcod.ValueMember = "Code";
+            this.RepositoryItemGridLookUpEditRoomcodTime.DisplayMember = "DisplayName";
+            this.RepositoryItemGridLookUpEditRoomcodTime.Name = "RepositoryItemGridLookUpEditRoomcodTime";
+            this.RepositoryItemGridLookUpEditRoomcodTime.NullText = "";
+            this.RepositoryItemGridLookUpEditRoomcodTime.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.RepositoryItemGridLookUpEditRoomcodTime.ValueMember = "Code";
+            this.RepositoryItemGridLookUpEditRoomcodTime.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.RepositoryItemGridLookUpEditRoomcodTime_ProcessNewValue);
             // 
             // repositoryItemCheckEdit1
             // 
@@ -2379,7 +2437,8 @@
             this.xtraTabPageSupplierCategories,
             this.xtraTabPageSupplements,
             this.xtraTabPageRelatedProducts,
-            this.xtraTabPageProductTime});
+            this.xtraTabPageProductTime,
+            this.xtraTabPageProductTaxes});
             this.xtraTabControl1.TabStop = false;
             // 
             // xtraTabPageLocation
@@ -4458,7 +4517,8 @@
             this.RepositoryItemSearchLookUpEditWay,
             this.RepositoryItemSearchLookUpEditCty,
             this.RepositoryItemDateEdit2,
-            this.RepositoryItemSearchLookUpEditAgy});
+            this.RepositoryItemSearchLookUpEditAgy,
+            this.RepositoryItemSearchLookUpEditOpt});
             this.GridControlTransferPoints.Size = new System.Drawing.Size(797, 357);
             this.GridControlTransferPoints.TabIndex = 31;
             this.GridControlTransferPoints.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -4686,6 +4746,7 @@
             this.repositoryItemComboBoxLocType.Items.AddRange(new object[] {
             "HTL",
             "WAY",
+            "OPT",
             "CTY"});
             this.repositoryItemComboBoxLocType.Name = "repositoryItemComboBoxLocType";
             // 
@@ -4848,10 +4909,33 @@
             // 
             // gridView25
             // 
+            this.gridView25.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode24,
+            this.colDisplayName2,
+            this.colName19});
             this.gridView25.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView25.Name = "gridView25";
             this.gridView25.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView25.OptionsView.ShowGroupPanel = false;
+            // 
+            // colCode24
+            // 
+            this.colCode24.FieldName = "Code";
+            this.colCode24.Name = "colCode24";
+            this.colCode24.Visible = true;
+            this.colCode24.VisibleIndex = 0;
+            // 
+            // colDisplayName2
+            // 
+            this.colDisplayName2.FieldName = "DisplayName";
+            this.colDisplayName2.Name = "colDisplayName2";
+            // 
+            // colName19
+            // 
+            this.colName19.FieldName = "Name";
+            this.colName19.Name = "colName19";
+            this.colName19.Visible = true;
+            this.colName19.VisibleIndex = 1;
             // 
             // RepositoryItemButtonEditDate
             // 
@@ -7454,7 +7538,7 @@
             this.PanelControlTimes.Controls.Add(LabelDefaultTime);
             this.PanelControlTimes.Controls.Add(this.SpinEditDuration);
             this.PanelControlTimes.Controls.Add(this.TextEditDefaultTime);
-            this.PanelControlTimes.Controls.Add(label3);
+            this.PanelControlTimes.Controls.Add(LabelEndOfDay);
             this.PanelControlTimes.Controls.Add(this.TimeEditEndOfDay);
             this.PanelControlTimes.Controls.Add(this.SimpleButtonDeleteProductTime);
             this.PanelControlTimes.Controls.Add(this.SimpleButtonAddProductTime);
@@ -7703,12 +7787,13 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemTimeEdit1,
             this.repositoryItemDateEdit3,
-            this.RepositoryItemGridLookUpEditRoomcod});
+            this.RepositoryItemGridLookUpEditRoomcodTime});
             this.GridControlProductTime.Size = new System.Drawing.Size(810, 368);
             this.GridControlProductTime.TabIndex = 43;
             this.GridControlProductTime.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.GridViewProductTime,
             this.gridView27});
+            this.GridControlProductTime.Leave += new System.EventHandler(this.GridControlProductTime_Leave);
             // 
             // BindingSourceProductTime
             // 
@@ -7767,6 +7852,7 @@
             // 
             // colServiceStart1
             // 
+            this.colServiceStart1.Caption = "Service Start";
             this.colServiceStart1.ColumnEdit = this.repositoryItemDateEdit3;
             this.colServiceStart1.FieldName = "ServiceStart";
             this.colServiceStart1.Name = "colServiceStart1";
@@ -7815,7 +7901,7 @@
             // colRoomcod_Code
             // 
             this.colRoomcod_Code.Caption = "Category";
-            this.colRoomcod_Code.ColumnEdit = this.RepositoryItemGridLookUpEditRoomcod;
+            this.colRoomcod_Code.ColumnEdit = this.RepositoryItemGridLookUpEditRoomcodTime;
             this.colRoomcod_Code.FieldName = "Roomcod_Code";
             this.colRoomcod_Code.Name = "colRoomcod_Code";
             this.colRoomcod_Code.Visible = true;
@@ -7861,6 +7947,334 @@
             this.gridView27.LevelIndent = 0;
             this.gridView27.Name = "gridView27";
             this.gridView27.PreviewIndent = 0;
+            // 
+            // xtraTabPageProductTaxes
+            // 
+            this.xtraTabPageProductTaxes.Controls.Add(this.panelControl1);
+            this.xtraTabPageProductTaxes.Name = "xtraTabPageProductTaxes";
+            this.xtraTabPageProductTaxes.Size = new System.Drawing.Size(905, 436);
+            this.xtraTabPageProductTaxes.Text = "Tax";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.SimpleButtonDeleteProductTax);
+            this.panelControl1.Controls.Add(this.SimpleButtonAddProductTax);
+            this.panelControl1.Controls.Add(this.GridControlProductTax);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(905, 436);
+            this.panelControl1.TabIndex = 0;
+            // 
+            // SimpleButtonDeleteProductTax
+            // 
+            this.SimpleButtonDeleteProductTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonDeleteProductTax.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonDeleteProductTax.ImageOptions.Image")));
+            this.SimpleButtonDeleteProductTax.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonDeleteProductTax.Location = new System.Drawing.Point(839, 81);
+            this.SimpleButtonDeleteProductTax.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonDeleteProductTax.Name = "SimpleButtonDeleteProductTax";
+            this.SimpleButtonDeleteProductTax.Size = new System.Drawing.Size(36, 44);
+            this.SimpleButtonDeleteProductTax.TabIndex = 113;
+            this.SimpleButtonDeleteProductTax.TabStop = false;
+            this.SimpleButtonDeleteProductTax.Text = "Delete Product Time Information";
+            this.SimpleButtonDeleteProductTax.Click += new System.EventHandler(this.SimpleButtonDeleteProductTax_Click);
+            // 
+            // SimpleButtonAddProductTax
+            // 
+            this.SimpleButtonAddProductTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SimpleButtonAddProductTax.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SimpleButtonAddProductTax.ImageOptions.Image")));
+            this.SimpleButtonAddProductTax.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.SimpleButtonAddProductTax.Location = new System.Drawing.Point(839, 31);
+            this.SimpleButtonAddProductTax.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.SimpleButtonAddProductTax.Name = "SimpleButtonAddProductTax";
+            this.SimpleButtonAddProductTax.Size = new System.Drawing.Size(36, 44);
+            this.SimpleButtonAddProductTax.TabIndex = 112;
+            this.SimpleButtonAddProductTax.TabStop = false;
+            this.SimpleButtonAddProductTax.Text = "Add Product Time Information";
+            this.SimpleButtonAddProductTax.Click += new System.EventHandler(this.SimpleButtonAddProductTax_Click);
+            // 
+            // GridControlProductTax
+            // 
+            this.GridControlProductTax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GridControlProductTax.CausesValidation = false;
+            this.GridControlProductTax.DataSource = this.BindingSourceProductTax;
+            this.GridControlProductTax.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.GridControlProductTax.Location = new System.Drawing.Point(28, 31);
+            this.GridControlProductTax.MainView = this.GridViewProductTax;
+            this.GridControlProductTax.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.GridControlProductTax.Name = "GridControlProductTax";
+            this.GridControlProductTax.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemSpinEdit2,
+            this.repositoryItemCheckedComboBoxEdit1,
+            this.repositoryItemCheckEdit6,
+            this.repositoryItemTimeEdit2,
+            this.repositoryItemDateEdit4,
+            this.RepositoryItemGridLookUpEditRoomcodTax,
+            this.repositoryItemSearchLookUpEdit1});
+            this.GridControlProductTax.Size = new System.Drawing.Size(784, 368);
+            this.GridControlProductTax.TabIndex = 44;
+            this.GridControlProductTax.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GridViewProductTax,
+            this.gridView30});
+            this.GridControlProductTax.Leave += new System.EventHandler(this.GridControlProductTax_Leave);
+            // 
+            // BindingSourceProductTax
+            // 
+            this.BindingSourceProductTax.DataSource = typeof(FlexModel.ProductTax);
+            // 
+            // GridViewProductTax
+            // 
+            this.GridViewProductTax.ColumnPanelRowHeight = 40;
+            this.GridViewProductTax.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId7,
+            this.colProduct_Type2,
+            this.colProduct_Code3,
+            this.colTax_Id,
+            this.colPercentage,
+            this.colFlat,
+            this.colServiceStart2,
+            this.colServiceEnd2,
+            this.colBookingStart1,
+            this.colBookingEnd1,
+            this.colRoomcod_Code1});
+            this.GridViewProductTax.DetailHeight = 182;
+            this.GridViewProductTax.FixedLineWidth = 1;
+            this.GridViewProductTax.GridControl = this.GridControlProductTax;
+            this.GridViewProductTax.LevelIndent = 0;
+            this.GridViewProductTax.Name = "GridViewProductTax";
+            this.GridViewProductTax.OptionsView.ShowGroupPanel = false;
+            this.GridViewProductTax.OptionsView.ShowIndicator = false;
+            this.GridViewProductTax.PreviewIndent = 0;
+            // 
+            // colId7
+            // 
+            this.colId7.FieldName = "Id";
+            this.colId7.Name = "colId7";
+            // 
+            // colProduct_Type2
+            // 
+            this.colProduct_Type2.FieldName = "Product_Type";
+            this.colProduct_Type2.Name = "colProduct_Type2";
+            // 
+            // colProduct_Code3
+            // 
+            this.colProduct_Code3.FieldName = "Product_Code";
+            this.colProduct_Code3.Name = "colProduct_Code3";
+            // 
+            // colTax_Id
+            // 
+            this.colTax_Id.Caption = "Tax type";
+            this.colTax_Id.ColumnEdit = this.repositoryItemSearchLookUpEdit1;
+            this.colTax_Id.FieldName = "Tax_Id";
+            this.colTax_Id.Name = "colTax_Id";
+            this.colTax_Id.Visible = true;
+            this.colTax_Id.VisibleIndex = 0;
+            this.colTax_Id.Width = 114;
+            // 
+            // repositoryItemSearchLookUpEdit1
+            // 
+            this.repositoryItemSearchLookUpEdit1.AutoHeight = false;
+            this.repositoryItemSearchLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSearchLookUpEdit1.DisplayMember = "Name";
+            this.repositoryItemSearchLookUpEdit1.Name = "repositoryItemSearchLookUpEdit1";
+            this.repositoryItemSearchLookUpEdit1.NullText = "";
+            this.repositoryItemSearchLookUpEdit1.PopupView = this.gridView29;
+            this.repositoryItemSearchLookUpEdit1.ValueMember = "Id";
+            // 
+            // gridView29
+            // 
+            this.gridView29.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnId,
+            this.gridColumnName});
+            this.gridView29.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView29.Name = "gridView29";
+            this.gridView29.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView29.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumnId
+            // 
+            this.gridColumnId.FieldName = "Id";
+            this.gridColumnId.Name = "gridColumnId";
+            // 
+            // gridColumnName
+            // 
+            this.gridColumnName.FieldName = "Name";
+            this.gridColumnName.Name = "gridColumnName";
+            this.gridColumnName.Visible = true;
+            this.gridColumnName.VisibleIndex = 0;
+            // 
+            // colPercentage
+            // 
+            this.colPercentage.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colPercentage.AppearanceCell.Options.UseBackColor = true;
+            this.colPercentage.Caption = "Percentage";
+            this.colPercentage.FieldName = "Tax.Percentage";
+            this.colPercentage.Name = "colPercentage";
+            this.colPercentage.OptionsColumn.AllowEdit = false;
+            this.colPercentage.OptionsColumn.AllowFocus = false;
+            this.colPercentage.OptionsColumn.FixedWidth = true;
+            this.colPercentage.OptionsColumn.ReadOnly = true;
+            this.colPercentage.Visible = true;
+            this.colPercentage.VisibleIndex = 2;
+            this.colPercentage.Width = 70;
+            // 
+            // colFlat
+            // 
+            this.colFlat.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colFlat.AppearanceCell.Options.UseBackColor = true;
+            this.colFlat.Caption = "Flat";
+            this.colFlat.FieldName = "Tax.Flat";
+            this.colFlat.Name = "colFlat";
+            this.colFlat.OptionsColumn.AllowEdit = false;
+            this.colFlat.OptionsColumn.AllowFocus = false;
+            this.colFlat.OptionsColumn.FixedWidth = true;
+            this.colFlat.OptionsColumn.ReadOnly = true;
+            this.colFlat.Visible = true;
+            this.colFlat.VisibleIndex = 3;
+            this.colFlat.Width = 70;
+            // 
+            // colServiceStart2
+            // 
+            this.colServiceStart2.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colServiceStart2.AppearanceCell.Options.UseBackColor = true;
+            this.colServiceStart2.Caption = "Service Start";
+            this.colServiceStart2.ColumnEdit = this.repositoryItemDateEdit4;
+            this.colServiceStart2.FieldName = "Tax.ServiceStart";
+            this.colServiceStart2.Name = "colServiceStart2";
+            this.colServiceStart2.OptionsColumn.AllowEdit = false;
+            this.colServiceStart2.OptionsColumn.AllowFocus = false;
+            this.colServiceStart2.OptionsColumn.FixedWidth = true;
+            this.colServiceStart2.OptionsColumn.ReadOnly = true;
+            this.colServiceStart2.Visible = true;
+            this.colServiceStart2.VisibleIndex = 4;
+            this.colServiceStart2.Width = 80;
+            // 
+            // repositoryItemDateEdit4
+            // 
+            this.repositoryItemDateEdit4.AutoHeight = false;
+            this.repositoryItemDateEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit4.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit4.Name = "repositoryItemDateEdit4";
+            // 
+            // colServiceEnd2
+            // 
+            this.colServiceEnd2.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colServiceEnd2.AppearanceCell.Options.UseBackColor = true;
+            this.colServiceEnd2.Caption = "Service End";
+            this.colServiceEnd2.ColumnEdit = this.repositoryItemDateEdit4;
+            this.colServiceEnd2.FieldName = "Tax.ServiceEnd";
+            this.colServiceEnd2.Name = "colServiceEnd2";
+            this.colServiceEnd2.OptionsColumn.AllowEdit = false;
+            this.colServiceEnd2.OptionsColumn.AllowFocus = false;
+            this.colServiceEnd2.OptionsColumn.FixedWidth = true;
+            this.colServiceEnd2.OptionsColumn.ReadOnly = true;
+            this.colServiceEnd2.Visible = true;
+            this.colServiceEnd2.VisibleIndex = 5;
+            this.colServiceEnd2.Width = 80;
+            // 
+            // colBookingStart1
+            // 
+            this.colBookingStart1.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colBookingStart1.AppearanceCell.Options.UseBackColor = true;
+            this.colBookingStart1.Caption = "Booking Start";
+            this.colBookingStart1.ColumnEdit = this.repositoryItemDateEdit4;
+            this.colBookingStart1.FieldName = "Tax.BookingStart";
+            this.colBookingStart1.Name = "colBookingStart1";
+            this.colBookingStart1.OptionsColumn.AllowEdit = false;
+            this.colBookingStart1.OptionsColumn.AllowFocus = false;
+            this.colBookingStart1.OptionsColumn.FixedWidth = true;
+            this.colBookingStart1.OptionsColumn.ReadOnly = true;
+            this.colBookingStart1.Visible = true;
+            this.colBookingStart1.VisibleIndex = 6;
+            this.colBookingStart1.Width = 80;
+            // 
+            // colBookingEnd1
+            // 
+            this.colBookingEnd1.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colBookingEnd1.AppearanceCell.Options.UseBackColor = true;
+            this.colBookingEnd1.Caption = "Booking End";
+            this.colBookingEnd1.ColumnEdit = this.repositoryItemDateEdit4;
+            this.colBookingEnd1.FieldName = "Tax.BookingEnd";
+            this.colBookingEnd1.Name = "colBookingEnd1";
+            this.colBookingEnd1.OptionsColumn.AllowEdit = false;
+            this.colBookingEnd1.OptionsColumn.AllowFocus = false;
+            this.colBookingEnd1.OptionsColumn.FixedWidth = true;
+            this.colBookingEnd1.OptionsColumn.ReadOnly = true;
+            this.colBookingEnd1.Visible = true;
+            this.colBookingEnd1.VisibleIndex = 7;
+            this.colBookingEnd1.Width = 80;
+            // 
+            // colRoomcod_Code1
+            // 
+            this.colRoomcod_Code1.Caption = "Category";
+            this.colRoomcod_Code1.ColumnEdit = this.RepositoryItemGridLookUpEditRoomcodTax;
+            this.colRoomcod_Code1.FieldName = "Roomcod_Code";
+            this.colRoomcod_Code1.Name = "colRoomcod_Code1";
+            this.colRoomcod_Code1.Visible = true;
+            this.colRoomcod_Code1.VisibleIndex = 1;
+            this.colRoomcod_Code1.Width = 198;
+            // 
+            // RepositoryItemGridLookUpEditRoomcodTax
+            // 
+            this.RepositoryItemGridLookUpEditRoomcodTax.AcceptEditorTextAsNewValue = DevExpress.Utils.DefaultBoolean.True;
+            this.RepositoryItemGridLookUpEditRoomcodTax.AutoHeight = false;
+            this.RepositoryItemGridLookUpEditRoomcodTax.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemGridLookUpEditRoomcodTax.DisplayMember = "DisplayName";
+            this.RepositoryItemGridLookUpEditRoomcodTax.Name = "RepositoryItemGridLookUpEditRoomcodTax";
+            this.RepositoryItemGridLookUpEditRoomcodTax.NullText = "";
+            this.RepositoryItemGridLookUpEditRoomcodTax.PopupView = this.repositoryItemGridLookUpEdit1View;
+            this.RepositoryItemGridLookUpEditRoomcodTax.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.RepositoryItemGridLookUpEditRoomcodTax.ValueMember = "Code";
+            this.RepositoryItemGridLookUpEditRoomcodTax.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.RepositoryItemGridLookUpEditRoomcodTax_ProcessNewValue);
+            // 
+            // repositoryItemGridLookUpEdit1View
+            // 
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // repositoryItemSpinEdit2
+            // 
+            this.repositoryItemSpinEdit2.AutoHeight = false;
+            this.repositoryItemSpinEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
+            // 
+            // repositoryItemCheckedComboBoxEdit1
+            // 
+            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
+            // 
+            // repositoryItemCheckEdit6
+            // 
+            this.repositoryItemCheckEdit6.AutoHeight = false;
+            this.repositoryItemCheckEdit6.Name = "repositoryItemCheckEdit6";
+            // 
+            // repositoryItemTimeEdit2
+            // 
+            this.repositoryItemTimeEdit2.AutoHeight = false;
+            this.repositoryItemTimeEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit2.Name = "repositoryItemTimeEdit2";
+            // 
+            // gridView30
+            // 
+            this.gridView30.DetailHeight = 182;
+            this.gridView30.FixedLineWidth = 1;
+            this.gridView30.GridControl = this.GridControlProductTax;
+            this.gridView30.LevelIndent = 0;
+            this.gridView30.Name = "gridView30";
+            this.gridView30.PreviewIndent = 0;
             // 
             // default_TimeTextEdit
             // 
@@ -8103,6 +8517,47 @@
             this.progressPanel1.Text = "progressPanel1";
             this.progressPanel1.Visible = false;
             // 
+            // RepositoryItemSearchLookUpEditOpt
+            // 
+            this.RepositoryItemSearchLookUpEditOpt.AutoHeight = false;
+            this.RepositoryItemSearchLookUpEditOpt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.RepositoryItemSearchLookUpEditOpt.DataSource = this.BindingSourceCodeName;
+            this.RepositoryItemSearchLookUpEditOpt.DisplayMember = "DisplayName";
+            this.RepositoryItemSearchLookUpEditOpt.Name = "RepositoryItemSearchLookUpEditOpt";
+            this.RepositoryItemSearchLookUpEditOpt.PopupView = this.repositoryItemSearchLookUpEdit2View;
+            this.RepositoryItemSearchLookUpEditOpt.ValueMember = "Code";
+            // 
+            // repositoryItemSearchLookUpEdit2View
+            // 
+            this.repositoryItemSearchLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCode25,
+            this.colDisplayName3,
+            this.colName20});
+            this.repositoryItemSearchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit2View.Name = "repositoryItemSearchLookUpEdit2View";
+            this.repositoryItemSearchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colCode25
+            // 
+            this.colCode25.FieldName = "Code";
+            this.colCode25.Name = "colCode25";
+            this.colCode25.Visible = true;
+            this.colCode25.VisibleIndex = 0;
+            // 
+            // colDisplayName3
+            // 
+            this.colDisplayName3.FieldName = "DisplayName";
+            this.colDisplayName3.Name = "colDisplayName3";
+            // 
+            // colName20
+            // 
+            this.colName20.FieldName = "Name";
+            this.colName20.Name = "colName20";
+            this.colName20.Visible = true;
+            this.colName20.VisibleIndex = 1;
+            // 
             // CompForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8129,7 +8584,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemCheckedComboBoxEditDaysOfWeek)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcodTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageComboBoxEditRestrictionsCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
@@ -8430,6 +8885,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindingSourceProductTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewProductTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView27)).EndInit();
+            this.xtraTabPageProductTaxes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridControlProductTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSourceProductTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewProductTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit4.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemGridLookUpEditRoomcodTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.default_TimeTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -8445,6 +8917,8 @@
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepositoryItemSearchLookUpEditOpt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -9010,7 +9484,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit RepositoryItemCheckedComboBoxEditDaysOfWeek;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit RepositoryItemGridLookUpEditRoomcod;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit RepositoryItemGridLookUpEditRoomcodTime;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.GroupControl GroupControlAccounting;
         private DevExpress.XtraEditors.GroupControl GroupControlPassengerInfo;
@@ -9063,5 +9537,43 @@
         private DevExpress.XtraEditors.GroupControl GroupControlAirport;
         private DevExpress.XtraEditors.GroupControl GroupControlArrivalCity;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageProductTaxes;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraGrid.GridControl GridControlProductTax;
+        private DevExpress.XtraGrid.Views.Grid.GridView GridViewProductTax;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit RepositoryItemGridLookUpEditRoomcodTax;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit6;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView30;
+        private System.Windows.Forms.BindingSource BindingSourceProductTax;
+        private DevExpress.XtraGrid.Columns.GridColumn colId7;
+        private DevExpress.XtraGrid.Columns.GridColumn colProduct_Type2;
+        private DevExpress.XtraGrid.Columns.GridColumn colProduct_Code3;
+        private DevExpress.XtraGrid.Columns.GridColumn colTax_Id;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView29;
+        private DevExpress.XtraGrid.Columns.GridColumn colPercentage;
+        private DevExpress.XtraGrid.Columns.GridColumn colFlat;
+        private DevExpress.XtraGrid.Columns.GridColumn colServiceStart2;
+        private DevExpress.XtraGrid.Columns.GridColumn colServiceEnd2;
+        private DevExpress.XtraGrid.Columns.GridColumn colBookingStart1;
+        private DevExpress.XtraGrid.Columns.GridColumn colBookingEnd1;
+        private DevExpress.XtraGrid.Columns.GridColumn colRoomcod_Code1;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonDeleteProductTax;
+        private DevExpress.XtraEditors.SimpleButton SimpleButtonAddProductTax;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnName;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode24;
+        private DevExpress.XtraGrid.Columns.GridColumn colDisplayName2;
+        private DevExpress.XtraGrid.Columns.GridColumn colName19;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit RepositoryItemSearchLookUpEditOpt;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit2View;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode25;
+        private DevExpress.XtraGrid.Columns.GridColumn colDisplayName3;
+        private DevExpress.XtraGrid.Columns.GridColumn colName20;
     }
 }

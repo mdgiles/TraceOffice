@@ -78,6 +78,8 @@ namespace TraceForms
         {
             Connection.EFConnectionString = sys.Settings.EFConnectionString;
             COMP.MaxLengths = Connection.GetMaxLengths(typeof(COMP).GetType().Name);
+            ProductTax.MaxLengths = Connection.GetMaxLengths(typeof(ProductTax).GetType().Name);
+
             _context = new FlextourEntities(sys.Settings.EFConnectionString);
             _sys = sys;
         }
@@ -174,7 +176,8 @@ namespace TraceForms
             RepositoryItemSearchLookUpEditCat.DataSource = categories;
             RepositoryItemSearchLookUpEditDefaultCat.DataSource = categories;
             _allCats.AddRange(categories);
-            RepositoryItemGridLookUpEditRoomcod.DataSource = _allCats;
+            RepositoryItemGridLookUpEditRoomcodTime.DataSource = _allCats;
+            RepositoryItemGridLookUpEditRoomcodTax.DataSource = _allCats;
 
             var agencies = new List<CodeName> {
                 new CodeName(null)
@@ -183,6 +186,7 @@ namespace TraceForms
                 .OrderBy(o => o.NO)
                 .Select(s => new CodeName() { Code = s.NO, Name = s.NAME }).ToList());
             SearchLookupEditAgency.Properties.DataSource = agencies;
+            RepositoryItemSearchLookUpEditAgy.DataSource = agencies;
 
             var states = new List<CodeName> {
                 new CodeName(null)
@@ -237,18 +241,21 @@ namespace TraceForms
             _repos.Add("WAY", RepositoryItemSearchLookUpEditWay);
             //repositoryItemImageComboboxLocation.DataSource = waypoints;
 
-            var components = new List<CodeName>();
-            components.AddRange(_context.COMP
+            var supplements = new List<CodeName>();
+            supplements.AddRange(_context.COMP
                 .Where(c => c.IsSupplement)
                 .OrderBy(o => o.CODE)
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
-            RepositoryItemSearchLookUpEditCompCode.DataSource = components;
+            RepositoryItemSearchLookUpEditCompCode.DataSource = supplements;
 
             var products = new List<CodeName>();
             products.AddRange(_context.COMP
                 .Where(c => !c.IsSupplement && c.Inactive != "Y")
                 .OrderBy(o => o.CODE) 
                 .Select(s => new CodeName() { Code = s.CODE, Name = s.NAME }).ToList());
+            _locationLookups.Add("OPT", products);
+            RepositoryItemSearchLookUpEditOpt.DataSource = _locationLookups["OPT"];
+            _repos.Add("OPT", RepositoryItemSearchLookUpEditOpt);
             _passLookups.Add("OPT", products);
 
             products = new List<CodeName>();
@@ -293,6 +300,12 @@ namespace TraceForms
 
             BindingSourceBusRoutes.DataSource = _context.BusRoute
                 .OrderBy(r => r.Name);
+
+            var taxes = new List<IdName>();
+            taxes.AddRange(_context.Tax
+                .OrderBy(o => o.Name)
+                .Select(s => new IdName() { Id = s.Id, Name = s.Name }).ToList());
+            repositoryItemSearchLookUpEdit1.DataSource = taxes;
 
             var regions = new List<CodeName> {
                 new CodeName(null)
@@ -373,6 +386,7 @@ namespace TraceForms
                 LoadAndBindSupplements();
                 LoadAndBindRelatedProducts();
                 LoadAndBindProductTimes();
+                LoadAndBindProductTaxes();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
@@ -408,6 +422,8 @@ namespace TraceForms
             GridViewRelatedProducts.UpdateCurrentRow();
             GridViewProductTime.CloseEditor();
             GridViewProductTime.UpdateCurrentRow();
+            GridViewProductTax.CloseEditor();
+            GridViewProductTax.UpdateCurrentRow();
             _selectedRecord.PUDRP_REQ = _pupDrp;
             //Set the  code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierCategory.DataRowCount; rowCtr++) {
@@ -445,6 +461,14 @@ namespace TraceForms
                 SetItemCategoryLookup(prodTime.Roomcod_Code);
             }
             BindingSourceProductTime.EndEdit();
+
+            for (int rowCtr = 0; rowCtr < GridViewProductTax.DataRowCount; rowCtr++) {
+                ProductTax prodTax = (ProductTax)GridViewProductTax.GetRow(rowCtr);
+                prodTax.Product_Type = "OPT";
+                prodTax.Product_Code = TextEditCode.Text ?? string.Empty;
+                SetItemCategoryLookup(prodTax.Roomcod_Code);
+            }
+            BindingSourceProductTax.EndEdit();
 
             //Set the code for each mapping just in case
             for (int rowCtr = 0; rowCtr < GridViewSupplierProduct.DataRowCount; rowCtr++) {
@@ -2235,6 +2259,8 @@ namespace TraceForms
                 e.Values[columnLocation] = _locationLookups["WAY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
             else if (e.Values[columnLocType].ToString() == "CTY")
                 e.Values[columnLocation] = _locationLookups["CTY"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
+            else if (e.Values[columnLocType].ToString() == "OPT")
+                e.Values[columnLocation] = _locationLookups["OPT"].Where(x => x.DisplayName == e.Values[columnLocation].ToString()).FirstOrDefault().Code;
         }
 
         void LoadAndBindProductTimes()
@@ -2285,7 +2311,13 @@ namespace TraceForms
             }
         }
 
-        private void RepositoryItemGridLookUpEditRoomcod_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        private void RepositoryItemGridLookUpEditRoomcodTime_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
+        {
+            SetItemCategoryLookup(e.DisplayValue.ToString());
+            e.Handled = true;
+        }
+
+        private void RepositoryItemGridLookUpEditRoomcodTax_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
         {
             SetItemCategoryLookup(e.DisplayValue.ToString());
             e.Handled = true;
@@ -2296,7 +2328,8 @@ namespace TraceForms
             string cat = itemCat.ToStringNullIfNull();
 
             if (string.IsNullOrEmpty(cat) || _allCats.Any(c => c.Code == cat)) {
-                RepositoryItemGridLookUpEditRoomcod.DataSource = _allCats;
+                RepositoryItemGridLookUpEditRoomcodTime.DataSource = _allCats;
+                RepositoryItemGridLookUpEditRoomcodTax.DataSource = _allCats;
             }
             else {
                 //If the value of category isn't in the list, add it to the list
@@ -2304,7 +2337,7 @@ namespace TraceForms
                 //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
                 //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
                 var newCat = new CodeName(cat);
-                _allCats.Add(newCat);
+                _allCats.Insert(1, newCat);
             }
         }
 
@@ -2332,6 +2365,66 @@ namespace TraceForms
         private void GridViewSupplierCategory_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = ExceptionMode.NoAction; //Suppress displaying the error message box
+        }
+
+        void LoadAndBindProductTaxes()
+        {
+            //Load the related entities. DO NOT do another db query using context.whatever because they
+            //will not be associated with the parent entity, and new items will not be added to the relationship
+            //so foreign key errors will result. Can't load the related entities on a detached or added (but not saved)
+            //entity.
+            if (_selectedRecord.EntityState != EntityState.Detached) {
+                _selectedRecord.ProductTax.Load(MergeOption.OverwriteChanges);
+            }
+            //Don't do any LINQ operations on the entitycollection, just bind directly to it, otherwise
+            //it appears to bind as unassociated with the context and you have to manually add/delete
+            //rows from the bindingsource to the context (but changes work fine)
+            BindingSourceProductTax.DataSource = _selectedRecord.ProductTax;
+            BindProductTaxes();
+        }
+
+        void BindProductTaxes()
+        {
+            GridControlProductTax.DataSource = BindingSourceProductTax;
+            GridControlProductTax.RefreshDataSource();
+        }
+
+        private void GridControlProductTime_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateProductTime, sender);
+        }
+
+        private void GridControlProductTax_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateProductTax, sender);
+        }
+
+        private void SimpleButtonAddProductTax_Click(object sender, EventArgs e)
+        {
+            ProductTax tax = new ProductTax {
+                Product_Code = TextEditCode.Text ?? string.Empty,
+                Product_Type = "OPT"
+            };
+            _selectedRecord.ProductTax.Add(tax);
+            BindProductTaxes();
+            GridViewProductTax.FocusedRowHandle = BindingSourceProductTax.Count - 1;
+        }
+
+        private void SimpleButtonDeleteProductTax_Click(object sender, EventArgs e)
+        {
+            if (GridViewProductTax.FocusedRowHandle >= 0) {
+                ProductTax tax = (ProductTax)GridViewProductTax.GetFocusedRow();
+                BindingSourceProductTax.Remove(tax);
+                //Removing from the bindingsource just removes the object from its parent, but does not mark
+                //it for deletion, effectively orphaning it.  This will cause foreign key errors when saving.
+                //To flag for deletion, delete it from the context as well.
+                if (!tax.IsNew()) {
+                    _context.ProductTax.DeleteObject(tax);
+                }
+                BindProductTaxes();
+            }
         }
     }
 }
