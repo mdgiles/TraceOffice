@@ -1048,7 +1048,7 @@ namespace TraceForms
             return false;
         }
 
-        private Image CreateThumbnail(Image fullSizeImg, int width = 128, int height = 128)
+        private Image CreateThumbnail(Image fullSizeImg, int width = 265, int height = 200)
         {
             Image.GetThumbnailImageAbort callBack = new Image.GetThumbnailImageAbort(CreateThumbnailAbort);
             return fullSizeImg.GetThumbnailImage(width, height, callBack, IntPtr.Zero);
