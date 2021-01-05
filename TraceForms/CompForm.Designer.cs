@@ -2873,13 +2873,13 @@
             this.MapControl.Layers.Add(this.ImageLayer);
             this.MapControl.Layers.Add(this.VectorItemsLayer);
             this.MapControl.Layers.Add(this.InformationLayer);
-            this.MapControl.Location = new System.Drawing.Point(423, 272);
+            this.MapControl.Location = new System.Drawing.Point(423, 247);
             this.MapControl.Margin = new System.Windows.Forms.Padding(2);
             this.MapControl.MaximumSize = new System.Drawing.Size(400, 312);
             this.MapControl.Name = "MapControl";
-            this.MapControl.NavigationPanelOptions.Height = 200;
+            this.MapControl.NavigationPanelOptions.Height = 40;
             this.MapControl.ShowSearchPanel = false;
-            this.MapControl.Size = new System.Drawing.Size(400, 144);
+            this.MapControl.Size = new System.Drawing.Size(400, 169);
             this.MapControl.TabIndex = 272;
             this.MapControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseDown);
             this.MapControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapControl_MouseMove);
