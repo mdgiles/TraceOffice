@@ -7676,6 +7676,7 @@
             this.TimeEditEndOfDay.TabIndex = 13;
             this.TimeEditEndOfDay.ToolTip = "If an activity continues past midnight, but finishes before End of Day, it will s" +
     "till be considered the previous day";
+            this.TimeEditEndOfDay.EditValueChanged += new System.EventHandler(this.TimeEditEndOfDay_EditValueChanged);
             // 
             // BarManager
             // 
