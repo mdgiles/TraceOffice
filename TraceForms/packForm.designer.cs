@@ -1438,6 +1438,8 @@
             this.SearchLookupEditDepCity.Properties.ValueMember = "Code";
             this.SearchLookupEditDepCity.Size = new System.Drawing.Size(234, 20);
             this.SearchLookupEditDepCity.TabIndex = 282;
+            this.SearchLookupEditDepCity.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditDepCity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PopupForm_KeyUp);
             this.SearchLookupEditDepCity.Leave += new System.EventHandler(this.SearchLookUpEditDepCity_Leave);
             // 
             // BindingSourceCodeName

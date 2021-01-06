@@ -1151,7 +1151,7 @@ namespace TraceForms
                 Exclusion = "0",
             };
 
-            if (ImageComboBoxEditTransType.Text == "Outbound") {
+            if (_selectedRecord.TRSFR_TYP != "I") {
                 busTable.In_Out = "O";
             }
             else {
