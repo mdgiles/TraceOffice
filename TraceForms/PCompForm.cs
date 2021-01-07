@@ -70,7 +70,7 @@ namespace TraceForms
 
             _hotels = _context.HOTEL.Where(x => x.INACTIVE != "Y").OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME }).ToList();
-            _hotels.Insert(0, new CodeName());      //null is valid for a hotel
+            _hotels.Insert(0, new CodeName());      //null is valid for a hotel in the case where customer can select a hotel at booking
 
             SearchLookupEditCode.Properties.DataSource = _context.PACK.Where(x => x.Inactive != "Y").OrderBy(x => x.CODE)
                 .Select(x => new CodeName() { Code = x.CODE, Name = x.NAME });
@@ -1033,9 +1033,9 @@ namespace TraceForms
             string code = SearchLookupEditItemCode.EditValue?.ToString();
             //This event fires before BindingSource.CurrentChanged (gahhhh!), but associated lookups can't change until
             //after BindingSource.CurrentChanged otherwise _selectedRecord isn't set to the right value
-            if (_selectedRecord.CODE1 == code) {
-                ItemChanged(code);
-            }
+            //if (_selectedRecord.CODE1 == code) {
+            ItemChanged(code);
+            //}
         }
 
         private void SpinEditNights_Leave(object sender, EventArgs e)
