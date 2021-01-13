@@ -2332,14 +2332,6 @@ namespace TraceForms
             }
         }
 
-        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if ((sender as LookUpEditBase).Properties.DataSource == null)
-                e.Cancel = true;
-            else
-                e.Cancel = false;
-        }
-
         private void RepositoryItemCheckedComboBoxEditDaysOfWeek_EditValueChanged(object sender, EventArgs e)
         {
             CheckedComboBoxEdit edit = sender as CheckedComboBoxEdit;

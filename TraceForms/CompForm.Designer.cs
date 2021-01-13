@@ -1093,7 +1093,7 @@
             // LabelRateBasis
             // 
             LabelRateBasis.AutoSize = true;
-            LabelRateBasis.Location = new System.Drawing.Point(10, 60);
+            LabelRateBasis.Location = new System.Drawing.Point(15, 54);
             LabelRateBasis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelRateBasis.Name = "LabelRateBasis";
             LabelRateBasis.Size = new System.Drawing.Size(57, 13);
@@ -1114,7 +1114,7 @@
             // LabelVendorCode
             // 
             LabelVendorCode.AutoSize = true;
-            LabelVendorCode.Location = new System.Drawing.Point(10, 34);
+            LabelVendorCode.Location = new System.Drawing.Point(15, 28);
             LabelVendorCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             LabelVendorCode.Name = "LabelVendorCode";
             LabelVendorCode.Size = new System.Drawing.Size(69, 13);
@@ -1611,7 +1611,7 @@
             // 
             this.ImageComboBoxEditRateBasis.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "RATE_BASIS", true));
             this.ImageComboBoxEditRateBasis.EnterMoveNextControl = true;
-            this.ImageComboBoxEditRateBasis.Location = new System.Drawing.Point(83, 57);
+            this.ImageComboBoxEditRateBasis.Location = new System.Drawing.Point(87, 51);
             this.ImageComboBoxEditRateBasis.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ImageComboBoxEditRateBasis.Name = "ImageComboBoxEditRateBasis";
             this.ImageComboBoxEditRateBasis.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1725,7 +1725,7 @@
             // 
             this.TextEditVendorCode.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "Vendor_Code", true));
             this.TextEditVendorCode.EnterMoveNextControl = true;
-            this.TextEditVendorCode.Location = new System.Drawing.Point(83, 31);
+            this.TextEditVendorCode.Location = new System.Drawing.Point(87, 24);
             this.TextEditVendorCode.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.TextEditVendorCode.Name = "TextEditVendorCode";
             this.TextEditVendorCode.Properties.MaxLength = 12;
@@ -3265,7 +3265,7 @@
             // 
             this.mealsIncludedCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "MealsIncluded", true));
             this.mealsIncludedCheckEdit.EnterMoveNextControl = true;
-            this.mealsIncludedCheckEdit.Location = new System.Drawing.Point(241, 32);
+            this.mealsIncludedCheckEdit.Location = new System.Drawing.Point(245, 24);
             this.mealsIncludedCheckEdit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.mealsIncludedCheckEdit.Name = "mealsIncludedCheckEdit";
             this.mealsIncludedCheckEdit.Properties.Caption = "Meals Included";
@@ -3278,7 +3278,7 @@
             this.CheckEditSvcList.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "SVC_LIST", true));
             this.CheckEditSvcList.EditValue = "N";
             this.CheckEditSvcList.EnterMoveNextControl = true;
-            this.CheckEditSvcList.Location = new System.Drawing.Point(241, 58);
+            this.CheckEditSvcList.Location = new System.Drawing.Point(245, 51);
             this.CheckEditSvcList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.CheckEditSvcList.Name = "CheckEditSvcList";
             this.CheckEditSvcList.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;

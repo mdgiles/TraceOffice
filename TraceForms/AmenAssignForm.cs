@@ -719,7 +719,7 @@ namespace TraceForms
                 //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
 
                 var listNewPlan = new List<CodeName> {                    
-                    new CodeName(ratePlan, ratePlan)
+                    new CodeName(ratePlan)
                 };
                 if (!_allTypedRatePlans.ContainsKey("")) {
                     _allTypedRatePlans.Add("", listNewPlan);
