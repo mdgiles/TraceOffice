@@ -29,6 +29,7 @@ namespace TraceForms
         ICoreSys _sys;
         string[] _fullDescTitles = Configurator.FullDescMediaReportTitles.Split(';');
         string[] _termsTitles = Configurator.TermsMediaReportTitles.Split(';');
+        string[] _healthTitles = Configurator.HealthMediaReportTitles.Split(';');
         string[] _promosTitles = Configurator.PromosMediaReportTitles.Split(';');
         string[] _departReturnTitles = Configurator.DepartReturnMediaReportTitles.Split(';');
         string[] _exclusionsTitles = Configurator.ExclusionsMediaReportTitles.Split(';');
@@ -212,6 +213,12 @@ namespace TraceForms
                     ageInYears = ((custType.FromAge ?? 0) / 12);
                     custType.FromAge = (short)Math.Floor(ageInYears);
                 }
+                //If the range is followed by "people" then it refers to group size, not age (there could be other terms
+                //to add here, like "guests", "passengers" etc)
+                if (remainingString.IndexOf("people") == 0) {
+                    custType.FromAge = null;
+                    custType.ToAge = null;
+                }
             }
             else if (numberMatch?.Success ?? false) {
                 //The best we can do if there is only one number is to check for a subsequent string like
@@ -220,6 +227,7 @@ namespace TraceForms
                 int matchPos = numberMatch.Index + numberMatch.Length;
                 string remainingString = stringToTest.Substring(matchPos, stringToTest.Length - matchPos).TrimStart();
                 string priorString = stringToTest.Substring(0, matchPos).TrimEnd();
+                const string upTo = "up to";
                 if (remainingString.IndexOf('+', 0) == 0
                   || remainingString.IndexOf("and up", 0) == 0
                   || remainingString.IndexOf("and over", 0) == 0
@@ -228,7 +236,7 @@ namespace TraceForms
                 }
                 else if (remainingString.IndexOf("and under", 0) == 0
                   || remainingString.IndexOf("and below", 0) == 0
-                  || priorString.IndexOf("up to", matchPos - "up to".Length) != -1) {
+                  || (matchPos - upTo.Length >= 0 && priorString.IndexOf(upTo, matchPos - upTo.Length) != -1)) {
                     custType.ToAge = Convert.ToInt16(numberMatch.Value);
                 }
             }
@@ -540,6 +548,13 @@ namespace TraceForms
                     termsInfo.TEXT = item.Cancellation_policy_safe_html;
                 }
 
+                MEDIAINFO healthInfo = new MEDIAINFO();
+                if (!string.IsNullOrEmpty(item.Health_and_safety_policy_safe_html)) {
+                    healthInfo = MediaHelper.CheckAndCreateNewMediaInfo(_context, Configurator.HealthMediaReportSection, _healthTitles[0],
+                        "OPT", comp.CODE, string.Empty, "ENG", Configurator.CreateNewInfoAsInHouse, null);
+                    healthInfo.TEXT = item.Health_and_safety_policy_safe_html;
+                }
+
                 //Download the images and attach to the main media section
                 List<RESOURCE> resources = new List<RESOURCE>();
                 if (Configurator.DownloadImages) {
@@ -570,6 +585,12 @@ namespace TraceForms
                     MediaHelper.CheckAndAddInfoToReports(_context, new MEDIARPT[] { rptGeninfo, rptVoucher }, termsInfo, 2);
                     if (termsInfo.ID == 0) {
                         _context.MEDIAINFO.AddObject(termsInfo);
+                    }
+                }
+                if (!string.IsNullOrEmpty(healthInfo.TEXT)) {
+                    MediaHelper.CheckAndAddInfoToReports(_context, new MEDIARPT[] { rptGeninfo, rptVoucher }, healthInfo, 2);
+                    if (healthInfo.ID == 0) {
+                        _context.MEDIAINFO.AddObject(healthInfo);
                     }
                 }
                 if (rptGeninfo.ID == 0 && rptGeninfo.MediaRptItem.Count > 0) {

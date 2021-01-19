@@ -98,6 +98,7 @@ namespace TraceForms.Models.FareHarbor
         public string Name { get; set; }
         public decimal StartingPrice { get; set; }
         public bool AlreadyImported { get; set; }
+        public string Health_and_safety_policy_safe_html { get; set; }
     }
 
     public class Image

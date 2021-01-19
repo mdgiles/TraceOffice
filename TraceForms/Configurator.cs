@@ -142,6 +142,10 @@ namespace TraceForms
             get { return ConfigurationManager.AppSettings["TermsMediaReportSection"]; }
         }
 
+        public static string HealthMediaReportSection {
+            get { return ConfigurationManager.AppSettings["HealthMediaReportSection"]; }
+        }
+
         public static string PresalesMediaReportSection {
             get { return ConfigurationManager.AppSettings["PresalesMediaReportSection"]; }
         }
@@ -164,6 +168,10 @@ namespace TraceForms
 
         public static string TermsMediaReportTitles {
             get { return ConfigurationManager.AppSettings["TermsMediaReportTitles"]; }
+        }
+
+        public static string HealthMediaReportTitles {
+            get { return ConfigurationManager.AppSettings["HealthMediaReportTitles"]; }
         }
 
         public static string PromosMediaReportTitles {
