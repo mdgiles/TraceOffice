@@ -105,6 +105,7 @@ namespace TraceForms
             this.barButtonItemAddToReports = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemRemoveFromReports = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemCreateNewReports = new DevExpress.XtraBars.BarButtonItem();
+            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -208,6 +209,8 @@ namespace TraceForms
             this.ColumnMediaRptItems = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ComboBoxEditType = new DevExpress.XtraEditors.ComboBoxEdit();
             this.SplitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
+            this.CheckEditAllCategory = new DevExpress.XtraEditors.CheckEdit();
+            this.CheckEditAllAgency = new DevExpress.XtraEditors.CheckEdit();
             this.LabelChgDate = new DevExpress.XtraEditors.LabelControl();
             this.LabelChangeDate = new DevExpress.XtraEditors.LabelControl();
             this.DateEditSvcStartDate = new DevExpress.XtraEditors.DateEdit();
@@ -233,10 +236,10 @@ namespace TraceForms
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.GridLookUpEditCategory = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SearchLookupEditCategory = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LabelStatus = new DevExpress.XtraEditors.LabelControl();
             this.PanelControlStatus = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -330,6 +333,8 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).BeginInit();
             this.SplitContainerControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllAgency.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcStartDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcEndDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -348,8 +353,8 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).BeginInit();
             this.PanelControlStatus.SuspendLayout();
             this.SuspendLayout();
@@ -562,7 +567,7 @@ namespace TraceForms
             this.xtraTabControlMediaInfo.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlMediaInfo.Name = "xtraTabControlMediaInfo";
             this.xtraTabControlMediaInfo.SelectedTabPage = this.xtraTabPageText;
-            this.xtraTabControlMediaInfo.Size = new System.Drawing.Size(669, 370);
+            this.xtraTabControlMediaInfo.Size = new System.Drawing.Size(669, 347);
             this.xtraTabControlMediaInfo.TabIndex = 33;
             this.xtraTabControlMediaInfo.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageText,
@@ -576,7 +581,7 @@ namespace TraceForms
             this.xtraTabPageText.Controls.Add(this.panelControlText);
             this.xtraTabPageText.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageText.Name = "xtraTabPageText";
-            this.xtraTabPageText.Size = new System.Drawing.Size(663, 342);
+            this.xtraTabPageText.Size = new System.Drawing.Size(663, 319);
             this.xtraTabPageText.Text = "Text";
             // 
             // panelControlText
@@ -589,7 +594,7 @@ namespace TraceForms
             this.panelControlText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlText.Location = new System.Drawing.Point(0, 0);
             this.panelControlText.Name = "panelControlText";
-            this.panelControlText.Size = new System.Drawing.Size(663, 342);
+            this.panelControlText.Size = new System.Drawing.Size(663, 319);
             this.panelControlText.TabIndex = 0;
             // 
             // HtmlEditor
@@ -992,7 +997,7 @@ namespace TraceForms
             this.HtmlEditor.Options.FTPSettingsForRemoteResources.Timeout = 4000;
             this.HtmlEditor.Options.FTPSettingsForRemoteResources.UrlOfTheRemoteFolderPath = null;
             this.HtmlEditor.Options.FTPSettingsForRemoteResources.UserName = null;
-            this.HtmlEditor.Size = new System.Drawing.Size(618, 255);
+            this.HtmlEditor.Size = new System.Drawing.Size(618, 232);
             this.HtmlEditor.SpellCheckOptions.CurlyUnderlineImageFilePath = null;
             dictionaryFileInfo1.AffixFilePath = null;
             dictionaryFileInfo1.DictionaryFilePath = null;
@@ -1123,7 +1128,7 @@ namespace TraceForms
             // 
             this.HtmlEditor.ToolbarFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.HtmlEditor.ToolbarFooter.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.HtmlEditor.ToolbarFooter.Location = new System.Drawing.Point(0, 220);
+            this.HtmlEditor.ToolbarFooter.Location = new System.Drawing.Point(0, 197);
             this.HtmlEditor.ToolbarFooter.Name = "WinFormHtmlEditor_ToolbarFooter";
             this.HtmlEditor.ToolbarFooter.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.HtmlEditor.ToolbarFooter.Size = new System.Drawing.Size(618, 35);
@@ -1157,7 +1162,7 @@ namespace TraceForms
             this.xtraTabPagePrimaryImages.Controls.Add(this.panelControlPrimaryImages);
             this.xtraTabPagePrimaryImages.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPagePrimaryImages.Name = "xtraTabPagePrimaryImages";
-            this.xtraTabPagePrimaryImages.Size = new System.Drawing.Size(663, 342);
+            this.xtraTabPagePrimaryImages.Size = new System.Drawing.Size(663, 319);
             this.xtraTabPagePrimaryImages.Text = "Primary Images";
             // 
             // panelControlPrimaryImages
@@ -1168,7 +1173,7 @@ namespace TraceForms
             this.panelControlPrimaryImages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlPrimaryImages.Location = new System.Drawing.Point(0, 0);
             this.panelControlPrimaryImages.Name = "panelControlPrimaryImages";
-            this.panelControlPrimaryImages.Size = new System.Drawing.Size(663, 342);
+            this.panelControlPrimaryImages.Size = new System.Drawing.Size(663, 319);
             this.panelControlPrimaryImages.TabIndex = 0;
             // 
             // TextEditCaption
@@ -1189,7 +1194,7 @@ namespace TraceForms
             this.xtraTabControlPictures.Location = new System.Drawing.Point(33, 40);
             this.xtraTabControlPictures.Name = "xtraTabControlPictures";
             this.xtraTabControlPictures.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControlPictures.Size = new System.Drawing.Size(613, 297);
+            this.xtraTabControlPictures.Size = new System.Drawing.Size(613, 274);
             this.xtraTabControlPictures.TabIndex = 2;
             this.xtraTabControlPictures.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -1202,7 +1207,7 @@ namespace TraceForms
             // 
             this.xtraTabPage1.Controls.Add(this.panelControlLowRes);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(607, 269);
+            this.xtraTabPage1.Size = new System.Drawing.Size(607, 246);
             this.xtraTabPage1.Text = "Low Res";
             // 
             // panelControlLowRes
@@ -1218,7 +1223,7 @@ namespace TraceForms
             this.panelControlLowRes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlLowRes.Location = new System.Drawing.Point(0, 0);
             this.panelControlLowRes.Name = "panelControlLowRes";
-            this.panelControlLowRes.Size = new System.Drawing.Size(607, 269);
+            this.panelControlLowRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlLowRes.TabIndex = 0;
             // 
             // azureBlobBrowser1LowRes
@@ -1239,7 +1244,8 @@ namespace TraceForms
             // BarManager
             // 
             this.BarManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.barTools});
+            this.barTools,
+            this.bar3});
             this.BarManager.DockControls.Add(this.barDockControlTop);
             this.BarManager.DockControls.Add(this.barDockControlBottom);
             this.BarManager.DockControls.Add(this.barDockControlLeft);
@@ -1257,6 +1263,7 @@ namespace TraceForms
             this.barButtonItemRemoveFromReports,
             this.barButtonItemCreateNewReports});
             this.BarManager.MaxItemId = 10;
+            this.BarManager.StatusBar = this.bar3;
             // 
             // barTools
             // 
@@ -1361,6 +1368,18 @@ namespace TraceForms
             this.barButtonItemCreateNewReports.Name = "barButtonItemCreateNewReports";
             this.barButtonItemCreateNewReports.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItemCreateNewReports_ItemClick);
             // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -1374,10 +1393,10 @@ namespace TraceForms
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 632);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 609);
             this.barDockControlBottom.Manager = this.BarManager;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.barDockControlBottom.Size = new System.Drawing.Size(953, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(953, 23);
             // 
             // barDockControlLeft
             // 
@@ -1386,7 +1405,7 @@ namespace TraceForms
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
             this.barDockControlLeft.Manager = this.BarManager;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 601);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 578);
             // 
             // barDockControlRight
             // 
@@ -1395,7 +1414,7 @@ namespace TraceForms
             this.barDockControlRight.Location = new System.Drawing.Point(953, 31);
             this.barDockControlRight.Manager = this.BarManager;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 601);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 578);
             // 
             // PictureEditPreviewImage1LowRes
             // 
@@ -1405,7 +1424,7 @@ namespace TraceForms
             this.PictureEditPreviewImage1LowRes.Cursor = System.Windows.Forms.Cursors.Default;
             this.PictureEditPreviewImage1LowRes.Location = new System.Drawing.Point(67, 85);
             this.PictureEditPreviewImage1LowRes.Name = "PictureEditPreviewImage1LowRes";
-            this.PictureEditPreviewImage1LowRes.Size = new System.Drawing.Size(233, 178);
+            this.PictureEditPreviewImage1LowRes.Size = new System.Drawing.Size(233, 155);
             this.PictureEditPreviewImage1LowRes.TabIndex = 2;
             this.PictureEditPreviewImage1LowRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage1LowRes_LoadCompleted);
             // 
@@ -1462,7 +1481,7 @@ namespace TraceForms
             // 
             this.xtraTabPage5.Controls.Add(this.panelControlMedRes);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(607, 269);
+            this.xtraTabPage5.Size = new System.Drawing.Size(607, 246);
             this.xtraTabPage5.Text = "Medium Res";
             // 
             // panelControlMedRes
@@ -1478,7 +1497,7 @@ namespace TraceForms
             this.panelControlMedRes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlMedRes.Location = new System.Drawing.Point(0, 0);
             this.panelControlMedRes.Name = "panelControlMedRes";
-            this.panelControlMedRes.Size = new System.Drawing.Size(607, 269);
+            this.panelControlMedRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlMedRes.TabIndex = 0;
             // 
             // azureBlobBrowser2MedRes
@@ -1553,7 +1572,7 @@ namespace TraceForms
             this.PictureEditPreviewImage2MedRes.Cursor = System.Windows.Forms.Cursors.Default;
             this.PictureEditPreviewImage2MedRes.Location = new System.Drawing.Point(67, 85);
             this.PictureEditPreviewImage2MedRes.Name = "PictureEditPreviewImage2MedRes";
-            this.PictureEditPreviewImage2MedRes.Size = new System.Drawing.Size(233, 179);
+            this.PictureEditPreviewImage2MedRes.Size = new System.Drawing.Size(233, 156);
             this.PictureEditPreviewImage2MedRes.TabIndex = 3;
             this.PictureEditPreviewImage2MedRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage2MedRes_LoadCompleted);
             // 
@@ -1561,7 +1580,7 @@ namespace TraceForms
             // 
             this.xtraTabPage6.Controls.Add(this.panelControlHighRes);
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(607, 269);
+            this.xtraTabPage6.Size = new System.Drawing.Size(607, 246);
             this.xtraTabPage6.Text = "High Res";
             // 
             // panelControlHighRes
@@ -1577,7 +1596,7 @@ namespace TraceForms
             this.panelControlHighRes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlHighRes.Location = new System.Drawing.Point(0, 0);
             this.panelControlHighRes.Name = "panelControlHighRes";
-            this.panelControlHighRes.Size = new System.Drawing.Size(607, 269);
+            this.panelControlHighRes.Size = new System.Drawing.Size(607, 246);
             this.panelControlHighRes.TabIndex = 0;
             // 
             // azureBlobBrowser3HighRes
@@ -1652,7 +1671,7 @@ namespace TraceForms
             this.PictureEditPreviewImage3HighRes.Cursor = System.Windows.Forms.Cursors.Default;
             this.PictureEditPreviewImage3HighRes.Location = new System.Drawing.Point(67, 85);
             this.PictureEditPreviewImage3HighRes.Name = "PictureEditPreviewImage3HighRes";
-            this.PictureEditPreviewImage3HighRes.Size = new System.Drawing.Size(233, 179);
+            this.PictureEditPreviewImage3HighRes.Size = new System.Drawing.Size(233, 156);
             this.PictureEditPreviewImage3HighRes.TabIndex = 3;
             this.PictureEditPreviewImage3HighRes.LoadCompleted += new System.EventHandler(this.PictureEditPreviewImage3HighRes_LoadCompleted);
             // 
@@ -1660,7 +1679,7 @@ namespace TraceForms
             // 
             this.xtraTabPage7.Controls.Add(this.panelControlThumbNail);
             this.xtraTabPage7.Name = "xtraTabPage7";
-            this.xtraTabPage7.Size = new System.Drawing.Size(607, 269);
+            this.xtraTabPage7.Size = new System.Drawing.Size(607, 246);
             this.xtraTabPage7.Text = "Thumbnail";
             // 
             // panelControlThumbNail
@@ -1675,7 +1694,7 @@ namespace TraceForms
             this.panelControlThumbNail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlThumbNail.Location = new System.Drawing.Point(0, 0);
             this.panelControlThumbNail.Name = "panelControlThumbNail";
-            this.panelControlThumbNail.Size = new System.Drawing.Size(607, 269);
+            this.panelControlThumbNail.Size = new System.Drawing.Size(607, 246);
             this.panelControlThumbNail.TabIndex = 0;
             // 
             // azureBlobBrowser4Thumb
@@ -1745,7 +1764,7 @@ namespace TraceForms
             this.xtraTabPageAdditionalImages.Controls.Add(this.panelControl3);
             this.xtraTabPageAdditionalImages.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageAdditionalImages.Name = "xtraTabPageAdditionalImages";
-            this.xtraTabPageAdditionalImages.Size = new System.Drawing.Size(663, 342);
+            this.xtraTabPageAdditionalImages.Size = new System.Drawing.Size(663, 319);
             this.xtraTabPageAdditionalImages.Text = "Additional Images";
             // 
             // panelControl3
@@ -1756,7 +1775,7 @@ namespace TraceForms
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(663, 342);
+            this.panelControl3.Size = new System.Drawing.Size(663, 319);
             this.panelControl3.TabIndex = 0;
             // 
             // GridControlAdditionalImages
@@ -1775,7 +1794,7 @@ namespace TraceForms
             this.repositoryItemPopupContainerEditPreview,
             this.repositoryItemComboBoxImagePurpose,
             this.repositoryItemAzureBlobBrowser});
-            this.GridControlAdditionalImages.Size = new System.Drawing.Size(639, 271);
+            this.GridControlAdditionalImages.Size = new System.Drawing.Size(639, 248);
             this.GridControlAdditionalImages.TabIndex = 19;
             this.GridControlAdditionalImages.TabStop = false;
             this.GridControlAdditionalImages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2039,7 +2058,7 @@ namespace TraceForms
             this.ButtonDelRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonDelRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_delete2;
             this.ButtonDelRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonDelRow.Location = new System.Drawing.Point(71, 286);
+            this.ButtonDelRow.Location = new System.Drawing.Point(71, 263);
             this.ButtonDelRow.Name = "ButtonDelRow";
             this.ButtonDelRow.Size = new System.Drawing.Size(34, 36);
             this.ButtonDelRow.TabIndex = 2;
@@ -2052,7 +2071,7 @@ namespace TraceForms
             this.ButtonAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddRow.ImageOptions.Image = global::TraceForms.Properties.Resources.document_new;
             this.ButtonAddRow.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.ButtonAddRow.Location = new System.Drawing.Point(29, 286);
+            this.ButtonAddRow.Location = new System.Drawing.Point(29, 263);
             this.ButtonAddRow.Name = "ButtonAddRow";
             this.ButtonAddRow.Size = new System.Drawing.Size(36, 36);
             this.ButtonAddRow.TabIndex = 1;
@@ -2065,7 +2084,7 @@ namespace TraceForms
             this.xtraTabPageDisplay.Controls.Add(this.panelControlDisplay);
             this.xtraTabPageDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabPageDisplay.Name = "xtraTabPageDisplay";
-            this.xtraTabPageDisplay.Size = new System.Drawing.Size(663, 342);
+            this.xtraTabPageDisplay.Size = new System.Drawing.Size(663, 319);
             this.xtraTabPageDisplay.Text = "Display";
             // 
             // panelControlDisplay
@@ -2079,7 +2098,7 @@ namespace TraceForms
             this.panelControlDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDisplay.Location = new System.Drawing.Point(0, 0);
             this.panelControlDisplay.Name = "panelControlDisplay";
-            this.panelControlDisplay.Size = new System.Drawing.Size(663, 342);
+            this.panelControlDisplay.Size = new System.Drawing.Size(663, 319);
             this.panelControlDisplay.TabIndex = 0;
             // 
             // ImageComboBoxEditSeverity
@@ -2126,7 +2145,7 @@ namespace TraceForms
             this.GridControlLookup.Location = new System.Drawing.Point(0, 0);
             this.GridControlLookup.MainView = this.GridViewLookup;
             this.GridControlLookup.Name = "GridControlLookup";
-            this.GridControlLookup.Size = new System.Drawing.Size(251, 601);
+            this.GridControlLookup.Size = new System.Drawing.Size(251, 578);
             this.GridControlLookup.TabIndex = 32;
             this.GridControlLookup.TabStop = false;
             this.GridControlLookup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -2388,6 +2407,8 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.AutoScroll = true;
             this.SplitContainerControl.Panel2.Controls.Add(label1);
             this.SplitContainerControl.Panel2.Controls.Add(label2);
+            this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditAllCategory);
+            this.SplitContainerControl.Panel2.Controls.Add(this.CheckEditAllAgency);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelChgDate);
             this.SplitContainerControl.Panel2.Controls.Add(this.LabelChangeDate);
             this.SplitContainerControl.Panel2.Controls.Add(this.xtraTabControlMediaInfo);
@@ -2409,12 +2430,28 @@ namespace TraceForms
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditProduct);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditSection);
             this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditAgency);
-            this.SplitContainerControl.Panel2.Controls.Add(this.GridLookUpEditCategory);
+            this.SplitContainerControl.Panel2.Controls.Add(this.SearchLookupEditCategory);
             this.SplitContainerControl.Panel2.Text = "Panel2";
-            this.SplitContainerControl.Size = new System.Drawing.Size(953, 601);
+            this.SplitContainerControl.Size = new System.Drawing.Size(953, 578);
             this.SplitContainerControl.SplitterPosition = 251;
             this.SplitContainerControl.TabIndex = 2;
             this.SplitContainerControl.Text = "splitContainerControl";
+            // 
+            // CheckEditAllCategory
+            // 
+            this.CheckEditAllCategory.Location = new System.Drawing.Point(352, 126);
+            this.CheckEditAllCategory.Name = "CheckEditAllCategory";
+            this.CheckEditAllCategory.Properties.Caption = "All";
+            this.CheckEditAllCategory.Size = new System.Drawing.Size(41, 19);
+            this.CheckEditAllCategory.TabIndex = 8;
+            // 
+            // CheckEditAllAgency
+            // 
+            this.CheckEditAllAgency.Location = new System.Drawing.Point(352, 105);
+            this.CheckEditAllAgency.Name = "CheckEditAllAgency";
+            this.CheckEditAllAgency.Properties.Caption = "All";
+            this.CheckEditAllAgency.Size = new System.Drawing.Size(39, 19);
+            this.CheckEditAllAgency.TabIndex = 6;
             // 
             // LabelChgDate
             // 
@@ -2683,6 +2720,7 @@ namespace TraceForms
             this.SearchLookupEditAgency.Properties.ValueMember = "Code";
             this.SearchLookupEditAgency.Size = new System.Drawing.Size(277, 20);
             this.SearchLookupEditAgency.TabIndex = 5;
+            this.SearchLookupEditAgency.TextChanged += new System.EventHandler(this.ImageComboBoxEditAgency_TextChanged);
             this.SearchLookupEditAgency.Leave += new System.EventHandler(this.ImageComboBoxEditAgency_Leave);
             // 
             // gridView3
@@ -2710,56 +2748,54 @@ namespace TraceForms
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 1;
             // 
-            // GridLookUpEditCategory
+            // SearchLookupEditCategory
             // 
-            this.GridLookUpEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
-            this.GridLookUpEditCategory.Location = new System.Drawing.Point(69, 124);
-            this.GridLookUpEditCategory.Name = "GridLookUpEditCategory";
-            this.GridLookUpEditCategory.Properties.AcceptEditorTextAsNewValue = DevExpress.Utils.DefaultBoolean.True;
-            this.GridLookUpEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.SearchLookupEditCategory.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.BindingSource, "CAT", true));
+            this.SearchLookupEditCategory.Location = new System.Drawing.Point(69, 124);
+            this.SearchLookupEditCategory.Name = "SearchLookupEditCategory";
+            this.SearchLookupEditCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.GridLookUpEditCategory.Properties.DataSource = this.BindingSourceCodeName;
-            this.GridLookUpEditCategory.Properties.DisplayMember = "DisplayName";
-            this.GridLookUpEditCategory.Properties.MaxLength = 16;
-            this.GridLookUpEditCategory.Properties.NullText = "";
-            this.GridLookUpEditCategory.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.GridLookUpEditCategory.Properties.PopupSizeable = false;
-            this.GridLookUpEditCategory.Properties.PopupView = this.gridLookUpEdit1View;
-            this.GridLookUpEditCategory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.GridLookUpEditCategory.Properties.ValueMember = "Code";
-            this.GridLookUpEditCategory.Size = new System.Drawing.Size(277, 20);
-            this.GridLookUpEditCategory.TabIndex = 7;
-            this.GridLookUpEditCategory.ProcessNewValue += new DevExpress.XtraEditors.Controls.ProcessNewValueEventHandler(this.GridLookUpEditCategory_ProcessNewValue);
-            this.GridLookUpEditCategory.QueryPopUp += new System.ComponentModel.CancelEventHandler(this.LookupEdit_QueryPopUp);
-            this.GridLookUpEditCategory.Leave += new System.EventHandler(this.ImageComboBoxEditCategory_Leave);
+            this.SearchLookupEditCategory.Properties.DataSource = this.BindingSourceCodeName;
+            this.SearchLookupEditCategory.Properties.DisplayMember = "DisplayName";
+            this.SearchLookupEditCategory.Properties.MaxLength = 16;
+            this.SearchLookupEditCategory.Properties.NullText = "";
+            this.SearchLookupEditCategory.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.SearchLookupEditCategory.Properties.PopupSizeable = false;
+            this.SearchLookupEditCategory.Properties.PopupView = this.gridView4;
+            this.SearchLookupEditCategory.Properties.ValueMember = "Code";
+            this.SearchLookupEditCategory.Size = new System.Drawing.Size(277, 20);
+            this.SearchLookupEditCategory.TabIndex = 7;
+            this.SearchLookupEditCategory.Popup += new System.EventHandler(this.SearchLookupEdit_Popup);
+            this.SearchLookupEditCategory.TextChanged += new System.EventHandler(this.ImageComboBoxEditCategory_TextChanged);
+            this.SearchLookupEditCategory.Leave += new System.EventHandler(this.ImageComboBoxEditCategory_Leave);
             // 
-            // gridLookUpEdit1View
+            // gridView4
             // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn12,
-            this.gridColumn13});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsBehavior.AutoPopulateColumns = false;
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowColumnHeaders = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.gridLookUpEdit1View.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
-            this.gridLookUpEdit1View.OptionsView.ShowIndicator = false;
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn10,
+            this.gridColumn11});
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsBehavior.AutoPopulateColumns = false;
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowColumnHeaders = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView4.OptionsView.ShowIndicator = false;
             // 
-            // gridColumn12
+            // gridColumn10
             // 
-            this.gridColumn12.FieldName = "Code";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 0;
+            this.gridColumn10.FieldName = "Code";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
             // 
-            // gridColumn13
+            // gridColumn11
             // 
-            this.gridColumn13.FieldName = "Name";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 1;
+            this.gridColumn11.FieldName = "Name";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
             // 
             // LabelStatus
             // 
@@ -2886,6 +2922,8 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.ComboBoxEditType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerControl)).EndInit();
             this.SplitContainerControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckEditAllAgency.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcStartDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DateEditSvcEndDate.Properties.CalendarTimeProperties)).EndInit();
@@ -2904,8 +2942,8 @@ namespace TraceForms
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditAgency.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridLookUpEditCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchLookupEditCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PanelControlStatus)).EndInit();
             this.PanelControlStatus.ResumeLayout(false);
             this.PanelControlStatus.PerformLayout();
@@ -2957,6 +2995,8 @@ namespace TraceForms
         private LabelControl LabelStatus;
         private PanelControl PanelControlStatus;
         private LabelControl labelControl1;
+        private CheckEdit CheckEditAllAgency;
+        private CheckEdit CheckEditAllCategory;
         private BindingSource bindingSourceCodeNameProduct;
         private PanelControl panelControlText;
         private TextEdit TextEditTitle;
@@ -3015,6 +3055,7 @@ namespace TraceForms
         private DevExpress.XtraBars.BarButtonItem barButtonItemReportsContainingSection;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAddToReports;
         private DevExpress.XtraBars.BarButtonItem barButtonItemRemoveFromReports;
+        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
@@ -3074,9 +3115,9 @@ namespace TraceForms
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private GridColumn gridColumn3;
         private GridColumn gridColumn9;
-        private GridLookUpEdit GridLookUpEditCategory;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
-        private GridColumn gridColumn12;
-        private GridColumn gridColumn13;
+        private SearchLookUpEdit SearchLookupEditCategory;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private GridColumn gridColumn10;
+        private GridColumn gridColumn11;
     }
 }

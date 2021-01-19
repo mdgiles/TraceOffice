@@ -33,7 +33,6 @@ namespace TraceForms
         Timer _actionConfirmation;
         bool _ignoreLeaveRow = false, _ignorePositionChange = false;
         Dictionary<String, List<CodeName>> _productLookups;
-        List<CodeName> _allCats = new List<CodeName>();
         string _imagesRoot;
         string _originalHtml = string.Empty;
         bool _resourcesModified = false;
@@ -130,22 +129,17 @@ namespace TraceForms
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
             _productLookups.Add("PKG", lookup);
 
-            lookup = new List<CodeName>() {
-                new CodeName(null)
-            };
+            lookup = new List<CodeName>();
             lookup.AddRange(_context.AGY
                 .OrderBy(t => t.NO)
                 .Select(t => new CodeName() { Code = t.NO, Name = t.NAME }));
             SearchLookupEditAgency.Properties.DataSource = lookup;
 
-            lookup = new List<CodeName>() {
-                new CodeName(null)
-            };
+            lookup = new List<CodeName>();
             lookup.AddRange(_context.ROOMCOD
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
-            _allCats.AddRange(lookup);
-            GridLookUpEditCategory.Properties.DataSource = _allCats;
+            SearchLookupEditCategory.Properties.DataSource = lookup;
 
             lookup = new List<CodeName>();
             lookup.AddRange(_context.LANGUAGE
@@ -155,7 +149,6 @@ namespace TraceForms
 
             lookup = new List<CodeName>();
             lookup.AddRange(_context.LOOKUP
-                .Where(l => l.LINK_TABLE == "MEDIAINFO" && l.LINK_COLUMN == "SECTION" && l.RECTYPE == "MEDIASECTION")
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
             SearchLookupEditSection.Properties.DataSource = lookup;
@@ -164,13 +157,13 @@ namespace TraceForms
             lookup.AddRange(_context.CITYCOD
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.NAME }));
-            _productLookups.Add("CTY", lookup);
+            SearchLookupEditProduct.Properties.DataSource = lookup;
 
             lookup = new List<CodeName>();
             lookup.AddRange(_context.WAYPOINT
                 .OrderBy(t => t.CODE)
                 .Select(t => new CodeName() { Code = t.CODE, Name = t.DESC }));
-            _productLookups.Add("WAY", lookup);
+            SearchLookupEditProduct.Properties.DataSource = lookup;
         }
 
 
@@ -199,7 +192,7 @@ namespace TraceForms
 
         void SetReadOnlyKeyFields(bool value)
         {
-            SearchLookupEditProduct.Enabled = value;
+            SearchLookupEditProduct.ReadOnly = value;
         }
 
         private void ButtonEditImage1LowRes_ButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -536,7 +529,7 @@ namespace TraceForms
             //be set manually
             SetErrorInfo(_selectedRecord.ValidateCode, SearchLookupEditProduct);
             SetErrorInfo(_selectedRecord.ValidateType, ComboBoxEditType);
-            SetErrorInfo(_selectedRecord.ValidateCategory, GridLookUpEditCategory);
+            SetErrorInfo(_selectedRecord.ValidateCategory, SearchLookupEditCategory);
             SetErrorInfo(_selectedRecord.ValidateLanguage, SearchLookupEditLang);
             SetErrorInfo(_selectedRecord.ValidateAgency, SearchLookupEditAgency);
             SetErrorInfo(_selectedRecord.ValidateSvcStartDate, DateEditSvcStartDate);
@@ -574,6 +567,7 @@ namespace TraceForms
                 LoadAndBindResources();
                 SetReadOnly(false);
                 SetReadOnlyKeyFields(true);
+                //SetReadOnlyKeyFields(true);
                 BarButtonItemDelete.Enabled = true;
                 BarSubItemReports.Enabled = true;
                 BarButtonItemSave.Enabled = true;
@@ -706,6 +700,19 @@ namespace TraceForms
                     ClearBindings();
                 }
             }
+        }
+
+        private void SetCheckEdits()
+        {
+            if (string.IsNullOrWhiteSpace(SearchLookupEditCategory.Text))
+                CheckEditAllCategory.Checked = true;
+            else
+                CheckEditAllCategory.Checked = false;
+
+            if (string.IsNullOrWhiteSpace(SearchLookupEditAgency.Text))
+                CheckEditAllAgency.Checked = true;
+            else
+                CheckEditAllAgency.Checked = false;
         }
 
         private void GridViewLookup_BeforeLeaveRow(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e)
@@ -890,48 +897,26 @@ namespace TraceForms
             SetFieldStates(ComboBoxEditType.Text);
         }
 
-        private void GridLookUpEditCategory_ProcessNewValue(object sender, ProcessNewValueEventArgs e)
-        {
-            SetItemCategoryLookup(e.DisplayValue.ToString());
-            e.Handled = true;
-        }
-
-        private void SetItemCategoryLookup(object itemCat)
-        {
-            string cat = itemCat.ToStringNullIfNull();
-
-            if (string.IsNullOrEmpty(cat) || _allCats.Any(c => c.Code == cat)) {
-                GridLookUpEditCategory.Properties.DataSource = _allCats;
-            }
-            else {
-                //If the value of category isn't in the list, add it to the list
-                //We allow non-matching categories so that API products can be booked
-                //Do not set DataSource because it's already bound to the list, so just changing the list is sufficient
-                //Also settings DataSource from ProcessNewValue is forbidden and throws a NullReferenceException
-                var newCat = new CodeName(cat);
-                _allCats.Insert(1, newCat);
-            }
-        }
-
         private void SetFieldStates(string type)
         {
-            SearchLookupEditProduct.Enabled = true;
-            SearchLookupEditAgency.Enabled = true;
-            GridLookUpEditCategory.Enabled = true;
-            DateEditSvcStartDate.Enabled = true;
-            DateEditSvcEndDate.Enabled = true;
+            SearchLookupEditProduct.ReadOnly = true;
+            SearchLookupEditCategory.ReadOnly = true;
+            CheckEditAllCategory.ReadOnly = true;
+            DateEditSvcStartDate.ReadOnly = true;
+            DateEditSvcEndDate.ReadOnly = true;
 
             LoadCodeLookupValues(type, SearchLookupEditProduct);
 
             if (type == "AGY") {
-                SearchLookupEditProduct.Enabled = false;
-                SearchLookupEditProduct.EditValue = null;
-                GridLookUpEditCategory.Enabled = false;
-                GridLookUpEditCategory.EditValue = null;
-            }
-            if (type == "WAY" || type == "CTY") {
-                GridLookUpEditCategory.Enabled = false;
-                GridLookUpEditCategory.EditValue = null;
+                SearchLookupEditProduct.ReadOnly = false;
+                SearchLookupEditCategory.Text = string.Empty;
+                SearchLookupEditCategory.ReadOnly = false;
+                CheckEditAllCategory.Checked = false;
+                CheckEditAllCategory.ReadOnly = false;
+                DateEditSvcStartDate.Text = string.Empty;
+                DateEditSvcStartDate.ReadOnly = false;
+                DateEditSvcEndDate.Text = string.Empty;
+                DateEditSvcEndDate.ReadOnly = false;
             }
         }
 
@@ -1119,6 +1104,22 @@ namespace TraceForms
                 }
             }
             catch { }
+        }
+
+        private void ImageComboBoxEditAgency_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchLookupEditAgency.Text))
+                CheckEditAllAgency.Checked = true;
+            else
+                CheckEditAllAgency.Checked = false;
+        }
+
+        private void ImageComboBoxEditCategory_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchLookupEditCategory.Text))
+                CheckEditAllCategory.Checked = true;
+            else
+                CheckEditAllCategory.Checked = false;
         }
 
         private void MediaInfoMaint_Shown(object sender, System.EventArgs e)
