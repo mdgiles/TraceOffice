@@ -116,12 +116,14 @@ namespace TraceForms
                 { "last name", "Last Name" },
                 { "first name", "First Name" },
                 { "code", "Code" },
-                { "category", "Category" },
                 { "description", "Description" },
+                { "category", "Category" },
+                { "catdesc", "Category Description" },
                 { "start date", "Service Date" },
                 { "res date", "Booking Date" },
                 { "cancelled", "Cancelled" },
                 { "net", "Amount" },
+                { "cost", "Cost" },
             };
             string[] keys = new string[columns.Count];
             columns.Keys.CopyTo(keys, 0);
@@ -142,11 +144,13 @@ namespace TraceForms
             string dateField = $"[{radioGroupDate.EditValue}]";
             endDate = endDate.AddDays(1).AddSeconds(-1);
             string sql = $@"SELECT reshdr.[Res No], resitm.Item, resitm.[Res Agt], reshdr.InternalRemarks as TripRemarks, resitm.InternalRemarks as ItemRemarks, 
- reshdr.Reference, psgrlist.[Doc Nbr], psgrlist.[Last Name], psgrlist.[First Name], Code, CAT AS Category, DESCRIP AS Description, [Strt Date] AS [Start Date], resitm.[Res Date],
- CASE WHEN resitm.Inactive = 1 THEN 'Yes' ELSE 'No' END AS Cancelled, resitm.agency, resitm.Net FROM resitm
+ reshdr.Reference, psgrlist.[Doc Nbr], psgrlist.[Last Name], psgrlist.[First Name], Code, DESCRIP AS description, CAT AS Category, resroom.catdesc, [Strt Date] AS [Start Date], resitm.[Res Date],
+ CASE WHEN resitm.Inactive = 1 THEN 'Yes' ELSE 'No' END AS Cancelled, resitm.agency, resitm.Net FROM resitm, resnight.Cost
  INNER JOIN reshdr ON resitm.[res no] = reshdr.[res no]
- INNER JOIN psgrres ON reshdr.[res no] = psgrres.[res no]
+ INNER JOIN psgrres ON reshdr.[res no] = psgrres.[res no] and psgrres.[client level] = 1
  INNER JOIN psgrlist ON psgrres.[CLIENT NO] = psgrlist.[CLIENT NO]
+ INNER JOIN resroom ON resroom.[res no] = resitm.[res no] and resroom.item = resitm.item and resroom.room = 0 
+ INNER JOIN resnight ON resnight.[res no] = resitm.[res no] and resnight.item = resitm.item and resnight.room = 0 and resnight.night = 0
  WHERE AGENCY in ({agencyList}) AND resitm.{dateField} >= '{startDate}' AND resitm.{dateField} <= '{endDate}'
  ORDER BY {dateField}";
 
