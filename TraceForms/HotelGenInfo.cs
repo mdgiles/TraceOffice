@@ -138,7 +138,6 @@ namespace TraceForms
             {
                 ImageComboBoxItem load = new ImageComboBoxItem() { Description = result.CODE.TrimEnd() + "  " + "(" + result.NAME.TrimEnd() + ")", Value = result.CODE.TrimEnd() };
                 ImageComboBoxEditArea.Properties.Items.Add(load);
-                ImageComboBoxEditAirport.Properties.Items.Add(load);
                 ImageComboBoxEditCityCode.Properties.Items.Add(load);
             }
             foreach (var result in agy)
@@ -1398,7 +1397,7 @@ namespace TraceForms
                 }
                 else
                 {
-                    MessageBox.Show("No records in database.");
+                    MessageBox.Show("No matching records found.");
                     GridViewHotels.ClearColumnsFilter();
                 }
             }
@@ -1768,13 +1767,18 @@ namespace TraceForms
         }
 
         private void ButtonDelRowContact_Click(object sender, EventArgs e)
-        {
-            int handle = GridViewAdditionalContacts.FocusedRowHandle;
-            GridViewAdditionalContacts.DeleteRow(handle);
-            ContactBindingSource.EndEdit();
-            context.SaveChanges();
-            contactNewRowRec = false;
-            Modified = false;
+        {//Database has a cascading delete, so deleting a contact automatically deletes its report contacts
+            try {
+                int handle = GridViewAdditionalContacts.FocusedRowHandle;
+                GridViewAdditionalContacts.DeleteRow(handle);
+                ContactBindingSource.EndEdit();
+                context.SaveChanges();
+                contactNewRowRec = false;
+                Modified = false;
+            }
+            catch (Exception ex) {
+
+            }
         }
 
         private void ButtonContactSave_Click(object sender, EventArgs e)

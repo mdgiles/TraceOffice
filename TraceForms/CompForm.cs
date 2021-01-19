@@ -30,16 +30,6 @@ namespace TraceForms
 {
     public partial class CompForm : DevExpress.XtraEditors.XtraForm
     {
-        enum WeekDays : byte
-        {
-            Sunday = 1,
-            Monday = 2,
-            Tuesday = 4,
-            Wednesday = 8,
-            Thursday = 16,
-            Friday = 32,
-            Saturday = 64,
-        }
         FlextourEntities _context;
         COMP _selectedRecord, _previousRecord;
         Timer _actionConfirmation;
@@ -54,7 +44,6 @@ namespace TraceForms
         Dictionary<string, RepositoryItemSearchLookUpEdit> _repos = new Dictionary<string, RepositoryItemSearchLookUpEdit>();
         Dictionary<string, List<CodeName>> _passLookups = new Dictionary<string, List<CodeName>>();
         List<IdName> _routes = new List<IdName>();
-        List<CodeName> _daysOfWeek;
         Dictionary<String, List<CodeName>> _ServPackTypeLookups = new Dictionary<String, List<CodeName>>();
         private readonly DateTime _baseDate = new DateTime(1900, 1, 1);
 
@@ -1162,7 +1151,7 @@ namespace TraceForms
                 Exclusion = "0",
             };
 
-            if (ImageComboBoxEditTransType.Text == "Outbound") {
+            if (_selectedRecord.TRSFR_TYP != "I") {
                 busTable.In_Out = "O";
             }
             else {
@@ -2343,20 +2332,14 @@ namespace TraceForms
             }
         }
 
-        private void LookupEdit_QueryPopUp(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if ((sender as LookUpEditBase).Properties.DataSource == null)
-                e.Cancel = true;
-            else
-                e.Cancel = false;
-        }
-
         private void RepositoryItemCheckedComboBoxEditDaysOfWeek_EditValueChanged(object sender, EventArgs e)
         {
             CheckedComboBoxEdit edit = sender as CheckedComboBoxEdit;
-            byte value = (byte)edit.EditValue;
-            ProductTime row = (ProductTime)GridViewProductTime.GetFocusedRow();
-            row.DaysOfWeek = value;
+            if (edit.EditValue != null) {
+                byte value = (byte)edit.EditValue;
+                ProductTime row = (ProductTime)GridViewProductTime.GetFocusedRow();
+                row.DaysOfWeek = value;
+            }
         }
 
         private void SimpleButtonPasteTransfers_Click(object sender, EventArgs e)
@@ -2401,6 +2384,15 @@ namespace TraceForms
         {
             if (_selectedRecord != null)
                 SetErrorInfo(_selectedRecord.ValidateProductTax, sender);
+        }
+
+        private void TimeEditEndOfDay_EditValueChanged(object sender, EventArgs e)
+        {//End Of Day is a field on comp, so in order to access it in FlexModel ProductTime validation set it here
+            if(_selectedRecord?.ProductTime != null) {
+                foreach (ProductTime time in _selectedRecord.ProductTime) {
+                    time.EndOfDay = (DateTime?)TimeEditEndOfDay.EditValue;
+                }
+            }
         }
 
         private void SimpleButtonAddProductTax_Click(object sender, EventArgs e)

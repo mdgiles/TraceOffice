@@ -510,7 +510,7 @@ namespace TraceForms
             SetErrorInfo(_selectedRecord.ValidateName, TextEditName);
             SetErrorInfo(_selectedRecord.ValidateLang, ImageComboBoxEditLanguage);
             SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditCity);
-            SetErrorInfo(_selectedRecord.ValidateCity, SearchLookupEditDepCity);
+            SetErrorInfo(_selectedRecord.ValidateDepartureCity, SearchLookupEditDepCity);
             SetErrorInfo(_selectedRecord.ValidateRegion, SearchLookupEditRegion);
             SetErrorInfo(_selectedRecord.ValidateOper, SearchLookupEditOperator);
             SetErrorInfo(_selectedRecord.ValidateNts, SpinEditNights);

@@ -1405,6 +1405,84 @@ namespace TraceForms
             }
         }
 
+        private void SpinEditCBT1_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT1, sender);
+        }
+
+        private void SpinEditCBT2_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT2, sender);
+        }
+
+        private void SpinEditCBT3_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT3, sender);
+        }
+
+        private void SpinEditCBT4_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT4, sender);
+        }
+
+        private void SpinEditCBT5_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT5, sender);
+        }
+
+        private void SpinEditCBT6_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT6, sender);
+        }
+
+        private void SpinEditCBT7_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT7, sender);
+        }
+
+        private void SpinEditCBT8_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT8, sender);
+        }
+
+        private void SpinEditCBT9_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT9, sender);
+        }
+
+        private void SpinEditCBT10_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateCBT10, sender);
+        }
+
+        private void SpinEditCBTChild_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateChildCostBeforeTax, sender);
+        }
+
+        private void SpinEditCBTJr_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateJuniorCostBeforeTax, sender);
+        }
+
+        private void SpinEditCBTSenior_Leave(object sender, EventArgs e)
+        {
+            if (_selectedRecord != null)
+                SetErrorInfo(_selectedRecord.ValidateSeniorCostBeforeTax, sender);
+        }
+
         private void ImageComboBoxEditAgency_EditValueChanged(object sender, EventArgs e)
         {
             string agency = SearchLookupEditAgency.EditValue.ToString();
